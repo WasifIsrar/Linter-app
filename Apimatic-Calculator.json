@@ -28,7 +28,6 @@
             "in": "path",
             "description": "The operator to apply on the variables",
             "required": true,
-            "style": "simple",
             "schema": {
               "$ref": "#/components/schemas/OperationType"
             }
