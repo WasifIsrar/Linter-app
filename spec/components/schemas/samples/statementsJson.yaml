@@ -1,0 +1,31 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "p1_stm_00ce6abbac436354cd82bba",
+              "created": "2025-03-10 00:29:47.7087",
+              "modified": "2025-03-10 00:29:50.7845",
+              "creator": "p1_log_000444ad99da5eb18e00207",
+              "modifier": "p1_log_000444ad99da5eb18e00207",
+              "billing": "p1_bil_00585dd2654581aaa5f9993",
+              "status": "pending",
+              "totalPaid": 0,
+              "total": 78687,
+              "currency": "USD",
+              "forentity": "p1_ent_0acb282c487aa4bf1477e0f",
+              "entity": "p1_ent_0051dcf88fee4617e5e38d5",
+              "start": 20250201,
+              "finish": 20250228
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

@@ -1,0 +1,24 @@
+title: batchStage
+type: string
+description: |
+  The stage of the Batch file that this reference code relates to.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `all` - **Applies to batch files that contain all types of txns.**
+  - `debit` - **Applies to batch files that contain only debit txns.**
+  - `credit` - **Applies to batch files that contain only credit txns.**
+
+  </details>
+enum:
+- all
+- debit
+- credit
+x-enum-elements:
+- name: All
+  description: Applies to batch files that contain all types of txns.
+- name: Debit
+  description: Applies to batch files that contain only debit txns.
+- name: Credit
+  description: Applies to batch files that contain only credit txns.

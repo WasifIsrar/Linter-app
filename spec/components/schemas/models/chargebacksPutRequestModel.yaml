@@ -1,0 +1,180 @@
+title: chargebacksPutRequest
+properties:
+  txn:
+    type: string
+    description: The Transaction associated with the Chargeback.
+  merchant:
+    type: string
+    description: The Merchant associated with the Chargeback.
+  mid:
+    type: string
+    description: The Merchant's processing MID.
+  total:
+    type: integer
+    format: int64
+    description: The total amount of the Chargeback.
+  representedTotal:
+    type: integer
+    format: int64
+    description: The representedTotal for this Chargeback if it has been represented.
+  description:
+    type: string
+    description: Description of the chargeback.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for this chargeback. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  platform:
+    $ref: ../enums/chargebackPlatformModel.yaml
+  paymentMethod:
+    $ref: ../enums/chargebackPaymentMethodModel.yaml
+  ref:
+    type: string
+    description: The processing reference number for this Chargeback.
+  cycle:
+    type: string
+    description: "<details><summary>Valid Values</summary>\n\n - `retrieval` - **Initial\
+      \ request from the issuer for more information on this Transaction.**\n  \n\
+      \ - `first` - **First Chargeback from issuer for this Transaction.**\n  \n -\
+      \ `arbitration` - **Arbitration is being sought for this Chargeback.**\n  \n\
+      \ - `reversal` - **Chargeback was reversed.**\n  \n - `representment` - **Merchant\
+      \ is being represented to the issuer with the Chargeback response posted.**\n\
+      \n \n - `preArbitration` - **Chargeback is no longer representable, Merchant\
+      \ must choose to accept or arbitrate with the card brand.**\n  \n - `arbitrationLost`\
+      \ - **Arbitration lost.**\n  \n - `arbitrationSplit` - **Arbitration split.**\n\
+      \  \n - `arbitrationWon` - **Arbitration won.**\n  \n - `issuerAcceptPreArbitration`\
+      \ - **Issuer accepted the pre-arbitration response.**\n  \n - `issuerDeclinedPreArbitration`\
+      \ - **Issuer declined pre-arbitration.**\n  \n - `responseToIssuerPreArbitration`\
+      \ - **Response to issuer pre-arbitration.**\n  \n - `merchantAcceptedPreArbitration`\
+      \ - **Merchant accepted the pre-arbitration response.**\n  \n - `merchantDeclinedPreArbitration`\
+      \ - **Merchant declined the pre-arbitration response.**\n  \n - `preCompliance`\
+      \ - **''**\n  \n - `compliance` - **''** </details>"
+    enum:
+    - retrieval
+    - first
+    - arbitration
+    - reversal
+    - representment
+    - preArbitration
+    - arbitrationLost
+    - arbitrationSplit
+    - arbitrationWon
+    - issuerAcceptPreArbitration
+    - issuerDeclinedPreArbitration
+    - responseToIssuerPreArbitration
+    - merchantAcceptedPreArbitration
+    - merchantDeclinedPreArbitration
+    - preCompliance
+    - compliance
+    x-enum-elements:
+    - name: "retrieval"
+      description: "Initial request from the issuer for more information on this Transaction."
+    - name: "first"
+      description: "First Chargeback from issuer for this Transaction."
+    - name: "arbitration"
+      description: "Arbitration is being sought for this Chargeback."
+    - name: "reversal"
+      description: "Chargeback was reversed."
+    - name: "representment"
+      description: "Merchant is being represented to the issuer with the Chargeback response posted."
+    - name: "preArbitration"
+      description: "Chargeback is no longer representable, Merchant must choose to accept or arbitrate with the card brand."
+    - name: "arbitrationLost"
+      description: "Arbitration lost."
+    - name: "arbitrationSplit"
+      description: "Arbitration split."
+    - name: "arbitrationWon"
+      description: "Arbitration won."
+    - name: "issuerAcceptPreArbitration"
+      description: "Issuer accepted the pre-arbitration response."
+    - name: "issuerDeclinedPreArbitration"
+      description: "Issuer declined pre-arbitration."
+    - name: "responseToIssuerPreArbitration"
+      description: "Response to issuer pre-arbitration."
+    - name: "merchantAcceptedPreArbitration"
+      description: "Merchant accepted the pre-arbitration response."
+    - name: "merchantDeclinedPreArbitration"
+      description: "Merchant declined the pre-arbitration response."
+    - name: "preCompliance"
+      description: "Pre-compliance."
+    - name: "compliance"
+      description: "Compliance."
+  reason:
+    type: string
+    description: The reason description for this Chargeback.
+  reasonCode:
+    type: string
+    description: The reason code for this Chargeback.
+  issued:
+    type: integer
+    description: The date when the Chargeback was issued.
+  received:
+    type: integer
+    description: The date when the Chargeback was received.
+  reply:
+    type: integer
+    description: The deadline to submit a reply for the Chargeback.
+  bankRef:
+    type: string
+    description: The issuing bank's reference number for this Chargeback.
+  chargebackRef:
+    type: string
+    description: Chargeback reference number.
+  status:
+    $ref: ../enums/chargebackStatusModel.yaml
+  lastStatusChange:
+    type: string
+    description: The ChargebackStatus representing the latest status change for this
+      Chargeback.
+  actionable:
+    type: integer
+    description: "\n\n<details>\n<summary>Valid Values</summary>\n\n- `0` NotActionable - **''**\
+      \ \n\n- `1` Actionable - **''**\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotActionable"
+      description: "Not actionable."
+    - name: "Actionable"
+      description: "Actionable."
+  shadow:
+    type: integer
+    description: "\n\n<details>\n<summary>Valid Values</summary>\n\n- `0` - **''**\
+      \ \n\n- `1` - **''**\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotShadowed"
+      description: "Not shadowed."
+    - name: "Shadowed"
+      description: "Shadowed."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example: 
+    txn: t1_txn_678e56d221e81b116dbb452
+    mid: 11242567
+    description: Chargeback for the txn of $200,000
+    total: 200000
+    representedTotal: 20000
+    cycle: first
+    currency: USD
+    platform: VANTIV
+    paymentMethod: 1
+    ref: 6574367
+    reason: No Cardholder Authorization
+    reasonCode: 4837
+    issued: 20140815
+    received: 20140815
+    reply: 20140919
+    bankRef: 6574367
+    chargebackRef: 6574367
+    status: open
+    lastStatusChange: 6574367
+    actionable: 1
+    shadow: 0
+    inactive: 0
+    frozen: 0

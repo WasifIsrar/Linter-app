@@ -1,0 +1,26 @@
+title: subscriptionTokensResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  subscription:
+    type: string
+    description: The identifier of the Subscription resource that this Subscription
+      Token is associated with. This is the Subscription that the Token identified
+      in the 'token' field of this resource is responsible for paying for.
+  token:
+    type: string
+    description: The identifier of the Token resource that this Subscription Token
+      is associated with. This resource identifies the means of payment for the Subscription
+      identified in the 'subscription' field of this resource.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

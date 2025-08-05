@@ -1,0 +1,43 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_pfw_67e2ff129aad30995408a00",
+        "created": "2025-03-25 15:08:02.6559",
+        "modified": "2025-03-25 15:08:02.6559",
+        "creator": "t1_log_673245a79517f80bf2e7738",
+        "modifier": "t1_log_673245a79517f80bf2e7738",
+        "login": "t1_log_673245a79517f80bf2e7738",
+        "payoutLogin": "",
+        "org": "t1_org_67b8f82d4f96c5a520ef5c8",
+        "entity": "p1_ent_00ce6d2c1f773f68e9cbe00",
+        "trigger": "board",
+        "schedule": "weeks",
+        "scheduleFactor": 1,
+        "um": "percent",
+        "amount": 10000,
+        "minimum": 5000,
+        "payoutInactive": 0,
+        "skipOffDays": 1,
+        "inactive": 0,
+        "frozen": 0,
+        "division": "t1_div_67c56806728fbbf0bae0b00",
+        "partition": "t1_ptn_006834d4d504f11234578f0",
+        "secondaryDescriptor": "",
+        "billing": "t1_bil_67d9c8a7df33cf77a3e5e0z",
+        "start": 20160120,
+        "currency": "USD",
+        "sameDay": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

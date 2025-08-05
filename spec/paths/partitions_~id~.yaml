@@ -1,0 +1,66 @@
+get:
+  description: "Query a Partition. \nA Partition resource represents a distinct and\
+    \ separate space within the API with its own name and set of resources. \nYou\
+    \ can use a Partition to enable multi-tenant operation."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/partitionsModel200Response.yaml
+      description: Response for query on partitions resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Partitions
+  - Facilitator
+  operationId: getPartitionsId
+put:
+  description: "Update a Partition. \nA Partition resource represents a distinct and\
+    \ separate space within the API with its own name and set of resources. \nYou\
+    \ can use a Partition to enable multi-tenant operation."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/partitionsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/partitionsModel200Response.yaml
+      description: Response for update on partitions resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Partitions
+  - Facilitator
+  operationId: putPartitionsId

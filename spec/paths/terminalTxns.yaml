@@ -1,0 +1,74 @@
+get:
+  description: Query a TerminalTxn, which holds all of the information to a related
+    final transaction and is used to reconcile with the actual, final transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  operationId: getTerminalTxns
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/terminalTxnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnsModel200Response.yaml
+      description: Response for query on terminalTxns resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Terminal Transactions.
+  tags:
+  - Terminal Transactions
+  - Merchant
+  - Facilitator
+  - Partner
+post:
+  description: "Create a TerminalTxn. \nTerminalTxns hold all of the information to\
+    \ a related final transaction. They are used to be reconcilliated with that actual,\
+    \ final transaction."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/terminalTxnsPostRequestModel.yaml
+    description: Create Terminal Transaction Request
+    required: true
+  operationId: postTerminalTxns
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create terminalTxns:
+              $ref: ../components/schemas/samples/terminalTxnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnsModel200Response.yaml
+      description: Response for create on terminalTxns resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Terminal Transaction
+  tags:
+  - Terminal Transactions
+  - Merchant
+  - Facilitator
+  - Partner
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

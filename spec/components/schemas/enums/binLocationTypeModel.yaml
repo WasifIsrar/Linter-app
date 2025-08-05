@@ -1,0 +1,20 @@
+title: binLocationType
+type: string
+description: |
+  The type of location of this banking institution. Used in `bankAccount` type bins.
+
+  <details>
+  <summary>Valid Values</summary>
+
+    - `branch` - **Branch location.**
+    - `main` - **Main headquarters.**
+
+  </details>
+enum:
+- branch
+- main
+x-enum-elements:
+- name: Branch
+  description: Branch location.
+- name: Main
+  description: Main headquarters.

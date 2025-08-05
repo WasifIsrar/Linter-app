@@ -1,0 +1,31 @@
+title: alertTriggersResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  alert:
+    type: string
+    description: The identifier of the Alert resource that you want to invoke with
+      this trigger.
+  event:
+    $ref: ../enums/alertTriggerEventModel.yaml
+  resource:
+    $ref: ../enums/resourceModel.yaml
+  name:
+    type: string
+    description: "The name of this alertTrigger. \nThis field is stored as a text\
+      \ string and must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: Description of Alert Triggers.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

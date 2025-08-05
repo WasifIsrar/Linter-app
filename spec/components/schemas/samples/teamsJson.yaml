@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tem_680155b5a6467e4911aa0z0",
+        "created": "2025-04-17 15:25:41.6956",
+        "modified": "2025-04-17 15:25:41.6956",
+        "creator": "t1_log_5deeafd8b9b491e28296a51",
+        "modifier": "t1_log_5deeafd8b9b491e28296a51",
+        "login": "t1_log_6801559c6218199cb0820df",
+        "name": "merchant-team-t1_mer_680155985dbaab55256ecb0",
+        "description": "Esmeralda McCullough Team",
+        "autoCascadeDisabled": 0,
+        "inactive": 0,
+        "frozen": 0,
+        "autoCascadeOwner": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

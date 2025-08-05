@@ -1,0 +1,4 @@
+{
+  "OpenAPIDefinitionPaths": ["spec","maxio/openapi.yaml"],
+  "IgnoreValidationErrors": false
+}

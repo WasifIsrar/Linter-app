@@ -1,0 +1,115 @@
+title: adjustmentsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this Adjustment.
+  entity:
+    type: string
+    description: The Entity that will receive the set amount.
+  fromentity:
+    type: string
+    description: "The Entity that will pay for the adjustment. \nThis is an optional\
+      \ field and should only be used when the amount is being transferred from the\
+      \ fromentity to the entity."
+  onentity:
+    type: string
+    description: "The applicable Entity for this Adjustment. \nThis field is an optional\
+      \ field."
+  disbursement:
+    type: string
+    description: Related disbursement ID.
+  description:
+    type: string
+    description: "The description of this Decision Rule. \nThis field is stored as\
+      \ a text string and must be between 0 and 100 characters long."
+    default: ""
+  amount:
+    type: number
+    format: double
+    description: The amount of the Adjustment. This field is specified in cents(up to three decimal points).
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for the amount of this resource. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+    default: USD
+  funding:
+    type: string
+    description: The ID of the fund which the disbursement’s movement applies.
+  platform:
+    title: adjustmentPlatform
+    type: string
+    description: |
+      The processor that issued this terminalTxnRef.
+    
+      <details>
+      <summary>Valid Values</summary>
+    
+      - `APPLE` - **Apple Payment Processor**
+      - `ELAVON` - **ELAVON Payment Processor**
+      - `FIRSTDATA` - **FirstData Payment Processor**
+      - `GOOGLE` - **Google Payment Processor**
+      - `VANTIV` - **WorldPay / Vantiv eComm Payment Processor (VAP)**
+      - `VCORE` - **WorldPay / Vantiv Core Payment Processor**
+      - `WELLSACH` - **Wells Fargo Merchant Services Payment Processor (ACH)**
+      - `WELLSFARGO` - **Wells Fargo Merchant Services Payment Processor**
+      - `WFSINGLE` - **Wells Fargo Single Payment Processor**
+      - `WORLDPAY` - **WORLDPAY**
+      - `TDBANKCA` - **TDBANKCA**
+      </details>
+    enum:
+    - APPLE
+    - ELAVON
+    - FIRSTDATA
+    - GOOGLE
+    - VANTIV
+    - VCORE
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    - TDBANKCA
+    x-enum-elements:
+    - name: "Apple"
+      description: "Apple Payment Processor"
+    - name: "Elavon"
+      description: "ELAVON Payment Processor"
+    - name: "Firstdata"
+      description: "FirstData Payment Processor"
+    - name: "Google"
+      description: "Google Payment Processor"
+    - name: "Vantiv"
+      description: "WorldPay / Vantiv eComm Payment Processor (VAP)"
+    - name: "Vcore"
+      description: "WorldPay / Vantiv Core Payment Processor"
+    - name: "Wellsach"
+      description: "Wells Fargo Merchant Services Payment Processor (ACH)"
+    - name: "Wellsfargo"
+      description: "Wells Fargo Merchant Services Payment Processor"
+    - name: "Wfsingle"
+      description: "Wells Fargo Single Payment Processor"
+    - name: "Worldpay"
+      description: "Worldpay"
+    - name: "Tdbankca"
+      description: "Tdbankca"
+  fbo:
+    type: string
+    description: 'FBO account (For-Benefit-Of account) identifier.'
+required:
+- amount
+- currency
+- entity
+- funding
+- login
+- platform
+
+example:
+  login: t1_log_00c2b2d6ee66314295700001
+  entity: t1_ent_00c2b1a6102ffdd33f11010
+  fromentity: t1_ent_00c2b1a6102ffdd33f11010
+  onentity: t1_ent_00c2b1a6102ffdd33f11010
+  disbursement: t1_dbm_00c2b1a6102ffdd33f11010
+  description: Correction for a duplicate fee
+  amount: 2000
+  currency: USD
+  funding: '12345678901234'
+  platform: VANTIV
+  fbo: WORLDPAY_AB00

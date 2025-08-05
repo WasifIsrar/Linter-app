@@ -1,0 +1,176 @@
+get:
+  description: Query an Aggregation resource that uses a search to query for records
+    on the given resource and applies the desired calculations (count, sum, min, and/or
+    max) to the field in question.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_agg_67b339d00940f0d12b000b7
+    required: true
+    schema:
+      type: string
+  - description: "Set this header to filter or sort the list of resources that the\
+      \ method returns. \nFor example, to find all resources that have a property\
+      \ of 'public' set to '1', set this header to 'public[equals]=1'. You can use\
+      \ the operators 'equals', 'greater', 'less', 'like', 'in' and 'sort'. To sort\
+      \ the resources, use the keywords 'asc' (for an ascending sort) or 'desc' (for\
+      \ a descending sort).\nYou may also use explicit 'and/or' querying by passing\
+      \ arrays of or and arrays of and parameters. For example, to find all resources\
+      \ that have a property of 'public' set to '1' or a property of 'active' set\
+      \ to '0', set this header to 'or[][public][equals]=1&or[][active][equals]=0'."
+    explode: false
+    in: header
+    x-unique-name: searchFilter
+    name: search
+    required: false
+    schema:
+      type: string
+    example: created[equals]=2025-01-01
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregation:
+              $ref: ../components/schemas/samples/aggregationJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationsModel200Response.yaml
+      description: Retrieve aggregation response for query on aggregations resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregations:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Aggregation by it's ID.
+  tags:
+  - Aggregations
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAggregationsId
+put:
+  description: Update an Aggregation resource or Update an Aggregation.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_agg_67b339d00940f0d12b000b7
+    required: true
+    schema:
+      type: string
+  - description: "Set this header to filter or sort the list of resources that the\
+      \ method returns. \nFor example, to find all resources that have a property\
+      \ of 'public' set to '1', set this header to 'public[equals]=1'. You can use\
+      \ the operators 'equals', 'greater', 'less', 'like', 'in' and 'sort'. To sort\
+      \ the resources, use the keywords 'asc' (for an ascending sort) or 'desc' (for\
+      \ a descending sort).\nYou may also use explicit 'and/or' querying by passing\
+      \ arrays of or and arrays of and parameters. For example, to find all resources\
+      \ that have a property of 'public' set to '1' or a property of 'active' set\
+      \ to '0', set this header to 'or[][public][equals]=1&or[][active][equals]=0'."
+    explode: false
+    in: header
+    x-unique-name: searchFilter
+    name: search
+    required: false
+    schema:
+      type: string
+    example: created[equals]=2025-01-01
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/aggregationsPutRequestModel.yaml
+    description: Update Aggregation Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregation:
+              $ref: ../components/schemas/samples/aggregationJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationsModel200Response.yaml
+      description: Response for update on aggregations resource Update Aggregation
+        Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregations:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Aggregation by it's ID.
+  tags:
+  - Aggregations
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putAggregationsId
+delete:
+  description: Delete an Aggregation resource or an Aggregation.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_agg_67b339d00940f0d12b000b7
+    required: true
+    schema:
+      type: string
+  - description: "Set this header to filter or sort the list of resources that the\
+      \ method returns. \nFor example, to find all resources that have a property\
+      \ of 'public' set to '1', set this header to 'public[equals]=1'. You can use\
+      \ the operators 'equals', 'greater', 'less', 'like', 'in' and 'sort'. To sort\
+      \ the resources, use the keywords 'asc' (for an ascending sort) or 'desc' (for\
+      \ a descending sort).\nYou may also use explicit 'and/or' querying by passing\
+      \ arrays of or and arrays of and parameters. For example, to find all resources\
+      \ that have a property of 'public' set to '1' or a property of 'active' set\
+      \ to '0', set this header to 'or[][public][equals]=1&or[][active][equals]=0'."
+    explode: false
+    in: header
+    x-unique-name: searchFilter
+    name: search
+    required: false
+    schema:
+      type: string
+    example: created[equals]=2025-01-01
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete aggregation:
+              $ref: ../components/schemas/samples/aggregationJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationsModel200Response.yaml
+      description: 'Response for delete on aggregations resource: Delete Aggregation
+        Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Delete aggregation:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Aggregation by it's ID.
+  tags:
+  - Aggregations
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAggregationsId

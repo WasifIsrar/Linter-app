@@ -1,0 +1,50 @@
+title: watchlistsPostRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login associated with this Watchlist.
+  integration:
+    $ref: ../enums/watchlistIntegrationModel.yaml
+  name:
+    type: string
+    description: "The name of this Watchlist. \nThis field is stored as a text string\
+      \ and must be between 0 and 500 characters long."
+  description:
+    type: string
+    description: "A description of this Watchlist. \nThis field is stored as a text\
+      \ string and must be between 0 and 500 characters long."
+  default:
+    type: integer
+    description: |
+      Whether this Watchlist applies to everyone.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Non-Default**
+      - `1` - **Default**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Non-Default
+      description: Non-Default
+    - name: Default
+      description: Default
+  custom:
+    type: string
+    description: "A custom identifier for this Watchlist. \nThis field is stored as\
+      \ a text string and must be between 0 and 500 characters long."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- default
+- frozen
+- inactive
+- login
+

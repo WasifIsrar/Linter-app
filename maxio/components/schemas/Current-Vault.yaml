@@ -1,0 +1,31 @@
+title: Current Vault
+type: string
+description: The vault that stores the payment profile with the provided `vault_token`. Use `bogus` for testing.
+enum:
+  - adyen
+  - authorizenet
+  - avalara
+  - beanstream
+  - blue_snap
+  - bogus
+  - braintree_blue
+  - checkout
+  - cybersource
+  - elavon
+  - eway
+  - eway_rapid_std
+  - firstdata
+  - forte
+  - gocardless
+  - litle
+  - maxio_payments
+  - moduslink
+  - moneris
+  - nmi
+  - orbital
+  - payment_express
+  - pin
+  - square
+  - stripe_connect
+  - trust_commerce
+  - unipaas

@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_inp_67e46c1f4245ca0a6398000",
+        "created": "2025-03-26 17:05:35.3009",
+        "modified": "2025-03-26 17:05:35.3009",
+        "creator": "t1_log_67c272f9078d060d291fdeb",
+        "modifier": "t1_log_67c272f9078d060d291fdeb",
+        "login": "t1_log_67c272f9078d060d291fdez",
+        "entity": "t1_ent_67c272f920c1724d2709c0b",
+        "org": "t1_org_67b736ad7d05922340000cf",
+        "division": "t1_div_67c56806728fbbf0bae0b00",
+        "partition": "t1_ptn_666834d4d504f11234578f0",
+        "type": "apikey",
+        "value": "ecfb12e30dcfc1421a2e6c18345cb0a6",
+        "locked": 0,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,18 @@
+title: hostsPutRequest
+properties:
+  division:
+    type: string
+    description: The identifier of the Division resource that this Host belongs to.
+  api:
+    type: string
+    description: "The fully-qualified host name of the API for this Host. \nFor example,\
+      \ 'api.example.com'. \nThis field must be unique."
+  portal:
+    type: string
+    description: "The fully-qualified host name of the portal for this Host. \nFor\
+      \ example, 'portal.example.com'."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+

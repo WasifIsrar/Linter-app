@@ -1,0 +1,122 @@
+get:
+  description: Query an Org Flow Rules resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofr_6810c6e4dad2480c7733b00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowRules:
+              $ref: ../components/schemas/samples/orgFlowRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowRulesModel200Response.yaml
+      description: Retrieve an Org Flow Rules Response for the query on orgFlowRules.
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Org Flow Rule by it's ID.
+  tags:
+  - Org Flow Rules
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: getOrgFlowRulesId
+put:
+  description: Update an Org Flow Rule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Org Flow Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofr_6810c6e4dad2480c7733b00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgFlowRulesPutRequestModel.yaml
+    description: Update an Org Flow Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update orgFlowRules:
+              $ref: ../components/schemas/samples/orgFlowRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowRulesModel200Response.yaml
+      description: Response for updating an Org Flow Rule.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Org Flow Rule by it's ID.
+  tags:
+  - Org Flow Rules
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: putOrgFlowRulesId
+delete:
+  description: Delete an Org Flow Rule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofr_6810c6e4dad2480c7733b00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete orgFlowRules:
+              $ref: ../components/schemas/samples/orgFlowRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowRulesModel200Response.yaml
+      description: Delete an Org Flow Rule Response for the orgFlowRules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Org Flow Rule by it's ID.
+  tags:
+  - Org Flow Rules
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: deleteOrgFlowRulesId

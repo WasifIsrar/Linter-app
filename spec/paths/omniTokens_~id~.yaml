@@ -1,0 +1,116 @@
+get:
+  description: Query a omniToken.
+  parameters:
+  - description: The ID of this OmniToken.
+    explode: false
+    in: path
+    name: id
+    example: t1_otk_6809db98230a5b02b08f00z
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all omniTokens:
+              $ref: ../components/schemas/samples/omniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/omniTokensModel200Response.yaml
+      description: Response for retrieving OmniToken response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all omniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve omniToken by it's ID.
+  tags:
+  - OmniTokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getOmniTokensId
+put:
+  description: Update a Token.
+  parameters:
+  - description: The ID of this OmniToken.
+    explode: false
+    in: path
+    name: id
+    example: t1_otk_6809db98230a5b02b08f00z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/omniTokensPutRequestModel.yaml
+    description: Update OmniToken Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update omniToken:
+              $ref: ../components/schemas/samples/omniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/omniTokensModel200Response.yaml
+      description: Response for update OmniToken response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all omniToken:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update OmniToken by it's ID.
+  tags:
+  - OmniTokens
+  - Facilitator
+  - Partner
+  operationId: putOmniTokensId
+delete:
+  description: Delete a omniToken.
+  parameters:
+  - description: The ID of this OmniToken.
+    explode: false
+    in: path
+    name: id
+    example: t1_otk_6809db98230a5b02b08f00z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete omniToken:
+              $ref: ../components/schemas/samples/omniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/omniTokensModel200Response.yaml
+      description: Response for deleted omniTokens.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all omniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete OmniToken by it's ID.
+  tags:
+  - OmniTokens
+  - Facilitator
+  operationId: deleteOmniTokensId

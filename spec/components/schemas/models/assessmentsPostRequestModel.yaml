@@ -1,0 +1,131 @@
+title: assessmentsPostRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that owns this assessment.
+  onentity:
+    type: string
+    description: The identifier of the Entity that this assessment refers to. This
+      is the owner of the record that triggered the charge.
+  forentity:
+    type: string
+    description: "The identifier of the Entity that this assessment applies to. \n\
+      This is an optional field and will create an opposing assessment for this entity."
+  partition:
+    type: string
+    description: The identifier of the Partition that this assessment resource refers
+      to.
+  fee:
+    type: string
+    description: The identifier of the Fee that this assessment resource refers to.
+  disbursement:
+    type: string
+    description: The identifier of the Disbursement that this assessment resource
+      refers to.
+  txn:
+    type: string
+    description: The identifier of the Txn that this assessment resource refers to.
+  chargeback:
+    type: string
+    description: The identifier of the Chargeback that this assessment resource refers
+      to.
+  merchant:
+    type: string
+    description: The identifier of the Merchant that this assessment resource refers
+      to.
+  event:
+    $ref: ../enums/assessmentEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this assessments
+      resource.
+  description:
+    type: string
+    description: A description of this assessments resource.
+    default: ""
+  amount:
+    type: number
+    format: double
+    description: "The amount involved in this assessments resource. It refers to the\
+      \ amount charged, transferred, or disbursed. \nThis field is specified in cents(up to three decimal points)"
+  platform:
+    title: assessmentPlatform
+    type: string
+    description: |
+      The platform used to process this assessment.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `APPLE` - **Apple Payment Processor**
+      - `ELAVON` - **ELAVON Payment Processor**
+      - `FIRSTDATA` - **FirstData Payment Processor**
+      - `GOOGLE` - **Google Payment Processor**
+      - `VANTIV` - **Worldpay / Vantiv eComm Payment Processor (VAP)**
+      - `VCORE` - **Worldpay / Vantiv Core Payment Processor**
+      - `WELLSACH` - **Wells Fargo Merchant Services Payment Processor (ACH)**
+      - `WELLSFARGO` - **Wells Fargo Merchant Services Payment Processor**
+      - `WFSINGLE` - **Wells Fargo Single Payment Processor**
+      - `WORLDPAY` - **Worldpay Payment Processor**
+      - `TDBANKCA` - **TD Bank Canada Payment Processor**
+
+      </details>
+    enum:
+    - APPLE
+    - ELAVON
+    - FIRSTDATA
+    - GOOGLE
+    - VANTIV
+    - VCORE
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    - TDBANKCA
+    x-enum-elements:
+    - name: Apple
+      description: Apple Payment Processor.
+    - name: Elavon
+      description: ELAVON Payment Processor.
+    - name: FirstData
+      description: FirstData Payment Processor.
+    - name: Google
+      description: Google Payment Processor.
+    - name: Vantiv
+      description: Worldpay / Vantiv eComm Payment Processor (VAP).
+    - name: VCore
+      description: Worldpay / Vantiv Core Payment Processor.
+    - name: WellsAch
+      description: Wells Fargo Merchant Services Payment Processor (ACH).
+    - name: WellsFargo
+      description: Wells Fargo Merchant Services Payment Processor.
+    - name: WfSingle
+      description: Wells Fargo Single Payment Processor.
+    - name: WorldPay
+      description: Worldpay Payment Processor.
+    - name: TdBankCa
+      description: TD Bank Canada Payment Processor.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of the amount in this assessments resource. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+required:
+- amount
+- currency
+- entity
+
+example:
+  entity: t1_ent_5b3bdeac000c06c43505a00
+  onentity: t1_ent_5b3bdeac000c06c43505a01
+  forentity: t1_ent_5b3bdeac000c06c43505a02
+  partition: a100003azz9b911
+  fee: t1_fee_5b3bdeac000c06c43505a00
+  disbursement: t1_dbm_121cb1111e11d00a1fac5b1
+  txn: t1_txn_9a0aa0000f08553bcc1aaa9
+  chargeback: t1_chb_111cb1111e11d00a1fac5b0
+  merchant: t1_mer_111cb1111e11d00a1fac5b0
+  event: '6'
+  eventId: t1_txn_9a0aa0000f08553bcc1aaa9
+  description: AUTH fee schedule
+  amount: 30
+  platform: VANTIV
+  currency: USD

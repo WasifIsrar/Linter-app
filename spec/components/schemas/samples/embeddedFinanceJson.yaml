@@ -1,0 +1,33 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_efe_685d2955cc86da261b3bd00",
+        "created": "2025-06-26 07:04:53.8477",
+        "modified": "2025-06-26 07:04:53.8477",
+        "creator": "t1_log_685d27bb478b996498e00d3",
+        "modifier": "t1_log_685d27bb478b996498e00d3",
+        "enablementDate": "2025-06-26 00:00:00",
+        "product": "merchantWorkingCapital",
+        "platform": "PARAFIN",
+        "entity": "t1_ent_685d27bc1611a5c48c0000f",
+        "org": "t1_org_685d27bd878c0a8cf00ad0c",
+        "division": "t1_div_67b51635da21f7399ce2af1",
+        "partition": "t1_ptn_666834d4d504f11234578f0",
+        "inactive": 0,
+        "frozen": 0,
+        "productContract": "",
+        "accumulatedLoanTotal": ""
+      }
+    ],
+    "details": {
+      "requestId": 1,
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

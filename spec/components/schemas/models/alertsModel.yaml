@@ -1,0 +1,39 @@
+title: alertsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  forlogin:
+    type: string
+    description: "The identifier of the Login that this Alert relates to. \nThe Alert\
+      \ is triggered based on the activity of this Login."
+  team:
+    type: string
+    description: The identifier (ID) of the team that this Alert relates to. The Alert is triggered based on the activity of this Team.
+  division:
+    type: string
+    description: The division for which this Alerts applies.
+  partition:
+    type: string
+    description: The partition for which this Alerts applies.
+  name:
+    type: string
+    description: "The name of this Alert. \nThis field is stored as a text string\
+      \ and must be between 1 and 100 characters long."
+  description:
+    type: string
+    description: Description of Alerts.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

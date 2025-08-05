@@ -1,0 +1,80 @@
+get:
+  description: Query orgsVASPinlessDebitConversions.
+  parameters:
+  - description: The ID of this resource, or the (unknown) ID associated with the
+      Orgs VAS Pinless Debit Conversions.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovp_680bfd41d139cba791290z0
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/orgsVASPinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASPinlessDebitConversionsModel200Response.yaml
+      description: Response for retrieve orgsVASPinlessDebitConversions.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Orgs VAS Pinless Debit Conversions.
+  tags:
+  - Orgs VAS PinlessDebitConversions
+  - Facilitator
+  operationId: getOrgsVASPinlessDebitConversionsId
+put:
+  description:  Update orgsVASPinlessDebitConversions.
+  parameters:
+  - description: The ID of this Orgs VAS Pinless Debit Conversions.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovp_680bfd41d139cba791290z0
+    required: true
+    schema:
+      type: string
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASPinlessDebitConversionsPutRequestModel.yaml
+    description: Update Orgs VAS Pinless Debit Conversions
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/orgsVASPinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASPinlessDebitConversionsModel200Response.yaml
+      description: The response for update orgsVASPinlessDebitConversions.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Orgs VAS Pinless Debit Conversions.
+  tags:
+  - Orgs VAS PinlessDebitConversions
+  - Facilitator
+  operationId: putOrgsVASPinlessDebitConversionsId

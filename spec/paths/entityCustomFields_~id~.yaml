@@ -1,0 +1,122 @@
+get:
+  description: "Query an Entity Custom Field. \nCustom Fields can be added to entities\
+    \ associated by the Entity Id. \nAn Entity Id can have various fields associated\
+    \ to it."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ecf_67d3ab7bc5e308c4815100z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityCustomFields:
+              $ref: ../components/schemas/samples/entityCustomFieldJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityCustomFieldsModel200Response.yaml
+      description: Response for query on entityCustomFields resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityCustomFields:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntitiesCustomFields
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityCustomFieldsId
+put:
+  description: "Update an Entity Custom Field. \nCustom Fields can be added to entities\
+    \ associated by the Entity Id. \nAn Entity Id can have various fields associated\
+    \ to it."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ecf_67d3ab7bc5e308c4815100z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityCustomFieldsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update entityCustomFields:
+              $ref: ../components/schemas/samples/entityCustomFieldJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityCustomFieldsModel200Response.yaml
+      description: Response for update on entityCustomFields resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityCustomFields:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntitiesCustomFields
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putEntityCustomFieldsId
+delete:
+  description: Delete an Entity Custom Field.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ecf_67d3ab7bc5e308c4815100z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete entityCustomFields:
+              $ref: ../components/schemas/samples/entityCustomFieldJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityCustomFieldsModel200Response.yaml
+      description: Response for delete on entityCustomFields resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Delete entityCustomFields:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Entity Custome Fields by its ID.
+  tags:
+  - EntitiesCustomFields
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteEntityCustomFieldsId

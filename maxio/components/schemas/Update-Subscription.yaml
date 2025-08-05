@@ -1,0 +1,60 @@
+title: Update Subscription
+type: object
+properties:
+  credit_card_attributes:
+    $ref: "./Credit-Card-Attributes.yaml"
+  product_handle:
+    type: string
+    description: Set to the handle of a different product to change the subscription's product
+  product_id:
+    type: integer
+    description: Set to the id of a different product to change the subscription's product
+  product_change_delayed:
+    type: boolean
+  next_product_id:
+    type: string
+    description: Set to an empty string to cancel a delayed product change.
+  next_product_price_point_id:
+    type: string
+  snap_day:
+    type:
+      - string
+      - integer
+    minimum: 1
+    maximum: 28
+    enum:
+      - end
+    description: Use for subscriptions with product eligible for calendar billing only. Value can be 1-28 or 'end'.
+  next_billing_at:
+    type: string
+    format: date-time
+  payment_collection_method:
+    type: string
+  receives_invoice_emails:
+    type: boolean
+  net_terms:
+    type:
+      - string
+      - integer
+  stored_credential_transaction_id:
+    type: integer
+  reference:
+    type: string
+  custom_price:
+    $ref: "./Subscription-Custom-Price.yaml"
+  components:
+    type: array
+    description: (Optional) An array of component ids and custom prices to be added to the subscription.
+    items:
+      $ref: "Update-Subscription-Component.yaml"
+  dunning_communication_delay_enabled:
+    type:
+      - boolean
+      - "null"
+    description: "Enable Communication Delay feature, making sure no communication (email or SMS) is sent to the Customer between 9PM and 8AM in time zone set by the `dunning_communication_delay_time_zone` attribute."
+  dunning_communication_delay_time_zone:
+    type:
+      - string
+      - "null"
+    example: '"Eastern Time (US & Canada)"'
+    description: Time zone for the Dunning Communication Delay feature.

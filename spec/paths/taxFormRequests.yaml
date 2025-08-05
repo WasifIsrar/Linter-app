@@ -1,0 +1,71 @@
+get:
+  description: "Query a taxFormRequests."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all taxFormRequests:
+              $ref: ../components/schemas/samples/taxFormRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/taxFormRequestsModel200Response.yaml
+      description: Response for query on taxFormRequests resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all taxFormRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all taxFormRequests.
+  tags:
+  - Tax Form Requests
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTaxFormRequests
+post:
+  description: "Create a Tax Form Requests"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/taxFormRequestsPostRequestModel.yaml
+    description: Create Tax Form Requests
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create taxFormRequests:
+              $ref: ../components/schemas/samples/taxFormRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/taxFormRequestsModel200Response.yaml
+      description: Response for create on taxFormRequests resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all taxFormRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new taxFormRequests
+  tags:
+  - Tax Form Requests
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postTaxFormRequests
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

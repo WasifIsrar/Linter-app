@@ -1,0 +1,37 @@
+title: subscriptionOrigin
+type: integer
+description: |
+  The origin of the Txn that will be created through this Subscription.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `2` - **Customer will be subscribing through eCommerce.**
+  - `3` - **Customer will be subscribing by Mail Order/Telephone.**
+  - `4` - **Originated with Apple Pay.**
+  - `5` - **Originated as a Successful 3D Secure transaction.**
+  - `6` - **Originated as an Attempted 3D Secure transaction.**
+  - `8` - **Originated in a Payframe.**
+
+  </details>
+default: 2
+enum:
+- 2
+- 3
+- 4
+- 5
+- 6
+- 8
+x-enum-elements:
+- name: ECommerce
+  description: Customer will be subscribing through eCommerce.
+- name: MailOrderTelephone
+  description: Customer will be subscribing by Mail Order/Telephone.
+- name: ApplePay
+  description: Originated with Apple Pay.
+- name: Successful3DSecure
+  description: Originated as a Successful 3D Secure transaction.
+- name: Attempted3DSecure
+  description: Originated as an Attempted 3D Secure transaction.
+- name: Payframe
+  description: Originated in a Payframe.

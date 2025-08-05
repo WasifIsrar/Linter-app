@@ -1,0 +1,31 @@
+value: 
+    "response": {
+        "data": [
+            {
+                "id": "p1_chd_67b31fca23feed2b88d8a59",
+                "created": "2025-02-17 06:38:50.1502",
+                "modified": "2025-02-17 06:38:50.1502",
+                "creator": "t1_log_5d49bbb9bd62b95c1378542",
+                "modifier": "t1_log_5d49bbb9bd62b95c1378542",
+                "chargeback": "t1_chb_679918b34232ae6145ec03e",
+                "ref": "p1_chd_67b31fca23feed2b88d8a59.pdf",
+                "type": "pdf",
+                "name": "Test PDF  copy.pdf",
+                "description": "Test PDF  copy.pdf",
+                "inactive": 0,
+                "frozen": 0,
+                "status": "created",
+                "documentSource": "merchant"
+            }
+        ],
+        "details": {
+            "requestId": "1",
+            "totals": [],
+            "page": {
+                "current": 1,
+                "last": 1,
+                "hasMore": false
+            }
+        },
+        "errors": []
+    }

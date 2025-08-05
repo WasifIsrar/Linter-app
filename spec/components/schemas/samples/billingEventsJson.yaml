@@ -1,0 +1,28 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ble_67d9cfac3d58e3fe0414bf0",
+        "created": "2025-03-18 15:55:24.2661",
+        "modified": "2025-03-18 15:55:24.2661",
+        "creator": "t1_log_5d49bbb9bd62b95c1320003",
+        "modifier": "t1_log_5d49bbb9bd62b95c1320003",
+        "billing": "t1_bil_67d9cfac37cb75f7c8e0597",
+        "event": "fees",
+        "eventSchedule": "",
+        "deductFromBalance": 0,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,31 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_mtd_67ef5bad402b6b61e701e0z",
+        "created": "2025-04-04 00:10:21.2659",
+        "modified": "2025-04-04 00:10:21.2659",
+        "creator": "t1_log_63d25f51ea7ddb271d78304",
+        "modifier": "t1_log_63d25f51ea7ddb271d78304",
+        "login": "t1_log_621e8010c0e6c5b0262944c",
+        "forlogin": "t1_log_61e9b7302360fbf12999d63",
+        "hold": "t1_hld_67ef5bad3be038935902204",
+        "entityReturn": "",
+        "opposingMessageThread": "t1_mtd_67ef5bad40f7e68822ac0c7",
+        "folder": "default",
+        "sender": "testnewmerchant",
+        "recipient": "testnewmerchant1",
+        "subject": "Transaction was put on hold"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

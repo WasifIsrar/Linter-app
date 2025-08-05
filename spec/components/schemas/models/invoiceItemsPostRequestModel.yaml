@@ -1,0 +1,58 @@
+title: invoiceItemsPostRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this Invoiceitem.
+  item:
+    type: string
+    description: The desired name of this InvoiceItem. This field is stored as a text
+      string and must be between 1 and 500 characters long.
+  description:
+    type: string
+    description: The description of this InvoiceItem. This field is stored as a text
+      string and must be between 0 and 500 characters long.
+  custom:
+    type: string
+    description: A custom field of this InvoiceItem. This field is stored as a text
+      string and must be between 0 and 500 characters long.
+  price:
+    type: integer
+    format: int64
+    description: The price of this InvoiceItem is specified as an integer in cents.
+    default: 0
+  um:
+    type: string
+    description: 'The unit of measure of this InvoiceItem is stored as a text string
+      and must be between 0 and 100 characters long; examples of units of measure
+      may be: each, kilogram, pound, month.'
+  commodityCode:
+    type: string
+    description: The commodity code for this InvoiceItem. This field is stored as
+      a text string and must be between 0 and 12 characters long.
+  productCode:
+    type: string
+    description: 'The product code for this invoice item such as: UPC, catalog number,
+      or inventory number. This field is stored as a text string and must be between
+      0 and 100 characters long.'
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- item
+- login
+- price
+
+example:
+  login: "t1_log_00d514abedbf6f641b7c2f2"
+  item: "Test Custom Links"
+  description: "Test Custom Links"
+  custom: "Sample custom field 1"
+  um: "kilogram"
+  commodityCode: "03000"
+  productCode: "SKU23456"
+  price: 1666
+  inactive: 0
+  frozen: 0

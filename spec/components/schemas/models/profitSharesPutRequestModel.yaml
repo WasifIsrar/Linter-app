@@ -1,0 +1,58 @@
+title: profitSharesPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this ProfitShare.
+  entity:
+    type: string
+    description: The identifier of the Entity that this ProfitShare refers to. This
+      is the entity that will receive the split income/expense.
+  forentity:
+    type: string
+    description: The identifier of the Entity that will have it's earnings/expenses
+      shared.
+  org:
+    type: string
+    description: The identifier of the Org in which entities will have their earnings/expenses
+      shares.
+  division:
+    type: string
+    description: The identifier of the Division in which entities will have their
+      earnings/expenses shares.
+  partition:
+    type: string
+    description: The identifier of the Partition in which entities will have their
+      earnings/expenses shares.
+  type:
+    $ref: ../enums/profitShareTypeModel.yaml
+  name:
+    type: string
+    description: "The name of this ProfitShare. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A description of this ProfitShare. \nThis field is stored as a text\
+      \ string and must be between 0 and 100 characters long."
+  amount:
+    type: integer
+    description: "The percentage to be shared. \nThis field is specified as an integer\
+      \ between 1 and 10000. \n Percentages are calculated over the income/expense\
+      \ amount."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: t1_log_67aa2de0a914190a267b672
+  entity: t1_ent_67aa5d38dbb22dc72775f72
+  forentity: t1_ent_673fa38d3e069c7ac4bdbd8
+  org: t1_org_67aa73a2d8098f2853f97ee
+  division: t1_div_67b51635da21f7399ce2af0
+  partition: t1_ptn_666834d4d504f11234578f0
+  type: income
+  name: LEad Capture
+  description: Webhook test2
+  amount: 5000
+  inactive: 0
+  frozen: 0

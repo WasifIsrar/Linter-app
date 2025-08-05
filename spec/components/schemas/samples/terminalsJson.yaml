@@ -1,0 +1,42 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tml_67c12924f339facb1c80000",
+        "created": "2025-02-27 22:10:29.0043",
+        "modified": "2025-02-27 22:10:29.0043",
+        "creator": "t1_log_5cd987a73478a6179b95000",
+        "modifier": "t1_log_5cd987a73478a6179b95000",
+        "merchant": "t1_mer_67c127497499df129bfc68b",
+        "type": "paxSp30Casio",
+        "capability": 1,
+        "environment": 1,
+        "autoClose": 2,
+        "autoCloseTime": 2355,
+        "name": "",
+        "description": "",
+        "address1": "",
+        "address2": "",
+        "city": "",
+        "state": "AB",
+        "zip": "",
+        "country": CAN,
+        "timezone": "est",
+        "status": 1,
+        "phone": "",
+        "serial": "",
+        "cloudEnabled": 0,
+        "token": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

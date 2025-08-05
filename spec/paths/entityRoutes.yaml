@@ -1,0 +1,54 @@
+get:
+  description: "Query an entityRoutes resource. \nAn entityRoutes resource will indicate\
+    \ which platforms (and for which currencies) a merchant should board into."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityRoutesModel200Response.yaml
+      description: Response for query on entityRoutes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityRoutes
+  - Facilitator
+  operationId: getEntityRoutes
+post:
+  description: "Create an entityRoutes resource. \nAn entityRoutes resource will indicate\
+    \ which platforms (and for which currencies) a merchant should board into."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityRoutesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityRoutesModel200Response.yaml
+      description: Response for create on entityRoutes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityRoutes
+  - Facilitator
+  operationId: postEntityRoutes
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

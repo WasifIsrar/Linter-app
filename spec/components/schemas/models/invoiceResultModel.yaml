@@ -1,0 +1,98 @@
+title: invoiceResultResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  invoice:
+    type: string
+    description: The identifier of the Invoice that owns this invoiceResults resource.
+  txn:
+    type: string
+    description: The identifier of the Transaction associated with this invoiceResults
+      resource.
+  status:
+    title: invoiceResultStatus
+    type: string
+    description: "The status of this invoiceResult\n\n<details>\n<summary>Valid Values</summary>\n\
+      \n- `success` - **Successfuly processed.** \n\n- `failure` - **Failed to process.**\n\
+      \n</details>\n"
+    enum:
+    - success
+    - failure
+    x-enum-elements:
+    - name: "Success"
+      description: "Invoice was successfully processed."
+    - name: "Failure"
+      description: "Invoice failed to be processed."
+  message:
+    type: string
+    description: A message that accompanies and describes this invoice result. This
+      field is specified as a text string and must be between 1 and 500 characters
+      long.
+  shippingFirst:
+    type: string
+    description: The shipping first name associated with this InvoiceResult. This
+      field is stored as a text string and must be between 0 and 100 characters long.
+  shippingMiddle:
+    type: string
+    description: The shipping middle name associated with this InvoiceResult. This
+      field is stored as a text string and must be between 0 and 100 characters long.
+  shippingLast:
+    type: string
+    description: The shipping last name associated with this InvoiceResult. This field
+      is stored as a text string and must be between 0 and 100 characters long.
+  shippingCompany:
+    type: string
+    description: The shipping name of the company associated with this InvoiceResult.
+      This field is stored as a text string and must be between 0 and 100 characters
+      long.
+  shippingAddress1:
+    type: string
+    description: The shipping first line of the address associated with this InvoiceResult.
+      This field is stored as a text string and must be between 0 and 500 characters
+      long.
+  shippingAddress2:
+    type: string
+    description: The shipping second line of the address associated with this InvoiceResult.
+      This field is stored as a text string and must be between 0 and 500 characters
+      long.
+  shippingCity:
+    type: string
+    description: The shipping name of the city in the address associated with this
+      InvoiceResult. This field is stored as a text string and must be between 0 and
+      500 characters long.
+  shippingState:
+    $ref: ../models/stateModel.yaml
+  shippingZip:
+    type: string
+    description: The shipping zip code in the address associated with this InvoiceResult.
+      This field is stored as a text string and must be between 1 and 20 characters
+      long.
+  shippingCountry:
+    $ref: ../models/countryModel.yaml
+    description: The shipping country associated with this InvoiceResult, valid values
+      being the 3-letter ISO code for the country.
+  shippingPhone:
+    type: string
+    description: The shipping phone number associated with this InvoiceResult. This
+      field is stored as a text string and must be between 5 and 15 characters long.
+  shippingFax:
+    type: string
+    description: The shipping fax number associated with this InvoiceResult, stored
+      as a text string and must be between 5 and 15 characters long.
+  authorization:
+    type: string
+    description: The authorization text the customer agreed to when making this payment.
+  authorizationData:
+    type: string
+    description: Replacement data for replaceable strings in the authorization text.
+  signature:
+    type: string
+    description: The signature on file for the customer’s authorization acceptance.

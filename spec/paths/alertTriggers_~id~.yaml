@@ -1,0 +1,131 @@
+get:
+  description: Query an alertTrigger resource that represents a set of triggers causing
+    an Alert to be sent, for example, the levying of a Fee or a Payout occurring,
+    each linked to a particular Alert, with the action to take when triggered set
+    up in the alertActions resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this alert trigger.
+    explode: false
+    in: path
+    name: id
+    example: t1_alr_67d489a76383d013e6295c0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all alertTriggers:
+              $ref: ../components/schemas/samples/alertTriggersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertTriggersModel200Response.yaml
+      description: Response for retrieve Alert Trigger response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertTriggers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retreive an Alert Trigger by it's ID.
+  tags:
+  - Alert Triggers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAlertTriggersId
+put:
+  description: Update an alertTrigger resource that represents a set of triggers causing
+    an Alert to be sent, for example levying a Fee or a Payout occurring, with each
+    trigger linked to a particular Alert and the action taken when triggered set up
+    in the alertActions resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this alert trigger.
+    explode: false
+    in: path
+    name: id
+    example: t1_alr_67d489a76383d013e6295c0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/alertTriggersPutRequestModel.yaml
+    description: Update Alert Trigger Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update alertTriggers:
+              $ref: ../components/schemas/samples/alertTriggersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertTriggersModel200Response.yaml
+      description: Response for update on alertTriggers resource Update Alert Trigger
+        Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertTriggers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Alert Trigger by it's ID.
+  tags:
+  - Alert Triggers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putAlertTriggersId
+delete:
+  description: Delete an alertTrigger resource that represents a set of triggers causing
+    an Alert to be sent, for example levying a Fee or a Payout occurring, each linked
+    to a particular Alert with the action to take set up in the alertActions resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this alert trigger.
+    explode: false
+    in: path
+    name: id
+    example: t1_alr_67d489a76383d013e6295c0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete alertTriggers:
+              $ref: ../components/schemas/samples/alertTriggersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertTriggersModel200Response.yaml
+      description: The response for deleting an alert trigger on the alertTriggers
+        resource is the Delete Alert Trigger Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertTriggers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Alert Trigger by it's ID.
+  tags:
+  - Alert Triggers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAlertTriggersId

@@ -1,0 +1,65 @@
+value: 
+  "response": {
+        "data": [
+            {
+                "id": "t1_ent_6733015a977c2cdd6277d00",
+                "created": "2024-11-12 02:18:50.6207",
+                "modified": "2024-11-12 02:22:57.3301",
+                "creator": "t1_log_5f875c53ed397f57c0afc90",
+                "modifier": "t1_log_6733015a79f48410904564b",
+                "ipCreated": "134.238.16.164",
+                "ipModified": "134.238.16.164",
+                "clientIp": "",
+                "login": "t1_log_6733015a79f48410904564b",
+                "parameter": "",
+                "type": 6,
+                "name": "Splash LLC",
+                "address1": "1234 Rivver Lane",
+                "address2": "San house Fremont",
+                "city": "Frisco",
+                "state": "NB",
+                "zip": "75034",
+                "country": "USA",
+                "timezone": "cst",
+                "phone": "995685660000",
+                "fax": "",
+                "email": "ankit0911@gmail.com",
+                "website": "http://payrix.com",
+                "ein": "678912345",
+                "tcVersion": "1.0",
+                "tcDate": "2024-11-12 02:18:50",
+                "tcIp": "134.238.16.164",
+                "tcAcceptDate": "202204281403",
+                "tcAcceptIp": "162.250.123.158",
+                "custom": "62",
+                "inactive": 0,
+                "frozen": 0,
+                "tinStatus": 0,
+                "reserved": 0,
+                "checkStage": "postboard",
+                "public": 1,
+                "customerPhone": "",
+                "locations": 1,
+                "industry": "",
+                "displayName": "",
+                "totalCreditDisbursements": 0,
+                "payoutSecondaryDescriptor": "",
+                "einType": "ssn",
+                "irsFilingName": "",
+                "currency": "USD",
+                "globalBusinessId": "678912345",
+                "globalBusinessType": "ssn",
+                "pendingRiskCheck": "pending"
+            }
+        ],
+        "details": {
+            "requestId": "1",
+            "totals": [],
+            "page": {
+                "current": 1,
+                "last": 1,
+                "hasMore": false
+            }
+        },
+        "errors": []
+    }

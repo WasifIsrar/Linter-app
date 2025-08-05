@@ -1,0 +1,27 @@
+title: chargebackDocumentStatus
+type: string
+description: |
+  The current status of the chargebackDocument. 
+
+  <details> 
+  <summary>Valid Values</summary>
+
+  - `created` - **The ChargebackDocument has been created.** 
+
+  - `processed` - **The ChargebackDocument integration has been successful.** 
+
+  - `failed` - **The ChargebackDocument integration has failed.** 
+
+  </details>
+default: created
+enum:
+- created
+- processed
+- failed
+x-enum-elements:
+- name: Created
+  description: The ChargebackDocument has been created.
+- name: Processed
+  description: The ChargebackDocument integration has been successful.
+- name: Failed
+  description: The ChargebackDocument integration has failed.

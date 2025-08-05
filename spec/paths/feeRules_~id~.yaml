@@ -1,0 +1,121 @@
+get:
+  description: Query a Fee Rule that makes a Fee apply only in certain circumstances,
+    such as applying an administration charge if a payment is under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this fee rule.
+    explode: false
+    in: path
+    name: id
+    example: t1_frl_67ce8623bc70042ef58f400
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/feeRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeRulesModel200Response.yaml
+      description: Retrieve Fee Rule Response for query on feeRules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Fee Rule by it's ID.
+  tags:
+  - Fee Rules
+  - Facilitator
+  - Partner
+  operationId: getFeeRulesId
+put:
+  description: Update a Fee Rule that makes a Fee apply only in certain circumstances,
+    for example, applying an administration charge if a payment is under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this fee rule.
+    explode: false
+    in: path
+    name: id
+    example: t1_frl_67ce8623bc70042ef58f400
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/feeRulesPutRequestModel.yaml
+    description: Update Fee Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update feeRules:
+              $ref: ../components/schemas/samples/feeRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeRulesModel200Response.yaml
+      description: 'Response for update on feeRules resource: Update a Fee Rule Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Fee Rule by it's ID.
+  tags:
+  - Fee Rules
+  - Facilitator
+  - Partner
+  operationId: putFeeRulesId
+delete:
+  description: Delete a Fee Rule that makes a Fee apply only in certain circumstances,
+    such as applying an administration charge if a payment is under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this fee rule.
+    explode: false
+    in: path
+    name: id
+    example: t1_frl_67ce8623bc70042ef58f400
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete feeRules:
+              $ref: ../components/schemas/samples/feeRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeRulesModel200Response.yaml
+      description: Delete Fee Rule Response for the feeRules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Fee Rule by it's ID.
+  tags:
+  - Fee Rules
+  - Facilitator
+  - Partner
+  operationId: deleteFeeRulesId

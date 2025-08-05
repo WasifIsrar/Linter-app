@@ -1,0 +1,67 @@
+get:
+  description: "Query a pinlessDebitConversions."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all pinlessDebitConversions:
+              $ref: ../components/schemas/samples/pinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/pinlessDebitConversionsModel200Response.yaml
+      description: Response for query on profitShareRules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all pinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Pinless Debit Conversions.
+  tags:
+  - Pinless Debit Conversions
+  - Facilitator
+  operationId: getPinlessDebitConversions
+post:
+  description: "Create a pinlessDebitConversions."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/pinlessDebitConversionsPostRequestModel.yaml
+    description: Create Pinless Debit Conversions Request.
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create pinlessDebitConversions:
+              $ref: ../components/schemas/samples/pinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/pinlessDebitConversionsModel200Response.yaml
+      description: Response for create on Pinless Debit Conversions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all pinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Pinless Debit Conversions
+  tags:
+  - Pinless Debit Conversions
+  - Facilitator
+  operationId: postPinlessDebitConversions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

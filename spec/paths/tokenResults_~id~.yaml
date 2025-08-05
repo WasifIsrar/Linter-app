@@ -1,0 +1,39 @@
+get:
+  description: Query a tokenResults.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_tkr_681b008f046d4ddae223z00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all tokenResults:
+              $ref: ../components/schemas/samples/tokenResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/tokenResultsModel200Response.yaml
+      description: Retrieve Token Results for query on tokenResults.
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all tokenResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Token Results ID
+  tags:
+  - Token Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTokenResultsId

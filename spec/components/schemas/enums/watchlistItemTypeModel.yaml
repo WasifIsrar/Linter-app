@@ -1,0 +1,28 @@
+title: watchlistItemType
+type: string
+description: |
+  The type of WatchlistItem.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `entity` - **WatchlistItem type constants ENTITY.**
+  - `member` - **WatchlistItem type constants MEMBER.**
+  - `entityMember` - **WatchlistItem type constants ENTITY_MEMBER.**
+  - `txn` - **WatchlistItem type constants TXN.**
+
+  </details>
+enum:
+- entity
+- member
+- entityMember
+- txn
+x-enum-elements:
+- name: Entity
+  description: Entity watchlist data.
+- name: Member
+  description: Member watchlist data.
+- name: EntityMember
+  description: Combined entity and member watchlist data.
+- name: Txn
+  description: Txn watchlist data.

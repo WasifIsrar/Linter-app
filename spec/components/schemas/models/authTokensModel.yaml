@@ -1,0 +1,29 @@
+title: authTokensResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  token:
+    type: string
+    description: The auto-generated token identifier.
+  customer:
+    type: string
+    description: The customer identifier from the AuthToken used during authentication.
+  used:
+    type: integer
+    format: int64
+    description: Timestamp of when the AuthToken was used.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,11 @@
+title: Invoice Tax Component Breakout
+type: object
+properties:
+  tax_rule_id:
+    type: integer
+  percentage:
+    type: string
+  country_code:
+    type: string
+  subdivision_code:
+    type: string

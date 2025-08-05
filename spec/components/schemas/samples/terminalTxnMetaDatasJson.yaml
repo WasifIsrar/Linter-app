@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ttm_6806cde43c3480e154d7a0z",
+        "created": "2025-04-21 18:59:48.2547",
+        "modified": "2025-04-21 18:59:48.2547",
+        "creator": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+        "modifier": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+        "terminalTxn": "t1_ttx_6806cde42b47ee61cdf6ab9",
+        "type": "discretionary",
+        "field": "discretionary1",
+        "value": "0421"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,75 @@
+get:
+  description: Query an Invoice or query an Invoice. An Invoice resource is used for
+    invoicing customers, email the invoice to them, allow them to pay the invoice
+    and track payments with invoices.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/invoicesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoicesModel200Response.yaml
+      description: Retrieve Invoices Response for query on invoices resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Invoices.
+  tags:
+  - Invoices
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoices
+post:
+  description: Create an Invoice, which is used for invoicing customers, emailing
+    the invoice to them, allowing them to pay the invoice and tracking payments with
+    invoices.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/invoicesPostRequestModel.yaml
+    description: Create Invoice Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/invoicesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoicesModel200Response.yaml
+      description: Response for creating an invoice.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Invoice
+  tags:
+  - Invoices
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postInvoices
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

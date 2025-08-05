@@ -1,0 +1,37 @@
+title: hostThemesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  host:
+    type: string
+    description: The identifier of the related host.
+  primaryColor:
+    type: string
+    description: The theme's custom primary color. It should be a valid hex color.
+  default:
+    type: integer
+    description: | 
+      Determines if the themes is the default one for the host.
+      <details>
+      <summary>Valid Values</summary>
+    
+        - `0` - **On**
+        - `1` - **Off**
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "On"
+      description: "Off"
+    - name: "On"
+      description: "On"
+ 

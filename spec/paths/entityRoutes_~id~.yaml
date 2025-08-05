@@ -1,0 +1,93 @@
+get:
+  description: "Query an entityRoutes resource. \nAn entityRoutes resource will indicate\
+    \ which platforms (and for which currencies) a merchant should board into."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityRoutesModel200Response.yaml
+      description: Response for query on entityRoutes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityRoutes
+  - Facilitator
+  operationId: getEntityRoutesId
+put:
+  description: "Update an entityRoutes resource. \nAn entityRoutes resource will indicate\
+    \ which platforms (and for which currencies) a merchant should board into."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityRoutesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityRoutesModel200Response.yaml
+      description: Response for update on entityRoutes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityRoutes
+  - Facilitator
+  operationId: putEntityRoutesId
+delete:
+  description: "Delete an entityRoutes resource. \nAn entityRoutes resource will indicate\
+    \ which platforms (and for which currencies) a merchant should board into."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityRoutesModel200Response.yaml
+      description: Response for delete on entityRoutes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityRoutes
+  - Facilitator
+  operationId: deleteEntityRoutesId

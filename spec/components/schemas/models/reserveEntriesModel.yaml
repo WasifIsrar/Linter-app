@@ -1,0 +1,81 @@
+title: reserveEntriesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  fund:
+    type: string
+    description: The identifier of the Fund that this reserveEntries resource relates
+      to.
+  txn:
+    type: string
+    description: This field indicates that this reserveEntry was triggered from a
+      Transaction, and it stores the identifier of the Transaction.
+  hold:
+    type: string
+    description: The ID of the hold that generated this reserveEntry.
+  reserve:
+    type: string
+    description: This field indicates that this reserveEntry was triggered from an
+      automatic reserve, and it stores the identifier of the Reserve resource.
+  entityReserve:
+    type: string
+    description: This field indicates that this reserveEntry was triggered from a
+      manual change to an entityReserve, and it stores the identifier of the entityReserve
+      resource.
+  reserveEntry:
+    type: string
+    description: This field indicates that this reserveEntry shows funds moving out
+      of or into reserve. This field stores the identifier of the reserveEntry resource
+      that moved the funds into or out of the reserve.
+  onentity:
+    type: string
+    description: The identifier of the Entity that this reserveEntry refers to. This
+      is the owner of the record that triggered the charge.
+  entry:
+    type: string
+    description: The entry ID associated with this pendingEntry.
+  event:
+    $ref: ../enums/reserveEntryEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this PendingEntry.
+  status:
+    title: reserveEntryStatus
+    type: string
+    description: The current status of the reserveEntry.
+  statusMessage:
+    type: string
+    description: Message that provides details abount failure of the reserveEntry.
+  description:
+    type: string
+    description: A description of this reserveEntries resource. This field is stored
+      as a text string and must be between 0 and 100 characters long.
+  release:
+    type: string
+    description: The date on which the funds in reserve should be released, specified
+      as an eight-digit string in YYYYMMDD format, such as '20160120' for January
+      20, 2016.
+  amount:
+    type: integer
+    format: int64
+    description: The amount held in reserve in this reserveEntries resource, which
+      is specified as an integer in cents.
+  processed:
+    type: string
+    description: The date and time on which the reserveEntry was processed. The format should be YYYY-MM-DD HH:MM:SS.SSSS
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+  processingId:
+    type: string
+    description: The processing ID for the reserveEntry.

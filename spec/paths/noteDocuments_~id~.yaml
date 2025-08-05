@@ -1,0 +1,126 @@
+get:
+  description: Query a Note Document that represents a file that is related to a specific
+    note record.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this note document.
+    explode: false
+    in: path
+    name: id
+    example: t1_ntd_67eef7a7ac0627e1fce0000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/noteDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/noteDocumentsModel200Response.yaml
+      description: Response for retrieve note document response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Note Document by it's ID.
+  tags:
+  - Note Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getNoteDocumentsId
+put:
+  description: Update a note document, which represents a file related to a specific
+    note record.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this note document.
+    explode: false
+    in: path
+    name: id
+    example: t1_ntd_67eef7a7ac0627e1fce0000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/noteDocumentsPutRequestModel.yaml
+    description: Update Note Document Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update noteDocuments:
+              $ref: ../components/schemas/samples/noteDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/noteDocumentsModel200Response.yaml
+      description: 'Response for update on noteDocuments resource: Update Note Document
+        Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Note Document by it's ID.
+  tags:
+  - Note Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putNoteDocumentsId
+delete:
+  description: Delete a Note Document, which represents a file related to a specific
+    note record.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this note document.
+    explode: false
+    in: path
+    name: id
+    example: t1_ntd_67eef7a7ac0627e1fce0000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete noteDocuments:
+              $ref: ../components/schemas/samples/noteDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/noteDocumentsModel200Response.yaml
+      description: The response for deleting a note document on the noteDocuments
+        resource is the Delete Note Document Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Note Document by it's ID.
+  tags:
+  - Note Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteNoteDocumentsId

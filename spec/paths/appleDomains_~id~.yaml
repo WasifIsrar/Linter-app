@@ -1,0 +1,38 @@
+get:
+  description: Query a appleDomains resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_apd_18124df82d8ec945359f6bd
+    required: true
+    schema:
+      type: string
+      description: The apple Domain ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all appleDomains:
+              $ref: ../components/schemas/samples/appleDomainsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/appleDomainsModel200Response.yaml
+      description: Response for query on appleDomains resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all appleDomains:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a apple Domain by its ID.
+  tags:
+  - Apple Domains
+  - Merchant
+  - Partner
+  operationId: getAppleDomainsId

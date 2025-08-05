@@ -1,0 +1,41 @@
+title: aggregationResultsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  aggregationResultGroup:
+    type: string
+    description: The identifier of the AggregationResultGroup that this AggregationResult
+      refers to.
+  grouping:
+    type: string
+    description: Grouping is a process used in data aggregation to organize data into specific categories or groups based on certain attributes. This allows for detailed analysis and reporting on subsets of data. For example, grouping transactions by merchant and payment method enables you to see the breakdown of transactions for each merchant and payment method combination.
+  field:
+    type: string
+    description: "The field of the resource where calculations were made based on.\
+      \ \nThis field is stored as a text string and must be between 1 and 100 characters\
+      \ long."
+  count:
+    type: integer
+    format: int64
+    description: "The value calculated by the count aggregation function. \nThis field\
+      \ is specified as an integer."
+  sum:
+    type: number
+    format: double
+    description: "The value calculated by the sum aggregation function. \nThis field is specified in cents(up to three decimal points)."
+  min:
+    type: number
+    format: double
+    description: "The value calculated by the min aggregation function. \nThis field is specified in cents(up to three decimal points)."
+  max:
+    type: number
+    format: double
+    description: "The value calculated by the max aggregation function. \nThis field is specified in cents(up to three decimal points)."

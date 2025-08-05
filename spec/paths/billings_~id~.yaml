@@ -1,0 +1,124 @@
+get:
+  description: Query a Billing that is a means to collect and invoice for any funds
+    owed for a particular period of time, such as setting up a billing to collect
+    fees and create a statement on a monthly basis.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Billing ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_bil_67dbdc94ee1b1a43e6ab400
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/billingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingsModel200Response.yaml
+      description: Retrieve billing response for query on billings resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Billing by it's ID.
+  tags:
+  - Billing
+  - Facilitator
+  - Partner
+  operationId: getBillingsId
+put:
+  description: Update a Billing, which is a means to collect and invoice for any funds
+    owed for a particular period of time, such as setting up a billing to collect
+    fees and create a statement on a monthly basis.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Billing ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_bil_67dbdc94ee1b1a43e6ab400
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/billingsPutRequestModel.yaml
+    description: Update Billing Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update billings:
+              $ref: ../components/schemas/samples/billingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingsModel200Response.yaml
+      description: Response for Update Billing Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Billing by it's ID.
+  tags:
+  - Billing
+  - Facilitator
+  - Partner
+  operationId: putBillingsId
+delete:
+  description: Delete a Billing that is a means to collect and invoice for any funds
+    owed for a particular period of time, such as setting up a billing to collect
+    fees and create a statement on a monthly basis.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Billing ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_bil_67dbdc94ee1b1a43e6ab400
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete billings:
+              $ref: ../components/schemas/samples/billingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingsModel200Response.yaml
+      description: Response for deleting a billing.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Billing by it's ID.
+  tags:
+  - Billing
+  - Facilitator
+  - Partner
+  operationId: deleteBillingsId

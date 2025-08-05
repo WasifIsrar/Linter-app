@@ -1,0 +1,77 @@
+get:
+  description: "Query a Subscription. \nA Subscription is a scheduled invocation of\
+    \ a particular Plan over a certain period of time. \nA Subscription specifies\
+    \ both starting and ending dates and the customer is charged according to the\
+    \ schedule in the associated Plan during the interval between these dates."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/subscriptionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionModel200Response.yaml
+      description: Response for query on subscriptions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Subscriptions.
+  tags:
+  - Subscriptions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSubscriptions
+post:
+  description: "Create a Subscription. \nA Subscription is a scheduled invocation\
+    \ of a particular Plan over a certain period of time. \nA Subscription specifies\
+    \ both starting and ending dates and the customer is charged according to the\
+    \ schedule in the associated Plan during the interval between these dates."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/subscriptionsPostRequestModel.yaml
+    description: Create Subscription Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create subscriptions:
+              $ref: ../components/schemas/samples/subscriptionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionModel200Response.yaml
+      description: Response for create on subscriptions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Subscription
+  tags:
+  - Subscriptions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postSubscriptions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

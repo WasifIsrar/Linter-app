@@ -1,0 +1,272 @@
+title: alertTriggerEvent
+type: string
+description: |
+  The event type that triggers the associated Alert.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `create` - **Triggers when the associated resource is created.**
+  - `update` - **Triggers when the associated resource is updated.**
+  - `delete` - **Triggers when the associated resource is deleted.**
+  - `ownership` - **Triggers when the ownership of the associated resource changes.**
+  - `batch` - **Triggers when Transactions are captured in a batch.**
+  - `account` - **Triggers when the Account associated with a Merchant is updated.**
+  - `account.created` - **Triggers when the Account is created.**
+  - `account.updated` - **Triggers when the Account is updated.**
+  - `payout` - **Triggers when a Payout occurs.**
+  - `fee` - **Triggers when an Entity is charged a Fee.**
+  - `changerequest.declined` - **Triggers when change request declined.**
+  - `changerequest.created` - **Triggers when change request created.**
+  - `changerequest.approved` - **Triggers when change request approved.**
+  - `changerequest.manualReview` - **Triggers when change request reviewed manually.**
+  - `chargeback` - **Triggers alert when Chargeback Reports are created.**
+  - `chargeback.opened` - **Triggers alert when Chargeback opened.**
+  - `chargeback.closed` - **Triggers alert when Chargeback closed.**
+  - `chargeback.created` - **Triggers alert when a Chargeback is created.**
+  - `chargeback.lost` - **Triggers alert when a Chargeback dispute was lost.**
+  - `chargeback.won` - **Triggers alert when a Chargeback dispute was won.**
+  - `chargebackdocument.uploaded` - **Triggers alert when Chargeback document uploaded.**
+  - `debit.disbursement.recovery` - **Triggers when the entity recovers from a negative balance and now has a positive balance again and the debtorEntity record is deleted.**
+  - `disbursement.requested` - **Triggers alert when a Disbursement is requested.**
+  - `disbursement.processing` - **Triggers alert when a Disbursement is processing.**
+  - `disbursement.processed` - **Triggers alert when a Disbursement has been processed.**
+  - `disbursement.failed` - **Triggers alert when a Disbursement has failed.**
+  - `disbursement.denied` - **Triggers alert when a Disbursement has been denied.**
+  - `disbursement.report` - **Triggers alert when Disbursements are processed.**
+  - `disbursement.returned` - **Triggers alert when Disbursement has returned.**
+  - `disbursementEntries.processed` - **Triggers alert when Disbursement Entries have been processed.**
+  - `invoice.created` - **Triggers alert when an invoice has been created.**
+  - `invoice.cancelled` - **Triggers alert when an invoice has been cancelled.**
+  - `invoice.emailed` - **Triggers alert when an invoice has been emailed.**
+  - `invoice.expired` - **Triggers alert when an invoice has expired.**
+  - `invoice.paid` - **Triggers alert when an invoice has been paid.**
+  - `invoice.refunded` - **Triggers alert when an invoice has been refunded.**
+  - `invoice.viewed` - **Triggers alert when an invoice has been viewed.**
+  - `invoiceResult.failure` - **Triggers alert when an invoice result has failed.**
+  - `merchant.created` - **Triggers alert when a Merchant has been created.**
+  - `merchant.boarding` - **Triggers alert when a Merchant is boarding.**
+  - `merchant.boarded` - **Triggers alert when a Merchant has been boarded.**
+  - `merchant.closed` - **Triggers alert when a Merchant is closed.**
+  - `merchant.pending` - **Triggers alert when a Merchant is pending.**
+  - `merchant.incomplete` - **Triggers alert when a Merchant is incomplete.**
+  - `merchant.failed` - **Triggers alert when Merchant boarding has failed.**
+  - `merchant.held` - **Triggers alert when a Merchant boarding requires manual review.**
+  - `message.created` - **Triggers alert when a Message was created.**
+  - `paymentupdate.report` - **Triggers when a report for a paymentUpdate is generated.**
+  - `resource.created` - **Triggers alert when a Resource was created.**
+  - `resource.updated` - **Triggers alert when a Resource was updated.**
+  - `subscription.created` - **Triggers alert when a Subscription was created.**
+  - `subscription.approved` - **Triggers alert when a Subscription was approved.**
+  - `subscription.failed` - **Triggers alert when a Subscription has failed.**
+  - `terminalTxn.created` - **Triggers alert when Terminal Transaction has been created.**
+  - `terminalTxn.approved` - **Triggers alert when Terminal Transaction has been approved.**
+  - `terminalTxn.failed` - **Triggers alert when Terminal Transaction has failed.**
+  - `txn.created` - **Triggers alert when a Transaction is created.**
+  - `txn.approved` - **Triggers alert when a Transaction has been approved.**
+  - `txn.failed` - **Triggers alert when a Transaction has failed.**
+  - `txn.captured` - **Triggers alert when a Transaction has been captured.**
+  - `txn.settled` - **Triggers alert when a Transaction has been settled.**
+  - `txn.returned` - **Triggers alert when a Transaction has been returned.**
+  - `txn.echeck.funded` - **Triggers alert when a Transaction has been eCheck funded.**
+  - `txn.delayed.funding` - **Triggers alert when a Transaction delayed funding.**
+  - `upcoming.debit.disbursement` - **Triggers alert for upcoming debit disbursement.**
+
+  </details>
+enum:
+- create
+- update
+- delete
+- ownership
+- batch
+- account
+- account.created
+- account.updated
+- payout
+- fee
+- changerequest.declined
+- changerequest.created
+- changerequest.approved
+- changerequest.manualReview
+- chargeback
+- chargeback.opened
+- chargeback.closed
+- chargeback.created
+- chargeback.lost
+- chargeback.won
+- chargebackdocument.uploaded
+- debit.disbursement.recovery
+- disbursement.requested
+- disbursement.processing
+- disbursement.processed
+- disbursement.failed
+- disbursement.denied
+- disbursement.report
+- disbursement.returned
+- disbursementEntries.processed
+- invoice.created
+- invoice.cancelled
+- invoice.emailed
+- invoice.expired
+- invoice.paid
+- invoice.refunded
+- invoice.viewed
+- invoiceResult.failure
+- merchant.created
+- merchant.boarding
+- merchant.boarded
+- merchant.closed
+- merchant.pending
+- merchant.incomplete
+- merchant.failed
+- merchant.held
+- message.created
+- paymentupdate.report
+- resource.created
+- resource.updated
+- subscription.created
+- subscription.approved
+- subscription.failed
+- terminalTxn.created
+- terminalTxn.approved
+- terminalTxn.failed
+- txn.created
+- txn.approved
+- txn.failed
+- txn.captured
+- txn.settled
+- txn.returned
+- txn.echeck.funded
+- txn.delayed.funding
+- upcoming.debit.disbursement
+x-enum-elements:
+- name: Create
+  description: Triggers when the associated resource is created.
+- name: Update
+  description: Triggers when the associated resource is updated.
+- name: Delete
+  description: Triggers when the associated resource is deleted.
+- name: Ownership
+  description: Triggers when the ownership of the associated resource changes.
+- name: Batch
+  description: Triggers when Transactions are captured in a batch.
+- name: Account
+  description: Triggers when the Account associated with a Merchant is updated.
+- name: AccountCreated
+  description: Triggers when the Account is created.
+- name: AccountUpdated
+  description: Triggers when the Account is updated.
+- name: Payout
+  description: Triggers when a Payout occurs.
+- name: Fee
+  description: Triggers when an Entity is charged a Fee.
+- name: ChangerequestDeclined
+  description: Triggers when change request declined.
+- name: ChangerequestCreated
+  description: Triggers when change request created.
+- name: ChangerequestApproved
+  description: Triggers when change request approved.
+- name: ChangerequestManualReview
+  description: Triggers when change request reviewed manually.
+- name: Chargeback
+  description: Triggers alert when Chargeback Reports are created.
+- name: ChargebackOpened
+  description: Triggers alert when Chargeback opened.
+- name: ChargebackClosed
+  description: Triggers alert when Chargeback closed.
+- name: ChargebackCreated
+  description: Triggers alert when a Chargeback is created.
+- name: ChargebackLost
+  description: Triggers alert when a Chargeback dispute was lost.
+- name: ChargebackWon
+  description: Triggers alert when a Chargeback dispute was won.
+- name: ChargebackdocumentUploaded
+  description: Triggers alert when Chargeback document uploaded.
+- name: DebitDisbursementRecovery
+  description: Triggers when the entity recovers from a negative balance and now has a positive balance again and the debtorEntity record is deleted.
+- name: DisbursementRequested
+  description: Triggers alert when a Disbursement is requested.
+- name: DisbursementProcessing
+  description: Triggers alert when a Disbursement is processing.
+- name: DisbursementProcessed
+  description: Triggers alert when a Disbursement has been processed.
+- name: DisbursementFailed
+  description: Triggers alert when a Disbursement has failed.
+- name: DisbursementDenied
+  description: Triggers alert when a Disbursement has been denied.
+- name: DisbursementReport
+  description: Triggers alert when Disbursements are processed.
+- name: DisbursementReturned
+  description: Triggers alert when Disbursement has returned.
+- name: DisbursementEntriesProcessed
+  description: Triggers alert when Disbursement Entries have been processed.
+- name: InvoiceCreated
+  description: Triggers alert when an invoice has been created.
+- name: InvoiceCancelled
+  description: Triggers alert when an invoice has been cancelled.
+- name: InvoiceEmailed
+  description: Triggers alert when an invoice has been emailed.
+- name: InvoiceExpired
+  description: Triggers alert when an invoice has expired.
+- name: InvoicePaid
+  description: Triggers alert when an invoice has been paid.
+- name: InvoiceRefunded
+  description: Triggers alert when an invoice has been refunded.
+- name: InvoiceViewed
+  description: Triggers alert when an invoice has been viewed.
+- name: InvoiceResultFailure
+  description: Triggers alert when an invoice result has failed.
+- name: MerchantCreated
+  description: Triggers alert when a Merchant has been created.
+- name: MerchantBoarding
+  description: Triggers alert when a Merchant is boarding.
+- name: MerchantBoarded
+  description: Triggers alert when a Merchant has been boarded.
+- name: MerchantClosed
+  description: Triggers alert when a Merchant is closed.
+- name: MerchantPending
+  description: Triggers alert when a Merchant is pending.
+- name: MerchantIncomplete
+  description: Triggers alert when a Merchant is incomplete.
+- name: MerchantFailed
+  description: Triggers alert when Merchant boarding has failed.
+- name: MerchantHeld
+  description: Triggers alert when a Merchant boarding requires manual review.
+- name: MessageCreated
+  description: Triggers alert when a Message was created.
+- name: PaymentupdateReport
+  description: Triggers when a report for a paymentUpdate is generated.
+- name: ResourceCreated
+  description: Triggers alert when a Resource was created.
+- name: ResourceUpdated
+  description: Triggers alert when a Resource was updated.
+- name: SubscriptionCreated
+  description: Triggers alert when a Subscription was created.
+- name: SubscriptionApproved
+  description: Triggers alert when a Subscription was approved.
+- name: SubscriptionFailed
+  description: Triggers alert when a Subscription has failed.
+- name: TerminalTxnCreated
+  description: Triggers alert when Terminal Transaction has been created.
+- name: TerminalTxnApproved
+  description: Triggers alert when Terminal Transaction has been approved.
+- name: TerminalTxnFailed
+  description: Triggers alert when Terminal Transaction has failed.
+- name: TxnCreated
+  description: Triggers alert when a Transaction is created.
+- name: TxnApproved
+  description: Triggers alert when a Transaction has been approved.
+- name: TxnFailed
+  description: Triggers alert when a Transaction has failed.
+- name: TxnCaptured
+  description: Triggers alert when a Transaction has been captured.
+- name: TxnSettled
+  description: Triggers alert when a Transaction has been settled.
+- name: TxnReturned
+  description: Triggers alert when a Transaction has been returned.
+- name: TxnEcheckFunded
+  description: Triggers alert when a Transaction has been eCheck funded.
+- name: TxnDelayedFunding
+  description: Triggers alert when a Transaction delayed funding.
+- name: UpcomingDebitDisbursement
+  description: Triggers alert for upcoming debit disbursement.

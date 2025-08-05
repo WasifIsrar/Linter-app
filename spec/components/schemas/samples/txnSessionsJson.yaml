@@ -1,0 +1,35 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tss_67bc56867a5c6b8f7756d1z",
+        "created": "2025-02-24 06:22:46.5145",
+        "modified": "2025-02-24 07:18:10.9777",
+        "creator": "t1_log_65a6bb6506be50d9406eb00",
+        "modifier": "t1_log_66cddf6fab39005772ca00z",
+        "login": "t1_log_65a6bb6506be50d9406eb00",
+        "merchant": "t1_mer_66312e43815957c6767000z",
+        "status": "expired",
+        "configurations": {
+            "duration": 8,
+            "maxTimesApproved": 2,
+            "maxTimesUse": 4
+        },
+        "origin": "Apache-HttpClient/4.5.14 (Java/11.0.19)",
+        "durationAvailable": 0,
+        "timesUsed": 0,
+        "timesApproved": 0,
+        "key": "2a5694fb2455e82322e92b4e16c79a00"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

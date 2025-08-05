@@ -1,0 +1,56 @@
+title: chargebackDocumentsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  chargeback:
+    type: string
+    description: The identifier of the Chargeback resource that this chargebackDocument
+      relates to.
+  ref:
+    type: string
+    description: "The reference for this chargebackDocument. \nThis field is stored as a\
+      \ text string and must be between 1 and 100 characters long. \n The value is\
+      \ set when the file is properly integrated, otherwise will be null."
+  type:
+    $ref: ../enums/chargebackDocumentTypeModel.yaml
+  name:
+    type: string
+    description: "The name of this chargebackDocument. \nThis field is stored as a\
+      \ text string and must be between 1 and 100 characters long. \n The value is\
+      \ set when the file is created and properly integrated. It holds the real file\
+      \ name used by the user."
+  description:
+    type: string
+    description: "The description of this chargebackDocument. \nThis field is stored\
+      \ as a text string and must be between 1 and 100 characters long."
+  status:
+    $ref: ../enums/chargebackDocumentStatusModel.yaml
+  documentSource:  
+    type: string
+    description: |-
+      The source of the document.
+      <details>
+      <summary>Valid Values</summary>
+      - `merchant` - **Merchant.** 
+      - `issuer` - **Issuer.** 
+      </details>
+    enum: 
+    - merchant 
+    - issuer 
+    x-enum-elements:
+    - name: "Merchant"
+      description: "Merchant."
+    - name: "Issuer"
+      description: "Issuer."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

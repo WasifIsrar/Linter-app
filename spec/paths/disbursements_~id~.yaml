@@ -1,0 +1,81 @@
+get:
+  description: Query a Disbursement, which represents a record of an occasion where
+    money is either paid to a bank account or received from a bank account.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this disbursement.
+    explode: false
+    in: path
+    name: id
+    example: t1_dbm_67b7b9b69fca00a9685674f
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements:
+              $ref: ../components/schemas/samples/disbursementsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementsModel200Response.yaml
+      description: Retrieve the Response for the query on the Disbursements resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Disbursement by its ID.
+  tags:
+  - Disbursements
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDisbursementsId
+put:
+  description: Update Disbursement by its ID.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_dbm_67b7b9b69fca00a9685674f
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/disbursementsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements:
+              $ref: ../components/schemas/samples/disbursementsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementsModel200Response.yaml
+      description: Retrieve the Disbursements Response for query on disbursements
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Response for update on disbursements resource
+  tags:
+  - Disbursements
+  - Facilitator
+  operationId: putDisbursementsId

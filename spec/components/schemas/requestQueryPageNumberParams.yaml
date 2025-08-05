@@ -1,0 +1,10 @@
+description: "Set this path parameter to request a specific page of records. \n\
+       For example, set `?page[number]=2` to retrieve the second page of records for\
+       \ this request."
+explode: true
+in: query
+name: page[number]
+required: false
+schema: { type: integer }
+style: form
+example: 1

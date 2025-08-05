@@ -1,0 +1,460 @@
+title: entitiesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  ipCreated:
+    description: The incoming IP address from which this Entity was created.
+    type: string
+  ipModified:
+    description: The incoming IP address from which this Entity was last modified.
+    type: string
+  clientIp:
+    description: "The client IP address from which the Entity was created. \nValid\
+      \ values are any IPv4 or IPv6 address."
+    type: string
+  login:
+    description: The ID of the Login that owns this resource.
+    type: string
+  parameter:
+    description: The parameter associated with this Entity.
+    type: string
+  totalCreditDisbursements:
+    description: The sum of all negative disbursements, in cents, associated to this Entity.
+    type: integer
+  type:
+    $ref: ../enums/entityTypeModel.yaml
+  name:
+    type: string
+    description: "The name of this Entity. \nThis field is stored as a text string\
+      \ and must be between 1 and 100 characters long."
+  displayName:
+    type: string
+    description: "The display name of this Entity. \nThis field is stored as a text\
+      \ string and must be between 1 and 1,000 characters long."
+  address1:
+    type: string
+    description: "The first line of the address associated with this Entity. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Entity. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Entity.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  state:
+    $ref: ../models/stateModel.yaml
+  website:
+    type: string
+    description: "The website URL associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 0 and 500 characters long."
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Entity. \nThis\
+      \ field is stored as a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../enums/entityCountryModel.yaml
+  timezone:
+    type: string
+    description: "The time zone for the address associated with the terminal's location.\
+      \ \n\n<details>\n<summary>Valid Values</summary> \n\n - `est` - **Eastern Standard\
+      \ Time**\n\n - `pst` - **Pacific Standard Time**\n\n - `cst` - **Central Standard\
+      \ Time**\n\n - `mst` - **Mountain Daylight Time**\n\n - `akst` - **Alaska Standard\
+      \ Time**\n\n - `hst` - **Hawaii Standard Time**\n\n - `sst` - **Samoa Standard\
+      \ Time**\n\n - `chst` - **Chamorro Standard Time**\n\n - `ast`  - **Atlantic\
+      \ Standard Time**\n\n - `pwt` - **Palau Time**\n\n - `mht` - **Marshall Islands\
+      \ Time**\n\n - `chut` - **Chuuk Time**\n\n - `nst` - **Newfoundland Standard\
+      \ Time**\n\n </details>\n"
+    enum:
+    - est
+    - cst
+    - pst
+    - mst
+    - akst
+    - hst
+    - sst
+    - chst
+    - ast
+    - pwt
+    - mht
+    - chut
+    - nst
+    x-enum-elements:
+    - name: "EST"
+      description: "Eastern Standard Time"
+    - name: "CST"
+      description: "Central Standard Time"
+    - name: "PST"
+      description: "Pacific Standard Time"
+    - name: "MST"
+      description: "Mountain Standard Time"
+    - name: "AKST"
+      description: "Alaska Standard Time"
+    - name: "HST"
+      description: "Hawaii Standard Time"
+    - name: "SST"
+      description: "Samoa Standard Time"
+    - name: "CHST"
+      description: "Chamorro Standard Time"
+    - name: "AST"
+      description: "Atlantic Standard Time"
+    - name: "PWT"
+      description: "Palau Time"
+    - name: "MHT"
+      description: "Marshall Islands Time"
+    - name: "CHUT"
+      description: "Chuuk Time"
+    - name: "NST"
+      description: "Newfoundland Standard Time"
+  phone:
+    type: string
+    description: "The phone number associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 5 and 15 characters long."
+  customerPhone:
+    type: string
+    description: "The customer service phone number associated with this Entity. For\
+      \ Merchants, this number will be displayed on the customer's credit card statement.\
+      \ \nThis field is stored as a text string and must be between 5 and 15 characters\
+      \ long."
+  fax:
+    type: string
+    description: "The fax number associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 5 and 15 characters long."
+  email:
+    type: string
+    description: "The email address associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 1 and 100 characters long."
+  ein:
+    type: string
+    description: "The IRS Employer Identification Number (EIN) for the Entity. \n\
+      This field is stored as an integer and must be 9 characters long."
+  einType:
+    type: string
+    description: |
+      Indicates if the TIN being used is an EIN, SSN, or other/unknown number.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `ssn` - **Social Security Number.**
+      - `tin` - **Employer Identification Number.**
+      - `other` - **Other/Unknown TIN.**
+
+      </details>
+    enum:
+    - ssn
+    - tin
+    - other
+    x-enum-elements:
+    - name: SSN
+      description: Social Security Number.
+    - name: TIN
+      description: Employer Identification Number.
+    - name: Other
+      description: Other/Unknown TIN.
+  globalBusinessId:
+    type: string
+    description: "The business registration number for the entity. \nThis field is\
+      \ stored as an alphanumeric and must be between 9 to 10 characters long."
+  globalBusinessType:
+    type: string
+    description: |
+      The business registration type for the entity
+
+      <details>
+      <summary>Valid Values for country USA</summary>
+
+      - `ssn` - **Social Security Number.**
+      - `tin` - **Employer Identification Number.**
+      - `other` - **Other/Unknown TIN.**
+      </details>
+      <details>
+      <summary>Valid Values for country Canada</summary>
+
+      - `CD` - **Federal**
+      - `AB` - **Alberta**
+      - `BC` - **British Columbia**
+      - `MB` - **Manitoba**
+      - `NB` - **New Brunswick**
+      - `NL` - **Newfoundland and Labrador**
+      - `NT` - **Northwest Territories**
+      - `NS` - **Nova Scotia**
+      - `NU` - **Nunavut**
+      - `ON` - **Ontario**
+      - `PE` - **Prince Edward Island**
+      - `QC` - **Quebec**
+      - `SK` - **Saskatchewan**
+      - `YT` - **Yukon**
+
+      </details>
+    enum:
+    - ssn
+    - tin
+    - other
+    - CD
+    - AB
+    - BC
+    - MB
+    - NB
+    - NL
+    - NT
+    - NS
+    - NU
+    - ON
+    - PE
+    - QC
+    - SK
+    - YT
+    x-enum-elements:
+    - name: SSN
+      description: Social Security Number.
+    - name: TIN
+      description: Employer Identification Number.
+    - name: Other
+      description: Other/Unknown TIN.
+    - name: CD
+      description: Federal
+    - name: AB
+      description: Alberta
+    - name: BC
+      description: British Columbia
+    - name: MB
+      description: Manitoba
+    - name: NB
+      description: New Brunswick
+    - name: NL
+      description: Newfoundland and Labrador
+    - name: NT
+      description: Northwest Territories
+    - name: NS
+      description: Nova Scotia
+    - name: NU
+      description: Nunavut
+    - name: ON
+      description: Ontario
+    - name: PE
+      description: Prince Edward Island
+    - name: QC
+      description: Quebec
+    - name: SK
+      description: Saskatchewan
+    - name: YT
+      description: Yukon
+  irsFilingName:
+    type: string
+    description: The IRS Legal Filing Name. This must match what has been provided
+      to the IRS when filing taxes.
+  locations:
+    type: integer
+    description: "The number of locations at which this Entity does business. \nThis\
+      \ field is stored as an integer and must be between 1 and 1,000,000 characters\
+      \ long."
+  tcVersion:
+    type: string
+    description: "An indicator showing the version of the terms and conditions that\
+      \ this Entity has accepted. The API indicates the version as a string. \nThis\
+      \ field is stored as a text string and must be between 0 and 20 characters long."
+  tcDate:
+    type: string
+    description: Date the `tcVersion` was last updated. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}
+  tcIp:
+    type: string
+    description: IP address of client from last `tcVersion` update.
+  tcAcceptDate:
+    type: string
+    description: "Date and time on which this Entity accepted the Terms and Conditions,\
+      \ if different than tcDate. \nThe date is specified as a 12-digit string in\
+      \ YYYYMMDDHHII format, for example, `201601201528` for January 20, 2016, at\
+      \ 15:28 (3:28 PM)."
+  tcAcceptIp:
+    type: string
+    description: IP address from which this Entity accepted the Terms and Conditions,
+      if different than `tcIp`.
+  custom:
+    type: string
+    description: Custom, free-form field for client-supplied text; must be between
+      0 and 1,000 characters long.
+  tinStatus:
+    type: integer
+    description: |
+      The Tax Identification Number (TIN) status of the entity.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Pending**
+      - `1` - **Valid**
+      - `2` - **Invalid**
+      - `3` - **Not required**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    x-enum-elements:
+    - name: Pending
+      description: The TIN status is pending.
+    - name: Valid
+      description: The TIN status is valid.
+    - name: Invalid
+      description: The TIN status is invalid.
+    - name: NotRequired
+      description: The TIN is not required.
+  public:
+    $ref: ../enums/entitiesPublicModel.yaml
+  reserved:
+    type: integer
+    description: |
+      Indicates the reserve status of the entity.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No reserve.**
+      - `1` - **Block transaction, will never be processed. The Entity is sent to the manual review queue..**
+      - `3` - **Hold transaction, will not be captured.**
+      - `4` - **Reserve transaction, funds should be reserved.**
+      - `5` - **Block current activity, no change for merchant.**
+      - `6` - **Passed decision(s). Will not be set anywhere, will only be used for integration purposes.**
+      - `7` - **We did not have policies to process.**
+      - `8` - **We onboard the merchant and wait for manual check later.**
+      - `9` - **Schedule the automatic release of the reserve.**
+      - `10` - **Hold transaction, will not be captured. Automatic release when the associated sale is done.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    x-enum-elements:
+    - name: None
+      description: No action.
+    - name: Block
+      description: Block transaction, will never be processed. The Entity is sent to the manual review queue.
+    - name: Hold
+      description: Hold transaction, will not be captured.
+    - name: Reserve
+      description: Reserve transaction, funds should be reserved.
+    - name: Limit
+      description: Block current activity, no change for merchant.
+    - name: Pass
+      description: Passed decision(s). Will not be set anywhere, will only be used for integration purposes.
+    - name: Skip
+      description: We did not have policies to process.
+    - name: PostReviewOnly
+      description: We onboard the merchant and wait for manual check later.
+    - name: ScheduleReserveRelease
+      description: Schedule the automatic release of the reserve.
+    - name: AutomaticRefundHold
+      description: Hold transaction, will not be captured. Automatic release when the associated sale is done.
+  pendingRiskCheck:
+    type: string
+    description: |
+      Whether it is pending a risk check.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `pending` - **Pending**
+      - `successful` - **Successful**
+      - `failed` - **Failed**
+      - `manual` - **Manual**
+
+      </details>
+    enum:
+    - pending
+    - successful
+    - failed
+    - manual
+    x-enum-elements:
+    - name: Pending
+      description: The risk check is pending.
+    - name: Successful
+      description: The risk check was successful.
+    - name: Failed
+      description: The risk check failed.
+    - name: Manual
+      description: The risk check requires manual review.
+  checkStage:
+    title: entityCheckStage
+    type: string
+    description: |
+      The last stage completed for risk underwriting review.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `createEntity` - **Merchant created.** No Signup Form submitted.
+      - `underwriting` - **Risk/Underwriting Review.** Merchant Signup Form submitted.
+      - `preboard` - **Preboard.** Check the Merchant before they are boarded.
+      - `postboard` - **Check the Merchant after they are boarded.**
+      - `txn` - **Check the Merchant when they process a Transaction.**
+      - `txnVolume` - **Check the Merchant when their transaction volume hits a certain amount.**
+      - `payout` - **Check the Merchant when a Payout occurs.**
+      - `payoutVolume` - **Check the Merchant when the volume of Payouts to the Merchant hits a certain amount.**
+
+      </details>
+    enum:
+    - createEntity
+    - underwriting
+    - preboard
+    - postboard
+    - txn
+    - txnVolume
+    - payout
+    - payoutVolume
+    x-enum-elements:
+    - name: CreateEntity
+      description: Merchant created. No Signup Form submitted.
+    - name: Underwriting
+      description: Risk/Underwriting Review. Merchant Signup Form submitted.
+    - name: Preboard
+      description: Check the Merchant before they are boarded.
+    - name: Postboard
+      description: Check the Merchant after they are boarded.
+    - name: Transaction
+      description: Check the Merchant when they process a Transaction.
+    - name: TransactionVolume
+      description: Check the Merchant when their transaction volume hits a certain amount.
+    - name: Payout
+      description: Check the Merchant when a Payout occurs.
+    - name: PayoutVolume
+      description: Check the Merchant when the volume of Payouts to the Merchant hits a certain amount.
+  industry:
+    type: string
+    description: This field is stored as a text string and must be between 0 and 1,000
+      characters long.
+  payoutSecondaryDescriptor:
+    type: string
+    description: The secondary billing descriptor to appear on the bank statements
+      for funds transfer for the entity.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of this Entity. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

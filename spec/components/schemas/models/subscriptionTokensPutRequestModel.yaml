@@ -1,0 +1,16 @@
+title: subscriptionTokensPutRequest
+properties:
+  token:
+    type: string
+    description: The identifier of the Token resource that this Subscription Token
+      is associated with. This resource identifies the means of payment for the Subscription
+      identified in the 'subscription' field of this resource.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example: 
+  token: ae1abb3aaa18e4c374ca83fa75a7fff6
+  inactive: 0
+  frozen: 0

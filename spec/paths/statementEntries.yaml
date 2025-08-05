@@ -1,0 +1,73 @@
+get:
+  description: "Query a StatementEntry resource. \nA StatementEntry resource represents\
+    \ a record of funds owed for a billing schedule. \nFor example, this could be\
+    \ a scheduled weekly or monthly fee, or an event-based activity such as a capture\
+    \ or payout fee."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/statementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementEntriesModel200Response.yaml
+      description: Response for query on statementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Statement Entries.
+  tags:
+  - Statement Entry
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getStatementEntries
+post:
+  description: "Query a StatementEntry resource. \nA StatementEntry resource represents\
+    \ a record of funds owed for a billing schedule. \nFor example, this could be\
+    \ a scheduled weekly or monthly fee, or an event-based activity such as a capture\
+    \ or payout fee."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/statementEntriesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create statementEntries:
+              $ref: ../components/schemas/samples/statementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementEntriesModel200Response.yaml
+      description: Response for create on statementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Statement Entry
+  - Facilitator
+  operationId: postStatementEntries
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

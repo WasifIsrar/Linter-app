@@ -1,0 +1,76 @@
+get:
+  description: Query an alertAction representing a particular instance of an Alert
+    that is sent out through one particular channel. For example, SMS, mobile application
+    notification, or email, each being associated with an Alert resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/alertActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertActionsModel200Response.yaml
+      description: Retrieve Alert Actions Response for query on alertActions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Alert Actions.
+  tags:
+  - Alert Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAlertActions
+post:
+  description: Create an alertAction, which represents a particular instance of an
+    Alert sent out through one particular channel, such as SMS, mobile application
+    notification, or email, and each alertAction is associated with an Alert resource.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/alertActionsPostRequestModel.yaml
+    description: Create Alert Action Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create alertActions:
+              $ref: ../components/schemas/samples/alertActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertActionsModel200Response.yaml
+      description: Response for creating an alert action on the alertActions resource.
+        Create Alert Action Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Alert Action
+  tags:
+  - Alert Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postAlertActions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

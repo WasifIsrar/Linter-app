@@ -1,0 +1,13 @@
+title: apikeysResponseResult
+properties:
+  response:
+    title: apikeysResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/apiKeysModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

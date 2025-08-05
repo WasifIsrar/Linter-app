@@ -1,0 +1,125 @@
+get:
+  description: Query a Token, which is a resource that acts as a storage place for
+    credit card and customer information, allowing you to run Transactions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this token.
+    explode: false
+    in: path
+    name: id
+    example: p1_tok_00c82eb304b0067620c82be
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/tokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/tokensModel200Response.yaml
+      description: Response for retrieve token response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Token by it's ID.
+  tags:
+  - Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTokensId
+put:
+  description: Update a Token, which is a resource that acts as a storage place for
+    credit card and customer information, allowing you to run Transactions.
+  parameters:
+  - description: The ID of this Token.
+    explode: false
+    in: path
+    name: id
+    example: p1_tok_00c82eb304b0067620c82be
+    required: true
+    schema:
+      type: string
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/tokensPutRequestModel.yaml
+    description: Update Token Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update token:
+              $ref: ../components/schemas/samples/tokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/tokensModel200Response.yaml
+      description: Response for update Token.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Token by it's ID.
+  tags:
+  - Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putTokensId
+delete:
+  description: Delete a Token, which is a resource that acts as a storage place for
+    credit card and customer information, allowing you to run Transactions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this token.
+    explode: false
+    in: path
+    name: id
+    required: true
+    example: p1_tok_00c82eb304b0067620c82be
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete tokens:
+              $ref: ../components/schemas/samples/tokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/tokensModel200Response.yaml
+      description: The response for deleting a token on the tokens resource is the
+        Delete Token Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Token by it's ID.
+  tags:
+  - Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteTokensId

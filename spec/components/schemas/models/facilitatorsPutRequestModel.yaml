@@ -1,0 +1,33 @@
+title: facilitatorsPutRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that this Facilitators resource belongs
+      to.
+  prefix:
+    type: string
+    description: "The billing descriptor prefix for this Facilitator. \nThis string\
+      \ appears at the start of the description for transactions on credit card statements\
+      \ when any sub-Merchant of this Facilitator charges a card."
+  partition:
+    type: string
+    description: "The identifier of the Partition that this Facilitator is associated\
+      \ with. \nYou can only associate one Facilitator to each Partition."
+  gatewayName:
+    type: string
+    description: "The name of the credit card processor. \nOptional field used by\
+      \ transaction fraud checking."
+  tcMerchant:
+    type: string
+    description: Latest merchant terms and conditions version for this facilitator.
+  tcVendor:
+    type: string
+    description: Latest vendor terms and conditions version for this facilitator.
+  chargebackNotificationEmail:
+    type: string
+    description: Email for the facilitator to recieve a notification of a chargeback
+  inactive:
+    $ref: ../../../components/schemas/inactive.yaml
+  frozen:
+    $ref: ../../../components/schemas/frozen.yaml
+

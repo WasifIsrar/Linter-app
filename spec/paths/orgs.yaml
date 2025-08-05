@@ -1,0 +1,77 @@
+get:
+  description: Query an Org, which is a collection of Entities, To associate Entities
+    with an Org use the [orgEntity]($e/Org%20Entities/getOrgEntitiesId)
+    endpoint. You will need the created Org ID when adding entities, such as a Merchant,
+    to the Organization.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/orgsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsModel200Response.yaml
+      description: Response for query on orgs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Orgs.
+  tags:
+  - Orgs
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getOrgs
+post:
+  description: Create an Org which is a collection of Entities, To associate Entities
+    with an Org use the [orgEntity]($e/Org%20Entities/getOrgEntitiesId)
+    endpoint. You will need the created Org ID when adding entities, such as a Merchant,
+    to the Organization.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsPostRequestModel.yaml
+    description: Create Org Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create Orgs:
+              $ref: ../components/schemas/samples/orgsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsModel200Response.yaml
+      description: Response for create on orgs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Org
+  tags:
+  - Orgs
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postOrgs
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,49 @@
+title: confirmCodesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The identifier of the Login resource that this confirmation code
+      relates to.
+  type:
+    title: confirmCodeType
+    type: string
+    description: |
+      The type of this confirmCode.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `password` - **Forgot Password**
+      - `email` - **Verify Email**
+
+      </details>
+    enum:
+    - password
+    - email
+    x-enum-elements:
+    - name: Password
+      description: Forgot Password
+    - name: Email
+      description: Verify Email
+  key:
+    type: string
+    description: The cryptographically secure, randomly generated key to be used for
+      verification.
+  email:
+    type: string
+    description: If the 'type' of this confirmation code is '2' (email), then this
+      field represents the email address that requires verification.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

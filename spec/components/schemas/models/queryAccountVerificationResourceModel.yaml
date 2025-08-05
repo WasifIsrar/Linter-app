@@ -1,0 +1,22 @@
+title: queryAccountVerificationResourceResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  accountVerification:
+    type: string
+    description: The identifier of the accountVerification resource that this account
+      verification result relates to.
+  field:
+    type: string
+    description: The challenge response field for this result.
+  message:
+    type: string
+    description: The challenge response result message for this result.

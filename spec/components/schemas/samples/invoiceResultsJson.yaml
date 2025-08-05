@@ -1,0 +1,41 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_inr_00a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "invoice": "t1_inv_67b7c41d9d166b99ac02b36",
+        "txn": "p1_txn_00b7c41d9d166b99ac01b10",
+        "status": "success",
+        "message": "Invoice Paid",
+        "shippingFirst": "John",
+        "shippingMiddle": "M",
+        "shippingLast": "Doe",
+        "shippingCompany": "Doe Shipping Co.",
+        "shippingAddress1": "123 Main st.",
+        "shippingAddress2": "Suite 100",
+        "shippingCity": "Springfield",
+        "shippingState": "TX",
+        "shippingZip": "62701",
+        "shippingCountry": "USA",
+        "shippingPhone": "+11234567845",
+        "shippingFax": "+11234567845",
+        "authorization": "Test Authorization with a field name = :field: and a replace text = :replace:",
+        "authorizationData": "{\"field\":\"field\",\"replace\":\"replace\"}",
+        "signature": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHB7A1mFUdV1dy+LOL9C6HE7XK5uPW945ne06NVJ+dt4HsRr9u33igKE411GteR5/fsVtkFVJNZmAz1gaDAX7AdGDvYcCSORyWv"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

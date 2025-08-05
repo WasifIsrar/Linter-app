@@ -1,0 +1,40 @@
+description: A request body for creating new networkPaymentManager
+title: revenueBoostsPostRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that networkPaymentManager is associated with.
+  platform:
+    type: string
+    description: |+
+      The platform used to process this transaction.
+      Valid Values : - `VCORE` - **VCORE**
+    enum:
+    - VCORE
+    x-enum-elements:
+    - name: "VCore"
+      description: "VCore platform."
+  org:
+    type: string
+    description: The identifier of the Org (group) that networkPaymentManager is associated with.
+  division:
+    type: string
+    description: The identifier of the Division that networkPaymentManager is associated with.
+  partition:
+    type: string
+    description: The identifier of the Partition that networkPaymentManager is associated with.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- entity
+- platform
+example:
+  entity: t1_ent_5a1pf5a1234531155a12345
+  platform: VCORE
+  org: t1_org_5a1pf5a1234531155a12345
+  division: t1_div_67b51635da21f7399ce2af1
+  partition: t1_ptn_666834d4d504f11234578f5
+  inactive: 0
+  frozen: 0

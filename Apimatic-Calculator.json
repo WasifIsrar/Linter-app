@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "APIMATIC Calculator-test",
+    "title": "APIMATIC Calculator",
     "description": "Simple calculator API hosted on APIMATIC for demo purposes",
     "contact": {},
     "version": "2.3"
@@ -28,7 +28,6 @@
             "in": "path",
             "description": "The operator to apply on the variables",
             "required": true,
-            "style": "simple",
             "schema": {
               "$ref": "#/components/schemas/OperationType"
             }

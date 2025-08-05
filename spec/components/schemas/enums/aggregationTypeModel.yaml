@@ -1,0 +1,28 @@
+title: aggregationType
+type: string
+description: |
+  The type of aggregation. This will automatically set the search and total values.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `entityEntryEventMerchant` - **A merchant entry.**
+  - `merchantTxnApprovedAll` - **All merchant transactions approved.**
+  - `merchantTxnCapturedAll` - **All merchant transactions captured.**
+  - `merchantTxnFailedAll` - **All merchant transactions failed.**
+
+  </details>
+enum:
+- entityEntryEventMerchant
+- merchantTxnApprovedAll
+- merchantTxnCapturedAll
+- merchantTxnFailedAll
+x-enum-elements:
+- name: EntityEntryEventMerchant
+  description: A merchant entry.
+- name: MerchantTxnApprovedAll
+  description: All merchant transactions approved.
+- name: MerchantTxnCapturedAll
+  description: All merchant transactions captured.
+- name: MerchantTxnFailedAll
+  description: All merchant transactions failed.

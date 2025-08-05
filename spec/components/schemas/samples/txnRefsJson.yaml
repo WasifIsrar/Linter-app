@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_trf_67b83ff34f95cbd9f3a15f0",
+        "created": "2025-02-21 03:57:23.3306",
+        "modified": "2025-02-21 03:57:23.3306",
+        "creator": "t1_log_5c758e990c7a922100d4f00",
+        "modifier": "t1_log_5c758e990c7a922100d4f00",
+        "txn": "t1_txn_67b83ff257446954fcccb00",
+        "ref": "a9409e0c581",
+        "stage": "draft",
+        "platform": "VANTIV"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

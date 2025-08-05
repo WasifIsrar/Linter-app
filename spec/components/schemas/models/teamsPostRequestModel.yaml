@@ -1,0 +1,60 @@
+title: teamsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this Team.
+  name:
+    type: string
+    description: "The name of this Team. \nThis field is stored as a text string and\
+      \ must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A description of this Team. \nThis field is stored as a text string\
+      \ and must be between 0 and 500 characters long."
+  autoCascadeDisabled:
+    type: integer
+    description: "Whether new Logins created by member Logins of this Team will be\
+      \ added to this team or not. Default is 0 (enabled). \n\n<details>\n<summary>Valid\
+      \ Values</summary> \n\n - `0` - **Disabled**\n\n - `1` - **Enabled**\n\n </details>\n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "New Logins will not be added to this team."
+    - name: "Enabled"
+      description: "New Logins will be added to this team."
+  autoCascadeOwner:
+    type: integer
+    description: "An integer-boolean indicating whether or not the cascading functionality\
+      \ should extend to the owner of this team. \n\n<details>\n<summary>Valid Values</summary>\
+      \ \n\n - `0` - **OFF**\n\n - `1` - **ON**\n\n </details>\n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Off"
+      description: "Cascading functionality does not extend to the owner of this team."
+    - name: "On"
+      description: "Cascading functionality extends to the owner of this team."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- autoCascadeDisabled
+- autoCascadeOwner
+- frozen
+- inactive
+- login
+
+example: 
+  login: t1_log_6801559c6218199cb0820df
+  name: merchant-team-t1_mer_680155985dbaab55256ecb0
+  description: Esmeralda McCullough Team
+  autoCascadeDisabled: 0
+  autoCascadeOwner: 0
+  inactive: 0
+  frozen: 0

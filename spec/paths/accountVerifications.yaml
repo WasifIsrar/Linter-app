@@ -1,0 +1,72 @@
+get:
+  description: Retrieve a list of all account verifications representing attempts
+    to verify the ownership of a particular bank account by verifying a known deposit
+    amount or credential.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/accountVerificationsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountVerificationsModel200Response.yaml
+      description: Response for querying the accountVerifications resource to retrieve
+        account verifications.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Account Verifications.
+  tags:
+  - Accounts Verifications
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAccountVerifications
+post:
+  description: "Create an accountVerifications resource. \nAn accountVerifications\
+    \ resource represents an attempt to verify the ownership of a particular bank\
+    \ account by verifying a known deposit amount or credential."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/accountVerificationPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/accountVerificationsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountVerificationsModel200Response.yaml
+      description: Response for create on accountVerifications resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Accounts Verifications
+  - Facilitator
+  operationId: postAccountVerifications
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

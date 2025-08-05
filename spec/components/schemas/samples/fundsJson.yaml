@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_fun_00b1192141e3b78e981128b",
+        "created": "2025-02-18 23:08:01.3013",
+        "modified": "2025-02-18 23:08:02.1922",
+        "creator": "t1_log_003ae6ec24a9357ace75ebf",
+        "modifier": "t1_log_003ae6ec24a9357ace75ebf",
+        "entity": "t1_ent_00acf8b3599489d7efe58zz",
+        "currency": "USD",
+        "reserved": 0,
+        "pending": 5330,
+        "available": 0,
+        "total": 5330,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

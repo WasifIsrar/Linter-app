@@ -1,0 +1,63 @@
+get:
+  description: Querying a BIN resource, which holds information about the issuer of
+    a card.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all bins:
+              $ref: ../components/schemas/samples/binsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/binsModel200Response.yaml
+      description: Retrieve the Response for query on BINS resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all bins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all BINs.
+  tags:
+  - Bins
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getBins
+post:
+  description: "Create a Bin. \nA Bin resource holds information about the issuer\
+    \ of a card."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/binsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/binsModel200Response.yaml
+      description: Response for create on bins resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Bins
+  - Facilitator
+  operationId: postBins
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

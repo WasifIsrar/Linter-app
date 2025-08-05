@@ -1,0 +1,75 @@
+title: contactsPutRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that this Contact relates to.
+  first:
+    type: string
+    description: The first name associated with this Contact.
+  middle:
+    type: string
+    description: The middle name associated with this Contact.
+  last:
+    type: string
+    description: The last name associated with this Contact.
+  description:
+    type: string
+    description: A description of this Contact.
+  email:
+    type: string
+    description: The email address of this Contact.
+  address1:
+    type: string
+    description: "The first line of the address associated with this Contact. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Contact. \n\
+      This field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Contact.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Contact. \nThis\
+      \ field is stored as a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../models/countryModel.yaml
+    description: "The country associated with this Contact. \nValid values for this\
+      \ field is the 3-letter ISO code for the country."
+  phone:
+    type: string
+    description: "The phone number associated with this Contact. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  fax:
+    type: string
+    description: "The fax number associated with this Contact. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  frozen:
+    $ref: ../frozen.yaml
+  inactive:
+    $ref: ../inactive.yaml
+
+example: 
+  entity: t1_ent_665e13ff8b2e613134b9273
+  first: first name
+  last: last name
+  email: fewafehwuohfewafewafewa@payrjfhuiweafewa.com
+  middle: middle name
+  description: description of Contact
+  address1: first line of the address
+  address2: second line of the address
+  city: Anchorage
+  state: AK
+  zip: 99501
+  country: USA
+  phone: 1234567890
+  fax: 1234567890
+  inactive: 0
+  frozen: 0

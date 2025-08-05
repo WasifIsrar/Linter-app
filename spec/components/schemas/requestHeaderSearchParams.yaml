@@ -1,0 +1,10 @@
+     description: |
+        Set this header to filter or sort the list of resources that the method returns. 
+        See [Searches](page:welcome#searches) for detailed information and examples on how to use search header.
+        
+     explode: false
+     in: header
+     name: search
+     required: false
+     schema: {type: string} 
+     example: created[greater]=2025-01-01

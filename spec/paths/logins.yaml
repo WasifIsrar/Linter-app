@@ -1,0 +1,75 @@
+get:
+  description: Query Logins. Retrieves the list of all users details like name and
+    email as well as management details like which partition and division the user
+    belongs to. A Login represents the unique ID of the user making an API request.
+    Each user has a unique username and password
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/loginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsModel200Response.yaml
+      description: Retrieve Logins Response for query on logins resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Logins.
+  tags:
+  - Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getLogins
+post:
+  description: Create a Login. A Login represents the unique ID of the user making
+    an API request. Each user has a unique username and password.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/loginsPostRequestModel.yaml
+    description: Create Login Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create logins:
+              $ref: ../components/schemas/samples/loginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsModel200Response.yaml
+      description: Response for create on logins resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Login
+  tags:
+  - Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postLogins
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

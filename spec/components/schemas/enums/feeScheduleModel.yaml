@@ -1,0 +1,957 @@
+title: feeSchedule
+type: integer
+description: |-
+      The schedule that determines when this Fee is triggered to be charged. 
+      
+      <details>
+      <summary>Valid Values</summary>
+
+       `1` - **Days.** The Fee is charged every day.
+
+       `2` - **Weeks.** The Fee is charged every week.
+
+       `3` - **Months.** The Fee is charged every month.
+
+       `4` - **Years.** The Fee is charged every year.
+
+       `5` - **Single.** The Fee is a one-off charge.
+
+       `6` - **Auth.** The Fee is triggered at the time of authorization of a transaction.
+
+       `7` - **Capture.** The Fee triggers at the capture time of a Transaction.
+
+       `8` - **Refund.** The Fee triggers when a refund transaction is processed.
+
+       `9` - **Board.** The Fee triggers when the Merchant is boarded.
+
+       `10` - **Payout.** The Fee triggers when a payout is processed.
+
+       `11` - **Chargeback.** The Fee triggers when a card chargeback occurs.
+
+       `12` - **Overdraft.** The Fee triggers when an overdraft usage charge from a bank is levied.
+
+       `13` - **Interchange.** The Fee triggers when interchange default are assessed for the Transactions of this Merchant.
+
+       `14` - **Processor.** The Fee triggers when the Transactions of this Merchant are processed by a payment processor.
+
+       `15` - **ACH failure.** The Fee triggers when an automated clearing house failure occurs.
+
+       `16` - **Account.** The Fee triggers when a bank account is verified.
+
+       `17` - **Sift.** The Fee triggers when a txn uses SIFT for fraud checking.
+
+       `18` - **Adjustment.** The Fee triggers when an adjustment is created.
+
+       `19` - **Retrieval.** The Fee triggers when a chargeback retrieval is processed.
+
+       `20` - **Arbitration.** The Fee triggers when a chargeback arbitration is processed.
+
+       `21` - **eCheck Sale.** The Fee triggers when an eCheck sale is processed.
+
+       `22` - **eCheck Refund.** The Fee triggers when an eCheck refund is processed.
+
+       `23` - **eCheck Return.** The Fee triggers when an eCheck txn is returned because of a failure while processing.
+
+       `24` - **Settlement.** The Fee triggers when a txn is settled.
+
+       `25` - **Misuse.** The Fee triggers when a txn authorization is misused.
+
+       `26` - **Profit share.** The Fee triggers when a profit share is executed.
+
+       `27` - **Unauth.** The Fee triggers when an auth reversal is created.
+
+       `28` - **Disbursement NOC.** The Fee triggers on Notice Of Change events for Disbursements.
+
+       `29` - **Transaction NOC.** The Fee triggers on Notice Of Change events for Transactions.
+
+       `30` - **eCheck failure return.** The Fee triggers when an eCheck txn is returned due to customer rejection or incorrect account information.
+
+       `31` - **eCheck NSF return.** The Fee triggers when an eCheck txn is returned due to insufficient funds.
+
+       `32` - **Currency conversion.** The Fee triggers when there is a currency conversion on a transaction.
+
+       `33` - **Terminal transaction.** The Fee triggers when there is a transaction processed via a terminal.
+
+       `34` - **Reverse payout.** The Fee triggers when a payout is reversed.
+
+       `35` - **Partial reverse payout.** The Fee triggers when a payout is partially reversed.
+
+       `43` - **Payment check.** The Fee triggers on a payment check.
+
+       `44` - **Payment update.** The Fee triggers when a payment is updated.
+
+       `45` - **Payment group check.** The Fee triggers on a payment group check.
+
+       `46` - **Payment group update.** The Fee triggers on a payment group update.
+
+       `47` - **Entry refund.** The Fee triggers when an entry is refunded.
+
+       `51` - **Statement Payment.** A statement bill was paid.
+
+       `52` - **Merchant Created.** A new Merchant entity has been created, but not boarded.
+
+       `53` - **Realtime Business Search.** Real-time Business Entity OFAC Search from Bridger by LexisNexis.
+
+       `54` - **Realtime Member Search.** Real-time Business Entity Managing Member Personal OFAC Search from Bridger by LexisNexis.
+
+       `55` - **MasterCard MATCH.** Merchant History Check from Mastercard Alert To Control High-risk Merchants (MATCH) program.
+
+       `56` - **Business Instant ID.** KYB Verification from LexisNexis.
+
+       `57` - **Consumer Instance ID.** KYC Verification from LexisNexis.
+
+       `58` - **ThreatMetrix.** Black List & OFAC Watchlist check from LexisNexis.
+
+       `59` - **LegitScript Registration.** Merchant Compliance and Risk Rating Checks.
+
+       `60` - **Equifax Consumer Report.** Business owner's consumer credit report from Equifax.
+
+       `61` - **CharityCheck.** Business entity nonprofit eligibility verification from GuideStar.
+
+       `62` - **Internal Decision V2.** Payrix Risk services decision.
+
+       `63` - **TIN Check.** Tax Identification Number matching service for tax identity management from Sovos.
+
+       `64` - **Equifax Commercial Report.** Entity's commercial credit report from Equifax.
+
+       `65` - **LegitScript Merchant Check.** Merchant Compliance and Risk Rating Checks.
+
+       `66` - **Plaid.** Bank account link, info update and verification services.
+
+       `67` - **Statement Reversal.** A statement eCheck payment was reversed.
+
+       `68` - **GIACT eCheck Verification.** Real-time account status check for consumer and business bank accounts from gVerify by GIACT.
+
+       `69` - **GIACT Account Verification.** Real-time Business Entity Owner identity & authorized signer status verification from gAuthenticate by GIACT.
+
+       `70` - **Boarding Decision.** Merchant boarding decision made by the platform via risk checks.
+
+       `71` - **Transaction Risk Decision.** Transaction decision made by the platform via risk checks.
+
+       `72` - **FANF.** Fixed Acquirer Network Fee from Visa for Merchants processing card-present and card-not-present transactions.
+
+       `73` - **MCLocation.** Merchant Location Fee from Mastercard for Merchants processing card-present and card-not-present transactions.
+
+       `74` - **VisaIntegrity.** Transaction Integrity Fee from Visa.
+
+       `75` - **SaferPayments: Basic.** PCI DSS Compliance Portal from WorldPay for Partner and Facilitator Merchant portfolios.
+
+       `76` - **SaferPayments: Managed.** PCI DSS Compliance Managed Services from WorldPay for Merchants in Partner and Facilitator portfolios.
+
+       `77` - **SaferPayments - PCI Non-Validation.** PCI DSS Compliance Portal and/or services were provided but the Merchant failed to meet PCI DSS Compliance.
+
+       `78` - **OMNITOKENS_VOLUME.** Omni-Channel payment tokenization from WorldPay.
+
+       `79` - **Payout Return.** A Payout Disbursement was returned when attempted.
+
+       `80` - **Payout Partial Return.** A Payout Disbursement was partially returned when attempted.
+
+       `81` - **Revenue Share.** A configuration of multiple entities dividing revenue.
+
+       `82` - **Card Settlement.** The funds from a card payment captured and authorized in a transaction have been settled.
+
+       `83` - **eCheck Settlement.** The funds from an ACH/eCheck payment used in a transaction have been settled.
+
+       `84` - **Revenue Share from Card.** Funds have been captured in a Revenue Share configuration from a card payment transaction.
+
+       `85` - **Revenue Share from eCheck.** Funds have been captured in a Revenue Share configuration from an ACH / eCheck payment transaction.
+
+       `86` - **Revenue Share Payout.** Funds from a Revenue Share capture have been settled and disbursed to the applicable entities.
+       
+       `88` - **PLAID_IDENTITY_MACH** 
+       
+       `89` - **TXN_PLAID_IDENTITY_MACH** 
+       
+       `90` - **PLAID_GET_IDENTITY** 
+       
+       `91` - **TXN_PLAID_GET_IDENTITY** 
+       
+       `92` - **PLAID_GET_AUTH** 
+       
+       `93` - **TXN_PLAID_GET_AUTH**
+       
+       `200` - **VALUTEC_ESSENTIAL_GIFT. External Fees**
+
+       `201` - **VALUTEC_ESSENTIAL_MONTHLY_TXN. External Fees**
+
+       `202` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE. External Fees**
+
+       `203` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_TXN. External Fees**
+
+       `204` - **VALUTEC_LOYALTY_PLUS_PACKAGE. External Fees**
+
+       `205` - **VALUTEC_LOYALTY_PLUS_PACKAGE_TXN. External Fees**
+
+       `206` - **VALUTEC_TRANSACTION_FEE. External Fees**
+
+       `207` - **VALUTEC_SETUP_FEE. External Fees**
+
+       `208` - **VALUTEC_GIFT_ACH_POOLING. External Fees**
+
+       `209` - **VALUTEC_JUMP_START_KIT. External Fees**
+
+       `210` - **VALUTEC_LAUNCH_BOX_KIT. External Fees**
+
+       `211` - **VALUTEC_500_CUSTOM_CARDS. External Fees**
+
+       `212` - **VALUTEC_MAINTENANCE_FEE. External Fees**
+
+       `213` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_ME. External Fees**
+
+       `214` - **EFE_MWC_RESIDUAL_ATELIO** 
+
+       `215` - **EFE_MWC_RESIDUAL_PARAFIN**  
+
+       `216` - **EFE_MWC_BILLING**  
+
+       `217` - **FRAUDSIGHT_CNP_DECISION**  
+
+       `218` - **FRAUDSIGHT_CP_DECISION**  
+
+       `230` - **VALUTEC_OVERAGE_TRANSACTION_FEE. External Fees**  
+
+       `231` - **VALUTEC_STANDARD_MOBILE_PASS_MONTHLY_APPLE. External Fees** 
+
+       `232` - **VALUTEC_NFC_MOBILE_PASS_MONTHLY. External Fees**  
+
+       `233` - **VALUTEC_STANDARD_MOBILE_PASS_MONTHLY_GOOGLE. External Fees**  
+
+       `234` - **VALUTEC_ONLINE_GIFT_WEBSITE_MONTHLY. External Fees**  
+
+       `235` - **VALUTEC_MARKETING_360_MONTHLY. External Fees**  
+
+       `236` - **VALUTEC_ONLINE_GIFT_CARD_VOLUME_FEE. External Fees** 
+
+       `237` - **VALUTEC_SOCIAL_SHARING_MONTHLY. External Fees**  
+
+       `238` - **VALUTEC_DIGICARD_MONTHLY. External Fees**  
+
+       `239` - **VALUTEC_LOYALTY_STANDARD_MONTHLY. External Fees**  
+
+       `240` - **VALUTEC_AUTO_REWARDS_LPR_MONTHLY. External Fees** 
+
+       `241` - **VALUTEC_ONECARD_SETUP_FEE. External Fees**  
+
+       `242` - **VALUTEC_ONECARD_MONTHLY_FEE. External Fees** 
+
+       `243` - **VALUTEC_MONTHLY_FEE_CHOICE. External Fees**  
+
+       `244` - **VALUTEC_SYSTEM_ACCESS. External Fees**  
+
+       `245` - **VALUTEC_TRANSACTION. External Fees**  
+
+       `246` - **VALUTEC_MONTHLY_FEE_LAUNCHBOX. External Fees** 
+
+       `247` - **VALUTEC_MONTHLY_FEE_JUMPSTART**  
+
+       `248` - **VALUTEC_ONECARD_PHYSICAL_FULFILLMENT_FEE. External Fees** 
+
+       `249` - **VALUTEC_ONECARD_VIRTUAL_FULFILLMENT_FEE. External Fees**  
+
+       `250` - **VALUTEC_CUSTOMIZED_REPORTING. External Fees**  
+
+       `251` - **VALUTEC_TRANSACTION_FILE_FEED. External Fees**  
+
+       `252` - **VALUTEC_250_CUSTOM_CARDS. External Fees**  
+
+       `253` - **VALUTEC_1000_CUSTOM_CARDS. External Fees**  
+
+       `254` - **VALUTEC_2500_CUSTOM_CARDS. External Fees**  
+
+       `255` - **VALUTEC_5000_CUSTOM_CARDS. External Fees**  
+
+       `256` - **VALUTEC_10000_CUSTOM_CARDS. External Fees** 
+       
+       `257` - **VALUTEC_15000_CUSTOM_CARDS. External Fees** 
+       
+       `258` - **VALUTEC_20000_CUSTOM_CARDS. External Fees** 
+       
+       `259` - **VALUTEC_25000_CUSTOM_CARDS. External Fees** 
+       
+       `260` - **VALUTEC_250_EXPRESS_CARDS. External Fees**  
+
+       `261` - **VALUTEC_500_EXPRESS_CARDS. External Fees**  
+
+       `262` - **VALUTEC_1000_EXPRESS_CARD. External FeesS** 
+       
+       `263` - **VALUTEC_2500_EXPRESS_CARDS. External Fees** 
+       
+       `264` - **VALUTEC_5000_EXPRESS_CARDS. External Fees** 
+       
+       `265` - **VALUTEC_10000_EXPRESS_CARDS. External Fees**  
+
+       `266` - **VALUTEC_SPECIALTY_CARDS. External Fees**  
+
+       `267` - **VALUTEC_KEYTAGS. External Fees**  
+
+       `268` - **VALUTEC_SLEEVES_CARRIERS_HANGERS. External Fees**  
+
+       `269` - **VALUTEC_SIGNATURE_PANEL. External Fees**  
+
+       `270` - **VALUTEC_4_4_PRINTING. External Fees**  
+       
+       `271` - **VALUTEC_SPECIALTY_FINISH. External Fees**  
+
+       `272` - **VALUTEC_PANTONE. External Fees**  
+
+       `273` - **VALUTEC_PIN_SCRATCH. External Fees**  
+
+       `274` - **VALUTEC_MERCHANDISE. External Fees**  
+
+       `275` - **VALUTEC_GIFT_CARD_DESIGN_SETUP_FEE. External Fees**
+
+       `276` - **VALUTEC_SHIPPING_HANDLING. External Fees**  
+
+       `277` - **VALUTEC_RUSH_FEES. External Fees**  
+
+       `278` - **VALUTEC_SEQUENCING. External Fees**  
+
+       `279` - **VALUTEC_WHOLESALE_FULFILLMENT_FEE. External Fees**  
+
+       `280` - **VALUTEC_MISCELLANEOUS_FEES. External Fees**  
+
+       `281` - **VALUTEC_HOSTING_FEE. External Fees**  
+
+       `282` - **VALUTEC_STORECARD_MONTHLY_FEE. External Fees**  
+
+       `283` - **VALUTEC_GIFT_ACH_FEE_MONTHLY. External Fees**  
+
+       `284` - **VALUTEC_ONECARD_MONTHLY_FEE_STORECARD. External Fees**  
+
+       `400` - **REVBOOST_EMBEDDED_TMS_MONTHLY**  
+
+       `401` - **REVBOOST_EMBEDDED_TMS_PPT**
+
+       `402` - **TXN_THREAT_METRIX. External Fees**
+
+       `403` - **THREAT_METRIX_EMAILAGE. External Fees**
+
+       `404` - **THREAT_METRIX_FRAUD_POINT. External Fees**
+
+       `405` - **GIACT_INQUIRY. External Fees**
+
+       `406` - **GIACT_TXN_GAUTHENTICATE. External Fees**
+
+       `407` - **TRULIOO_IDV. External Fees**
+
+       `408` - **TRULIOO_AMLLDV. External Fees**
+
+       `409` - **TRULIOO_BUSINESS_VERIFICATION. External Fees**
+
+       `410` - **THREAT_METRIX_PHONE_FINDER. External Fees**
+
+       `601` - **TIER_NON_QUALIFIED_COUNT**  
+
+       `602` - **TIER_QUALIFIED_COUNT**  
+
+       `603` - **TIER_MID_QUALIFIED_COUNT**  
+
+       `604` - **TIER_HIGH_RISK_COUNT**  
+
+       `605` - **TIER_NON_QUALIFIED_VOLUME**  
+
+       `606` - **TIER_QUALIFIED_VOLUME**  
+
+       `607` - **TIER_MID_QUALIFIED_VOLUME**  
+
+       `608` - **TIER_HIGH_RISK_VOLUME**  
+
+       `701` - **NYCE_PULSE_ANNUAL_FEE**  
+
+       `702` - **PULSE_ANNUAL_FEE**  
+
+       `703` - **CU24_PULSE_ANNUAL_FEE**  
+
+       `704` - **STAR_PULSE_ANNUAL_FEE**  
+
+       `705` - **ACCEL_PULSE_ANNUAL_FEE**  
+
+       `801` - **TPG-IGENICO_LINK_2500**  
+
+       `802` - **TPG-IGENICO_LANE_3600_STD**  
+
+       `803` - **TPG-IGENICO_LANE_3600_DLX**  
+
+       `804` - **TPG-IGENICO_LANE_7000_STD**  
+
+       `805` - **TPG-IGENICO_LANE_7000_DLX**  
+
+       `806` - **TPG-INGENICO_MOVE_5000**  
+
+       `807` - **PAYRIX_EQUIPMENT_SETUP_FEE**  
+
+       </details>
+enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 51
+    - 52
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+    - 61
+    - 62
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 88
+    - 89
+    - 90
+    - 91
+    - 92
+    - 93
+    - 200
+    - 201
+    - 202
+    - 203
+    - 204
+    - 205
+    - 206
+    - 207
+    - 208
+    - 209
+    - 210
+    - 211
+    - 212
+    - 213
+    - 214
+    - 215
+    - 216
+    - 217
+    - 218
+    - 219
+    - 220
+    - 221
+    - 222
+    - 223
+    - 224
+    - 225
+    - 226
+    - 227
+    - 228
+    - 229
+    - 230
+    - 231
+    - 232
+    - 233
+    - 234
+    - 235
+    - 236
+    - 237
+    - 238
+    - 239
+    - 240
+    - 241
+    - 242
+    - 243
+    - 244
+    - 245
+    - 246
+    - 247
+    - 248
+    - 249
+    - 250
+    - 251
+    - 252
+    - 253
+    - 254
+    - 255
+    - 256
+    - 257
+    - 258
+    - 259
+    - 260
+    - 261
+    - 262
+    - 263
+    - 264
+    - 265
+    - 266
+    - 267
+    - 268
+    - 269
+    - 270
+    - 271
+    - 272
+    - 273
+    - 274
+    - 275
+    - 276
+    - 277
+    - 278
+    - 279
+    - 280
+    - 281
+    - 282
+    - 283
+    - 284
+    - 400
+    - 401
+    - 402
+    - 403
+    - 404
+    - 405
+    - 406
+    - 407
+    - 408
+    - 409
+    - 410
+    - 601
+    - 602
+    - 603
+    - 604
+    - 605
+    - 606
+    - 607
+    - 608
+    - 701
+    - 702
+    - 703
+    - 704
+    - 705
+    - 801
+    - 802
+    - 803
+    - 804
+    - 805
+    - 806
+    - 807
+x-enum-elements:
+  - name: "Days"
+    description: "Days"
+  - name: "Weeks"
+    description: "Weeks"
+  - name: "Months"
+    description: "Months"
+  - name: "Years"
+    description: "Years"
+  - name: "Single"
+    description: "Single"
+  - name: "Auth"
+    description: "Auth"
+  - name: "Capture"
+    description: "Capture"
+  - name: "Refund"
+    description: "Refund Only For Txn Refunds"
+  - name: "Board"
+    description: "Board"
+  - name: "Payout"
+    description: "Payout"
+  - name: "Chargeback"
+    description: "Chargeback Include These Chargeback Cycles First Representment Pre Arbitration"
+  - name: "Overdraft"
+    description: "Overdraft"
+  - name: "Interchange"
+    description: "Interchange"
+  - name: "Processor"
+    description: "Processor"
+  - name: "AchFail"
+    description: "Ach Fail"
+  - name: "Account"
+    description: "Account"
+  - name: "Sift"
+    description: "Sift"
+  - name: "Adjustment"
+    description: "Adjustment"
+  - name: "Retrieval"
+    description: "Retrieval Retrieval Request Chargeback"
+  - name: "Arbitration"
+    description: "Arbitration Arbitration Chargeback"
+  - name: "EcSale"
+    description: "Ec Sale Ec Sale Transaction"
+  - name: "EcRefund"
+    description: "Ec Refund Ec Refund Transaction"
+  - name: "EcReturn"
+    description: "Ec Return Ec Return Returns"
+  - name: "Settlement"
+    description: "Settlement Txn Settlement Legacy"
+  - name: "Misuse"
+    description: "Misuse Misuse Of Authorization"
+  - name: "ProfitShare"
+    description: "Profit Share Profit Sharing Entry Event"
+  - name: "Unauth"
+    description: "Unauth Unauth Transaction"
+  - name: "AchNoc"
+    description: "Ach Noc Disbursement Noc"
+  - name: "EcNoc"
+    description: "Ec Noc Transaction Noc"
+  - name: "EcFail"
+    description: "Ec Fail Echeck Transaction Failure Return"
+  - name: "EcNsf"
+    description: "Ec Nsf Echeck Transaction Nsf Return"
+  - name: "CurrencyConversion"
+    description: "Currency Conversion Currency Conversion Fee"
+  - name: "TerminalTxn"
+    description: "Terminal Txn Terminal Txns Fee"
+  - name: "ReversePayout"
+    description: "Reverse Payout Reverse Payout Fee"
+  - name: "PartialReversePayout"
+    description: "Partial Reverse Payout Partial Reverse Payout Fee"
+  - name: "PaymentCheck"
+    description: "Payment Check Single Payment Check Deprecated"
+  - name: "PaymentUpdate"
+    description: "Payment Update Single Payment Update"
+  - name: "PaymentGroupCheck"
+    description: "Payment Group Check Group Payment Check Deprecated"
+  - name: "PaymentGroupUpdate"
+    description: "Payment Group Update Group Payment Update"
+  - name: "EntryRefund"
+    description: "Entry Refund Entry Refunds"
+  - name: "Statement"
+    description: "Statement Payment Of Statement"
+  - name: "MerchantCreation"
+    description: "Merchant Creation Merchant Fee Upon Creation"
+  - name: "RealtimeBusinessSearch"
+    description: "Realtime Business Search Real Time Business Search"
+  - name: "RealtimeMemberSearch"
+    description: "Realtime Member Search Real Time Member Search"
+  - name: "MasterCardMatch"
+    description: "Master Card Match Mastercard Match"
+  - name: "BusinessInstantId"
+    description: "Business Instant Id Business Instant Id"
+  - name: "ConsumerInstantId"
+    description: "Consumer Instant Id Consumer Instant Id"
+  - name: "ThreatMetrix"
+    description: "Threat Metrix Threat Metrix"
+  - name: "LegitScriptRegister"
+    description: "Legit Script Register Legit Script Register"
+  - name: "EquifaxConsumerReport"
+    description: "Equifax Consumer Report Equifax Consumer Report"
+  - name: "GuideStar"
+    description: "Guide Star Guidestar"
+  - name: "PayloadAttribute"
+    description: "Payload Attribute Internal Decision V2"
+  - name: "TinCheck"
+    description: "Tin Check Tin Check"
+  - name: "EquifaxCommercialReport"
+    description: "Equifax Commercial Report Equifax Commercial Report"
+  - name: "LegitScriptCheckMerchant"
+    description: "Legit Script Check Merchant Legit Script Check Merchant"
+  - name: "Plaid"
+    description: "Plaid Plaid"
+  - name: "StatementReversal"
+    description: "Statement Reversal Reversal Of Statement"
+  - name: "GiactEcheck"
+    description: "Giact Echeck Giact Call Made To Verify Creator Echeck Bank Account"
+  - name: "GiactBankAccount"
+    description: "Giact Bank Account Giact Calls To Verify Merchant Settlement Account On Sign Up Or Post Boarding Account"
+  - name: "BoardDecision"
+    description: "Board Decision Process Decision Fee After Board"
+  - name: "TxnRiskDecision"
+    description: "Txn Risk Decision Txn Going Through A Risk Decision"
+  - name: "Fanf"
+    description: "Fanf External Fees"
+  - name: "McLocation"
+    description: "Mc Location External Fees"
+  - name: "VisaIntegrity"
+    description: "Visa Integrity External Fees"
+  - name: "SaferPaymentsBasic"
+    description: "Safer Payments Basic External Fees"
+  - name: "SaferPaymentsManaged"
+    description: "Safer Payments Managed External Fees"
+  - name: "SaferPaymentsNonValidation"
+    description: "Safer Payments Non Validation External Fees"
+  - name: "OmniTokensVolume"
+    description: "Omni Tokens Volume External Fees"
+  - name: "PayoutReturn"
+    description: "Payout Return Payout Return"
+  - name: "PayoutPartialReturn"
+    description: "Payout Partial Return Payout Partial Return"
+  - name: "RevShare"
+    description: "Rev Share Rev Share"
+  - name: "CardSettlement"
+    description: "Card Settlement Txns Card Settlement"
+  - name: "EcheckSettlement"
+    description: "Echeck Settlement Txns E Check Settlement"
+  - name: "RevShareCard"
+    description: "Rev Share Card Rev Share Schedules"
+  - name: "RevShareEcheck"
+    description: "Rev Share Echeck Rev Share Schedules"
+  - name: "RevShareDbm"
+    description: "Rev Share Dbm Rev Share Schedules"
+  - name: "PlaidIdentityMach"
+    description: "Plaid Identity Mach"
+  - name: "TxnPlaidIdentityMach"
+    description: "Txn Plaid Identity Mach"
+  - name: "PlaidGetIdentity"
+    description: "Plaid Get Identity"
+  - name: "TxnPlaidGetIdentity"
+    description: "Txn Plaid Get Identity"
+  - name: "PlaidGetAuth"
+    description: "Plaid Get Auth"
+  - name: "TxnPlaidGetAuth"
+    description: "Txn Plaid Get Auth"
+  - name: "ValutecEssentialGift"
+    description: "Valutec Essential Gift External Fees"
+  - name: "ValutecEssentialMonthlyTxn"
+    description: "Valutec Essential Monthly Txn External Fees"
+  - name: "ValutecDigitalGiftPlusPackage"
+    description: "Valutec Digital Gift Plus Package External Fees"
+  - name: "ValutecDigitalGiftPlusPackageTxn"
+    description: "Valutec Digital Gift Plus Package Txn External Fees"
+  - name: "ValutecLoyaltyPlusPackage"
+    description: "Valutec Loyalty Plus Package External Fees"
+  - name: "ValutecLoyaltyPlusPackageTxn"
+    description: "Valutec Loyalty Plus Package Txn External Fees"
+  - name: "ValutecTransactionFee"
+    description: "Valutec Transaction Fee External Fees"
+  - name: "ValutecSetupFee"
+    description: "Valutec Setup Fee External Fees"
+  - name: "ValutecGiftAchPooling"
+    description: "Valutec Gift Ach Pooling External Fees"
+  - name: "ValutecJumpStartKit"
+    description: "Valutec Jump Start Kit External Fees"
+  - name: "ValutecLaunchBoxKit"
+    description: "Valutec Launch Box Kit External Fees"
+  - name: "Valutec500CustomCards"
+    description: "Valutec 500 Custom Cards External Fees"
+  - name: "ValutecMaintenanceFee"
+    description: "Valutec Maintenance Fee External Fees"
+  - name: "ValutecDigitalGiftPlusPackageMe"
+    description: "Valutec Digital Gift Plus Package Me External Fees"
+  - name: "EfeMwcResidualAtelio"
+    description: "Efe Mwc Residual Atelio"
+  - name: "EfeMwcResidualParafin"
+    description: "Efe Mwc Residual Parafin"
+  - name: "EfeMwcBilling"
+    description: "Efe Mwc Billing"
+  - name: "FraudsightCnpDecision"
+    description: "Fraudsight Cnp Decision"
+  - name: "FraudsightCpDecision"
+    description: "Fraudsight Cp Decision"
+  - name: "ValutecOverageTransactionFee"
+    description: "Valutec Overage Transaction Fee"
+  - name: "ValutecStandardMobilePassMonthlyApple"
+    description: "Valutec Standard Mobile Pass Monthly Apple"
+  - name: "ValutecNfcMobilePassMonthly"
+    description: "Valutec Nfc Mobile Pass Monthly"
+  - name: "ValutecStandardMobilePassMonthlyGoogle"
+    description: "Valutec Standard Mobile Pass Monthly Google"
+  - name: "ValutecOnlineGiftWebsiteMonthly"
+    description: "Valutec Online Gift Website Monthly"
+  - name: "ValutecMarketing360Monthly"
+    description: "Valutec Marketing 360 Monthly"
+  - name: "ValutecOnlineGiftCardVolumeFee"
+    description: "Valutec Online Gift Card Volume Fee"
+  - name: "ValutecSocialSharingMonthly"
+    description: "Valutec Social Sharing Monthly"
+  - name: "ValutecDigicardMonthly"
+    description: "Valutec Digicard Monthly"
+  - name: "ValutecLoyaltyStandardMonthly"
+    description: "Valutec Loyalty Standard Monthly"
+  - name: "ValutecAutoRewardsLprMonthly"
+    description: "Valutec Auto Rewards Lpr Monthly"
+  - name: "ValutecOnecardSetupFee"
+    description: "Valutec Onecard Setup Fee"
+  - name: "ValutecOnecardMonthlyFee"
+    description: "Valutec Onecard Monthly Fee"
+  - name: "ValutecMonthlyFeeChoice"
+    description: "Valutec Monthly Fee Choice"
+  - name: "ValutecSystemAccess"
+    description: "Valutec System Access"
+  - name: "ValutecTransaction"
+    description: "Valutec Transaction"
+  - name: "ValutecMonthlyFeeLaunchbox"
+    description: "Valutec Monthly Fee Launchbox"
+  - name: "ValutecMonthlyFeeJumpstart"
+    description: "Valutec Monthly Fee Jumpstart"
+  - name: "ValutecOnecardPhysicalFulfillmentFee"
+    description: "Valutec Onecard Physical Fulfillment Fee"
+  - name: "ValutecOnecardVirtualFulfillmentFee"
+    description: "Valutec Onecard Virtual Fulfillment Fee"
+  - name: "ValutecCustomizedReporting"
+    description: "Valutec Customized Reporting"
+  - name: "ValutecTransactionFileFeed"
+    description: "Valutec Transaction File Feed"
+  - name: "Valutec250CustomCards"
+    description: "Valutec 250 Custom Cards"
+  - name: "Valutec1000CustomCards"
+    description: "Valutec 1000 Custom Cards"
+  - name: "Valutec2500CustomCards"
+    description: "Valutec 2500 Custom Cards"
+  - name: "Valutec5000CustomCards"
+    description: "Valutec 5000 Custom Cards"
+  - name: "Valutec10000CustomCards"
+    description: "Valutec 10000 Custom Cards"
+  - name: "Valutec15000CustomCards"
+    description: "Valutec 15000 Custom Cards"
+  - name: "Valutec20000CustomCards"
+    description: "Valutec 20000 Custom Cards"
+  - name: "Valutec25000CustomCards"
+    description: "Valutec 25000 Custom Cards"
+  - name: "Valutec250ExpressCards"
+    description: "Valutec 250 Express Cards"
+  - name: "Valutec500ExpressCards"
+    description: "Valutec 500 Express Cards"
+  - name: "Valutec1000ExpressCards"
+    description: "Valutec 1000 Express Cards"
+  - name: "Valutec2500ExpressCards"
+    description: "Valutec 2500 Express Cards"
+  - name: "Valutec5000ExpressCards"
+    description: "Valutec 5000 Express Cards"
+  - name: "Valutec10000ExpressCards"
+    description: "Valutec 10000 Express Cards"
+  - name: "ValutecSpecialtyCards"
+    description: "Valutec Specialty Cards"
+  - name: "ValutecKeytags"
+    description: "Valutec Keytags"
+  - name: "ValutecSleevesCarriersHangers"
+    description: "Valutec Sleeves Carriers Hangers"
+  - name: "ValutecSignaturePanel"
+    description: "Valutec Signature Panel"
+  - name: "Valutec44Printing"
+    description: "Valutec 4 4 Printing"
+  - name: "ValutecSpecialtyFinish"
+    description: "Valutec Specialty Finish"
+  - name: "ValutecPantone"
+    description: "Valutec Pantone"
+  - name: "ValutecPinScratch"
+    description: "Valutec Pin Scratch"
+  - name: "ValutecMerchandise"
+    description: "Valutec Merchandise"
+  - name: "ValutecGiftCardDesignSetupFee"
+    description: "Valutec Gift Card Design Setup Fee"
+  - name: "ValutecShippingHandling"
+    description: "Valutec Shipping Handling"
+  - name: "ValutecRushFees"
+    description: "Valutec Rush Fees"
+  - name: "ValutecSequencing"
+    description: "Valutec Sequencing"
+  - name: "ValutecWholesaleFulfillmentFee"
+    description: "Valutec Wholesale Fulfillment Fee"
+  - name: "ValutecMiscellaneousFees"
+    description: "Valutec Miscellaneous Fees"
+  - name: "ValutecHostingFee"
+    description: "Valutec Hosting Fee"
+  - name: "ValutecStorecardMonthlyFee"
+    description: "Valutec Storecard Monthly Fee"
+  - name: "ValutecGiftAchFeeMonthly"
+    description: "Valutec Gift Ach Fee Monthly"
+  - name: "ValutecOnecardMonthlyFeeStorecard"
+    description: "Valutec Onecard Monthly Fee Storecard"
+  - name: "RevboostEmbeddedTmsMonthly"
+    description: "Revboost Embedded Tms Monthly"
+  - name: "RevboostEmbeddedTmsPpt"
+    description: "Revboost Embedded Tms Ppt"
+  - name: "TxnThreatMetrix"
+    description: "Txn Threat Metrix"
+  - name: "ThreatMetrixEmailage"
+    description: "Threat Metrix Emailage"
+  - name: "ThreatMetrixFraudPoint"
+    description: "Threat Metrix Fraud Point"
+  - name: "GiactInquiry"
+    description: "Giact Inquiry"
+  - name: "GiactTxnGauthenticate"
+    description: "Giact Txn Gauthenticate"
+  - name: "TruliooIdv"
+    description: "Trulioo Idv"
+  - name: "TruliooAmllDv"
+    description: "Trulioo Amll Dv"
+  - name: "TruliooBusinessVerification"
+    description: "Trulioo Business Verification"
+  - name: "ThreatMetrixPhoneFinder"
+    description: "Threat Metrix Phone Finder"
+  - name: "TierNonQualifiedCount"
+    description: "Tier Non Qualified Count"
+  - name: "TierQualifiedCount"
+    description: "Tier Qualified Count"
+  - name: "TierMidQualifiedCount"
+    description: "Tier Mid Qualified Count"
+  - name: "TierHighRiskCount"
+    description: "Tier High Risk Count"
+  - name: "TierNonQualifiedVolume"
+    description: "Tier Non Qualified Volume"
+  - name: "TierQualifiedVolume"
+    description: "Tier Qualified Volume"
+  - name: "TierMidQualifiedVolume"
+    description: "Tier Mid Qualified Volume"
+  - name: "TierHighRiskVolume"
+    description: "Tier High Risk Volume"
+  - name: "NycePulseAnnualFee"
+    description: "Nyce Pulse Annual Fee"
+  - name: "PulseAnnualFee"
+    description: "Pulse Annual Fee"
+  - name: "Cu24PulseAnnualFee"
+    description: "Cu24 Pulse Annual Fee"
+  - name: "StarPulseAnnualFee"
+    description: "Star Pulse Annual Fee"
+  - name: "AccelPulseAnnualFee"
+    description: "Accel Pulse Annual Fee"
+  - name: "Tpg-IgenicoLink2500"
+    description: "Tpg-Igenico Link 2500"
+  - name: "Tpg-IgenicoLane3600Std"
+    description: "Tpg-Igenico Lane 3600 Std"
+  - name: "Tpg-IgenicoLane3600Dlx"
+    description: "Tpg-Igenico Lane 3600 Dlx"
+  - name: "Tpg-IgenicoLane7000Std"
+    description: "Tpg-Igenico Lane 7000 Std"
+  - name: "Tpg-IgenicoLane7000Dlx"
+    description: "Tpg-Igenico Lane 7000 Dlx"
+  - name: "Tpg-IngenicoMove5000"
+    description: "Tpg-Ingenico Move 5000"
+  - name: "PayrixEquipmentSetupFee"
+    description: "Payrix Equipment"

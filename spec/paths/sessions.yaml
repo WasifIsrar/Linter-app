@@ -1,0 +1,83 @@
+get:
+  description: "Query a Session. \nA Session represents a temporary method of authentication\
+    \ to the API. Each Session expires automatically after 30 minutes of inactivity.\
+    \ \nThey are similar to API Keys (/apikeys) in their capabilities and field structure\
+    \ - but unlike API Keys, Sessions are not permanent."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all sessions:
+              $ref: ../components/schemas/samples/sessionsPostJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/sessionsModel200PostResponse.yaml
+      description: Response for query on sessions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all sessions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Sessions.
+  tags:
+  - Sessions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSessions
+post:
+  description: "Create a Session. \nA Session represents a temporary method of authentication\
+    \ to the API. Each Session expires automatically after 30 minutes of inactivity.\
+    \ \nThey are similar to API Keys (/apikeys) in their capabilities and field structure\
+    \ - but unlike API Keys, Sessions are not permanent."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/sessionsPostRequestModel.yaml
+    description: Create Session Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all sessions:
+              $ref: ../components/schemas/samples/sessionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/sessionsModel200Response.yaml
+      description: Response for create on sessions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all sessions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  security:
+  - apiKey: []
+  - sessionKey: []
+  - txnSessionKey: []
+  - username: []
+    password: []
+  summary: Create a new Session.
+  tags:
+  - Sessions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postSessions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

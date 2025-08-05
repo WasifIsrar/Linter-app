@@ -1,0 +1,58 @@
+title: divisionsPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  name:
+    type: string
+    description: The name of the division, which may be used for some white-label
+      purposes.
+  email:
+    type: string
+    description: The white-labeled outgoing email for all automated emails generated
+      throughout this division.
+  changeManagementEnabled:
+    type: integer
+    description: "\n\n<details>\n<summary>Valid Values</summary> \n\n - `0` - **Enabled.**\n\
+      \n - `1` - **Disabled.**\n\n </details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "Change request management is disabled."
+    - name: "Enabled"
+      description: "Change request management is enabled."
+  minPasswordLength:
+    type: integer
+    description: Limit for password validations length.
+  minPasswordComplexity:
+    type: integer
+    description: "Complexity that the password must have. How many of this types needs\
+      \ to include: lowercase, uppercase, number and symbols. \n\n<details>\n<summary>Valid\
+      \ Values</summary> \n\n - `1` - **Needs to include one type**\n\n - `2` - **Needs\
+      \ to include two type**\n\n - `3` - **Needs to include three type**\n\n - `4`\
+      \ - **Needs to include four type**\n\n </details>\n"
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    x-enum-elements:
+    - name: "One"
+      description: "Needs to include one type."
+    - name: "Two"
+      description: "Needs to include two types."
+    - name: "Three"
+      description: "Needs to include three types."
+    - name: "Four"
+      description: "Needs to include the four types."
+
+example:
+  login: t1_log_67e150467ee225924163f18
+  name: sampleDivision
+  email: testuse1@example.com
+  changeManagementEnabled: 0
+  minPasswordLength: 9
+  minPasswordComplexity: 1
+

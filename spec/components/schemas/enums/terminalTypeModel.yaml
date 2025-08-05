@@ -1,0 +1,1427 @@
+title: terminalType
+type: string
+description: "The type of terminal. This field is stored as an integer and must be\
+  \ between 1 and 417. <details><summary>Valid Values</summary>\n  \n- `125158LLC`\
+  \ - **12:51:58 LLC POS**\n\n- `3Delta` - **3 Delta Systems Virtual Terminal**\n\n\
+  - `3DeltaPws` - **3 Delta Systems Payment WorkSuite**\n\n- `911SoftwareCreditline`\
+  \ - **911 Software Credit Line**\n\n- `abcLiquors` - **''**\n\n- `abc610SE` - **''**\n\
+  \n- `achDirect` - **''**\n\n- `aciRcsSwitch` - **''**\n\n- `acoSoftware` - **''**\n\
+  \n- `activantFalcon` - **''**\n\n- `adsGilbarco` - **''**\n\n- `adyen` - **''**\n\
+  \n- `ahcc` - **''**\n\n- `ajb` - **''**\n\n- `ajbFipayDirectTandem` - **''**\n\n\
+  - `ajbIcip610` - **''**\n\n- `ajbRtsIbm` - **''**\n\n- `ajbRtsTandem` - **''**\n\
+  \n- `ajbBevn` - **''**\n\n- `ajbRue21` - **''**\n\n- `ajbSpoch` - **''**\n\n- `allureGlobal`\
+  \ - **''**\n\n- `alohaEnhanced610` - **''**\n\n- `alohaTerm` - **''**\n\n- `aprivaGateway`\
+  \ - **''**\n\n- `aprivaIwl255` - **''**\n\n- `apriva610` - **''**\n\n- `aprivapayAtt`\
+  \ - **''**\n\n- `aprivapayMobile` - **''**\n\n- `aptosEpicorRetail` - **''**\n\n\
+  - `ascom` - **''**\n\n- `asig` - **''**\n\n- `aurus` - **''**\n\n- `authorizeNet`\
+  \ - **''**\n\n- `automatedCashSystems` - **''**\n\n- `b2kSystems` - **''**\n\n-\
+  \ `bevnSoftware` - **''**\n\n- `billabong` - **''**\n\n- `bncb` - **''**\n\n- `bobEvans610`\
+  \ - **''**\n\n- `bookstoreManager` - **''**\n\n- `boost2Delta` - **''**\n\n- `boostBoraPayer`\
+  \ - **''**\n\n- `boostDirectInsite` - **''**\n\n- `boostMpg` - **''**\n\n- `breakawayVisionPos`\
+  \ - **''**\n\n- `bridgepay` - **''**\n\n- `brinkSoftware` - **''**\n\n- `buyAtab`\
+  \ - **''**\n\n- `caclGift` - **''**\n\n- `cardinalHealth610` - **''**\n\n- `cayan`\
+  \ - **''**\n\n- `ccciWebsite` - **''**\n\n- `cdsGlobalPaydq` - **''**\n\n- `cenposHostCapture`\
+  \ - **''**\n\n- `cenposIsoEmd` - **''**\n\n- `cfre610` - **''**\n\n- `chargePayments`\
+  \ - **''**\n\n- `chargesmartPaywareConnect` - **''**\n\n- `chrb610` - **''**\n\n\
+  - `chsp` - **''**\n\n- `ckfrIntrixSupercharge` - **''**\n\n- `clre610Salepoint`\
+  \ - **''**\n\n- `comdataSmartdesq` - **''**\n\n- `commerciant` - **''**\n\n- `crackerBarrel`\
+  \ - **''**\n\n- `crainAtlanta` - **''**\n\n- `craneVendingServices` - **''**\n\n\
+  - `creditCall` - **''**\n\n- `ctrSystems` - **''**\n\n- `cubicPaymentApplication`\
+  \ - **''**\n\n- `cyberSource` - **''**\n\n- `cyberSourceVsntConversion` - **''**\n\
+  \n- `cyberSourceVsntResellerBasic` - **''**\n\n- `cyberSourceVsntResellerPremier`\
+  \ - **''**\n\n- `dataBusnessSystems` - **''**\n\n- `dataCap` - **''**\n\n- `dataCapDialTran`\
+  \ - **''**\n\n- `dataCapEpayRepro` - **''**\n\n- `dataCapGiftEpay` - **''**\n\n\
+  - `dataCapIpTran` - **''**\n\n- `dataCapIpTranLt` - **''**\n\n- `dataCapIpTranLtMoble`\
+  \ - **''**\n\n- `dataCapNetEpay` - **''**\n\n- `dataCapTranRepro` - **''**\n\n-\
+  \ `dataCapTwinTran` - **''**\n\n- `dataCapTwinTxnServer` - **''**\n\n- `dataVantage`\
+  \ - **''**\n\n- `dataVantageFnln610` - **''**\n\n- `dbsTplusEnHanced` - **''**\n\
+  \n- `dbsTransactionPlus` - **''**\n\n- `dealBird` - **''**\n\n- `dejavoo` - **''**\n\
+  \n- `delego` - **''**\n\n- `digicom` - **''**\n\n- `directInsite` - **''**\n\n-\
+  \ `discGoTech` - **''**\n\n- `dl610Snt` - **''**\n\n- `dlglVarSoftware` - **''**\n\
+  \n- `dlgl610s` - **''**\n\n- `dominosAci` - **''**\n\n- `ecommercePlus` - **''**\n\
+  \n- `edgil` - **''**\n\n- `eesCompanies` - **''**\n\n- `elavonEnConcert610` - **''**\n\
+  \n- `elavonFuseboxGateway` - **''**\n\n- `elavonProtobase` - **''**\n\n- `elavonPayments`\
+  \ - **''**\n\n- `elpl610r` - **''**\n\n- `epayHealthcareMonetra` - **''**\n\n- `equinox`\
+  \ - **''**\n\n- `esdCard` - **''**\n\n- `eatouch` - **''**\n\n- `exatouchVsb` -\
+  \ **''**\n\n- `exit41` - **''**\n\n- `ezDine` - **''**\n\n- `ezRetail` - **''**\n\
+  \n- `fandango` - **''**\n\n- `firstGlobalBillingSapwalletVsb` - **''**\n\n- `fitb610s`\
+  \ - **''** \n- `fredmeyr610` - **''**\n\n- `freedomPay` - **''**\n\n- `ftniGatewayEtran`\
+  \ - **''**\n\n- `futurePosVsb` - **''**\n\n- `GambleidTsevo` - **GambleID / TSEVO\
+  \ POS**\n\n- `Giftango` - **Giftango POS**\n\n- `Givex` - **Givex POS**\n\n- `gmsPaymentGateway`\
+  \ - **''**\n\n- `gmsPajb` - **''**\n\n- `gnctSoftware` - **''**\n\n- `goEMerchant`\
+  \ - **''**\n\n- `govolution` - **''**\n\n- `grantStreet` - **''**\n\n- `greatLakesScrip`\
+  \ - **''**\n\n- `greatLakesScripVar` - **''**\n\n- `gsiCommerce` - **''**\n\n- `handpoint`\
+  \ - **''**\n\n- `harleyOwnersGroup` - **''**\n\n- `highradius` - **''**\n\n- `hp`\
+  \ - **''**\n\n- `hypercom5500m` - **''**\n\n- `hypercomPaymentServer` - **''**\n\
+  \n- `hypercomT4205` - **''**\n\n- `hypercomT4205E2e` - **''**\n\n- `hypercomT4210`\
+  \ - **''**\n\n- `hypercomT4210E2e` - **''**\n\n- `hypercom4220Dial` - **''**\n\n\
+  - `hypercom4220DialE2e` - **''**\n\n- `hypercom4220Ssl` - **''**\n\n- `hypercom4220SslE2e`\
+  \ - **''**\n\n- `i2cVsb` - **''**\n\n- `ibmace` - **''**\n\n- `icVerify` - **''**\n\
+  \n- `incentPay` - **''**\n\n- `index` - **''**\n\n- `ingenico610` - **''**\n\n-\
+  \ `ingenico720` - **''**\n\n- `ingenicoIct2203xDial` - **''**\n\n- `ingenicoIct2203xDialE2ee`\
+  \ - **''**\n\n- `ingenicoIct2203xDialPilot` - **''**\n\n- `ingenicoIct2203xSsl`\
+  \ - **''**\n\n- `ingenicoIct2203xSslE2ee` - **''**\n\n- `ingenicoIct2203xSSLPilot`\
+  \ - **''**\n\n- `ingenicoIct220Ctls3xDial` - **''**\n\n- `ingenicoIct220Ctls3xDialEe2e`\
+  \ - **''**\n\n- `ingenicoIct220Ctls3xSsl` - **''**\n\n- `ingenicoIct220Ctls3xSslE2ee`\
+  \ - **''**\n\n- `ingenicoIct2503xDial` - **''**\n\n- `ingenicoIct2503xDialE2ee`\
+  \ - **''**\n\n- `ingenicoIct2503xSsl` - **''**\n\n- `ingenicoIct2503xSSLE2ee` -\
+  \ **''**\n\n- `ingenicoIwl222BtDial` - **''**\n\n- `ingenicoIwl222BtDialE2ee` -\
+  \ **''**\n\n- `ingenicoIwl222BtSsl` - **''**\n\n- `ingenicoIwl222BtSSlE2ee` - **''**\n\
+  \n- `ingenicoIwl252BtDial` - **''**\n\n- `ingenicoIw252BtDialE2ee` - **''**\n\n\
+  - `ingenicoIw252BtSsl` - **''**\n\n- `ingenicoIw252BtSslE2ee` - **''**\n\n- `ingenicoIw2553g`\
+  \ - **''**\n\n- `ingenicoIw2553gE2ee` - **''**\n\n- `ingenicoSiEnterprise` - **''**\n\
+  \n- `instamed` - **''**\n\n- `ipayGateway` - **''**\n\n- `isd` - **''**\n\n- `islandPacific`\
+  \ - **''**\n\n- `isvOpenmotionVsb` - **''**\n\n- `isv510` - **''**\n\n- `isv600`\
+  \ - **''**\n\n- `isv610` - **''**\n\n- `isvVsk` - **''**\n\n- `itransact` - **''**\n\
+  \n- `jewlSoftware` - **''**\n\n- `jockeyEcomm` - **''**\n\n- `jockeyRetail` - **''**\n\
+  \n- `kachyng` - **''**\n\n- `klik` - **''**\n\n- `kmartGift` - **''**\n\n- `kubra`\
+  \ - **''**\n\n- `lightYear` - **''**\n\n- `linked2Pay` - **''**\n\n- `longRangeSystemsLrs`\
+  \ - **''**\n\n- `lumberVisaK` - **''**\n\n- `lumgPos` - **''**\n\n- `magicWrighter`\
+  \ - **''**\n\n- `magnetCardServices` - **''**\n\n- `mainstreetMonetra510` - **''**\n\
+  \n- `mainstreetMonetra610` - **''**\n\n- `mastercardOpenapi` - **''**\n\n- `mastercardPaymentGateway`\
+  \ - **''**\n\n- `meiApriva` - **''**\n\n- `menusoftDigitalDining` - **''**\n\n-\
+  \ `merchantLinkCDG` - **''**\n\n- `merchantLinkCredit` - **''**\n\n- `meritSolar`\
+  \ - **''**\n\n- `microsSymphony` - **''**\n\n- `microsalePos` - **''**\n\n- `midniteExpressSlipstream`\
+  \ - **''**\n\n- `mightyTicket` - **''**\n\n- `milleniumRetailSolutions` - **''**\n\
+  \n- `mobileAccept` - **''**\n\n- `mobileAcceptFlatRate` - **''**\n\n- `mobileCheckoutQms`\
+  \ - **''**\n\n- `mobileCheckoutStandard` - **''**\n\n- `monetraAuth` - **''**\n\n\
+  - `monroMuffler` - **''**\n\n- `mpayGateway` - **''**\n\n- `mtxepsWineps` - **''**\n\
+  \n- `mvsp` - **''**\n\n- `ncrAdvancedRestaurant` - **''**\n\n- `ncrCinema` - **''**\n\
+  \n- `ncrCounterpoint510` - **''**\n\n- `ncrCounterpoint610` - **''**\n\n- `ncrRetalixConnectedPayments`\
+  \ - **''**\n\n- `ncrSilver` - **''**\n\n- `ncrSilverPro` - **''**\n\n- `ncrSilverProQms`\
+  \ - **''**\n\n- `neoGames610` - **''**\n\n- `networkMerchants` - **''**\n\n- `nsbEps`\
+  \ - **''**\n\n- `nourdersOdp` - **''**\n\n- `nurit2159` - **''**\n\n- `nurit8400EDial`\
+  \ - **''**\n\n- `oCharleys` - **''**\n\n- `olo` - **''**\n\n- `opConnect` - **''**\n\
+  \n- `optimalPaymentsGateway` - **''**\n\n- `orccCollectPay` - **''**\n\n- `orccAciWorldwide`\
+  \ - **''**\n\n- `orderTalk` - **''**\n\n- `paVitalcheck` - **''**\n\n- `paFidelityExpress`\
+  \ - **''**\n\n- `paGrantStreet` - **''**\n\n- `parkmobile` - **''**\n\n- `paxSp30Casio`\
+  \ - **''**\n\n- `payGov` - **''**\n\n- `paydiantSj` - **''**\n\n- `payFirstEdcVpos`\
+  \ - **''**\n\n- `paypalPayflowLink` - **''**\n\n- `paypalPayflowLinkReseller` -\
+  \ **''**\n\n- `paypalPayflowPro` - **''**\n\n- `paypalPayflowProReseller` - **''**\n\
+  \n- `payright` - **''**\n\n- `paytechVsb` - **''**\n\n- `pcAmerica` - **''**\n\n\
+  - `PLSTQ610` - **''**\n\n- `plugNPlay` - **''**\n\n- `poynt` - **''**\n\n- `precida`\
+  \ - **''**\n\n- `pricetonCardConnect` - **''**\n\n- `princetonEcommCollectpay` -\
+  \ **''**\n\n- `princetonPayments` - **''**\n\n- `princetonPayware` - **''**\n\n\
+  - `propSoftware` - **''**\n\n- `purecommerceVsb` - **''**\n\n- `pxpSolutionsRetail`\
+  \ - **''**\n\n- `rediantRposLighthouse` - **''**\n\n- `rainbowApparel` - **''**\n\
+  \n- `rdyc610s` - **''**\n\n- `redOakPs` - **''**\n\n- `redfinNetwork` - **''**\n\
+  \n- `remcoSoftware` - **''**\n\n- `rentACenter` - **''**\n\n- `reproOnlyIngIct220Dial`\
+  \ - **''**\n\n- `reproOnlyIngIct220DialE2ee` - **''**\n\n- `reproOnlyIngIct220SslE2ee`\
+  \ - **''**\n\n- `reproOnlyIngIct250Dial` - **''**\n\n- `reproOnlyIngIct250DialE2ee`\
+  \ - **''**\n\n- `reproOnlyIngIct250Ssl` - **''**\n\n- `reproOnlyIngIct250SslE2ee`\
+  \ - **''**\n\n- `reproOnlyVerifoneVx520DcDial` - **''**\n\n- `reproOnlyVerifoneVx520DcSsl`\
+  \ - **''**\n\n- `reproOnlyVerifoneVx520DialCtls` - **''**\n\n- `reproOnlyVerifoneVx520SslCtls`\
+  \ - **''**\n\n- `retrieverSoftware` - **''**\n\n- `revlinkCollect` - **''**\n\n\
+  - `revtrak` - **''**\n\n- `reamMobile` - **''**\n\n- `roamMobileTest` - **''**\n\
+  \n- `roamData` - **''**\n\n- `salepoint` - **''**\n\n- `salepointClaires` - **''**\n\
+  \n- `sbcSolutions` - **''**\n\n- `secureTrading` - **''**\n\n- `sequoiaRetialSystems`\
+  \ - **''**\n\n- `shci610` - **''**\n\n- `shift4OnTheNet` - **''**\n\n- `sightlinePayments`\
+  \ - **''**\n\n- `slimCdEntNonReseller` - **''**\n\n- `slimCdEnterprise` - **''**\n\
+  \n- `slimCdPro` - **''**\n\n- `slimCdProNonReseller` - **''**\n\n- `snlh610` - **''**\n\
+  \n- `southernDataComm` - **''**\n\n- `spsEzpay` - **''**\n\n- `squirrelSystems`\
+  \ - **''**\n\n- `ster610` - **''**\n\n- `storisVision9` - **''**\n\n- `ststSoftware`\
+  \ - **''**\n\n- `talbots` - **''**\n\n- `tangiblePayments` - **''**\n\n- `tenderRetail`\
+  \ - **''**\n\n- `tillster` - **''**\n\n- `tnspayGateway` - **''**\n\n- `toast` -\
+  \ **''**\n\n- `toyzPos` - **''**\n\n- `transactionWirelessSvs` - **''**\n\n- `transax`\
+  \ - **''**\n\n- `tranzgate` - **''**\n\n- `trem610` - **''**\n\n- `triversity` -\
+  \ **''**\n\n- `triversityPos` - **''**\n\n- `trustcommVault610` - **''**\n\n- `trustcommVault600`\
+  \ - **''**\n\n- `trustcommerce2011` - **''**\n\n- `tsysAmexPipPcSoftware` - **''**\n\
+  \n- `tsysAmexPipTerminal` - **''**\n\n- `tsysDialPay` - **''**\n\n- `tsysPosPort`\
+  \ - **''**\n\n- `twitpay` - **''**\n\n- `uhaul` - **''**\n\n- `uicBezel8` - **''**\n\
+  \n- `upSolution610` - **''**\n\n- `usaEpay` - **''**\n\n- `usfs` - **''**\n\n- `ventek`\
+  \ - **''**\n\n- `verifone` - **''**\n\n- `verifone510Terminal` - **''**\n\n- `verifone600Terminal`\
+  \ - **''**\n\n- `verifone610` - **''**\n\n- `verifoneOmni3200` - **''**\n\n- `verifonePaywareConnect`\
+  \ - **''**\n\n- `verifonePaywareMobile` - **''**\n\n- `verifonePaywarePc` - **''**\n\
+  \n- `verifonePaywareTranactRita` - **''**\n\n- `verifonePcChargeGoSoftware` - **''**\n\
+  \n- `verifonePoint` - **''**\n\n- `verifonePointEntMx` - **''**\n\n- `verifonePointEntVx`\
+  \ - **''**\n\n- `verifoneRuby` - **''**\n\n- `verifoneVx510` - **''**\n\n- `verifoneVx510DcDial`\
+  \ - **''**\n\n- `verifoneVx510DcIp` - **''**\n\n- `verifoneVx510DcSsl` - **''**\n\
+  \n- `verifoneVx510le` - **''**\n\n- `verifoneVx520DcDialCtlsE2ee` - **''**\n\n-\
+  \ `verifoneVx520DcDialE2ee` - **''**\n\n- `verifoneVx520DcIp1` - **''**\n\n- `verifoneVx520DcIp2`\
+  \ - **''**\n\n- `verifoneVx520DcIpCtls` - **''**\n\n- `verifoneVx520DcIpCtlsE2ee`\
+  \ - **''**\n\n- `verifoneVx520DcSslCtlsE2ee` - **''**\n\n- `verifoneVx520DcSslE2ee`\
+  \ - **''**\n\n- `verifoneVx520DialOnly` - **''**\n\n- `verifoneVx570Dial` - **''**\n\
+  \n- `verifoneVx570Ip` - **''**\n\n- `verifoneVx570Ssl` - **''**\n\n- `verifoneVx6803gGprs`\
+  \ - **''**\n\n- `vicoSoftware` - **''**\n\n- `virtualTerminal` - **''**\n\n- `vistaEntertainment`\
+  \ - **''** \n- `vitalcheck` - **''**\n\n- `vmcAddOnAndroidByodQmd` - **''**\n\n\
+  - `vmcAddOnAndroidByodStandard` - **''**\n\n- `vmcAddOnBundleByodQms` - **''**\n\
+  \n- `vmcAddOnBundleByodStandard` - **''**\n\n- `vmcAddOnBundleCellularQmd` - **''**\n\
+  \n- `vmcAddOnBundleCellularStandard` - **''**\n\n- `vmcAddOnBundleWifiQmd` - **''**\n\
+  \n- `vmcAddOnBundleWifiStandard` - **''**\n\n- `vmcFieldBundleByodQmd` - **''**\n\
+  \n- `vmcFieldBundleByodStandard` - **''**\n\n- `vmcFieldBundleCellularQms` - **''**\n\
+  \n- `vmcFieldBundleCellularStandard` - **''**\n\n- `vmcStoreAndroidByodQms` - **''**\n\
+  \n- `vmcStoreAndroidByodStandard` - **''**\n\n- `vmcStoreBundleByodQms` - **''**\n\
+  \n- `vmcStoreBundleByodStandard` - **''**\n\n- `vmcStoreBundleCellularQms` - **''**\n\
+  \n- `vmcStoreBundleCellularStandard` - **''**\n\n- `vmcStoreBundleWifiQms` - **''**\n\
+  \n- `vmcStoreBundleWifiStandard` - **''**\n\n- `vPlus` - **''**\n\n- `vsb` - **''**\n\
+  \n- `vsbGreenbeanRecycle` - **''**\n\n- `vsbKaizen` - **''**\n\n- `vsbOrderbridge`\
+  \ - **''**\n\n- `vsbPhonixManagedNetwork` - **''**\n\n- `vsbSamurai` - **''**\n\n\
+  - `vsbVisat` - **''**\n\n- `vsbWiretrust` - **''**\n\n- `vsbXgateway` - **''**\n\
+  \n- `wandGift` - **''**\n\n\n- `waySystemsMtt5000` - **''**\n\n- `wendysCom` - **''**\n\
+  \n- `whirl` - **''**\n\n- `winn610s` - **''**\n\n- `xpaySoftware` - **''**\n\n-\
+  \ `xpient610` - **''**\n\n- `xpientSolutions` - **''**\n\n </details>"
+enum:
+- 125158LLC
+- 3Delta
+- 3DeltaPws
+- 911SoftwareCreditline
+- abcLiquors
+- abc610SE
+- achDirect
+- aciRcsSwitch
+- acoSoftware
+- activantFalcon
+- adsGilbarco
+- adyen
+- ahcc
+- ajb
+- ajbFipayDirectTandem
+- ajbIcip610
+- ajbRtsIbm
+- ajbRtsTandem
+- ajbBevn
+- ajbRue21
+- ajbSpoch
+- allureGlobal
+- alohaEnhanced610
+- alohaTerm
+- aprivaGateway
+- aprivaIwl255
+- apriva610
+- aprivapayAtt
+- aprivapayMobile
+- aptosEpicorRetail
+- ascom
+- asig
+- aurus
+- authorizeNet
+- automatedCashSystems
+- b2kSystems
+- bevnSoftware
+- billabong
+- bncb
+- bobEvans610
+- bookstoreManager
+- boost2Delta
+- boostBoraPayer
+- boostDirectInsite
+- boostMpg
+- breakawayVisionPos
+- bridgepay
+- brinkSoftware
+- buyAtab
+- caclGift
+- cardinalHealth610
+- cayan
+- ccciWebsite
+- cdsGlobalPaydq
+- cenposHostCapture
+- cenposIsoEmd
+- cfre610
+- chargePayments
+- chargesmartPaywareConnect
+- chrb610
+- chsp
+- ckfrIntrixSupercharge
+- clre610Salepoint
+- comdataSmartdesq
+- commerciant
+- crackerBarrel
+- crainAtlanta
+- craneVendingServices
+- creditCall
+- ctrSystems
+- cubicPaymentApplication
+- cyberSource
+- cyberSourceVsntConversion
+- cyberSourceVsntResellerBasic
+- cyberSourceVsntResellerPremier
+- dataBusnessSystems
+- dataCap
+- dataCapDialTran
+- dataCapEpayRepro
+- dataCapGiftEpay
+- dataCapIpTran
+- dataCapIpTranLt
+- dataCapIpTranLtMoble
+- dataCapNetEpay
+- dataCapTranRepro
+- dataCapTwinTran
+- dataCapTwinTxnServer
+- dataVantage
+- dataVantageFnln610
+- dbsTplusEnHanced
+- dbsTransactionPlus
+- dealBird
+- dejavoo
+- delego
+- digicom
+- directInsite
+- discGoTech
+- dl610Snt
+- dlglVarSoftware
+- dlgl610s
+- dominosAci
+- ecommercePlus
+- edgil
+- eesCompanies
+- elavonEnConcert610
+- elavonFuseboxGateway
+- elavonProtobase
+- elavonPayments
+- elpl610r
+- epayHealthcareMonetra
+- equinox
+- esdCard
+- eatouch
+- exatouchVsb
+- exit41
+- expressTriPos
+- ezDine
+- ezRetail
+- fandango
+- firstGlobalBillingSapwalletVsb
+- fitb610s
+- fredmeyr610
+- freedomPay
+- ftniGatewayEtran
+- futurePosVsb
+- GambleidTsevo
+- Giftango
+- Givex
+- gmsPaymentGateway
+- gmsPajb
+- gnctSoftware
+- goEMerchant
+- govolution
+- grantStreet
+- greatLakesScrip
+- greatLakesScripVar
+- gsiCommerce
+- handpoint
+- harleyOwnersGroup
+- highradius
+- hp
+- hypercom5500m
+- hypercomPaymentServer
+- hypercomT4205
+- hypercomT4205E2e
+- hypercomT4210
+- hypercomT4210E2e
+- hypercom4220Dial
+- hypercom4220DialE2e
+- hypercom4220Ssl
+- hypercom4220SslE2e
+- i2cVsb
+- ibmace
+- icVerify
+- incentPay
+- index
+- ingenico610
+- ingenico720
+- ingenicoIct2203xDial
+- ingenicoIct2203xDialE2ee
+- ingenicoIct2203xDialPilot
+- ingenicoIct2203xSsl
+- ingenicoIct2203xSslE2ee
+- ingenicoIct2203xSSLPilot
+- ingenicoIct220Ctls3xDial
+- ingenicoIct220Ctls3xDialEe2e
+- ingenicoIct220Ctls3xSsl
+- ingenicoIct220Ctls3xSslE2ee
+- ingenicoIct2503xDial
+- ingenicoIct2503xDialE2ee
+- ingenicoIct2503xSsl
+- ingenicoIct2503xSSLE2ee
+- ingenicoIwl222BtDial
+- ingenicoIwl222BtDialE2ee
+- ingenicoIwl222BtSsl
+- ingenicoIwl222BtSSlE2ee
+- ingenicoIwl252BtDial
+- ingenicoIw252BtDialE2ee
+- ingenicoIw252BtSsl
+- ingenicoIw252BtSslE2ee
+- ingenicoIw2553g
+- ingenicoIw2553gE2ee
+- ingenicoSiEnterprise
+- instamed
+- ipayGateway
+- isd
+- islandPacific
+- isvOpenmotionVsb
+- isv510
+- isv600
+- isv610
+- isvVsk
+- itransact
+- jewlSoftware
+- jockeyEcomm
+- jockeyRetail
+- kachyng
+- klik
+- kmartGift
+- kubra
+- lightYear
+- linked2Pay
+- longRangeSystemsLrs
+- lumberVisaK
+- lumgPos
+- magicWrighter
+- magnetCardServices
+- mainstreetMonetra510
+- mainstreetMonetra610
+- mastercardOpenapi
+- mastercardPaymentGateway
+- meiApriva
+- menusoftDigitalDining
+- merchantLinkCDG
+- merchantLinkCredit
+- meritSolar
+- microsSymphony
+- microsalePos
+- midniteExpressSlipstream
+- mightyTicket
+- milleniumRetailSolutions
+- mobileAccept
+- mobileAcceptFlatRate
+- mobileCheckoutQms
+- mobileCheckoutStandard
+- monetraAuth
+- monroMuffler
+- mpayGateway
+- mtxepsWineps
+- mvsp
+- ncrAdvancedRestaurant
+- ncrCinema
+- ncrCounterpoint510
+- ncrCounterpoint610
+- ncrRetalixConnectedPayments
+- ncrSilver
+- ncrSilverPro
+- ncrSilverProQms
+- neoGames610
+- networkMerchants
+- nsbEps
+- nourdersOdp
+- nurit2159
+- nurit8400EDial
+- oCharleys
+- olo
+- opConnect
+- optimalPaymentsGateway
+- orccCollectPay
+- orccAciWorldwide
+- orderTalk
+- paVitalcheck
+- paFidelityExpress
+- paGrantStreet
+- parkmobile
+- paxSp30Casio
+- payGov
+- paydiantSj
+- payFirstEdcVpos
+- paypalPayflowLink
+- paypalPayflowLinkReseller
+- paypalPayflowPro
+- paypalPayflowProReseller
+- payright
+- paytechVsb
+- pcAmerica
+- PLSTQ610
+- plugNPlay
+- poynt
+- precida
+- pricetonCardConnect
+- princetonEcommCollectpay
+- princetonPayments
+- princetonPayware
+- propSoftware
+- purecommerceVsb
+- pxpSolutionsRetail
+- rediantRposLighthouse
+- rainbowApparel
+- rdyc610s
+- redOakPs
+- redfinNetwork
+- remcoSoftware
+- rentACenter
+- reproOnlyIngIct220Dial
+- reproOnlyIngIct220DialE2ee
+- reproOnlyIngIct220SslE2ee
+- reproOnlyIngIct250Dial
+- reproOnlyIngIct250DialE2ee
+- reproOnlyIngIct250Ssl
+- reproOnlyIngIct250SslE2ee
+- reproOnlyVerifoneVx520DcDial
+- reproOnlyVerifoneVx520DcSsl
+- reproOnlyVerifoneVx520DialCtls
+- reproOnlyVerifoneVx520SslCtls
+- retrieverSoftware
+- revlinkCollect
+- revtrak
+- reamMobile
+- roamMobileTest
+- roamData
+- salepoint
+- salepointClaires
+- sbcSolutions
+- secureTrading
+- sequoiaRetialSystems
+- shci610
+- shift4OnTheNet
+- sightlinePayments
+- slimCdEntNonReseller
+- slimCdEnterprise
+- slimCdPro
+- slimCdProNonReseller
+- snlh610
+- southernDataComm
+- spsEzpay
+- squirrelSystems
+- ster610
+- storisVision9
+- ststSoftware
+- talbots
+- tangiblePayments
+- tenderRetail
+- tillster
+- tnspayGateway
+- toast
+- toyzPos
+- transactionWirelessSvs
+- transax
+- tranzgate
+- trem610
+- triversity
+- triversityPos
+- trustcommVault610
+- trustcommVault600
+- trustcommerce2011
+- tsysAmexPipPcSoftware
+- tsysAmexPipTerminal
+- tsysDialPay
+- tsysPosPort
+- twitpay
+- uhaul
+- uicBezel8
+- upSolution610
+- usaEpay
+- usfs
+- ventek
+- verifone
+- verifone510Terminal
+- verifone600Terminal
+- verifone610
+- verifoneOmni3200
+- verifonePaywareConnect
+- verifonePaywareMobile
+- verifonePaywarePc
+- verifonePaywareTranactRita
+- verifonePcChargeGoSoftware
+- verifonePoint
+- verifonePointEntMx
+- verifonePointEntVx
+- verifoneRuby
+- verifoneVx510
+- verifoneVx510DcDial
+- verifoneVx510DcIp
+- verifoneVx510DcSsl
+- verifoneVx510le
+- verifoneVx520DcDialCtlsE2ee
+- verifoneVx520DcDialE2ee
+- verifoneVx520DcIp1
+- verifoneVx520DcIp2
+- verifoneVx520DcIpCtls
+- verifoneVx520DcIpCtlsE2ee
+- verifoneVx520DcSslCtlsE2ee
+- verifoneVx520DcSslE2ee
+- verifoneVx520DialOnly
+- verifoneVx570Dial
+- verifoneVx570Ip
+- verifoneVx570Ssl
+- verifoneVx6803gGprs
+- vicoSoftware
+- virtualTerminal
+- vistaEntertainment
+- vitalcheck
+- vmcAddOnAndroidByodQmd
+- vmcAddOnAndroidByodStandard
+- vmcAddOnBundleByodQms
+- vmcAddOnBundleByodStandard
+- vmcAddOnBundleCellularQmd
+- vmcAddOnBundleCellularStandard
+- vmcAddOnBundleWifiQmd
+- vmcAddOnBundleWifiStandard
+- vmcFieldBundleByodQmd
+- vmcFieldBundleByodStandard
+- vmcFieldBundleCellularQms
+- vmcFieldBundleCellularStandard
+- vmcStoreAndroidByodQms
+- vmcStoreAndroidByodStandard
+- vmcStoreBundleByodQms
+- vmcStoreBundleByodStandard
+- vmcStoreBundleCellularQms
+- vmcStoreBundleCellularStandard
+- vmcStoreBundleWifiQms
+- vmcStoreBundleWifiStandard
+- vPlus
+- vsb
+- vsbGreenbeanRecycle
+- vsbKaizen
+- vsbOrderbridge
+- vsbPhonixManagedNetwork
+- vsbSamurai
+- vsbVisat
+- vsbWiretrust
+- vsbXgateway
+- wandGift
+- waySystemsMtt5000
+- wendysCom
+- whirl
+- winn610s
+- xpaySoftware
+- xpient610
+- xpientSolutions
+x-enum-elements:
+- name: 125158LLC
+  description: 125158LLC
+- name: 3Delta
+  description: 3Delta
+- name: 3DeltaPws
+  description: 3Delta Pws
+- name: 911SoftwareCreditline
+  description: 911 Software Creditline
+- name: abcLiquors
+  description: abc Liquors
+- name: abc610SE
+  description: abc 610SE
+- name: achDirect
+  description: ach Direct
+- name: aciRcsSwitch
+  description: aci Rcs Switch
+- name: acoSoftware
+  description: aco Software
+- name: activantFalcon
+  description: activant Falcon
+- name: adsGilbarco
+  description: ads Gilbarco
+- name: adyen
+  description: adyen
+- name: ahcc
+  description: ahcc
+- name: ajb
+  description: ajb
+- name: ajbFipayDirectTandem
+  description: ajb Fipay Direct Tandem
+- name: ajbIcip610
+  description: ajb Icip 610
+- name: ajbRtsIbm
+  description: ajb Rts Ibm
+- name: ajbRtsTandem
+  description: ajb Rts Tandem
+- name: ajbBevn
+  description: ajb Bevn
+- name: ajbRue21
+  description: ajb Rue 21
+- name: ajbSpoch
+  description: ajb Spoch
+- name: allureGlobal
+  description: allure Global
+- name: alohaEnhanced610
+  description: aloha Enhanced 610
+- name: alohaTerm
+  description: aloha Term
+- name: aprivaGateway
+  description: apriva Gateway
+- name: aprivaIwl255
+  description: apriva Iwl 255
+- name: apriva610
+  description: apriva 610
+- name: aprivapayAtt
+  description: aprivapay Att
+- name: aprivapayMobile
+  description: aprivapay Mobile
+- name: aptosEpicorRetail
+  description: aptos Epicor Retail
+- name: ascom
+  description: ascom
+- name: asig
+  description: asig
+- name: aurus
+  description: aurus
+- name: authorizeNet
+  description: authorize Net
+- name: automatedCashSystems
+  description: automated Cash Systems
+- name: b2kSystems
+  description: b 2k Systems
+- name: bevnSoftware
+  description: bevn Software
+- name: billabong
+  description: billabong
+- name: bncb
+  description: bncb
+- name: bobEvans610
+  description: bob Evans 610
+- name: bookstoreManager
+  description: bookstore Manager
+- name: boost2Delta
+  description: boost 2Delta
+- name: boostBoraPayer
+  description: boost Bora Payer
+- name: boostDirectInsite
+  description: boost Direct Insite
+- name: boostMpg
+  description: boost Mpg
+- name: breakawayVisionPos
+  description: breakaway Vision Pos
+- name: bridgepay
+  description: bridgepay
+- name: brinkSoftware
+  description: brink Software
+- name: buyAtab
+  description: buy Atab
+- name: caclGift
+  description: cacl Gift
+- name: cardinalHealth610
+  description: cardinal Health 610
+- name: cayan
+  description: cayan
+- name: ccciWebsite
+  description: ccci Website
+- name: cdsGlobalPaydq
+  description: cds Global Paydq
+- name: cenposHostCapture
+  description: cenpos Host Capture
+- name: cenposIsoEmd
+  description: cenpos Iso Emd
+- name: cfre610
+  description: cfre 610
+- name: chargePayments
+  description: charge Payments
+- name: chargesmartPaywareConnect
+  description: chargesmart Payware Connect
+- name: chrb610
+  description: chrb 610
+- name: chsp
+  description: chsp
+- name: ckfrIntrixSupercharge
+  description: ckfr Intrix Supercharge
+- name: clre610Salepoint
+  description: clre 610Salepoint
+- name: comdataSmartdesq
+  description: comdata Smartdesq
+- name: commerciant
+  description: commerciant
+- name: crackerBarrel
+  description: cracker Barrel
+- name: crainAtlanta
+  description: crain Atlanta
+- name: craneVendingServices
+  description: crane Vending Services
+- name: creditCall
+  description: credit Call
+- name: ctrSystems
+  description: ctr Systems
+- name: cubicPaymentApplication
+  description: cubic Payment Application
+- name: cyberSource
+  description: cyber Source
+- name: cyberSourceVsntConversion
+  description: cyber Source Vsnt Conversion
+- name: cyberSourceVsntResellerBasic
+  description: cyber Source Vsnt Reseller Basic
+- name: cyberSourceVsntResellerPremier
+  description: cyber Source Vsnt Reseller Premier
+- name: dataBusnessSystems
+  description: data Busness Systems
+- name: dataCap
+  description: data Cap
+- name: dataCapDialTran
+  description: data Cap Dial Tran
+- name: dataCapEpayRepro
+  description: data Cap Epay Repro
+- name: dataCapGiftEpay
+  description: data Cap Gift Epay
+- name: dataCapIpTran
+  description: data Cap Ip Tran
+- name: dataCapIpTranLt
+  description: data Cap Ip Tran Lt
+- name: dataCapIpTranLtMoble
+  description: data Cap Ip Tran Lt Moble
+- name: dataCapNetEpay
+  description: data Cap Net Epay
+- name: dataCapTranRepro
+  description: data Cap Tran Repro
+- name: dataCapTwinTran
+  description: data Cap Twin Tran
+- name: dataCapTwinTxnServer
+  description: data Cap Twin Txn Server
+- name: dataVantage
+  description: data Vantage
+- name: dataVantageFnln610
+  description: data Vantage Fnln 610
+- name: dbsTplusEnHanced
+  description: dbs Tplus En Hanced
+- name: dbsTransactionPlus
+  description: dbs Transaction Plus
+- name: dealBird
+  description: deal Bird
+- name: dejavoo
+  description: dejavoo
+- name: delego
+  description: delego
+- name: digicom
+  description: digicom
+- name: directInsite
+  description: direct Insite
+- name: disGoTech
+  description: disc Go Tech
+- name: dl610Snt
+  description: dl 610Snt
+- name: dlglVarSoftware
+  description: dlgl Var Software
+- name: dlgl610s
+  description: dlgl 610s
+- name: dominosAci
+  description: dominos Aci
+- name: ecommercePlus
+  description: ecommerce Plus
+- name: edgil
+  description: edgil
+- name: eesCompanies
+  description: ees Companies
+- name: elavonEnConcert610
+  description: elavon En Concert 610
+- name: elavonFuseboxGateway
+  description: elavon Fusebox Gateway
+- name: elavonProtobase
+  description: elavon Protobase
+- name: elavonPayments
+  description: elavon Payments
+- name: elpl610r
+  description: elpl 610r
+- name: epayHealthcareMonetra
+  description: epay Healthcare Monetra
+- name: equinox
+  description: equinox
+- name: esdCard
+  description: esd Card
+- name: eatouch
+  description: eatouch
+- name: exatouchVsb
+  description: exatouch Vsb
+- name: exit41
+  description: exit 41
+- name: expressTriPos
+  description: express Tri Pos
+- name: ezDine
+  description: ez Dine
+- name: ezRetail
+  description: ez Retail
+- name: fandango
+  description: fandango
+- name: firstGlobalBillingSapwalletVsb
+  description: first Global Billing Sapwallet Vsb
+- name: fitb610s
+  description: fitb 610s
+- name: fredmeyr610
+  description: fredmeyr 610
+- name: freedomPay
+  description: freedom Pay
+- name: ftniGatewayEtran
+  description: ftni Gateway Etran
+- name: futurePosVsb
+  description: future Pos Vsb
+- name: GambleidTsevo
+  description: Gambleid Tsevo
+- name: Giftango
+  description: Giftango
+- name: Givex
+  description: Givex
+- name: gmsPaymentGateway
+  description: gms Payment Gateway
+- name: gmsPajb
+  description: gms Pajb
+- name: gnctSoftware
+  description: gnct Software
+- name: goEMerchant
+  description: go EMerchant
+- name: govolution
+  description: govolution
+- name: grantStreet
+  description: grant Street
+- name: greatLakesScrip
+  description: great Lakes Scrip
+- name: greatLakesScripVar
+  description: great Lakes Scrip Var
+- name: gsiCommerce
+  description: gsi Commerce
+- name: handpoint
+  description: handpoint
+- name: harleyOwnersGroup
+  description: harley Owners Group
+- name: highradius
+  description: highradius
+- name: hp
+  description: hp
+- name: hypercom5500m
+  description: hypercom 5500m
+- name: hypercomPaymentServer
+  description: hypercom Payment Server
+- name: hypercomT4205
+  description: hypercom T4205
+- name: hypercomT4205E2e
+  description: hypercom T4205E2e
+- name: hypercomT4210
+  description: hypercom T4210
+- name: hypercomT4210E2e
+  description: hypercom T4210E2e
+- name: hypercom4220Dial
+  description: hypercom 4220Dial
+- name: hypercom4220DialE2e
+  description: hypercom 4220Dial E2e
+- name: hypercom4220Ssl
+  description: hypercom 4220Ssl
+- name: hypercom4220SslE2e
+  description: hypercom 4220Ssl E2e
+- name: i2cVsb
+  description: i 2c Vsb
+- name: ibmace
+  description: ibmace
+- name: icVerify
+  description: ic Verify
+- name: incentPay
+  description: incent Pay
+- name: index
+  description: index
+- name: ingenico610
+  description: ingenico 610
+- name: ingenico720
+  description: ingenico 720
+- name: ingenicoIct2203xDial
+  description: ingenico Ict 2203x Dial
+- name: ingenicoIct2203xDialE2ee
+  description: ingenico Ict 2203x Dial E2ee
+- name: ingenicoIct2203xDialPilot
+  description: ingenico Ict 2203x Dial Pilot
+- name: ingenicoIct2203xSsl
+  description: ingenico Ict 2203x Ssl
+- name: ingenicoIct2203xSslE2ee
+  description: ingenico Ict 2203x Ssl E2ee
+- name: ingenicoIct2203xSSLPilot
+  description: ingenico Ict 2203x SSLPilot
+- name: ingenicoIct220Ctls3xDial
+  description: ingenico Ict 220Ctls 3x Dial
+- name: ingenicoIct220Ctls3xDialEe2e
+  description: ingenico Ict 220Ctls 3x Dial Ee 2e
+- name: ingenicoIct220Ctls3xSsl
+  description: ingenico Ict 220Ctls 3x Ssl
+- name: ingenicoIct220Ctls3xSslE2ee
+  description: ingenico Ict 220Ctls 3x Ssl E2ee
+- name: ingenicoIct2503xDial
+  description: ingenico Ict 2503x Dial
+- name: ingenicoIct2503xDialE2ee
+  description: ingenico Ict 2503x Dial E2ee
+- name: ingenicoIct2503xSsl
+  description: ingenico Ict 2503x Ssl
+- name: ingenicoIct2503xSSLE2ee
+  description: ingenico Ict 2503x SSLE2ee
+- name: ingenicoIwl222BtDial
+  description: ingenico Iwl 222Bt Dial
+- name: ingenicoIwl222BtDialE2ee
+  description: ingenico Iwl 222Bt Dial E2ee
+- name: ingenicoIwl222BtSsl
+  description: ingenico Iwl 222Bt Ssl
+- name: ingenicoIwl222BtSSlE2ee
+  description: ingenico Iwl 222Bt SSl E2ee
+- name: ingenicoIwl252BtDial
+  description: ingenico Iwl 252Bt Dial
+- name: ingenicoIw252BtDialE2ee
+  description: ingenico Iw 252Bt Dial E2ee
+- name: ingenicoIw252BtSsl
+  description: ingenico Iw 252Bt Ssl
+- name: ingenicoIw252BtSslE2ee
+  description: ingenico Iw 252Bt Ssl E2ee
+- name: ingenicoIw2553g
+  description: ingenico Iw 2553g
+- name: ingenicoIw2553gE2ee
+  description: ingenico Iw 2553g E2ee
+- name: ingenicoSiEnterprise
+  description: ingenico Si Enterprise
+- name: instamed
+  description: instamed
+- name: ipayGateway
+  description: ipay Gateway
+- name: isd
+  description: isd
+- name: islandPacific
+  description: island Pacific
+- name: isvOpenmotionVsb
+  description: isv Openmotion Vsb
+- name: isv510
+  description: isv 510
+- name: isv600
+  description: isv 600
+- name: isv610
+  description: isv 610
+- name: isvVsk
+  description: isv Vsk
+- name: itransact
+  description: itransact
+- name: jewlSoftware
+  description: jewl Software
+- name: jockeyEcomm
+  description: jockey Ecomm
+- name: jockeyRetail
+  description: jockey Retail
+- name: kachyng
+  description: kachyng
+- name: klik
+  description: klik
+- name: kmartGift
+  description: kmart Gift
+- name: kubra
+  description: kubra
+- name: lightYear
+  description: light Year
+- name: linked2Pay
+  description: linked 2Pay
+- name: longRangeSystemsLrs
+  description: long Range Systems Lrs
+- name: lumberVisaK
+  description: lumber Visa K
+- name: lumgPos
+  description: lumg Pos
+- name: magicWrighter
+  description: magic Wrighter
+- name: magnetCardServices
+  description: magnet Card Services
+- name: mainstreetMonetra510
+  description: mainstreet Monetra 510
+- name: mainstreetMonetra610
+  description: mainstreet Monetra 610
+- name: mastercardOpenapi
+  description: mastercard Openapi
+- name: mastercardPaymentGateway
+  description: mastercard Payment Gateway
+- name: meiApriva
+  description: mei Apriva
+- name: menusoftDigitalDining
+  description: menusoft Digital Dining
+- name: merchantLinkCDG
+  description: merchant Link CDG
+- name: merchantLinkCredit
+  description: merchant Link Credit
+- name: meritSolar
+  description: merit Solar
+- name: microsSymphony
+  description: micros Symphony
+- name: microsalePos
+  description: microsale Pos
+- name: midniteExpressSlipstream
+  description: midnite Express Slipstream
+- name: mightyTicket
+  description: mighty Ticket
+- name: milleniumRetailSolutions
+  description: millenium Retail Solutions
+- name: mobileAccept
+  description: mobile Accept
+- name: mobileAcceptFlatRate
+  description: mobile Accept Flat Rate
+- name: mobileCheckoutQms
+  description: mobile Checkout Qms
+- name: mobileCheckoutStandard
+  description: mobile Checkout Standard
+- name: monetraAuth
+  description: monetra Auth
+- name: monrouffler
+  description: monro Muffler
+- name: mpayGateway
+  description: mpay Gateway
+- name: mtxepsWineps
+  description: mtxeps Wineps
+- name: mvsp
+  description: mvsp
+- name: ncrAdvancedRestaurant
+  description: ncr Advanced Restaurant
+- name: ncrCinema
+  description: ncr Cinema
+- name: ncrCounterpoint510
+  description: ncr Counterpoint 510
+- name: ncrCounterpoint610
+  description: ncr Counterpoint 610
+- name: ncrRetalixConnectedPayments
+  description: ncr Retalix Connected Payments
+- name: ncrSilver
+  description: ncr Silver
+- name: ncrSilverPro
+  description: ncr Silver Pro
+- name: ncrSilverProQms
+  description: ncr Silver Pro Qms
+- name: neoGames610
+  description: neo Games 610
+- name: networkMerchants
+  description: network Merchants
+- name: nsbEps
+  description: nsb Eps
+- name: nourdersOdp
+  description: nourders Odp
+- name: nurit2159
+  description: nurit 2159
+- name: nurit8400EDial
+  description: nurit 8400EDial
+- name: oCharleys
+  description: o Charleys
+- name: olo
+  description: olo
+- name: opConnect
+  description: op Connect
+- name: optimalPaymentsGateway
+  description: optimal Payments Gateway
+- name: orccCollectPay
+  description: orcc Collect Pay
+- name: orccAciWorldwide
+  description: orcc Aci Worldwide
+- name: orderTalk
+  description: order Talk
+- name: paVitalcheck
+  description: pa Vitalcheck
+- name: paFidelityExpress
+  description: pa Fidelity Express
+- name: paGrantStreet
+  description: pa Grant Street
+- name: parkmobile
+  description: parkmobile
+- name: paxSp30Casio
+  description: pax Sp 30Casio
+- name: payGov
+  description: pay Gov
+- name: paydiantSj
+  description: paydiant Sj
+- name: payFirstEdcVpos
+  description: pay First Edc Vpos
+- name: paypalPayflowLink
+  description: paypal Payflow Link
+- name: paypalPayflowLinkReseller
+  description: paypal Payflow Link Reseller
+- name: paypalPayflowPro
+  description: paypal Payflow Pro
+- name: paypalPayflowProReseller
+  description: paypal Payflow Pro Reseller
+- name: payright
+  description: payright
+- name: paytechVsb
+  description: paytech Vsb
+- name: pcAmerica
+  description: pc America
+- name: PLSTQ610
+  description: PLSTQ610
+- name: plugNPlay
+  description: plug NPlay
+- name: poynt
+  description: poynt
+- name: precida
+  description: precida
+- name: pricetonCardConnect
+  description: priceton Card Connect
+- name: princetonEcommCollectpay
+  description: princeton Ecomm Collectpay
+- name: princetonPayments
+  description: princeton Payments
+- name: princetonPayware
+  description: princeton Payware
+- name: propSoftware
+  description: prop Software
+- name: purecommerceVsb
+  description: purecommerce Vsb
+- name: pxpSolutionsRetail
+  description: pxp Solutions Retail
+- name: rediantRposLighthouse
+  description: rediant Rpos Lighthouse
+- name: rainbowApparel
+  description: rainbow Apparel
+- name: rdyc610s
+  description: rdyc 610s
+- name: redOakPs
+  description: red Oak Ps
+- name: redfinNetwork
+  description: redfin Network
+- name: remcoSoftware
+  description: remco Software
+- name: rentACenter
+  description: rent ACenter
+- name: reproOnlyIngIct220Dial
+  description: repro Only Ing Ict 220Dial
+- name: reproOnlyIngIct220DialE2ee
+  description: repro Only Ing Ict 220Dial E2ee
+- name: reproOnlyIngIct220SslE2ee
+  description: repro Only Ing Ict 220Ssl E2ee
+- name: reproOnlyIngIct250Dial
+  description: repro Only Ing Ict 250Dial
+- name: reproOnlyIngIct250DialE2ee
+  description: repro Only Ing Ict 250Dial E2ee
+- name: reproOnlyIngIct250Ssl
+  description: repro Only Ing Ict 250Ssl
+- name: reproOnlyIngIct250SslE2ee
+  description: repro Only Ing Ict 250Ssl E2ee
+- name: reproOnlyVerifoneVx520DcDial
+  description: repro Only Verifone Vx 520Dc Dial
+- name: reproOnlyVerifoneVx520DcSsl
+  description: repro Only Verifone Vx 520Dc Ssl
+- name: reproOnlyVerifoneVx520DialCtls
+  description: repro Only Verifone Vx 520Dial Ctls
+- name: reproOnlyVerifoneVx520SslCtls
+  description: repro Only Verifone Vx 520Ssl Ctls
+- name: retrieverSoftware
+  description: retriever Software
+- name: revlinkCollect
+  description: revlink Collect
+- name: revtrak
+  description: revtrak
+- name: reamMobile
+  description: ream Mobile
+- name: roamMobileTest
+  description: roam Mobile Test
+- name: roamData
+  description: roam Data
+- name: salepoint
+  description: salepoint
+- name: salepointClaires
+  description: salepoint Claires
+- name: sbcSolutions
+  description: sbc Solutions
+- name: secureTrading
+  description: secure Trading
+- name: sequoiaRetialSystems
+  description: sequoia Retial Systems
+- name: shci610
+  description: shci 610
+- name: shift4OnTheNet
+  description: shift 4On The Net
+- name: sightlinePayments
+  description: sightline Payments
+- name: slimCdEntNonReseller
+  description: slim Cd Ent Non Reseller
+- name: slimCdEnterprise
+  description: slim Cd Enterprise
+- name: slimCdPro
+  description: slim Cd Pro
+- name: slimCdProNonReseller
+  description: slim Cd Pro Non Reseller
+- name: snlh610
+  description: snlh 610
+- name: southernDataComm
+  description: southern Data Comm
+- name: spsEzpay
+  description: sps Ezpay
+- name: squirrelSystems
+  description: squirrel Systems
+- name: ster610
+  description: ster 610
+- name: storisVision9
+  description: storis Vision 9
+- name: ststSoftware
+  description: stst Software
+- name: talbots
+  description: talbots
+- name: tangiblePayments
+  description: tangible Payments
+- name: tenderRetail
+  description: tender Retail
+- name: tillster
+  description: tillster
+- name: tnspayGateway
+  description: tnspay Gateway
+- name: toast
+  description: toast
+- name: toyzPos
+  description: toyz Pos
+- name: transactionWirelessSvs
+  description: transaction Wireless Svs
+- name: transax
+  description: transax
+- name: tranzgate
+  description: tranzgate
+- name: trem610
+  description: trem 610
+- name: triversity
+  description: triversity
+- name: triversityPos
+  description: triversity Pos
+- name: trustcommVault610
+  description: trustcomm Vault 610
+- name: trustcommVault600
+  description: trustcomm Vault 600
+- name: trustcommerce2011
+  description: trustcommerce 2011
+- name: tsysAmexPipPcSoftware
+  description: tsys Amex Pip Pc Software
+- name: tsysAmexPipTerminal
+  description: tsys Amex Pip Terminal
+- name: tsysDialPay
+  description: tsys Dial Pay
+- name: tsysPosPort
+  description: tsys Pos Port
+- name: twitpay
+  description: twitpay
+- name: uhaul
+  description: uhaul
+- name: uicBezel8
+  description: uic Bezel 8
+- name: upSolution610
+  description: up Solution 610
+- name: usaEpay
+  description: usa Epay
+- name: usfs
+  description: usfs
+- name: ventek
+  description: ventek
+- name: verifone
+  description: verifone
+- name: verifone510Terminal
+  description: verifone 510Terminal
+- name: verifone600Terminal
+  description: verifone 600Terminal
+- name: verifone610
+  description: verifone 610
+- name: verifoneOmni3200
+  description: verifone Omni 3200
+- name: verifonePaywareConnect
+  description: verifone Payware Connect
+- name: verifonePaywareMobile
+  description: verifone Payware Mobile
+- name: verifonePaywarePc
+  description: verifone Payware Pc
+- name: verifonePaywareTranactRita
+  description: verifone Payware Tranact Rita
+- name: verifonePcChargeGoSoftware
+  description: verifone Pc Charge Go Software
+- name: verifonePoint
+  description: verifone Point
+- name: verifonePointEntMx
+  description: verifone Point Ent Mx
+- name: verifonePointEntVx
+  description: verifone Point Ent Vx
+- name: verifoneRuby
+  description: verifone Ruby
+- name: verifoneVx510
+  description: verifone Vx 510
+- name: verifoneVx510DcDial
+  description: verifone Vx 510Dc Dial
+- name: verifoneVx510DcIp
+  description: verifone Vx 510Dc Ip
+- name: verifoneVx510DcSsl
+  description: verifone Vx 510Dc Ssl
+- name: verifoneVx510le
+  description: verifone Vx 510le
+- name: verifoneVx520DcDialCtlsE2ee
+  description: verifone Vx 520Dc Dial Ctls E2ee
+- name: verifoneVx520DcDialE2ee
+  description: verifone Vx 520Dc Dial E2ee
+- name: verifoneVx520DcIp1
+  description: verifone Vx 520Dc Ip 1
+- name: verifoneVx520DcIp2
+  description: verifone Vx 520Dc Ip 2
+- name: verifoneVx520DcIpCtls
+  description: verifone Vx 520Dc Ip Ctls
+- name: verifoneVx520DcIpCtlsE2ee
+  description: verifone Vx 520Dc Ip Ctls E2ee
+- name: verifoneVx520DcSslCtlsE2ee
+  description: verifone Vx 520Dc Ssl Ctls E2ee
+- name: verifoneVx520DcSslE2ee
+  description: verifone Vx 520Dc Ssl E2ee
+- name: verifoneVx520DialOnly
+  description: verifone Vx 520Dial Only
+- name: verifoneVx570Dial
+  description: verifone Vx 570Dial
+- name: verifoneVx570Ip
+  description: verifone Vx 570Ip
+- name: verifoneVx570Ssl
+  description: verifone Vx 570Ssl
+- name: verifoneVx6803gGprs
+  description: verifone Vx 6803g Gprs
+- name: vicoSoftware
+  description: vico Software
+- name: virtualTerminal
+  description: virtual Terminal
+- name: vistaEntertainment
+  description: vista Entertainment
+- name: vitalcheck
+  description: vitalcheck
+- name: vmcAddOnAndroidByodQmd
+  description: vmc Add On Android Byod Qmd
+- name: vmcAddOnAndroidByodStandard
+  description: vmc Add On Android Byod Standard
+- name: vmcAddOnBundleByodQms
+  description: vmc Add On Bundle Byod Qms
+- name: vmcAddOnBundleByodStandard
+  description: vmc Add On Bundle Byod Standard
+- name: vmcAddOnBundleCellularQmd
+  description: vmc Add On Bundle Cellular Qmd
+- name: vmcAddOnBundleCellularStandard
+  description: vmc Add On Bundle Cellular Standard
+- name: vmcAddOnBundleWifiQmd
+  description: vmc Add On Bundle Wifi Qmd
+- name: vmcAddOnBundleWifiStandard
+  description: vmc Add On Bundle Wifi Standard
+- name: vmcFieldBundleByodQmd
+  description: vmc Field Bundle Byod Qmd
+- name: vmcFieldBundleByodStandard
+  description: vmc Field Bundle Byod Standard
+- name: vmcFieldBundleCellularQms
+  description: vmc Field Bundle Cellular Qms
+- name: vmcFieldBundleCellularStandard
+  description: vmc Field Bundle Cellular Standard
+- name: vmcStoreAndroidByodQms
+  description: vmc Store Android Byod Qms
+- name: vmcStoreAndroidByodStandard
+  description: vmc Store Android Byod Standard
+- name: vmcStoreBundleByodQms
+  description: vmc Store Bundle Byod Qms
+- name: vmcStoreBundleByodStandard
+  description: vmc Store Bundle Byod Standard
+- name: vmcStoreBundleCellularQms
+  description: vmc Store Bundle Cellular Qms
+- name: vmcStoreBundleCellularStandard
+  description: vmc Store Bundle Cellular Standard
+- name: vmcStoreBundleWifiQms
+  description: vmc Store Bundle Wifi Qms
+- name: vmcStoreBundleWifiStandard
+  description: vmc Store Bundle Wifi Standard
+- name: vPlus
+  description: v Plus
+- name: vsb
+  description: vsb
+- name: vsbGreenbeanRecycle
+  description: vsb Greenbean Recycle
+- name: vsbKaizen
+  description: vsb Kaizen
+- name: vsbOrderbridge
+  description: vsb Orderbridge
+- name: vsbPhonixManagedNetwork
+  description: vsb Phonix Managed Network
+- name: vsbSamurai
+  description: vsb Samurai
+- name: vsbVisat
+  description: vsb Visat
+- name: vsbWiretrust
+  description: vsb Wiretrust
+- name: vsbXgateway
+  description: vsb Xgateway
+- name: wandGift
+  description: wand Gift
+- name: waySystemsMtt5000
+  description: way Systems Mtt 5000
+- name: wendysCom
+  description: wendys Com
+- name: whirl
+  description: whirl
+- name: winn610s
+  description: winn 610s
+- name: xpaySoftware
+  description: xpay Software
+- name: xpient610
+  description: xpient 610
+- name: xpientSolutions
+  description: xpient Solutions

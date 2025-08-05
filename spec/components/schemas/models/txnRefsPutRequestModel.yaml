@@ -1,0 +1,8 @@
+title: txnRefsPutRequest
+properties:
+  ref:
+    type: string
+    description: The reference value retrieved from the third party (platform).
+
+example:
+  ref: a9409e0c581

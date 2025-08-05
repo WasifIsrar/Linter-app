@@ -1,0 +1,57 @@
+title: entityPlatform
+type: string
+description: |
+  The processor that issued this terminalTxnRef.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `APPLE` - **APPLE**
+  - `ELAVON` - **ELAVON**
+  - `FIRSTDATA` - **FIRSTDATA**
+  - `GOOGLE` - **GOOGLE**
+  - `VANTIV` - **VANTIV**
+  - `VCORE` - **VCORE**
+  - `WELLSACH` - **WELLSACH**
+  - `WELLSFARGO` - **WELLSFARGO**
+  - `WFSINGLE` - **WFSINGLE**
+  - `WORLDPAY` - **WORLDPAY**
+  - `TDBANKCA` - **TDBANKCA**
+
+  </details>
+enum:
+- APPLE
+- ELAVON
+- FIRSTDATA
+- GOOGLE
+- VANTIV
+- VCORE
+- WELLSACH
+- WELLSFARGO
+- WFSINGLE
+- WORLDPAY
+- TDBANKCA
+example: VCORE
+x-enum-elements:
+- name: APPLE
+  description: APPLE.
+- name: ELAVON
+  description: ELAVON.
+- name: FIRSTDATA
+  description: FIRSTDATA.
+- name: GOOGLE
+  description: GOOGLE.
+- name: VANTIV
+  description: VANTIV.
+- name: VCORE
+  description: VCORE.
+- name: WELLSACH
+  description: WELLSACH.
+- name: WELLSFARGO
+  description: WELLSFARGO.
+- name: WFSINGLE
+  description: WFSINGLE.
+- name: WORLDPAY
+  description: WORLDPAY.
+- name: TDBANKCA
+  description: TDBANKCA.

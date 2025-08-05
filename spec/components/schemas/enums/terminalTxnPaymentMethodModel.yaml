@@ -1,0 +1,74 @@
+title: terminalTxnPaymentMethod
+type: integer
+description: The payment method for this Transaction.
+enum:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 7
+- 8
+- 9
+- 10
+- 11
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
+- 21
+- 22
+- 23
+- 24
+- 25
+- 26
+x-enum-elements:
+- name: "Unknown"
+  description: "Unknown"
+- name: "Amex"
+  description: "American Express."
+- name: "Visa"
+  description: "Visa card."
+- name: "Mc"
+  description: "MasterCard."
+- name: "Diners"
+  description: "Diners Club card."
+- name: "Discover"
+  description: "Discover card."
+- name: "Debit"
+  description: "Debit card."
+- name: "Checking"
+  description: "Checking account."
+- name: "Savings"
+  description: "Savings account."
+- name: "CorpChecking"
+  description: "Corporate checking account."
+- name: "CorpSavings"
+  description: "Corporate savings account."
+- name: "Accel"
+  description: "Accel network."
+- name: "ATH"
+  description: "ATH network."
+- name: "AFFN"
+  description: "Armed Forces Financial Network."
+- name: "Culiance"
+  description: "Culiance network."
+- name: "Interlink"
+  description: "Interlink network."
+- name: "Jeanie"
+  description: "Jeanie network."
+- name: "Maestro"
+  description: "Maestro card."
+- name: "NYCE"
+  description: "NYCE network."
+- name: "Pulse"
+  description: "Pulse network."
+- name: "Shazam"
+  description: "Shazam network."
+- name: "Star"
+  description: "Star network."
+- name: "Interac"
+  description: "Interac network."

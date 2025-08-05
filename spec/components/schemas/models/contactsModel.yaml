@@ -1,0 +1,66 @@
+title: contactsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that this Contact relates to.
+  first:
+    type: string
+    description: The first name associated with this Contact.
+  middle:
+    type: string
+    description: The middle name associated with this Contact.
+  last:
+    type: string
+    description: The last name associated with this Contact.
+  description:
+    type: string
+    description: A description of this Contact.
+  email:
+    type: string
+    description: The email address of this Contact.
+  fax:
+    type: string
+    description: "The fax number associated with this Contact. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  phone:
+    type: string
+    description: "The phone number associated with this Contact. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  country:
+    $ref: ../models/countryModel.yaml
+    description: 'The country being used for a request. DEFAULT VALUE: `USA`'
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Contact. \nThis\
+      \ field is stored as a text string and must be between 1 and 20 characters long."
+  state:
+    $ref: ../models/stateModel.yaml
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Contact.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Contact. \n\
+      This field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address1:
+    type: string
+    description: "The first line of the address associated with this Contact. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  frozen:
+    $ref: ../frozen.yaml
+  inactive:
+    $ref: ../inactive.yaml

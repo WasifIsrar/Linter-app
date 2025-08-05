@@ -1,0 +1,137 @@
+title: feesPostRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that will charge this Fee.
+  forentity:
+    type: string
+    description: The identifier of the Entity that this Fee applies for.
+  org:
+    type: string
+    description: "The identifier of the Org who should pay this Fee on behalf of the\
+      \ Entity identified in the value of the 'forentity' field. \nThis field is optional.\
+      \ If it is set, then the Fee is charged to this Org instead."
+  type:
+    $ref: ../enums/feeTypeModel.yaml
+  name:
+    type: string
+    description: "The name of this Fee. \nThis field is stored as a text string and\
+      \ must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A description of this Fee. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  schedule:
+    $ref: ../enums/feeScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: "A multiplier that you can use to adjust the schedule set in the\
+      \ 'schedule' field, if it is set to a duration-based trigger, such as daily,\
+      \ weekly, monthly, or annually. \nThis field is specified as an integer and\
+      \ its value determines how the interval is multiplied.."
+    default: 1
+  start:
+    type: integer
+    description: "The date on which charging of the Fee should start. \nThe date is\
+      \ specified as an eight digit string in YYYYMMDD format, for example, '20160120'\
+      \ for January 20, 2016. \nThe value of this field must represent a date in the\
+      \ future, or the present date."
+  finish:
+    type: integer
+    description: "The date on which charging of the Fee should end. \nThe date is\
+      \ specified as an eight digit string in YYYYMMDD format, for example, '20160120'\
+      \ for January 20, 2016. \nThe value of this field must represent a date in the\
+      \ future."
+  collection:
+    $ref: ../enums/feeCollectionModel.yaml
+  collectionFactor:
+    type: integer
+    description: "A multiplier that you can use to adjust the set of data to be used\
+      \ in the collection calculation. \nThis field is specified as an integer and\
+      \ its value determines the period of time to be used."
+  collectionOffset:
+    type: integer
+    description: The number of days, weeks, months or years to go back when selecting
+      data for collection calculation.
+  collectionIncludeCurrent:
+    type: integer
+    description: Whether to include the current period for the colleciton calculation.
+  um:
+    $ref: ../enums/feeUmModel.yaml
+  amount:
+    type: number
+    format: double
+    description: "The total amount of this Fee. \nThe units used in this field are\
+      \ determined by the value of the 'um' field on the Fee. If the 'um' field is\
+      \ set to 'percentage', then this field specifies the Fee percentage to levy\
+      \ in basis points. If the 'um' field is set to 'amount', then this field specifies\
+      \ the Fee in cents(up to three decimal points)"
+  maximum:
+    type: number
+    format: double
+    description: "The maximum amount to charge for this fee when setting a percent-based\
+      \ fee. \n\n* Will be `null` for all other units.\n"
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of the amount in the fees resource. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  txnFee:
+    type: integer
+    description: |-
+      Indicator to extract fee from txn supplied fee. When set, amount will correspond to the fee amount in the txn and only that amount will be extractable, anything over that amount will not be extracted. <details><summary>Valid Values</summary>
+
+      - `0` - **Disabled.** Fee will be calculated normally.
+
+      - `1` - **Enabled.** Fee will be calculated based on transaction fee.
+
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "Fee will be calculated normally."
+    - name: "Enabled"
+      description: "Fee will be calculated based on transaction fee."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- amount
+- collectionFactor
+- collectionOffset
+- currency
+- entity
+- frozen
+- inactive
+- schedule
+- scheduleFactor
+- start
+- txnFee
+- type
+- um
+
+example:
+  entity: t1_ent_00758e990d7437d51cdf1aa
+  forentity: t1_ent_0088c831a31ca8841c81111
+  org: t1_org_00b2ac11ed8bed97fb81111
+  type: 1
+  name: Boarding Fee
+  description: Boarding Fee
+  schedule: 5
+  scheduleFactor: 1
+  start: 20160120
+  finish: 21160120
+  collection: 2
+  collectionFactor: 2
+  collectionOffset: 5
+  um: 2
+  amount: 5
+  currency: USD
+  inactive: 0
+  frozen: 0
+  txnFee: 0
+  collectionIncludeCurrent: 0
+  maximum: 30

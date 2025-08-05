@@ -1,0 +1,19 @@
+title: entityReturnsPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  payment:
+    type: string
+    description: The identifier of the Payment that this EntityReturns refers to.
+    properties:
+      method:
+        $ref: ../enums/entityReturnsPaymentMethodModel.yaml
+      number: {}
+      routing: {}
+      expiration: {}
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+

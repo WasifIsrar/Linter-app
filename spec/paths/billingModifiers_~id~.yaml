@@ -1,0 +1,125 @@
+get:
+  description: Query a Billing Modifier that can change the total amount of the billing
+    or whoever will pay it, such as applying a 10% markup on the fee total for a specific
+    org.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this billing modifer.
+    explode: false
+    in: path
+    name: id
+    example: t1_blm_67d9c9f74881eb511220000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all billingModifiers:
+              $ref: ../components/schemas/samples/billingModifiersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingModifiersModel200Response.yaml
+      description: Retrieve the response for the query on the billingModifiers resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingModifiers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Billing Modifer by it's ID.
+  tags:
+  - Billing Modifiers
+  - Facilitator
+  - Partner
+  operationId: getBillingModifiersId
+put:
+  description: Update a Billing Modifier that can change the total amount of the billing
+    or whoever will pay it, such as applying a 10% markup on the fee total for a specific
+    org.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this billing modifer.
+    explode: false
+    in: path
+    name: id
+    example: t1_blm_67d9c9f74881eb511220000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/billingModifiersPutRequestModel.yaml
+    description: Update Billing Modifer Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update billingModifiers:
+              $ref: ../components/schemas/samples/billingModifiersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingModifiersModel200Response.yaml
+      description: 'Response for update on billingModifiers resource: Update Billing
+        Modifier Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingModifiers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Billing Modifier by it's ID.
+  tags:
+  - Billing Modifiers
+  - Facilitator
+  - Partner
+  operationId: putBillingModifiersId
+delete:
+  description: Delete a Billing Modifier that can change the total amount of the billing
+    or whoever will pay it.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this billing modifer.
+    explode: false
+    in: path
+    name: id
+    example: t1_blm_67d9c9f74881eb511220000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete billingModifiers:
+              $ref: ../components/schemas/samples/billingModifiersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingModifiersModel200Response.yaml
+      description: 'Response for delete on BillingModifiers resource: Delete Billing
+        Modifier Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingModifiers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Billing Modifier by it's ID.
+  tags:
+  - Billing Modifiers
+  - Facilitator
+  - Partner
+  operationId: deleteBillingModifiersId

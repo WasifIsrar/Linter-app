@@ -1,0 +1,13 @@
+title: entriesResponseResult
+properties:
+  response:
+    title: entriesResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/entriesModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

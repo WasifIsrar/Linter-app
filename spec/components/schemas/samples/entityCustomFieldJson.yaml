@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ecf_67d3ab7bc5e308c4815100z",
+        "created": "2025-03-14 00:07:23.8236",
+        "modified": "2025-03-14 00:07:23.8236",
+        "creator": "t1_log_67327b89589de7a6d89a665",
+        "modifier": "t1_log_67327b89589de7a6d89a665",
+        "entity": "t1_ent_67d3ab7bc0ef1d4284d4578",
+        "key": "companyId",
+        "value": "70bbd35e-8500-f011-90cb-6045bdc7c168",
+        "deleted": "2025-03-14 00:07:23",
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

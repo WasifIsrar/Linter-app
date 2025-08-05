@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_drf_68096caedcc4f27c86021z0",
+        "created": "2025-04-23 18:41:50.9079",
+        "modified": "2025-04-23 18:41:50.9079",
+        "creator": "t1_log_62fd0aa37c3d8ec3a9dcea0",
+        "modifier": "t1_log_62fd0aa37c3d8ec3a9dcea0",
+        "disbursement": "t1_dbm_680968c3d884de0cc6b3fae",
+        "ref": "12345678901234",
+        "stage": "approve",
+        "platform": "VANTIV",
+        "amount": -1010,
+        "disbursementRef": "",
+        "fileRef": "",
+        "companyId": "",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

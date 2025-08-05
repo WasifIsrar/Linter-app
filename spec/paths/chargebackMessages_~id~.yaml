@@ -1,0 +1,41 @@
+get:
+  description: Query a chargebackMessage. A chargebackMessage resource represents
+    a message that is sent by a Merchant, processor, or bank in relation to a Chargeback.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this chargeback message.
+    explode: false
+    in: path
+    name: id
+    example: t1_chm_fd94438bed7d5e80f0000ea
+    required: true
+    schema:
+      type: string
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessages:
+              $ref: ../components/schemas/samples/chargebackMessagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackMessagesModel200Response.yaml
+      description: Retrieve Chargeback Messages Response for query on chargebackMessages
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Chargeback Message by it's ID.
+  tags:
+  - Chargeback Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChargebackMessagesId

@@ -1,0 +1,74 @@
+get:
+  description: Query Accounts that each represent a bank account associated with an
+    Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/accountsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountsModel200Response.yaml
+      description: Response for querying and retrieving all bank accounts.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all bank accounts.
+  tags:
+  - Accounts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAccounts
+post:
+  description: Create an account, representing a bank account, to associate bank information
+    with an Entity.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/accountsPostRequestModel.yaml
+    description: Add Bank Account Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/accountsPostJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountsPostModel200Response.yaml
+      description: The response for creating an account on the accounts resource.
+        This is the Add Bank Account Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Add a new Bank Account.
+  tags:
+  - Accounts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postAccounts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

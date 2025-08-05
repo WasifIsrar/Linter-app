@@ -1,0 +1,6 @@
+title: terminalTxnRefPutRequest
+properties:
+  ref:
+    type: string
+    description: The reference value retrieved from the third party.
+

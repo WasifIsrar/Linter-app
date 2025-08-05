@@ -1,0 +1,33 @@
+title: payoutFlowSchedule
+type: string
+description: |
+  The schedule that determines when the Payout resource that is created should be triggered to be paid.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `days` - **Daily.** The Payout is paid every day.
+  - `weeks` - **Weekly.** The Payout is paid every week.
+  - `months` - **Monthly.** The Payout is paid every month.
+  - `years` - **Annually.** The Payout is paid every year.
+  - `single` - **Single.** The Payout is a one-off payment.
+
+  </details>
+default: days
+enum:
+- days
+- weeks
+- months
+- years
+- single
+x-enum-elements:
+- name: Days
+  description: Daily. The Payout is paid every day.
+- name: Weeks
+  description: Weekly. The Payout is paid every week.
+- name: Months
+  description: Monthly. The Payout is paid every month.
+- name: Years
+  description: Annually. The Payout is paid every year.
+- name: Single
+  description: Single. The Payout is a one-off payment.

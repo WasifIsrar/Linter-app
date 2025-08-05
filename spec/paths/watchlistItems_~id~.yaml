@@ -1,0 +1,93 @@
+get:
+  description: Query a WatchlistItem. A WatchlistItem is a set of attributes of a
+    person or entity of interest.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/watchlistItemsModel200Response.yaml
+      description: Response for query on watchlistItems resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Watchlist Items
+  - Facilitator
+  operationId: getWatchlistItemsId
+put:
+  description: Update a WatchlistItem. A WatchlistItem is a set of attributes of a
+    person or entity of interest.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/watchlistItemsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/watchlistItemsModel200Response.yaml
+      description: Response for update on watchlistItems resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Watchlist Items
+  - Facilitator
+  operationId: putWatchlistItemsId
+delete:
+  description: Delete a WatchlistItem. A WatchlistItem is a set of attributes of a
+    person or entity of interest.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/watchlistItemsModel200Response.yaml
+      description: Response for delete on watchlistItems resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Watchlist Items
+  - Facilitator
+  operationId: deleteWatchlistItemsId

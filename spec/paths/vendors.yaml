@@ -1,0 +1,68 @@
+get:
+  description: Query a Vendor resource. A Vendor resource represents a third-party
+    vendor who interacts with the API, for example, a referral platform.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all vendors:
+              $ref: ../components/schemas/samples/vendorsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/vendorsModel200Response.yaml
+      description: Response for query on vendors resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all vendors:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Vendors.
+  tags:
+  - Vendors
+  - Facilitator
+  - Partner
+  operationId: getVendors
+post:
+  description: "Create a Vendor resource. \nA Vendor resource represents a third-party\
+    \ vendor who interacts with the API, for example, a referral platform."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/vendorsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all vendors:
+              $ref: ../components/schemas/samples/vendorsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/vendorsModel200Response.yaml
+      description: Response for create on vendors resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all vendors:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Vendors
+  - Facilitator
+  operationId: postVendors
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

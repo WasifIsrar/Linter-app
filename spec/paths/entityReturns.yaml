@@ -1,0 +1,65 @@
+get:
+  description: Query an EntityReturn represents an ACH transaction or disbursement
+    that has been rejected. The EntityReturn will block ACH creations or send out
+    related to its entity and payment.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReturns:
+              $ref: ../components/schemas/samples/entityReturnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityReturnsModel200Response.yaml
+      description: Response for query on entityReturns resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Entity Returns.
+  tags:
+  - Entity Returns
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityReturns
+post:
+  description: "Create an EntityReturn. \nAn EntityReturn represents an ACH transaction\
+    \ or disbursement that has been rejected. \nThe EntityReturn will block ACH creations\
+    \ or send out related to its entity and payment."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityReturnsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityReturnsModel200Response.yaml
+      description: Response for create on entityReturns resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Entity Returns
+  - Facilitator
+  operationId: postEntityReturns
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

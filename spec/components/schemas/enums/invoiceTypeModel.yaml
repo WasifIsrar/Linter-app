@@ -1,0 +1,25 @@
+title: invoiceType
+type: string
+description: |
+  The type of invoice.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `single` - **A single-use invoice.**
+  - `multiUse` - **A static, reusable invoice. (Payment Page.)**
+  - `recurring` - **A subscription-based invoice.**
+
+  </details>
+enum:
+- single
+- multiUse
+- recurring
+x-enum-elements:
+- name: OneOff
+  description: A single-use invoice.
+- name: Static
+  description: A static, reusable invoice (Payment Page).
+- name: Subscription
+  description: A subscription-based invoice.
+default: single

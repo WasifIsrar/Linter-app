@@ -1,0 +1,121 @@
+get:
+  description: Query a Fee that is an amount one Entity can charge another Entity
+    according to a particular schedule, or based on certain events.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Fee ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_fee_67b5422dda39a7c36059988
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all fees:
+              $ref: ../components/schemas/samples/feesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feesModel200Response.yaml
+      description: Retrieve fee response for query on fees resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all fees:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Fee by it's ID.
+  tags:
+  - Fees
+  - Facilitator
+  - Partner
+  operationId: getFeesId
+put:
+  description: Update a Fee that is an amount one Entity can charge another Entity
+    according to a particular schedule, or based on certain events.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Fee ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_fee_67b5422dda39a7c36059988
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/feesPutRequestModel.yaml
+    description: Update Fee Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all fees:
+              $ref: ../components/schemas/samples/feesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feesModel200Response.yaml
+      description: Response for update on fees resource Update Fee Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all fees:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Fee by it's ID.
+  tags:
+  - Fees
+  - Facilitator
+  - Partner
+  operationId: putFeesId
+delete:
+  description: Delete a Fee that is an amount one Entity can charge another Entity
+    according to a particular schedule, or based on certain events.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Fee ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_fee_67b5422dda39a7c36059988
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all fees:
+              $ref: ../components/schemas/samples/feesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feesModel200Response.yaml
+      description: The response for delete on fees resource is a Delete Fee Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all fees:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Fee by it's ID.
+  tags:
+  - Fees
+  - Facilitator
+  - Partner
+  operationId: deleteFeesId

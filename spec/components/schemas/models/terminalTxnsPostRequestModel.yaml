@@ -1,0 +1,590 @@
+title: terminalTxnsPostRequest
+properties:
+  binType:
+    type: string
+    description: |
+      The type of bank issuer number (BIN) that allows for resulting transactions.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `CREDIT` - **Credit BIN Type.**
+      - `DEBIT` - **Debit BIN Type.**
+      - `PREPAID` - **Prepaid BIN Type.**
+
+      </details>
+    enum:
+    - CREDIT
+    - DEBIT
+    - PREPAID
+    x-enum-elements:
+    - name: Credit
+      description: Credit BIN Type.
+    - name: Debit
+      description: Debit BIN Type.
+    - name: Prepaid
+      description: Prepaid BIN Type.
+  expiration:
+    type: string
+    description: The expiration date of this Transaction. This field is stored as
+      a text string in 'MMYY' format, where 'MM' is the number of a month and 'YY'
+      is the last two digits of a year. For example, '0623' for June 2023. The value
+      must reflect a future date.
+  forterminalTxn:
+    type: string
+    description: If this Terminal Transaction is related to another Terminal Transaction, then this field is set to the identifier of the other Terminal Transaction. For example, if this Terminal Transaction is a Refund, this field could be set to the identifier of the original Sale Terminal Transaction.
+  origin:
+    title: terminalTxnOrigin
+    type: integer
+    description: |
+      The origin of this Transaction.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **Credit Card Terminal.**
+      - `2` - **eCommerce System.**
+      - `3` - **Mail or Telephone Order Transaction.**
+      - `4` - **Apple Pay (deprecated).**
+      - `5` - **Successful 3D Secure Transaction.**
+      - `6` - **Attempted 3D Secure Transaction.**
+      - `7` - **Recurring Card Transaction (deprecated).**
+      - `8` - **Payframe.**
+      - `9` - **Writing.**
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    x-enum-elements:
+    - name: Terminal
+      description: Originated at a credit card terminal.
+    - name: Ecommerce
+      description: Originated through an eCommerce system.
+    - name: Moto
+      description: Originated as a mail order or telephone order transaction.
+    - name: Apple
+      description: Originated as an Apple Pay transaction.
+    - name: ThreeDAuth
+      description: Originated as a Successful 3D Secure transaction.
+    - name: 3DSatt
+      description: Originated as an Attempted 3D Secure transaction.
+    - name: Recurring
+      description: Originated as a recurring transaction on the card (deprecated).
+    - name: Payframe
+      description: Originated in a Payframe.
+    - name: Writing
+      description: Originated in Writing.
+    default: 1
+  payment:
+    $ref: ../enums/terminalTxnsPaymentModel.yaml
+    required:
+    - method
+    - number
+  platform:
+    $ref: ../enums/platformModel.yaml
+  pos:
+    type: integer
+    description: |
+      Whether the terminalTxn is coming from a POS system that needs terminal activation.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **POS Terminal Activation.** (Internal)
+      - `1` - **External Terminal Activation.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: POSActivation
+      description: POS will activate the terminal.
+    - name: ExternalActivation
+      description: Terminal needs external activation.
+  receipt:
+    type: string
+    description: |
+      Whether the terminal should print a receipt or not.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `noReceipt` - **No Receipt.**
+      - `merchant` - **Merchant copy only.**
+      - `customer` - **Customer copy only.**
+      - `both` - **Merchant and Customer copy.**
+
+      </details>
+    enum:
+    - noReceipt
+    - merchant
+    - customer
+    - both
+    x-enum-elements:
+    - name: NoReceipt
+      description: No receipt.
+    - name: Merchant
+      description: Merchant copy only.
+    - name: Customer
+      description: Customer copy only.
+    - name: Both
+      description: Merchant and Customer copy.
+  tid:
+    type: string
+    description: The Terminal ID as set by the platform activating the terminal. This
+      field is stored as a text string and must be between 0 and 50 characters long.
+  traceNumber:
+    type: integer
+    format: int64
+    description: Sequencial number that uniquely identifies the terminalTxn.
+  txn:
+    type: string
+    description: The related txn this terminalTxn belongs to.
+  token:
+    type: string
+    description: The ID of the token record to associate with this terminal transaction request.
+  paymentNumber:
+    type: integer
+    description: The last four numbers of the credit card associated with this Transaction.
+  paymentMethod:
+    $ref: ../enums/terminalTxnPaymentMethodModel.yaml
+  type:
+    title: terminalTxnType
+    type: integer
+    description: |
+      The type of Transaction.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **Credit Card Only: Sale Transaction.** This is the most common type of Transaction, it processes a sale and charges the customer.
+      - `2` - **Credit Card Only: Auth Transaction.** Authorizes and holds the requested total on the credit card.
+      - `4` - **Credit Card Only: Reverse Authorization.** Reverses a prior Auth or Sale Transaction and releases the credit hold.
+      - `5` - **Credit Card Only: Refund Transaction.** Refunds a prior Capture or Sale Transaction (total may be specified for a partial refund).
+      - `13` - **Batch out terminal.**
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 4
+    - 5
+    - 13
+    x-enum-elements:
+    - name: Sale
+      description: Sale Transaction, This is the most common type of Transaction, it processes a sale and charges the customer.
+    - name: Auth
+      description: Auth Transaction, Authorizes and holds the requested total on the credit card.
+    - name: UnAuth
+      description: Reverse Authorization, Reverses a prior Auth or Sale Transaction and releases the credit hold.
+    - name: Refund
+      description: Refund Transaction, Refunds a prior Capture or Sale Transaction (total may be specified for a partial refund).
+    - name: Batch
+      description: Batch out terminal.
+  tip:
+    type: integer
+    format: int64
+    description: This field indicates the tip amount associated with a transaction. This value is for reporting purposes only, because transaction amount includes this amount in the total.
+  originatingApp:
+    type: string
+    description: Field identifying Payrix PAX terminal originating app.
+  OEMTTxnRefNumber:
+    type: string
+    description: Field identifying original Payrix Verifone transaction reference
+      number, used for refunds and cancellation request.
+  posApplicationId:
+    type: string
+    description: Express assigned identifier i.e. Software Id being used in express
+      terminal.
+  posApplicationName:
+    type: string
+    description: Software Name being used in express terminal.
+  posApplicationVersion:
+    type: string
+    description: Software version being used in express terminal.
+  customerReferenceNumber:
+    type: string
+    description: Express Reference Number.
+  gatewayTransactionId:
+    type: string
+    description: The gateway transaction ID relates to Express Transaction ID.
+  customerTicketNumber:
+    type: string
+    description: Express ticket Number.
+  authCode:
+    type: string
+    description: The authorization code for this Transaction. This field is stored
+      as a text string and must be between 0 and 20 characters long.
+  authDate:
+    type: integer
+    description: The date on which the Transaction was authorized. The date is specified
+      as an eight digit string in YYYYMMDD format, for example, '20160120' for January
+      20, 2016. The value of this field must represent a date in the past.
+  cashback:
+    type: integer
+    format: int64
+    description: The amount of the total sum of this Transaction that is given as
+      cash back. This field is specified as an integer in cents.
+  clientIp:
+    type: string
+    description: The client IP address from which the Transaction was created. Valid
+      values are any Ipv4 or Ipv6 address.
+  company:
+    type: string
+    description: The name of the company associated with this Transaction. nSetting
+      this field is especially important when processing an eCheck from a company.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for this transaction. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  fundingCurrency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for which this transaction was funded on. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  cvvStatus:
+    type: string
+    description: |
+      The status of the CVV on the card.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `notPresent` - **CVV is not present.**
+      - `illegible` - **CVV is illegible.**
+      - `notProvided` - **CVV was not provided.**
+
+      </details>
+    enum:
+    - notPresent
+    - illegible
+    - notProvided
+    x-enum-elements:
+    - name: NotPresent
+      description: CVV is not present.
+    - name: Illegible
+      description: CVV is illegible.
+    - name: NotProvided
+      description: CVV was not provided.
+  description:
+    type: string
+    description: A description of this Transaction. This field is stored as a text
+      string and must be between 0 and 1000 characters long.
+  discount:
+    type: integer
+    format: int64
+    description: The discount applied to the transaction.
+  duty:
+    type: integer
+    format: int64
+    description: The duty fee applicable to this transaction.
+  email:
+    type: string
+    description: The email associated with this Transaction.
+  swiped:
+    type: integer
+    description: |
+      Whether the card was swiped during this Transaction.
+      This field is set to '1' automatically if 'track' data was received. 
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Swiped.**
+      - `1` - **Swiped.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotSwiped
+      description: Not swiped.
+    - name: Swiped
+      description: Swiped.
+  entryMode:
+    $ref: ../enums/entryModeModel.yaml
+  fee:
+    type: number
+    format: double
+    description: Optional calculated fee amount indicator. This should be used in
+      conjunction with txnFee setting on Fees resource. This field is specified in cents(up to three decimal points).
+  first:
+    type: string
+    description: The first name associated with this Transaction. For eCheck transactions,
+      either first or last is required.
+  last:
+    type: string
+    description: The last name associated with this Transaction. For eCheck transactions,
+      either first or last is required.
+  merchant:
+    type: string
+    description: The identifier of the Merchant associated with this Transaction.
+  mid:
+    type: string
+    description: The Merchant ID as set by the processor. This field is stored as
+      a text string and must be between 0 and 50 characters long.
+  middle:
+    type: string
+    description: The middle name associated with this Transaction.
+  order:
+    type: string
+    description: The identifier of the Order associated with this Transaction. This
+      field is stored as a text string and must be between 0 and 1000 characters long.
+  pin:
+    type: integer
+    description: |+
+      Whether this Transaction was verified with a PIN.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No PIN verification.**
+
+      - `1` - **PIN verification.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NoPIN"
+      description: "No PIN verification."
+    - name: "PIN"
+      description: "PIN verification."
+    default: 0
+  reserved:
+    description: |
+      Indicates whether the Transaction is reserved and the action that will be taken as a result.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No reserve.**
+
+      </details>
+    enum:
+    - 0
+    x-enum-elements:
+    - name: None
+      description: No action.
+  shipping:
+    type: integer
+    format: int64
+    description: The shipping fee pertaining to this transaction.
+  signature:
+    type: integer
+    description: |
+      Whether a signature should be captured during this Transaction.
+
+      * You can set this field if you want the terminal to take a signature for the Transaction.
+      * The API also sets this field automatically if you associate a signature to the Transaction by creating a 'terminalTxnDatas' resource.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not captured.**
+      - `1` - **Captured.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotCaptured
+      description: Not captured.
+    - name: Captured
+      description: Captured.
+  tax:
+    type: integer
+    format: int64
+    description: The amount of the total sum of this Transaction that is made up of
+      tax. This field is specified as an integer in cents.
+  terminal:
+    type: string
+    description: The identifier of the terminal that processed this Transaction. The
+      identifier is taken from the terminal system and varies in format according
+      to the type of terminal. This field is stored as a text string and must be between
+      0 and 50 characters long.
+  terminalCapability:
+    type: integer
+    description: |
+      Capabilities of the terminal device.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **Key entry only terminal.**
+      - `2` - **Can read magnetic stripe.**
+      - `3` - **Integrated circuit reader.**
+      - `4` - **Can detect contactless payment.**
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    x-enum-elements:
+    - name: "Keyed"
+      description: "Key entry only terminal."
+    - name: "MagStripe"
+      description: "Can read magnetic stripe."
+    - name: "EMV"
+      description: "Integrated circuit reader."
+    - name: "Contactless"
+      description: "Contactless entry"
+  total:
+    type: integer
+    format: int64
+    description: The total amount of this Transaction. This field is specified as
+      an integer in cents.
+  unattended:
+    type: integer
+    description: |
+      Whether the card was swiped at an unattended terminal during this Transaction.
+      This field is set to '0' by default.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Attended terminal.**
+      - `1` - **Unattended terminal.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: AttendedTerminal
+      description: Attended terminal.
+    - name: UnattendedTerminal
+      description: Unattended terminal.
+  status:
+    $ref: ../enums/terminalTxnStatusModel.yaml
+  address1:
+    type: string
+    description: The first line of the address associated with this Transaction. This
+      field is stored as a text string and must be between 1 and 500 characters long.
+  address2:
+    type: string
+    description: The second line of the address associated with this Transaction.
+      This field is stored as a text string and must be between 1 and 500 characters
+      long.
+  city:
+    type: string
+    description: The name of the city in the address associated with this Transaction.
+      This field is stored as a text string and must be between 1 and 500 characters
+      long.
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: The ZIP code in the address associated with this Transaction. This
+      field is stored as a text string and must be between 1 and 20 characters long.
+  country:
+    $ref: ../models/countryModel.yaml
+    description: The country associated with this transaction, valid values for this
+      field are the 3-letter ISO code for the country.
+  phone:
+    type: string
+    description: The phone number associated with this Transaction. This field is
+      stored as a text string and must be between 10 and 15 characters long.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- binType
+- currency
+- frozen
+- fundingCurrency
+- inactive
+- merchant
+- mid
+- origin
+- pin
+- pos
+- reserved
+- signature
+- status
+- swiped
+- total
+- type
+
+example:
+  binType: DEBIT
+  expiration: "1023"
+  forterminalTxn: forterminalTxn
+  origin: 1
+  payment:
+    method: 1
+    number: 1234
+    routing: 123456789
+    expiration: "1023"
+    cvv: 123
+    track: "Track1"
+  platform: VCORE
+  pos: 0
+  receipt: noReceipt
+  tid: Terminal ID
+  traceNumber: 853202
+  txn: related txn
+  token: "124f2d0efab0bcda46f2118d688bbf97"
+  paymentNumber: 7
+  paymentMethod: 2
+  type: 1
+  tip: 0
+  originatingApp: originatingApp
+  OEMTTxnRefNumber: TxnRefNumber
+  posApplicationId: "15668"
+  posApplicationName: XML Test Example
+  posApplicationVersion: "1.00"
+  customerReferenceNumber: "123456"
+  gatewayTransactionId: "486689252"
+  customerTicketNumber: "123456"
+  authCode: authorization code
+  authDate: 20160120
+  cashback: 0
+  clientIp: Client IP address
+  company: "company1"
+  currency: USD
+  fundingCurrency: USD
+  cvvStatus: notPresent
+  description: description1
+  discount: 0
+  duty: 0
+  email: john.johnson@example.com
+  swiped: 1
+  entryMode: 1
+  fee: 0
+  first: John
+  last: Doe
+  merchant: t1_mer_64415e89a919c1566a2b49b
+  mid: "4445061378323"
+  middle: M
+  order: orderId
+  pin: 0
+  reserved: 0
+  shipping: 0
+  signature: 0
+  tax: 0
+  terminal: identifier of terminal
+  terminalCapability: 1
+  total: 8000
+  unattended: 0
+  status: 1
+  address1: "address1"
+  address2: "address2"
+  city: "city1"
+  state: AB
+  zip: ZIP code
+  country: CAN
+  phone: "9999888888"
+  inactive: 0
+  frozen: 0

@@ -1,0 +1,25 @@
+value:
+  "response": {
+    "data": [
+        {
+       "id": "t1_hth_0000fc11df8e4c00000e00c",
+              "created": "2025-01-31 08:42:16.7318",
+              "modified": "2025-01-31 08:42:16.7318",
+              "creator": "t1_log_123e1cbf1bcfe0d606bd000",
+              "modifier": "t1_log_123e1cbf1bcfe0d606bd000",
+              "host": "t1_hos_183a5d17e3c997f1ba0683f",
+              "primaryColor": "#FF0000",
+              "default": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

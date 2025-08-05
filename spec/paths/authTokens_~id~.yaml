@@ -1,0 +1,125 @@
+get:
+  description: Query an AuthToken, an AuthToken resource is an additional layer of
+    authentication security and tracking for Apikeys and Sessions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Authentication Token ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_atk_67d4721def0c98ba2f417bz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/authTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/authTokensModel200Response.yaml
+      description: The response for retrieve authentication token response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Authentication Token by it's ID.
+  tags:
+  - Authentication Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAuthTokensId
+put:
+  description: Update an AuthToken to add an additional layer of authentication security
+    and tracking for Apikeys and Sessions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Authentication Token ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_atk_67d4721def0c98ba2f417bz
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/authTokensPutRequestModel.yaml
+    description: Update Authentication Token Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update authTokens:
+              $ref: ../components/schemas/samples/authTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/authTokensModel200Response.yaml
+      description: Response for update on authTokens resource Update Authentication
+        Token Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Authentication Token by it's ID.
+  tags:
+  - Authentication Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putAuthTokensId
+delete:
+  description: Delete an AuthToken, which is an additional layer of authentication
+    security and tracking for Apikeys and Sessions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Authentication Token ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_atk_67d4721def0c98ba2f417bz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete authTokens:
+              $ref: ../components/schemas/samples/authTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/authTokensModel200Response.yaml
+      description: Response for deleting an Authentication Token.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Authentication Token by it's ID.
+  tags:
+  - Authentication Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAuthTokensId

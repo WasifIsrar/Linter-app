@@ -1,0 +1,34 @@
+get:
+  description: "Query a Change Request. \nChangeRequests is a resource that manages\
+    \ changes to a certain resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all changeRequests:
+              $ref: ../components/schemas/samples/changeRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/changeRequestsModel200Response.yaml
+      description: Response for query on changeRequests resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all changeRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Change Requests
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChangeRequests

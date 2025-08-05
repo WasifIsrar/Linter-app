@@ -1,0 +1,38 @@
+get:
+  description: "Query a Refund."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_rfd_67b3a4c7a86e243a0911234
+    required: true
+    schema:
+      type: string
+      description: The Refund ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            fetch all refunds:
+              $ref: ../components/schemas/samples/txnRefundsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/refundsModel200Response.yaml
+      description: Retrieve a Fee Refund Response for query on refunds resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all refunds:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Fee Refund by it's ID.
+  tags:
+  - Fee Refunds
+  - Facilitator
+  - Partner
+  operationId: getRefundsId

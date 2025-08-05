@@ -1,0 +1,93 @@
+get:
+  description: "Query a Hosts resource. \nA Host represents a particular host on the\
+    \ network that runs the API and portal for a particular Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/hostsModel200Response.yaml
+      description: Response for query on hosts resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Hosts
+  - Facilitator
+  operationId: getHostsId
+put:
+  description: "Update a Hosts resource. \nA Host represents a particular host on\
+    \ the network that runs the API and portal for a particular Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/hostsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/hostsModel200Response.yaml
+      description: Response for update on hosts resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Hosts
+  - Facilitator
+  operationId: putHostsId
+delete:
+  description: "Delete a Hosts resource. \nA Host represents a particular host on\
+    \ the network that runs the API and portal for a particular Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/hostsModel200Response.yaml
+      description: Response for delete on hosts resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Hosts
+  - Facilitator
+  operationId: deleteHostsId

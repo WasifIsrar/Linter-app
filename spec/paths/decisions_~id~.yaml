@@ -1,0 +1,124 @@
+get:
+  description: Query a Decision's resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_dcs_67ddb8ad653487caf88cc00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/decisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionsModel200Response.yaml
+      description: Retrieve Decision Response for query on decisions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Decision by it's ID.
+  tags:
+  - Decisions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDecisionsId
+put:
+  description: Update a Decisions resource, which represents the schedule and rules
+    for a check done on Transactions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_dcs_67ddb8ad653487caf88cc00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/decisionsPutRequestModel.yaml
+    description: Update Decision Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update decisions:
+              $ref: ../components/schemas/samples/decisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionsModel200Response.yaml
+      description: Response for update on decisions resource Update Decision Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Decision by it's ID.
+  tags:
+  - Decisions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putDecisionsId
+delete:
+  description: Delete a Decision's resource, which represents the schedule and rules
+    for a check done on Transactions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Decision ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_dcs_67ddb8ad653487caf88cc00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete decisions:
+              $ref: ../components/schemas/samples/decisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionsModel200Response.yaml
+      description: The response for delete on decisions resource is Delete Decision
+        Action Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Decision by it's ID.
+  tags:
+  - Decisions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteDecisionsId

@@ -1,0 +1,30 @@
+title: revShareStatmentsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  revShareSchedule:
+    type: string
+    description: The RevShareSchedule object defines specific income sharing rules.
+  entity:
+    type: string
+    description: The Entities object which is collecting the money.
+  forentity:
+    type: string
+    description: The Entities object which is paying the money.
+  billing:
+    type: string
+    description: The billing date of rev share statement. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  revenueShare:
+    type: number
+    format: double
+    description: The cost to the partner for rev share enabled items, This field is specified in cents(up to three decimal points)

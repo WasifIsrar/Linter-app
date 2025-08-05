@@ -1,0 +1,20 @@
+title: payoutFlowTrigger
+type: string
+description: |
+  The event on the Org or Entity that should trigger the creation of an associated Payout resource.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `accountCreate` - **Primary payment account creation.** (primary must be 1)
+  - `board` - **Merchant boarding.**
+
+  </details>
+enum:
+- accountCreate
+- board
+x-enum-elements:
+- name: AccountCreate
+  description: Primary payment account creation. (primary must be 1).
+- name: Board
+  description: Merchant boarding.

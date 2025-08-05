@@ -1,0 +1,37 @@
+value:
+  {
+  "response": {
+      "data": [
+            {
+              "id": "t1_itm_67b48390abd89e15be2d000",
+              "created": "2025-02-18 07:56:48.7124",
+              "modified": "2025-02-18 07:56:48.7124",
+              "creator": "t1_log_5f49777509d5d1d7c22e000",
+              "modifier": "t1_log_5f49777509d5d1d7c22e000",
+              "txn": "t1_txn_67b483904b280af5311234a",
+              "item": "Line Item 21",
+              "description": "A description of this Item",
+              "custom": "Identifier",
+              "quantity": 1,
+              "price": 471,
+              "inactive": 0,
+              "frozen": 0,
+              "um": "EACH",
+              "commodityCode": "9717123",
+              "total": 471,
+              "discount": 0,
+              "productCode": "Prorated Tenant Protection Fee"
+            }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+           }
+       },
+      "errors": []
+    }
+}

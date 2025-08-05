@@ -1,0 +1,82 @@
+description: A request body for creating new bank account information for one or more
+  entities.
+title: accountsPostRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this Account.
+  account:
+    type: object
+    description: An object representing details of the Account, including the type
+      of Account (method), Account number, and routing code.
+    title: accountsAccount
+    properties:
+      method:
+         $ref: ../enums/accountMethodModel.yaml
+      number:
+        type: string
+        description: The number of the bank account.
+      routing:
+        type: string
+        description: The routing number of the bank account. This field is stored
+          as a text string and must be between 5 and 20 characters long.
+  name:
+    type: string
+    description: "A client-supplied name for this bank account. \nThis field is stored\
+      \ as a string and must be between 0 and 100 characters long."
+    default: ""
+  description:
+    type: string
+    description: "A client-supplied description for this bank account. \nThis field\
+      \ is stored as a string and must be between 0 and 100 characters long."
+    default: ""
+  primary:
+    $ref: ../enums/accountPrimaryModel.yaml
+    default: 0
+  type:
+    $ref: ../enums/accountTypeModel.yaml
+  status:
+    $ref: ../enums/accountStatusModel.yaml
+  expiration:
+    type: string
+    description: The expiration date of the related debit account. The date is
+      specified as a four-digit string in MMYY format, for example, `0118` for January
+      2018.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of this Account. The default is `USD`. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  publicToken:
+    type: string
+    description: The token received from the Plaid account connection process.
+  mask:
+    type: string
+    description: The account number mask, showing the last four digits of the account
+      number.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- account
+- currency
+- entity
+- primary
+- status
+- type
+example:
+  entity: 't1_ent_5a1pf5a1234531155a12345'
+  primary: 1
+  name: Bank Account Name
+  description: Bank account description
+  account:
+    method: 8
+    routing: '1'
+    number: '2'
+  currency: USD
+  type: all
+  status: 1
+  expiration: '0118'
+  publicToken: public-test-a12eeba1-1234-4567-af1g-d80cc1bfd713
+  mask: '2345'
+  inactive: 0
+  frozen: 0

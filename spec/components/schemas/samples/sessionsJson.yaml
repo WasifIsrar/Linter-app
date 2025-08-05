@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "p1_ssn_00c73b181e33818d7c0a13a",
+        "created": "2025-03-04 12:40:40.1366",
+        "modified": "2025-03-04 12:40:40.1366",
+        "creator": "p1_log_00a4d56d1b5c98e8694ae28",
+        "modifier": "p1_log_00a4d56d1b5c98e8694ae28",
+        "login": "p1_log_00a4d56d1b5c98e8694ae28",
+        "key": "c00a5aafb5dd5352dc1fd656f4a4252c",
+        "public": 1,
+        "inactive": 0,
+        "frozen": 0,
+        "token": 0,
+        "sso": 0,
+        "mfaAuthenticated": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

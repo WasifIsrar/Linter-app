@@ -1,0 +1,127 @@
+get:
+  description: Query a Plan that represents a recurring type of payment that charges
+    a certain amount on a weekly, monthly, quarterly, or annual basis, once created,
+    allowing association with a Subscription and user.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this plan.
+    explode: false
+    in: path
+    name: id
+    example: p1_pln_00bdbe193c3abe3b2243695
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch plan:
+              $ref: ../components/schemas/samples/plansJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/plansModel200Response.yaml
+      description: Response for retrieving plan response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Plan by it's ID.
+  tags:
+  - Plans
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPlansId
+put:
+  description: Update a Plan that represents a recurring type of payment that charges
+    a certain amount on a weekly, monthly, quarterly, or annual basis, once created,
+    allowing association with a Subscription and user.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this plan.
+    explode: false
+    in: path
+    name: id
+    example: p1_pln_00bdbe193c3abe3b2243695
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/plansPutRequestModel.yaml
+    description: Update plan Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update plan:
+              $ref: ../components/schemas/samples/plansJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/plansModel200Response.yaml
+      description: Response for update on plan's response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Plan by it's ID.
+  tags:
+  - Plans
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putPlansId
+delete:
+  description: Delete a Plan that represents a recurring type of payment that charges
+    a certain amount on a weekly, monthly, quarterly, or annual basis, once created,
+    allowing association with a Subscription and user.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this plan.
+    explode: false
+    in: path
+    name: id
+    example: p1_pln_00bdbe193c3abe3b2243695
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete plan:
+              $ref: ../components/schemas/samples/plansJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/plansModel200Response.yaml
+      description: Response for deleted plan.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Plan by it's ID.
+  tags:
+  - Plans
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deletePlansId

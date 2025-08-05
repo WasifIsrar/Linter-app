@@ -1,0 +1,112 @@
+title: configurationIntegration
+type: string
+description: |
+  The integration associated with this configuration resource.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `ACH` - **ACH integration.**
+  - `APPLE` - **APPLE integration.**
+  - `ELAVON` - **ELAVON integration.**
+  - `FEDACH` - **FEDACH integration.**
+  - `FIRSTDATA` - **FIRSTDATA integration.**
+  - `LEGITSCRIPT` - **LEGITSCRIPT integration.**
+  - `NEUTRINO` - **NEUTRINO integration.**
+  - `OFAC` - **OFAC integration.**
+  - `OMNITOKEN` - **OMNITOKEN integration.**
+  - `PAYRIX` - **PAYRIX integration.**
+  - `PLAID` - **PLAID integration.**
+  - `PUSHY` - **PUSHY integration.**
+  - `SAFERPAYMENT` - **SAFERPAYMENT integration.**
+  - `SIFT` - **SIFT integration.**
+  - `SOCURE` - **SOCURE integration.**
+  - `SOUNDPAYMENTS` - **SOUNDPAYMENTS integration.**
+  - `TDBANK` - **TDBANK integration.**
+  - `TDBANKCA` - **TDBANKCA integration.**
+  - `VANTIV` - **VANTIV integration.**
+  - `VCORE` - **VCORE integration.**
+  - `WEBSHIELD` - **WEBSHIELD integration.**
+  - `WELLSACH` - **WELLSACH integration.**
+  - `WELLSFARGO` - **WELLSFARGO integration.**
+  - `WFSINGLE` - **WFSINGLE integration.**
+  - `WORLDPAY` - **WORLDPAY integration.**
+
+  </details>
+enum:
+- ACH
+- APPLE
+- ELAVON
+- FEDACH
+- FIRSTDATA
+- LEGITSCRIPT
+- NEUTRINO
+- OFAC
+- OMNITOKEN
+- PAYRIX
+- PLAID
+- PUSHY
+- SAFERPAYMENT
+- SIFT
+- SOCURE
+- SOUNDPAYMENTS
+- TDBANK
+- TDBANKCA
+- VANTIV
+- VCORE
+- WEBSHIELD
+- WELLSACH
+- WELLSFARGO
+- WFSINGLE
+- WORLDPAY
+x-enum-elements:
+- name: ACH
+  description: ACH integration.
+- name: APPLE
+  description: APPLE integration.
+- name: ELAVON
+  description: ELAVON integration.
+- name: FEDACH
+  description: FEDACH integration.
+- name: FIRSTDATA
+  description: FIRSTDATA integration.
+- name: LEGITSCRIPT
+  description: LEGITSCRIPT integration.
+- name: NEUTRINO
+  description: NEUTRINO integration.
+- name: OFAC
+  description: OFAC integration.
+- name: OMNITOKEN
+  description: OMNITOKEN integration.
+- name: PAYRIX
+  description: PAYRIX integration.
+- name: PLAID
+  description: PLAID integration.
+- name: PUSHY
+  description: PUSHY integration.
+- name: SAFERPAYMENT
+  description: SAFERPAYMENT integration.
+- name: SIFT
+  description: SIFT integration.
+- name: SOCURE
+  description: SOCURE integration.
+- name: SOUNDPAYMENTS
+  description: SOUNDPAYMENTS integration.
+- name: TDBANK
+  description: TDBANK integration.
+- name: TDBANKCA
+  description: TDBANKCA integration.
+- name: VANTIV
+  description: VANTIV integration.
+- name: VCORE
+  description: VCORE integration.
+- name: WEBSHIELD
+  description: WEBSHIELD integration.
+- name: WELLSACH
+  description: WELLSACH integration.
+- name: WELLSFARGO
+  description: WELLSFARGO integration.
+- name: WFSINGLE
+  description: WFSINGLE integration.
+- name: WORLDPAY
+  description: WORLDPAY integration.

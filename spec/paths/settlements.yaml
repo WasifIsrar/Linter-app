@@ -1,0 +1,54 @@
+get:
+  description: "Query a StatementEntry resource. \nA Settlement represents a transfer\
+    \ of funds between a credit and debit account."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/settlementsModel200Response.yaml
+      description: Response for query on settlements resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Settlements
+  - Facilitator
+  operationId: getSettlements
+post:
+  description: "Create a Settlement resource. \nA Settlement represents a transfer\
+    \ of funds between a credit and debit account."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/settlementsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/settlementsModel200Response.yaml
+      description: Response for create on settlements resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Settlements
+  - Facilitator
+  operationId: postSettlements
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

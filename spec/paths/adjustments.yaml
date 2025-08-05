@@ -1,0 +1,66 @@
+get:
+  description: Query an Adjustment, which is a way to make monetary adjustments to
+    an entity's funds.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all adjustments:
+              $ref: ../components/schemas/samples/adjustmentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/adjustmentsModel200Response.yaml
+      description: Retrieve the Response for query on adjustments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all adjustments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Adjustments.
+  tags:
+  - Adjustments
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAdjustments
+post:
+  description: "Create an Adjustment. \nAn Adjustment is a way to make monetary adjustments\
+    \ to an entity's funds."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/adjustmentsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all adjustments:
+              $ref: ../components/schemas/samples/adjustmentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/adjustmentsModel200Response.yaml
+      description: Response for create on adjustments resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Adjustments
+  - Facilitator
+  operationId: postAdjustments
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

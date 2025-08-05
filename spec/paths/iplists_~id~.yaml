@@ -1,0 +1,127 @@
+get:
+  description: Query an iplist resource that represents a list of IP addresses stored
+    as a range between the lowest and highest IP addresses, which can be used to whitelist
+    or blacklist particular incoming IP addresses for a given Login.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The IP Address List ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ipl_67d42f7567ea0e8f1b43e0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/iplistsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/iplistsModel200Response.yaml
+      description: The response for query on iplists resource retrieves the IP Address
+        List.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an IP Address List by it's ID.
+  tags:
+  - IP Address Lists
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getIplistsId
+put:
+  description: _CONFLICT Update an iplist resource that represents a list of IP addresses
+    stored as a range between the lowest and highest IP addresses, which can be used
+    to whitelist or blacklist particular incoming IP addresses for a given Login.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The IP Address List ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ipl_67d42f7567ea0e8f1b43e0z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/iplistsPutRequestModel.yaml
+    description: Update IP Address List Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update iplists:
+              $ref: ../components/schemas/samples/iplistsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/iplistsModel200Response.yaml
+      description: Response for update on IPLists resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an IP Address List by it's ID.
+  tags:
+  - IP Address Lists
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putIplistsId
+delete:
+  description: Delete an IP lists resource that represents a list of IP addresses,
+    stored as a range between the lowest and highest IP addresses that should be included.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The IP Address List ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ipl_67d42f7567ea0e8f1b43e0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete iplists:
+              $ref: ../components/schemas/samples/iplistsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/iplistsModel200Response.yaml
+      description: Delete IP Address List Response for deleting an IPLIST resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an IP Address List by it's ID.
+  tags:
+  - IP Address Lists
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteIplistsId

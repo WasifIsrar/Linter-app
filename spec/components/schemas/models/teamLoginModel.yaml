@@ -1,0 +1,121 @@
+title: teamLoginResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  team:
+    type: string
+    description: The identifier of the Team resource that the Login identified in
+      the 'login' field should be marked as part of.
+  create:
+    type: integer
+    description: |
+      Create rights for this Login on this Team.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **None**
+      - `1` - **Allow**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: None
+      description: No create rights.
+    - name: Allow
+      description: Create rights are allowed.
+  read:
+    $ref: ../enums/teamLoginReadModel.yaml
+  update:
+    type: integer
+    description: |
+      Update rights for this Login on this Team.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **None**
+      - `1` - **Allow**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: None
+      description: No update rights.
+    - name: Allow
+      description: Update rights are allowed.
+  delete:
+    type: integer
+    description: |
+      Delete rights for this Login on this Team.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **None**
+      - `1` - **Allow**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: None
+      description: No delete rights.
+    - name: Allow
+      description: Delete rights are allowed.
+  reference:
+    type: integer
+    description: |
+      Reference use rights for this Login on this Team.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **None**
+      - `1` - **Allow**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: None
+      description: No reference rights.
+    - name: Allow
+      description: Reference rights are allowed.
+  teamAdmin:
+    type: integer
+    description: |
+      Team administration rights for this Login on this Team.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **None**
+      - `1` - **Allow**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: None
+      description: No team administration rights.
+    - name: Allow
+      description: Team administration rights are allowed.

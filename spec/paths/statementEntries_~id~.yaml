@@ -1,0 +1,121 @@
+get:
+  description: Query a StatementEntry resource. A StatementEntry resource represents
+    a record of funds owed for a billing schedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this statement entry.
+    explode: false
+    in: path
+    name: id
+    example: t1_ste_67a18bcde1a1b2ec3d9c9az
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/statementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementEntriesModel200Response.yaml
+      description: Retrieve the Response for the query on the Statement Entries resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Statement Entry by it's ID.
+  tags:
+  - Statement Entry
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getStatementEntriesId
+put:
+  description: "Query a StatementEntry resource. \nA StatementEntry resource represents\
+    \ a record of funds owed for a billing schedule. \nFor example, this could be\
+    \ a scheduled weekly or monthly fee, or an event-based activity such as a capture\
+    \ or payout fee."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ste_67a18bcde1a1b2ec3d9c9az
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/statementEntriesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update statementEntries:
+              $ref: ../components/schemas/samples/statementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementEntriesModel200Response.yaml
+      description: Response for update on statementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Statement Entry
+  - Facilitator
+  operationId: putStatementEntriesId
+delete:
+  description: "Query a StatementEntry resource. \nA StatementEntry resource represents\
+    \ a record of funds owed for a billing schedule. \nFor example, this could be\
+    \ a scheduled weekly or monthly fee, or an event-based activity such as a capture\
+    \ or payout fee."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ste_67a18bcde1a1b2ec3d9c9az
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete statementEntries:
+              $ref: ../components/schemas/samples/statementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementEntriesModel200Response.yaml
+      description: Response for delete on statementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statementEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Statement Entry
+  - Facilitator
+  operationId: deleteStatementEntriesId

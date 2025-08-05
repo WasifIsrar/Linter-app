@@ -1,0 +1,59 @@
+title: itemsPutRequest
+properties:
+  item: 
+    type: string 
+    description: This is item resource.
+  description:
+    type: string
+    description: "A description of this Item. \nThis field is stored as\
+        \ a text string and must be between 0 and 500 characters long."
+  custom:
+    type: string
+    description: "A custom identifier for this line Item. \nThis field is\
+        \ stored as a text string and must be between 0 and 500 characters\
+        \ long."
+  quantity:
+    type: integer
+    description: "The quantity of this Item included in the Transaction.\
+        \ \nThis field is specified as an integer."
+  price:
+    type: integer
+    description: "The amount charged for this Item. \nThis field is specified\
+        \ as an integer in cents."
+  um:
+    type: string
+    description: "The unit of measure for this Item. \nThis field is stored\
+        \ as a text string and must be between 0 and 100 characters long.\
+        \ \nExamples of units of measure may be: each, kilogram, pound, month."
+  total:
+    type: integer
+    description: "The total price for the line item. \nThis field is specified\
+        \ as an integer in cents."
+  commodityCode:
+    type: string
+    description: "The commodity code for this Item. \nThis field is stored\
+        \ as a text string and must be between 0 and 12 characters long."
+  productCode:
+    type: string
+    description: "The product code for this Item such as: UPC, catalog number,\
+        \ or inventory number. \nThis field is stored as a text string and\
+        \ must be between 0 and 100 characters long."
+  discount:
+    type: integer
+    description: "The discount for the line item. \nThis field is specified\
+        \ as an integer in cents."
+  inactive: { $ref: ../inactive.yaml }
+  frozen: { $ref: ../frozen.yaml }
+example:
+  item: Line Item 21
+  description: A description of Item
+  custom: Identifier
+  quantity: 1
+  price: 471
+  um: EACH
+  total: 471
+  commodityCode: '9717123'
+  discount: 0
+  productCode: Prorated Tenant Protection Fee
+  inactive: 0
+  frozen: 0

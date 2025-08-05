@@ -1,0 +1,127 @@
+get:
+  description: Query a teamLogins or Team Login resource that represents the link
+    between a Login and a Team as well as the Login's rights on the Team, where the
+    Login resource identified in its 'login' field is considered part of the Team.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this team login.
+    explode: false
+    in: path
+    name: id
+    example: t1_tel_6802c54d22f16393d4be00z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all teamLogins:
+              $ref: ../components/schemas/samples/teamLoginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/teamLoginModel200Response.yaml
+      description: Retrieve the Response for the query on the Team Logins resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all teamLogins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Team Login by it's ID.
+  tags:
+  - Team Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTeamLoginsId
+put:
+  description: Update a teamLogins or Team Login resource, representing the link between
+    a Login and a Team as well as the Login's rights on the Team, where the Login
+    resource identified in its 'login' field is considered part of the Team.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this team's login.
+    explode: false
+    in: path
+    name: id
+    example: t1_tel_6802c54d22f16393d4be00z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/teamLoginPutRequestModel.yaml
+    description: Update Team Login Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update teamLogins:
+              $ref: ../components/schemas/samples/teamLoginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/teamLoginModel200Response.yaml
+      description: Response for update on Team Login Update Team Login Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all teamLogins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Team Login by it's ID.
+  tags:
+  - Team Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putTeamLoginsId
+delete:
+  description: Delete a Team Login, which represents the link between a Login and
+    a Team as well as the Login's rights on the Team, where the Login resource identified
+    in its 'login' field is considered part of the Team.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this team login.
+    explode: false
+    in: path
+    name: id
+    example: t1_tel_6802c54d22f16393d4be00z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete teamLogins:
+              $ref: ../components/schemas/samples/teamLoginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/teamLoginModel200Response.yaml
+      description: Response for Delete Team Login Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all teamLogins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Team Login by it's ID.
+  tags:
+  - Team Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteTeamLoginsId

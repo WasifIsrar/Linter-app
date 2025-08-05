@@ -1,0 +1,56 @@
+title: platform
+type: string
+description: |
+  The platform used to process this resource.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `APPLE` - **The Apple Payment Processor.**
+  - `ELAVON` - **The Elavon processor.**
+  - `FIRSTDATA` - **The FirstData processor.**
+  - `GOOGLE` - **The Google Payment Processor.**
+  - `VANTIV` - **The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**
+  - `VCORE` - **The WorldPay (aka Vantiv) Core processor.**
+  - `TDBANKCA` - **External funding with TD Bank Canada via the Operating Account.**
+  - `WELLSACH` - **The Wells Fargo ACH processor.**
+  - `WELLSFARGO` - **The Wells Fargo Merchant Services processor.**
+  - `WFSINGLE` - **The WFSINGLE processor.**
+  - `WORLDPAY` - **The WORLDPAY processor.**
+
+  </details>
+enum:
+- APPLE
+- ELAVON
+- FIRSTDATA
+- GOOGLE
+- VANTIV
+- VCORE
+- TDBANKCA
+- WELLSACH
+- WELLSFARGO
+- WFSINGLE
+- WORLDPAY
+x-enum-elements:
+- name: Apple
+  description: The Apple Payment Processor.
+- name: Elavon
+  description: The Elavon processor.
+- name: FirstData
+  description: The FirstData processor.
+- name: Google
+  description: The Google Payment Processor.
+- name: Vantiv
+  description: The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.
+- name: VCore
+  description: The WorldPay (aka Vantiv) Core processor.
+- name: TdBankCa
+  description: External funding with TD Bank Canada via the Operating Account.
+- name: WellsAch
+  description: The Wells Fargo ACH processor.
+- name: WellsFargo
+  description: The Wells Fargo Merchant Services processor.
+- name: WfSingle
+  description: The WFSINGLE processor.
+- name: WorldPay
+  description: The WORLDPAY processor.

@@ -1,0 +1,314 @@
+title: entitiesPutRequest
+properties:
+  clientIp:
+    type: string
+    description: The client IP address from which the Entity was created. Valid values
+      are any IPv4 or IPv6 address.
+  login:
+    type: string
+    description: The Login that owns this resource.
+  type:
+    $ref: ../enums/entityTypeModel.yaml
+  name:
+    type: string
+    description: "The name of this Entity. \nThis field is stored as a string string\
+      \ and must be between 1 and 100 characters long."
+  displayName:
+    type: string
+    description: "The display name of this Entity. \nThis field is stored as a string\
+      \ and must be between 1 and 1,000 characters long."
+  address1:
+    type: string
+    description: "The first line of the address associated with this Entity. \nThis\
+      \ field is stored as a string and must be between 1 and 500 characters long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Entity. \nThis\
+      \ field is stored as a string and must be between 1 and 500 characters long."
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Entity.\
+      \ \nThis field is stored as a string and must be between 1 and 500 characters\
+      \ long."
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Entity. \nThis\
+      \ field is stored as a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../enums/entityCountryModel.yaml
+  timezone:
+    type: string
+    description: "The timezone for the address associated with the terminal's location.\
+      \ \n\n<details>\n<summary>Valid Values</summary> \n\n - `est` - **Eastern Standard\
+      \ Time**\n\n - `pst` - **Pacific Standard Time**\n\n - `cst` - **Central Standard\
+      \ Time**\n\n - `mst` - **Mountain Daylight Time**\n\n - `akst` - **Alaska Standard\
+      \ Time**\n\n - `hst` - **Hawaii Standard Time**\n\n - `sst` - **Samoa Standard\
+      \ Time**\n\n - `chst` - **Chamorro Standard Time**\n\n - `ast`  - **Atlantic\
+      \ Standard Time**\n\n - `pwt` - **Palau Time**\n\n - `mht` - **Marshall Islands\
+      \ Time**\n\n - `chut` - **Chuuk Time**\n\n - `nst` - **Newfoundland Standard\
+      \ Time**\n\n </details>\n"
+    enum:
+    - est
+    - cst
+    - pst
+    - mst
+    - akst
+    - hst
+    - sst
+    - chst
+    - ast
+    - pwt
+    - mht
+    - chut
+    - nst
+    x-enum-elements:
+    - name: "EST"
+      description: "Eastern Standard Time"
+    - name: "CST"
+      description: "Central Standard Time"
+    - name: "PST"
+      description: "Pacific Standard Time"
+    - name: "MST"
+      description: "Mountain Standard Time"
+    - name: "AKST"
+      description: "Alaska Standard Time"
+    - name: "HST"
+      description: "Hawaii Standard Time"
+    - name: "SST"
+      description: "Samoa Standard Time"
+    - name: "CHST"
+      description: "Chamorro Standard Time"
+    - name: "AST"
+      description: "Atlantic Standard Time"
+    - name: "PWT"
+      description: "Palau Time"
+    - name: "MHT"
+      description: "Marshall Islands Time"
+    - name: "CHUT"
+      description: "Chuuk Time"
+    - name: "NST"
+      description: "Newfoundland Standard Time"
+  phone:
+    type: string
+    description: "The phone number associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 5 and 15 characters long."
+  customerPhone:
+    type: string
+    description: "The customer service phone number associated with this Entity. For\
+      \ Merchants, this number will be displayed on the customer's credit card statement.\
+      \ \nThis field is stored as a text string and must be between 5 and 15 characters\
+      \ long."
+  fax:
+    type: string
+    description: "The fax number associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 5 and 15 characters long."
+  email:
+    type: string
+    description: "The email address associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 1 and 100 characters long."
+  website:
+    type: string
+    description: "The web site URL associated with this Entity. \nThis field is stored\
+      \ as a text string and must be between 0 and 500 characters long."
+  appleDomain:
+    type: string
+    description: "The web sites URL associated with this Entity. \nThis field is stored\
+      \ as a text string; must be between 0 and 1,000 characters long and separated\
+      \ by comma."
+  einType:
+    type: string
+    description: |
+      Indicates if the TIN being used is an EIN, SSN, or other/unknown number.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `ssn` - **Social Security Number.**
+      - `tin` - **Employer Identification Number.**
+      - `other` - **Other/Unknown TIN.**
+
+      </details>
+    enum:
+    - ssn
+    - tin
+    - other
+    x-enum-elements:
+    - name: SSN
+      description: Social Security Number.
+    - name: TIN
+      description: Employer Identification Number.
+    - name: Other
+      description: Other/Unknown TIN.
+  irsFilingName:
+    type: string
+    description: The IRS Legal Filing Name. This must match what has been provided
+      to the IRS when filing taxes.
+  ein:
+    type: string
+    description: "The IRS Employer Identification Number (EIN) for the Entity. \n\
+      This field is stored as an integer and must be 9 characters long."
+  locations:
+    type: integer
+    description: "The number of locations at which this Entity does business. \nThis\
+      \ field is stored as an integer and must be between 1 and 1,000,000 characters\
+      \ long."
+  public:
+    $ref: ../enums/entitiesPublicModel.yaml
+  tcVersion:
+    type: string
+    description: "An indicator showing the version of the terms and conditions that\
+      \ this Entity has accepted. The API indicates the version as a string. \nThis\
+      \ field is stored as a text string and must be between 0 and 20 characters long."
+  tcAcceptDate:
+    type: string
+    description: "Date and time on which this Entity accepted the Terms and Conditions,\
+      \ if different than `tcDate`. \nThe date is specified as a 12-digit string in\
+      \ YYYYMMDDHHII format, for example, `201601201528` for January 20, 2016, at\
+      \ 15:28 (3:28 PM)."
+  tcAcceptIp:
+    type: string
+    description: IP address from which this Entity accepted the Terms and Conditions,
+      if different than `tcIp`.
+  custom:
+    type: string
+    description: Custom, free-form field for client-supplied text; must be between
+      0 and 1,000 characters long.
+  payoutSecondaryDescriptor:
+    type: string
+    description: The secondary billing descriptor to appear on the bank statements
+      for funds transfer for the entity.
+  industry:
+    type: string
+    description: This field is stored as a text string and must be between 0 and 1,000
+      characters long.
+  globalBusinessType:
+    type: string
+    description: |
+      The business registration type for the entity
+
+      <details>
+      <summary>Valid Values for country USA</summary>
+
+      - `ssn` - **Social Security Number.**
+      - `tin` - **Employer Identification Number.**
+      - `other` - **Other/Unknown TIN.**
+      </details>
+      <details>
+      <summary>Valid Values for country Canada</summary>
+
+      - `CD` - **Federal**
+      - `AB` - **Alberta**
+      - `BC` - **British Columbia**
+      - `MB` - **Manitoba**
+      - `NB` - **New Brunswick**
+      - `NL` - **Newfoundland and Labrador**
+      - `NT` - **Northwest Territories**
+      - `NS` - **Nova Scotia**
+      - `NU` - **Nunavut**
+      - `ON` - **Ontario**
+      - `PE` - **Prince Edward Island**
+      - `QC` - **Quebec**
+      - `SK` - **Saskatchewan**
+      - `YT` - **Yukon**
+
+      </details>
+    enum:
+    - ssn
+    - tin
+    - other
+    - CD
+    - AB
+    - BC
+    - MB
+    - NB
+    - NL
+    - NT
+    - NS
+    - NU
+    - ON
+    - PE
+    - QC
+    - SK
+    - YT
+    x-enum-elements:
+    - name: SSN
+      description: Social Security Number.
+    - name: TIN
+      description: Employer Identification Number.
+    - name: Other
+      description: Other/Unknown TIN.
+    - name: CD
+      description: Federal
+    - name: AB
+      description: Alberta
+    - name: BC
+      description: British Columbia
+    - name: MB
+      description: Manitoba
+    - name: NB
+      description: New Brunswick
+    - name: NL
+      description: Newfoundland and Labrador
+    - name: NT
+      description: Northwest Territories
+    - name: NS
+      description: Nova Scotia
+    - name: NU
+      description: Nunavut
+    - name: ON
+      description: Ontario
+    - name: PE
+      description: Prince Edward Island
+    - name: QC
+      description: Quebec
+    - name: SK
+      description: Saskatchewan
+    - name: YT
+      description: Yukon
+  globalBusinessId:
+    type: string
+    description: "The business registration number for the entity. \nThis field is\
+      \ stored as an alphanumeric and must be between 9 to 10 characters long."
+  frozen:
+    $ref: ../frozen.yaml
+  inactive:
+    $ref: ../inactive.yaml
+example:
+  clientIp: 152.58.83.44
+  login: t1_log_6733015a79f48410904564b
+  type: 6
+  name: Splash LLC
+  address1: 1234 Rivver Lane
+  address2: San house Fremont
+  city: Frisco
+  state: TX
+  zip: 75034
+  country: USA
+  timezone: cst
+  phone: 995685662566
+  fax: 995685662566
+  email: rawatankit0911@gmail.com
+  website: http://payrix.com
+  ein: 678912345
+  tcVersion: 1.0
+  tcDate: 2024-11-12 02:18:50
+  tcIp: 134.238.16.164
+  tcAcceptDate: 202204281403
+  tcAcceptIp: 162.250.123.158
+  custom: voluptatibus et accusamus
+  inactive: 0
+  frozen: 0
+  tinStatus: 0
+  public: 1
+  customerPhone: 995685662566
+  locations: 1
+  industry: Residential Painting
+  displayName: John
+  payoutSecondaryDescriptor: Apex Leadership
+  einType: ssn
+  irsFilingName: Integration Test 2025-02-21T09:12:15.332
+  currency: USD
+  globalBusinessId: 678912345
+  globalBusinessType: ssn

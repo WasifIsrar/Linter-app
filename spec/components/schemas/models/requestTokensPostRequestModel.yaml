@@ -1,0 +1,20 @@
+title: requestTokensPostRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this requestToken.
+  token:
+    type: string
+    description: "The token for the current request. \nThis field is stored as a text\
+      \ string and must be between 0 and 100 characters long."
+  resource:
+    $ref: ../enums/resourceModel.yaml
+  resourceId:
+    type: string
+    description: The identifier of the record created/updated in the original request.
+required:
+- login
+- resource
+- resourceId
+- token
+

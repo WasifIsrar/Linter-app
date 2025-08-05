@@ -1,0 +1,27 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tkr_681b008f046d4ddae223z00",
+        "created": "2025-05-07 02:41:19.0389",
+        "modified": "2025-05-07 02:41:19.0389",
+        "creator": "t1_log_632c5bf8960c660a1750a4a",
+        "modifier": "t1_log_632c5bf8960c660a1750a4a",
+        "txn": "t1_txn_681b008de0ea2d51f42f8db",
+        "token": "t1_tok_67f4f42185959a15661d9e4",
+        "merchant": "t1_mer_6389ff3793d00800340d742",
+        "code": "omnitokenUsage",
+        "omnitoken": "5454547474830000"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

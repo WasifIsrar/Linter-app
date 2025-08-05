@@ -1,0 +1,124 @@
+get:
+  description: Query a Login. A Login is a user of the API and has a unique username
+    and password.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Login ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_log_67c56806038bb4eb85a0000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/loginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsModel200Response.yaml
+      description: Retrieve the Response for the query on Logins resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Login by it's ID.
+  tags:
+  - Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getLoginsId
+put:
+  description: Update a Login, which is a user of the API having a unique username
+    and password.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Login ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_log_67c56806038bb4eb85a0000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/loginsPutRequestModel.yaml
+    description: Update Login Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update logins:
+              $ref: ../components/schemas/samples/loginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsModel200Response.yaml
+      description: Response for Update Login Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Login by it's ID.
+  tags:
+  - Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putLoginsId
+delete:
+  description: Delete a Login. A Login is a user of the API and has a unique username
+    and password.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Login ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_log_67c56806038bb4eb85a0000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete logins:
+              $ref: ../components/schemas/samples/loginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsModel200Response.yaml
+      description: Response for Delete Login Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all logins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Login by it's ID.
+  tags:
+  - Logins
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteLoginsId

@@ -1,0 +1,81 @@
+title: apiKeysPostRequest
+properties:
+  login:
+    type: string
+    description: The login under which to perform this action. If you do not supply
+      a login in this field, then the API defaults to the login that is currently
+      authenticated.
+    example: <p1_lgn_fgbsdfsdf>
+  name:
+    type: string
+    description: |-
+      The name for the key. An apikey may represent a private (secret) key code that is used internally (server-side) by the application authenticating to the API.
+
+       A private key should never be exposed to external/untrusted entities and should be immediately deactivated if compromised. All API resources and actions can be accessed/performed with a private apikey.
+    default: ""
+  description:
+    type: string
+    description: Description of ApiKeys.
+    default: ""
+  public:
+    title: apiKeyPublic
+    type: integer
+    description: "Whether this API key should have access to only public resources.\
+      \ \nAll other resources are private. <details> <summary>Valid Values</summary>\n\
+      \ - `0` - **The key can also access private resources.**\n - `1` - **The key\
+      \ can only access public resources.**\n </details>"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "PrivateAccess"
+      description: "Session can also access private resources."
+    - name: "PublicAccess"
+      description: "Session can only access public resources."
+  token:
+    type: integer
+    default: 0
+    description: |
+      Whether or not an AuthToken is required as part of the authentication when this Apikey is used.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **The authToken mechanism is disabled.**
+      - `1` - **The authToken mechanism is required for 'POST' and 'DELETE' requests.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: AuthTokenDisabled
+      description: The authToken mechanism is disabled.
+    - name: AuthTokenRequired
+      description: The authToken mechanism is required for POST and DELETE requests.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- login
+- public
+- token
+
+example:
+  id: t1_api_676a5353d67a6df2c47b198
+  created: '2024-12-24 01:23:15.8882'
+  modified: '2024-12-24 01:23:15.8882'
+  creator: t1_log_651fec1e202e349386ba321
+  modifier: t1_log_651fec1e202e349386ba321
+  login: t1_log_651fec1e202e349386ba321
+  key: f0d9fd14f9795590c01dd2c8083a35d7
+  name: api
+  description: API KEYS
+  public: 0
+  inactive: 0
+  frozen: 0
+  token: 0

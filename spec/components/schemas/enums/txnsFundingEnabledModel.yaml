@@ -1,0 +1,21 @@
+    title: txnsFundingEnabled
+    type: integer
+    description: |+
+      Whether or not funding is enabled for this Transaction.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled.**
+
+      - `1` - **Enabled.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Funding is disabled.
+    - name: Enabled
+      description: Funding is enabled.

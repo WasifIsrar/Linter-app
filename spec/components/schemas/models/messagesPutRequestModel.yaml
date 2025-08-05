@@ -1,0 +1,7 @@
+title: messagesPutRequest
+properties:
+  read:
+    $ref: ../enums/messagesReadModel.yaml
+
+example:
+  read: 1

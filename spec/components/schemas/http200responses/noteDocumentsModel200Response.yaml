@@ -1,0 +1,13 @@
+title: noteDocumentsResponseResult
+properties:
+  response:
+    title: noteDocumentsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/noteDocumentsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

@@ -1,0 +1,127 @@
+get:
+  description: Query an alertAction; An alertAction resource represents a particular
+    instance of an Alert that is sent out through one particular channel, for example,
+    SMS, mobile application notification, or email, each alertAction being associated
+    with an Alert resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Alert Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ala_67d0924f1919ec362341d00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/alertActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertActionsModel200Response.yaml
+      description: Retrieve Response for query on alertActions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Alert Action by it's ID.
+  tags:
+  - Alert Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAlertActionsId
+put:
+  description: Update an alertAction representing a particular instance of an Alert
+    that is sent out through one particular channel, for example, SMS, mobile application
+    notification, or email, each being associated with an Alert resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Alert Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ala_67d0924f1919ec362341d00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/alertActionsPutRequestModel.yaml
+    description: Update Alert Action Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update alertActions:
+              $ref: ../components/schemas/samples/alertActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertActionsModel200Response.yaml
+      description: Response for update on alertActions resource Update Alert Action
+        Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Alert Action by it's ID.
+  tags:
+  - Alert Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putAlertActionsId
+delete:
+  description: Delete an alertAction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Alert Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ala_67d0924f1919ec362341d00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete alertActions:
+              $ref: ../components/schemas/samples/alertActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertActionsModel200Response.yaml
+      description: Delete Alert Action Response for the alertActions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alertActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Alert Action by it's ID.
+  tags:
+  - Alert Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAlertActionsId

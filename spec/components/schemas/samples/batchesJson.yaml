@@ -1,0 +1,33 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_bth_67d91c7aa2aa3800cb2be00",
+        "created": "2025-03-18 03:10:50.6861",
+        "modified": "2025-03-18 03:10:50.6861",
+        "creator": "t1_log_632c5bf8960c660a1750a4a",
+        "modifier": "t1_log_632c5bf8960c660a1750a4a",
+        "merchant": "t1_mer_63341144b40742676bea201",
+        "date": "2025-03-18",
+        "platform": "VANTIV",
+        "status": "open",
+        "ref": "",
+        "clientRef": "",
+        "inactive": 0,
+        "frozen": 0,
+        "processingDate": "2025-03-18",
+        "processingId": "",
+        "closeTime": "2025-03-18 03:30:00"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,124 @@
+get:
+  description: Query an Org, which is a collection of Entities that you can associate
+    with by creating orgEntity resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and the Org ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_org_67cab1c56e1fd4f4c0a355z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/orgsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsModel200Response.yaml
+      description: Retrieve an Org Response for query on orgs resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Org by it's ID.
+  tags:
+  - Orgs
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getOrgsId
+put:
+  description: Update an Org, which is a collection of Entities that you can associate
+    with other entities by creating orgEntity resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and the Org ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_org_67cab1c56e1fd4f4c0a355z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsPutRequestModel.yaml
+    description: Update an Org Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update Orgs:
+              $ref: ../components/schemas/samples/orgsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsModel200Response.yaml
+      description: 'Response for update on orgs resource: Update an Org Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Org by it's ID.
+  tags:
+  - Orgs
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putOrgsId
+delete:
+  description: Delete an Organization, which is a collection of Entities that you
+    can associate with it by creating organization-entity resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Org ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_org_67cab1c56e1fd4f4c0a355z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete Orgs:
+              $ref: ../components/schemas/samples/orgsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsModel200Response.yaml
+      description: Response for deleting an org.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all Orgs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Org by it's ID.
+  tags:
+  - Orgs
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteOrgsId

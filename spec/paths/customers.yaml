@@ -1,0 +1,92 @@
+get:
+  description: Query customers. Each Customer record stores data about a particular
+    customer of a Merchant and can be used to associate payment data to the Customer
+    and for other API features.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/customersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/customersModel200Response.yaml
+      description: Retrieve Customers Response for query on customers resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Customers.
+  tags:
+  - Customers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getCustomers
+post:
+  description: Create a Customer record to store data about a particular customer
+    of a Merchant, and to associate payment data to the Customer and for other API
+    features.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/customersPostRequestModel.yaml
+    description: Create Customer Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/customersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/customersModel200Response.yaml
+      description: The response for creating a customer on the customers resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Customer
+  tags:
+  - Customers
+  - Merchant
+  - Facilitator
+  - Partner
+  x-examples:
+  - request:
+      first: Robert
+      last: Johnson
+      email: robert.johnson@example.com
+    response:
+      id: p1_cus_5a1ef5e55656e2484591e84
+      created: '2017-11-28T01:02:57Z'
+      modified: '2017-11-28T01:02:57Z'
+      creator: p1_log_5a1ef5e55653ed720159d53
+      modifier: p1_log_5a1ef5e55653ed720159d53
+      login: p1_log_5a1ef5e55653ed720159d53
+      first: Robert
+      last: Johnson
+      email: robert.johnson@example.com
+      inactive: 0
+      frozen: 0
+  operationId: postCustomers
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

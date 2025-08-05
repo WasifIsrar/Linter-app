@@ -1,0 +1,49 @@
+title: txnsPlatform
+type: string
+description: |
+  The platform used to process transactions.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `APPLE` - **The Apple Payment Processor (Deprecated).**
+  - `ELAVON` - **The Elavon processor (Deprecated).**
+  - `FIRSTDATA` - **The FirstData processor (Deprecated).**
+  - `GOOGLE` - **The Google Payment Processor (Deprecated).**
+  - `VANTIV` - **The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**
+  - `VCORE` - **The WorldPay (aka Vantiv) Core processor.**
+  - `WELLSACH` - **The Wells Fargo ACH processor.**
+  - `WELLSFARGO` - **The Wells Fargo Merchant Services processor (Deprecated).**
+  - `WFSINGLE` - **The WFSINGLE processor (Deprecated).**
+
+  </details>
+enum:
+- APPLE
+- ELAVON
+- FIRSTDATA
+- GOOGLE
+- VANTIV
+- VCORE
+- WELLSACH
+- WELLSFARGO
+- WFSINGLE
+x-enum-elements:
+- name: Apple
+  description: The Apple Payment Processor.
+- name: Elavon
+  description: The Elavon processor.
+- name: FirstData
+  description: The FirstData processor.
+- name: Google
+  description: The Google Payment Processor.
+- name: Vantiv
+  description: The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.
+- name: VCore
+  description: The WorldPay (aka Vantiv) Core processor.
+- name: WellsAch
+  description: The Wells Fargo ACH processor.
+- name: WellsFargo
+  description: The Wells Fargo Merchant Services processor.
+- name: WfSingle
+  description: The WFSINGLE processor.
+

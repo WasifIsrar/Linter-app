@@ -1,0 +1,81 @@
+get:
+  description: Query an iplist resource representing a list of IP addresses stored
+    as a range between the lowest and highest IP addresses that should be included,
+    which you can use to whitelist or blacklist particular incoming IP addresses for
+    a given Login.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/iplistsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/iplistsModel200Response.yaml
+      description: Response for query on iplists resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all IP Address Lists.
+  tags:
+  - IP Address Lists
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getIplists
+post:
+  description: "Create an iplists resource. An IP List represents a list of IP (Internet\
+    \ Protocol) addresses, stored as a range between the lowest and highest IP addresses\
+    \ that should be included. \nYou can use an IP List to whitelist (allow) or blacklist\
+    \ (deny) particular incoming IP addresses for a given Login. If you set up a whitelist\
+    \ for a Login, then the only allowed IP addresses are those in the whitelist,\
+    \ minus any blacklisted IP addresses. If you do not set up a whitelist for a Login,\
+    \ then all IP addresses are allowed, except for those explicitly blacklisted.\
+    \ \nYou can select whether to store IPv4 or IPv6 addresses in an IP list."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/iplistsPostRequestModel.yaml
+    description: Create IP Address List Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create iplists:
+              $ref: ../components/schemas/samples/iplistsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/iplistsModel200Response.yaml
+      description: Response for create on iplists resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all iplists:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new IP Address List.
+  tags:
+  - IP Address Lists
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postIplists
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,31 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_pmu_67c80c49a8274b15ad4dd0z",
+        "created": "2025-03-05 03:33:13.7279",
+        "modified": "2025-03-05 03:33:13.7279",
+        "creator": "t1_log_6760a3141b9bbb0c77f0000",
+        "modifier": "t1_log_6760a3141b9bbb0c77f0000",
+        "paymentUpdateGroup": "t1_pug_67c80c1f44bc3a7dcb1f000",
+        "status": "processed",
+        "token": "t1_tok_67c5809c7dfcff7ac57955z",
+        "account": t1_act_67aafff2c40a8cecf5cb000,
+        "platform": "VANTIV",
+        "ref": "12345678901234",
+        "clientRef": "04315629",
+        "message": "Account was closed",
+        "expiration": "1030"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

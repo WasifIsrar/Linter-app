@@ -1,0 +1,13 @@
+title: reportResultsResponseResult
+properties:
+  response:
+    title: reportResultsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/reportResultsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

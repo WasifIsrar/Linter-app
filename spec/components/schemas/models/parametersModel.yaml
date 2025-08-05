@@ -1,0 +1,1097 @@
+title: parametersResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  org:
+    type: string
+    description: The identifier of the Org resource that this Parameter resource is
+      associated with.
+  division:
+    type: string
+    description: The identifier of the Division resource that this Parameter resource
+      is associated with.
+  partition:
+    type: string
+    description: The identifier of the Partition resource that this Parameter resource
+      is associated with.
+  minTxnTotal:
+    type: integer
+    format: int64
+    description: "The minimum allowed Transaction total. \nThis field is specified\
+      \ as an integer in cents. \nThe default setting is to have no minimum total."
+  maxTxnTotal:
+    type: integer
+    format: int64
+    description: "The maximum allowed Transaction total. \nThis field is specified\
+      \ as an integer in cents. \nThe default setting is to have no maximum total."
+  maxTxnDailyTotal:
+    type: integer
+    format: int64
+    description: "The maximum allowed Transaction total in any single day. \nThis\
+      \ field is specified as an integer in cents. \nThe default setting is to have\
+      \ no maximum total."
+  maxTxnDailyNum:
+    type: integer
+    format: int64
+    description: The highest daily number of Sale, eCheck Sale and Capture transactions.
+  maxTxnMonthlyTotal:
+    type: integer
+    format: int64
+    description: "The maximum allowed Transaction total in any single month. \nThis\
+      \ field is specified as an integer in cents. \nThe default setting is to have\
+      \ no maximum total."
+  maxTxnMonthlyNum:
+    type: integer
+    format: int64
+    description: "The maximum allowed number of Transactions in any single month.\
+      \ \nThe default setting is to have no maximum total."
+  maxSubscriptionFailures:
+    type: integer
+    description: The highest amount of consecutive failures for a subscription payment
+      before it is automatically inactivated.
+  minPayoutCreditTotal:
+    type: integer
+    format: int64
+    description: "The minimum allowed Payout Credit total. \nThis field is specified\
+      \ as an integer in cents. \nThe default setting is 1 cent."
+  maxPayoutCreditTotal:
+    type: integer
+    format: int64
+    description: "The maximum allowed Payout Credit total. \nThis field is specified\
+      \ as an integer in cents. \nThe default setting is to have no maximum total."
+  minPayoutDebitTotal:
+    type: integer
+    format: int64
+    description: "The minimum allowed Payout Debit total. \nThis field is specified\
+      \ as a negative integer in cents. \nThe default setting is -1 cent."
+  maxPayoutDebitTotal:
+    type: integer
+    format: int64
+    description: "The maximum allowed Payout Debit total. \nThis field is specified\
+      \ as an integer in cents."
+  minAvailableFunds:
+    type: integer
+    format: int64
+    description: "The minimum available funds that the Payout's entity needs to have\
+      \ to payout. \nThis field is specified as an +/- integer in cents. \nThe default\
+      \ setting is null."
+  minStatementDebitPayoutDelay:
+    type: integer
+    format: int64
+    description: "The minimum allowed number of days to delay statement debit Payouts\
+      \ by. \nThe default setting is 5."
+  minFundsPayoutTotal:
+    type: integer
+    format: int64
+    description: "The minimum total debit allowed. \nThis field is specified as an\
+      \ integer in cents. \nThe default setting is 500."
+  minPayoutDelay:
+    type: integer
+    format: int64
+    description: "The minimum allowed number of days to delay Payouts by. \nThe default\
+      \ setting is 3."
+  minFirstPayoutDelay:
+    type: integer
+    format: int64
+    description: The minimum amount of days to delay processing of a requested payout
+      for the first payout to an entity.
+  payoutAdjustSubcents:
+    type: integer
+    description: |
+      Whether a payout will process sub-cents as an adjustment (defaults to no).
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No**
+      - `1` - **Yes**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: No
+      description: No adjustment for sub-cents.
+    - name: Yes
+      description: Sub-cents are processed as an adjustment.
+  payoutDelayIncludeOffDays:
+    type: integer
+    description: |
+      Whether the API should count weekends and holidays towards the number of days in the payout delay (defaults to no).
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No**
+      - `1` - **Yes**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: No
+      description: Weekends and holidays are not counted in the payout delay.
+    - name: Yes
+      description: Weekends and holidays are counted in the payout delay.
+  payoutIncludePending:
+    type: integer
+    description: |
+      Whether a payout will be processed if there's enough pending funds to cover the negative available.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **OFF**
+      - `1` - **ON**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Off
+      description: Payout is not processed with pending funds.
+    - name: On
+      description: Payout is processed with pending funds.
+  amexEnabled:
+    type: integer
+    description: |
+      Whether American Express processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: American Express processing is disabled
+    - name: Enabled
+      description: American Express processing is enabled
+  optBlueEnabled:
+    type: integer
+    description: |
+      Whether American Express OptBlue should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: American Express OptBlue is disabled
+    - name: Enabled
+      description: American Express OptBlue is enabled
+  discoverEnabled:
+    type: integer
+    description: |
+      Whether Discover processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Discover processing is disabled
+    - name: Enabled
+      description: Discover processing is enabled
+  discoverAcquiredEnabled:
+    type: integer
+    description: |
+      Whether a new Discover ID should be created.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: A new Discover ID is not created.
+    - name: Enabled
+      description: A new Discover ID is created.
+  mc3dsEnabled:
+    type: integer
+    description: |
+      Whether MasterCard 3DSecure processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: MasterCard 3DSecure processing is disabled.
+    - name: Enabled
+      description: MasterCard 3DSecure processing is enabled.
+  visa3dsEnabled:
+    type: integer
+    description: |
+      Whether Visa 3DSecure processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Visa 3DSecure processing is disabled
+    - name: Enabled
+      description: Visa 3DSecure processing is enabled
+  amex3dsEnabled:
+    type: integer
+    description: |
+      Whether Amex 3DSecure processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Amex 3DSecure processing is disabled.
+    - name: Enabled
+      description: Amex 3DSecure processing is enabled.
+  discover3dsEnabled:
+    type: integer
+    description: |
+      Whether Discover 3DSecure processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Discover 3DSecure processing is disabled.
+    - name: Enabled
+      description: Discover 3DSecure processing is enabled.
+  eCheckEnabled:
+    type: integer
+    description: |
+      Whether eCheck processing should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: eCheck processing is disabled.
+    - name: Enabled
+      description: eCheck processing is enabled.
+  fundingEnabled:
+    type: integer
+    description: |
+      Whether Payouts should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Payouts are disabled.
+    - name: Enabled
+      description: Payouts are enabled.
+  debtRepaymentEnabled:
+    type: integer
+    description: |
+      Whether debt repayment for transactions is enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Debt repayment is disabled.
+    - name: Enabled
+      description: Debt repayment is enabled.
+  verifyDisabled:
+    type: integer
+    description: |
+      Whether bank account verification requirements should be disabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Bank account verification requirements are not disabled.
+    - name: Enabled
+      description: Bank account verification requirements are disabled.
+  verifyForBoardingNotRequired:
+    type: integer
+    description: |
+      Whether the requirement to verify a Merchant's bank account before boarding should be disabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Verification for boarding is required.
+    - name: Enabled
+      description: Verification for boarding is not required.
+  verifyForPayoutNotRequired:
+    type: integer
+    description: |
+      Whether the requirement to verify a Merchant's bank account before making a Payout should be disabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Verification for Payout is required.
+    - name: Enabled
+      description: Verification for Payout is not required.
+  refundReleasesReserve:
+    type: integer
+    description: |
+      Whether a refund Transaction should cause any reserved funds in the related Transaction to be released.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **False**
+      - `1` - **True**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: False
+      description: Reserved funds are not released.
+    - name: True
+      description: Reserved funds are released.
+  vendorFeesEnabled:
+    type: integer
+    description: |
+      Whether third parties can charge fees. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Third parties cannot charge fees.
+    - name: Enabled
+      description: Third parties can charge fees.
+  vendorFeesExternal:
+    type: integer
+    description: |
+      Whether any third-party fees that are incurred are settled from an external account. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **False**
+      - `1` - **True**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: False
+      description: Third-party fees are not settled from an external account.
+    - name: True
+      description: Third-party fees are settled from an external account.
+  visaMisuseSettlement:
+    type: integer
+    description: "The number of days before an Auth Misuse fee should be charged on\
+      \ a VISA txn that has not settled. \nThe default setting is 10."
+  visaMisuseTravelAutoSettlement:
+    type: integer
+    description: "The number of days before an Auth Misuse fee should be charged on\
+      \ a VISA txn that has not settled. Applies only to merchants with a Travel &\
+      \ Entertainment mcc. \nThe default setting is 20."
+  visaMisuseCardPresentReversal:
+    type: integer
+    description: "The number of hours before an Auth Misuse fee should be charged\
+      \ on a card present VISA txn that wasn't reversed within the timeframe. \nThe\
+      \ default setting is 24."
+  visaMisuseCardNotPresentReversal:
+    type: integer
+    description: "The number of hours before an Auth Misuse fee should be charged\
+      \ on a card not present VISA txn that wasn't reversed within the timeframe.\
+      \ \nThe default setting is 168."
+  mcMisuseSettlement:
+    type: integer
+    description: "The number of days before an Auth Misuse fee should be charged on\
+      \ a MasterCard txn that has not settled. \nThe default setting is 120."
+  minEcheckCaptureDelay:
+    type: integer
+    description: Number of days after which to process (capture) eCheck sales. Will
+      delay the funding and fees until the specified days from date of creation.
+  minDebitProcessingDelay:
+    type: integer
+    description: "Minimum number of business days before a debit is processed and\
+      \ made available for funding. \nThe default setting is 5."
+  minBoardingOwnership:
+    type: integer
+    description: "Minimum required total ownership of members for boarding. \nThe\
+      \ default setting is '0'."
+  boardingExemptionsDisabled:
+    type: integer
+    description: |
+      Whether FinCen boarding exemptions should be disabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: FinCen boarding exemptions are not disabled.
+    - name: Enabled
+      description: FinCen boarding exemptions are disabled.
+  mcMisuseCardPresentReversal:
+    type: integer
+    description: "The number of hours before an Auth Misuse fee should be charged\
+      \ on a card present MasterCard txn that wasn't reversed within the timeframe.\
+      \ \nThe default setting is 24."
+  mcMisuseCardNotPresentReversal:
+    type: integer
+    description: "The number of hours before an Auth Misuse fee should be charged\
+      \ on a card not present MasterCard txn that wasn't reversed within the timeframe.\
+      \ \nThe default setting is 72."
+  mcMisuseTravelAutoReversal:
+    type: integer
+    description: "The number of hours before an Auth Misuse fee should be charged\
+      \ on a MasterCard txn that wasn't reversed within the timeframe. Applies only\
+      \ to merchants with a Travel & Entertainment mcc. \nThe default setting is 480."
+  boardingDisabled:
+    type: integer
+    description: |
+      Whether boarding for an entity is enabled or disabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Boarding for the entity is disabled.
+    - name: Enabled
+      description: Boarding for the entity is enabled.
+
+  autoReboardDays:
+    type: integer
+    description: |
+      Number of days after a merchant's created date to attempt a reboard on a not yet boarded merchant. The default setting is `60`.
+
+  autoTaxExemptEnabled:
+    type: integer
+    description: |
+      Whether to assume a transaction is tax-exempt if no tax is set for Level II processing. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Transactions are not assumed to be tax-exempt.
+    - name: Enabled
+      description: Transactions are assumed to be tax-exempt if no tax is set.
+
+  surchargeEnabled:
+    type: integer
+    description: |
+      Whether it is allowed to use a surcharge on transactions. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Surcharge on transactions is not allowed.
+    - name: Enabled
+      description: Surcharge on transactions is allowed.
+
+  mcInstantPayoutsEnabled:
+    type: integer
+    description: |
+      Whether MasterCard instant payouts should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: MasterCard instant payouts are disabled.
+    - name: Enabled
+      description: MasterCard instant payouts are enabled.
+
+  visaInstantPayoutsEnabled:
+    type: integer
+    description: |
+      Whether Visa Instant Payout should be enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Visa Instant Payout is disabled.
+    - name: Enabled
+      description: Visa Instant Payout is enabled.
+  sameDayPayoutsEnabled:
+    type: integer
+    description: |
+      Whether same day account payout is enabled.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Same day account payout is disabled.
+    - name: Enabled
+      description: Same day account payout is enabled.
+  applePayEnabled:
+    type: integer
+    description: |
+      Whether Apple Pay is enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Apple Pay is disabled.
+    - name: Enabled
+      description: Apple Pay is enabled.
+  googlePayEnabled:
+    type: integer
+    description: |
+      Whether Google Pay is enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Google Pay is disabled.
+    - name: Enabled
+      description: Google Pay is enabled.
+  sameDayPayoutsDailyMax:
+    type: integer
+    format: int64
+    description: Maximum allowed total for same day payouts daily.
+  minSameDayPayoutCreditTotal:
+    type: integer
+    format: int64
+    description: Minimum allowed total for same day payout credit total.
+  maxSameDayPayoutCreditTotal:
+    type: integer
+    format: int64
+    description: Maximum allowed total for same day payout credit total.
+  minSameDayPayoutDebitTotal:
+    type: integer
+    format: int64
+    description: Minimum allowed total for same day payout credit total.
+  maxSameDayPayoutDebitTotal:
+    type: integer
+    format: int64
+    description: Maximum allowed total for same day payout credit total.
+  accountUpdaterEnabled:
+    type: integer
+    description: |
+     Indicates whether the Account Updater is enabled and states which platform it will use to send the payment update files.
+     The default setting is 0 (Not Enabled)
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Enabled**
+      - `1` - **Enabled for VAP AU.**
+      - `2` - **Enabled for VCORE AU.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    - 2
+    x-enum-elements:
+    - name: None
+      description: Not Enabled.
+    - name: VANTIV
+      description: Enabled for VAP AU.
+    - name: VCORE
+      description: Enabled for VCORE AU.
+  updateAllTokensEnabled:
+    type: integer
+    description: |
+      Whether all tokenized payments will be checked for updates. Tokenized payments will be checked and updated if enabled. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Tokenized payments are not checked for updates.
+    - name: Enabled
+      description: Tokenized payments are checked for updates.
+  accountUpdaterFrequency:
+    type: integer
+    description: "The frequency for which to check for payment updates. \nThe default\
+      \ setting is 30."
+  minDebitedAvailableFunds:
+    type: integer
+    format: int64
+    description: "The level to restore the funds to. \nThe default setting is '0'."
+  getParametersEnabled:
+    type: integer
+    description: |
+      Whether it is allowed to return the parameters of this entity. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Returning parameters of this entity is not allowed.
+    - name: Enabled
+      description: Returning parameters of this entity is allowed.
+  payoutCutoffTime:
+    type: integer
+    description: The cutoff time for making a single payment.
+  declineNotificationEmail:
+    type: integer
+    description: |
+      Whether merchant boarding decline will generate a notification email to the members.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Notification email is not generated for merchant boarding decline.
+    - name: Enabled
+      description: Notification email is generated for merchant boarding decline.
+  decisionMicroserviceEnabled:
+    type: integer
+    description: |
+      Whether we will run verifications with decision microservice or old API decision service.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Decision microservice is not used for verifications.
+    - name: Enabled
+      description: Decision microservice is used for verifications.
+  holdMessagesDisabled:
+    type: integer
+    description: |
+      Whether we will disable creating messages for holds.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Messages for holds are not disabled.
+    - name: Enabled
+      description: Messages for holds are disabled.
+  txnDecisionMicroserviceEnabled:
+    type: integer
+    description: |
+      Whether we will run verifications with decision microservice or old API decision service for transactions.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Disabled
+    - name: Enabled
+      description: Enabled
+  omniTokenEnabled:
+    $ref: ../enums/parametersOmniTokenEnabledModel.yaml
+  passTokenEnabled:
+    type: integer
+    description: |
+      Whether it is allowed to use Pass Token. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Pass Token is disabled
+    - name: Enabled
+      description: Pass Token is enabled
+  debitGracePeriod:
+    type: integer
+    description: Limit of the days a merchant can still with negative funds before
+      we do the negative disbursement.
+  negativeBalanceLimit:
+    type: integer
+    format: int64
+    description: Maximum amount the merchant can go negative before we do the negative
+      disbursement.
+  negativeBalanceEmail:
+    type: integer
+    description: |
+      Controls whether an email is sent when an entity reaches a negative balance. The default setting is 0.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled.**
+      - `1` - **Enabled.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Email is not sent when an entity reaches a negative balance.
+    - name: Enabled
+      description: Email is sent when an entity reaches a negative balance.
+  positiveBalanceEmail:
+    type: integer
+    description: |
+      Will dictate whether an email is sent when an entity recovers from a negative balance. The default setting is 0.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Email is not sent when an entity recovers from a negative balance.
+    - name: Enabled
+      description: Email is sent when an entity recovers from a negative balance.
+  loginAsEnabled:
+    type: integer
+    description: |
+      Will dictate whether a login will have login as access or not by default.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Login as access is not enabled by default.
+    - name: Enabled
+      description: Login as access is enabled by default.
+  mfaEnabled:
+    type: integer
+    description: |
+      Will dictate whether a login will have MFA turned on or not by default.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: MFA is not enabled by default.
+    - name: Enabled
+      description: MFA is enabled by default.
+  portalAccessEnabled:
+    type: integer
+    description: |
+      Will dictate whether a login will have portal access or not by default.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Portal access is not enabled by default.
+    - name: Enabled
+      description: Portal access is enabled by default.
+  bankAccountAddStopEmail:
+    type: integer
+    description: |
+      Email notification to the business email when a new bank account record is created.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Email notification is not sent when a new bank account is created.
+    - name: Enabled
+      description: Email notification is sent when a new bank account is created.
+  bankAccountUpdateStopEmail:
+    type: integer
+    description: |
+      Email notification to the business email when an existing bank account record is updated.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Email notification is not sent when a bank account is updated.
+    - name: Enabled
+      description: Email notification is sent when a bank account is updated.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

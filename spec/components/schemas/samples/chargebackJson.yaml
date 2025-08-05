@@ -1,0 +1,46 @@
+value: 
+    "response": {
+        "data": [
+            {
+                "id": "t1_chb_678e573098a7706d87b45c1",
+                "created": "2025-01-20 09:01:20.6435",
+                "modified": "2025-01-20 09:09:33.7798",
+                "creator": "t1_log_6564b6476c2015fa1c08th9",
+                "modifier": "t1_log_6564b6476c2015fa1c08th9",
+                "merchant": "t1_mer_66a7dcc35e03d452faa32dc",
+                "txn": "t1_txn_678e56d221e81b116dbb452",
+                "mid": "01242567",
+                "description": "Chargeback for the txn of $200,000",
+                "total": 20000,
+                "representedTotal": 20000,
+                "cycle": "first",
+                "currency": "USD",
+                "platform": "VANTIV",
+                "paymentMethod": 1,
+                "ref": "6574367",
+                "reason": "No Cardholder Authorization",
+                "reasonCode": "4837",
+                "issued": 20140815,
+                "received": 20140815,
+                "reply": 20140919,
+                "bankRef": "6574367",
+                "chargebackRef": "6574367",
+                "status": "open",
+                "lastStatusChange": "6574367",
+                "actionable": 1,
+                "shadow": 0,
+                "inactive": 0,
+                "frozen": 0
+            }            
+        ],
+        "details": {
+            "requestId": "1",
+            "totals": [],
+            "page": {
+                "current": 1,
+                "last": 1,
+                "hasMore": false
+            }
+        },
+        "errors": []
+    }

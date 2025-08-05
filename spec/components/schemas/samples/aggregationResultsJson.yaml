@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_art_66ebb2d6c5b4a0212c1bd00",
+        "created": "2024-09-19 01:12:54.8110",
+        "modified": "2024-09-19 01:12:54.8110",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "aggregationResultGroup": "t1_arg_66ebb2d6c50b04f8956be40",
+        "field": "id",
+        "count": 0,
+        "sum": 0,
+        "min": 0,
+        "max": 0,
+        "grouping": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

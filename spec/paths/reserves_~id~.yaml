@@ -1,0 +1,124 @@
+get:
+  description: Query a Reserve resource that represents a way to reserve funds from
+    an Entity or Org automatically and to release them automatically according to
+    a pre-determined schedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this reserve.
+    explode: false
+    in: path
+    name: id
+    example: t1_rsv_66f27fca06f8a777998c000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all reserves:
+              $ref: ../components/schemas/samples/reservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reservesModel200Response.yaml
+      description: Retrieve a Reserve Response for query on reserves resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Reserve by it's ID.
+  tags:
+  - Reserves
+  - Facilitator
+  - Partner
+  operationId: getReservesId
+put:
+  description: Update a Reserves or Reserve resource, which represents a way to reserve
+    funds from an Entity or Org automatically and to release them automatically according
+    to a pre-determined schedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this reserve.
+    explode: false
+    in: path
+    name: id
+    example: t1_rsv_66f27fca06f8a777998c000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/reservesPutRequestModel.yaml
+    description: Update a Reserve Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update reserves:
+              $ref: ../components/schemas/samples/reservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reservesModel200Response.yaml
+      description: Response for update on reserves resource Update a Reserve Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Reserve by it's ID.
+  tags:
+  - Reserves
+  - Facilitator
+  - Partner
+  operationId: putReservesId
+delete:
+  description: Delete a Reserves or Reserve resource that represents a way to reserve
+    funds from an Entity or Org automatically and to release them automatically according
+    to a pre-determined schedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this reserve.
+    explode: false
+    in: path
+    name: id
+    example: t1_rsv_66f27fca06f8a777998c000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      description: A successful deletion
+      content:
+        application/json:
+          examples:
+            Delete reserves:
+              $ref: ../components/schemas/samples/reservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reservesModel200Response.yaml
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Reserve by it's ID.
+  tags:
+  - Reserves
+  - Facilitator
+  - Partner
+  operationId: deleteReservesId

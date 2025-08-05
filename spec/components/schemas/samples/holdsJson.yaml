@@ -1,0 +1,45 @@
+value:
+  {
+  "response": {
+      "data": [
+            {
+              "id": "t1_hld_0000fc11df8e4c00000e00c",
+              "created": "2025-01-31 08:42:16.7318",
+              "modified": "2025-01-31 08:42:16.7318",
+              "creator": "t1_log_123e1cbf1bcfe0d606bd000",
+              "modifier": "t1_log_123e1cbf1bcfe0d606bd000",
+              "login": "t1_log_123fc13e1234f8fd20e0fa0",
+              "entity": "t1_ent_66d205375262ec0f0000000",
+              "txn": "t1_txn_6729fc89898bbfaedc00ff0",
+              "terminalTxn": "t1_xyz_12345e666662ddca123a0c0",
+              "account": "t1_xyz_1234bff729db11267ad0000",
+              "verification": "t1_xyz_1234567b000ebe0b0e0dfe0",
+              "verificationRef": "t1_xyz_12345eb00f0cf1bfc00be0f",
+              "decisionAction": "t1_xyz_00a005b3e000c0ce000e0a0",
+              "action": 3,
+              "released": "2025-01-31 08:42:16",
+              "reviewed": "2025-02-02 08:50:16",
+              "inactive": 0,
+              "frozen": 0,
+              "releaseAction": 2,
+              "delayedFundingStartDate": "2025-02-03 08:42:16",
+              "delayedFundingEndDate": "2025-02-04 08:42:16",
+              "analyst": "t1_log_00aa000a888801466471d0z",
+              "claimed": "2025-02-25 06:42:16",
+              "holdSource": "API_DECISION",
+              "holdSourceId": "5a9bba34-38eb-489e-abd8-765e18562a08",
+              "division": "t1_div_00ea000e00e0eb1234c09e9"
+            }
+        ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+            }
+        },
+      "errors": []
+    }
+}

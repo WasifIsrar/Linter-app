@@ -1,0 +1,32 @@
+title: payoutSchedule
+type: integer
+description: |
+  The schedule that determines when the Payout resource that is created should be triggered to be paid.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Daily.** The Payout is paid every day.
+  - `2` - **Weekly.** The Payout is paid every week.
+  - `3` - **Monthly.** The Payout is paid every month.
+  - `4` - **Annually.** The Payout is paid every year.
+  - `5` - **Single.** The Payout is a one-off payment.
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+- 4
+- 5
+x-enum-elements:
+- name: Daily
+  description: The Payout is paid every day.
+- name: Weekly
+  description: The Payout is paid every week.
+- name: Monthly
+  description: The Payout is paid every month.
+- name: Annually
+  description: The Payout is paid every year.
+- name: Single
+  description: The Payout is a one-off payment.

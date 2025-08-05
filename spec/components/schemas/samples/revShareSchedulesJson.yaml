@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rsc_6800f8590a3fc6c0caed9zz",
+        "created": "2025-04-17 08:47:21.0625",
+        "modified": "2025-04-17 08:47:21.0625",
+        "creator": "t1_log_670d8844ef246e80758e762",
+        "modifier": "t1_log_670d8844ef246e80758e762",
+        "entity": "g157715bca1f55c",
+        "forentity": "t1_ent_67c96d183e9b9aa6c6f190c",
+        "start": "2025-04-17 18:17:20",
+        "end": "2025-04-17 18:17:20",
+        "share": 2000,
+        "event": 84,
+        "inactive": 0,
+        "frozen": 0
+}
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

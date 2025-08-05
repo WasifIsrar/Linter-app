@@ -1,0 +1,24 @@
+title: feeCollection
+type: integer
+description: |
+  Applies the fee based on the volume of a resource.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Txn.** The total amount of all transactions.
+  - `2` - **Txn-TaxID.** The total amount of all transactions per entity EIN/tax ID.
+  - `3` - **Txn-Merchant.** The total amount of all transactions per entity.
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+x-enum-elements:
+- name: Txn
+  description: The total amount of all transactions.
+- name: TxnTaxID
+  description: The total amount of all transactions per entity EIN/tax ID.
+- name: TxnMerchant
+  description: The total amount of all transactions per entity.

@@ -1,0 +1,69 @@
+get:
+  description: Querying Billing Events.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/billingEventsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingEventsModel200Response.yaml
+      description: Response for query on billingEvents resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Billing Events.
+  tags:
+  - Billing Events
+  - Facilitator
+  - Partner
+  operationId: getBillingEvents
+post:
+  description: Create a billingEvents.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/billingEventsPostRequestModel.yaml
+    description: Create Billing Event Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create billingEvents:
+              $ref: ../components/schemas/samples/billingEventsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingEventsModel200Response.yaml
+      description: Create a Billing Event Response on the billingEvents resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Billing Event.
+  tags:
+  - Billing Events
+  - Facilitator
+  - Partner
+  operationId: postBillingEvents
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,19 @@
+title: entityDataResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The Entity associated with this EntityData.
+  tcAcceptSignature:
+    type: string
+    description: The Base64 encoded image of the signature captured at the time of
+      creating the Entity.

@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ett_6866623edadbe8685525ae1",
+        "created": "2025-07-03 06:58:06.9131",
+        "creator": "g1577139c2304b7",
+        "modified": "2025-07-03 06:58:06.9131",
+        "modifier": "g1577139c2304b7",
+        "entity": "t1_ent_6866623b54057c4c7590600",
+        "type": "Payrix Submerchant Agreement",
+        "version": "1.0",
+        "versionId": "",
+        "ip": "35.153.101.155",
+        "dateAccepted": "2025-07-03 06:58:06",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

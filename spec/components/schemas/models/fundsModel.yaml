@@ -1,0 +1,39 @@
+title: fundsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that owns this Fund.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of the Fund.
+  reserved:
+    title: fundReserved
+    type: number
+    format: double
+    description: The amount held in this Fund that is marked as reserved, This field is specified in cents(up to three decimal points). See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  pending:
+    type: number
+    format: double
+    description: The current funds pending for the entity, This field is specified in cents(up to three decimal points)
+  available:
+    type: number
+    format: double
+    description: The amount held in this Fund that is currently available for disbursement, This field is specified in cents(up to three decimal points).
+  total:
+    type: number
+    format: double
+    description: The total amount held in this Fund, This field is specified in cents(up to three decimal points).
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

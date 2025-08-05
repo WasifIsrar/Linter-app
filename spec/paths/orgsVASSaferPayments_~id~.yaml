@@ -1,0 +1,119 @@
+get:
+  description: Query Orgs VAS Safer Payments.
+  parameters:
+  - description: The ID of this resource, or the (unknown) ID associated with the
+      Orgs VAS Safer Payments.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovs_67ffd50aa5b2855bcd59e00
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASSaferPayments:
+              $ref: ../components/schemas/samples/orgsVASSaferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASSaferPaymentsModel200Response.yaml
+      description: Response for retrieve Orgs VAS Safer Payments.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASSaferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Orgs VAS Safer Payments.
+  tags:
+  - Orgs VAS SaferPayments
+  - Facilitator
+  - Partner
+  operationId: getOrgsVASSaferPaymentsId
+put:
+  description:  Update Orgs VAS Safer Payments.
+  parameters:
+  - description: The ID of this Orgs VAS Safer Payments.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovs_67ffd50aa5b2855bcd59e00
+    required: true
+    schema:
+      type: string
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASSaferPaymentsPutRequestModel.yaml
+    description: Update Orgs VAS Safer Payments
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update orgsVASSaferPayments:
+              $ref: ../components/schemas/samples/orgsVASSaferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASSaferPaymentsModel200Response.yaml
+      description: The response for update Orgs VAS Safer Payments.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASSaferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Orgs VAS Safer Payments.
+  tags:
+  - Orgs VAS SaferPayments
+  - Facilitator
+  - Partner
+  operationId: putOrgsVASSaferPaymentsId
+delete:
+  description: Delete Safer Payments.
+  parameters:
+  - description: The ID of this Orgs VAS Safer Payments.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovs_67ffd50aa5b2855bcd59e00
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      description: A successful deletion
+      content:
+        application/json:
+          examples:
+            Delete orgsVASSaferPayments:
+              $ref: ../components/schemas/samples/orgsVASSaferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASSaferPaymentsModel200Response.yaml
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASSaferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Safer Payment by it's ID.
+  tags:
+  - Orgs VAS SaferPayments
+  - Facilitator
+  - Partner
+  operationId: deleteOrgsVASSaferPaymentsId  

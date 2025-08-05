@@ -1,0 +1,75 @@
+get:
+  description: Query a Payout. A Payout is a resource that represents all the details
+    that allow a Disbursement to be paid or debited. These details include the schedule
+    or trigger, the beneficiary account and the amount.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all payouts:
+              $ref: ../components/schemas/samples/payoutsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutsModel200Response.yaml
+      description: Response for query on payouts resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payouts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Payouts.
+  tags:
+  - Payouts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPayouts
+post:
+  description: Create a Payout. A Payout is a resource that represents all the details
+    that allow a Disbursement to be paid or debited; these details include the schedule
+    or trigger, the beneficiary account and the amount.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/payoutsPostRequestModel.yaml
+    description: Create Payout Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create payout:
+              $ref: ../components/schemas/samples/payoutsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutsModel200Response.yaml
+      description: Response for create on payouts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payouts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Payout.
+  tags:
+  - Payouts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postPayouts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

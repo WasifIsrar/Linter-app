@@ -1,0 +1,39 @@
+get:
+  description: Query an invoiceResults resource that represents the result of an
+    invoice processing, which is generated when a customer pays for an invoice.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice result.
+    explode: false
+    in: path
+    name: id
+    example: t1_inr_00a18bcde1a1b2ec3d9c9az
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoice results:
+              $ref: ../components/schemas/samples/invoiceResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceResultsModel200Response.yaml
+      description: Response for retrieve invoice result response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoice results:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Invoice Result by it's ID.
+  tags:
+  - Invoice Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoiceResultsId

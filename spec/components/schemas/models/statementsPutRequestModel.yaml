@@ -1,0 +1,47 @@
+title: statementsPutRequest
+properties:
+  billing:
+    type: string
+    description: The identifier of the Billing of this statement resource.
+  entity:
+    type: string
+    description: The paying entity for which this statement applies.
+  start:
+    type: integer
+    description: The date on which this Statement period should start. The date is
+      specified as an eight digit string in YYYYMMDD format, for example, '20160120'
+      for January 20, 2016.
+  finish:
+    type: integer
+    description: The date on which this Statement period should finish. The date is
+      specified as an eight digit string in YYYYMMDD format, for example, '20160120'
+      for January 20, 2016.
+  status:
+    $ref: ../enums/statementStatusModel.yaml
+  totalPaid:
+    type: integer
+    format: int64
+    description: The total paid amount for this statement, specified as an integer
+      in cents.
+  total:
+    type: integer
+    format: int64
+    description: The total amount for this statement. This field is specified as an
+      integer in cents.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for this statement. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  forentity:
+    type: string
+    description: The payee entity of the statement.
+
+example:
+  billing: p1_bil_00585dd2654581aaa5f9993
+  forentity: p1_ent_0acb282c487aa4bf1477e0f
+  entity: p1_ent_0051dcf88fee4617e5e38d5
+  status: pending
+  totalPaid: 0
+  total: 78687
+  currency: USD
+  start: 20250301
+  finish: 20250328

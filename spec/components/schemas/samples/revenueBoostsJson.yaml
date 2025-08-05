@@ -1,0 +1,34 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rev_67a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "entity": "t1_ent_681238635755abf676f300f",
+        "enablementDate": "2025-04-30 12:00:09",
+        "org": "t1_org_11b51635da21f7399ce2af1",
+        "division": "t1_div_67b51635da21f7399ce2af1",
+        "partition": "t1_ptn_666834d4d504f11234578f5",
+        "platform": "VCORE",
+        "inactive": 0,
+        "frozen": 0,
+        "enableRevenueBoost": 1,
+        "resourceId": "110821978",
+        "deleted": "2025-04-30 12:00:09",
+        "deleter": "t1_log_0092b50e8812b18e41d511s"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,13 @@
+title: txnMetaDatasResponseResult
+properties:
+  response:
+    title: txnMetaDatasResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/txnMetadatasModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

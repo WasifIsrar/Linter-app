@@ -1,0 +1,19 @@
+title: txnsDatasResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  txn:
+    type: string
+    description: The identifier of the Transaction associated with this TxnDatas resource.
+  signature:
+    type: string
+    description: The Base64 encoded image of the signature captured at the time of
+      entering the Transaction.

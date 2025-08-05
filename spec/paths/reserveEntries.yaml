@@ -1,0 +1,73 @@
+get:
+  description: "Query a reserveEntry resource. \nA reserveEntry resource describes\
+    \ a record of funds moving in or out of reserve. It can be associated with either\
+    \ a Transaction, a Reserve, an entityReserve, or another reserveEntry resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            fetch all reserveEntries:
+              $ref: ../components/schemas/samples/reserveEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reserveEntriesModel200Response.yaml
+      description: Response for query on reserveEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reserveEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Reserve Entries.
+  tags:
+  - Reserve Entry
+  - Facilitator
+  - Partner
+  operationId: getReserveEntries
+post:
+  description: Create a Reserve Entry resource that describes a record of funds moving
+    in or out of reserve and can be associated with either a Transaction, a Reserve,
+    an entityReserve, or another reserveEntry resource.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/reserveEntriesPostRequestModel.yaml
+    description: Create Reserve Entry Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create reserveEntries:
+              $ref: ../components/schemas/samples/reserveEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reserveEntriesModel200Response.yaml
+      description: Response for create on reserveEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reserveEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Reserve Entry
+  tags:
+  - Reserve Entry
+  - Facilitator
+  - Partner
+  operationId: postReserveEntries
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

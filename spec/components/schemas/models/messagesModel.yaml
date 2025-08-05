@@ -1,0 +1,72 @@
+title: messagesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  messageThread:
+    type: string
+    description: The identifier of the messageThreads that owns this Messages resource.
+  opposingMessage:
+    type: string
+    description: Specifies whether this is the opposingMessage or not.
+  type:
+    title: messageType
+    type: string
+    description: |
+      Whether this resource is incoming or outgoing.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `incoming` - **Incoming messages is assigned.**
+
+      - `outgoing` - **Outgoing message is assigned.**
+
+       </details>
+    enum:
+    - incoming
+    - outgoing
+    x-enum-elements:
+    - name: "Incoming"
+      description: "Incoming messages are assigned."
+    - name: "Outgoing"
+      description: "Outgoing messages are assigned."
+  generated:
+    type: integer
+    description: "Whether this resource was automatically generated or not.\n\n<details>\n\
+      <summary>Valid Values</summary>\n\n- `0` - **Message was auomatically generated\
+      \ and a value of '0' means it was manually generated.** \n\n- `1` - **Message\
+      \ was manually generated.** \n\n </details> \n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "AutomaticallyGenerated"
+      description: "Message was automatically generated."
+    - name: "ManuallyGenerated"
+      description: "Message was manually generated."
+  secure:
+    type: integer
+    description: "Whether this resource is marked as secure.\n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `0` - **Messages will protected in email notifications.**\
+      \ \n\n- `1` - **Message will display entirely.**\n\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Protected"
+      description: "Messages will be protected in email notifications."
+    - name: "Displayed"
+      description: "Message will display entirely."
+  read:
+    $ref: ../enums/messagesReadModel.yaml
+  message:
+    type: string
+    description: Free-form text for adding a message to a messageThread resource.

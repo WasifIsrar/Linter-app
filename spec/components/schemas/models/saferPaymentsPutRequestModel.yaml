@@ -1,0 +1,50 @@
+title: saferPaymentsPutRequest
+properties:
+  entity: 
+    type: string
+    description: The identifier of the Entity that saferPayments is associated to.  
+  status: 
+    $ref: ../enums/saferPaymentsStatusModel.yaml 
+  enablementDate: 
+    type: string
+    description: The Date and time when an entity was enabled for saferPayments.\nThe date is specified as an eight digit string in YYYY-MM-DD hh:mm:ss format, for example, '2023-06-01 01:00:00' for June 01, 2023. 1:00 am.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  pciNonValidationFeeEnabled: 
+    $ref: ../enums/saferPaymentsPciNonValidationFeeEnabledModel.yaml
+  org: 
+    type: string
+    description: The identifier of the Org (group) that saferPayments is associated to.
+  division:
+    type: string
+    description: The identifier of the Division that saferPayments  is associated to.
+  partition: 
+    type: string
+    description: The identifier of the Partition that saferPayments is associated to.
+  program: 
+    $ref: ../enums/saferPaymentProgramModel.yaml
+  deleted:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+    description: The date and time at which this resource was deleted.\nThe date is specified as an eight digit string in YYYY-MM-DD hh:mm:ss format, for example, '2023-06-01 01:00:00' for June 01, 2023. 1:00 am.
+  deleter:
+    type: string 
+    description: The id of user who deleted the omniToken.               
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+example:
+  entity: t1_ent_65de12aabb1f58e2a3441f7
+  status: compliance
+  enablementDate: '2024-02-27 11:54:19'
+  pciNonValidationFeeEnabled: 0
+  org: t1_org_00b2ac11ed8bed97fb80000
+  division: t1_div_67c56806728fbbf0bae0b00
+  partition: t1_ptn_666834d4d504f21414978z5
+  program: basic
+  deleted: '2024-02-27 11:54:19'
+  deleter: ""
+  inactive: 0
+  frozen: 0

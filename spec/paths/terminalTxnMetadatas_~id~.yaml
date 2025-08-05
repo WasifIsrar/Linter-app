@@ -1,0 +1,40 @@
+get:
+  description: "Query a terminalTxnMetadatas resource. \nA terminalTxnMetadatas resource\
+    \ represents data from an EMV Transaction and/or returned by the credit card network\
+    \ associated with a Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ttm_6806cde43c3480e154d7a0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnMetadatas:
+              $ref: ../components/schemas/samples/terminalTxnMetaDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnMetadatasModel200Response.yaml
+      description: Retrieve Terminal Transaction Metadata Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnMetadatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Terminal Transaction Metadata by it's ID.
+  tags:
+  - Terminal Transactions Metadatas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTerminalTxnsMetadatasId

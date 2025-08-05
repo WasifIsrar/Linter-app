@@ -1,0 +1,32 @@
+title: orgFlowRulesPutRequest
+properties:
+  orgFlow:
+    type: string
+    description: The identifier of the orgFlow resource that this orgFlowActions resource is associated with.
+  name:
+    type: string
+    description: The name of the orgFlowRules resource.
+  description: 
+    type: string
+    description: The description of the orgFlowRules resource.
+  type: 
+    $ref: ../enums/orgFlowRulesTypeModel.yaml
+  value: 
+    type: string
+    description: The value to compare against when evaluating this OrgFlowRule.
+  grouping: 
+    type: string
+    description: A name for a group of rules to be applied in conjunction when evaluating this OrgFlow Rule. \nWhen grouping is used the OrgFlow will be allowed to be processed if at least one of the rules are matched.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen: 
+    $ref: ../frozen.yaml
+example:
+  orgFlow: t1_ofr_6810c6e4dad2480c7733b00
+  name: "Test1"
+  description: "Test1 Description"
+  type: MCC
+  value: "0742"
+  grouping: "portalgroup_2"
+  inactive: 0
+  frozen: 0 

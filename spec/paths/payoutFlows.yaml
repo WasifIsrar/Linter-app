@@ -1,0 +1,82 @@
+get:
+  description: 'Query a payoutFlows resource.
+
+    A payoutFlows resource represents a way to set up a Payouts resource automatically
+    for an Entity or Org when it is boarded, or when a bank account is associated.
+
+    You can set up the schedule and amount for the Payouts in the payoutFlows resource.'
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/payoutFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutFlowsModel200Response.yaml
+      description: Retrieve Response for query on payoutFlows resource to get the
+        Payout Flow ID.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Payout Flows.
+  tags:
+  - Payout Flows
+  - Facilitator
+  - Partner
+  operationId: getPayoutFlows
+post:
+  description: 'Create a payoutFlows resource.
+
+    A payoutFlows resource represents a way to set up a Payouts resource automatically
+    for an Entity or Org when it is boarded, or when a bank account is associated.
+
+    You can set up the schedule and amount for the Payouts in the payoutFlows resource.
+
+    '
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/payoutFlowsPostRequestModel.yaml
+    description: Create Payout Flow Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create payoutFlows:
+              $ref: ../components/schemas/samples/payoutFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutFlowsModel200Response.yaml
+      description: Response for create on payoutFlows resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Payout Flow.
+  tags:
+  - Payout Flows
+  - Facilitator
+  - Partner
+  operationId: postPayoutFlows
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

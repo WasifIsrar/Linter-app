@@ -1,0 +1,325 @@
+title: terminalTxnsPutRequest
+properties:
+  binType:
+    type: string
+    description: |
+      The type of bank issuer number (BIN) that allows for resulting transactions.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `CREDIT` - **Credit BIN Type.**
+      - `DEBIT` - **Debit BIN Type.**
+      - `PREPAID` - **Prepaid BIN Type.**
+
+      </details>
+    enum:
+    - CREDIT
+    - DEBIT
+    - PREPAID
+    x-enum-elements:
+    - name: Credit
+      description: Credit BIN Type.
+    - name: Debit
+      description: Debit BIN Type.
+    - name: Prepaid
+      description: Prepaid BIN Type.
+  expiration:
+    type: string
+    description: 'The expiration date of this Transaction. This field is stored as a text string in ''MMYY'' format, where ''MM'' is the number of a month and ''YY'' is the last two digits of a year. For example, ''0623'' for June 2023. The value must reflect a future date.'
+  payment:
+    $ref: ../enums/terminalTxnsPaymentModel.yaml
+  traceNumber:
+    type: integer
+    format: int64
+    description: Sequencial number that uniquely identifies the terminalTxn.
+  txn:
+    type: string
+    description: The related txn this terminalTxn belongs to.
+  token:
+    type: string
+    description: The ID of the token record to associate with this terminal transaction request.
+  paymentNumber:
+    type: integer
+    description: The last four numbers of the credit card associated with this Transaction.
+  paymentMethod:
+    $ref: ../enums/terminalTxnPaymentMethodModel.yaml
+  tip:
+    type: integer
+    format: int64
+    description: This field indicates the tip amount associated with a transaction. This value is for reporting purposes only, because transaction amount includes this amount in the total.
+  originatingApp:
+    type: string
+    description: Field identifying Payrix PAX terminal originating app.
+  OEMTTxnRefNumber:
+    type: string
+    description: Field identifying original Payrix Verifone transaction reference
+      number, used for refunds and cancellation request.
+  posApplicationId:
+    type: string
+    description: Express assigned identifier i.e. Software Id being used in express
+      terminal.
+  unattended:
+    type: integer
+    description: |
+      Whether the card was swiped at an unattended terminal during this Transaction.
+      This field is set to '0' by default.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Attended terminal.**
+      - `1` - **Unattended terminal.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: AttendedTerminal
+      description: Attended terminal.
+    - name: UnattendedTerminal
+      description: Unattended terminal.
+  posApplicationName:
+    type: string
+    description: Software Name being used in express terminal.
+  posApplicationVersion:
+    type: string
+    description: Software version being used in express terminal.
+  customerReferenceNumber:
+    type: string
+    description: Express Reference Number.
+  gatewayTransactionId:
+    type: string
+    description: The gateway transaction ID relates to Express Transaction ID.
+  customerTicketNumber:
+    type: string
+    description: Express ticket Number.
+  clientIp:
+    type: string
+    description: The client IP address from which the transaction was created, valid
+      values are any IPv4 or IPv6 address.
+  description:
+    type: string
+    description: A description of this Transaction. This field is stored as a text
+      string and must be between 0 and 1000 characters long.
+  swiped:
+    type: integer
+    description: |
+      Whether the card was swiped during this Transaction.
+      This field is set to '1' automatically if 'track' data was received. 
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Swiped.**
+      - `1` - **Swiped.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotSwiped
+      description: Not swiped.
+    - name: Swiped
+      description: Swiped.
+  emv:
+    type: integer
+    description: |
+      Whether the card was dipped (using the EMV chip) during this Transaction.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not dipped.**
+      - `1` - **Dipped.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotDipped
+      description: Not dipped.
+    - name: Dipped
+      description: Dipped.
+  entryMode:
+    $ref: ../enums/entryModeModel.yaml
+  first:
+    type: string
+    description: The first name associated with this Transaction. For eCheck transactions,
+      either first or last is required.
+  last:
+    type: string
+    description: The last name associated with this Transaction. For eCheck transactions,
+      either first or last is required.
+  middle:
+    type: string
+    description: The middle name associated with this Transaction.
+  order:
+    type: string
+    description: The identifier of the Order associated with this Transaction, This
+      field is stored as a text string and must be between 0 and 1000 characters long.
+  reserved:
+    type: integer
+    description: |
+      Indicates whether the Transaction is reserved and the action that will be taken as a result.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No reserve.**
+
+      </details>
+    enum:
+    - 0
+    x-enum-elements:
+    - name: None
+      description: No action.
+  signature:
+    type: integer
+    description: |
+      Whether a signature should be captured during this Transaction.
+
+      * You can set this field if you want the terminal to take a signature for the Transaction.
+      * The API also sets this field automatically if you associate a signature to the Transaction by creating a 'terminalTxnDatas' resource.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not captured.**
+      - `1` - **Captured.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotCaptured
+      description: Not captured.
+    - name: Captured
+      description: Captured.
+  total:
+    type: integer
+    format: int64
+    description: The total amount of this Transaction, This field is specified as
+      an integer in cents.
+  status:
+    $ref: ../enums/terminalTxnStatusModel.yaml
+  cardNetworkTransactionId:
+    type: string
+    description: Card network transaction ID associated with this transaction.
+  omnitoken:
+    type: string
+    description: The OmniToken associated with this Transaction.
+  convenienceFee:
+    type: integer
+    description: The amount of the total sum of this Transaction that is made up of convenience fee. Fee charged when card payment is an alternative form of payment not ordinarily accepted by a merchant or service provider. This field is specified as an integer in cents. [currently not active]
+  surcharge:
+    type: integer
+    description: Surcharge amount included in the total amount of the transaction. A surcharge fee is an additional charge added to the price of a purchase when a customer pays with a credit card. This field is specified as an integer in cents.
+  softPosDeviceTypeIndicator:
+    type: string
+    description: |
+      The device type indicator for the terminal.
+
+      <details>
+      <summary>Valid Values</summary>
+
+        - `1` - **Apple (Worldpay as PSP)**
+        - `2` - **Android (Worldpay as PSP)**
+        - `3` - **Apple (Worldpay not PSP)**
+        - `4` - **Android (Worldpay not PSP)**
+        
+      </details>
+  softPosId:
+    type: string
+    description: The software POS ID.
+  hsaFsaCardIndicator:
+    type: integer
+    description: |
+      Indicates if the card is a Flexible Spending Account (FSA) or Health Savings Account (HSA) card.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not an HSA/FSA card.**
+      - `1` - **HSA/FSA card.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotHsaFsa
+      description: Not an HSA/FSA card.
+    - name: HsaFsa
+      description: HSA/FSA card.
+  gatewayTerminalId:
+    type: string
+    description: The gateway terminal ID.
+  descriptor:
+    type: string
+    description: The billing Descriptor that is used when the transaction is part
+      of a subscription.
+  cardNetworkBankNetReferenceNumber:
+    type: string
+    description: The reference number associated with the card network.
+  cardNetworkBankNetSettlementDate:
+    type: string
+    description: The settlement date associated with the card network.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  binType: DEBIT
+  expiration: "1123"
+  payment: 
+    method: 1
+    number: "2222"
+    routing: "1"
+    expiration: "0623"
+    cvv: 123
+    track: "Track 1"
+  traceNumber: 853202
+  txn: related txn
+  token: 124f2d0efab0bcda46f2118d688bbf97
+  paymentNumber: 7
+  paymentMethod: 2
+  tip: 0
+  originatingApp: originatingApp
+  OEMTTxnRefNumber: TxnRefNumber
+  posApplicationId: "15668"
+  unattended: 0
+  posApplicationName: "XML Test Example"
+  posApplicationVersion: "1.00"
+  customerReferenceNumber: "123456"
+  gatewayTransactionId: "486689252"
+  customerTicketNumber: "123456"
+  clientIp: "Client IP address"
+  description: "Transaction1"
+  swiped: 1
+  emv: 1
+  entryMode: 1
+  first: John
+  last: Doe
+  middle: M
+  order: orderId
+  reserved: 0
+  signature: 1
+  total: 8000
+  status: 3
+  cardNetworkTransactionId: "250630144026744"
+  omnitoken: "4445223322990007"
+  convenienceFee: 0
+  surcharge: 0
+  softPosDeviceTypeIndicator: device type indicator
+  softPosId: software POS ID
+  hsaFsaCardIndicator: 0
+  gatewayTerminalId: "12"
+  descriptor: billing Descriptor
+  cardNetworkBankNetReferenceNumber: cardNetworkBankNetReferenceNumber
+  cardNetworkBankNetSettlementDate: "1123"
+  inactive: 0
+  frozen: 0

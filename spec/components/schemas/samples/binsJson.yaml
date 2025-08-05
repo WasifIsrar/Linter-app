@@ -1,0 +1,43 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_bil_67dbdc94ee1b1a43e6ab000",
+        "created": "2025-03-20 05:15:00.9831",
+        "modified": "2025-03-20 05:15:00.9831",
+        "creator": "t1_log_5cd987a73478a6179b95008",
+        "modifier": "t1_log_5cd987a73478a6179b95008",
+        "bin": "472509",
+        "method": 2,
+        "type": credit,
+        "name": Bank Name,
+        "country": USA,
+        "website": "",
+        "phone": "",
+        "address": address1,
+        "city": city1,
+        "state": "AK",
+        "zip": "",
+        "locationType": "branch",
+        "newBin": "",
+        "category": "classic",
+        "transferEnabled": 0,
+        "numberLength": 0,
+        "debitOverCreditEnabled": 0,
+        "billPayEnabled": 0,
+        "pinlessSupport": "none",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

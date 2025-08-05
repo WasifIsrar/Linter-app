@@ -1,0 +1,128 @@
+title: noteType
+type: string
+description: |
+  The desired type to take on the referenced Note.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `note` - **Just add a note to the hold.**
+  - `release` - **Release the hold for this Hold.**
+  - `review` - **Mark the hold as having been reviewed.**
+  - `reReview` - **If the hold was marked as reviewed, this will allow resetting the review.**
+  - `amexSales` - **If the entity does sales with amex.**
+  - `businessSales` - **If the entity does business direct sales.**
+  - `consumerSales` - **If the entity does consumer direct sales.**
+  - `deliverySchedule` - **The delivery schedule of the entity.**
+  - `immediateDeliveryPercent` - **The amount of immediate deliveries with 0 day after the transaction.**
+  - `sevenDayDeliveryPercent` - **The amount of deliveries between 1-7 days after the transaction.**
+  - `fourteenDayDeliveryPercent` - **The amount of deliveries between 8-14 days after the transaction.**
+  - `thirtyDayDeliveryPercent` - **The amount of deliveries between 15-30 days after the transaction.**
+  - `cardPresentSales` - **If the entity does sales with card present.**
+  - `motoSales` - **If the entity does sales over the phone or mail.**
+  - `ecommerceSales` - **If the entity does ecommerce sales.**
+  - `siteVisit` - **If the entity had the site visit.**
+  - `goodsSold` - **The type of goods the entity sales.**
+  - `authorizationFlatFee` - **The flat fee agreement for each authorization.**
+  - `capturePercentFee` - **The percentage fee agreement for each capture.**
+  - `captureFlatFee` - **The flat fee agreement for each capture.**
+  - `riskApproved` - **The entity was approved.**
+  - `riskPending` - **The entity is in pending status.**
+  - `riskCancelled` - **The entity has a cancelled status.**
+  - `riskDenied` - **The entity has a denied status.**
+  - `riskClosed` - **The entity has a closed status.**
+  - `riskInvestigation` - **The entity is in investigation status.**
+  - `riskPendingData` - **Pending Docs/Info for The entity.**
+  - `riskFundsReleased` - **Funds released for The entity.**
+  - `riskActivityApproved` - **Activity approved for the entity.**
+
+  </details>
+enum:
+- note
+- release
+- review
+- reReview
+- amexSales
+- businessSales
+- consumerSales
+- deliverySchedule
+- immediateDeliveryPercent
+- sevenDayDeliveryPercent
+- fourteenDayDeliveryPercent
+- thirtyDayDeliveryPercent
+- cardPresentSales
+- motoSales
+- ecommerceSales
+- siteVisit
+- goodsSold
+- authorizationFlatFee
+- capturePercentFee
+- captureFlatFee
+- riskApproved
+- riskPending
+- riskCancelled
+- riskDenied
+- riskClosed
+- riskInvestigation
+- riskPendingData
+- riskFundsReleased
+- riskActivityApproved
+x-enum-elements:
+- name: Note
+  description: Just add a note to the hold.
+- name: Release
+  description: Release the hold for this Hold.
+- name: Review
+  description: Mark the hold as having been reviewed.
+- name: ReReview
+  description: If the hold was marked as reviewed, this will allow resetting the review.
+- name: AmexSales
+  description: If the entity does sales with amex.
+- name: BusinessSales
+  description: If the entity does business direct sales.
+- name: ConsumerSales
+  description: If the entity does consumer direct sales.
+- name: DeliverySchedule
+  description: The delivery schedule of the entity.
+- name: ImmediateDeliveryPercent
+  description: The amount of immediate deliveries with 0 day after the transaction.
+- name: SevenDayDeliveryPercent
+  description: The amount of deliveries between 1-7 days after the transaction.
+- name: FourteenDayDeliveryPercent
+  description: The amount of deliveries between 8-14 days after the transaction.
+- name: ThirtyDayDeliveryPercent
+  description: The amount of deliveries between 15-30 days after the transaction.
+- name: CardPresentSales
+  description: If the entity does sales with card present.
+- name: MotoSales
+  description: If the entity does sales over the phone or mail.
+- name: EcommerceSales
+  description: If the entity does ecommerce sales.
+- name: SiteVisit
+  description: If the entity had the site visit.
+- name: GoodsSold
+  description: The type of goods the entity sales.
+- name: AuthorizationFlatFee
+  description: The flat fee agreement for each authorization.
+- name: CapturePercentFee
+  description: The percentage fee agreement for each capture.
+- name: CaptureFlatFee
+  description: The flat fee agreement for each capture.
+- name: RiskApproved
+  description: The entity was approved.
+- name: RiskPending
+  description: The entity is in pending status.
+- name: RiskCancelled
+  description: The entity has a cancelled status.
+- name: RiskDenied
+  description: The entity has a denied status.
+- name: RiskClosed
+  description: The entity has a closed status.
+- name: RiskInvestigation
+  description: The entity is in investigation status.
+- name: RiskPendingData
+  description: Pending Docs/Info for The entity.
+- name: RiskFundsReleased
+  description: Funds released for The entity.
+- name: RiskActivityApproved
+  description: Activity approved for the entity.

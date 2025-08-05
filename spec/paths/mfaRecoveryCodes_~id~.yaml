@@ -1,0 +1,90 @@
+get:
+  description: Query a mfaRecoveryCode.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mfaRecoveryCodesModel200Response.yaml
+      description: Response for query on mfaRecoveryCodes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - MFA Recovery Codes
+  - Facilitator
+  operationId: getMfaRecoveryCodesId
+put:
+  description: Update a mfaRecoveryCode.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/mfaRecoveryCodesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mfaRecoveryCodesModel200Response.yaml
+      description: Response for update on mfaRecoveryCodes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - MFA Recovery Codes
+  - Facilitator
+  operationId: putMfaRecoveryCodesId
+delete:
+  description: Delete a mfaRecoveryCode.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mfaRecoveryCodesModel200Response.yaml
+      description: Response for delete on mfaRecoveryCodes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - MFA Recovery Codes
+  - Facilitator
+  operationId: deleteMfaRecoveryCodesId

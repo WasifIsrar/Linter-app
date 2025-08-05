@@ -1,0 +1,25 @@
+title: noteDocumentStatus
+type: string
+description: |
+  The current status of the document upload.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `created` - **The database record has been created.**
+  - `processed` - **The document upload for this record was processed successfully.**
+  - `failed` - **The document upload for this record could not be processed.**
+
+  </details>
+default: created
+enum:
+- created
+- processed
+- failed
+x-enum-elements:
+- name: Created
+  description: The database record has been created.
+- name: Processed
+  description: The document upload for this record was processed successfully.
+- name: Failed
+  description: The document upload for this record could not be processed.

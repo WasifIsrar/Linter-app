@@ -1,0 +1,40 @@
+title: configurationStageMethod
+type: string
+description: |
+  The method used for configurationStage resource.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `sftpUpload` - **SFtpUpload. Use sftp to Upload**
+  - `sftpDownload` - **sftpDownload. Use sftp to Download**
+  - `post` - **POST. Use a post request**
+  - `get` - **GET. Use a get request**
+  - `put` - **PUT. Use a put request**
+  - `delete` - **DELETE. Use a delete request**
+  - `tcp` - **TCP. Use tcp protocol**
+
+  </details>
+enum:
+- sftpUpload
+- sftpDownload
+- post
+- get
+- put
+- delete
+- tcp
+x-enum-elements:
+- name: SftpUpload
+  description: SFtpUpload. Use sftp to Upload.
+- name: SftpDownload
+  description: sftpDownload. Use sftp to Download.
+- name: Post
+  description: POST. Use a post request.
+- name: Get
+  description: GET. Use a get request.
+- name: Put
+  description: PUT. Use a put request.
+- name: Delete
+  description: DELETE. Use a delete request.
+- name: Tcp
+  description: TCP. Use tcp protocol.

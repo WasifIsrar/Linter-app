@@ -1,0 +1,37 @@
+title: statementStatus
+type: string
+description: |-
+  The current status of the statement.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `pending` - **Statement amount is owed and is pending payment.**
+  - `processing` - **A payment is processing for this statement, pending completion.**
+  - `partiallyPaid` - **The statement was partially paid, some amount is still outstanding.**
+  - `paid` - **The statement was paid in full.**
+  - `partiallyCancelled` - **The statement was partially cancelled, some amount is still outstanding.**
+  - `cancelled` - **The statement was completely cancelled and is no longer due for payment.**
+
+  </details>
+enum:
+- pending
+- processing
+- partiallyPaid
+- paid
+- partiallyCancelled
+- cancelled
+x-enum-elements:
+- name: Pending
+  description: Statement amount is owed and is pending payment.
+- name: Processing
+  description: A payment is processing for this statement, pending completion.
+- name: PartiallyPaid
+  description: The statement was partially paid, some amount is still outstanding.
+- name: Paid
+  description: The statement was paid in full.
+- name: PartiallyCancelled
+  description: The statement was partially cancelled, some amount is still outstanding.
+- name: Cancelled
+  description: The statement was completely cancelled and is no longer due for payment.
+default: pending

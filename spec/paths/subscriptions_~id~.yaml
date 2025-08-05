@@ -1,0 +1,129 @@
+get:
+  description: Query a Subscription that specifies both starting and ending dates
+    and charges the customer according to the schedule in the associated Plan during
+    the interval between these dates.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this subscription.
+    explode: false
+    in: path
+    name: id
+    example: t1_sbn_680064d2db9dbdc8d3e9a0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/subscriptionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionModel200Response.yaml
+      description: Response for retrieve subscription response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Subscription by it's ID.
+  tags:
+  - Subscriptions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSubscriptionsId
+put:
+  description: Update a Subscription, A Subscription specifies both starting and ending
+    dates and the customer is charged according to the schedule in the associated
+    Plan during the interval between these dates.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this subscription.
+    explode: false
+    in: path
+    name: id
+    example: t1_sbn_680064d2db9dbdc8d3e9a0z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/subscriptionsPutRequestModel.yaml
+    description: Update Subscription Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update subscriptions:
+              $ref: ../components/schemas/samples/subscriptionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionModel200Response.yaml
+      description: Response for update on subscriptions resource Update Subscription
+        Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Subscription by it's ID.
+  tags:
+  - Subscriptions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putSubscriptionsId
+delete:
+  description: Delete a Subscription. A Subscription is a scheduled invocation of
+    a particular Plan over a certain period of time, specifying both starting and
+    ending dates, and the customer is charged according to the schedule in the associated
+    Plan during the interval between these dates.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this subscription.
+    explode: false
+    in: path
+    name: id
+    example: t1_sbn_680064d2db9dbdc8d3e9a0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete subscriptions:
+              $ref: ../components/schemas/samples/subscriptionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionModel200Response.yaml
+      description: Response for deleting a subscription.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Subscription by it's ID.
+  tags:
+  - Subscriptions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteSubscriptionsId

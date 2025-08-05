@@ -1,0 +1,36 @@
+title: reportItemsPutRequest
+properties:
+  report:
+    type: string
+    description: Report table Id.
+  search:
+    type: string
+    description: search criteria eg. id[greater] = 0
+  totals:
+    type: string
+    description: Total eg.sum[]=total.
+  expand:
+    type: string
+    description: By default, when a resource points to another resource, the ID of
+      the parent resource will be included in the child resource. To return the full
+      object you can use expand.
+  expandSearch:
+    type: string
+    description: You can compare key values against pre-defined criteria to return
+      resources based on the operator.
+  resource:
+    $ref: ../enums/resourceModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  report: t1_rpt_5dfb80b682d41467d9a6b4z
+  search: "id[greater] = 0"
+  totals: "sum[]=total"
+  expand: expand
+  expandSearch: expandSearch
+  resource: 18
+  inactive: 0
+  frozen: 0

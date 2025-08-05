@@ -1,0 +1,53 @@
+title: confirmCodesPostRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login resource that this confirmation code
+      relates to.
+  type:
+    title: confirmCodeType
+    type: string
+    description: |-
+      The type of this confirmCode.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `password` - **Forgot Password**
+      - `email` - **Verify Email**
+
+      </details>
+    enum:
+    - password
+    - email
+    x-enum-elements:
+    - name: Password
+      description: Forgot Password
+    - name: Email
+      description: Verify Email
+  key:
+    type: string
+    description: The cryptographically secure, randomly generated key to be used for
+      verification.
+  email:
+    type: string
+    description: If the 'type' of this confirmation code is '2' (email), then this
+      field represents the email address that requires verification.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- key
+- login
+- type
+
+example: 
+  login: p1_log_67dd2714959c3331228ffa3
+  type: email
+  key: fbdf954596b341d18cb4995b70d321f3
+  email: vijay.sample@payrix.com
+  inactive: 0
+  frozen: 0

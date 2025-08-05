@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tel_6802c54d22f16393d4be00z",
+        "created": "2025-04-18 17:34:05.1626",
+        "modified": "2025-04-18 17:34:05.1626",
+        "creator": "t1_log_67c4d37d494077b9db8faf0",
+        "modifier": "t1_log_67c4d37d494077b9db8faf0",
+        "login": "t1_log_6802c54cba888f6abfd88cc",
+        "team": "t1_tem_6621af6c10f4a29427a2d35",
+        "create": 0,
+        "read": 0,
+        "update": 0,
+        "delete": 0,
+        "reference": 0,
+        "teamAdmin": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

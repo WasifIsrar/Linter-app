@@ -1,0 +1,38 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "t1_ast_11ad1aca636fb9f4a1abc00",
+              "created": "2025-02-13 01:01:46.4073",
+              "modified": "2025-02-13 01:01:46.4073",
+              "creator": "000000000000001",
+              "modifier": "000000000000001",
+              "entity": "t1_ent_5b3bdeac000c06c43505a00",
+              "onentity": "t1_ent_5b3bdeac000c06c43505a01",
+              "forentity": "t1_ent_5b3bdeac000c06c43505a02",
+              "partition": "a100003azz9b911",
+              "opposingAssessment": "t1_ast_11ad8aca6269fc70a81cfaa",
+              "fee": "t1_fee_5b3bdeac000c06c43505a00",
+              "disbursement": "t1_dbm_121cb1111e11d00a1fac5b1",
+              "txn": "t1_txn_9a0aa0000f08553bcc1aaa9",
+              "chargeback": "t1_chb_111cb1111e11d00a1fac5b0",
+              "merchant": "t1_mer_111cb1111e11d00a1fac5b0",
+              "event": 6,
+              "eventId": "t1_txn_9a0aa0000f08553bcc1aaa9",
+              "description": "AUTH fee schedule",
+              "amount": 30,
+              "platform": "VANTIV",
+              "currency": "USD"
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

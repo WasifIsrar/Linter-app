@@ -1,0 +1,22 @@
+title: orgFlowActionsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  orgFlow:
+    type: string
+    description: The identifier of the orgFlow resource that this orgFlowActions resource
+      is associated with.
+  org:
+    type: string
+    description: The identifier of the Org resource that this orgFlowActions resource
+      is associated with.
+  action:
+    $ref: ../enums/orgFlowActionModel.yaml

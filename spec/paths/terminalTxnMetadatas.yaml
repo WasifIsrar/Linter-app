@@ -1,0 +1,75 @@
+get:
+  description: "Query a terminalTxnMetadatas resource. \nA terminalTxnMetadatas resource\
+    \ represents data from an EMV Transaction and/or returned by the credit card network\
+    \ associated with a Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnMetadatas:
+              $ref: ../components/schemas/samples/terminalTxnMetaDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnMetadatasModel200Response.yaml
+      description: Retrieve Terminal Transaction Metadata Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnMetadatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Terminal Transaction Metadata.
+  tags:
+  - Terminal Transactions Metadatas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTerminalTxnsMetadatas
+post:
+  description: Create a terminalTxnMetadatas resource. A terminalTxnMetadatas resource
+    represents data from an EMV Transaction and/or returned by the credit card network
+    associated with a Transaction.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/terminalTxnsMetadatasPostRequestModel.yaml
+    description: Create Terminal Transaction Metadata Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create terminalTxnMetadatas:
+              $ref: ../components/schemas/samples/terminalTxnMetaDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnMetadatasModel200Response.yaml
+      description: Create Terminal Transaction Metadata Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnMetadatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Terminal Transaction Metadata
+  tags:
+  - Terminal Transactions Metadatas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postTerminalTxnsMetadatas
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

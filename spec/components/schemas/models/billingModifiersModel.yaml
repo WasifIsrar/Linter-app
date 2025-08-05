@@ -1,0 +1,38 @@
+title: billingModifiersResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  billing:
+    type: string
+    description: The identifier of the Billing that this Billing Modifier applies
+      to.
+  entity:
+    type: string
+    description: The identifier of the Entity that this Billing Modifier applies to.
+  org:
+    type: string
+    description: The identifier of the Org that this Billing Modifier applies to.
+  division:
+    type: string
+    description: The identifier of the Division that this Billing Modifier applies
+      to.
+  partition:
+    type: string
+    description: The identifier of the Partition that this Billing Modifier applies
+      to.
+  fromentity:
+    type: string
+    description: The identifier of the Entity that is responsible for paying this
+      Bill on behalf of the Entity specified in the 'entity' field.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

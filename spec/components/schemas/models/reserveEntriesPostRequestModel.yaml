@@ -1,0 +1,79 @@
+title: reserveEntriesPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  fund:
+    type: string
+    description: The identifier of the Fund that this reserveEntries resource relates
+      to.
+  entry:
+    type: string
+    description: The entry ID associated with this pendingEntry.
+  hold:
+    type: string
+    description: The ID of the hold that generated this reserveEntry.
+  txn:
+    type: string
+    description: This field indicates that this reserveEntry was triggered from a
+      Transaction, and it stores the identifier of the Transaction.
+  reserve:
+    type: string
+    description: This field indicates that this reserveEntry was triggered from an
+      automatic reserve, storing the identifier of the Reserve resource.
+  entityReserve:
+    type: string
+    description: |-
+      This field indicates that this reserveEntry was triggered from a manual change to an entityReserve, and stores the identifier of the entityReserve resource.
+
+       Details:
+  reserveEntry:
+    type: string
+    description: This field indicates that this reserveEntry shows funds moving out
+      of or into reserve. This field stores the identifier of the reserveEntry resource
+      that moved the funds into or out of the reserve.
+  onentity:
+    type: string
+    description: The identifier of the Entity that this reserveEntry refers to. This
+      is the owner of the record that triggered the charge.
+  event:
+    $ref: ../enums/reserveEntryEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this PendingEntry.
+  description:
+    type: string
+    description: A description of this reserveEntries resource. This field is stored
+      as a text string and must be between 0 and 100 characters long.
+    default: ""
+  amount:
+    type: integer
+    format: int64
+    description: The amount held in reserve in this reserveEntries resource, which
+      is specified as an integer in cents.
+  release:
+    type: string
+    description: The date on which the funds in reserve should be released, specified
+      as an eight-digit string in YYYYMMDD format, such as '20160120' for January
+      20, 2016.
+required:
+- amount
+- event
+- fund
+- login
+
+example: 
+  login: t1_log_5d652e3c9bb91623e859e02
+  fund: t1_fun_5e6186054d4dbe2416bca5c
+  entry: t1_etr_6800d1dee193517e5d6ce91
+  hold: t1_hld_67ef5bad3be038935902200
+  txn: t1_txn_67caef0a014c280a6caa5zz
+  reserve: t1_rsv_5e21064368e32ef4d38f8d4
+  entityReserve: identifier
+  reserveEntry: identifier
+  onentity: t1_ent_00c2b1a6102ffdd33f11000
+  event: 6
+  eventId: t1_txn_6800d1dd114238a04f4e608
+  description: description1
+  amount: 15
+  release: "20160120"

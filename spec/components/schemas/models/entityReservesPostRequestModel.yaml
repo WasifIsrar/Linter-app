@@ -1,0 +1,33 @@
+title: entityReservesPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  fund:
+    type: string
+    description: The identifier of the Fund that this entityReserves resource relates
+      to.
+  total:
+    type: integer
+    format: int64
+    description: "The amount held in this entityReserve. \nThis field is specified\
+      \ as an integer in cents."
+  name:
+    type: string
+    description: "The name of this EntityReserve. \nThis field is stored as a text\
+      \ string and must be between 0 and 50 characters long."
+  description:
+    type: string
+    description: "A description of this EntityReserve. \nThis field is stored as a\
+      \ text string and must be between 0 and 100 characters long."
+required:
+- fund
+- login
+- total
+
+example:
+  login: t1_log_5f2d5e3e67a6fb5b3521361
+  fund: t1_fun_5f20126254c14a171b8d2d0
+  total: 0
+  name: EntityReserve1
+  description: EntityReserve

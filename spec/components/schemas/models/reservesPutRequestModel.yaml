@@ -1,0 +1,135 @@
+title: reservesPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  org:
+    type: string
+    description: The identifier of the Org that this Reserve's resource applies to.
+      If you set this field, then the Reserve applies to all Entities in the Org.
+  division:
+    type: string
+    description: The division on which this reserve applies.
+  partition:
+    type: string
+    description: The partition on which this reserve applies.
+  level:
+    type: string
+    description: |
+      The hierarchical level for this reserve setting.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `admin` - **Admin User.**
+      - `division` - **Division-level User.**
+      - `merchant` - **Merchant-level User.**
+      - `partition` - **Partition-level User.**
+
+      </details>
+    enum:
+    - admin
+    - division
+    - merchant
+    - partition
+    x-enum-elements:
+    - name: Admin
+      description: Admin User.
+    - name: Division
+      description: Division-level User.
+    - name: Merchant
+      description: Merchant-level User.
+    - name: Partition
+      description: Partition-level User.
+  entity:
+    type: string
+    description: The identifier of the Entity that this Reserve applies to.
+  hold:
+    type: string
+    description: The entity hold from which this reserve was generated.
+  name:
+    type: string
+    description: The name of this Reserve. This field is stored as a text string and
+      must be between 1 and 100 characters long.
+  description:
+    type: string
+    description: A description of this Reserve. This field is stored as a text string
+      and must be between 0 and 100 characters long.
+  percent:
+    type: integer
+    description: The percentage of funds to reserve, expressed in basis points. For
+      example, 25.3% is expressed as '2530'.
+  release:
+    type: string
+    description: |
+      The schedule that determines when the funds in this Reserve should be released, which can have valid values such as never, days, weeks, months, or years.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `never` - **Never.**
+      - `days` - **Daily. The funds are released every day.**
+      - `weeks` - **Weekly. The funds are released every week.**
+      - `months` - **Monthly. The funds are released every month.**
+      - `years` - **Annually. The funds are released every year.**
+
+      </details>
+    enum:
+    - never
+    - days
+    - weeks
+    - months
+    - years
+    x-enum-elements:
+    - name: Never
+      description: Never. The funds are not released.
+    - name: Daily
+      description: Daily. The funds are released every day.
+    - name: Weekly
+      description: Weekly. The funds are released every week.
+    - name: Monthly
+      description: Monthly. The funds are released every month.
+    - name: Annually
+      description: Annually. The funds are released every year.
+  releaseFactor:
+    type: integer
+    description: A multiplier that you can use to adjust the schedule set in the 'release'
+      field, which is specified as an integer and its value determines how the schedule
+      is multiplied.
+  start:
+    type: integer
+    description: The date on which this Reserve resource should start reserving funds
+      from the Entity or Org. The date is specified as an eight digit string in YYYYMMDD
+      format, for example, '20160120' for January 20, 2016.
+  finish:
+    type: integer
+    description: The date on which this Reserve resource should stop reserving funds
+      from the Entity or Org. The date is specified as an eight digit string in YYYYMMDD
+      format, for example, '20160120' for January 20, 2016.
+  max:
+    type: integer
+    format: int64
+    description: The maximum amount to reserve.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example: 
+  login: t1_log_611e6ca320fae7afab2f256
+  org: t1_org_5fada4629c317f80bc9cb00
+  division: t1_div_67b51635da21f7399ce2az0
+  partition: t1_ptn_000834d4d504f11234578f0
+  level: merchant
+  entity: t1_ent_5f9058fe8c8d21ead8f68dc
+  hold: t1_hld_66f27fca0236545c4f125d2
+  name: Additional Underwriting Review Required
+  description: Will release the reserve once all information is verified.
+  percent: 10000
+  release: never
+  releaseFactor: 1
+  start: 20160120
+  finish: 20160120
+  max: 0
+  inactive: 0
+  frozen: 0

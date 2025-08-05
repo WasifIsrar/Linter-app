@@ -1,0 +1,84 @@
+get:
+  description: Query a Message for a messageThreads.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this message.
+    explode: false
+    in: path
+    name: id
+    example: t1_mtd_10ca1fcf172a9ac47656a21
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/messagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messagesModel200Response.yaml
+      description: Response for retrieve message response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Message by it's ID.
+  tags:
+  - Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMessagesId
+put:
+  description: Update a messages or Message resource, which represents a message for
+    a messageThread.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this message.
+    explode: false
+    in: path
+    name: id
+    example: t1_mtd_10ca1fcf172a9ac47656a21
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/messagesPutRequestModel.yaml
+    description: Update Message Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/messagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messagesModel200Response.yaml
+      description: Response for update on messages resource Update Message Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Message by it's ID.
+  tags:
+  - Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putMessagesId

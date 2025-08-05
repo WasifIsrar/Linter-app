@@ -1,0 +1,54 @@
+title: terminalTxnRefsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  terminalTxn:
+    type: string
+    description: The parent terminalTxn that owns this terminalTxnRef and to which
+      this reference applies A single terminalTxn may have many terminalTxnRef records.
+  ref:
+    type: string
+    description: The reference value retrieved from the third party.
+  stage:
+    title: terminalTxnRefStage
+    type: string
+    description: |
+      An indicator showing what this terminalTxnRef refers to.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `activation` - **Terminal Activation**
+      - `auth` - **Transaction Authorization**
+      - `draft` - **Transaction Draft Number**
+      - `file` - **Import File Ref**
+      - `retrieval` - **Transaction Retrieval Number**
+
+      </details>
+    enum:
+    - activation
+    - auth
+    - draft
+    - file
+    - retrieval
+    x-enum-elements:
+    - name: Activation
+      description: The terminalTxnRef relates to terminal activation.
+    - name: Authorization
+      description: The terminalTxnRef relates to transaction authorization.
+    - name: Draft
+      description: The terminalTxnRef relates to transaction draft number.
+    - name: File
+      description: The terminalTxnRef relates to an import file reference.
+    - name: Retrieval
+      description: The terminalTxnRef relates to a transaction retrieval number.
+  platform:
+    $ref: ../enums/platformModel.yaml

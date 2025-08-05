@@ -1,0 +1,85 @@
+title: plansPostRequest
+properties:
+  amount:
+    type: integer
+    format: int64
+    description: The amount to charge with each payment under this Plan, specified
+      as an integer in cents.
+  billing:
+    type: string
+    description: The attached billing for which recurring payments should be made
+      to pay off statements.
+  order:
+    type: string
+    description: The order of the Txn that will be created through this Plan.
+  txnDescription:
+    type: string
+    description: The description of the Txn that will be created through this Plan.
+  description:
+    type: string
+    description: A description of this Plan. This field is stored as a text string
+      and must be between 0 and 100 characters long.
+  maxFailures:
+    type: integer
+    description: The maximum consecutive amount of payment failures to allow for a
+      subscription before inactivating it.
+  merchant:
+    type: string
+    description: The identifier of the Merchant associated with this Plan.
+  name:
+    type: string
+    description: The name of this Plan. This field is stored as a text string and
+      must be between 0 and 100 characters long.
+    default: ""
+  schedule:
+    $ref: ../enums/planScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    default: 0
+    description: A multiplier that you can use to adjust the schedule set in the 'schedule'
+      field, such as daily, weekly, monthly, or annually. In this field is specified
+      as an integer and its value determines how the interval is multiplied.
+  um:
+    $ref: ../enums/planUmModel.yaml
+  type:
+    title: planType
+    type: string
+    description: "The type of plan.\n\n<details>\n<summary>Valid Values</summary>\n\
+      \n- `recurring` - **A recurring payment plan (subcription).**\n\n- `installment`\
+      \  - **A deferred payment installment plan.** \n\n</details>          \n"
+    default: recurring
+    enum:
+    - recurring
+    - installment
+    x-enum-elements:
+    - name: "Recurring"
+      description: "A recurring payment plan (subscription)."
+    - name: "Installment"
+      description: "A deferred payment installment plan."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- amount
+- merchant
+- schedule
+- scheduleFactor
+- type
+- um
+
+example:
+  merchant: p1_mer_000444add0403c3553f4d20
+  name: 'Lind - Wyman Subscription Plan weekly'
+  description: Payment
+  schedule: 1
+  scheduleFactor: 1
+  amount: 50000
+  inactive: 0
+  frozen: 0
+  maxFailures: 2
+  type: recurring
+  txnDescription: Payment Plan
+  order: S1 - 1000 - LAST
+  billing: p1_bil_00cee36329ead6ae6d31e43
+  um: actual

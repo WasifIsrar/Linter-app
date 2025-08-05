@@ -1,0 +1,102 @@
+get:
+  description: Query a BIN, which holds information about the issuer of a card.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The BIN ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_bil_67dbdc94ee1b1a43e6ab000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all bins:
+              $ref: ../components/schemas/samples/binsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/binsModel200Response.yaml
+      description: Retrieve BIN Response for query on bins resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all bins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve BIN by it's ID.
+  tags:
+  - Bins
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getBinsId
+put:
+  description: "Update a Bin. \nA Bin resource holds information about the issuer\
+    \ of a card."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/binsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/binsModel200Response.yaml
+      description: Response for update on bins resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Bins
+  - Facilitator
+  operationId: putBinsId
+delete:
+  description: "Delete a Bin. \nA Bin resource holds information about the issuer\
+    \ of a card."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/binsModel200Response.yaml
+      description: Response for delete on bins resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Bins
+  - Facilitator
+  operationId: deleteBinsId

@@ -1,0 +1,13 @@
+title: accountVerificationsResponseResult
+properties:
+  response:
+    title: accountVerificationsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/accountVerificationModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

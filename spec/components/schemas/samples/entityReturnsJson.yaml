@@ -1,0 +1,31 @@
+value: 
+  "response": {
+        "data": [
+            {
+                "id": "t1_ern_67c9b2996c2944b0ffc9090",
+                "created": "2025-03-06 09:35:05.4506",
+                "modified": "2025-03-06 09:35:05.4506",
+                "creator": "t1_log_5f875c53ed397f57c0afc90",
+                "modifier": "t1_log_5f875c53ed397f57c0afc90",
+                "login": "t1_log_5f875c53ed397f57c0afc90",
+                "entity": "t1_ent_00177a051ae2b52697fe015",
+                "txn": "t1_txn_89c9afa2d319e6c23540104",
+                "disbursement": "",
+                "actionCode": "badAccount",
+                "code": "R03",
+                "message": "Unable to locate account or no account",
+                "inactive": 0,
+                "frozen": 0
+            }
+        ],
+        "details": {
+            "requestId": "1",
+            "totals": [],
+            "page": {
+                "current": 1,
+                "last": 1,
+                "hasMore": false
+            }
+        },
+        "errors": []
+    }

@@ -1,0 +1,20 @@
+title: reportResultStatus
+type: string
+description: |
+  Report Results Status.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `pending` - **Report Results Pending.**
+  - `processed` - **Report Results Complete.**
+
+  </details>
+enum:
+- pending
+- processed
+x-enum-elements:
+- name: Pending
+  description: Report Results Pending.
+- name: Processed
+  description: Report Results Complete.

@@ -1,0 +1,49 @@
+title: paymentUpdatesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  paymentUpdateGroup:
+    type: string
+    description: The PaymentGroup resource that this PaymentUpdate belongs to.
+  payment:
+    type: string
+    description: The payment associated with this PaymentUpdate.
+  status:
+    $ref: ../enums/paymentUpdateStatusModel.yaml
+  token:
+    type: string
+    description: The ID of the token record to associate with this terminal activation
+      request.
+  account:
+    type: string
+    description: The account associated with this Payment being updated. Used for
+      instant funding payouts.
+  platform:
+    $ref: ../enums/platformModel.yaml
+  ref:
+    type: string
+    description: ' A platform reference for this PaymentUpdate. This field is stored
+      as a text string and must be between 0 and 50 characters long.'
+  clientRef:
+    type: string
+    description: ' An internally generated reference for this PaymentUpdate. This
+      field is stored as a text string and must be between 1 and 50 characters long.'
+  message:
+    type: string
+    description: ' The message with details about the outcome of the paymentUpdate.
+      This field is stored as a text string and must be between 0 and 500 characters
+      long.'
+  expiration:
+    type: string
+    description: ' The expiration number of the payment being updated, this field
+      is stored as a text string in ''MMYY'' format, where ''MM'' is the number of
+      a month and ''YY'' is the last two digits of a year. For example, ''0623'' for
+      June 2023.'

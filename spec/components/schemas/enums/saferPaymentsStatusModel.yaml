@@ -1,0 +1,24 @@
+title: saferPaymentStatus
+type: string
+description: |
+  This field indicates the entity's current PCI compliance status for the service.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `compliance` - **Compliance**
+  - `non-compliance` - **Non-Compliance**
+  - `pending` - **Pending**
+
+  </details>
+enum: 
+- compliance
+- non-compliance
+- pending
+x-enum-elements:
+- name: "compliance"
+  description: "Compliance"
+- name: "non-compliance"
+  description: "Non-Compliance"
+- name: "pending"
+  description: "Pending" 

@@ -1,0 +1,20 @@
+title: orgFlowRulesType
+type: string
+description: | 
+  The type of logic to apply with this OrgFlow Rule.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `MCC` - **Type MCC.** The Orgflow applies based on the MCC properties of the merchants.
+  - `Custom` - **Type Custom.** The Orgflow applies based on the custom properties of the entities.
+
+  </details>
+enum: 
+- MCC
+- Custom
+x-enum-elements:
+- name: "MCC"
+  description: "Type MCC. The Orgflow applies based on the MCC properties of the merchants."
+- name: "Custom"
+  description: "Type Custom. The Orgflow applies based on the custom properties of the entities."

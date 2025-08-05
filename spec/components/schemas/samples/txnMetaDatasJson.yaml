@@ -1,0 +1,28 @@
+value:
+  {
+  "response": {
+      "data": [
+            {
+              "id": "p1_tmd_67a000db8b464f000d8ea2d",
+              "created": "2025-02-04 07:19:39.5721",
+              "modified": "2025-02-04 07:19:39.5721",
+              "creator": "t1_log_123e1cbf1bcfe0d606bd000",
+              "modifier": "t1_log_123e1cbf1bcfe0d606bd000",
+              "txn": "p1_txn_67a205db0008b23d0687000",
+              "type": "discretionary",
+              "field": "discretionary3",
+              "value": "01b6123xxc5119z"
+            }
+        ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+            }
+        },
+      "errors": []
+    }
+}

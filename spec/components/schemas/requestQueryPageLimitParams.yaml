@@ -1,0 +1,10 @@
+     description: |-
+       Set this path parameter to request up to a specific amount of records. By default 30 records are retrieved per page. The maximum limit that can be set is 100.
+       For example, set `?page[limit]=50` to retrieve up to 50 records for this request.
+     explode: true
+     in: query
+     name: page[limit]
+     required: false
+     schema: {type: integer}
+     style: form
+     example: 50

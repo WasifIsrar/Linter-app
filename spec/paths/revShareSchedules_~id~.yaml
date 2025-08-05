@@ -1,0 +1,117 @@
+get:
+  description: Query a revShareSchedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_rsc_6800f8590a3fc6c0caed9zz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/revShareSchedulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revShareSchedulesModel200Response.yaml
+      description: Response for query on revShareSchedules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Rev Share Schedules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getRevShareSchedulesId
+put:
+  description: Update a revShareSchedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_rsc_6800f8590a3fc6c0caed9zz
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/revShareSchedulesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update revShareSchedules:
+              $ref: ../components/schemas/samples/revShareSchedulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revShareSchedulesModel200Response.yaml
+      description: Response for update on revShareSchedules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Rev Share Schedules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putRevShareSchedulesId
+delete:
+  description: Delete a revShareSchedule.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_rsc_6800f8590a3fc6c0caed9zz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete revShareSchedules:
+              $ref: ../components/schemas/samples/revShareSchedulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revShareSchedulesModel200Response.yaml
+      description: Response for delete on revShareSchedules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Rev Share Schedules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteRevShareSchedulesId

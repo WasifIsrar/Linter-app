@@ -1,0 +1,274 @@
+title: membersPostRequest
+properties:
+  merchant:
+    type: string
+    description: The identifier of the Merchant associated with this Member.
+  title:
+    type: string
+    description: "The title that this Member holds in relation to the associated Merchant.\
+      \ \nThis field is stored as a text string and must be between 0 and 100 characters\
+      \ long.\nFor example, 'CEO', 'Owner' or 'Director of Finance'."
+  first:
+    type: string
+    description: "The first name associated with this Member. \nThis field is stored\
+      \ as a text string and must be between 1 and 100 characters long."
+  middle:
+    type: string
+    description: "The middle name associated with this Member. \nThis field is stored\
+      \ as a text string and must be between 0 and 100 characters long."
+  last:
+    type: string
+    description: "The last name associated with this Member. \nThis field is stored\
+      \ as a text string and must be between 1 and 100 characters long."
+  ssn:
+    type: string
+    description: "The social security number of this Member. This field is required\
+      \ if the Merchant associated with the Member is a sole trader. \nThis field\
+      \ is stored as a text string and must be 9 characters long and numeric characters\
+      \ only."
+  citizenship:
+    $ref: ../models/countryModel.yaml
+    description: "The country of which the owner is a citizen. \nValid values for\
+      \ this field is the 3-letter ISO code for the country."
+  dob:
+    type: integer
+    description: The date of birth of this Member.  The date is specified as an eight
+      digit string in YYYYMMDD format, for example, '20160120' for January 20, 2016.
+  gender:
+    type: string
+    description: "The gender of this Member.\n\n<details>\n<summary>Valid Values</summary>\n\
+      \n- `male` - **Male** \n\n- `female` - **Female**\n\n</details>\n"
+    enum:
+    - male
+    - female
+    x-enum-elements:
+    - name: "Male"
+      description: "Male."
+    - name: "Female"
+      description: "Female."
+  dl:
+    type: string
+    description: "The driver's license number of this Member. \nThis field is stored\
+      \ as a text string and must be between 0 and 15 characters long."
+  dlstate:
+    $ref: ../models/stateModel.yaml
+  email:
+    type: string
+    description: "The email address of this Member. \nThis field is stored as a text\
+      \ string and must be between 1 and 100 characters long."
+  ownership:
+    type: integer
+    description: "The share of the Member's ownership of the associated Merchant,\
+      \ expressed in basis points. \nFor example, 25.3% is expressed as '2530'. \n\
+      This field is stored as an integer and must be between 1 and 10000 characters\
+      \ long."
+  primary:
+    $ref: ../enums/membersPrimaryModel.yaml
+  creditScore:
+    type: integer
+    description: A credit score is a three-digit number that rates your creditworthiness.
+      scores range from 334 to 818.
+    default: 0
+  creditScoreDate:
+    type: string
+    description: Date for Credit Score.
+  significantResponsibility:
+    type: integer
+    description: "'A controlling authority', or 'Control Prong'. Includes, but is\
+      \ not limited to:\n\n  * Chief Executive Officer,\n  \n  * Chief Financial Officer,\
+      \ \n  \n  * Chief Operating Officer, \n  \n  * Managing Member, \n  \n  * General\
+      \ Partner, \n \n  * President, \n \n  * Vice Presidents, or \n \n  * An individual\
+      \ with significant legal authority to enter the Legal Entity into a commercial\
+      \ relationship.\n\n<details>\n<summary>Valid Values</summary>\n\n- `0` - **No\
+      \ significant responsibility.** \n\n- `1` - **Significant reponsibility.**\n\
+      \n</details>\n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NoSignificantResponsibility"
+      description: "No significant responsibility."
+    - name: "SignificantResponsibility"
+      description: "Significant responsibility."
+  politicallyExposed:
+    type: integer
+    description: "This person is politically exposed, defined as: \"persons whom through\
+      \ their prominent position or influence, is more susceptible to being involved\
+      \ in bribery or corruption.\"\n\n<details>\n<summary>Valid Values</summary>\n\
+      \n- `0` - **Not politically exposed.** \n\n- `1` - **Politically exposed.**\n\
+      \n</details> \n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotPoliticallyExposed"
+      description: "Not politically exposed."
+    - name: "PoliticallyExposed"
+      description: "Politically exposed."
+  mailingAddress1:
+    type: string
+    description: "The mailing first line of the address associated with this Member.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  mailingAddress2:
+    type: string
+    description: "The mailing second line of the address associated with this Member.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  mailingCity:
+    type: string
+    description: "The mailing name of the city in the address associated with this\
+      \ Member. \nThis field is stored as a text string and must be between 1 and\
+      \ 500 characters long."
+  mailingState:
+    $ref: ../models/stateModel.yaml
+  mailingCountry:
+    $ref: ../models/countryModel.yaml
+    description: "The country of which the owner is a citizen. \nValid values for\
+      \ this field is the 3-letter ISO code for the country."
+  mailingPostalCode:
+    type: string
+    description: "The mailing postal code in the address associated with this Member.\
+      \ \nThis field is stored as a text string and must be between 1 and 20 characters\
+      \ long."
+  treasuryPrimeRoles: {}
+  timezone:
+    type: string
+    description: "The timezone for the address associated with the terminal's location.\n\
+      \n<details>\n<summary>Valid Values</summary>\n\n  - `est` - **Eastern Standard\
+      \ Time**\n  \n  - `cst` - **Central Standard Time**\n  \n  - `pst` - **Pacific\
+      \ Standard Time**\n  \n  - `mst` - **Mountain Daylight Time**\n  \n  - `akst`\
+      \ - **Alaska Standard Time**\n  \n  - `hst` - **Hawaii Standard Time**\n  \n\
+      \  - `sst` - **Samoa Standard Time**\n  \n  - `chst` - **Chamorro Standard Time**\n\
+      \  \n  - `ast` - **Atlantic Standard Time**\n  \n  - `pwt` - **Palau Time**\n\
+      \  \n  - `mht` - **Marshall Islands Time**\n  \n  - `chut` - **Chuuk Time**\n\
+      \  \n  - `nst` - **Newfoundland Standard Time**\n\n</details>\n"
+    enum:
+    - est
+    - cst
+    - pst
+    - mst
+    - akst
+    - hst
+    - sst
+    - chst
+    - ast
+    - pwt
+    - mht
+    - chut
+    - nst
+    x-enum-elements:
+    - name: "EST"
+      description: "Eastern Standard Time"
+    - name: "CST"
+      description: "Central Standard Time"
+    - name: "PST"
+      description: "Pacific Standard Time"
+    - name: "MST"
+      description: "Mountain Standard Time"
+    - name: "AKST"
+      description: "Alaska Standard Time"
+    - name: "HST"
+      description: "Hawaii Standard Time"
+    - name: "SST"
+      description: "Samoa Standard Time"
+    - name: "CHST"
+      description: "Chamorro Standard Time"
+    - name: "AST"
+      description: "Atlantic Standard Time"
+    - name: "PWT"
+      description: "Palau Time"
+    - name: "MHT"
+      description: "Marshall Islands Time"
+    - name: "CHUT"
+      description: "Chuuk Time"
+    - name: "NST"
+      description: "Newfoundland Standard Time"
+  address1:
+    type: string
+    description: "The first line of the address associated with this Member. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Member. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Member.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Member. \nThis\
+      \ field is stored as a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../models/countryModel.yaml
+    description: "The country of which the owner is a citizen. \nValid values for\
+      \ this field is the 3-letter ISO code for the country."
+  phone:
+    type: string
+    description: "The phone number associated with this Member. \nThis field is stored\
+      \ as a text string and must be between 5 and 15 characters long."
+  fax:
+    type: string
+    description: "The fax number associated with this Member. \nThis field is stored\
+      \ as a text string and must be between 5 and 15 characters long."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- dob
+- email
+- first
+- frozen
+- inactive
+- last
+- merchant
+- ownership
+- politicallyExposed
+- primary
+- significantResponsibility
+- timezone
+example: 
+  merchant: t1_mer_67d033698c234e74c399ddd
+  first: Chad
+  last: Foster
+  dob: 20160120
+  email: Jerrod_Glover@hotmail.com
+  ownership: 10000
+  primary: 1
+  significantResponsibility: 0
+  politicallyExposed: 0
+  timezone: est
+  title: CEO
+  middle: middle name
+  ssn: '1924'
+  citizenship: MAR
+  gender: male
+  dl: '6679'
+  dlstate: MD
+  creditScore: 334
+  creditScoreDate: '2025-03-11 08:58:20'
+  mailingAddress1: mailing first line of address
+  mailingAddress2: mailing second line of address
+  mailingCity: mailing name of the city
+  mailingState: MD
+  mailingCountry: MAR
+  mailingPostalCode: mailing postal code
+  address1: first line of address
+  address2: second line of address
+  city: name of city
+  state: MD
+  zip: ZIP code
+  country: MAR
+  phone: '5106406000'
+  fax: '5106406000'
+  inactive: 0
+  frozen: 0

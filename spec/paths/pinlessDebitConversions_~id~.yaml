@@ -1,0 +1,79 @@
+get:
+  description: Query a pinlessDebitConversion.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this pinlessDebitConversion.
+    explode: false
+    in: path
+    name: id
+    example: t1_pdc_684c7ec770b6d462c4cd000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch pinlessDebitConversions:
+              $ref: ../components/schemas/samples/pinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/pinlessDebitConversionsModel200Response.yaml
+      description: Response for retrieving pinlessDebitConversion response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all pinlessDebitConversion:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve pinlessDebitConversion by it's ID.
+  tags:
+  - Pinless Debit Conversions
+  - Facilitator
+  operationId: getPinlessDebitConversionsId
+put:
+  description: Update a pinlessDebitConversion.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this Pinless Debit Conversions.
+    explode: false
+    in: path
+    name: id
+    example: t1_pdc_684c7ec770b6d462c4cd000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/pinlessDebitConversionsPutRequestModel.yaml
+    description: Update Pinless Debit Conversions
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update pinlessDebitConversions:
+              $ref: ../components/schemas/samples/pinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/pinlessDebitConversionsModel200Response.yaml
+      description: Response for update on Pinless Debit Conversions response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all pinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Pinless Debit Conversions by it's ID.
+  tags:
+  - Pinless Debit Conversions
+  - Facilitator
+  operationId: putPinlessDebitConversionsId

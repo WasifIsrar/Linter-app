@@ -1,0 +1,112 @@
+title: changeRequest
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  deleted:
+    type: string
+    description: In case resource is deleted, this field will then show the date it
+      occurred. The format should be YYYY-MM-DD HH:MM:SS
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  login:
+    type: string
+    description: The identifier of the Login associated with this ChangeRequest.
+  authType:
+    type: integer
+    description: Auth Type that originate the request.
+  operation:
+    type: string
+    description: |+
+      The operation being performed on the resource.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `create` - **When creating a model.**
+      - `update` - **When updating a model.**
+
+      </details>
+    enum:
+    - create
+    - update
+    x-enum-elements:
+    - name: "Create"
+      description: "When creating a model."
+    - name: "Update"
+      description: "When updating a model."
+  status:
+    title: changeRequestStatus
+    type: string
+    description: |+
+      The status of the requested change.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `pending` - **The Change Request has a pending status.**
+      - `manualReview` - **The Change Request was escalated to be manually reviewed.**
+      - `approved` - **The Change Request has been approved.**
+      - `declined` - **The Change Request was declined.**
+
+      </details>
+    enum:
+    - pending
+    - manualReview
+    - approved
+    - declined
+    x-enum-elements:
+    - name: "Pending"
+      description: "The Change Request has a pending status."
+    - name: "ManualReview"
+      description: "The Change Request was escalated to be manually reviewed."
+    - name: "Approved"
+      description: "The Change Request has been approved."
+    - name: "Declined"
+      description: "The Change Request was declined."
+  reasonType:
+    type: string
+    description: A type which categorizes the reason, in case the change was declined.
+    x-enum-elements:
+    - name: "UnableToValidate"
+      description: "Unable to validate."
+    - name: "NoResponse"
+      description: "No response."
+    - name: "InvalidDocument"
+      description: "Invalid document."
+    - name: "UnableToRead"
+      description: "Unable to read."
+    - name: "ExpiredDocument"
+      description: "Expired document."
+    - name: "Other"
+      description: "Other reason."
+  reason:
+    type: string
+    description: The reason in case the change was declined.
+  changes:
+    type: string
+    description: A JSON encoded string with the request payload
+  model:
+    type: string
+    description: The model being changed.
+  recordId:
+    type: string
+    description: The id of the model, only set when operation is update
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this Account.
+  analyst:
+    type: string
+    description: The person who review the request.
+  reviewed:
+    type: string
+    description: If this change request was reviewed. The format should be YYYY-MM-DD HH:MM:SS
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'

@@ -1,0 +1,40 @@
+title: noteDocumentsPostRequest
+properties:
+  note:
+    type: string
+    description: The identifier of the Note that owns this note documents resource.
+  type:
+    $ref: ../enums/noteDocumentTypeModel.yaml
+  name:
+    type: string
+    description: The name of the document on the referenced NoteDocument.
+  custom:
+    type: string
+    description: The identifier of the Custom that relates to this notes resource.
+  description:
+    type: string
+    description: A brief description of the document.
+  status:
+    $ref: ../enums/noteDocumentStatusModel.yaml
+  documentType:
+    $ref: ../enums/noteDocumentsDocumentTypeModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- note
+- status
+
+example:
+  note: t1_not_67eef7a7a830eb17b0aefd5
+  type: png
+  name: Boy1.png
+  custom: identifier
+  description: doc description1
+  status: processed
+  documentType: voidCheck
+  inactive: 0
+  frozen: 0

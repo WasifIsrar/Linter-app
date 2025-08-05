@@ -1,0 +1,5 @@
+type: string
+description: 'The date and time at which this resource was created. The format
+      should be YYYY-MM-DD HH:MM:SS.SSSS'
+format: custom-date-time
+pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'

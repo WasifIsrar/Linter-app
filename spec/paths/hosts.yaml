@@ -1,0 +1,54 @@
+get:
+  description: "Query a Hosts resource. \nA Host represents a particular host on the\
+    \ network that runs the API and portal for a particular Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/hostsModel200Response.yaml
+      description: Response for query on hosts resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Hosts
+  - Facilitator
+  operationId: getHosts
+post:
+  description: "Create a Hosts resource. \nA Host represents a particular host on\
+    \ the network that runs the API and portal for a particular Partition."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/hostsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/hostsModel200Response.yaml
+      description: Response for create on hosts resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Hosts
+  - Facilitator
+  operationId: postHosts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

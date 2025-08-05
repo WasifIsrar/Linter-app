@@ -1,0 +1,33 @@
+title: reportStatus
+type: string
+description: |
+  Describes the status of a given Report.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `notReady` - **The Report is not ready to download.**
+  - `ready` - **The Report is ready to download.**
+  - `processing` - **The Report is processing generation.**
+  - `processed` - **The Report has finished processing generation.**
+  - `scheduled` - **The Report is scheduled for a future date.**
+
+  </details>
+default: notReady
+enum:
+- notReady
+- ready
+- processing
+- processed
+- scheduled
+x-enum-elements:
+- name: NotReady
+  description: The Report is not ready to download.
+- name: Ready
+  description: The Report is ready to download.
+- name: Processing
+  description: The Report is processing generation.
+- name: Processed
+  description: The Report has finished processing generation.
+- name: Scheduled
+  description: The Report is scheduled for a future date.

@@ -1,0 +1,57 @@
+get:
+  description: "Query a terminalRefs resource. \nA terminalRefs resource represents\
+    \ a reference code issued by the Processor that represents a particular Terminal."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalRefsModel200Response.yaml
+      description: Response for query on terminalRefs resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Terminal References.
+  tags:
+  - Terminal References
+  - Facilitator
+  operationId: getTerminalRefs
+post:
+  description: Create a terminalRefs resource that represents a reference code issued
+    by the Processor that represents a particular Terminal.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/terminalRefsPostRequestModel.yaml
+    description: Create Terminal Reference Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalRefsModel200Response.yaml
+      description: Response for create on terminalRefs resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Terminal Reference.
+  tags:
+  - Terminal References
+  - Facilitator
+  operationId: postTerminalRefs
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,18 @@
+title: orgEntitiesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  org:
+    type: string
+    description: The identifier of the Org that this orgEntity is associated with.
+  entity:
+    type: string
+    description: The identifier of the Entity that this orgEntity is associated with.

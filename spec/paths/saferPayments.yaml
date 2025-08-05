@@ -1,0 +1,68 @@
+get:
+  description: Query Safer Payments.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all saferPayments:
+              $ref: ../components/schemas/samples/saferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/saferPaymentsModel200Response.yaml
+      description: Response for query on Safer Payments resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all saferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Safer Payments.
+  tags:
+  - Safer Payments
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSaferPayments
+post:
+  description: Create a Safer Payment.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/saferPaymentsPostRequestModel.yaml
+    description: Create Safer Payment Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create saferPayments:
+              $ref: ../components/schemas/samples/saferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/saferPaymentsModel200Response.yaml
+      description: The response create Safer Payment.
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all saferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Safer Payment
+  tags:
+  - Safer Payments
+  - Facilitator
+  - Partner
+  operationId: postSaferPayments

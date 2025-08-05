@@ -1,0 +1,27 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "p1_mrt_680b3a1e5c07f4e2c1b4zzz",
+        "created": "2025-04-25 03:30:38.3788",
+        "modified": "2025-04-25 03:30:38.3788",
+        "creator": "t1_log_0092b50e8812b18e41d500z",
+        "modifier": "t1_log_0092b50e8812b18e41d500z",
+        "merchant": "p1_mer_680b3a1dd4481ed43c19c58",
+        "type": "data",
+        "platform": "VCORE",
+        "message": "Missing entity route, cannot board merchant",
+        "boardingProcessID": "9cf593a8-7101-49ed-a46f-5510825def2a"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

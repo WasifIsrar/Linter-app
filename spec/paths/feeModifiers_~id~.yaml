@@ -1,0 +1,125 @@
+get:
+  description: Query a Fee Modifier that can change the total amount of the fee or
+    whoever will pay it, such as applying a 10% markup on the fee total for a specific
+    org.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Fee Modifier ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_fmr_6809dd0aab33df5467c8200
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all feeModifiers:
+              $ref: ../components/schemas/samples/feeModifiersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeModifiersModel200Response.yaml
+      description: Retrieve Fee Modifier Response for query on feeModifiers resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeModifiers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Fee Modifier by it's ID.
+  tags:
+  - Fee Modifiers
+  - Facilitator
+  - Partner
+  operationId: getFeeModifiersId
+put:
+  description: Update a Fee Modifier that can change the total amount of the fee or
+    whoever will pay it, such as applying a 10% markup on the fee total for a specific
+    org.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Fee Modifier ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_fmr_6809dd0aab33df5467c8200
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/feeModifiersPutRequestModel.yaml
+    description: Update Fee Modifier Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update feeModifiers:
+              $ref: ../components/schemas/samples/feeModifiersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeModifiersModel200Response.yaml
+      description: 'Response for update on FeeModifiers resource: Update Fee Modifier
+        Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeModifiers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Fee Modifier by it's ID.
+  tags:
+  - Fee Modifiers
+  - Facilitator
+  - Partner
+  operationId: putFeeModifiersId
+delete:
+  description: Delete a Fee Modifier that can change the total amount of the fee or
+    whoever will pay it, such as applying a 10% markup on the fee total for a specific
+    org.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The Fee Modifier ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_fmr_6809dd0aab33df5467c8200
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete feeModifiers:
+              $ref: ../components/schemas/samples/feeModifiersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeModifiersModel200Response.yaml
+      description: Response for delete on FeeModifiers response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeModifiers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Fee Modifier by it's ID.
+  tags:
+  - Fee Modifiers
+  - Facilitator
+  - Partner
+  operationId: deleteFeeModifiersId

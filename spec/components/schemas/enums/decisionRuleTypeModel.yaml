@@ -1,0 +1,160 @@
+title: decisionRuleType
+type: string
+description: |
+  The type of logic to apply with this Decision Rule.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `less` - **Less.**
+  - `equal` - **Equal.**
+  - `notEqual` - **Not Equal.**
+  - `greater` - **Greater.**
+  - `swiped` - **Swiped.**
+  - `signed` - **Signed.**
+  - `type` - **Type.**
+  - `origin` - **Origin.**
+  - `method` - **Method.**
+  - `cvvResult` - **CVV Result.**
+  - `avsResult` - **AVS Result.**
+  - `3dsResult` - **3DS Result. The Decision applies based on the results of a 3DS check.**
+  - `related` - **Related.**
+  - `relatedDelay` - **Related Delay.**
+  - `relatedFloor` - **Related Floor.**
+  - `relatedCeil` - **Related Ceil.**
+  - `mcc` - **MCC.**
+  - `merchantCountry` - **Merchant Country.**
+  - `issuerCountry` - **Issuer Country.**
+  - `international` - **International.**
+  - `platform` - **Platform.**
+  - `methodType` - **Method Type.**
+  - `emv` - **EMV.**
+  - `misuse` - **Misuse.**
+  - `bin` - **BIN.**
+  - `primary` - **Primary.**
+  - `fundingCurrencyEqual` - **Funding Currency Equal.**
+  - `fundingCurrencyNotEqual` - **Funding Currency Not Equal.**
+  - `fundingCurrencyMismatch` - **Funding Currency Mismatch.**
+  - `settledCurrencyMismatch` - **Settled Currency Mismatch.**
+  - `imported` - **Imported.**
+  - `subscription` - **Subscription.**
+  - `publicAuth` - **Public Auth.**
+  - `clientIp` - **Client IP.**
+  - `debtRepayment` - **Debt Repayment.**
+  - `cofType` - **COF Type.**
+  - `entryMode` - **Entry Mode.**
+
+  </details>
+enum:
+- less
+- equal
+- notEqual
+- greater
+- swiped
+- signed
+- type
+- origin
+- method
+- cvvResult
+- avsResult
+- 3dsResult
+- related
+- relatedDelay
+- relatedFloor
+- relatedCeil
+- mcc
+- merchantCountry
+- issuerCountry
+- international
+- platform
+- methodType
+- emv
+- misuse
+- bin
+- primary
+- fundingCurrencyEqual
+- fundingCurrencyNotEqual
+- fundingCurrencyMismatch
+- settledCurrencyMismatch
+- imported
+- subscription
+- publicAuth
+- clientIp
+- debtRepayment
+- cofType
+- entryMode
+x-enum-elements:
+- name: Less
+  description: Less.
+- name: Equal
+  description: Equal.
+- name: NotEqual
+  description: Not Equal.
+- name: Greater
+  description: Greater.
+- name: Swiped
+  description: Swiped.
+- name: Signed
+  description: Signed.
+- name: Type
+  description: Type.
+- name: Origin
+  description: Origin.
+- name: Method
+  description: Method.
+- name: CvvResult
+  description: CVV Result.
+- name: AvsResult
+  description: AVS Result.
+- name: 3DSResult
+  description: 3DS Result. The Decision applies based on the results of a 3DS check.
+- name: Related
+  description: Related.
+- name: RelatedDelay
+  description: Related Delay.
+- name: RelatedFloor
+  description: Related Floor.
+- name: RelatedCeil
+  description: Related Ceil.
+- name: MCC
+  description: MCC.
+- name: MerchantCountry
+  description: Merchant Country.
+- name: IssuerCountry
+  description: Issuer Country.
+- name: International
+  description: International.
+- name: Platform
+  description: Platform.
+- name: MethodType
+  description: Method Type.
+- name: EMV
+  description: EMV.
+- name: Misuse
+  description: Misuse.
+- name: BIN
+  description: BIN.
+- name: Primary
+  description: Primary.
+- name: FundingCurrencyEqual
+  description: Funding Currency Equal.
+- name: FundingCurrencyNotEqual
+  description: Funding Currency Not Equal.
+- name: FundingCurrencyMismatch
+  description: Funding Currency Mismatch.
+- name: SettledCurrencyMismatch
+  description: Settled Currency Mismatch.
+- name: Imported
+  description: Imported.
+- name: Subscription
+  description: Subscription.
+- name: PublicAuth
+  description: Public Auth.
+- name: ClientIp
+  description: Client IP.
+- name: DebtRepayment
+  description: Debt Repayment.
+- name: CofType
+  description: COF Type.
+- name: EntryMode
+  description: Entry Mode.

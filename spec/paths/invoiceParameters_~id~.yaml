@@ -1,0 +1,123 @@
+get:
+  description: Query an invoice parameter that holds a certain configuration used
+    for creating an invoice such as dba, address, and apikey.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice parameter.
+    explode: false
+    in: path
+    name: id
+    example: t1_inp_67e46c1f4245ca0a6398000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceParameters:
+              $ref: ../components/schemas/samples/invoiceParameterJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceParametersModel200Response.yaml
+      description: Response for retrieve invoice parameter response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceParameters:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Invoice Parameter by it's ID.
+  tags:
+  - Invoice Parameters
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoiceParametersId
+put:
+  description: Update an invoice parameter.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice parameter.
+    explode: false
+    in: path
+    name: id
+    example: t1_inp_67e46c1f4245ca0a6398000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/invoiceParametersPutRequestModel.yaml
+    description: Update Invoice Parameter Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update invoiceParameters:
+              $ref: ../components/schemas/samples/invoiceParameterJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceParametersModel200Response.yaml
+      description: 'Response for update on invoiceParameters resource: Update Invoice
+        Parameter Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceParameters:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Invoice Parameter by it's ID.
+  tags:
+  - Invoice Parameters
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putInvoiceParametersId
+delete:
+  description: Delete an Invoice Parameter.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice parameter.
+    explode: false
+    in: path
+    name: id
+    example: t1_inp_67e46c1f4245ca0a6398000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete invoiceParameters:
+              $ref: ../components/schemas/samples/invoiceParameterJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceParametersModel200Response.yaml
+      description: Response for deleting an invoice parameter.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceParameters:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Invoice Parameter by it's ID.
+  tags:
+  - Invoice Parameters
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteInvoiceParametersId

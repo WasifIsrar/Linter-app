@@ -1,0 +1,29 @@
+get:
+  description: "Query a VerificationRef. \nA VerificationRef is a record used to store\
+    \ the reference number returned by Payrix Risk Integration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/verificationRefsModel200Response.yaml
+      description: Response for query on verificationRefs resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Verification Refs
+  - Facilitator
+  operationId: getVerificationRefsId

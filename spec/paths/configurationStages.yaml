@@ -1,0 +1,54 @@
+get:
+  description: "Query a ConfigurationStage resource. \nA ConfigurationStage resource\
+    \ will hold relevant information about a certain stage of integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationStagesModel200Response.yaml
+      description: Response for query on configurationStages resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configuration Stages
+  - Facilitator
+  operationId: getConfigurationStages
+post:
+  description: "Create a ConfigurationStage resource. \nA ConfigurationStage resource\
+    \ will hold relevant information about a certain stage of integration configuration."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/configurationStagesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationStagesModel200Response.yaml
+      description: Response for create on configurationStages resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configuration Stages
+  - Facilitator
+  operationId: postConfigurationStages
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

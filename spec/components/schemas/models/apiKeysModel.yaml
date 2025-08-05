@@ -1,0 +1,74 @@
+title: apiKeysResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The identifier of the login under which to perform this action. If you do not supply
+      a login in this field, then the API defaults to the login that is currently
+      authenticated.
+  key:
+    type: string
+    description: |-
+      The cryptographically secure, randomly generated key to be used
+      in authentication.
+       
+       An apikey may represent a private (secret) key code that is used internally (server-side) by the application authenticating to the API.
+
+       A private key should never be exposed to external/untrusted entities and should be immediately deactivated if compromised. All API resources and actions can be accessed and performed with a private apikey.
+  name:
+    type: string
+    description: |-
+      The name of the API key.
+  description:
+    type: string
+    description: Description of the ApiKey.
+  public:
+    title: apiKeyPublic
+    type: integer
+    description: "Whether this API key should have access to only public resources.\
+      \ \nPublic resources include Transactions, Tokens, Customers, and Items.\
+      \ \nAll other resources are private. <details> <summary>Valid Values</summary>\n\
+      \ - `0` - **The key can also access private resources.**\n - `1` - **The key\
+      \ can only access public resources.**\n </details>"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "PrivateAccess"
+      description: "Session can also access private resources."
+    - name: "PublicAccess"
+      description: "Session can only access public resources."
+  token:
+    type: integer
+    description: |
+      Whether or not an AuthToken is required as part of the authentication when this Apikey is used.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **The authToken mechanism is disabled.**
+      - `1` - **The authToken mechanism is required for 'POST' and 'DELETE' requests.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: AuthTokenDisabled
+      description: The authToken mechanism is disabled.
+    - name: AuthTokenRequired
+      description: The authToken mechanism is required for POST and DELETE requests.
+
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,593 @@
+title: entityReturnsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  entity:
+    type: string
+    description: The identifier of the Entity that this EntityReturns refers to.
+  payment:
+    type: string
+    description: The identifier of the Payment that this EntityReturns refers to.
+    properties:
+      method:
+        $ref: ../enums/entityReturnsPaymentMethodModel.yaml
+      number: {}
+      routing: {}
+  txn:
+    type: string
+    description: "This field indicates that this EntityReturn was triggered from a\
+      \ Transaction. \nThis field stores the identifier of the Transaction."
+  disbursement:
+    type: string
+    description: "This field indicates that this EntityReturn was triggered from a\
+      \ Disbursement. \nThis field stores the identifier of the Disbursement."
+  actionCode:
+    type: string
+    description: |
+      Describes the action code related to the return.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `unknown` - **Unknown reason**
+      - `nsf` - **Non-sufficient funds**
+      - `badAccount` - **Bad Account Info**
+      - `unauthorized` - **Unauthorized Transaction**
+
+      </details>
+    enum:
+    - unknown
+    - nsf
+    - badAccount
+    - unauthorized
+    x-enum-elements:
+    - name: unknown
+      description: Unknown reason.
+    - name: nsf
+      description: Non-sufficient funds.
+    - name: badAccount
+      description: Bad Account Info.
+    - name: unauthorized
+      description: Unauthorized Transaction.
+  code:
+    title: entityReturnCode
+    type: string
+    description: |
+      The code that is received from the platform.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `R01` - **R01.** Insufficient funds in account.
+      - `R02` - **R02.** Account is closed.
+      - `R03` - **R03.** No account on file.
+      - `R04` - **R04.** Invalid account number.
+      - `R05` - **R05.** Unauthorized debit to consumer account.
+      - `R06` - **R06.** Returned at request of ODFI.
+      - `R07` - **R07.** Authorization revoked by customer.
+      - `R08` - **R08.** Payment stopped.
+      - `R09` - **R09.** Insufficient collected funds in account being charged
+      - `R10` - **R10.** Customer advises not Authorized, notice not provided, improper source document, or amount of entry not accurately obtained from source document.
+      - `R11` - **R11.** Check truncation return.
+      - `R12` - **R12.** Account sold to another financial institution.
+      - `R13` - **R13.** Invalid ACH routing number.
+      - `R14` - **R14.** Representative payee is deceased or cannot continue in that capacity.
+      - `R15` - **R15.** Beneficiary or account holder other than representative payee deceased.
+      - `R16` - **R16.** Account funds have been frozen.
+      - `R17` - **R17.** Item returned because of invalid data; refer to addenda for information.
+      - `R18` - **R18.** Improper effective date.
+      - `R19` - **R19.** Amount error.
+      - `R20` - **R20.** Account does not allow ACH transactions or limit for transactions has been exceeded.
+      - `R21` - **R21.** Invalid company identification.
+      - `R22` - **R22.** Invalid individual ID.
+      - `R23` - **R23.** Credit entry refused by receiver.
+      - `R24` - **R24.** Duplicate entry.
+      - `R25` - **R25.** Addenda record error.
+      - `R26` - **R26.** Mandatory field error.
+      - `R27` - **R27.** Trace number error.
+      - `R28` - **R28.** Routing/transit number check digit error.
+      - `R29` - **R29.** Corporate customer advised not authorized.
+      - `R30` - **R30.** RDFI not participant in check truncation program.
+      - `R31` - **R31.** Permissible return entry.
+      - `R32` - **R32.** RDFI non-settlement.
+      - `R33` - **R33.** Return of item.
+      - `R34` - **R34.** Limited participation ODFI.
+      - `R35` - **R35.** Return of improper debit entry.
+      - `R36` - **R36.** Return of improper credit entry.
+      - `R37` - **R37.** Source document presented for payment.
+      - `R38` - **R38.** Stop payment on source document.
+      - `R39` - **R39.** Improper source document.
+      - `R40` - **R40.** Return of item by government agency.
+      - `R41` - **R41.** Invalid Transaction Code.
+      - `R42` - **R42.** Routing/transit number check digit error.
+      - `R43` - **R43.** Invalid account number.
+      - `R44` - **R44.** Invalid individual ID.
+      - `R45` - **R45.** Invalid individual name or company name.
+      - `R46` - **R46.** Invalid representative payee indicator code.
+      - `R47` - **R47.** Duplicate enrollment.
+      - `R50` - **R50.** State law affecting RCK acceptance.
+      - `R51` - **R51.** Item is ineligible, notice not provided, signature not genuine, or original item altered for adjustment entry.
+      - `R52` - **R52.** Stop payment on item.
+      - `R53` - **R53.** Item and ACH entry presented for payment.
+      - `R61` - **R61.** Misrouted return - RDFI for original entry has placed incorrect routing/transit number in RDFI identification field.
+      - `R62` - **R62.** Incorrect trace number.
+      - `R63` - **R63.** Incorrect dollar amount.
+      - `R64` - **R64.** Incorrect individual identification.
+      - `R65` - **R65.** Incorrect transaction code.
+      - `R66` - **R66.** Incorrect company identification.
+      - `R67` - **R67.** Duplicate return.
+      - `R68` - **R68.** Untimely return - return was not sent within the established timeframe.
+      - `R69` - **R69.** Field errors.
+      - `R70` - **R70.** Permissible return entry not accepted.
+      - `R71` - **R71.** Misrouted dishonored return -incorrect routing/transit number in RDFI identification field.
+      - `R72` - **R72.** Untimely return - dishonored return was not sent within the established timeframe.
+      - `R73` - **R73.** Timely original return - RDFI certifies the original return entry was sent within established timeframe for original returns.
+      - `R74` - **R74.** Corrected return - RDFI is correcting a previous return entry that was dishonored because it contained incomplete or incorrect information.
+      - `R75` - **R75.** Original return not a duplicate.
+      - `R76` - **R76.** No errors found.
+      - `R80` - **R80.** Cross-border payment coding error
+      - `R81` - **R81.** Non-participant in cross-border program.
+      - `R82` - **R82.** Invalid foreign RDFI identification.
+      - `R83` - **R83.** Foreign RDFI unable to settle.
+      - `R84` - **R84.** Cross-border entry not processed by originating gateway operator.
+      - `R94` - **R94.** Administrative return item was processed and resubmitted as a photocopy.
+      - `R95` - **R95.** Administrative return item was processed and resubmitted as a MICR-Split.
+      - `R97` - **R97.** Administrative return item was processed and resubmitted with corrected dollar amount.
+      - `R98` - **R98.** Indicates a return PAC (pre-authorized check); RDFI provides a text reason and indicated a new account number on the PAC itself.
+      - `R99` - **R99.** Indicates a return PAC (pre-authorized check); RDFI provides a text reason on the PAC itself for which there is no equivalent return reason code.
+      - `C01` - **C01.** Incorrect DFI Account Number.
+      - `C02` - **C02.** Incorrect Transit/Routing Number.
+      - `C03` - **C03.** Incorrect Transit/Routing Number and Incorrect DFI Account Number.
+      - `C04` - **C04.** Incorrect Individual Name.
+      - `C05` - **C05.** Incorrect Transaction Code.
+      - `C06` - **C06.** Incorrect DFI Account Number and Incorrect Transaction Code.
+      - `C07` - **C07.** Incorrect Transit/Routing Number, Incorrect DFI Account Number, and Incorrect Transaction Code.
+      - `C08` - **C08.** Reserved.
+      - `C09` - **C09.** Incorrect Individual Identification Number.
+      - `C10` - **C10.** Incorrect Company Name.
+      - `C11` - **C11.** Incorrect Company Identification.
+      - `C12` - **C12.** Incorrect Company Name and Company Identification.
+      - `C13` - **C13.** Addenda Format Error.
+      - `C61` - **C61.** Misrouted Notification of Change.
+      - `C62` - **C62.** Incorrect Trace Number.
+      - `C63` - **C63.** Incorrect Company Identification Number.
+      - `C64` - **C64.** Incorrect Individual Identification Number.
+      - `C65` - **C65.** Incorrectly Formatted Corrected Data.
+      - `C66` - **C66.** Incorrect Discretionary Data.
+      - `C67` - **C67.** Routing Number Not From Original Entry Detail Record.
+      - `C68` - **C68.** DFI Account Number Not From Original Entry Detail Record.
+      - `C69` - **C69.** Incorrect Transaction Code.
+      - `R900-07` - **R900-07.** Institution ID Invalid.
+      - `R900-08` - **R900-08.** Account Number Invalid.
+      - `R900-16` - **R900-16.** Institution ID for Return Invalid.
+      - `R900-17` - **R900-17.** Account Number for Return Invalid.
+      - `R900-D2` - **R900-D2.** Destination Institute is Not Defined on FIF.
+      - `R900-E1` - **R900-E1.** Destination Account Number Invalid.
+      - `R900-L2` - **R900-L2.** Institution for Return Not Defined on FIF.
+      - `R900-L3` - **R900-L3.** Institution for Return Cross Reference Invalid.
+      - `R900-M1` - **R900-M1.** Account for Return Invalid.
+      - `R901` - **R901.** NFS (Debit Only).
+      - `R902` - **R902.** Cannot Trace.
+      - `R903` - **R903.** Payment Stopped/Recalled.
+      - `R904` - **R904.** Post/Stale Dated.
+      - `R905` - **R905.** Account Closed.
+      - `R907` - **R907.** No Debit Allowed.
+      - `R908` - **R908.** Funds Not Cleared.
+      - `R909` - **R909.** Currency/Account Mismatch.
+      - `R910` - **R910.** Payor/Payee Deceased.
+      - `R911` - **R911.** Account Frozen.
+      - `R912` - **R912.** Invalid/Incorrect Account Number.
+      - `R914` - **R914.** Incorrect Payor/Payee Name.
+      - `R915` - **R915.** PAD No Agreement Existed - Business/Personal.
+      - `R916` - **R916.** PAD Not According to Agreement - Personal.
+      - `R917` - **R917.** PAD Agreement Revoked - Personal.
+      - `R918` - **R918.** PAD No Confirmation/Pre-Notification - Personal.
+      - `R919` - **R919.** PAD Not According to Agreement - Business.
+      - `R920` - **R920.** PAD Agreement Revoked - Business.
+      - `R921` - **R921.** PAD No Confirmation/Pre-Notification - Business.
+      - `R922` - **R922.** Customer Initiated Return - CREDIT only.
+      - `R990` - **R990.** Institution in Default.
+      </details>
+    enum:
+    - R01
+    - R02
+    - R03
+    - R04
+    - R05
+    - R06
+    - R07
+    - R08
+    - R09
+    - R10
+    - R11
+    - R12
+    - R13
+    - R14
+    - R15
+    - R16
+    - R17
+    - R18
+    - R19
+    - R20
+    - R21
+    - R22
+    - R23
+    - R24
+    - R25
+    - R26
+    - R27
+    - R28
+    - R29
+    - R30
+    - R31
+    - R32
+    - R33
+    - R34
+    - R35
+    - R36
+    - R37
+    - R38
+    - R39
+    - R40
+    - R41
+    - R42
+    - R43
+    - R44
+    - R45
+    - R46
+    - R47
+    - R50
+    - R51
+    - R52
+    - R53
+    - R61
+    - R62
+    - R63
+    - R64
+    - R65
+    - R66
+    - R67
+    - R68
+    - R69
+    - R70
+    - R71
+    - R72
+    - R73
+    - R74
+    - R75
+    - R76
+    - R80
+    - R81
+    - R82
+    - R83
+    - R84
+    - R94
+    - R95
+    - R97
+    - R98
+    - R99
+    - C01
+    - C02
+    - C03
+    - C04
+    - C05
+    - C06
+    - C07
+    - C08
+    - C09
+    - C10
+    - C11
+    - C12
+    - C13
+    - C61
+    - C62
+    - C63
+    - C64
+    - C65
+    - C66
+    - C67
+    - C68
+    - C69
+    - R900-07
+    - R900-08
+    - R900-16
+    - R900-17
+    - R900-D2
+    - R900-E1
+    - R900-L2
+    - R900-L3
+    - R900-M1
+    - R901
+    - R902
+    - R903
+    - R904
+    - R905
+    - R907
+    - R908
+    - R909
+    - R910
+    - R911
+    - R912
+    - R914
+    - R915
+    - R916
+    - R917
+    - R918
+    - R919
+    - R920
+    - R921
+    - R922
+    - R990
+    x-enum-elements:
+    - name: "R01"
+      description: "Insufficient funds in account."
+    - name: "R02"
+      description: "Account is closed."
+    - name: "R03"
+      description: "No account on file."
+    - name: "R04"
+      description: "Invalid account number."
+    - name: "R05"
+      description: "Unauthorized debit to consumer account."
+    - name: "R06"
+      description: "Returned at request of ODFI."
+    - name: "R07"
+      description: "Authorization revoked by customer."
+    - name: "R08"
+      description: "Payment stopped."
+    - name: "R09"
+      description: "Insufficient collected funds in account being charged."
+    - name: "R10"
+      description: "Customer advises not Authorized, notice not provided, improper source document, or amount of entry not accurately obtained from source document."
+    - name: "R11"
+      description: "Check truncation return."
+    - name: "R12"
+      description: "Account sold to another financial institution."
+    - name: "R13"
+      description: "Invalid ACH routing number."
+    - name: "R14"
+      description: "Representative payee is deceased or cannot continue in that capacity."
+    - name: "R15"
+      description: "Beneficiary or account holder other than representative payee deceased."
+    - name: "R16"
+      description: "Account funds have been frozen."
+    - name: "R17"
+      description: "Item returned because of invalid data; refer to addenda for information."
+    - name: "R18"
+      description: "Improper effective date."
+    - name: "R19"
+      description: "Amount error."
+    - name: "R20"
+      description: "Account does not allow ACH transactions or limit for transactions has been exceeded."
+    - name: "R21"
+      description: "Invalid company identification."
+    - name: "R22"
+      description: "Invalid individual ID."
+    - name: "R23"
+      description: "Credit entry refused by receiver."
+    - name: "R24"
+      description: "Duplicate entry."
+    - name: "R25"
+      description: "Addenda record error."
+    - name: "R26"
+      description: "Mandatory field error."
+    - name: "R27"
+      description: "Trace number error."
+    - name: "R28"
+      description: "Routing/transit number check digit error."
+    - name: "R29"
+      description: "Corporate customer advised not authorized."
+    - name: "R30"
+      description: "RDFI not participant in check truncation program."
+    - name: "R31"
+      description: "Permissible return entry."
+    - name: "R32"
+      description: "RDFI non-settlement."
+    - name: "R33"
+      description: "Return of item."
+    - name: "R34"
+      description: "Limited participation ODFI."
+    - name: "R35"
+      description: "Return of improper debit entry."
+    - name: "R36"
+      description: "Return of improper credit entry."
+    - name: "R37"
+      description: "Source document presented for payment."
+    - name: "R38"
+      description: "Stop payment on source document."
+    - name: "R39"
+      description: "Improper source document."
+    - name: "R40"
+      description: "Return of item by government agency."
+    - name: "R41"
+      description: "Invalid Transaction Code."
+    - name: "R42"
+      description: "Routing/transit number check digit error."
+    - name: "R43"
+      description: "Invalid account number."
+    - name: "R44"
+      description: "Invalid individual ID."
+    - name: "R45"
+      description: "Invalid individual name or company name."
+    - name: "R46"
+      description: "Invalid representative payee indicator code."
+    - name: "R47"
+      description: "Duplicate enrollment."
+    - name: "R50"
+      description: "State law affecting RCK acceptance."
+    - name: "R51"
+      description: "Item is ineligible, notice not provided, signature not genuine, or original item altered for adjustment entry."
+    - name: "R52"
+      description: "Stop payment on item."
+    - name: "R53"
+      description: "Item and ACH entry presented for payment."
+    - name: "R61"
+      description: "Misrouted return - RDFI for original entry has placed incorrect routing/transit number in RDFI identification field."
+    - name: "R62"
+      description: "Incorrect trace number."
+    - name: "R63"
+      description: "Incorrect dollar amount."
+    - name: "R64"
+      description: "Incorrect individual identification."
+    - name: "R65"
+      description: "Incorrect transaction code."
+    - name: "R66"
+      description: "Incorrect company identification."
+    - name: "R67"
+      description: "Duplicate return."
+    - name: "R68"
+      description: "Untimely return - return was not sent within the established timeframe."
+    - name: "R69"
+      description: "Field errors."
+    - name: "R70"
+      description: "Permissible return entry not accepted."
+    - name: "R71"
+      description: "Misrouted dishonored return - incorrect routing/transit number in RDFI identification field."
+    - name: "R72"
+      description: "Untimely return - dishonored return was not sent within the established timeframe."
+    - name: "R73"
+      description: "Timely original return - RDFI certifies the original return entry was sent within established timeframe for original returns."
+    - name: "R74"
+      description: "Corrected return - RDFI is correcting a previous return entry that was dishonored because it contained incomplete or incorrect information."
+    - name: "R75"
+      description: "Original return not a duplicate."
+    - name: "R76"
+      description: "No errors found."
+    - name: "R80"
+      description: "Cross-border payment coding error."
+    - name: "R81"
+      description: "Non-participant in cross-border program."
+    - name: "R82"
+      description: "Invalid foreign RDFI identification."
+    - name: "R83"
+      description: "Foreign RDFI unable to settle."
+    - name: "R84"
+      description: "Cross-border entry not processed by originating gateway operator."
+    - name: "R94"
+      description: "Administrative return item was processed and resubmitted as a photocopy."
+    - name: "R95"
+      description: "Administrative return item was processed and resubmitted as a MICR-Split."
+    - name: "R97"
+      description: "Administrative return item was processed and resubmitted with corrected dollar amount."
+    - name: "R98"
+      description: "Indicates a return PAC (pre-authorized check); RDFI provides a text reason and indicated a new account number on the PAC itself."
+    - name: "R99"
+      description: "Indicates a return PAC (pre-authorized check); RDFI provides a text reason on the PAC itself for which there is no equivalent return reason code."
+    - name: "C01"
+      description: "Incorrect DFI Account Number."
+    - name: "C02"
+      description: "Incorrect Transit/Routing Number."
+    - name: "C03"
+      description: "Incorrect Transit/Routing Number and Incorrect DFI Account Number."
+    - name: "C04"
+      description: "Incorrect Individual Name."
+    - name: "C05"
+      description: "Incorrect Transaction Code."
+    - name: "C06"
+      description: "Incorrect DFI Account Number and Incorrect Transaction Code."
+    - name: "C07"
+      description: "Incorrect Transit/Routing Number, Incorrect DFI Account Number, and Incorrect Transaction Code."
+    - name: "C08"
+      description: "Reserved."
+    - name: "C09"
+      description: "Incorrect Individual Identification Number."
+    - name: "C10"
+      description: "Incorrect Company Name."
+    - name: "C11"
+      description: "Incorrect Company Identification."
+    - name: "C12"
+      description: "Incorrect Company Name and Company Identification."
+    - name: "C13"
+      description: "Addenda Format Error."
+    - name: "C61"
+      description: "Misrouted Notification of Change."
+    - name: "C62"
+      description: "Incorrect Trace Number."
+    - name: "C63"
+      description: "Incorrect Company Identification Number."
+    - name: "C64"
+      description: "Incorrect Individual Identification Number."
+    - name: "C65"
+      description: "Incorrectly Formatted Corrected Data."
+    - name: "C66"
+      description: "Incorrect Discretionary Data."
+    - name: "C67"
+      description: "Routing Number Not From Original Entry Detail Record."
+    - name: "C68"
+      description: "DFI Account Number Not From Original Entry Detail Record."
+    - name: "C69"
+      description: "Incorrect Transaction Code."
+    - name: "R900-07"
+      description: "Institution ID Invalid."
+    - name: "R900-08"
+      description: "Account Number Invalid."
+    - name: "R900-16"
+      description: "Institution ID for Return Invalid."
+    - name: "R900-17"
+      description: "Account Number for Return Invalid."
+    - name: "R900-D2"
+      description: "Destination Institute is Not Defined on FIF."
+    - name: "R900-E1"
+      description: "Destination Account Number Invalid."
+    - name: "R900-L2"
+      description: "Institution for Return Not Defined on FIF."
+    - name: "R900-L3"
+      description: "Institution for Return Cross Reference Invalid."
+    - name: "R900-M1"
+      description: "Account for Return Invalid."
+    - name: "R901"
+      description: "NFS (Debit Only)."
+    - name: "R902"
+      description: "Cannot Trace."
+    - name: "R903"
+      description: "Payment Stopped/Recalled."
+    - name: "R904"
+      description: "Post/Stale Dated."
+    - name: "R905"
+      description: "Account Closed."
+    - name: "R907"
+      description: "No Debit Allowed."
+    - name: "R908"
+      description: "Funds Not Cleared."
+    - name: "R909"
+      description: "Currency/Account Mismatch."
+    - name: "R910"
+      description: "Payor/Payee Deceased."
+    - name: "R911"
+      description: "Account Frozen."
+    - name: "R912"
+      description: "Invalid/Incorrect Account Number."
+    - name: "R914"
+      description: "Incorrect Payor/Payee Name."
+    - name: "R915"
+      description: "PAD No Agreement Existed - Business/Personal."
+    - name: "R916"
+      description: "PAD Not According to Agreement - Personal."
+    - name: "R917"
+      description: "PAD Agreement Revoked - Personal."
+    - name: "R918"
+      description: "PAD No Confirmation/Pre-Notification - Personal."
+    - name: "R919"
+      description: "PAD Not According to Agreement - Business."
+    - name: "R920"
+      description: "PAD Agreement Revoked - Business."
+    - name: "R921"
+      description: "PAD No Confirmation/Pre-Notification - Business."
+    - name: "R922"
+      description: "Customer Initiated Return - CREDIT only."
+    - name: "R990"
+      description: "Institution in Default."
+  message:
+    type: string
+    description: The message that is received from the platform.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- entity
+- frozen
+- inactive
+- login
+

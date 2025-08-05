@@ -1,0 +1,1156 @@
+title: entriesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that owns this Entry.
+  onentity:
+    type: string
+    description: The identifier of the Entity that this Entry refers to. This is the
+      owner of the record that triggered the charge.
+  fromentity:
+    type: string
+    description: If the activity that this Entry refers to involves two parties in
+      the system with one paying a charge of any kind, then this field stores the
+      identifier of the Entity that the charge or other activity is for.
+  opposingEntry:
+    type: string
+    description: The identifier of the Entry that this entry was created based on.
+  fund:
+    type: string
+    description: The identifier of the Fund that this Entry refers to.
+  fee:
+    type: string
+    description: If the activity that this Entry refers to is the charging of a Fee,
+      then this field stores the identifier of the corresponding Fee resource.
+  disbursement:
+    type: string
+    description: If the activity that this Entry refers to is the charging of a Disbursement,
+      then this field stores the identifier of the corresponding Disbursement resource.
+  refund:
+    type: string
+    description: If the activity that this Entry refers to is the paying of a Refund,
+      then this field stores the identifier of the corresponding Refund resource.
+  settlement:
+    type: string
+    description: If the activity that this Entry refers to is a Settlement, then this
+      field stores the identifier of the corresponding Settlement resource.
+  txn:
+    type: string
+    description: If the activity that this Entry refers to is a Transaction, then
+      this field stores the identifier of the corresponding Transaction resource.
+  chargeback:
+    type: string
+    description: If the activity that this Entry refers to is a Chargeback, then this
+      field stores the identifier of the corresponding Chargeback resource.
+  adjustment:
+    type: string
+    description: The adjustment ID from which the funding activity was triggered.
+  profitShare:
+    type: string
+    description: If the activity that this Entry refers to is a ProfitShare, then
+      this field stores the identifier of the corresponding ProfitShare resource.
+  statement:
+    type: string
+    description: If the activity that this Entry refers to is a Statement, then this
+      field stores the identifier of the corresponding Statement resource.
+  event:
+    title: entryEvent
+    type: integer
+    description: |
+      The type of event that triggered this Entry resource.
+      <details>
+      <summary>Valid Values</summary>
+      - `1` - **DAYS**. The Entry is triggered by a daily event.
+      - `2` - **WEEKS**. The Entry is triggered by a weekly event.
+      - `3` - **MONTHS**. The Entry is triggered by a monthly event.
+      - `4` - **YEARS**. The Entry is triggered by an annual event.
+      - `5` - **SINGLE**. The Entry is triggered by a one-off event.
+      - `6` - **AUTH**. The Entry is triggered when a transaction has been authorized.
+      - `7` - **CAPTURE**. The Entry is triggered when a transaction has been captured.
+      - `8` - **REFUND**. The Entry is triggered when a refund transaction is processed.
+      - `9` - **BOARD**. The Entry is triggered when a Merchant is boarded.
+      - `10` - **PAYOUT**. The Entry is triggered when a payout is processed.
+      - `11` - **CHARGEBACK**. The Entry is triggered when a card chargeback occurs.
+      - `12` - **OVERDRAFT**. The Entry is triggered when an overdraft usage charge from a bank is levied.
+      - `13` - **INTERCHANGE**. The Entry is triggered when interchange Fees are assessed for the Transactions of this Merchant.
+      - `14` - **PROCESSOR**. The Entry is triggered when the Transactions of this Merchant are processed by a payment processor.
+      - `15` - **ACHFAIL**. The Entry is triggered when an automated clearing house failure occurs.
+      - `16` - **ACCOUNT**. The Entry is triggered when a bank account is verified.
+      - `17` - **SIFT**. The Entry is triggered by a transaction's fraud Score.
+      - `18` - **ADJUSTMENT**. The Entry is triggered when there's an adjustment.
+      - `19` - **RETRIEVAL**. The Entry is triggered by a retrieval request chargeback.
+      - `20` - **ARBITRATION**. The Entry is triggered by an arbitration chargeback.
+      - `21` - **ECSALE**. The Entry is triggered by an eCheck sale transaction.
+      - `22` - **ECREFUND**. The Entry is triggered by an eCheck refund.
+      - `23` - **ECRETURN**. The Entry is triggered by an eCheck return.
+      - `24` - **SETTLEMENT**. The Entry triggers when a transaction has been settled.
+      - `25` - **MISUSE**. The Entry is triggered when there's been a Misuse of authorization.
+      - `26` - **PROFIT_SHARE**. The Entry is triggered by a profit sharing entry event.
+      - `27` - **UNAUTH**. The Entry is triggered when a transaction is unauthorized.
+      - `28` - **ACHNOC**. The Entry is triggered by a disbursement NOC (Notification of change).
+      - `29` - **ECNOC**. The Entry is triggered by an echeck transaction NOC (Notification of change).
+      - `30` - **ECFAIL**. The Entry is triggered by an echeck transaction failed.
+      - `31` - **ECNSF**. The Entry is triggered by an eCheck transaction NSF (Non-sufficient funds) return.
+      - `32` - **CURRENCY_CONVERSION**. This Entry is triggered by a currency conversion.
+      - `33` - **TERMINAL_TXN**. This Entry is triggered by a terminal transaction.
+      - `34` - **REVERSE_PAYOUT**. This Entry is triggered by a payout that has been reversed.
+      - `35` - **PARTIAL_REVERSE_PAYOUT**. This Entry is triggered by a payout that has been partially reversed.
+      - `43` - **PAYMENT_CHECK**. This Entry is triggered by a payment check for Account Updater.
+      - `44` - **PAYMENT_UPDATE**. This Entry is triggered by a payment update for Account Updater.
+      - `45` - **PAYMENT_GROUP_CHECK**. This Entry is triggered by a payment group check for Account Updater.
+      - `46` - **PAYMENT_GROUP_UPDATE**. This Entry is triggered by a payment group update for Account Updater.
+      - `47` - **ENTRY_REFUND**. This Entry is triggered by an entry refund.
+      - `51` - **STATEMENT** Payment of statement.
+      - `52` - **MERCHANT_CREATION** Merchant fee upon creation.
+      - `53` - **REALTIME_BUSINESS_SEARCH** Real-time business search.
+      - `54` - **REALTIME_MEMBER_SEARCH** Real-time member search.
+      - `55` - **MASTER_CARD_MATCH** Mastercard match.
+      - `56` - **BUSINESS_INSTANT_ID** Business instant ID.
+      - `57` - **CONSUMER_INSTANT_ID** Consumer instant ID.
+      - `58` - **THREAT_METRIX** Threat metrix.
+      - `59` - **LEGIT_SCRIPT_REGISTER** Legit script register.
+      - `60` - **EQUIFAX_CONSUMER_REPORT** Equifax consumer report.
+      - `61` - **GUIDE_STAR** Guidestar.
+      - `62` - **PAYLOAD_ATTRIBUTE** Internal Decision V2.
+      - `63` - **TIN_CHECK** Tin check.
+      - `64` - **EQUIFAX_COMMERCIAL_REPORT** Equifax commercial report.
+      - `65` - **LEGIT_SCRIPT_CHECK_MERCHANT** Legit script check merchant.
+      - `66` - **PLAID** Plaid.
+      - `67` - **STATEMENT_REVERSAL** Reversal of statement.
+      - `68` - **GIACT_ECHECK** GIACT call made to verify creator Echeck bank Account.
+      - `69` - **GIACT_BANK_ACCOUNT** Giact calls to verify merchant settlement account on sign-up or post-boarding account.
+      - `70` - **BOARD_DECISION** Process decision fee after board.
+      - `71` - **TXN_RISK_DECISION** Txn going through a risk decision.
+      - `72` - **FANF** External Fees.
+      - `73` - **MCLOCATION** External Fees.
+      - `74` - **VISAINTEGRITY** External Fees.
+      - `75` - **SAFERPAYMENTS_BASIC** External Fees.
+      - `76` - **SAFERPAYMENTS_MANAGED** External Fees.
+      - `77` - **SAFERPAYMENTS_PCI_NONVALIDATION** External Fees.
+      - `78` - **OMNITOKENS_VOLUME** External Fees.
+      - `79` - **PAYOUT_RETURN** Payout Return.
+      - `80` - **PAYOUT_PARTIAL_RETURN** Payout Partial Return.
+      - `81` - **REV_SHARE** Rev share.
+      - `82` - **CARD_SETTLEMENT** Txns card settlement.
+      - `83` - **ECHECK_SETTLEMENT** Txns e-check settlement.
+      - `84` - **REV_SHARE_CARD** Rev Share Schedules.
+      - `85` - **REV_SHARE_ECHECK** Rev Share Schedules.
+      - `86` - **REV_SHARE_DBM** Rev Share Schedules.
+      - `87` - **PREARBITRATION** Chargeback PreArbitration.
+      - `88` - **PLAID_IDENTITY_MACH** Plaid.
+      - `89` - **TXN_PLAID_IDENTITY_MACH** Txns Plaid.
+      - `90` - **PLAID_GET_IDENTITY** Plaid.
+      - `91` - **TXN_PLAID_GET_IDENTITY** Txns Plaid.
+      - `92` - **PLAID_GET_AUTH** Plaid.
+      - `93` - **TXN_PLAID_GET_AUTH** Txns Plaid.
+      - `94` - **REVERSAL** Chargeback Reversal.
+      - `95` - **REPRESENTMENT** Chargeback Representment.
+      - `101` - **IC_RETAIN_PASSTHRU_REFUND** Interchange retain pass on refund.
+      - `200` - **VALUTEC_ESSENTIAL_GIFT** External Fees.
+      - `201` - **VALUTEC_ESSENTIAL_MONTHLY_TXN** External Fees.
+      - `202` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE** External Fees.
+      - `203` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_TXN** External Fees.
+      - `204` - **VALUTEC_LOYALTY_PLUS_PACKAGE** External Fees.
+      - `205` - **VALUTEC_LOYALTY_PLUS_PACKAGE_TXN** External Fees.
+      - `206` - **VALUTEC_TRANSACTION_FEE** External Fees.
+      - `207` - **VALUTEC_SETUP_FEE** External Fees.
+      - `208` - **VALUTEC_GIFT_ACH_POOLING** External Fees.
+      - `209` - **VALUTEC_JUMP_START_KIT** External Fees.
+      - `210` - **VALUTEC_LAUNCH_BOX_KIT** External Fees.
+      - `211` - **VALUTEC_500_CUSTOM_CARDS** External Fees.
+      - `212` - **VALUTEC_MAINTENANCE_FEE** External Fees.
+      - `213` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_ME** External Fees.
+      - `214` - **EFE_MWC_RESIDUAL_ATELIO** EFE External Fees.
+      - `215` - **EFE_MWC_RESIDUAL_PARAFIN** EFE External Fees.
+      - `216` - **EFE_MWC_BILLING** EFE External Fees.
+      - `217` - **FRAUDSIGHT_CNP_DECISION** External Fees.
+      - `218` - **FRAUDSIGHT_CP_DECISION** External Fees.
+      - `400` - **REVBOOST_EMBEDDED_TMS_MONTHLY** External Fees.
+      - `401` - **REVBOOST_EMBEDDED_TMS_PPT** External Fees.
+      - `402` - **TXN_THREAT_METRIX** External Fees.
+      - `403` - **THREAT_METRIX_EMAILAGE** External Fees.
+      - `404` - **THREAT_METRIX_FRAUD_POINT** External Fees.
+      - `405` - **GIACT_INQUIRY** External Fees.
+      - `406` - **GIACT_TXN_GAUTHENTICATE** External Fees.
+      - `407` - **TRULIOO_IDV** External Fees.
+      - `408` - **TRULIOO_AMLLDV** External Fees.
+      - `409` - **TRULIOO_BUSINESS_VERIFICATION** External Fees.
+      - `410` - **THREAT_METRIX_PHONE_FINDER** External Fees.
+      - `601` - **TIER_NON_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `602` - **TIER_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `603` - **TIER_MID_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `604` - **TIER_HIGH_RISK_COUNT** Risk Based Tier Fees.
+      - `605` - **TIER_NON_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `606` - **TIER_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `607` - **TIER_MID_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `608` - **TIER_HIGH_RISK_VOLUME** Risk Based Tier Fees
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 51
+    - 52
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+    - 61
+    - 62
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+    - 92
+    - 93
+    - 94
+    - 95
+    - 101
+    - 200
+    - 201
+    - 202
+    - 203
+    - 204
+    - 205
+    - 206
+    - 207
+    - 208
+    - 209
+    - 210
+    - 211
+    - 212
+    - 213
+    - 214
+    - 215
+    - 216
+    - 217
+    - 218
+    - 400
+    - 401
+    - 402
+    - 403
+    - 404
+    - 405
+    - 406
+    - 407
+    - 408
+    - 409
+    - 410
+    - 601
+    - 602
+    - 603
+    - 604
+    - 605
+    - 606
+    - 607
+    - 608
+    x-enum-elements:
+    - name: "Days"
+      description: The Entry is triggered by a daily event.
+    - name: "Weeks"
+      description: The Entry is triggered by a weekly event.
+    - name: "Months"
+      description: The Entry is triggered by a monthly event.
+    - name: "Years"
+      description: The Entry is triggered by an annual event.
+    - name: "Single"
+      description: The Entry is triggered by a one-off event.
+    - name: "Auth"
+      description: The Entry is triggered when a transaction has been authorized.
+    - name: "Capture"
+      description: The Entry is triggered when a transaction has been captured.
+    - name: "Refund"
+      description: The Entry is triggered when a refund transaction is processed.
+    - name: "Board"
+      description: The Entry is triggered when a Merchant is boarded.
+    - name: "Payout"
+      description: The Entry is triggered when a payout is processed.
+    - name: "Chargeback"
+      description: The Entry is triggered when a card chargeback occurs.
+    - name: "Overdraft"
+      description: The Entry is triggered when an overdraft usage charge from a bank is levied.
+    - name: "Interchange"
+      description: The Entry is triggered when interchange Fees are assessed for the Transactions of this Merchant.
+    - name: "Processor"
+      description: The Entry is triggered when the Transactions of this Merchant are processed by a payment processor.
+    - name: "AchFail"
+      description: The Entry is triggered when an automated clearing house failure occurs.
+    - name: "Account"
+      description: The Entry is triggered when a bank account is verified.
+    - name: "Sift"
+      description: The Entry is triggered by a transaction's fraud Score.
+    - name: "Adjustment"
+      description: The Entry is triggered when there's an adjustment.
+    - name: "Retrieval"
+      description: The Entry is triggered by a retrieval request chargeback.
+    - name: "Arbitration"
+      description: The Entry is triggered by an arbitration chargeback.
+    - name: "EcSale"
+      description: The Entry is triggered by an eCheck sale transaction.
+    - name: "EcRefund"
+      description: The Entry is triggered by an eCheck refund.
+    - name: "EcReturn"
+      description: The Entry is triggered by an eCheck return.
+    - name: "Settlement"
+      description: The Entry triggers when a transaction has been settled.
+    - name: "Misuse"
+      description: The Entry is triggered when there's been a Misuse of authorization.
+    - name: "ProfitShare"
+      description: The Entry is triggered by a profit sharing entry event.
+    - name: "Unauth"
+      description: The Entry is triggered when a transaction is unauthorized.
+    - name: "AchNoc"
+      description: The Entry is triggered by a disbursement NOC (Notification of change).
+    - name: "EcNoc"
+      description: The Entry is triggered by an echeck transaction NOC (Notification of change).
+    - name: "EcFail"
+      description: The Entry is triggered by an echeck transaction failed.
+    - name: "EcNsf"
+      description: The Entry is triggered by an eCheck transaction NSF (Non-sufficient funds) return.
+    - name: "CurrencyConversion"
+      description: This Entry is triggered by a currency conversion.
+    - name: "TerminalTxn"
+      description: This Entry is triggered by a terminal transaction.
+    - name: "ReversePayout"
+      description: This Entry is triggered by a payout that has been reversed.
+    - name: "PartialReversePayout"
+      description: This Entry is triggered by a payout that has been partially reversed.
+    - name: "PaymentCheck"
+      description: This Entry is triggered by a payment check for Account Updater.
+    - name: "PaymentUpdate"
+      description: This Entry is triggered by a payment update for Account Updater.
+    - name: "PaymentGroupCheck"
+      description: This Entry is triggered by a payment group check for Account Updater.
+    - name: "PaymentGroupUpdate"
+      description: This Entry is triggered by a payment group update for Account Updater.
+    - name: "EntryRefund"
+      description: This Entry is triggered by an entry refund.
+    - name: "Statement"
+      description: The payment of a statement.
+    - name: "MerchantCreation"
+      description: Merchant fee upon creation.
+    - name: "RealtimeBusinessSearch"
+      description: Real-time business search.
+    - name: "RealtimeMemberSearch"
+      description: Real-time member search.
+    - name: "MasterCardMatch"
+      description: Mastercard match.
+    - name: "BusinessInstantId"
+      description: Business instant ID.
+    - name: "ConsumerInstantId"
+      description: Consumer instant ID.
+    - name: "ThreatMetrix"
+      description: Threat Metrix.
+    - name: "LegitScriptRegister"
+      description: Legit Script Register.
+    - name: "EquifaxConsumerReport"
+      description: Equifax consumer report.
+    - name: "GuideStar"
+      description: Guide Star.
+    - name: "PayloadAttribute"
+      description: internal decision V2.
+    - name: "TinCheck"
+      description: Tin Check.
+    - name: "EquifaxCommercialReport"
+      description: Equifax commercial report.
+    - name: "LegitScriptCheckMerchant"
+      description: Legit Script Check Merchant.
+    - name: "Plaid"
+      description: Plaid.
+    - name: "StatementReversal"
+      description: the reversal of a statement.
+    - name: "GiactEcheck"
+      description: GIACT call made to verify creator Echeck bank account.
+    - name: "GiactBankAccount"
+      description: Giact calls to verify merchant settlement account.
+    - name: "BoardDecision"
+      description: process decision fee after board.
+    - name: "TxnRiskDecision"
+      description: Transaction going through Risk decision.
+    - name: "Fanf"
+      description: External fees.
+    - name: "McLocation"
+      description: External fees.
+    - name: "VisaIntegrity"
+      description: External fees.
+    - name: "SaferPaymentsBasic"
+      description: External fees.
+    - name: "SaferPaymentsManaged"
+      description: External fees.
+    - name: "SaferPaymentsPciNonValidation"
+      description: External fees.
+    - name: "OmniTokensVolume"
+      description: External fees.
+    - name: "PayoutReturn"
+      description: Payout return.
+    - name: "PayoutPartialReturn"
+      description: Partial payout return.
+    - name: "RevShare"
+      description: Revenue sharing.
+    - name: "CardSettlement"
+      description: Card settlement.
+    - name: "EcheckSettlement"
+      description: E-Check settlement.
+    - name: "RevShareCard"
+      description: Revenue sharing for cards.
+    - name: "RevShareEcheck"
+      description: Revenue sharing for e-checks.
+    - name: "RevShareDbm"
+      description: Revenue sharing for DBM.
+    - name: "PreArbitration"
+      description: Chargeback pre-arbitration.
+    - name: "PlaidIdentityMach"
+      description: Plaid Identity Mach.
+    - name: "TxnPlaidIdentityMach"
+      description: transactions with Plaid Identity Mach.
+    - name: "PlaidGetIdentity"
+      description: Plaid Get Identity.
+    - name: "TxnPlaidGetIdentity"
+      description: Transactions with Plaid Get Identity.
+    - name: "PlaidGetAuth"
+      description: Plaid Get Auth.
+    - name: "TxnPlaidGetAuth"
+      description: Transactions with Plaid Get Auth.
+    - name: "Reversal"
+      description: Chargeback reversal.
+    - name: "Representment"
+      description: Chargeback representment.
+    - name: "IcRetainPassthruRefund"
+      description: Interchange retain pass-through refund.
+    - name: "ValutecEssentialGift"
+      description: External fees.
+    - name: "ValutecEssentialMonthlyTxn"
+      description: External fees.
+    - name: "ValutecDigitalGiftPlusPackage"
+      description: External fees.
+    - name: "ValutecDigitalGiftPlusPackageTxn"
+      description: External fees.
+    - name: "ValutecLoyaltyPlusPackage"
+      description: External fees.
+    - name: "ValutecLoyaltyPlusPackageTxn"
+      description: External fees.
+    - name: "ValutecTransactionFee"
+      description: External fees.
+    - name: "ValutecSetupFee"
+      description: External fees.
+    - name: "ValutecGiftAchPooling"
+      description: External fees.
+    - name: "ValutecJumpStartKit"
+      description: External fees.
+    - name: "ValutecLaunchBoxKit"
+      description: External fees.
+    - name: "Valutec500CustomCards"
+      description: External fees.
+    - name: "ValutecMaintenanceFee"
+      description: External fees.
+    - name: "ValutecDigitalGiftPlusPackageMe"
+      description: External fees.
+    - name: "EfeMwcResidualAtelio"
+      description: EFE External fees.
+    - name: "EfeMwcResidualParafin"
+      description: EFE External fees.
+    - name: "EfeMwcBilling"
+      description: EFE External fees.
+    - name: "FraudsightCnpDecision"
+      description: External fees.
+    - name: "FraudsightCpDecision"
+      description: External fees.
+    - name: "RevboostEmbeddedTmsMonthly"
+      description: External fees.
+    - name: "RevboostEmbeddedTmsPpt"
+      description: External fees.
+    - name: "TxnThreatMetrix"
+      description: External fees.
+    - name: "ThreatMetrixEmailage"
+      description: External fees.
+    - name: "ThreatMetrixFraudPoint"
+      description: External fees.
+    - name: "GiactInquiry"
+      description: External fees.
+    - name: "GiactTxnGauthenticate"
+      description: External fees.
+    - name: "TruliooIdv"
+      description: External fees.
+    - name: "TruliooAmllDv"
+      description: External fees.
+    - name: "TruliooBusinessVerification"
+      description: External fees.
+    - name: "ThreatMetrixPhoneFinder"
+      description: External fees.
+    - name: "TierNonQualifiedCount"
+      description: Risk-based tier fees.
+    - name: "TierQualifiedCount"
+      description: Risk-based tier fees.
+    - name: "TierMidQualifiedCount"
+      description: Risk-based tier fees.
+    - name: "TierHighRiskCount"
+      description: Risk-based tier fees.
+    - name: "TierNonQualifiedVolume"
+      description: Risk-based tier fees.
+    - name: "TierQualifiedVolume"
+      description: Risk-based tier fees.
+    - name: "TierMidQualifiedVolume"
+      description: Risk-based tier fees.
+    - name: "TierHighRiskVolume"
+      description: Risk-based tier fees.
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this Entry.
+  revShareStatement:
+    description: If the activity that this Entry refers to is a Revenue Share, then
+      this field stores the identifier of the corresponding RevShareStatement resource
+  originalEventId:
+    type: string
+    description: ID of the original event.
+  originalEvent:
+    type: integer
+    description: |
+      The event that originally triggered the entry.
+      <details>
+      <summary>Valid Values</summary>
+      - `1` - **DAYS**. The Entry is triggered by a daily event.
+      - `2` - **WEEKS**. The Entry is triggered by a weekly event.
+      - `3` - **MONTHS**. The Entry is triggered by a monthly event.
+      - `4` - **YEARS**. The Entry is triggered by an annual event.
+      - `5` - **SINGLE**. The Entry is triggered by a one-off event.
+      - `6` - **AUTH**. The Entry is triggered when a transaction has been authorized.
+      - `7` - **CAPTURE**. The Entry is triggered when a transaction has been captured.
+      - `8` - **REFUND**. The Entry is triggered when a refund transaction is processed.
+      - `9` - **BOARD**. The Entry is triggered when a Merchant is boarded.
+      - `10` - **PAYOUT**. The Entry is triggered when a payout is processed.
+      - `11` - **CHARGEBACK**. The Entry is triggered when a card chargeback occurs.
+      - `12` - **OVERDRAFT**. The Entry is triggered when an overdraft usage charge from a bank is levied.
+      - `13` - **INTERCHANGE**. The Entry is triggered when interchange Fees are assessed for the Transactions of this Merchant.
+      - `14` - **PROCESSOR**. The Entry is triggered when the Transactions of this Merchant are processed by a payment processor.
+      - `15` - **ACHFAIL**. The Entry is triggered when an automated clearing house failure occurs.
+      - `16` - **ACCOUNT**. The Entry is triggered when a bank account is verified.
+      - `17` - **SIFT**. The Entry is triggered by a transaction's fraud Score.
+      - `18` - **ADJUSTMENT**. The Entry is triggered when there's an adjustment.
+      - `19` - **RETRIEVAL**. The Entry is triggered by a retrieval request chargeback.
+      - `20` - **ARBITRATION**. The Entry is triggered by an arbitration chargeback.
+      - `21` - **ECSALE**. The Entry is triggered by an eCheck sale transaction.
+      - `22` - **ECREFUND**. The Entry is triggered by an eCheck refund.
+      - `23` - **ECRETURN**. The Entry is triggered by an eCheck return.
+      - `24` - **SETTLEMENT**. The Entry triggers when a transaction has been settled.
+      - `25` - **MISUSE**. The Entry is triggered when there's been a Misuse of authorization.
+      - `26` - **PROFIT_SHARE**. The Entry is triggered by a profit sharing entry event.
+      - `27` - **UNAUTH**. The Entry is triggered when a transaction is unauthorized.
+      - `28` - **ACHNOC**. The Entry is triggered by a disbursement NOC (Notification of change).
+      - `29` - **ECNOC**. The Entry is triggered by an echeck transaction NOC (Notification of change).
+      - `30` - **ECFAIL**. The Entry is triggered by an echeck transaction failed.
+      - `31` - **ECNSF**. The Entry is triggered by an eCheck transaction NSF (Non-sufficient funds) return.
+      - `32` - **CURRENCY_CONVERSION**. This Entry is triggered by a currency conversion.
+      - `33` - **TERMINAL_TXN**. This Entry is triggered by a terminal transaction.
+      - `34` - **REVERSE_PAYOUT**. This Entry is triggered by a payout that has been reversed.
+      - `35` - **PARTIAL_REVERSE_PAYOUT**. This Entry is triggered by a payout that has been partially reversed.
+      - `43` - **PAYMENT_CHECK**. This Entry is triggered by a payment check for Account Updater.
+      - `44` - **PAYMENT_UPDATE**. This Entry is triggered by a payment update for Account Updater.
+      - `45` - **PAYMENT_GROUP_CHECK**. This Entry is triggered by a payment group check for Account Updater.
+      - `46` - **PAYMENT_GROUP_UPDATE**. This Entry is triggered by a payment group update for Account Updater.
+      - `47` - **ENTRY_REFUND**. This Entry is triggered by an entry refund.
+      - `51` - **STATEMENT** Payment of statement.
+      - `52` - **MERCHANT_CREATION** Merchant fee upon creation.
+      - `53` - **REALTIME_BUSINESS_SEARCH** Real-time business search.
+      - `54` - **REALTIME_MEMBER_SEARCH** Real-time member search.
+      - `55` - **MASTER_CARD_MATCH** Mastercard match.
+      - `56` - **BUSINESS_INSTANT_ID** Business instant ID.
+      - `57` - **CONSUMER_INSTANT_ID** Consumer instant ID.
+      - `58` - **THREAT_METRIX** Threat metrix.
+      - `59` - **LEGIT_SCRIPT_REGISTER** Legit script register.
+      - `60` - **EQUIFAX_CONSUMER_REPORT** Equifax consumer report.
+      - `61` - **GUIDE_STAR** Guidestar.
+      - `62` - **PAYLOAD_ATTRIBUTE** Internal Decision V2.
+      - `63` - **TIN_CHECK** Tin check.
+      - `64` - **EQUIFAX_COMMERCIAL_REPORT** Equifax commercial report.
+      - `65` - **LEGIT_SCRIPT_CHECK_MERCHANT** Legit script check merchant.
+      - `66` - **PLAID** Plaid.
+      - `67` - **STATEMENT_REVERSAL** Reversal of statement.
+      - `68` - **GIACT_ECHECK** GIACT call made to verify creator Echeck bank Account.
+      - `69` - **GIACT_BANK_ACCOUNT** Giact calls to verify merchant settlement account on sign-up or post-boarding account.
+      - `70` - **BOARD_DECISION** Process decision fee after board.
+      - `71` - **TXN_RISK_DECISION** Txn going through a risk decision.
+      - `72` - **FANF** External Fees.
+      - `73` - **MCLOCATION** External Fees.
+      - `74` - **VISAINTEGRITY** External Fees.
+      - `75` - **SAFERPAYMENTS_BASIC** External Fees.
+      - `76` - **SAFERPAYMENTS_MANAGED** External Fees.
+      - `77` - **SAFERPAYMENTS_PCI_NONVALIDATION** External Fees.
+      - `78` - **OMNITOKENS_VOLUME** External Fees.
+      - `79` - **PAYOUT_RETURN** Payout Return.
+      - `80` - **PAYOUT_PARTIAL_RETURN** Payout Partial Return.
+      - `81` - **REV_SHARE** Rev share.
+      - `82` - **CARD_SETTLEMENT** Txns card settlement.
+      - `83` - **ECHECK_SETTLEMENT** Txns e-check settlement.
+      - `84` - **REV_SHARE_CARD** Rev Share Schedules.
+      - `85` - **REV_SHARE_ECHECK** Rev Share Schedules.
+      - `86` - **REV_SHARE_DBM** Rev Share Schedules.
+      - `87` - **PREARBITRATION** Chargeback PreArbitration.
+      - `88` - **PLAID_IDENTITY_MACH** Plaid.
+      - `89` - **TXN_PLAID_IDENTITY_MACH** Txns Plaid.
+      - `90` - **PLAID_GET_IDENTITY** Plaid.
+      - `91` - **TXN_PLAID_GET_IDENTITY** Txns Plaid.
+      - `92` - **PLAID_GET_AUTH** Plaid.
+      - `93` - **TXN_PLAID_GET_AUTH** Txns Plaid.
+      - `94` - **REVERSAL** Chargeback Reversal.
+      - `95` - **REPRESENTMENT** Chargeback Representment.
+      - `101` - **IC_RETAIN_PASSTHRU_REFUND** Interchange retain pass on refund.
+      - `200` - **VALUTEC_ESSENTIAL_GIFT** External Fees.
+      - `201` - **VALUTEC_ESSENTIAL_MONTHLY_TXN** External Fees.
+      - `202` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE** External Fees.
+      - `203` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_TXN** External Fees.
+      - `204` - **VALUTEC_LOYALTY_PLUS_PACKAGE** External Fees.
+      - `205` - **VALUTEC_LOYALTY_PLUS_PACKAGE_TXN** External Fees.
+      - `206` - **VALUTEC_TRANSACTION_FEE** External Fees.
+      - `207` - **VALUTEC_SETUP_FEE** External Fees.
+      - `208` - **VALUTEC_GIFT_ACH_POOLING** External Fees.
+      - `209` - **VALUTEC_JUMP_START_KIT** External Fees.
+      - `210` - **VALUTEC_LAUNCH_BOX_KIT** External Fees.
+      - `211` - **VALUTEC_500_CUSTOM_CARDS** External Fees.
+      - `212` - **VALUTEC_MAINTENANCE_FEE** External Fees.
+      - `213` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_ME** External Fees.
+      - `214` - **EFE_MWC_RESIDUAL_ATELIO** EFE External Fees.
+      - `215` - **EFE_MWC_RESIDUAL_PARAFIN** EFE External Fees.
+      - `216` - **EFE_MWC_BILLING** EFE External Fees.
+      - `217` - **FRAUDSIGHT_CNP_DECISION** External Fees.
+      - `218` - **FRAUDSIGHT_CP_DECISION** External Fees.
+      - `400` - **REVBOOST_EMBEDDED_TMS_MONTHLY** External Fees.
+      - `401` - **REVBOOST_EMBEDDED_TMS_PPT** External Fees.
+      - `402` - **TXN_THREAT_METRIX** External Fees.
+      - `403` - **THREAT_METRIX_EMAILAGE** External Fees.
+      - `404` - **THREAT_METRIX_FRAUD_POINT** External Fees.
+      - `405` - **GIACT_INQUIRY** External Fees.
+      - `406` - **GIACT_TXN_GAUTHENTICATE** External Fees.
+      - `407` - **TRULIOO_IDV** External Fees.
+      - `408` - **TRULIOO_AMLLDV** External Fees.
+      - `409` - **TRULIOO_BUSINESS_VERIFICATION** External Fees.
+      - `410` - **THREAT_METRIX_PHONE_FINDER** External Fees.
+      - `601` - **TIER_NON_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `602` - **TIER_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `603` - **TIER_MID_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `604` - **TIER_HIGH_RISK_COUNT** Risk Based Tier Fees.
+      - `605` - **TIER_NON_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `606` - **TIER_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `607` - **TIER_MID_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `608` - **TIER_HIGH_RISK_VOLUME** Risk Based Tier Fees
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 51
+    - 52
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+    - 61
+    - 62
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+    - 92
+    - 93
+    - 94
+    - 95
+    - 101
+    - 200
+    - 201
+    - 202
+    - 203
+    - 204
+    - 205
+    - 206
+    - 207
+    - 208
+    - 209
+    - 210
+    - 211
+    - 212
+    - 213
+    - 214
+    - 215
+    - 216
+    - 217
+    - 218
+    - 400
+    - 401
+    - 402
+    - 403
+    - 404
+    - 405
+    - 406
+    - 407
+    - 408
+    - 409
+    - 410
+    - 601
+    - 602
+    - 603
+    - 604
+    - 605
+    - 606
+    - 607
+    - 608
+    x-enum-elements:
+    - name: "Days"
+      description: The Entry is triggered by a daily event.
+    - name: "Weeks"
+      description: The Entry is triggered by a weekly event.
+    - name: "Months"
+      description: The Entry is triggered by a monthly event.
+    - name: "Years"
+      description: The Entry is triggered by an annual event.
+    - name: "Single"
+      description: The Entry is triggered by a one-off event.
+    - name: "Auth"
+      description: The Entry is triggered when a transaction has been authorized.
+    - name: "Capture"
+      description: The Entry is triggered when a transaction has been captured.
+    - name: "Refund"
+      description: The Entry is triggered when a refund transaction is processed.
+    - name: "Board"
+      description: The Entry is triggered when a Merchant is boarded.
+    - name: "Payout"
+      description: The Entry is triggered when a payout is processed.
+    - name: "Chargeback"
+      description: The Entry is triggered when a card chargeback occurs.
+    - name: "Overdraft"
+      description: The Entry is triggered when an overdraft usage charge from a bank is levied.
+    - name: "Interchange"
+      description: The Entry is triggered when interchange Fees are assessed for the Transactions of this Merchant.
+    - name: "Processor"
+      description: The Entry is triggered when the Transactions of this Merchant are processed by a payment processor.
+    - name: "AchFail"
+      description: The Entry is triggered when an automated clearing house failure occurs.
+    - name: "Account"
+      description: The Entry is triggered when a bank account is verified.
+    - name: "Sift"
+      description: The Entry is triggered by a transaction's fraud Score.
+    - name: "Adjustment"
+      description: The Entry is triggered when there's an adjustment.
+    - name: "Retrieval"
+      description: The Entry is triggered by a retrieval request chargeback.
+    - name: "Arbitration"
+      description: The Entry is triggered by an arbitration chargeback.
+    - name: "EcSale"
+      description: The Entry is triggered by an eCheck sale transaction.
+    - name: "EcRefund"
+      description: The Entry is triggered by an eCheck refund.
+    - name: "EcReturn"
+      description: The Entry is triggered by an eCheck return.
+    - name: "Settlement"
+      description: The Entry triggers when a transaction has been settled.
+    - name: "Misuse"
+      description: The Entry is triggered when there's been a Misuse of authorization.
+    - name: "ProfitShare"
+      description: The Entry is triggered by a profit sharing entry event.
+    - name: "Unauth"
+      description: The Entry is triggered when a transaction is unauthorized.
+    - name: "AchNoc"
+      description: The Entry is triggered by a disbursement NOC (Notification of change).
+    - name: "EcNoc"
+      description: The Entry is triggered by an echeck transaction NOC (Notification of change).
+    - name: "EcFail"
+      description: The Entry is triggered by an echeck transaction failed.
+    - name: "EcNsf"
+      description: The Entry is triggered by an eCheck transaction NSF (Non-sufficient funds) return.
+    - name: "CurrencyConversion"
+      description: This Entry is triggered by a currency conversion.
+    - name: "TerminalTxn"
+      description: This Entry is triggered by a terminal transaction.
+    - name: "ReversePayout"
+      description: This Entry is triggered by a payout that has been reversed.
+    - name: "PartialReversePayout"
+      description: This Entry is triggered by a payout that has been partially reversed.
+    - name: "PaymentCheck"
+      description: This Entry is triggered by a payment check for Account Updater.
+    - name: "PaymentUpdate"
+      description: This Entry is triggered by a payment update for Account Updater.
+    - name: "PaymentGroupCheck"
+      description: This Entry is triggered by a payment group check for Account Updater.
+    - name: "PaymentGroupUpdate"
+      description: This Entry is triggered by a payment group update for Account Updater.
+    - name: "EntryRefund"
+      description: This Entry is triggered by an entry refund.
+    - name: "Statement"
+      description: the payment of a statement.
+    - name: "MerchantCreation"
+      description: a merchant fee upon creation.
+    - name: "RealtimeBusinessSearch"
+      description: a real-time business search.
+    - name: "RealtimeMemberSearch"
+      description: a real-time member search.
+    - name: "MasterCardMatch"
+      description: Mastercard match.
+    - name: "BusinessInstantId"
+      description: a business instant ID.
+    - name: "ConsumerInstantId"
+      description: a consumer instant ID.
+    - name: "ThreatMetrix"
+      description: Threat Metrix.
+    - name: "LegitScriptRegister"
+      description: Legit Script Register.
+    - name: "EquifaxConsumerReport"
+      description: Equifax consumer report.
+    - name: "GuideStar"
+      description: Guide Star.
+    - name: "PayloadAttribute"
+      description: internal decision V2.
+    - name: "TinCheck"
+      description: a Tin Check.
+    - name: "EquifaxCommercialReport"
+      description: Equifax commercial report.
+    - name: "LegitScriptCheckMerchant"
+      description: Legit Script Check Merchant.
+    - name: "Plaid"
+      description: Plaid.
+    - name: "StatementReversal"
+      description: the reversal of a statement.
+    - name: "GiactEcheck"
+      description: GIACT call made to verify creator Echeck bank account.
+    - name: "GiactBankAccount"
+      description: Giact calls to verify merchant settlement account.
+    - name: "BoardDecision"
+      description: process decision fee after board.
+    - name: "TxnRiskDecision"
+      description: a transaction going through a risk decision.
+    - name: "Fanf"
+      description: external fees.
+    - name: "McLocation"
+      description: external fees.
+    - name: "VisaIntegrity"
+      description: external fees.
+    - name: "SaferPaymentsBasic"
+      description: external fees.
+    - name: "SaferPaymentsManaged"
+      description: external fees.
+    - name: "SaferPaymentsPciNonValidation"
+      description: external fees.
+    - name: "OmniTokensVolume"
+      description: external fees.
+    - name: "PayoutReturn"
+      description: a payout return.
+    - name: "PayoutPartialReturn"
+      description: a partial payout return.
+    - name: "RevShare"
+      description: revenue sharing.
+    - name: "CardSettlement"
+      description: card settlement.
+    - name: "EcheckSettlement"
+      description: e-check settlement.
+    - name: "RevShareCard"
+      description: revenue sharing for cards.
+    - name: "RevShareEcheck"
+      description: revenue sharing for e-checks.
+    - name: "RevShareDbm"
+      description: revenue sharing for DBM.
+    - name: "PreArbitration"
+      description: chargeback pre-arbitration.
+    - name: "PlaidIdentityMach"
+      description: Plaid Identity Mach.
+    - name: "TxnPlaidIdentityMach"
+      description: transactions with Plaid Identity Mach.
+    - name: "PlaidGetIdentity"
+      description: Plaid Get Identity.
+    - name: "TxnPlaidGetIdentity"
+      description: transactions with Plaid Get Identity.
+    - name: "PlaidGetAuth"
+      description: Plaid Get Auth.
+    - name: "TxnPlaidGetAuth"
+      description: transactions with Plaid Get Auth.
+    - name: "Reversal"
+      description: chargeback reversal.
+    - name: "Representment"
+      description: chargeback representment.
+    - name: "IcRetainPassthruRefund"
+      description: interchange retain pass-through refund.
+    - name: "ValutecEssentialGift"
+      description: external fees.
+    - name: "ValutecEssentialMonthlyTxn"
+      description: external fees.
+    - name: "ValutecDigitalGiftPlusPackage"
+      description: external fees.
+    - name: "ValutecDigitalGiftPlusPackageTxn"
+      description: external fees.
+    - name: "ValutecLoyaltyPlusPackage"
+      description: external fees.
+    - name: "ValutecLoyaltyPlusPackageTxn"
+      description: external fees.
+    - name: "ValutecTransactionFee"
+      description: external fees.
+    - name: "ValutecSetupFee"
+      description: external fees.
+    - name: "ValutecGiftAchPooling"
+      description: external fees.
+    - name: "ValutecJumpStartKit"
+      description: external fees.
+    - name: "ValutecLaunchBoxKit"
+      description: external fees.
+    - name: "Valutec500CustomCards"
+      description: external fees.
+    - name: "ValutecMaintenanceFee"
+      description: external fees.
+    - name: "ValutecDigitalGiftPlusPackageMe"
+      description: external fees.
+    - name: "EfeMwcResidualAtelio"
+      description: EFE external fees.
+    - name: "EfeMwcResidualParafin"
+      description: EFE external fees.
+    - name: "EfeMwcBilling"
+      description: EFE external fees.
+    - name: "FraudsightCnpDecision"
+      description: external fees.
+    - name: "FraudsightCpDecision"
+      description: external fees.
+    - name: "RevboostEmbeddedTmsMonthly"
+      description: external fees.
+    - name: "RevboostEmbeddedTmsPpt"
+      description: external fees.
+    - name: "TxnThreatMetrix"
+      description: external fees.
+    - name: "ThreatMetrixEmailage"
+      description: external fees.
+    - name: "ThreatMetrixFraudPoint"
+      description: external fees.
+    - name: "GiactInquiry"
+      description: external fees.
+    - name: "GiactTxnGauthenticate"
+      description: external fees.
+    - name: "TruliooIdv"
+      description: external fees.
+    - name: "TruliooAmllDv"
+      description: external fees.
+    - name: "TruliooBusinessVerification"
+      description: external fees.
+    - name: "ThreatMetrixPhoneFinder"
+      description: external fees.
+    - name: "TierNonQualifiedCount"
+      description: risk-based tier fees.
+    - name: "TierQualifiedCount"
+      description: risk-based tier fees.
+    - name: "TierMidQualifiedCount"
+      description: risk-based tier fees.
+    - name: "TierHighRiskCount"
+      description: risk-based tier fees.
+    - name: "TierNonQualifiedVolume"
+      description: risk-based tier fees.
+    - name: "TierQualifiedVolume"
+      description: risk-based tier fees.
+    - name: "TierMidQualifiedVolume"
+      description: risk-based tier fees.
+    - name: "TierHighRiskVolume"
+      description: risk-based tier fees.
+  description:
+    type: string
+    description: A description of this Entry.
+  originalCurrency:
+    $ref: ../models/currencyModel.yaml
+    description: Original Currency describes the currency, set automatically based
+      on the settled total. The default is 'USD'. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  currencyRate:
+    type: number
+    format: double
+    description: currency conversion rate(up to three decimal points).
+  amount:
+    type: number
+    format: double
+    description: The amount involved in this Entry. It refers to the amount charged,
+      transferred, or disbursed. This field is specified in cents(up to three decimal points).
+  pending:
+    type: integer
+    description: Integer boolean that determines whether or not this entry is pending.
+  isFee:
+    title: entriesIsFee
+    type: integer
+    description: An integer-boolean indicating whether or not the funding activity
+      was triggered by a fee assessment.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Off.**
+      - `1` - **On.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Off"
+      description: "Off"
+    - name: "On"
+      description: "On"
+  archiveSummary:
+    type: integer
+    description: Summary record for archived entries.
+  pendingEntry:
+    type: string
+    description: The ID of the pendingEntry initially associated with this entry.
+  pendingEntryCreated:
+    type: string
+    description: The date and time (up to the second) when the initially associated
+      pendingEntry was created. The format should be YYYY-MM-DD HH:MM:SS
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  isEFE:
+    type: integer
+    description: |+
+      An integer-boolean indicating whether or not the funding activity was triggered by a fee assessment.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Off**
+      - `1` - **On**
+
+      </details>
+    enum:  
+    - 0 
+    - 1
+    x-enum-elements:
+    - name: Off
+      description: OFF.
+    - name: On
+      description: ON.

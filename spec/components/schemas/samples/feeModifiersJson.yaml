@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_fmr_6809dd0aab33df5467c8200",
+        "created": "2025-04-24 02:41:14.7200",
+        "modified": "2025-04-24 02:41:14.7200",
+        "creator": "t1_log_670d8844ef246e80758e762",
+        "modifier": "t1_log_670d8844ef246e80758e762",
+        "fee": "t1_fee_6809dd0aa16f89a3f28ca98",
+        "entity": t1_ent_00c2b1a6102ffdd33f00000,
+        "org": t1_org_00b2ac11ed8bed97fb80000,
+        "fromentity": t1_ent_0088c831a31ca8841c80000,
+        "markupUm": 1,
+        "markupAmount": 0,
+        "inactive": 0,
+        "frozen": 0,
+        "division": t1_div_67c56806728fbbf0bae0b00,
+        "partition": t1_ptn_666834d4d504f21414978f0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

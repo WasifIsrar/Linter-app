@@ -1,0 +1,21 @@
+
+    title: parametersOmniTokenEnabled
+    type: integer
+    description: |
+      Whether it is allowed to use Omni Token. The default setting is `0`.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Omni Token is disabled
+    - name: Enabled
+      description: Omni Token is enabled

@@ -1,0 +1,65 @@
+get:
+  description: "Query a PaymentUpdate. \nA PaymentUpdate holds information about the\
+    \ payment update. The paymentUpdate will be related to a payment, subscriptionToken\
+    \ or account, and owned by a paymentUpdateGroup."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch paymentUpdates:
+              $ref: ../components/schemas/samples/paymentUpdatesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdatesModel200Response.yaml
+      description: Response for query on paymentUpdates resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all paymentUpdates:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Payment Updates.
+  tags:
+  - Payment Updates
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPaymentUpdates
+post:
+  description: "Create a PaymentUpdate. \nA PaymentUpdate represents a record of an\
+    \ update request for a payment method used in a Subscription (via SubscriptionToken)\
+    \ or Account."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/paymentUpdatesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdatesModel200Response.yaml
+      description: Response for create on paymentUpdates resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Payment Updates
+  - Facilitator
+  operationId: postPaymentUpdates
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

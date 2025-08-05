@@ -1,0 +1,2 @@
+type: string
+description: 'The identifier of the Login that created this resource.'

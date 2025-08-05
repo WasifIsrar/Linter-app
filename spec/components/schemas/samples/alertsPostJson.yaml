@@ -1,0 +1,17 @@
+"login": "t1_log_123abc456def789ghi"
+"forlogin": "t1_log_123abc456def789ghi"
+"name": "Merchant Boarded"
+"description": "Alert when merchant is boarded."
+"alertTriggers": [
+  {
+    "event": "merchant.boarded",
+    "resource": "9",
+  }
+]
+"alertActions": [
+ {
+  "type": "web",
+  "options": "JSON",
+  "value": "https://webhook.site/#!/62ee79fc-356c-492e-aeb9-48ca3b6f4kfc",
+  } 
+]

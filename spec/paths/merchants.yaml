@@ -1,0 +1,70 @@
+get:
+  description: Query a Merchant, an organization that processes credit card payments,
+    each associated with an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all merchants:
+              $ref: ../components/schemas/samples/merchantsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/merchantsModel200Response.yaml
+      description: Response for query on merchants resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all merchants:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Merchants
+  tags:
+  - Merchants
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMerchants
+post:
+  description: Create a new Merchant. Details for creating one will be available soon.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/merchantsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create merchant:
+              $ref: ../components/schemas/samples/merchantsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/merchantsModel200Response.yaml
+      description: Response for update on merchant's response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all merchants:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a Merchant
+  tags:
+  - Merchants
+  - Facilitator
+  - Partner
+  operationId: postMerchants
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

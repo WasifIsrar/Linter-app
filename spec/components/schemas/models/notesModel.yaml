@@ -1,0 +1,48 @@
+title: notesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The identifier of the Login that owns this notes resource.
+  hold:
+    type: string
+    description: The identifier of the Hold that relates to this notes resource.
+  txn:
+    type: string
+    description: The identifier of the Txn that relates to this notes resource.
+  terminalTxn:
+    type: string
+    description: 'The identifier of the TerminalTxn that relates to this notes resource. '
+  entity:
+    type: string
+    description: The identifier of the Entity that relates to this notes resource.
+  type:
+    $ref: ../enums/noteTypeModel.yaml
+  note:
+    type: string
+    description: "A Message/Note regarding this notes resource. \nThis field is stored\
+      \ as a text string."
+  data:
+    type: string
+    description: Free-form text for adding a message along with the type.
+  pinned:
+    type: integer
+    description: Flag to determine if a note has been pinned or not..
+  pinnedDate:
+    type: string
+    description: The timestamp indicating the date and time when a note was pinned. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

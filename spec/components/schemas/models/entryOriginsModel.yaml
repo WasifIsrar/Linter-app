@@ -1,0 +1,90 @@
+title: entryOriginsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entry:
+    type: string
+    description: The entry on which the funding source was recorded.
+  disbursement:
+    type: string
+    description: ID of the disbursement related to this entry origin.
+  adjustment:
+    type: string
+    description: The adjustment ID from which the funding activity was triggered.
+  cancellation:
+    description: The ID of the entry used to cancel out corresponding debt.
+  amount:
+    type: number
+    format: double
+    description: The amount for this funding activity in cents (up to three decimal
+      points for sub-cents).
+  funding:
+    type: string
+    description: The processor’s funding ID (related to a merchant, for some processors
+      it is the merchant ID) from which the funds were sourced.
+  platform:
+    title: entryOriginPlatform
+    type: string
+    description: |
+      The processor through which the funds are available.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `ELAVON` - **The Elavon processor.**
+      - `VANTIV` - **The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**
+      - `VCORE` - **The WorldPay (aka Vantiv) Core processor.**
+      - `TDBANK` - **External funding with TD Bank via the Operating Account.**
+      - `TDBANKCA` - **External funding with TD Bank Canada via the Operating Account.**
+      - `WELLSACH` - **The Wells Fargo ACH processor.**
+      - `WELLSFARGO` - **The Wells Fargo Merchant Services processor.**
+      - `WFSINGLE` - **The WFSINGLE processor.**
+      - `WORLDPAY` - **The WORLDPAY processor.**
+
+      </details>
+    enum:
+    - APPLE
+    - ELAVON
+    - FIRSTDATA
+    - GOOGLE
+    - VANTIV
+    - VCORE
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    - TDBANKCA
+    x-enum-elements:
+    - name: APPLE
+      description: Apple processor.
+    - name: ELAVON
+      description: The Elavon processor.
+    - name: FIRSTDATA
+      description: First Data processor.
+    - name: GOOGLE
+      description: Google processor.
+    - name: VANTIV
+      description: The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.
+    - name: VCORE
+      description: The WorldPay (aka Vantiv) Core processor.
+    - name: WELLSACH
+      description: The Wells Fargo ACH processor.
+    - name: WELLSFARGO
+      description: The Wells Fargo Merchant Services processor.
+    - name: WFSINGLE
+      description: The WFSINGLE processor.
+    - name: WORLDPAY
+      description: The WORLDPAY processor.
+    - name: TDBANKCA
+      description: External funding with TD Bank Canada via the Operating Account.
+  fbo:
+    type: string
+    description: FBO in which each entry origin belongs to.

@@ -1,0 +1,35 @@
+get:
+  description: Query a ProfitShareResult or Profit Share Result resource, which holds
+    a message regarding a failed ProfitShare process.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareResults:
+              $ref: ../components/schemas/samples/profitShareResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareResultsModel200Response.yaml
+      description: Response for query on profitShareResults resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Profit Share Results.
+  tags:
+  - Profit Share Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getProfitShareResults

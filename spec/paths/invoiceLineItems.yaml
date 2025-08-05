@@ -1,0 +1,76 @@
+get:
+  description: Query an InvoiceLineItem. InvoiceLineItem is a resource that relates
+    an invoice item with an invoice. It holds information such as quantity, and price
+    each item.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceLineItems:
+              $ref: ../components/schemas/samples/invoiceLineItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceLineItemsModel200Response.yaml
+      description: Response for query on invoiceLineItems resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceLineItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Invoice Line Items.
+  tags:
+  - Invoice Line Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoiceLineItems
+post:
+  description: Create an InvoiceLineItem or Invoice Line Item.InvoiceLineItem is a
+    resource that relates an invoice item with an invoice. It holds information such
+    as quantity, and price each item.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/invoiceLineItemsPostRequestModel.yaml
+    description: Create Invoice Line Item Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create invoiceLineItems:
+              $ref: ../components/schemas/samples/invoiceLineItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceLineItemsModel200Response.yaml
+      description: The response for creating an invoice line item on the invoiceLineItems
+        resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceLineItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Invoice Line Item
+  tags:
+  - Invoice Line Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postInvoiceLineItems
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

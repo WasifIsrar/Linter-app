@@ -1,0 +1,25 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "t1_avr_11ad1aca636fb9f4a1abc00",
+              "created": "2025-02-13 01:01:46.4073",
+              "modified": "2025-02-13 01:01:46.4073",
+              "creator": "000000000000001",
+              "modifier": "000000000000001", 
+              "accountVerification": "t1_acv_11ad1aca636fb9f4a1abc00",
+              "field": "dba",
+              "message": "Sample AccountVerificationResults"
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

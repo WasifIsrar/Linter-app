@@ -1,0 +1,13 @@
+title: feesResponseResult
+properties:
+  response:
+    title: feesResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/feesModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

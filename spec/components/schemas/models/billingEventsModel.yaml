@@ -1,0 +1,45 @@
+title: billingEventsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  billing:
+    type: string
+    description: The billing to which this billingEvent applies.
+  event:
+    $ref: ../enums/billingEventModel.yaml
+  eventSchedule:
+    type: string
+    description: The record ID of a specific schedule for the event chosen for which
+      the billing configuration applies, all other records of the same event are excluded.
+  deductFromBalance:
+    type: integer
+    description: |
+      Whether to deduct the billing amount from the entity's account balance.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Do not deduct from balance.**
+      - `1` - **Deduct from balance.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: DoNotDeduct
+      description: Do not deduct from balance.
+    - name: Deduct
+      description: Deduct from balance.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,40 @@
+get:
+  description: Querying a terminalTxnResults resource represents the result of a Transaction
+    from a processor, which may be approved, declined, or raise an error.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this terminal transaction result.
+    explode: false
+    in: path
+    name: id
+    example: t1_tts_67fd471bc46e25858d21f0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnResults:
+              $ref: ../components/schemas/samples/terminalTxnResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnResultsModel200Response.yaml
+      description: Retrieve the response for the query on the Terminal Transaction
+        Results resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxnResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Terminal Transaction Result by it's ID.
+  tags:
+  - Terminal Transaction Results
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getTerminalTxnResultsId

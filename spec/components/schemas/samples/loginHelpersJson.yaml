@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_lgh_67ee09c7402cff94765db3c",
+        "created": "2025-04-03 00:08:39.2707",
+        "modified": "2025-04-03 00:08:39.2707",
+        "creator": "t1_log_65b2c8c108ac3cd41432a1e",
+        "modifier": "t1_log_65b2c8c108ac3cd41432a1e",
+        "login": "t1_log_67ee09bbc22011eaae4ddd9",
+        "mfaSmsCode": "code",
+        "mfaSmsCodeUnixTime": 0623,
+        "mfaSmsCodeAttempts": 0,
+        "mfaSmsCodesCount": 0,
+        "mfaSmsWindow": 0,
+        "loginAsEnabled": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,43 @@
+title: accountVerificationPostRequest
+properties:
+  account:
+    type: string
+    description: The identifier of the Account that you want to verify.
+  type:
+    title: accountVerificationType
+    type: string
+    description: |
+      The type of account verification you want to perform.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `debit` - **Makes two challenge debits (debit1 and debit2).**
+      - `credentials` - **Uses a bank account credential (username/password).**
+
+      </details>
+    enum:
+    - debit
+    - credentials
+    x-enum-elements:
+    - name: Debit
+      description: Makes two challenge debits (debit1 and debit2).
+    - name: Credentials
+      description: Uses a bank account credential (username/password).
+  trials: 
+    type: integer
+    description: The number of verification challenge responses attempted.
+    default: 0
+  identification:
+    type: string
+    description: "An additional authentication field that can be used to log in to\
+      \ the bank account that is to be verified. \nThis field is only required by\
+      \ certain banks."
+required:
+- account
+- type
+
+example:
+  account: "p1_acv_67aee642e73d8c8ec629198"
+  type: "debit"
+  trials: 0

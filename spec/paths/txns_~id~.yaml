@@ -1,0 +1,90 @@
+get:
+  description: "Query a Transaction. \nTransactions hold all of the information relating\
+    \ to a particular credit card transaction, including the merchant, token, subscription,\
+    \ customer and card information."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this transaction.
+    explode: false
+    in: path
+    name: id
+    example: p1_txn_5a1ef5e55658af7cf012866
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txns:
+              $ref: ../components/schemas/samples/txnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnsModel200Response.yaml
+      description: Response for query on txns resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Transaction by its ID.
+  tags:
+  - Transactions (Txns)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxnsId
+put:
+  description: "Update a Transaction. \nTransactions hold all of the information relating\
+    \ to a particular credit card transaction, including the merchant, token, subscription,\
+    \ customer and card information."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this transaction.
+    explode: false
+    in: path
+    name: id
+    example: p1_txn_5a1ef5e55658af7cf012866
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        example:
+          id: p1_txn_5a1ef5e55658af7cf012866
+          inactive: 1
+        schema:
+          $ref: ../components/schemas/models/txnsPutRequestModel.yaml
+    description: Update txns Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update txns:
+              $ref: ../components/schemas/samples/txnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnsModel200Response.yaml
+      description: Response for update on txns resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Transaction by its ID.
+  tags:
+  - Transactions (Txns)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putTxnsId

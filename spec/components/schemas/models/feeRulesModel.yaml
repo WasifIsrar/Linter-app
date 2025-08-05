@@ -1,0 +1,38 @@
+title: feeRulesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  fee:
+    type: string
+    description: The identifier of the Fee that this Fee Rule applies.
+  name:
+    type: string
+    description: "The name of this Fee Rule. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: The description of this Fee Rule.
+  type:
+    $ref: ../enums/feeRuleTypeModel.yaml
+  application:
+    $ref: ../enums/feeApplicationModel.yaml
+  value:
+    type: string
+    description: "The value to compare against when evaluating this Fee Rule."
+  grouping:
+    type: string
+    description: |
+      A name for a group of rules to be applied in conjunction when evaluating this Fee Rule.
+      When grouping is used, the Fee will be allowed to be processed if at least one of the rules are matched.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

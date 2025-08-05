@@ -1,0 +1,21 @@
+title: terminalStatus
+type: integer
+description: |
+  The current active status of the terminal.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Inactive**
+  - `1` - **Active**
+
+  </details>
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: Inactive
+  description: Inactive.
+- name: Active
+  description: Active.
+default: 1

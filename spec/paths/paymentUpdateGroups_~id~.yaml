@@ -1,0 +1,103 @@
+get:
+  description: Query a Payment Update Group that has a collection of payment updates
+    owned by the merchant's entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payment update group.
+    explode: false
+    in: path
+    name: id
+    example: t1_pug_67c80c1f44bc3a7dcb1f000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch paymentUpdateGroups:
+              $ref: ../components/schemas/samples/paymentUpdateGroupsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdateGroupsModel200Response.yaml
+      description: Response for retrieve payment update group response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all paymentUpdateGroups:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Payment Update Group by it's ID.
+  tags:
+  - Payment Update Groups
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPaymentUpdateGroupsId
+put:
+  description: "Update a PaymentUpdateGroup. \nA PaymentUpdateGroup has a collection\
+    \ of paymentUpdates owned by the merchant's entity."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/paymentUpdateGroupsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdateGroupsModel200Response.yaml
+      description: Response for update on paymentUpdateGroups resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Payment Update Groups
+  - Facilitator
+  operationId: putPaymentUpdateGroupsId
+delete:
+  description: "Delete a PaymentUpdateGroup. \nA PaymentUpdateGroup has a collection\
+    \ of paymentUpdates owned by the merchant's entity."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdateGroupsModel200Response.yaml
+      description: Response for delete on paymentUpdateGroups resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Payment Update Groups
+  - Facilitator
+  operationId: deletePaymentUpdateGroupsId

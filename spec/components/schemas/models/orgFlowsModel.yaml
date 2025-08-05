@@ -1,0 +1,33 @@
+title: orgFlowsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  forlogin:
+    type: string
+    description: The identifier of the Login resource for which this orgFlows resource
+      is triggered.
+  team:
+    type: string
+    description: The identifier of the Team resource for which this orgFlows resource
+      is triggered.
+  division:
+    type: string
+    description: The identified of the Division resource for which this orgFlows resource
+      is triggered.
+  trigger:
+    $ref: ../enums/orgFlowTriggerModel.yaml
+  partition:
+    type: string
+    description: The identified of the Partition resource for which this orgFlows
+      resource is triggered.

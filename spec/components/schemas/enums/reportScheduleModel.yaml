@@ -1,0 +1,36 @@
+title: reportSchedule
+type: string
+description: |
+  Report Scheduling Intervals.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `unscheduled` - **Report is not scheduled. On-demand reporting.**
+  - `hours` - **In hours - Report Scheduling Interval**
+  - `days` - **In days - Report Scheduling Interval**
+  - `weeks` - **In weeks - Report Scheduling Interval**
+  - `months` - **In months - Report Scheduling Interval**
+  - `years` - **In years - Report Scheduling Interval**
+
+  </details>
+enum:
+- unscheduled
+- hours
+- days
+- weeks
+- months
+- years
+x-enum-elements:
+- name: Unscheduled
+  description: Report is not scheduled. On-demand reporting.
+- name: Hours
+  description: In hours - Report Scheduling Interval.
+- name: Days
+  description: In days - Report Scheduling Interval.
+- name: Weeks
+  description: In weeks - Report Scheduling Interval.
+- name: Months
+  description: In months - Report Scheduling Interval.
+- name: Years
+  description: In years - Report Scheduling Interval.

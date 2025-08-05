@@ -1,0 +1,80 @@
+get:
+  description: "Query a Subscription Tokens resource. \nA Subscription Tokens resource\
+    \ represents an association between a Subscription and a means of payment (Token)\
+    \ for that Subscription."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/subscriptionTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionTokensModel200Response.yaml
+      description: Response for query on subscriptionTokens resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Subscription Tokens.
+  tags:
+  - Subscription Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSubscriptionTokens
+post:
+  description: "Create a Subscription Tokens resource. \nA Subscription Tokens resource\
+    \ represents an association between a Subscription and a means of payment (Token)\
+    \ for that Subscription."
+  requestBody:
+    content:
+      application/json:
+        examples:
+          Create a new Subscription Token Request:
+            value:
+              subscription: p1_sbn_5a1ef5e556583e67e5d55a2
+              token: e41272ec5464d9ec81cc85c854837472
+        schema:
+          $ref: ../components/schemas/models/subscriptionTokensPostRequestModel.yaml
+    description: Create Subscription Token Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create subscriptionTokens:
+              $ref: ../components/schemas/samples/subscriptionTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionTokensModel200Response.yaml
+      description: Response for create on subscriptionTokens resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Subscription Token
+  tags:
+  - Subscription Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postSubscriptionTokens
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,38 @@
+get:
+  description: Query a RevenueBoost
+  parameters:
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_rev_12a003cde5d6b2ec3d9canb
+    required: true
+    schema:
+      type: string
+      description: The RevenueBoost ID.
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all revenueBoosts:
+              $ref: ../components/schemas/samples/revenueBoostsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revenueBoostsModel200Response.yaml
+      description: Response for query on revenueBoost resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revenueBoosts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a RevenueBoost by its ID.
+  tags:
+  - Revenue Boosts
+  - Merchant
+  - Partner
+  operationId: getRevenueBoostsId

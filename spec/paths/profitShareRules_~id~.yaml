@@ -1,0 +1,125 @@
+get:
+  description: Query a ProfitShare Rule, which is a piece of conditional logic that
+    makes a ProfitShare apply only in certain circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Profit Share Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psl_63de0f98555d322f0513b00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/profitShareRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareRulesModel200Response.yaml
+      description: Retrieve the Response for query on Profit Share Rules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Profit Share Rule by it's ID.
+  tags:
+  - Profit Share Rules
+  - Facilitator
+  - Partner
+  operationId: getProfitShareRulesId
+put:
+  description: Update a ProfitShare Rule, which is a piece of conditional logic that
+    makes a ProfitShare apply only in certain circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Profit Share Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psl_63de0f98555d322f0513b00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/profitShareRulesPutRequestModel.yaml
+    description: Update Profit Share Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update profitShareRules:
+              $ref: ../components/schemas/samples/profitShareRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareRulesModel200Response.yaml
+      description: 'Response for update on profitShareRules resource: Update Profit
+        Share Rule Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Profit Share Rule by it's ID.
+  tags:
+  - Profit Share Rules
+  - Facilitator
+  - Partner
+  operationId: putProfitShareRulesId
+delete:
+  description: Delete a ProfitShare Rule, which is a piece of conditional logic that
+    makes a ProfitShare apply only in certain circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Profit Share Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psl_63de0f98555d322f0513b00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete profitShareRules:
+              $ref: ../components/schemas/samples/profitShareRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareRulesModel200Response.yaml
+      description: 'The response for deleting a profit share rule.
+
+
+        Details: None.'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Profit Share Rule by it's ID.
+  tags:
+  - Profit Share Rules
+  - Facilitator
+  - Partner
+  operationId: deleteProfitShareRulesId

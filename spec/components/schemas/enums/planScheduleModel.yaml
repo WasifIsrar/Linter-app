@@ -1,0 +1,28 @@
+title: planSchedule
+type: integer
+description: |
+  The schedule that determines when the subscription related to this Plan is triggered.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Daily**
+  - `2` - **Weekly**
+  - `3` - **Monthly**
+  - `4` - **Annually**
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+- 4
+x-enum-elements:
+- name: Daily
+  description: The subscription is triggered daily.
+- name: Weekly
+  description: The subscription is triggered weekly.
+- name: Monthly
+  description: The subscription is triggered monthly.
+- name: Annually
+  description: The subscription is triggered annually.

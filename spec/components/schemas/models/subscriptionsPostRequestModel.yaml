@@ -1,0 +1,86 @@
+title: subscriptionsPostRequest
+properties:
+  plan:
+    type: string
+    description: The identifier of the Plan that this Subscription is associated with.
+      The Plan determines the frequency and amount of each payment.
+  statementEntity:
+    type: string
+    description: For a plan that is attached to a billing, this is the paying entity
+      to match to the generated statements of that billing for which the recurring
+      payments will be made.
+  firstTxn:
+    type: string
+    description: The identification of the first transaction processed through this
+      subscription. This is used internally to process subsequent transactions.
+  start:
+    type: integer
+    description: The date on which the Subscription should start. The date is specified
+      as an eight digit string in YYYYMMDD format, for example, '20160120' for January
+      20, 2016. The value of this field must represent a date in the future.
+  finish:
+    type: integer
+    description: The date on which the Subscription should finish. The date is specified
+      as an eight digit string in YYYYMMDD format, for example, '20160120' for January
+      20, 2016. The value of this field must represent a date in the future.
+  tax:
+    type: integer
+    format: int64
+    description: The amount of the total sum of this Subscription that is made up
+      of tax. This field is specified as an integer in cents.
+  descriptor:
+    type: string
+    description: The descriptor used in this Subscription. This field is stored as
+      a text string and must be between 1 and 50 characters long. If a value is not
+      set, an attempt is made to set a default value from the merchant information.
+  txnDescription:
+    type: string
+    description: The description of the Txn that will be created through this Subscription.
+  order:
+    type: string
+    description: The order of the Txn that will be created through this Subscription.
+  origin:
+    $ref: ../enums/subscriptionOriginModel.yaml
+  authentication:
+    type: string
+    description: Authentication token for 3D Secure transactions.
+  authenticationId:
+    type: string
+    description: Authentication reference ID for 3D Secure transactions.
+  failures:
+    type: integer
+    description: The current count of consecutive payment failures for this subscription.
+  maxFailures:
+    type: integer
+    description: The maximum consecutive amount of payment failures to allow for this
+      subscription before inactivating it.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- authentication
+- failures
+- frozen
+- inactive
+- origin
+- plan
+- start
+
+example:
+  plan: t1_pln_680064c9e9920768c5f7156
+  statementEntity: paying entity
+  firstTxn: t1_txn_680064d333e8a4e6cc85903
+  start: 20250416
+  finish: 20250416
+  tax: 0
+  descriptor: Subscription Descriptor
+  txnDescription: subscription1
+  order: t183l8nsmsiq
+  origin: 2
+  authentication: Authentication token
+  authenticationId: Authentication reference ID
+  failures: 0
+  maxFailures: 0
+  inactive: 0
+  frozen: 0

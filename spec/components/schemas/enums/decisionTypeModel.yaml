@@ -1,0 +1,136 @@
+title: decisionType
+type: string
+description: |
+  The type of check to perform.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `merchantFailureLimit` - **Exceeded the maximum number of allowed failed authorizations.**
+  - `merchantFailureRatio` - **Exceeded the maximum ratio of allowed failed authorizations.**
+  - `saleTotalLimit` - **Exceeded the maximum allowed sale total value.**
+  - `refundTotalLimit` - **Exceeded the maximum allowed refund total value.**
+  - `averageSaleCountLimit` - **Exceeded the allowed maximum payment size (individual transaction amount).**
+  - `merchantRefundSaleRatio` - **Exceeded the maximum allowed ratio of refunds to sales.**
+  - `merchantPaymentSuccessLimit` - **This is used to check if the merchant has charged the same payment more than X times on a given period of time.**
+  - `ipFailureLimit` - **Exceeded the maximum allowed number of failed authorizations for a particular IP address.**
+  - `ipFailureRatio` - **Exceeded the maximum allowed ratio of failed authorizations for a particular IP address.**
+  - `inactiveMerchant` - **The Merchant is not active.**
+  - `merchantPaymentFailureLimit` - **Exceeded the maximum allowed number of failed transactions.**
+  - `merchantCaptureWithoutAuthLimit` - **Exceeded the maximum allowed number of transactions without authorizations.**
+  - `refundWithoutSale` - **Refund transaction does not have an associated sale transaction.**
+  - `refundWithoutSaleLimit` - **Exceeded the maximum number of refund transactions that do not have associated sale transactions.**
+  - `captureAboveAuthLimit` - **Exceeded the maximum authorized value for transactions with failed authorizations.**
+  - `fraudScore` - **Transaction fraud score.**
+  - `cvv` - **CVV.**
+  - `avs` - **AVS.**
+  - `aavs` - **AAVS.**
+  - `duplicateTxn` - **Duplicate transaction.**
+  - `merchantMatch` - **Transaction matches merchant details.**
+  - `currencyConversion` - **Transaction triggers currency conversion.**
+  - `settledCurrencyMismatch` - **Transaction settled currency mismatch.**
+  - `initialTxn` - **Initial transaction of this type.**
+  - `similarTotalLimit` - **Exceeded the limit of transactions with equal totals.**
+  - `similarTotalRatio` - **Exceeded the ratio of transactions with equal totals.**
+  - `saleTotalMinimum` - **Minimum transaction amount.**
+  - `limit` - **Exceeded the maximum allowed number of authorizations.**
+  - `ratio` - **This is used to check if similar transactions have reached the ratio of auth transactions in a given period of time.**
+  - `txnWatchlist` - **Check the transaction data against a custom watchlist.**
+  - `balanceRefundLimit` - **This is used to check if a merchant has enough balance to process a REFUND transaction and it is within the scope of the threshold.**
+
+  </details>
+enum:
+- merchantFailureLimit
+- merchantFailureRatio
+- saleTotalLimit
+- refundTotalLimit
+- averageSaleCountLimit
+- merchantRefundSaleRatio
+- merchantPaymentSuccessLimit
+- ipFailureLimit
+- ipFailureRatio
+- inactiveMerchant
+- merchantPaymentFailureLimit
+- merchantCaptureWithoutAuthLimit
+- refundWithoutSale
+- refundWithoutSaleLimit
+- captureAboveAuthLimit
+- fraudScore
+- cvv
+- avs
+- aavs
+- duplicateTxn
+- merchantMatch
+- currencyConversion
+- settledCurrencyMismatch
+- initialTxn
+- similarTotalLimit
+- similarTotalRatio
+- saleTotalMinimum
+- limit
+- ratio
+- txnWatchlist
+- balanceRefundLimit
+x-enum-elements:
+- name: MerchantFailureLimit
+  description: Exceeded the maximum number of allowed failed authorizations.
+- name: MerchantFailureRatio
+  description: Exceeded the maximum ratio of allowed failed authorizations.
+- name: SaleTotalLimit
+  description: Exceeded the maximum allowed sale total value.
+- name: RefundTotalLimit
+  description: Exceeded the maximum allowed refund total value.
+- name: AverageSaleCountLimit
+  description: Exceeded the allowed maximum payment size (individual transaction amount).
+- name: MerchantRefundSaleRatio
+  description: Exceeded the maximum allowed ratio of refunds to sales.
+- name: MerchantPaymentSuccessLimit
+  description: This is used to check if the merchant has charged the same payment more than X times on a given period of time.
+- name: IpFailureLimit
+  description: Exceeded the maximum allowed number of failed authorizations for a particular IP address.
+- name: IpFailureRatio
+  description: Exceeded the maximum allowed ratio of failed authorizations for a particular IP address.
+- name: InactiveMerchant
+  description: The Merchant is not active.
+- name: MerchantPaymentFailureLimit
+  description: Exceeded the maximum allowed number of failed transactions.
+- name: MerchantCaptureWithoutAuthLimit
+  description: Exceeded the maximum allowed number of transactions without authorizations.
+- name: RefundWithoutSale
+  description: Refund transaction does not have an associated sale transaction.
+- name: RefundWithoutSaleLimit
+  description: Exceeded the maximum number of refund transactions that do not have associated sale transactions.
+- name: CaptureAboveAuthLimit
+  description: Exceeded the maximum authorized value for transactions with failed authorizations.
+- name: FraudScore
+  description: Transaction fraud score.
+- name: Cvv
+  description: CVV.
+- name: Avs
+  description: AVS.
+- name: Aavs
+  description: AAVS.
+- name: DuplicateTxn
+  description: Duplicate transaction.
+- name: MerchantMatch
+  description: Transaction matches merchant details.
+- name: CurrencyConversion
+  description: Transaction triggers currency conversion.
+- name: SettledCurrencyMismatch
+  description: Transaction settled currency mismatch.
+- name: InitialTxn
+  description: Initial transaction of this type.
+- name: SimilarTotalLimit
+  description: Exceeded the limit of transactions with equal totals.
+- name: SimilarTotalRatio
+  description: Exceeded the ratio of transactions with equal totals.
+- name: SaleTotalMinimum
+  description: Minimum transaction amount.
+- name: Limit
+  description: Exceeded the maximum allowed number of authorizations.
+- name: Ratio
+  description: This is used to check if similar transactions have reached the ratio of auth transactions in a given period of time.
+- name: TxnWatchlist
+  description: Check the transaction data against a custom watchlist.
+- name: BalanceRefundLimit
+  description: This is used to check if a merchant has enough balance to process a REFUND transaction and it is within the scope of the threshold.

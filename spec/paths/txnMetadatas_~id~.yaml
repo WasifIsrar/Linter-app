@@ -1,0 +1,40 @@
+get:
+  description: "Query a txnMetadatas resource. \nA txnMetadatas resource represents\
+    \ data from an EMV Transaction and/or returned by the credit card network associated\
+    \ with a Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The TXN Metadatas ID.
+    explode: false
+    in: path
+    name: id
+    example: p1_tmd_67a000db8b464f000d8ea2d
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnMetaDatas:
+              $ref: ../components/schemas/samples/txnMetaDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnMetaDatasModel200Response.yaml
+      description: Response for query on txnMetadatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnMetaDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve transaction metadata (txnMetadatas) by its ID.
+  tags:
+  - Transaction Metadatas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxnMetadatasId

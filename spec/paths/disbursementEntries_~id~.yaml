@@ -1,0 +1,118 @@
+get:
+  description: Query a Disbursement Entry that is a record of where a disbursement
+    amount is coming from.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this disbursement entry.
+    explode: false
+    in: path
+    name: id
+    example: t1_dbe_672ebb36f08a2a1a6ecfdce
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements entries:
+              $ref: ../components/schemas/samples/disbursementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementEntriesModel200Response.yaml
+      description: Retrieve the Response for query on Disbursement Entries resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursement entries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Disbursement Entry by its ID.
+  tags:
+  - Disbursement Entries
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDisbursementEntriesId
+put:
+  description: "Update a DisbursementEntry. \nA DisbursementEntry is a record of where\
+    \ the disbursement amount comes from."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_dbe_672ebb36f08a2a1a6ecfdce
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/disbursementEntriesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entries:
+              $ref: ../components/schemas/samples/disbursementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementEntriesModel200Response.yaml
+      description: Response for update on disbursementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursement entries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Disbursement Entries
+  - Facilitator
+  operationId: putDisbursementEntriesId
+delete:
+  description: "Delete a DisbursementEntry. \nA DisbursementEntry is a record of where\
+    \ the disbursement amount comes from."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_dbe_672ebb36f08a2a1a6ecfdce
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete disbursements entries:
+              $ref: ../components/schemas/samples/disbursementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementEntriesModel200Response.yaml
+      description: Response for delete on disbursementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Delete disbursement entry:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Disbursement Entry by its ID.
+  tags:
+  - Disbursement Entries
+  - Facilitator
+  operationId: deleteDisbursementEntriesId

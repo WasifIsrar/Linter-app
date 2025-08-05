@@ -1,0 +1,107 @@
+title: watchlistItemsPostRequest
+properties:
+  watchlist:
+    type: string
+    description: The identifier of the Watchlist associated with this WatchlistItem.
+  type:
+    $ref: ../enums/watchlistItemTypeModel.yaml
+  name:
+    type: string
+    description: The name to match.
+  title:
+    type: string
+    description: "The title to match. \nFor example, 'CEO', 'Owner' or 'Director of\
+      \ Finance'."
+  first:
+    type: string
+    description: The first name to match.
+  middle:
+    type: string
+    description: The middle name to match.
+  last:
+    type: string
+    description: The last name to match.
+  ein:
+    type: string
+    description: The employer identification number to match.
+  ssn:
+    type: string
+    description: The social security number to match.
+  dob:
+    type: string
+    description: The date of birth to match. The date is specified as an eight digit
+      string in YYYYMMDD format, for example, '20160120' for January 20, 2016.
+  dl:
+    type: string
+    description: The driver's license number to match.
+  dlstate:
+    $ref: ../models/stateModel.yaml
+  email:
+    type: string
+    description: The email address to match.
+  website:
+    type: string
+    description: "The web site URL to match. \nThis field is stored as a text string\
+      \ and must be between 0 and 500 characters long."
+  ipAddress:
+    type: string
+    description: "The ipAddress to match. \nValid values are any Ipv4 or Ipv6 address."
+  payment:
+    type: string
+    description: The references a record on the Payments table and is used to set risk rules based on the bank account details of the merchant.
+  bin:
+    type: string
+    description: The bank identification number to match.
+  last4:
+    type: string
+    description: The last 4 digits of a credit card to match.
+  keyword:
+    type: string
+    description: A keyword to match.
+  custom:
+    type: string
+    description: Used for things like merchant id.
+  notes:
+    type: string
+    description: Notes associated with the watchlist item.
+  address1:
+    type: string
+    description: "The first line of the address to match. \nThis field is stored as\
+      \ a text string and must be between 1 and 500 characters long."
+  address2:
+    type: string
+    description: "The second line of the address to match. \nThis field is stored\
+      \ as a text string and must be between 1 and 500 characters long."
+  city:
+    type: string
+    description: "The name of the city in the address to match. \nThis field is stored\
+      \ as a text string and must be between 1 and 500 characters long."
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address to match. \nThis field is stored as\
+      \ a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../models/countryModel.yaml
+    description: The country in the address to match. Currently, this field only accepts
+      the value 'USA'.
+  phone:
+    type: string
+    description: "The phone number to match. \nThis field is stored as a text string\
+      \ and must be between 10 and 15 characters long."
+  fax:
+    type: string
+    description: "The fax number to match. \nThis field is stored as a text string\
+      \ and must be between 10 and 15 characters long."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- payment
+- type
+- watchlist
+

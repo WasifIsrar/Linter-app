@@ -1,0 +1,86 @@
+get:
+  description: Query a Message Thread that represents the sender, receiver, and subject
+    of the Messages resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this message thread.
+    explode: false
+    in: path
+    name: id
+    example: t1_mtd_67ef5bad402b6b61e701e0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all messageThreads:
+              $ref: ../components/schemas/samples/messageThreadsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messageThreadsModel200Response.yaml
+      description: Retrieve Response for query on messageThreads resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messageThreads:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Message Thread by it's ID.
+  tags:
+  - Message Threads
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMessageThreadsId
+put:
+  description: Update a Message Thread that represents the sender, receiver, and subject
+    of the Messages resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this message thread.
+    explode: false
+    in: path
+    name: id
+    example: t1_mtd_67ef5bad402b6b61e701e0z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/messageThreadsPutRequestModel.yaml
+    description: Update Message Thread Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update messageThreads:
+              $ref: ../components/schemas/samples/messageThreadsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messageThreadsModel200Response.yaml
+      description: 'Response for update on Message Threads resource: Update Message
+        Thread Response.'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messageThreads:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Message Thread by it's ID.
+  tags:
+  - Message Threads
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putMessageThreadsId

@@ -1,0 +1,85 @@
+get:
+  description: Query a Batch, a Batch resource represents a group of Transactions
+    that are sent together to the processor to be settled.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Batch ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_bth_67d91c7aa2aa3800cb2be00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all batches:
+              $ref: ../components/schemas/samples/batchesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/batchesModel200Response.yaml
+      description: Response for retrieve batch response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all batches:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Batch by it's ID.
+  tags:
+  - Batches (Settlements)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getBatchesId
+put:
+  description: Update a Batch. A Batch resource represents a group of Transactions
+    that are sent together to the processor to be settled.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Batch ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_bth_67d91c7aa2aa3800cb2be00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/batchesPutRequestModel.yaml
+    description: Update Batch Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update batches:
+              $ref: ../components/schemas/samples/batchesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/batchesModel200Response.yaml
+      description: Response for update on batches resource Update Batch Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all batches:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Batch by it's ID.
+  tags:
+  - Batches (Settlements)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putBatchesId

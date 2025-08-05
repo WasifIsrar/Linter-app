@@ -1,0 +1,14 @@
+description: >
+  To configure a request to return a total for all instances of a field in a result set, 
+  use the totals header in the format `totals={operator}[]={key}`. 
+  This will calculate the desired total and return it in the `details > totals` object of the response. 
+  For instance, if you want to sum the `total` field of all transactions, 
+  you would use the `sum` operator. The response will include the result set, 
+  along with the calculated total in the `details` section. See [Collection Operators](page:welcome#collection-operators) for detailed information and examples on how to use totals header.
+explode: false
+in: header
+name: totals
+required: false
+schema: 
+  type: string
+example: count[]=id

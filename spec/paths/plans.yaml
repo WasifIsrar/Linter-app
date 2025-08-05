@@ -1,0 +1,74 @@
+get:
+  description: "Query a Plan. \nA Plan represents a recurring type of payment that\
+    \ charges a certain amount on a weekly, monthly, quarterly, or annual basis. \n\
+    Once you create a Plan, you can associate a Subscription and user with it."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/plansJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/plansModel200Response.yaml
+      description: Response for query on plans resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Plans.
+  tags:
+  - Plans
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPlans
+post:
+  description: Create a Plan that represents a recurring type of payment that charges
+    a certain amount on a weekly, monthly, quarterly, or annual basis, which once
+    created, allows you to associate a Subscription and user with it.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/plansPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/plansJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/plansModel200Response.yaml
+      description: Response for create on plans resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all plans:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Plan
+  tags:
+  - Plans
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postPlans
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

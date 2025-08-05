@@ -1,0 +1,39 @@
+get:
+  description: Query a merchantPlatformStatuses.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_mps_6819e572f2251288844d0zz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all merchantPlatformStatuses:
+              $ref: ../components/schemas/samples/merchantPlatformStatusesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/merchantPlatformStatusesModel200Response.yaml
+      description: Retrieve Merchant Platform Statuses Response for query on merchantPlatformStatuses.
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all merchantPlatformStatuses:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Merchant Platform Statuses ID
+  tags:
+  - Merchant Platform Statuses
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMerchantPlatformStatusesId

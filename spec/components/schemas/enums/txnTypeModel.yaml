@@ -1,0 +1,52 @@
+title: txnType
+type: integer
+description: |
+  The type of Transaction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Credit Card Only: Sale Transaction.** Processes a sale and charges the customer.
+  - `2` - **Credit Card Only: Auth Transaction.** Authorizes and holds the requested total on the credit card.
+  - `3` - **Credit Card Only: Capture Transaction.** Finalizes a prior Auth Transaction and charges the customer.
+  - `4` - **Credit Card Only: Reverse Authorization.** Reverses a prior Auth or Sale Transaction and releases the credit hold.
+  - `5` - **Credit Card Only: Refund Transaction.** Refunds a prior Capture or Sale Transaction (total may be specified for a partial refund).
+  - `7` - **Echeck Only: Echeck Sale Transaction.** Sale Transaction for ECheck payment.
+  - `8` - **Echeck Only: Echeck Refund Transaction.** Refund Transaction for prior ECheck Sale Transaction.
+  - `11` - **Echeck Only: Echeck Redeposit Transaction.** Attempt to redeposit a prior failed eCheck Sale Transaction.
+  - `12` - **Echeck Only: Echeck Account Verification Transaction.** Attempt to verify eCheck payment details.
+  - `14` - **Incremental Authorization.**
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 7
+- 8
+- 11
+- 12
+- 14
+x-enum-elements:
+- name: Sale
+  description: Credit Card Only Sale Transaction, This is the most common type of Transaction, it processes a sale and charges the customer.
+- name: Auth
+  description: Credit Card Only Auth Transaction, Authorizes and holds the requested total on the credit card.
+- name: Capture
+  description: Credit Card Only Capture Transaction, Finalizes a prior Auth Transaction and charges the customer.
+- name: ReverseAuthorization
+  description: Credit Card Only Reverse Authorization, Reverses a prior Auth or Sale Transaction and releases the credit hold.
+- name: Refund
+  description: Credit Card Only Refund Transaction, Refunds a prior Capture or Sale Transaction (total may be specified for a partial refund).
+- name: EcheckSale
+  description: Echeck Only Echeck Sale Transaction, Sale Transaction for ECheck payment.
+- name: EcheckRefund
+  description: Echeck Only ECheck Refund Transaction, Refund Transaction for prior ECheck Sale Transaction.
+- name: EcheckRedeposit
+  description: Echeck Only Echeck Redeposit Transaction, Attempt to redeposit a prior failed eCheck Sale Transaction.
+- name: EcheckVerification
+  description: Echeck Only Echeck Account Verification Transaction, Attempt to verify eCheck payment details.
+- name: IncrementalAuthorization
+  description: Incremental Authorization.

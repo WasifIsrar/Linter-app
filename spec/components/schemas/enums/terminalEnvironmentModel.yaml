@@ -1,0 +1,64 @@
+title: terminalEnvironment
+type: integer
+description: |
+  How is the terminal employed in the type of business using the terminal.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Retail**
+  - `2` - **Retail with tips**
+  - `3` - **Restaurant**
+  - `4` - **Lodging**
+  - `5` - **Bar**
+  - `6` - **Cash Advance**
+  - `7` - **Mail/Telephone Order**
+  - `8` - **Pay At The Pump**
+  - `9` - **Service Rest**
+  - `10` - **E-commerce**
+  - `11` - **Direct Marketing**
+  - `12` - **Fine Dining**
+  - `13` - **Gift Card Only**
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+x-enum-elements:
+- name: Retail
+  description: Retail.
+- name: RetailWithTips
+  description: Retail with tips.
+- name: Restaurant
+  description: Restaurant.
+- name: Lodging
+  description: Lodging.
+- name: Bar
+  description: Bar.
+- name: CashAdvance
+  description: Cash Advance.
+- name: MailTelephoneOrder
+  description: Mail/Telephone Order.
+- name: PayAtThePump
+  description: Pay At The Pump.
+- name: ServiceRest
+  description: Service Rest.
+- name: ECommerce
+  description: E-commerce.
+- name: DirectMarketing
+  description: Direct Marketing.
+- name: FineDining
+  description: Fine Dining.
+- name: GiftCardOnly
+  description: Gift Card Only.

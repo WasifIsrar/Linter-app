@@ -1,0 +1,124 @@
+get:
+  description: Query a Team, which is a collection of Logins that you can associate
+    by creating teamLogin resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this team.
+    explode: false
+    in: path
+    name: id
+    example: t1_tem_680155b5a6467e4911aa0z0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all teams:
+              $ref: ../components/schemas/samples/teamsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/teamsModel200Response.yaml
+      description: Retrieve Team Response for query on teams resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all teams:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Team by it's ID.
+  tags:
+  - Teams
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTeamsId
+put:
+  description: Update a Team, A Team is a collection of Logins, You can associate
+    Logins with a Team by creating teamLogin resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this team.
+    explode: false
+    in: path
+    name: id
+    example: t1_tem_680155b5a6467e4911aa0z0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/teamsPutRequestModel.yaml
+    description: Update Team Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update teams:
+              $ref: ../components/schemas/samples/teamsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/teamsModel200Response.yaml
+      description: Response for update on teams resource Update Team Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all teams:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Team by it's ID.
+  tags:
+  - Teams
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putTeamsId
+delete:
+  description: Delete a Team, A Team is a collection of Logins, You can associate
+    Logins with a Team by creating teamLogin resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this team.
+    explode: false
+    in: path
+    name: id
+    example: t1_tem_680155b5a6467e4911aa0z0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete teams:
+              $ref: ../components/schemas/samples/teamsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/teamsModel200Response.yaml
+      description: Response for deleting a team.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all teams:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Team by it's ID.
+  tags:
+  - Teams
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteTeamsId

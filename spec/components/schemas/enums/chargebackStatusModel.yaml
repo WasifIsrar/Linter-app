@@ -1,0 +1,29 @@
+title: chargebackStatus
+type: string
+description: |
+  The Chargeback's status.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `open` - **Chargeback is open, responses may be submitted.**
+  - `closed` - **Chargeback is closed, responses may no longer be submitted.**
+  - `won` - **Chargeback won.**
+  - `lost` - **Chargeback lost.**
+
+  </details>
+default: open
+enum:
+- open
+- closed
+- won
+- lost
+x-enum-elements:
+- name: Open
+  description: Chargeback is open, responses may be submitted.
+- name: Closed
+  description: Chargeback is closed, responses may no longer be submitted.
+- name: Won
+  description: Chargeback won.
+- name: Lost
+  description: Chargeback lost.

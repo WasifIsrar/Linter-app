@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ofw_67ed51ece84aae1a7d0000z",
+        "created": "2025-04-07 09:47:34.4871",
+        "modified": "2025-04-07 09:47:34.4871",
+        "creator": "t1_log_63335e0e83c545bbb91d9ac",
+        "modifier": "t1_log_63335e0e83c545bbb91d9ac",
+        "login": "g1577139c2304b7",
+        "forlogin": t1_log_67c203583fbd0a4437d1332,
+        "team": "t1_tem_67c202b908935b505104500",
+        "division": t1_div_67c56806728fbbf0bae0b10,
+        "recursive": 0,
+        "trigger": "create",
+        "partition": t1_ptn_666834d4d504f21414978f5
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

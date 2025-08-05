@@ -1,0 +1,31 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_frl_67ce8623bc70042ef58f400",
+        "created": "2025-03-10 02:26:43.7799",
+        "modified": "2025-03-10 02:26:43.7799",
+        "creator": "t1_log_6653ed35b0d6b78d0d02a4d",
+        "modifier": "t1_log_6653ed35b0d6b78d0d02a4d",
+        "fee": "t1_fee_67ce8623b048d0d5284a886",
+        "name": "test1",
+        "description": "test1 description",
+        "type": 1,
+        "application": "both",
+        "value": "1",
+        "inactive": 0,
+        "frozen": 0,
+        "grouping": "Fee Rule Group1"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

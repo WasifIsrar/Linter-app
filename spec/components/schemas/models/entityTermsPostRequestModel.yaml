@@ -1,0 +1,35 @@
+title: entityTermsPostRequest
+properties:
+  entity:
+    type: string
+    description: "The identifier of the entity that the terms are associated with."
+  type:
+    type: string
+    description: "The type of entity that has accepted the terms."
+  version:
+    type: string
+    description: "The version of the terms that the entity has accepted."
+  versionId:
+    type: string
+    description: "The identifier of the version of the terms that the entity has accepted."
+  ip:
+    type: string
+    description: "The IP address of the entity that accepted the terms."
+  dateAccepted:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+    description: "The date and time when the entity accepted the terms.\nThe date is specified as an eight digit string in YYYY-MM-DD hh:mm:ss format, for example, '2023-06-01 01:00:00' for June 01, 2023. 1:00 am."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+example:
+  entity: 't1_ett_6866623edadbe8685525ae1'
+  type: 'Payrix Submerchant Agreement'
+  version: '1.0'
+  versionId: ''
+  ip: "35.153.101.155"
+  dateAccepted: "2025-07-03 06:58:06"
+  inactive: 0
+  frozen: 0

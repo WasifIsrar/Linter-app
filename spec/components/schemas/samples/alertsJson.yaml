@@ -1,0 +1,31 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_alt_67d1a66d3af03677cdc7db0",
+        "created": "2025-03-12 11:21:17.2576",
+        "modified": "2025-03-12 11:21:28.4944",
+        "creator": "t1_log_61f2efc258eb7bf6d380000",
+        "modifier": "t1_log_61f2efc258eb7bf6d380000",
+        "login": "t1_log_61f2efc258eb7bf6d380000",
+        "forlogin": "t1_log_61f2efc258eb7bf6d380000",
+        "team": "t1_tem_67c202b908935b505104500",
+        "name": "williamson",
+        "description": "Used by the FrontDesk system to keep information up to date via webhook alerts",
+        "inactive": 0,
+        "frozen": 0,
+        "division": "t1_div_67c56806728fbbf0bae0z00",
+        "partition": "t1_ptn_666834d4d504f21414978f0"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

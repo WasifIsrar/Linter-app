@@ -1,0 +1,98 @@
+get:
+  description: Query a terminalTxnRefs resource, which represents a reference code
+    issued by the Processor in relation to a particular Transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The Terminal Transaction Reference ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnRefModel200Response.yaml
+      description: Retrieve the Response for query on Terminal Transaction Reference.
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Terminal Transaction Reference by it's ID.
+  tags:
+  - Terminal Transaction Reference
+  - Facilitator
+  operationId: getTerminalTxnRefsId
+put:
+  description: Update a terminalTxnRefs resource, which represents a reference code
+    issued by the Processor in relation to a particular Transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The Terminal Transaction Reference ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/terminalTxnRefPutRequestModel.yaml
+    description: Update Terminal Transaction Reference Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnRefModel200Response.yaml
+      description: The update response for the terminal transaction reference.
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Terminal Transaction Reference by it's ID.
+  tags:
+  - Terminal Transaction Reference
+  - Facilitator
+  operationId: putTerminalTxnRefsId
+delete:
+  description: Delete a terminalTxnRefs resource, which represents a reference code
+    issued by the Processor in relation to a particular Transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The Terminal Transaction Reference ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnRefModel200Response.yaml
+      description: The Delete Terminal Transaction Reference Response for the terminalTxnRefs
+        resource.
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Terminal Transaction Reference by it's ID.
+  tags:
+  - Terminal Transaction Reference
+  - Facilitator
+  operationId: deleteTerminalTxnRefsId

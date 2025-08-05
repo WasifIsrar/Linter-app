@@ -1,0 +1,84 @@
+get:
+  description: Query an EntityReserves resource that represents funds held by an Entity
+    in reserve, separately from amounts in any entityFunds.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity reserve.
+    explode: false
+    in: path
+    name: id
+    example: t1_erv_67a0e0072f9c059e59a66b0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReserves:
+              $ref: ../components/schemas/samples/entityReservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityReservesModel200Response.yaml
+      description: Retrieve an Entity Reserve Response for query on entityReserves
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Entity Reserve by it's ID.
+  tags:
+  - Entity Reserves
+  - Facilitator
+  - Partner
+  operationId: getEntityReservesId
+put:
+  description: Update an EntityReserves resource, which represents funds held by an
+    Entity in reserve, separately from amounts in any entityFunds.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity reserve.
+    explode: false
+    in: path
+    name: id
+    example: t1_erv_67a0e0072f9c059e59a66b0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityReservesPutRequestModel.yaml
+    description: Update an Entity Reserve Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update entityReserves:
+              $ref: ../components/schemas/samples/entityReservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityReservesModel200Response.yaml
+      description: Response for updating an Entity Reserve.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Entity Reserve by it's ID.
+  tags:
+  - Entity Reserves
+  - Facilitator
+  - Partner
+  operationId: putEntityReservesId

@@ -1,0 +1,38 @@
+title: orgsVASEfeProductsPutRequest
+properties:
+  org: 
+    type: string
+    description: "The identifier of the Org (group) that orgsVASEfeProducts is associated to."
+  product:
+    type: string
+    description: "This field contains the product type of the orgsVASEfeProducts."
+    enum:
+    - merchantWorkingCapital
+    x-enum-elements:
+    - name: merchantWorkingCapital
+      description: Merchant Working Capital
+  contractType:
+    type: string
+    description: "The Contract type details related to the Embedded Finance product."
+  platform: 
+    type: string
+    description: "The Platform to which orgsVASEfeProducts should be applied."
+    enum: 
+    - PARAFIN
+    - ATELIO
+    x-enum-elements:
+    - name: PARAFIN
+      description: PARAFIN platform to which embeddedFinance should be applied.
+    - name: ATELIO
+      description: ATELIO platform to which embeddedFinance should be applied.
+  inactive:  
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+example:
+  org: t1_org_6862c1211b366bbfe87657c
+  product: merchantWorkingCapital
+  contractType: "{\"residualFeeType\": \"rev_share\"}"
+  platform: PARAFIN
+  inactive: 0
+  frozen: 0    

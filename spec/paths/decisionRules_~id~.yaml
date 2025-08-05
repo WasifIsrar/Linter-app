@@ -1,0 +1,130 @@
+get:
+  description: Query a Decision Rule that makes a Decision apply only in certain circumstances,
+    such as applying an administration charge if a payment is under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_drl_67d9836cb20781126c769f0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/decisionRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionRulesModel200Response.yaml
+      description: Retrieve the Response for query on decisionRules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Decision Rule by it's ID.
+  tags:
+  - Decision Rules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDecisionRulesId
+put:
+  description: Update a Decision Rule that makes a Decision apply only in certain
+    circumstances, for example, applying an administration charge if a payment is
+    under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_drl_67d9836cb20781126c769f0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/decisionRulesPutRequestModel.yaml
+    description: Update Decision Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update decisionRules:
+              $ref: ../components/schemas/samples/decisionRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionRulesModel200Response.yaml
+      description: 'Response for update on Decision Rules resource: Update Decision
+        Rule Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Decision Rule by it's ID.
+  tags:
+  - Decision Rules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putDecisionRulesId
+delete:
+  description: Delete a Decision Rule that makes a Decision apply only in certain
+    circumstances, for example, applying an administration charge if a payment is
+    under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision Rule ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_drl_67d9836cb20781126c769f0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete decisionRules:
+              $ref: ../components/schemas/samples/decisionRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionRulesModel200Response.yaml
+      description: 'The response for deleting a decision rule.
+
+
+        Details: None'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Decision Rule by it's ID.
+  tags:
+  - Decision Rules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteDecisionRulesId

@@ -1,0 +1,38 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "p1_tok_00c82eb304b0067620c82be",
+              "created": "2025-03-05 06:00:03.0273",
+              "modified": "2025-03-05 06:00:03.0273",
+              "creator": "t1_log_00c82eb304b0067620c8",
+              "modifier": "t1_log_00c82eb304b0067620c8",
+              "customer": "t1_cus_00c82eb304b0067620c7",
+              "payment": "p1_pmt_67c802b1b662567771cf8e0",
+              "status": "pending",
+              "token": "11c6a6d85f0a20c31e4c49e461066850",
+              "omnitoken": "123",
+              "track": "",
+              "cvv": "",
+              "expiration": "0123",
+              "name": "test",
+              "description": "test Token",
+              "custom": "Custom Token Processor 1",
+              "authTokenCustomer": "",
+              "inactive": 0,
+              "frozen": 0,
+              "origin": "2",
+              "entryMode": 2
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

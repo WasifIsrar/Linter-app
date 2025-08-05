@@ -1,0 +1,25 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ovo_680bfd41d139cba791290z0",
+        "created": "2025-04-25 17:23:13.8787",
+        "modified": "2025-04-25 17:23:13.8787",
+        "creator": "t1_log_66db672e98bceb86ecbb211",
+        "modifier": "t1_log_66db672e98bceb86ecbb211",
+        "org": "t1_org_680bfd2cea2729081810000",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

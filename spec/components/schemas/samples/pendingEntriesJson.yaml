@@ -1,0 +1,51 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_per_67f51ffc08643b7442a0c0z",
+        "created": "2025-04-08 09:09:16.0370",
+        "modified": "2025-04-08 09:09:16.0370",
+        "creator": "t1_log_673245a79517f80bf2e7738",
+        "modifier": "t1_log_673245a79517f80bf2e7738",
+        "entity": "t1_ent_5cd31628c78e5ab17b6212c",
+        "onentity": "t1_ent_60f8568b429e7dfeff7080z",
+        "fromentity": "t1_ent_60f8568b429e7dfeff7080z",
+        "fund": "t1_fun_5d1b04ac29d7c9574ea2452",
+        "opposingPendingEntry": t1_per_67f51fd3165c96d3807e89z,
+        "entry": "t1_etr_67f51fd3189a9ae55853bzz",
+        "adjustment": "",
+        "chargeback": "t1_chb_67f51fbe45d45b518e567e0",
+        "disbursement": "",
+        "fee": "t1_fee_5c9131ea68dbb156b43ed66",
+        "refund": "",
+        "txn": "t1_txn_67f51ff9cd19ade7a7f372e",
+        "event": 7,
+        "eventId": "t1_txn_67f51ff9cd19ade7a7f372e",
+        "description": "Txn t1_txn_67f51ff9cd19ade7a7f372e",
+        "amount": 105,
+        "pending": 0,
+        "profitShare": "",
+        "originalCurrency": "USD",
+        "currencyRate": 0,
+        "terminalTxn": "",
+        "isFee": 0,
+        "entityDebt": "t1_edt_5d70b9336042c995df911bc",
+        "statement": "",
+        "settlement": "",
+        "originalEventId": "t1_txn_67f51ff9cd19ade7a7f372e",
+        "originalEvent": 7,
+        "revShareStatement": "",
+        "isEFE": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

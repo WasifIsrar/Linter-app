@@ -1,0 +1,93 @@
+get:
+  description: "Query a Configuration resource. \nA Configuration resource will hold\
+    \ relevant information about an integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationsModel200Response.yaml
+      description: Response for query on configurations resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configurations
+  - Facilitator
+  operationId: getConfigurationsId
+put:
+  description: "Update a Configuration resource. \nA Configuration resource will hold\
+    \ relevant information about an integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/configurationsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationsModel200Response.yaml
+      description: Response for update on configurations resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configurations
+  - Facilitator
+  operationId: putConfigurationsId
+delete:
+  description: "Delete a Configuration resource. \nA Configuration resource will hold\
+    \ relevant information about an integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationsModel200Response.yaml
+      description: Response for delete on configurations resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configurations
+  - Facilitator
+  operationId: deleteConfigurationsId

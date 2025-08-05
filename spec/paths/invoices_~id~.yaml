@@ -1,0 +1,125 @@
+get:
+  description: Query an Invoice or use it for invoicing customers, email the invoice
+    to them, allow them to pay the invoice and track payments with invoices.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity.
+    explode: false
+    in: path
+    name: id
+    example: t1_inv_00b3a1f7e418cd6e378d410
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/invoicesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoicesModel200Response.yaml
+      description: Response for retrieve invoice response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Invoice by it's ID.
+  tags:
+  - Invoices
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoicesId
+put:
+  description: Update an Invoice. An Invoice resource is used for invoicing customers,
+    email the invoice to them, allow them to pay the invoice and track payments with
+    invoices.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice.
+    explode: false
+    in: path
+    name: id
+    example: t1_inv_00b3a1f7e418cd6e378d410
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/invoicesPutRequestModel.yaml
+    description: Update Invoice Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/invoicesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoicesModel200Response.yaml
+      description: Response for update on invoices resource Update Invoice Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Invoice by it's ID.
+  tags:
+  - Invoices
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putInvoicesId
+delete:
+  description: Delete an Invoice or use it for invoicing customers, email the invoice
+    to them, allow them to pay the invoice and track payments with invoices.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice.
+    explode: false
+    in: path
+    name: id
+    example: t1_inv_00b3a1f7e418cd6e378d410
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/invoicesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoicesModel200Response.yaml
+      description: Response for deleting an invoice.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoices:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Invoice by it's ID.
+  tags:
+  - Invoices
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteInvoicesId

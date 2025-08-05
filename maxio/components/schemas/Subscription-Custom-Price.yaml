@@ -1,0 +1,65 @@
+title: Subscription Custom Price
+type: object
+description: (Optional) Used in place of `product_price_point_id` to define a custom price point unique to the subscription
+properties:
+  name:
+    type: string
+    description: (Optional)
+  handle:
+    type: string
+    description: (Optional)
+  price_in_cents:
+    type:
+      - string
+      - integer
+    format: int64
+    description: Required if using `custom_price` attribute.
+  interval:
+    type:
+      - string
+      - integer
+    description: Required if using `custom_price` attribute.
+  interval_unit:
+    allOf:
+      - $ref: "./Interval-Unit.yaml"
+    description: Required if using `custom_price` attribute.
+  trial_price_in_cents:
+    type:
+      - string
+      - integer
+    format: int64
+    description: (Optional)
+  trial_interval:
+    type:
+      - string
+      - integer
+    description: (Optional)
+  trial_interval_unit:
+    allOf:
+      - $ref: "./Interval-Unit.yaml"
+    description: (Optional)
+  initial_charge_in_cents:
+    type:
+      - string
+      - integer
+    format: int64
+    description: (Optional)
+  initial_charge_after_trial:
+    type: boolean
+    description: (Optional)
+  expiration_interval:
+    type:
+      - string
+      - integer
+    description: (Optional)
+  expiration_interval_unit:
+    allOf:
+      - $ref: "./Interval-Unit.yaml"
+    description: (Optional)
+  tax_included:
+    type: boolean
+    description: (Optional)
+required:
+  - price_in_cents
+  - interval
+  - interval_unit

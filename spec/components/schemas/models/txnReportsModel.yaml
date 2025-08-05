@@ -1,0 +1,36 @@
+title: txnReportsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  txn:
+    type: string
+    description: The identifier of the Transaction resource associated with this txnReports
+      resource.
+  interchangeType:
+    type: string
+    description: The type of interchange used by the Transaction.
+  issuingBank:
+    type: string
+    description: The name of the bank that issued the card used in the Transaction.
+  flatRateFee:
+    type: integer
+    description: "If the fee charged by the Processor was a flat rate, then this field\
+      \ specifies its absolute amount. \nThis field is specified as an integer in\
+      \ cents."
+  percentFee:
+    type: integer
+    description: "If the fee charged by the Processor was a percentage of the Transaction\
+      \ value, then this field specifies the percentage, expressed in basis points.\
+      \ \nFor example, 25.3% is expressed as '2530'."
+  feeTotal:
+    type: integer
+    description: "This is the total amount charged in interchange fees. \nThis field\
+      \ is specified as an integer in cents."

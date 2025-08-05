@@ -1,0 +1,97 @@
+get:
+  description: Query an AggregationResultGroup resource, which holds data regarding
+    a processed aggregation.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation Result Group ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_arg_66ebb2d6c50b04f8956be00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResultsGroups:
+              $ref: ../components/schemas/samples/aggregationResultsGroupsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationResultsGroupsModel200Response.yaml
+      description: Retrieve the response for the query on the Aggregation Result Groups
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResultsGroups:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Aggregation Result Group by it's ID.
+  tags:
+  - Aggregation Result Groups
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAggregationResultGroupsId
+delete:
+  description: Delete an Aggregation Result Group, which holds data regarding a processed
+    aggregation.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation Result Group ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_arg_66ebb2d6c50b04f8956be00
+    required: true
+    schema:
+      type: string
+  - description: "Set this header to filter or sort the list of resources that the\
+      \ method returns. \nFor example, to find all resources that have a property\
+      \ of 'public' set to '1', set this header to 'public[equals]=1'. You can use\
+      \ the operators 'equals', 'greater', 'less', 'like', 'in' and 'sort'. To sort\
+      \ the resources, use the keywords 'asc' (for an ascending sort) or 'desc' (for\
+      \ a descending sort).\nYou may also use explicit 'and/or' querying by passing\
+      \ arrays of or and arrays of and parameters. For example, to find all resources\
+      \ that have a property of 'public' set to '1' or a property of 'active' set\
+      \ to '0', set this header to 'or[][public][equals]=1&or[][active][equals]=0'."
+    explode: false
+    in: header
+    x-unique-name: searchFilter
+    name: search
+    required: false
+    schema:
+      type: string
+    example: created[equals]=2025-01-01
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResultsGroups:
+              $ref: ../components/schemas/samples/aggregationResultsGroupsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationResultsGroupsModel200Response.yaml
+      description: Delete Aggregation Result Group Response for the aggregationResultGroups
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResultsGroups:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Aggregation Result Group by it's ID.
+  tags:
+  - Aggregation Result Groups
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAggregationResultGroupsId

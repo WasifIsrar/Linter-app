@@ -1,0 +1,75 @@
+get:
+  description: Query a Decision Rule; A Decision Rule is a piece of conditional logic
+    that makes a Decision apply only in certain circumstances, For example, a Decision
+    Rule could apply an administration charge if a payment is under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/decisionRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionRulesModel200Response.yaml
+      description: Response for query on decision rules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Decision Rules.
+  tags:
+  - Decision Rules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDecisionRules
+post:
+  description: Create a Decision Rule that makes a Decision apply only in certain
+    circumstances, such as applying an administration charge if a payment is under
+    $50.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/decisionRulesPostRequestModel.yaml
+    description: Create Decision Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create decisionRules:
+              $ref: ../components/schemas/samples/decisionRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionRulesModel200Response.yaml
+      description: Create Decision Rule Response for create on decisionRules resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Decision Rule
+  tags:
+  - Decision Rules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postDecisionRules
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

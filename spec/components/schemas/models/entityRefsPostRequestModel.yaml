@@ -1,0 +1,107 @@
+title: entityRefsPostRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that owns this entityRefs resource.
+    nullable: true
+  member:
+    type: string
+    description: The identifier of the Member associated with this entityRefs resource.
+      Default value is 'null'
+    nullable: true
+  entityRoute:
+    type: string
+    description: The original 'entity_route' that routed the merchant onto the platform
+      which then returned this reference information, if applicable.
+    nullable: true
+  ref:
+    type: string
+    description: "The reference code itself. \nThis field is stored as a text string\
+      \ and must be between 0 and 50 characters long."
+  stage:
+    $ref: ../enums/entityRefStageModel.yaml
+  staging:
+    type: integer
+    description: |+
+      Allows a merchant to transact under the Staging environment while boarding is in progress, and allows for configuration with valid values such as **Disabled** or **Enabled**.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "Disabled"
+    - name: "Enabled"
+      description: "Enabled"
+  platform:
+    $ref: ../enums/entityPlatformModel.yaml
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of the entityRef. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+    nullable: true
+  fundingCurrency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for which this entityRefs resource was funded on. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+    nullable: true
+  default:
+    type: integer
+    description: Whether this entityRef is the default one. Default entityRefs will
+      have priority when processing transactions with no MID or Platform set. 
+      <details>
+      <summary>Valid Values</summary>
+        - `0` - **Not default.**
+        - `1` - **Default.**
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotDefault"
+      description: "Not default"
+    - name: "Default"
+      description: "Default"
+  fbo:
+    type: string
+    description: The FBO from which this entity refers to.
+    nullable: true
+  options:
+    type: string
+    description: A string-JSON of options for this reference value.
+    nullable: true
+  inactive:
+    $ref: ../../../components/schemas/inactive.yaml
+  frozen:
+    $ref: ../../../components/schemas/frozen.yaml
+required:
+- default
+- entity
+- frozen
+- inactive
+- member
+- platform
+- ref
+- stage
+- staging
+
+example:
+  entity: t1_ent_67c6ceba8a94b8cea9664f3
+  member: Identifier Of Member
+  ref: 7c6cec3badbf
+  stage: create
+  staging: 0
+  platform: VCORE
+  default: 0
+  entityRoute: g1599c89ae26f9c
+  currency: USD
+  fundingCurrency: USD
+  fbo: For-Benefit-Of account
+  options: string-JSON of options

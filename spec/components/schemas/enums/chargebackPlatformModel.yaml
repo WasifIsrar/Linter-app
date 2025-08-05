@@ -1,0 +1,34 @@
+title: chargebackPlatform
+type: string
+description: The platform used for the adjustment. This field is required if the
+  adjustment is not between entities.
+enum:
+- APPLE
+- ELAVON
+- FIRSTDATA
+- GOOGLE
+- VANTIV
+- VCORE
+- WELLSACH
+- WELLSFARGO
+- WFSINGLE
+x-enum-elements:
+- name: "Apple"
+  description: "Apple platform."
+- name: "Elavon"
+  description: "Elavon platform."
+- name: "FirstData"
+  description: "First Data platform."
+- name: "Google"
+  description: "Google platform."
+- name: "Vantiv"
+  description: "Vantiv platform."
+- name: "VCore"
+  description: "VCore platform."
+- name: "WellsAch"
+  description: "Wells ACH platform."
+- name: "WellsFargo"
+  description: "Wells Fargo platform."
+- name: "WfSingle"
+  description: "WF Single platform."
+example: VCORE

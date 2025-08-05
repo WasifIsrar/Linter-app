@@ -1,0 +1,13 @@
+title: txnReportsResponseResult
+properties:
+  response:
+    title: txnReportsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/txnReportsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

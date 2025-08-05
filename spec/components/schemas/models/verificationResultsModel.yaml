@@ -1,0 +1,31 @@
+title: verificationResultsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  verification:
+    type: string
+    description: The identifier of the verification resource that this verification
+      result relates to.
+  score:
+    type: integer
+    description: The score related to a verification.
+  field:
+    type: string
+    description: The field that the message in this verification resource refers to.
+  code:
+    type: string
+    description: When the VerificationResult is from an integration, the code identifying the type of result.
+  message:
+    type: string
+    description: A message posted from a verification attempt.
+  data:
+    type: string
+    description: When the VerificationResult is from an integration, the data returned from the integration.

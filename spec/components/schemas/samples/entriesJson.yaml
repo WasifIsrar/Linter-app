@@ -1,0 +1,51 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_etr_00bec0c794be4453f0af5b0",
+        "created": "2025-02-26 02:20:39.6114",
+        "modified": "2025-02-26 02:20:39.6114",
+        "creator": "t1_log_5d13d9c20a39da6f5030426",
+        "modifier": "t1_log_5d13d9c20a39da6f5030426",
+        "entity": "t1_ent_60e733ce0f66e73b1b7dd5z",
+        "onentity": "t1_ent_60e733ce0f66e73b1b7dd5z",
+        "fromentity": t1_ent_5cd31628c78e5ab17b6212c,
+        "opposingEntry": "t1_etr_67bec0c7931a622f7b44cez",
+        "fund": "t1_fun_60e738089037530645049e6",
+        "fee": t1_fee_5cd3159e7b45182f3663a6f,
+        "disbursement": "Identifier Disbursement",
+        "refund": "Identifier Refund",
+        "txn": "Identifier Txn",
+        "chargeback": "Identifier chargeback",
+        "adjustment": "Adjustment Id",
+        "event": 6,
+        "eventId": "t1_txn_67bec0c60db89fcfa9a59b4",
+        "description": "AUTH fee schedule",
+        "amount": 20,
+        "pending": 0,
+        "profitShare": "Identifier ProfitShare",
+        "originalCurrency": "USD",
+        "currencyRate": 0,
+        "isFee": 1,
+        "statement": "Identifier Statement",
+        "settlement": "Identifier Settlement",
+        "archiveSummary": 0,
+        "pendingEntry": "t1_per_67bec0c78fd3b8473b2564b",
+        "pendingEntryCreated": "2025-02-26 02:20:39",
+        "originalEventId": "t1_txn_67bec0c60db89fcfa9a59b4",
+        "originalEvent": 7,
+        "revShareStatement": "Identifier RevShareStatement",
+        "isEFE": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

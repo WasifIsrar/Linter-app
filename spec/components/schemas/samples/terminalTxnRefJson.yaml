@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ttr_6806cde43831bc88d5f4e00",
+        "created": "2025-04-21 18:59:48.2388",
+        "modified": "2025-04-21 18:59:48.2388",
+        "creator": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+        "modifier": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+        "terminalTxn": "t1_ttx_6806cde42b47ee61cdf6ab9",
+        "ref": "MCC000012",
+        "stage": "auth",
+        "platform": "VCORE"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

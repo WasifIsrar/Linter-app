@@ -1,0 +1,67 @@
+title: tokenPostRequest
+properties:
+  customer:
+    type: string
+    description: The Customer that this Token is associated with.
+  payment:
+    description: The payment method that is associated with this Token.
+    $ref: ../params/tokenPaymentParam.yaml
+  expiration:
+    type: string
+    description: The expiry month for the payment method associated with this Token.In
+      This field is stored as a text string in 'MMYY' format, where 'MM' is the number
+      of a month and 'YY' is the last two digits of a year. For example, '0623' for
+      June 2023. The value must reflect a future date.
+  name:
+    type: string
+    description: The name of this Token. This field is stored as a text string and
+      must be between 0 and 100 characters long.
+  description:
+    type: string
+    description: A description of this Token. This field is stored as a text string
+      and must be between 0 and 100 characters long.
+  custom:
+    type: string
+    description: Custom, free-form field for client-supplied text, must be between
+      0 and 1000 characters long.
+  authTokenCustomer:
+    type: string
+    description: The customer reference from the authToken used for user authentication
+  origin:
+    type: integer
+    description: The origin of the token.
+  entryMode:
+    type: integer
+    description: Entry mode set to the token.
+  omnitoken:
+    type: string
+    description: The omnitoken value. If this field has a value, the whole record is treated as an omnitoken.
+  status:
+    $ref: ../enums/tokenStatusModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- customer
+- frozen
+- inactive
+- payment
+- status
+example:
+  customer: t1_cus_00c82eb304b0067620c7
+  status: pending
+  payment:
+    method: 1
+    number: '378734493671000'
+    routing: code
+  expiration: '0123'
+  name: "test"
+  description: "test Token"
+  custom: 'Custom Token Processor 2'
+  authTokenCustomer: authToken
+  origin: 2
+  entryMode: 2
+  omnitoken: "123"
+  inactive: 0
+  frozen: 0

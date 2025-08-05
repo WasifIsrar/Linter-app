@@ -1,0 +1,9 @@
+title: Subscription Group Member Error
+type: object
+properties:
+  id:
+    type: integer
+  type:
+    type: string
+  message:
+    type: string

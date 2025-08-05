@@ -1,0 +1,122 @@
+get:
+  description: Query a ProfitShare resource, which will cause an entity to have its
+    earnings/expenses shared with another entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, The Profit Share ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psh_67aa7fd81e45a8b5eb569yz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShares:
+              $ref: ../components/schemas/samples/profitShareJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitSharesModel200Response.yaml
+      description: Retrieve the Response for the Profit Shares resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShares:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Profit Share by it's ID.
+  tags:
+  - Profit Shares
+  - Facilitator
+  - Partner
+  operationId: getProfitSharesId
+put:
+  description: Update a ProfitShare resource, which causes an entity's earnings/expenses
+    to be shared with another entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, The Profit Share ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psh_67aa7fd81e45a8b5eb569yz
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/profitSharesPutRequestModel.yaml
+    description: Update Profit Share Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update profitShares:
+              $ref: ../components/schemas/samples/profitShareJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitSharesModel200Response.yaml
+      description: Response for update on Profit Shares resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShares:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Profit Share by it's ID.
+  tags:
+  - Profit Shares
+  - Facilitator
+  - Partner
+  operationId: putProfitSharesId
+delete:
+  description: Delete a ProfitShare resource, which causes an entity's earnings/expenses
+    to be shared with another entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, The Profit Share ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psh_67aa7fd81e45a8b5eb569yz
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete profitShares:
+              $ref: ../components/schemas/samples/profitShareJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitSharesModel200Response.yaml
+      description: The response for delete on profitShares resource is the Delete
+        Profit Share Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShares:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Profit Share by it's ID.
+  tags:
+  - Profit Shares
+  - Facilitator
+  - Partner
+  operationId: deleteProfitSharesId

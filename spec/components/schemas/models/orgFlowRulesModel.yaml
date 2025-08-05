@@ -1,0 +1,33 @@
+title: orgFlowRulesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  orgFlow:
+    type: string
+    description: The identifier of the orgFlow resource that this orgFlowActions resource is associated with.
+  name:
+    type: string
+    description: The name of the orgFlowRules resource.
+  description: 
+    type: string
+    description: The description of the orgFlowRules resource.
+  type: 
+    $ref: ../enums/orgFlowRulesTypeModel.yaml
+  value: 
+    type: string
+    description: The value to compare against when evaluating this OrgFlowRule.
+  grouping: 
+    type: string
+    description: A name for a group of rules to be applied in conjunction when evaluating this OrgFlow Rule. \nWhen grouping is used the OrgFlow will be allowed to be processed if at least one of the rules are matched.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen: 
+    $ref: ../frozen.yaml

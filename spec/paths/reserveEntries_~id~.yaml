@@ -1,0 +1,39 @@
+get:
+  description: Query a Reserve Entry resource that describes a record of funds moving
+    in or out of reserve and can be associated with either a Transaction, a Reserve,
+    an entityReserve, or another reserveEntry resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this reserve entry.
+    explode: false
+    in: path
+    name: id
+    example: t1_rer_6800d1df0a777412aa4c8c3
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            fetch all reserveEntries:
+              $ref: ../components/schemas/samples/reserveEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reserveEntriesModel200Response.yaml
+      description: Retrieve a Reserve Entry Response for query on reserveEntries resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reserveEntries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Reserve Entry by it's ID.
+  tags:
+  - Reserve Entry
+  - Facilitator
+  - Partner
+  operationId: getReserveEntriesId

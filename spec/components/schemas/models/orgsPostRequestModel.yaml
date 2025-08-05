@@ -1,0 +1,22 @@
+title: orgsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this Org.
+  name:
+    type: string
+    description: "The name of this Org. \nThis field is stored as a text string and\
+      \ must be between 0 and 100 characters long."
+    default: ""
+  description:
+    type: string
+    description: "A description of this Org. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+    default: ""
+required:
+- login
+
+example:
+  login: t1_log_656d51cd565edf13a27c494
+  name: Leora44
+  description: description of Org

@@ -1,0 +1,72 @@
+get:
+  description: Query chargebackDocuments, each representing a file related to a Chargeback.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/chargebackDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackDocumentsModel200Response.yaml
+      description: Response for query on chargebackDocuments resource.
+    '400':
+      description: Error
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+  summary: Retrieve all Chargeback Documents.
+  tags:
+  - Chargeback Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChargebackDocuments
+post:
+  description: Create a chargebackDocument resource that represents a file related
+    to a Chargeback.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/chargebackDocumentsPostRequestModel.yaml
+    description: Create Chargeback Document Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create chargebackDocuments:
+              $ref: ../components/schemas/samples/chargebackDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackDocumentsModel200Response.yaml
+      description: Response for creating a chargebackDocuments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a Chargeback Document
+  tags:
+  - Chargeback Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postChargebackDocuments
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

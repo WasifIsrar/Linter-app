@@ -1,0 +1,54 @@
+value: 
+  "response": {
+      "data": [
+          {
+              "id": "t1_cus_67a527f32862c3e51bcce51",
+              "created": "2025-02-06 16:21:55.1821",
+              "modified": "2025-02-06 16:21:55.1821",
+              "creator": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+              "modifier": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+              "login": "t1_log_6789616d2294ec86ba6076c",
+              "merchant": "t1_mer_64415e924c58c616f8a119b",
+              "first": "John",
+              "middle": "M",
+              "last": "Doe",
+              "company": "Doe Enterprises",
+              "email": "somename@emaol.com",
+              "fax": "+11234567845",
+              "phone": "+11324567845",
+              "country": "USA",
+              "zip": "75001",
+              "state": "TX",
+              "city": "Shelbyville",
+              "address2": "Apt 4B",
+              "address1": "456 Secondary Ave",
+              "inactive": 0,
+              "frozen": 0,
+              "shippingFirst": "John",
+              "shippingMiddle": "M",
+              "shippingLast": "Doe",
+              "shippingCompany": "Doe Shipping Co.",
+              "shippingAddress1": "123 Main st.",
+              "shippingAddress2": "Suite 100",
+              "shippingCity": "Springfield",
+              "shippingState": "TX",
+              "shippingZip": "62701",
+              "shippingCountry": "USA",
+              "shippingPhone": "+11234567845",
+              "shippingFax": "+11234567845",
+              "custom": "Customer's custom data",
+              "authTokenCustomer": "912ae8b2f7e868eb6abb8b1a23b967ff",
+              "entity": "t1_ent_64415e922e9000ef8bf3c1d"
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

@@ -1,0 +1,73 @@
+get:
+  description: Query a Token. A Token is a resource that acts as a storage place for
+    credit card and customer information. You can use a Token to run Transactions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/tokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/tokensModel200Response.yaml
+      description: Response for query on tokens resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Tokens.
+  tags:
+  - Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTokens
+post:
+  description: Create a Token. A Token is a resource that acts as a storage place
+    for credit card and customer information. You can use a Token to run Transactions.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/tokensPostRequestModel.yaml
+    description: Create Token Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create tokens:
+              $ref: ../components/schemas/samples/tokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/tokensModel200Response.yaml
+      description: Response for create on tokens resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all tokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Token
+  tags:
+  - Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postTokens
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

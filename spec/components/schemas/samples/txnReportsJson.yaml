@@ -1,0 +1,28 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "t1_trp_67b7a965dcb119ec0d463b0",
+              "created": "2025-02-20 17:15:01.9066",
+              "modified": "2025-02-20 17:15:01.9066",
+              "creator": "000000000000001",
+              "modifier": "000000000000001",
+              "txn": "t1_txn_67b799abe2164cea0ce77f0",
+              "interchangeType": "MC Regulated Debit Plus Fraud Adjustment",
+              "issuingBank": "Bank Name",
+              "flatRateFee": 22,
+              "percentFee": 5,
+              "feeTotal": 27
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

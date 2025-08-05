@@ -1,0 +1,54 @@
+get:
+  description: "Query a fundingParameter. \nA fundingParameter resource holds a certain\
+    \ configuration used for funding such as delays."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/fundingParametersModel200Response.yaml
+      description: Response for query on fundingParameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Funding Parameters
+  - Facilitator
+  operationId: getFundingParameters
+post:
+  description: "Create a fundingParameter. \nA fundingParameter resource holds a certain\
+    \ configuration used for funding such as delays."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/fundingParameterPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/fundingParametersModel200Response.yaml
+      description: Response for create on fundingParameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Funding Parameters
+  - Facilitator
+  operationId: postFundingParameters
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

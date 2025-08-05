@@ -1,0 +1,49 @@
+title: notesPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this notes resource.
+  txn:
+    type: string
+    description: The identifier of the Txn that relates to this notes resource, Only
+      one of txn, hold, entity, terminalTxn may be set.
+  terminalTxn:
+    type: string
+    description: The identifier of the TerminalTxn that relates to this notes resource,
+      Only one of txn, hold, entity, terminalTxn may be set.
+  hold:
+    type: string
+    description: The identifier of the Hold that relates to this notes resource, Only
+      one of txn, hold, entity, terminalTxn may be set.
+  entity:
+    type: string
+    description: The identifier of the Entity that relates to this notes resource,
+      Only one of txn, hold, entity, terminalTxn may be set.
+  type:
+    $ref: ../enums/noteTypeModel.yaml
+  data:
+    type: string
+    description: |-
+     Free-form text for adding a message along with the type , 
+     required in case of type value is in one of these - amexSales, businessSales, consumerSales, deliverySchedule, immediateDeliveryPercent, sevenDayDeliveryPercent, fourteenDayDeliveryPercent, thirtyDayDeliveryPercent, cardPresentSales, motoSales, ecommerceSales, siteVisit, goodsSold, authorizationFlatFee, capturePercentFee, captureFlatFee
+     else null
+  note:
+    type: string
+    description: A Message/Note regarding this notes resource. This field is stored
+      as a text string.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: p1_log_00c59f2b74896e4086c2fe6
+  type: note
+  hold: t1_hld_67e08f086e275ddcc8820e1
+  txn: t1_txn_67ea9ac271f195a95059550
+  terminalTxn: identifier
+  entity: p1_ent_00c1ff2d61b43ffab63cec5
+  note: Raised HT limit
+  data: amexSales
+  inactive: 0
+  frozen: 0

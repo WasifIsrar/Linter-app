@@ -1,0 +1,123 @@
+get:
+  description: Query an Org Flow represents a way to trigger the addition or removal
+    of the Merchants associated with a Login to a particular Org, optionally setting
+    this addition or removal to be recursive, affecting all Merchants in any child
+    Logins.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Org Flow ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofw_67ed51ece84aae1a7d0000z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlows:
+              $ref: ../components/schemas/samples/orgFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowsModel200Response.yaml
+      description: Retrieve an Org Flow Response for query on orgFlows resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Org Flow by it's ID.
+  tags:
+  - Org Flows
+  - Facilitator
+  - Partner
+  operationId: getOrgFlowsId
+put:
+  description: Update an Org Flow. An orgFlows resource represents a way to trigger
+    the addition or removal of the Merchants associated with a Login to a particular
+    Org, optionally set to be recursive, affecting all Merchants in any child Logins.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Org Flow ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofw_67ed51ece84aae1a7d0000z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgFlowsPutRequestModel.yaml
+    description: Update an Org Flow Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update orgFlows:
+              $ref: ../components/schemas/samples/orgFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowsModel200Response.yaml
+      description: Update an Org Flow Response for orgFlows resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Org Flow by it's ID.
+  tags:
+  - Org Flows
+  - Facilitator
+  - Partner
+  operationId: putOrgFlowsId
+delete:
+  description: Delete an Org Flow.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Org Flow ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofw_67ed51ece84aae1a7d0000z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete orgFlows:
+              $ref: ../components/schemas/samples/orgFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowsModel200Response.yaml
+      description: The response for deleting an Org Flow resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Org Flow by it's ID.
+  tags:
+  - Org Flows
+  - Facilitator
+  - Partner
+  operationId: deleteOrgFlowsId

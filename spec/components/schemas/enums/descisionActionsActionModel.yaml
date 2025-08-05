@@ -1,0 +1,32 @@
+title: descisionActionsAction
+type: integer
+description: |
+  The action to take when this check fails.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Block txn, will never be processed. The Entity is sent to the manual review queue.**
+  - `3` - **Hold txn, will not be captured.**
+  - `4` - **Reserve txn, funds should be reserved.**
+  - `5` - **Block current activity, no change for merchant.**
+  - `8` - **We onboard the merchant and wait for manual check later.**
+
+  </details>
+enum:
+- 1
+- 3
+- 4
+- 5
+- 8
+x-enum-elements:
+- name: Block
+  description: Block txn, will never be processed. The Entity is sent to the manual review queue.
+- name: Hold
+  description: Hold txn, will not be captured.
+- name: Reserve
+  description: Reserve txn, funds should be reserved.
+- name: Limit
+  description: Block current activity, no change for merchant.
+- name: PostReviewOnly
+  description: We onboard the merchant and wait for manual check later.

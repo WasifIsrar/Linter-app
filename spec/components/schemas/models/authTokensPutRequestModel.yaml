@@ -1,0 +1,15 @@
+title: authTokensPutRequest
+properties:
+  used:
+    type: integer
+    format: int64
+    description: Timestamp of when the AuthToken was used.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  used: 202503141414
+  inactive: 0
+  frozen: 0

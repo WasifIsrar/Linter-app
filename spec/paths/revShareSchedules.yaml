@@ -1,0 +1,68 @@
+get:
+  description: Query revShareSchedules.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/revShareSchedulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revShareSchedulesModel200Response.yaml
+      description: Response for query on revShareSchedules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Rev Share Schedules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getRevShareSchedules
+post:
+  description: Create a revShareSchedules.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/revShareSchedulesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create revShareSchedules:
+              $ref: ../components/schemas/samples/revShareSchedulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revShareSchedulesModel200Response.yaml
+      description: Response for create on revShareSchedules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revShareSchedules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Rev Share Schedules
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postRevShareSchedules
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

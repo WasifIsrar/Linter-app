@@ -1,0 +1,39 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_vrn_67caef0bddc93b58866bbez",
+        "created": "2025-03-07 08:05:15.9159",
+        "modified": "2025-03-07 08:05:15.9192",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "login": "t1_log_5d13d9c20a39da6f5030426",
+        "type": "saleTotalLimit",
+        "options": 0,
+        "score": 100,
+        "description": "General watchlist score",
+        "ref": "",
+        "txn": "t1_txn_67caef0a014c280a6caa5fc",
+        "decision": "t1_dcs_5da60b66e6283dc0169504a",
+        "entity": "",
+        "generated": 1,
+        "member": "",
+        "value": "t1_wlt_5da6075acf9d2767ebecede",
+        "terminalTxn": "",
+        "additionalOptions": 0,
+        "level": "partition",
+        "fromCache": "2025-03-07 08:05:15",
+        "account": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

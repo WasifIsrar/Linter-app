@@ -1,0 +1,79 @@
+get:
+  description: Query API keys that each represents a permanent method of authentication
+    to the API and remains active until marked as inactive or deleted.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/apiKeysJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/apikeysModel200Response.yaml
+      description: Response for query on API Keys resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all API Keys.
+  tags:
+  - API Keys
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getApikeys
+post:
+  description: Create an API key that represents a permanent method of authentication
+    to the API. The API key remains active until marked as inactive or deleted.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/apiKeysPostRequestModel.yaml
+    description: Create API Key Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/apiKeysJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/apikeysModel200Response.yaml
+      description: Response for query on API Keys resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  security:
+  - apiKey: []
+  - sessionKey: []
+  - txnSessionKey: []
+  - username: []
+    password: []
+  summary: Create a new API Key.
+  tags:
+  - API Keys
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: postApikeys
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

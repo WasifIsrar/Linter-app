@@ -1,0 +1,71 @@
+get:
+  description: "Query a ProfitShare Rule. \nA ProfitShare Rule is a piece of conditional\
+    \ logic that makes a ProfitShare apply only in certain circumstances."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/profitShareRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareRulesModel200Response.yaml
+      description: Response for query on profitShareRules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Profit Share Rules.
+  tags:
+  - Profit Share Rules
+  - Facilitator
+  - Partner
+  operationId: getProfitShareRules
+post:
+  description: "Create a ProfitShare Rule. \nA ProfitShare Rule is a piece of conditional\
+    \ logic that makes a ProfitShare apply only in certain circumstances."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/profitShareRulesPostRequestModel.yaml
+    description: Create Profit Share Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create profitShareRules:
+              $ref: ../components/schemas/samples/profitShareRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareRulesModel200Response.yaml
+      description: Response for create on profitShareRules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Profit Share Rule
+  tags:
+  - Profit Share Rules
+  - Facilitator
+  - Partner
+  operationId: postProfitShareRules
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

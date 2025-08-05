@@ -1,0 +1,73 @@
+get:
+  description: Query InvoiceResults resource that represents the result of an invoice
+    processing. In other words, when the customer pays for an invoice it will then
+    generate an invoice result.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all invoice results:
+              $ref: ../components/schemas/samples/invoiceResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceResultsModel200Response.yaml
+      description: Response for query on invoiceResults resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoice results:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Invoice Results.
+  tags:
+  - Invoice Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoiceResults
+post:
+  description: create a invoiceResult.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/invoiceResultPostRequestModel.yaml
+    description: Create Invoice Result Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create invoice results:
+              $ref: ../components/schemas/samples/invoiceResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceResultsModel200Response.yaml
+      description: Response for create on invoiceResults resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoice results:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Invoice Result
+  tags:
+  - Invoice Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postInvoiceResults
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

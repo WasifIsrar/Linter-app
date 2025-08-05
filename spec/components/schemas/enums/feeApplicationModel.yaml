@@ -1,0 +1,25 @@
+title: feeApplication
+type: string
+description: |
+  Where the feeRule should apply.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `both` - **Both.** The rule should apply to the fee and to the calculation of collections.
+  - `fee` - **Fee.** The rule should apply only to the fee itself.
+  - `collection` - **Collection.** The fee should be only used when calculating a collection.
+
+  </details>
+default: both
+enum:
+- both
+- fee
+- collection
+x-enum-elements:
+- name: Both
+  description: The rule should apply to the fee and to the calculation of collections.
+- name: Fee
+  description: The rule should apply only to the fee itself.
+- name: Collection
+  description: The fee should be only used when calculating a collection.

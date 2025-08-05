@@ -1,0 +1,25 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "p1_chs_00cf1bdcc576991ce254cdc",
+              "created": "2025-03-10 13:05:32.8335",
+              "modified": "2025-03-10 13:05:32.8335",
+              "creator": "p1_log_00b869779727da108515d99",
+              "modifier": "p1_log_00b869779727da108515d99",
+              "chargeback": "p1_chb_00c9d0176c29c1e85e2ad4e",
+              "chargebackMessage": "p1_chm_67cf1bdc44026cc766d0793",
+              "status": "open"
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

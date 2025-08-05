@@ -1,0 +1,42 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_act_67a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "login": "t1_log_0092b50e1112b18e41d521e",
+        "merchant": "t1_mer_008e7f511d5c5a2d2fade82",
+        "customer": "t1_cus_00b39e97b2110ba9075dfda",
+        "subscription": "t1_sbn_00fc6fxx7a871bbce685897",
+        "number": "10",
+        "title": "Test Invoice Alert",
+        "message": "Testing the invoice alerts",
+        "emails": "erik@test.com",
+        "total": 100,
+        "tax": 1000,
+        "discount": 1000,
+        "type": "single",
+        "status": "paid",
+        "dueDate": 20250217,
+        "expirationDate": 20250217,
+        "sendOn": 20250217,
+        "emailStatus": "pending",
+        "inactive": 0,
+        "frozen": 0,
+        "allowedPaymentMethods": "visa"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,99 @@
+get:
+  description: Query a terminalRefs resource, which represents a reference code issued
+    by the Processor that represents a particular Terminal.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Terminal Reference ID.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalRefsModel200Response.yaml
+      description: Retrieve the Terminal Reference Response for query on terminalRefs
+        resource.
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Terminal Reference by its ID.
+  tags:
+  - Terminal References
+  - Facilitator
+  operationId: getTerminalRefsId
+put:
+  description: Update a terminalRefs resource, which represents a reference code issued
+    by the Processor that represents a particular Terminal.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Terminal Reference ID.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/terminalRefsPutRequestModel.yaml
+    description: Update Terminal Reference Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalRefsModel200Response.yaml
+      description: 'Response for update on Terminal References resource: Update Terminal
+        Reference Response'
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Terminal Reference by its ID.
+  tags:
+  - Terminal References
+  - Facilitator
+  operationId: putTerminalRefsId
+delete:
+  description: Delete a terminalRefs resource, which represents a reference code issued
+    by the Processor that represents a particular Terminal.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Terminal Reference ID.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/terminalRefsModel200Response.yaml
+      description: The Delete Terminal Reference Response for the terminalRefs resource.
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Terminal Reference by its ID.
+  tags:
+  - Terminal References
+  - Facilitator
+  operationId: deleteTerminalRefsId

@@ -1,0 +1,72 @@
+title: invoiceParameterType
+description: |
+  The type of Transaction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Credit Card Only:** Sale Transaction, processes a sale and charges the customer.
+  - `2` - **Credit Card Only:** Auth Transaction, authorizes and holds the requested total on the credit card.
+  - `3` - **Credit Card Only:** Capture Transaction, finalizes a prior Auth Transaction and charges the customer.
+  - `4` - **Credit Card Only:** Reverse Authorization, reverses a prior Auth or Sale Transaction and releases the credit hold.
+  - `5` - **Credit Card Only:** Refund Transaction, refunds a prior Capture or Sale Transaction (total may be specified for a partial refund).
+  - `7` - **Echeck Only:** Echeck Sale Transaction, sale transaction for ECheck payment.
+  - `8` - **Echeck Only:** ECheck Refund Transaction, refund transaction for prior ECheck Sale Transaction.
+  - `11` - **Echeck Only:** Echeck Redeposit Transaction, attempt to redeposit a prior failed eCheck Sale Transaction.
+  - `12` - **Echeck Only:** Echeck Account Verification Transaction, attempt to verify eCheck payment details.
+
+  </details>
+enum:
+- apikey
+- fromEmail
+- replyToEmail
+- dba
+- address1
+- address2
+- city
+- state
+- zip
+- country
+- phone
+- website
+- receiptTitle
+- receiptMessage
+- billingRequired
+- shippingRequired
+- eCheckAuthorization
+x-enum-elements:
+- name: Apikey
+  description: The apikey that will be used for the invoice.
+- name: FromEmail
+  description: The email the invoice will be sent from.
+- name: ReplyToEmail
+  description: The reply-to email address for the invoice.
+- name: Dba
+  description: Name of the company that will be shown on the invoice.
+- name: Address1
+  description: Address1 shown on the invoice.
+- name: Address2
+  description: Address2 shown on the invoice.
+- name: City
+  description: City shown on the invoice.
+- name: State
+  description: State shown on the invoice.
+- name: Zip
+  description: Zip code shown on the invoice.
+- name: Country
+  description: Country shown on the invoice.
+- name: Phone
+  description: Phone number shown on the invoice.
+- name: Website
+  description: Website address shown on the invoice.
+- name: ReceiptTitle
+  description: The title when the invoice is sent.
+- name: ReceiptMessage
+  description: The message when the invoice is sent.
+- name: BillingRequired
+  description: Whether the billing address will be required from the customer.
+- name: ShippingRequired
+  description: Whether the shipping address will be required from the customer.
+- name: ECheckAuthorization
+  description: Authorization for ECheck payments.
+type: string

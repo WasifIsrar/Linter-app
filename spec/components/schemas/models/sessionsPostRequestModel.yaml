@@ -1,0 +1,76 @@
+title: sessionsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  public:
+    title: sessionPublic
+    type: integer
+    description: "Whether this Session should have access to only public resources.\
+      \ \nAll other resources are private.\n\n<details>\n<summary>Valid Values</summary>\n\
+      \n  - `0` - **Session can also access private resources.**\n\n  - `1` - **Session\
+      \ can only access public resources.**\n\n</details>"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "PrivateAccess"
+      description: "Session can also access private resources."
+    - name: "PublicAccess"
+      description: "Session can only access public resources."
+  token:
+    type: integer
+    default: 0
+    description: |
+      Whether or not an AuthToken is required as part of the authentication when this Apikey is used.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **The authToken mechanism is disabled.**
+      - `1` - **The authToken mechanism is required for 'POST' and 'DELETE' requests.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: AuthTokenDisabled
+      description: The authToken mechanism is disabled.
+    - name: AuthTokenRequired
+      description: The authToken mechanism is required for POST and DELETE requests.
+  mfaAuthenticated:
+    type: integer
+    description: |-
+      Whether or not the MFA is enabled.. <details> <summary>Valid Values</summary>
+       - `0` - **MFA is disabled.**
+       - `1` - **MFA is enabled.**
+       </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "MfaDisabled"
+      description: "MFA is disabled."
+    - name: "MfaEnabled"
+      description: "MFA is enabled."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- mfaAuthenticated
+- public
+- token
+
+example:
+  login: p1_log_00a4d56d1b5c98e8694ae28
+  public: 1
+  inactive: 0
+  frozen: 0
+  token: 0
+  mfaAuthenticated: 0

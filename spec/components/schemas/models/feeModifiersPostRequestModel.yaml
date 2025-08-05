@@ -1,0 +1,66 @@
+title: feeModifiersPostRequest
+properties:
+  fee:
+    type: string
+    description: The identifier of the Fee that this Fee Modifier applies.
+  entity:
+    type: string
+    description: The identifier of the Entity that this Fee Modifier applies for.
+  org:
+    type: string
+    description: "The identifier of the Org this Fee Modifiers should apply for on\
+      \ behalf of the Entity identified in the value of the 'entity' field. \nThis\
+      \ field is optional. If it is set, then the Fee Modifier is applied to this\
+      \ Org instead."
+  fromentity:
+    type: string
+    description: "The identifier of the Entity who should pay this Fee on behalf of\
+      \ the Entity identified in the value of the 'entity' or 'org' field. \nThis\
+      \ field is optional. If it is set, then the Fee is charged to this Entity instead."
+  markupUm:
+    type: integer
+    description: |+
+      The unit of measure for the markup amount for the Fee.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **Fixed Amount.** Specified in the 'markupAmount' field as an integer in cents.
+      - `2` - **Percentage.** Specified in the 'markupAmount' field in basis points.
+
+      </details>
+    nullable: true
+    enum:
+    - 1
+    - 2
+    x-enum-elements:
+    - name: FixedAmount
+      description: Specified in the 'markupAmount' field as an integer in cents.
+    - name: Percentage
+      description: Specified in the 'markupAmount' field in basis points.
+  markupAmount:
+    type: integer
+    description: "The total amount of the markup value for this Fee. \nThe units used\
+      \ in this field are determined by the value of the 'markupUm' field on the Fee.\
+      \ If the 'markupUm' field is set to 'percentage', then this field specifies\
+      \ the Fee percentage to levy in basis points. If the 'markupUm' field is set\
+      \ to 'actual', then this field specifies the markup amount in cents."
+    nullable: true
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- fee
+- frozen
+- inactive
+
+example: 
+  fee: t1_fee_6809dd0aa16f89a3f28ca98
+  entity: t1_ent_00c2b1a6102ffdd33f00000
+  org: t1_org_00b2ac11ed8bed97fb80000
+  fromentity: t1_ent_0088c831a31ca8841c80000
+  markupUm: 1
+  markupAmount: 0
+  inactive: 0
+  frozen: 0 

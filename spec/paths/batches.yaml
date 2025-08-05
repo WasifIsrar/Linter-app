@@ -1,0 +1,73 @@
+get:
+  description: Query a Batch, which represents a group of Transactions that are sent
+    together to the processor to be settled.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all batches:
+              $ref: ../components/schemas/samples/batchesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/batchesModel200Response.yaml
+      description: Retrieve Response for query on batches resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all batches:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Batches.
+  tags:
+  - Batches (Settlements)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getBatches
+post:
+  description: Create a Batch. A Batch resource represents a group of Transactions
+    that are sent together to the processor to be settled.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/batchesPostRequestModel.yaml
+    description: Create Batch Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create batches:
+              $ref: ../components/schemas/samples/batchesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/batchesModel200Response.yaml
+      description: The response for creating batches is the Create Batch Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all batches:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Batch
+  tags:
+  - Batches (Settlements)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postBatches
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

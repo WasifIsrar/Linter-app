@@ -1,0 +1,125 @@
+get:
+  description: Query a Mapping resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Mapping ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_map_63d6a1df609e000f10b00d0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/mappingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/mappingsModel200Response.yaml
+      description: Retrieve the Response for query on mappings resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Mapping by it's ID.
+  tags:
+  - Mappings
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMappingsId
+put:
+  description: Update a Mapping. A Mapping represents a way to re-map the fields in
+    the API for either input or output, using a set of JSON field mappings. For example,
+    if your system uses a different format for output data that it will send to the
+    API, then you can re-map the input fields for the API using a Mapping.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Mapping ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_map_63d6a1df609e000f10b00d0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/mappingsPutRequestModel.yaml
+    description: Update Mapping Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update mappings:
+              $ref: ../components/schemas/samples/mappingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/mappingsModel200Response.yaml
+      description: Response for update on mappings resource Update Mapping Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Mapping by it's ID.
+  tags:
+  - Mappings
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putMappingsId
+delete:
+  description: Delete a Mapping. A Mapping represents a way to re-map the fields in
+    the API for either input or output, using a set of JSON field mappings.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Mapping ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_map_63d6a1df609e000f10b00d0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete mappings:
+              $ref: ../components/schemas/samples/mappingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/mappingsModel200Response.yaml
+      description: 'Response for delete on mappings resource: Delete Mapping Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Mapping by it's ID.
+  tags:
+  - Mappings
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteMappingsId

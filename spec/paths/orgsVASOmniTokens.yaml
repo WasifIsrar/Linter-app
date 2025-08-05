@@ -1,0 +1,66 @@
+get:
+  description: "Query a Orgs VAS OmniTokens."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/orgsVASOmniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASOmniTokensModel200Response.yaml
+      description: Response for query on Orgs VAS OmniTokens
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Orgs VAS OmniTokens
+  - Facilitator
+  - Partner
+  operationId: getOrgsVASOmniTokens
+post:
+  description: "Create a Orgs VAS OmniTokens."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASOmniTokensPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create a orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/orgsVASOmniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASOmniTokensModel200Response.yaml
+      description: Response for create Orgs VAS OmniTokens
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Orgs VAS OmniTokens
+  - Partner
+  - Facilitator
+  operationId: postOrgsVASOmniTokens
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,16 @@
+    title: membersPrimary
+    type: integer
+    description: "Indicates whether the Member is the 'primary' contact for the associated\
+      \ Merchant. Only one Member associated with each Merchant can be the 'primary'\
+      \ Member.\n\n<details>\n<summary>Valid Values</summary>\n\n- `0` - **Not Primary\
+      \ contact.** \n\n- `1` - **Primary contact.**\n\n</details>                \
+      \ \n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotPrimaryContact"
+      description: "Not Primary contact."
+    - name: "PrimaryContact"
+      description: "Primary contact."

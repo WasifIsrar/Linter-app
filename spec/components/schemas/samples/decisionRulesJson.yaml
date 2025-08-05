@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_drl_67d9836cb20781126c769f0",
+        "created": "2025-03-18 10:30:04.7380",
+        "modified": "2025-03-18 10:30:04.7380",
+        "creator": "t1_log_5ade08dbe7c74ccfa14e832",
+        "modifier": "t1_log_5ade08dbe7c74ccfa14e832",
+        "decision": "t1_dcs_67d97ed1a0fc6848c89d537",
+        "name": "DecisionRule11",
+        "description": "Rule Description",
+        "type": "type",
+        "value": 8,
+        "grouping": "portalgroup_2",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

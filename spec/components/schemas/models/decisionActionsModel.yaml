@@ -1,0 +1,94 @@
+title: decisionActionsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  decision:
+    type: string
+    description: The identifier of the Decision to which this resource applies.
+  action:
+    $ref: ../enums/descisionActionsActionModel.yaml
+  application:
+    type: string
+    description: |-
+      Where the action defined by this DecisionAction should apply.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `account` - **Account type Decision.**
+      - `txn` - **Txn type Decision.**
+      - `entity` - **Entity type Decision.**
+
+      </details>
+    enum:
+    - account
+    - txn
+    - entity
+    x-enum-elements:
+    - name: account
+      description: Account type Decision.
+    - name: txn
+      description: Applies the action to the transaction.
+    - name: entity
+      description: Applies the action on the entity.
+  scoreType:
+    type: string
+    description: |-
+      The type of score result on the related Decision.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `low` - **Only applies if the check hit the low of the parent decision.**
+      - `high` - **Only applies if the check hit the high of the parent decision.**
+      - `none` - **Only applies if the check did not hit the high or low of the parent decision.**
+
+      </details>
+    enum:
+    - low
+    - high
+    - none
+    x-enum-elements:
+    - name: low
+      description: Only applies if the check hit the low of the parent decision.
+    - name: high
+      description: Only applies if the check hit the high of the parent decision.
+    - name: none
+      description: Only applies if the check did not hit the high or low of the parent decision.
+  type:
+    $ref: ../enums/decisionActionTypeModel.yaml
+  field:
+    type: string
+    description: The result field to check.
+  score:
+    type: string
+    description: The score to check.
+  data:
+    type: string
+    description: The decisionAction data will be matched with verificationReuslts
+      data.
+  message:
+    type: string
+    description: The decisionAction message will be matched with verificationReuslts
+      message.
+  code:
+    type: string
+    description: The decisionAction code will be matched with verificationReuslts
+      code.
+  grouping:
+    type: string
+    description: A name for a group of decisionActions to be applied in conjunction
+      when evaluating this DecisionAction; when grouping is used, the DecisionActions
+      will not apply unless they all match.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

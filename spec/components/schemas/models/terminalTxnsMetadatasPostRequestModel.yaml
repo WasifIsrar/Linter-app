@@ -1,0 +1,458 @@
+title: terminalTxnsMetadatasPostRequest
+properties:
+  terminalTxn:
+    type: string
+    description: The identifier of the Terminal Transaction associated with this TerminalTxnMetadatas
+      resource.
+  type:
+    title: terminalTxnMetadataType
+    type: string
+    description: |
+      The type of metadata associated with the Terminal transaction.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `amounts` - **Transaction Amounts**
+      - `emv` - **EuroPay, Mastercard, Visa Transactions**
+      - `network` - **Network Transactions**
+      - `timeout` - **Transaction Timeouts**
+      - `firstTxn` - **First Transaction**
+      - `discretionary` - **Custom Transaction Field Value**
+
+      </details>
+    enum:
+    - amounts
+    - emv
+    - network
+    - timeout
+    - firstTxn
+    - discretionary
+    x-enum-elements:
+    - name: Amounts
+      description: Transaction Amounts
+    - name: Emv
+      description: EuroPay, Mastercard, Visa Transactions
+    - name: Network
+      description: Network Transactions
+    - name: Timeout
+      description: Transaction Timeouts
+    - name: FirstTxn
+      description: First Transaction
+    - name: Discretionary
+      description: Custom Transaction Field Value
+  field:
+    type: string
+    description: |
+      The field being stored.
+      <details>
+        <summary>Type is amount - Valid Values</summary>
+        <ul>
+          <li>`clinical` - **Clinical amount** </li>
+          <li>`copay` - **Copay amount** </li>
+          <li>`dental` - **Dental amount** </li>
+          <li>`healthCare` - **Health Care amount </li>**
+          <li>`rx` - **RX amount** </li>
+          <li>`vision` - **Vision amount** </li>
+        </ul>
+      </details>
+      <details>
+        <summary>Type is emv - Valid Values</summary>
+        <ul>
+          <li>`applicationId` - **Application ID (AID)**</li>
+          <li>`terminalTransactionCurrency` - **Terminal Transaction Currency**</li>
+          <li>`cardSequenceNumber` - **Card Sequence Number**
+          <li>`applicationPreferredName` - **Application Preferred Name (APPN)**</li>
+          <li>`applicationLabel` - **Application Label (APPLAB)**</li>
+          <li>`issuerScript1` - **Issuer Script 1**</li>
+          <li>`issuerScript2` - **Issuer Script 2**</li>
+          <li>`applicationInterchangeProfile` - **Application Interchange Profile**</li>
+          <li>`dedicatedFileName` - **Dedicated File Name**</li>
+          <li>`authorizationCode` - **Authorization Code (AC)**</li>
+          <li>`authorizationResponseCode` - **Authorization Response Code (ARC)**</li>
+          <li>`cardRiskManagementDataObjectList2` - **Card Risk Management Data Object List 2 (CDOL2)**</li>
+          <li>`issuerAuthData` - **Issuer Authentication Data (IAUTHD)**</li>
+          <li>`terminalVerificationResults` - **Terminal Verification Results (TVR)**</li>
+          <li>`transactionStatusInformation` - **Transaction Status Information (TSI)**</li>
+          <li>`transactionType` - **Transaction Type**</li>
+          <li>`otherAmount` - **Other Amount**</li>
+          <li>`applicationUsageControl` - **Application Usage Control (AUC)**</li>
+          <li>`applicationVersionNumber` - **Application Version Number (AVN)**</li>
+          <li>`issuerActionCodeDefault` - **Issuer Action Code Default (IACDefault)**</li>
+          <li>`issuerActionCodeDenial` - **Issuer Action Code Denial (IACDenial)**</li>
+          <li>`issuerActionCodeOnline` - **Issuer Action Code Online (IACOnline)**</li>
+          <li>`issuerApplicationData` - **Issuer Application Data**</li>
+          <li>`applicationIdName` - **Application ID Name (AID Name)**</li>
+          <li>`terminalTransactionCountryCode` - **Terminal Transaction Country Code**</li>
+          <li>`applicationCryptogram` - **Application Cryptogram (TC)**</li>
+          <li>`cryptogramInformationData` - **Cryptogram Information Data**</li>
+          <li>`capabilityProfile` - **Capability Profile**</li>
+          <li>`cardHolderVerificationMethod` - **Cardholder Verification Method Results (CVM)**</li>
+          <li>`applicationTransactionCounter` - **App Transaction Counter**</li>
+          <li>`unpredictableNumber` - **Unpredictable Number**</li>
+          <li>`issuerScriptResults` - **Issuer Script Results**</li>
+          <li>`formFactorIndicator` - **Form Factor Indicator**</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Type is network - Valid Values</summary>
+        <ul>
+         <li>`authCharacteristcs` - **Authorization Characteristics Indicator**</li>
+         <li>`authNetworkId` - **Authorizing Network ID**</li>
+         <li>`authResponseCode` - **Authorization Response Code**</li>
+         <li>`authSource` - **Point Of Authorization**</li>
+         <li>`banknetDate` - **MasterCard Banknet Settlement Date**</li>
+         <li>`cardCaptureCapability` - **Card Capture Capability**</li>
+         <li>`cardDataInputMode` - **Amex Card Data Input Mode**</li>
+         <li>`cardDataOutputCapability` - **Amex Card Data Output Capability**</li>
+         <li>`cardholderAuthentication` - **Amex Cardholder Authentication**</li>
+         <li>`cardholderPresent` - **Cardholder Presence**</li>
+         <li>`cardInputCapability` - **Card Data Input Capability**</li>
+         <li>`cardLevelResult` - **Visa Card Level Products Result**</li>
+         <li>`cardmemberAuthentication` - **Amex Cardmember Authentication**</li>
+         <li>`cardmemberEntity` - **Amex Cardmember Authentication Entity**</li>
+         <li>`cardPresent` - **Card Presence**</li>
+         <li>`cvvErrorCode` - **CVV Error Code**</li>
+         <li>`discoverResponseCode` - **Discover Response Code**</li>
+         <li>`ecommerceIndicator` - **Ecommerce Indicator**</li>
+         <li>`entryMode` - **POS Entry Mode**</li>
+         <li>`entryModeChange` - **POS Entry Mode changed by the issuer**</li>
+         <li>`goodsSoldCode` - **Amex Goods Sold Code**</li>
+         <li>`marketSpecificIndicator` - **Visa Market Specific Indicator**</li>
+         <li>`merchantVerificationValue` - **Visa MVV/Mastercard MAID**</li>
+         <li>`motoIndicator` - **Mail/Telephone Order Indicator**</li>
+         <li>`networkResultIndicator` - **Discover Network Result Indicator**</li>
+         <li>`operatingEnvironment` - **Amex Operating Environment**</li>
+         <li>`partialApprovalIndicator` - **Discover Partial Approval Indicator**</li>
+         <li>`pinCaptureCapability` - **PIN Capture Capability**</li>
+         <li>`posAttendanceIndicator` - **POS Attendance Indicator**</li>
+         <li>`posAuthLifecycle` - **Discover POS Auth Lifecycle**</li>
+         <li>`posData` - **Network POS Data**</li>
+         <li>`posEcommerceIndicator` - **Discover POS Ecommerce Indicator**</li>
+         <li>`posLocation` - **Discover POS Location**</li>
+         <li>`posTransactionSecurity` - **Discover POS Transaction Security**</li>
+         <li>`posTransactionStatus` - **Discover POS Transaction Status**</li>
+         <li>`processingCode` - **Discover Processing Code**</li>
+         <li>`stan` - **System Trace Audit Number**</li>
+         <li>`statusCode` - **Network status code**</li>
+         <li>`terminalOutputCapability` - **Amex Terminal Output Capability**</li>
+         <li>`track1Indicator` - **Discover Track 1 Data Indicator**</li>
+         <li>`track2Indicator` - **Discover Track 2 Data Indicator**</li>
+         <li>`transactionEditErrorCode` - **Mastercard track data error code**</li>
+         <li>`transactionIntegrityClass` - **Transaction Integrity Class**</li>
+         <li>`transactionQualifier` - **Discover Transaction Qualifier**</li>
+         <li>`validationCode` - **Visa Validation Code**</li>
+         <li>`visaSpendIndicator` - **Visa Spend Qualified Indicator**</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Type is timeout - Valid Values</summary>
+       <ul>        
+        <li>`reversals` - **Reversals**</li>
+       </ul>
+       </details>
+      <details>
+        <summary>Type is firstTxn - Valid Values</summary>
+        <ul>        
+         <li>`firstTxn` - **First Transaction**</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Type is discretionary - Valid Values</summary>
+        <ul> 
+          <li>`discretionary1` - **Custom Field 1**</li>
+          <li>`discretionary2` - **Custom Field 2**</li>
+          <li>`discretionary3` - **Custom Field 3**</li>
+          <li>`posTerminalID` - **POS Terminal ID**</li>
+        </ul>
+      </details>
+    enum:
+    - discretionary1
+    - discretionary2
+    - discretionary3
+    - posTerminalID
+    - clinical
+    - copay
+    - dental
+    - healthCare
+    - rx
+    - vision
+    - applicationId
+    - terminalTransactionCurrency
+    - cardSequenceNumber
+    - applicationPreferredName
+    - applicationLabel
+    - issuerScript1
+    - issuerScript2
+    - applicationInterchangeProfile
+    - dedicatedFileName
+    - authorizationCode
+    - authorizationResponseCode
+    - cardRiskManagementDataObjectList2
+    - issuerAuthData
+    - terminalVerificationResults
+    - transactionStatusInformation
+    - transactionType
+    - otherAmount
+    - applicationUsageControl
+    - applicationVersionNumber
+    - issuerActionCodeDefault
+    - issuerActionCodeDenial
+    - issuerActionCodeOnline
+    - issuerApplicationData
+    - applicationIdName
+    - terminalTransactionCountryCode
+    - applicationCryptogram
+    - cryptogramInformationData
+    - capabilityProfile
+    - cardHolderVerificationMethod
+    - applicationTransactionCounter
+    - unpredictableNumber
+    - issuerScriptResults
+    - formFactorIndicator
+    - authCharacteristcs
+    - authNetworkId
+    - authResponseCode
+    - authSource
+    - banknetDate
+    - cardCaptureCapability
+    - cardDataInputMode
+    - cardDataOutputCapability
+    - cardholderAuthentication
+    - cardholderPresent
+    - cardInputCapability
+    - cardLevelResult
+    - cardmemberAuthentication
+    - cardmemberEntity
+    - cardPresent
+    - cvvErrorCode
+    - discoverResponseCode
+    - ecommerceIndicator
+    - entryMode
+    - entryModeChange
+    - goodsSoldCode
+    - marketSpecificIndicator
+    - merchantVerificationValue
+    - motoIndicator
+    - networkResultIndicator
+    - operatingEnvironment
+    - partialApprovalIndicator
+    - pinCaptureCapability
+    - posAttendanceIndicator
+    - posAuthLifecycle
+    - posData
+    - posEcommerceIndicator
+    - posLocation
+    - posTransactionSecurity
+    - posTransactionStatus
+    - processingCode
+    - stan
+    - statusCode
+    - terminalOutputCapability
+    - track1Indicator
+    - track2Indicator
+    - transactionEditErrorCode
+    - transactionIntegrityClass
+    - transactionQualifier
+    - validationCode
+    - visaSpendIndicator
+    - reversals
+    - firstTxn
+    x-enum-elements:
+    - name: Discretionary1
+      description: Discretionary field 1
+    - name: Discretionary2
+      description: Discretionary field 2
+    - name: Discretionary3
+      description: Discretionary field 3
+    - name: PosTerminalID
+      description: POS Terminal ID
+    - name: Clinical
+      description: Clinical amount
+    - name: Copay
+      description: Copay amount
+    - name: Dental
+      description: Dental amount
+    - name: HealthCare
+      description: Health Care amount
+    - name: Rx
+      description: RX amount
+    - name: Vision
+      description: Vision amount
+    - name: ApplicationId
+      description: Application ID (AID)
+    - name: TerminalTransactionCurrency
+      description: Terminal Transaction Currency
+    - name: CardSequenceNumber
+      description: Card Sequence Number
+    - name: ApplicationPreferredName
+      description: Application Preferred Name (APPN)
+    - name: ApplicationLabel
+      description: Application Label (APPLAB)
+    - name: IssuerScript1
+      description: Issuer Script 1
+    - name: IssuerScript2
+      description: Issuer Script 2
+    - name: ApplicationInterchangeProfile
+      description: Application Interchange Profile
+    - name: DedicatedFileName
+      description: Dedicated File Name
+    - name: AuthorizationCode
+      description: Authorization Code (AC)
+    - name: AuthorizationResponseCode
+      description: Authorization Response Code (ARC)
+    - name: CardRiskManagementDataObjectList2
+      description: Card Risk Management Data Object List 2 (CDOL2)
+    - name: IssuerAuthData
+      description: Issuer Authentication Data (IAUTHD)
+    - name: TerminalVerificationResults
+      description: Terminal Verification Results (TVR)
+    - name: TransactionStatusInformation
+      description: Transaction Status Information (TSI)
+    - name: TransactionType
+      description: Transaction Type
+    - name: OtherAmount
+      description: Other Amount
+    - name: ApplicationUsageControl
+      description: Application Usage Control (AUC)
+    - name: ApplicationVersionNumber
+      description: Application Version Number (AVN)
+    - name: IssuerActionCodeDefault
+      description: Issuer Action Code Default (IACDefault)
+    - name: IssuerActionCodeDenial
+      description: Issuer Action Code Denial (IACDenial)
+    - name: IssuerActionCodeOnline
+      description: Issuer Action Code Online (IACOnline)
+    - name: IssuerApplicationData
+      description: Issuer Application Data
+    - name: ApplicationIdName
+      description: Application ID Name (AID Name)
+    - name: TerminalTransactionCountryCode
+      description: Terminal Transaction Country Code
+    - name: ApplicationCryptogram
+      description: Application Cryptogram (TC)
+    - name: CryptogramInformationData
+      description: Cryptogram Information Data
+    - name: CapabilityProfile
+      description: Capability Profile
+    - name: CardHolderVerificationMethod
+      description: Cardholder Verification Method Results (CVM)
+    - name: ApplicationTransactionCounter
+      description: App Transaction Counter
+    - name: UnpredictableNumber
+      description: Unpredictable Number
+    - name: IssuerScriptResults
+      description: Issuer Script Results
+    - name: FormFactorIndicator
+      description: Form Factor Indicator
+    - name: AuthCharacteristcs
+      description: Authorization Characteristics Indicator
+    - name: AuthNetworkId
+      description: Authorizing Network ID
+    - name: AuthResponseCode
+      description: Authorization Response Code
+    - name: AuthSource
+      description: Point Of Authorization
+    - name: BanknetDate
+      description: MasterCard Banknet Settlement Date
+    - name: CardCaptureCapability
+      description: Card Capture Capability
+    - name: CardDataInputMode
+      description: Amex Card Data Input Mode
+    - name: CardDataOutputCapability
+      description: Amex Card Data Output Capability
+    - name: CardholderAuthentication
+      description: Amex Cardholder Authentication
+    - name: CardholderPresent
+      description: Cardholder Presence
+    - name: CardInputCapability
+      description: Card Data Input Capability
+    - name: CardLevelResult
+      description: Visa Card Level Products Result
+    - name: CardmemberAuthentication
+      description: Amex Cardmember Authentication
+    - name: CardmemberEntity
+      description: Amex Cardmember Authentication Entity
+    - name: CardPresent
+      description: Card Presence
+    - name: CvvErrorCode
+      description: CVV Error Code
+    - name: DiscoverResponseCode
+      description: Discover Response Code
+    - name: EcommerceIndicator
+      description: Ecommerce Indicator
+    - name: EntryMode
+      description: POS Entry Mode
+    - name: EntryModeChange
+      description: POS Entry Mode changed by the issuer
+    - name: GoodsSoldCode
+      description: Amex Goods Sold Code
+    - name: MarketSpecificIndicator
+      description: Visa Market Specific Indicator
+    - name: MerchantVerificationValue
+      description: Visa MVV/Mastercard MAID
+    - name: MotoIndicator
+      description: Mail/Telephone Order Indicator
+    - name: NetworkResultIndicator
+      description: Discover Network Result Indicator
+    - name: OperatingEnvironment
+      description: Amex Operating Environment
+    - name: PartialApprovalIndicator
+      description: Discover Partial Approval Indicator
+    - name: PinCaptureCapability
+      description: PIN Capture Capability
+    - name: PosAttendanceIndicator
+      description: POS Attendance Indicator
+    - name: PosAuthLifecycle
+      description: Discover POS Auth Lifecycle
+    - name: PosData
+      description: Network POS Data
+    - name: PosEcommerceIndicator
+      description: Discover POS Ecommerce Indicator
+    - name: PosLocation
+      description: Discover POS Location
+    - name: PosTransactionSecurity
+      description: Discover POS Transaction Security
+    - name: PosTransactionStatus
+      description: Discover POS Transaction Status
+    - name: ProcessingCode
+      description: Discover Processing Code
+    - name: Stan
+      description: System Trace Audit Number
+    - name: StatusCode
+      description: Network status code
+    - name: TerminalOutputCapability
+      description: Amex Terminal Output Capability
+    - name: Track1Indicator
+      description: Discover Track 1 Data Indicator
+    - name: Track2Indicator
+      description: Discover Track 2 Data Indicator
+    - name: TransactionEditErrorCode
+      description: Mastercard track data error code
+    - name: TransactionIntegrityClass
+      description: Transaction Integrity Class
+    - name: TransactionQualifier
+      description: Discover Transaction Qualifier
+    - name: ValidationCode
+      description: Visa Validation Code
+    - name: VisaSpendIndicator
+      description: Visa Spend Qualified Indicator
+    - name: Reversals
+      description: Reversals
+    - name: FirstTxn
+      description: First Transaction
+  value:
+    type: string
+    description: The value of the field. This field is stored as a text string and
+      must be between 1 and 500 characters long.
+required:
+- field
+- terminalTxn
+- type
+- value
+
+example:
+  terminalTxn: t1_ttx_6806cde42b47ee61cdf6ab9
+  type: discretionary
+  field: discretionary1
+  value: "0421"

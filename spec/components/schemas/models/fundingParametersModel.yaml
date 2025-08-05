@@ -1,0 +1,147 @@
+title: fundingParametersResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The identifier of the Login that owns this fundingParameter resource.
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this fundingParameter.
+  org:
+    type: string
+    description: The identifier of the Org associated with this fundingParameter.
+  division:
+    type: string
+    description: The identifier of the Division associated with this fundingParameter.
+  partition:
+    type: string
+    description: The identifier of the Partition associated with this fundingParameter.
+  platform:
+    $ref: ../enums/fundingParameterPlatformModel.yaml
+  type:
+    $ref: ../enums/fundingParameterTypeModel.yaml
+  value:
+    type: string
+    description: The value of this type of fundingParameter.
+  paymentMethods:
+    type: string
+    description: |
+      The payment methods that the fundingParameter should apply to.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `amex` - **American Express**
+      - `visa` - **Visa**
+      - `masterCard` - **MasterCard**
+      - `diners` - **Diners Club**
+      - `discover` - **Discover**
+      - `paypal` - **PayPal**
+      - `debit` - **Debit**
+      - `checking` - **Personal checking**
+      - `savings` - **Personal savings**
+      - `corpChecking` - **Corporate checking**
+      - `corpSavings` - **Corporate savings**
+      - `gift` - **Gift card**
+      - `ebt` - **EBT (Electronic Benefits Transfer)**
+      - `wic` - **WIC (Women, Infants and Children)**
+
+      </details>
+    enum:
+    - amex
+    - visa
+    - masterCard
+    - diners
+    - discover
+    - paypal
+    - debit
+    - checking
+    - savings
+    - corpChecking
+    - corpSavings
+    - gift
+    - ebt
+    - wic
+    - Accel
+    - ATH
+    - AFFN
+    - Culiance
+    - Interlink
+    - Jeanie
+    - Maestro
+    - NYCE
+    - Pulse
+    - Shazam
+    - Star
+    - Interac
+    - Omnitoken
+    x-enum-elements:
+    - name: amex
+      description: American Express.
+    - name: visa
+      description: Visa.
+    - name: masterCard
+      description: MasterCard.
+    - name: diners
+      description: Diners Club.
+    - name: discover
+      description: Discover.
+    - name: paypal
+      description: PayPal.
+    - name: debit
+      description: Debit.
+    - name: checking
+      description: Personal checking.
+    - name: savings
+      description: Personal savings.
+    - name: corpChecking
+      description: Corporate checking.
+    - name: corpSavings
+      description: Corporate savings.
+    - name: gift
+      description: Gift card.
+    - name: ebt
+      description: EBT (Electronic Benefits Transfer).
+    - name: wic
+      description: WIC (Women, Infants and Children).
+    - name: Accel
+      description: Accel network.
+    - name: ATH
+      description: ATH network.
+    - name: AFFN
+      description: AFFN network.
+    - name: Culiance
+      description: Culiance network.
+    - name: Interlink
+      description: Interlink network.
+    - name: Jeanie
+      description: Jeanie network.
+    - name: Maestro
+      description: Maestro network.
+    - name: NYCE
+      description: NYCE network.
+    - name: Pulse
+      description: Pulse network.
+    - name: Shazam
+      description: Shazam network.
+    - name: Star
+      description: Star network.
+    - name: Interac
+      description: Interac network.
+    - name: Omnitoken
+      description: Omnitoken.
+  locked:
+    $ref: ../enums/fundingParameterLockedModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,74 @@
+get:
+  description: Query a Note Document, which represents a file that is related to a
+    specific note record and documents resources.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/noteDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/noteDocumentsModel200Response.yaml
+      description: Response for query on noteDocuments resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Note Documents.
+  tags:
+  - Note Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getNoteDocuments
+post:
+  description: Create a note document, representing a file related to a specific note
+    record.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/noteDocumentsPostRequestModel.yaml
+    description: Create Note Document Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/noteDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/noteDocumentsModel200Response.yaml
+      description: The response for creating a note document on the noteDocuments
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all noteDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Note Document
+  tags:
+  - Note Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postNoteDocuments
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

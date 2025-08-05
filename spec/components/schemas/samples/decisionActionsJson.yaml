@@ -1,0 +1,35 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "p1_dca_67e284e38e9613fb4b69e6d",
+        "created": "2025-03-25 06:26:43.5877",
+        "modified": "2025-03-25 06:26:43.5877",
+        "creator": "t1_log_61e72ab44fd39df9483aa2c",
+        "modifier": "t1_log_61e72ab44fd39df9483aa2c",
+        "decision": "t1_dcs_67ddc0163a32ae0c5c33bfc",
+        "action": 1,
+        "application": "account",
+        "scoreType": "low",
+        "type": "less",
+        "field": "score",
+        "score": "20",
+        "data": "dummy@dummy.neoncrm.com",
+        "message": "Required",
+        "code": "I602",
+        "grouping": "bademail",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

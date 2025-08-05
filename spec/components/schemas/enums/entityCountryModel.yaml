@@ -1,0 +1,12 @@
+title: entityCountry
+type: string
+description: The country in the address associated with the Entity, currently accepting
+  values including `USA` and `CAN`.
+enum:
+- USA
+- CAN
+x-enum-elements:
+- name: USA
+  description: United States
+- name: CAN
+  description: Canada

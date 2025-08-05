@@ -1,0 +1,25 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_mps_6819e572f2251288844d0zz",
+        "creator": "t1_log_5a0e08023d3e66d6477f9f1",
+        "modifier": "t1_log_5a0e08023d3e66d6477f9f1",
+        "created": "2025-05-06 06:33:22.9991",
+        "modified": "2025-05-06 06:33:32.6369",
+        "merchant": "t1_mer_6819e56d78ef1b52557f586",
+        "platform": "VANTIV",
+        "status": "2"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,20 @@
+type: integer
+description: |
+  Whether this resource is marked as frozen.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Not Frozen**
+  - `1` - **Frozen**
+
+  </details>
+default: 0
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: NotFrozen
+  description: Not Frozen.
+- name: Frozen
+  description: Frozen.

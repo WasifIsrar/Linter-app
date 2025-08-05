@@ -1,0 +1,119 @@
+get:
+  description: Query an EntityDatas containing information about that entity, such
+    as the signature for the terms and conditions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity data.
+    explode: false
+    in: path
+    name: id
+    example: t1_eda_643d5b122a77297fd5f0000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/entityDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityDatasModel200Response.yaml
+      description: Retrieve an Entity Data Response for query on entityDatas resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Entity Data by it's ID.
+  tags:
+  - EntityData
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityDatasId
+put:
+  description: "Update an EntityDatas. \nAn EntityDatas is the data related to an\
+    \ entity \nIt contains information about that entity such as the signature for\
+    \ the terms and conditions"
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_eda_643d5b122a77297fd5f0000
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityDataPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update entityDatas:
+              $ref: ../components/schemas/samples/entityDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityDatasModel200Response.yaml
+      description: Response for update on entityDatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityData
+  - Facilitator
+  operationId: putEntityDatasId
+delete:
+  description: "Delete an EntityDatas. \nAn EntityDatas is the data related to an\
+    \ entity \nIt contains information about that entity such as the signature for\
+    \ the terms and conditions"
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_eda_643d5b122a77297fd5f0000
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete entityDatas:
+              $ref: ../components/schemas/samples/entityDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityDatasModel200Response.yaml
+      description: Response for delete on entityDatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntityData
+  - Facilitator
+  operationId: deleteEntityDatasId

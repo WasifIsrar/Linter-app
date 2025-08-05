@@ -1,0 +1,64 @@
+get:
+  description: Query a Disbursement Reference that represents a reference code issued
+    by the Payout facilitator when a Disbursement is paid.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursementRefs:
+              $ref: ../components/schemas/samples/disbursementRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementRefsModel200Response.yaml
+      description: Response for query on disbursementRefs resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursementRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Disbursement References.
+  tags:
+  - Disbursement Reference
+  - Facilitator
+  - Partner
+  operationId: getDisbursementRefs
+post:
+  description: Create a Disbursement Reference, a resource that represents a reference
+    code issued by the Payout facilitator when a Disbursement is paid.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/disbursementRefsPostRequestModel.yaml
+    description: Create Disbursement Reference Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementRefsModel200Response.yaml
+      description: The response for create on disbursementRefs resource.
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Disbursement Reference
+  tags:
+  - Disbursement Reference
+  - Facilitator
+  operationId: postDisbursementRefs
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

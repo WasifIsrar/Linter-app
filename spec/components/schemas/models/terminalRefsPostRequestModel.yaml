@@ -1,0 +1,135 @@
+title: terminalRefsPostRequest
+properties:
+  terminal:
+    type: string
+    description: The identifier of the Terminal that owns this terminalRefs resource.
+  ref:
+    type: string
+    description: The reference code itself. This field is stored as a text string
+      and must be between 0 and 50 characters long.
+  stage:
+    title: terminalRefStage
+    type: string
+    description: |
+      An indicator showing what this terminalRef refers to, such as 'create', 'pid', 'tid', 'token', or 'ctid'.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `create`  -  **Terminal Creation**
+      - `pid`  -  **Platform ID**
+      - `tid`  -  **Terminal ID**
+      - `token`  -  **Token ID**
+      - `ctid`  -  **Custom Terminal ID**
+
+      </details>
+    enum:
+    - create
+    - pid
+    - tid
+    - token
+    - ctid
+  platform:
+    title: terminalRefPlatform
+    type: string
+    description: |
+      The platform that issued this terminalRef.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `ELAVON` - **ELAVON Payments Platform.**
+      - `FIRSTDATA` - **FirstData Payments Platform.**
+      - `VCORE` - **WorldPay / Vantiv Core Payments Platform.**
+      - `VANTIV` - **WorldPay / Vantiv eComm Payments (VAP) Platform.**
+      - `WELLSFARGO` - **Wells Fargo Merchant Services Payments Platform.**
+      - `SOUNDPAYMENTS` - **SoundPayments EMV and POS Payments Platform.**
+      - `PAYRIX` - **Payrix Merchant Payments Platform.**
+
+      </details>
+    enum:
+    - ELAVON
+    - FIRSTDATA
+    - VCORE
+    - VANTIV
+    - WELLSFARGO
+    - SOUNDPAYMENTS
+    - PAYRIX
+    x-enum-elements:
+    - name: ELAVON
+      description: ELAVON Payments Platform.
+    - name: FIRSTDATA
+      description: FirstData Payments Platform.
+    - name: VCORE
+      description: WorldPay / Vantiv Core Payments Platform.
+    - name: VANTIV
+      description: WorldPay / Vantiv eComm Payments (VAP) Platform.
+    - name: WELLSFARGO
+      description: Wells Fargo Merchant Services Payments Platform.
+    - name: SOUNDPAYMENTS
+      description: SoundPayments EMV and POS Payments Platform.
+    - name: PAYRIX
+      description: Payrix Merchant Payments Platform.
+  processor:
+    type: string
+    description: |
+      The processor that issued this terminalTxnRef.
+    
+      <details>
+      <summary>Valid Values</summary>
+    
+      - `APPLE` - **APPLE**
+      - `ELAVON` - **ELAVON**
+      - `FIRSTDATA` - **FIRSTDATA**
+      - `GOOGLE` - **GOOGLE**
+      - `VANTIV` - **VANTIV**
+      - `VCORE` - **VCORE**
+      - `WELLSACH` - **WELLSACH**
+      - `WELLSFARGO` - **WELLSFARGO**
+      - `WFSINGLE` - **WFSINGLE**
+      - `WORLDPAY` - **WORLDPAY**
+      - `TDBANKCA` - **TDBANKCA**
+    
+      </details>
+    enum:
+    - APPLE
+    - ELAVON
+    - FIRSTDATA
+    - GOOGLE
+    - VANTIV
+    - VCORE
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    - TDBANKCA
+    example: VCORE
+    x-enum-elements:
+    - name: APPLE
+      description: APPLE.
+    - name: ELAVON
+      description: ELAVON.
+    - name: FIRSTDATA
+      description: FIRSTDATA.
+    - name: GOOGLE
+      description: GOOGLE.
+    - name: VANTIV
+      description: VANTIV.
+    - name: VCORE
+      description: VCORE.
+    - name: WELLSACH
+      description: WELLSACH.
+    - name: WELLSFARGO
+      description: WELLSFARGO.
+    - name: WFSINGLE
+      description: WFSINGLE.
+    - name: WORLDPAY
+      description: WORLDPAY.
+    - name: TDBANKCA
+      description: TDBANKCA.
+required:
+- platform
+- processor
+- ref
+- stage
+- terminal

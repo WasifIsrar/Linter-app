@@ -1,0 +1,78 @@
+get:
+  description: Retrieve a list of all account verifications that query an accountVerifications
+    resource, representing attempts to verify the ownership of a particular bank account
+    by verifying a known deposit amount or credential.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_acv_99aee642e73d8c8ec629899
+    required: true
+    schema:
+      type: string
+      description: The Account Verification ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/accountVerificationsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountVerificationsModel200Response.yaml
+      description: Retrieve the Response for query on accountVerifications resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Account Verifications.
+  tags:
+  - Accounts Verifications
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAccountVerificationsId
+delete:
+  description: "Delete an accountVerifications resource. \nAn accountVerifications\
+    \ resource represents an attempt to verify the ownership of a particular bank\
+    \ account by verifying a known deposit amount or credential."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_acv_99aee642e73d8c8ec629899
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/accountVerificationsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountVerificationsModel200Response.yaml
+      description: Response for delete on accountVerifications resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all account verifications:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Accounts Verifications
+  - Facilitator
+  operationId: deleteAccountVerificationsId

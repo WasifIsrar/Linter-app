@@ -1,0 +1,41 @@
+title: merchantPlatformStatusesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  merchant: 
+    type: string
+    description: The merchant associated with this merchant platform status.
+  platform: 
+    $ref: ../enums/platformModel.yaml
+  status: 
+    type: string
+    description: |
+      The status of this merchant platform.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Pending.**
+      - `1` - **Approved.**
+      - `2` - **Failed.**
+
+      </details>
+    enum: 
+    - "0"
+    - "1"
+    - "2"
+    x-enum-elements:
+    - name: "pending"
+      description: "Pending"
+    - name: "approved"
+      description: "Approved"
+    - name: "failed"
+      description: "Failed"

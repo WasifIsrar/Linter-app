@@ -1,0 +1,28 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_atk_67d4721def0c98ba2f417bz",
+        "created": "2025-03-14 14:14:53.9897",
+        "modified": "2025-03-14 14:14:54.5877",
+        "creator": "t1_log_6372b01eed9b6a8c75ac8a3",
+        "modifier": "t1_log_6372b01eed9b6a8c75ac8a3",
+        "login": "t1_log_6372b01eed9b6a8c75ac8a3",
+        "token": "261cf67bb2dc20f492abcdb39ecee847",
+        "customer": "000a1eafdfdb335179adf94c1d8bc36d",
+        "used": 202503141414,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

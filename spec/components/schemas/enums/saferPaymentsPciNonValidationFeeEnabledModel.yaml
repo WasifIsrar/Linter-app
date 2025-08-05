@@ -1,0 +1,20 @@
+title: saferPaymentPciNonValidationFeeEnabled
+type: integer
+description: |
+  This field indicates if the entity should be charged penalty fees for non-compliance.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Penalty Disabled.**
+  - `1` - **Penalty Enabled.**
+
+  </details>
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: "penalty disabled"
+  description: "Penalty Disabled"  
+- name: "penalty enabled"
+  description: "Penalty Enabled"

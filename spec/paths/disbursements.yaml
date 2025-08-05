@@ -1,0 +1,36 @@
+get:
+  description: Query Disbursements, each of which represents a record of an occasion
+    where money is either paid to a bank account or received from a bank account.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements:
+              $ref: ../components/schemas/samples/disbursementsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementsModel200Response.yaml
+      description: Retrieve the Disbursements Response for query on disbursements
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursements:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Disbursements.
+  tags:
+  - Disbursements
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDisbursements
