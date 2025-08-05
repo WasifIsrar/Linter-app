@@ -1,0 +1,37 @@
+toc:
+  - group: Getting Started
+    items:
+      - generate: How to Get Started
+        from: getting-started
+  - group: Custom Content
+    items:
+      - group: api-recipes
+        items:
+          - page: Howtocalculate
+            file: api-recipes/Howtocalculate.md
+      - group: guided-walkthrough
+        items:
+          - page: authorize-and-capture-flow
+            file: guided-walkthrough/authorize-and-capture-flow.md
+          - page: patch-order-flow
+            file: guided-walkthrough/patch-order-flow.md
+          - page: standard-checkout-flow
+            file: guided-walkthrough/standard-checkout-flow.md
+      - group: introduction-to-paypal-rest-apis
+        items:
+          - page: api-requests
+            file: introduction-to-paypal-rest-apis/api-requests.md
+          - page: api-responses
+            file: introduction-to-paypal-rest-apis/api-responses.md
+          - page: authentication
+            file: introduction-to-paypal-rest-apis/authentication.md
+          - page: getting-started
+            file: introduction-to-paypal-rest-apis/getting-started.md
+          - page: recipe
+            file: introduction-to-paypal-rest-apis/recipe.md
+  - generate: API Endpoints
+    from: endpoints
+  - generate: Models
+    from: models
+  - generate: SDK Infrastructure
+    from: sdk-infra

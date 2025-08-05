@@ -1,0 +1,56 @@
+{
+  "MergeConfiguration": {
+    "MergeApis": true,
+    "MergedApiName": "PayPal REST APIs",
+    "MergeOrderOfDirectories": [
+      "checkout_orders_v2",
+      "payments_payment_v2",
+      "vault_payment_tokens_v3"
+    ],
+    "MergeSettings": {
+      "ConflictStrategy": "Merge"
+    }
+  },
+  "ImportSettings": {
+    "AllowAdditionalEnumItems": true,
+    "PreserveSingleValueEnum": true
+  },
+  "CodeGenSettings": {
+    "CollapseParamsToArray": true,
+    "ReturnCompleteHttpResponse": true,
+    "GenerateEnums": true,
+    "UseEnumPrefix": false,
+    "EnableLogging": true,
+    "UserAgent": "PayPal REST API {language} SDK, Version: {version}, on OS {os-info}",
+    "JavaPackageName": "com.paypal.api",
+    "JavaGroupId": "com.paypal.sdk",
+    "JavaArtifactId": "paypal-rest-api-sdk",
+    "NullifyEmptyResponses": true
+  },
+  "ServerConfiguration": {
+    "DefaultEnvironment": "Sandbox",
+    "DefaultServer": "default",
+    "Environments": [
+      {
+        "Description": "PayPal Live Environment",
+        "Name": "Production",
+        "Servers": [
+          {
+            "Name": "default",
+            "Url": "https://api-m.paypal.com"
+          }
+        ]
+      },
+      {
+        "Description": "PayPal Sandbox Environment",
+        "Name": "Sandbox",
+        "Servers": [
+          {
+            "Name": "default",
+            "Url": "https://api-m.sandbox.paypal.com"
+          }
+        ]
+      }
+    ]
+  }
+}
