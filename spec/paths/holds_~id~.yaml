@@ -1,0 +1,86 @@
+get:
+  description: "Query a holds resource. \nA holds resource represents a reviewable\
+    \ action taken on a Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_hld_0000fc11df8e4c00000e00c
+    required: true
+    schema:
+      type: string
+      description: The Transaction Hold ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/holdsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/holdsModel200Response.yaml
+      description: Retrieve a Transaction Hold Response for query on holds resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Transaction Hold by its ID.
+  tags:
+  - Transaction Holds
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getHoldsId
+put:
+  description: Details for update on holds
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_hld_0000fc11df8e4c00000e00c
+    required: true
+    schema:
+      type: string
+      description: The Transaction Hold ID.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/holdsPutRequestModel.yaml
+    description: Update Transaction Hold Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/holdsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/holdsModel200Response.yaml
+      description: Response for update on holds transaction response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Transaction Hold by its ID.
+  tags:
+  - Transaction Holds
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putHoldsId

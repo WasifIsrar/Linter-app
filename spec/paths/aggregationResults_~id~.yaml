@@ -1,0 +1,79 @@
+get:
+  description: Query an AggregationResult.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation Result ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_art_66ebb2d6c5b4a0212c1bd00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResults:
+              $ref: ../components/schemas/samples/aggregationResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationResultsModel200Response.yaml
+      description: Retrieve the Response for the query on the Aggregation Results
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Aggregation Result by it's ID.
+  tags:
+  - Aggregation Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAggregationResultsId
+delete:
+  description: Delete an Aggregation Result that holds a field totals calculated when
+    processing an aggregation.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Aggregation Result ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_art_66ebb2d6c5b4a0212c1bd00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete aggregationResults:
+              $ref: ../components/schemas/samples/aggregationResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationResultsModel200Response.yaml
+      description: Response for delete on Aggregation Results resource Delete Aggregation
+        Result Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Aggregation Result by it's ID.
+  tags:
+  - Aggregation Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAggregationResultsId

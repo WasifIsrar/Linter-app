@@ -1,0 +1,12 @@
+title: entityCustomFieldsPutRequest
+properties:
+  key:
+    type: string
+    description: Name of custom field.
+  value:
+    type: string
+    description: Value of custom field.
+
+example: 
+  key: companyId
+  value: 70bbd35e-8500-f011-90cb-6045bdc7c168

@@ -1,0 +1,13 @@
+title: disbursementEntriesResponseResult
+properties:
+  response:
+    title: disbursementEntriesResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/disbursementEntriesModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

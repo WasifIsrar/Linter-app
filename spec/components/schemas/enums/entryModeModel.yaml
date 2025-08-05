@@ -1,0 +1,68 @@
+title: entryMode
+type: integer
+description: |
+  How payment information has been entered, including manually keyed entries, card swipes with track 1 or 2 data received, card dips with EMV chip data received, contactless card reads with track or EMV data received, and ApplePay read with cryptogram data received.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Manually keyed entry.**
+  - `2` - **Card swiped. Track 1 received.**
+  - `3` - **Card swiped. Track 2 received.**
+  - `4` - **Card swiped. Track 1 & 2 received.**
+  - `5` - **Card dipped. EMV chip received.**
+  - `6` - **Contactless card read. Track or EMV data received.**
+  - `7` - **Track Data from Card Swipe after EMV chip failure.**
+  - `8` - **Track Data from Manually keyed entry after EMV chip failure.**
+  - `9` - **ApplePay**
+  - `10` - **Google Pay.**
+  - `11` - **Merchant created transaction.**
+  - `12` - **Invoice payment.**
+  - `13` - **Merchant created transaction in payrix portal.**
+  - `14` - **Invoice payment from payrix portal.**
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+x-enum-elements:
+- name: Keyed
+  description: Manually keyed entry.
+- name: Track1
+  description: Card swiped. Track 1 received.
+- name: Track2
+  description: Card swiped. Track 2 received.
+- name: Both
+  description: Card swiped. Track 1 & 2 received.
+- name: Emv
+  description: Card dipped. EMV chip received.
+- name: Contactless
+  description: Contactless card read. Track or EMV data received.
+- name: FallbackSwiped
+  description: Track Data from Card Swipe after EMV chip failure.
+- name: FallbackKeyed
+  description: Track Data from Manually keyed entry after EMV chip failure.
+- name: ApplePay
+  description: ApplePay read and cryptogram data received.
+- name: GooglePay
+  description: Google Pay.
+- name: Merchant
+  description: Merchant created transaction.
+- name: Invoice
+  description: Invoice payment.
+- name: PayrixMerchant
+  description: Merchant created transaction in payrix portal.
+- name: PayrixInvoice
+  description: Invoice payment from payrix portal.

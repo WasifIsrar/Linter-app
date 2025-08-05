@@ -1,0 +1,42 @@
+title: messageThreadsPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this messageThreads resource.
+  forlogin:
+    type: string
+    description: The identifier of the receiving Login of this messageThreads resource.
+  hold:
+    type: string
+    description: The identifier of the Hold that is related to this messageThread.
+  entityReturn:
+    type: string
+    description: This field has the ID from the EntityReturns table that hold ACH returns for disbursements or eCheck txns.
+  opposingMessageThread:
+    type: string
+    description: Specifies whether this is the opposing MessageThread.
+  folder:
+    type: string
+    description: Free-form text. By default, a messageThread resource is set as 'default'.
+  sender:
+    type: string
+    description: Free-form text that represents the name of the sender of a messageThread
+      resource.
+  recipient:
+    type: string
+    description: Free-form text that represents the name of the recipient of a messageThread
+      resource.
+  subject:
+    type: string
+    description: Free-form text for adding a subject to a messageThread resource.
+
+example:
+  login: t1_mtd_67ef5bad402b6b61e701e0z
+  forlogin: t1_log_61e9b7302360fbf12999d63
+  hold: t1_hld_67ef5bad3be038935902204
+  entityReturn: entityReturn
+  opposingMessageThread: t1_mtd_67ef5bad40f7e68822ac0c7
+  folder: default
+  sender: testnewmerchant
+  recipient: testnewmerchant1
+  subject: Transaction was put on hold

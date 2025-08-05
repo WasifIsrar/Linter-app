@@ -1,0 +1,129 @@
+title: partitionsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  name:
+    type: string
+    description: "The name of this Partition. \nThis field is stored as a text string\
+      \ and must be between 0 and 50 characters long."
+  email:
+    type: string
+    description: "The email address that the API should send email notifications from\
+      \ when processing requests in this Partition. \nThis field is stored as a text\
+      \ string and must be between 1 and 100 characters long."
+  minPasswordLength:
+    type: integer
+    description: "The minimum number of characters that all passwords used in this\
+      \ Partition must have. \nThis field is specified as an integer. \nThe value\
+      \ must be between 8 and 16."
+  minPasswordComplexity:
+    type: integer
+    description: |
+      The minimum level of complexity that all passwords used in this Partition must have.
+      There are four complexity 'factors' that can be evaluated. These are the presence
+      of the following character types in the password: lowercase characters, uppercase
+      characters, integers, and special characters. For instance, the password '123a'
+      would get a complexity rating of '2', since it contains integers and lowercase characters.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **Needs to include one type.**
+      - `2` - **Needs to include two types.**
+      - `3` - **Needs to include three types.**
+      - `4` - **Needs to include four types.**
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    x-enum-elements:
+    - name: One
+      description: At least one complexity factor.
+    - name: Two
+      description: At least two complexity factors.
+    - name: Three
+      description: At least three complexity factors.
+    - name: Four
+      description: At least four complexity factors.
+  minPasswordHistory:
+    type: integer
+    description: |
+      The minimum number of previous passwords that the current password must be distinct from.
+      This field is specified as an integer. The value must be between 3 and 12.
+  noEmailConfirmation:
+    type: integer
+    description: |
+      Whether to disable the email address confirmation process for this Partition.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Require email address confirmation for this Partition.
+    - name: Enabled
+      description: Do not require email address confirmation for this Partition.
+  noHoldEmail:
+    type: integer
+    description: |
+      Whether to disable email notification for automated hold messages.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Allow emails to be created on Holds.
+    - name: Enabled
+      description: Do not allow emails to be created for Holds for this Partition.
+  changeManagementEnabled:
+    type: integer
+    description: |
+      Whether change management is enabled.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Change management is disabled.
+    - name: Enabled
+      description: Change management is enabled.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency in which an entity should board. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.

@@ -1,0 +1,41 @@
+title: chargebackDocumentType
+type: string
+description: |
+  The type of the file that holds this chargebackDocument. 
+  The value is set when the file is properly integrated, otherwise will be null.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `jpg` - **JPG file**
+  - `jpeg` - **JPEG file**
+  - `gif` - **GIF file**
+  - `png` - **PNG file**
+  - `pdf` - **PDF file**
+  - `tiff` - **TIFF file**
+  - `tif` - **TIF file**
+
+  </details>
+enum:
+- jpg
+- jpeg
+- gif
+- png
+- pdf
+- tiff
+- tif
+x-enum-elements:
+- name: Jpg
+  description: JPG file.
+- name: Jpeg
+  description: JPEG file.
+- name: Gif
+  description: GIF file.
+- name: Png
+  description: PNG file.
+- name: Pdf
+  description: PDF file.
+- name: Tiff
+  description: TIFF file.
+- name: Tif
+  description: TIF file.

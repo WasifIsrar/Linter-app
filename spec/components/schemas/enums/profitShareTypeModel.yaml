@@ -1,0 +1,24 @@
+title: profitShareType
+type: string
+description: |
+  Indicates if the Profit Share should be processed when there is an income, expense, or both.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `income` - **Profit Share processing for income-only.**
+  - `expense` - **Profit Share processing for expense-only.**
+  - `both` - **Profit Share processing for both income and expense.**
+
+  </details>
+enum:
+- income
+- expense
+- both
+x-enum-elements:
+- name: Income
+  description: Profit Share processing for income-only.
+- name: Expense
+  description: Profit Share processing for expense-only.
+- name: Both
+  description: Profit Share processing for both income and expense.

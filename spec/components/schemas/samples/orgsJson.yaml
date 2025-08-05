@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_org_67cab1c56e1fd4f4c0a000z",
+        "created": "2025-03-07 03:43:49.4586",
+        "modified": "2025-03-07 03:43:49.4586",
+        "creator": "t1_log_656d51cd565edf13a27c494",
+        "modifier": "t1_log_656d51cd565edf13a27c494",
+        "login": "t1_log_656d51cd565edf13a27c494",
+        "name": "Leora44",
+        "description": "description of Org",
+        "defaultFeeFromEntity": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

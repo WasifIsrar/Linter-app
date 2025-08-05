@@ -1,0 +1,118 @@
+get:
+  description: Query a embeddedFinance.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_efe_685d2955cc86da261b3bd00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/embeddedFinanceJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/embeddedFinanceModel200Response.yaml
+      description: Retrieve embeddedFinance Response for query on embeddedFinance resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a embeddedFinance by it's ID.
+  tags:
+  - Embedded Finance
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: getEmbeddedFinanceId
+put:
+  description: Update a embeddedFinance.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_efe_685d2955cc86da261b3bd00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/embeddedFinancePutRequestModel.yaml
+    description: Update embeddedFinance Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update embeddedFinance:
+              $ref: ../components/schemas/samples/embeddedFinanceJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/embeddedFinanceModel200Response.yaml
+      description: Response for update on embeddedFinance resource Update embeddedFinance Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a embeddedFinance by it's ID.
+  tags:
+  - Embedded Finance
+  - Facilitator
+  - Partner
+  operationId: putEmbeddedFinanceId
+delete:
+  description: Delete a embeddedFinance
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_efe_685d2955cc86da261b3bd00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete embeddedFinance:
+              $ref: ../components/schemas/samples/embeddedFinanceJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/embeddedFinanceModel200Response.yaml
+      description: The response for deleting a embeddedFinance.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete embeddedFinance by it's ID.
+  tags:
+  - Embedded Finance
+  - Facilitator
+  operationId: deleteEmbeddedFinanceId

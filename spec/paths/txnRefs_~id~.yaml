@@ -1,0 +1,119 @@
+get:
+  description: "Query a txnRefs resource. \nA txnRefs resource represents a reference\
+    \ code issued by the Processor in relation to a particular Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The txnRefs ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_trf_67b83ff34f95cbd9f3a15f0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/txnRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnRefsModel200Response.yaml
+      description: Response for query on txnRefs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a transaction's references (txnRefs) by its ID.
+  tags:
+  - Transactions References
+  - Facilitator
+  operationId: getTxnRefsId
+put:
+  description: "Update a txnRefs resource. \nA txnRefs resource represents a reference\
+    \ code issued by the Processor in relation to a particular Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The txnRefs ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_trf_67b83ff34f95cbd9f3a15f0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/txnRefsPutRequestModel.yaml
+    description: Update txnRefs Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update txnRefs:
+              $ref: ../components/schemas/samples/txnRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnRefsModel200Response.yaml
+      description: Response for update on txnRefs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a transaction's references (txnRefs) by its ID.
+  tags:
+  - Transactions References
+  - Facilitator
+  operationId: putTxnRefsId
+delete:
+  description: "Delete a txnRefs resource. \nA txnRefs resource represents a reference\
+    \ code issued by the Processor in relation to a particular Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_trf_67b83ff34f95cbd9f3a15f0
+    required: true
+    schema:
+      type: string
+      description: The txnRef ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete txnRefs:
+              $ref: ../components/schemas/samples/txnRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnRefsModel200Response.yaml
+      description: Response for delete on txnRefs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a transaction's references (txnRefs) by its ID.
+  tags:
+  - Transactions References
+  - Facilitator
+  operationId: deleteTxnRefsId

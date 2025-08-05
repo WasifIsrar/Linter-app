@@ -1,0 +1,93 @@
+get:
+  description: "Query a mccs resource. \n"
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mccsModel200Response.yaml
+      description: Response for query on mccs resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Merchant Category Codes (MCC)
+  - Facilitator
+  operationId: getMccsId
+put:
+  description: "Update a mccs resource. \n"
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/mccsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mccsModel200Response.yaml
+      description: Response for update on mccs resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Merchant Category Codes (MCC)
+  - Facilitator
+  operationId: putMccsId
+delete:
+  description: "Delete a Merchant Category Code (MCC) resource. \nAn MCC resource\
+    \ represents a particular category or line of business that a Merchant can be\
+    \ involved in and whether that category should be allowed or prohibited for the\
+    \ linked Entity."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mccsModel200Response.yaml
+      description: Response for delete on mccs resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Merchant Category Codes (MCC)
+  - Facilitator
+  operationId: deleteMccsId

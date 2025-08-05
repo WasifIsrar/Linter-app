@@ -1,0 +1,54 @@
+get:
+  description: "Query a Configuration resource. \nA Configuration resource will hold\
+    \ relevant information about an integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationsModel200Response.yaml
+      description: Response for query on configurations resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configurations
+  - Facilitator
+  operationId: getConfigurations
+post:
+  description: "Create a Configuration resource. \nA Configuration resource will hold\
+    \ relevant information about an integration configuration."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/configurationsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationsModel200Response.yaml
+      description: Response for create on configurations resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configurations
+  - Facilitator
+  operationId: postConfigurations
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,39 @@
+get:
+  description: Query a Fund, which represents a sum of money held by an Entity, and
+    some of the amount can be marked as reserved or available.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Fund ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_fun_00b1192141e3b78e110028b
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all funds:
+              $ref: ../components/schemas/samples/fundsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/fundsModel200Response.yaml
+      description: Retrieve fund response for query on funds resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all funds:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Fund by it's ID.
+  tags:
+  - Funds
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getFundsId

@@ -1,0 +1,43 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "p1_pay_00ce6d57cf453b53a8b5d19",
+              "created": "2025-03-10 00:40:55.8743",
+              "modified": "2025-03-10 00:40:55.8743",
+              "creator": "p1_log_0a4e8c7d3a625ed0f4ee1e0",
+              "modifier": "p1_log_0a4e8c7d3a625ed0f4ee1e0",
+              "login": "p1_log_0a4e8c7d3a625ed0f4ee1e0",
+              "account": "8ccbda671ad9463f2d7cab3119010000",
+              "entity": "p1_ent_00ce6d2c1f773f68e9cbe05",
+              "billing": "p1_bil_0078b6a1899f8d14f58d7c5",
+              "payoutFlow": "p1_pfw_000f0148a5d61a4dec3f108",
+              "name": "Automatically generated payout schedule",
+              "description": "payout schedule description",
+              "schedule": 1,
+              "scheduleFactor": 1,
+              "start": 20250312,
+              "currency": "USD",
+              "um": 1,
+              "amount": 100,
+              "minimum": 10,
+              "maximum": 100,
+              "float": 0,
+              "secondaryDescriptor": "Wellness",
+              "skipOffDays": 0,
+              "inactive": 0,
+              "frozen": 0,
+              "sameDay": 0
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

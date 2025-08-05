@@ -1,0 +1,28 @@
+title: accountMethod
+type: integer
+description: |
+  The type of the Account.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `8` - **Checking**
+  - `9` - **Savings**
+  - `10` - **Corporate Checking**
+  - `11` - **Corporate Savings**
+
+  </details>
+enum:
+- 8
+- 9
+- 10
+- 11
+x-enum-elements:
+- name: "Checking"
+  description: "Checking"
+- name: "Savings"
+  description: "Savings"
+- name: "CorporateChecking"
+  description: "Corporate Checking"
+- name: "CorporateSavings"
+  description: "Corporate Savings"

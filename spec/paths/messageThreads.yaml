@@ -1,0 +1,69 @@
+get:
+  description: Query a Message Threads resource that represents the sender, receiver,
+    and subject of the Messages resources
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all messageThreads:
+              $ref: ../components/schemas/samples/messageThreadsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messageThreadsModel200Response.yaml
+      description: Retrieve the Response for query on messageThreads resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messageThreads:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Message Threads.
+  tags:
+  - Message Threads
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMessageThreads
+post:
+  description: "Create a messageThreads resource. \nA messageThreads resource represents\
+    \ the sender, receiver, and subject of the Messages resources."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/messageThreadsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create messageThreads:
+              $ref: ../components/schemas/samples/messageThreadsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messageThreadsModel200Response.yaml
+      description: Response for create on messageThreads resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messageThreads:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Message Threads
+  - Facilitator
+  operationId: postMessageThreads
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,38 @@
+get:
+  description: Query an Entry resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Entry ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_etr_00bec0c794be4453f0af5b0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entries:
+              $ref: ../components/schemas/samples/entriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entriesModel200Response.yaml
+      description: Response for retrieve entry.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Entry by it's ID.
+  tags:
+  - Entries
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntriesId

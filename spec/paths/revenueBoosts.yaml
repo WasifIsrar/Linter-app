@@ -1,0 +1,65 @@
+get:
+  description: Query revenue boosts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all revenueBoosts:
+              $ref: ../components/schemas/samples/revenueBoostsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revenueBoostsModel200Response.yaml
+      description: Response for querying and retrieving all revenueBoosts.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all revenueBoosts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all revenueBoosts.
+  tags:
+  - Revenue Boosts
+  - Merchant
+  - Partner
+  operationId: getRevenueBoosts
+post:
+  description: Create a Value Added Service networkPaymentManager
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/revenueBoostsPostRequestModel.yaml
+    description: Add RevenueBoosts Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/revenueBoostsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/revenueBoostsModel200Response.yaml
+      description: The response for creating revenueBoost on the revenueBoosts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Add a new RevenueBoost.
+  tags:
+  - Revenue Boosts
+  - Partner
+  operationId: postRevenueBoosts

@@ -1,0 +1,30 @@
+title: vendorsPostRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this Vendor resource.
+  division:
+    type: string
+    description: ID of the division associated with this vendor.
+  onboardingContactEmails:
+    type: string
+    description: This holds the different emails the partners will want to be reached for onboarding related queries/concerns, this is a way of allowing the risk team to manage contacts more efficiently.
+  riskContactEmails:
+    type: string
+    description: This holds the different emails the partners will want to be reached for risk related queries/concerns, this is a way of allowing the risk team to manage contacts more efficiently.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- entity
+- frozen
+- inactive
+
+example:
+  entity: p1_ent_67be57c6a1d97f564021b6b
+  division: p1_div_67be57c6d34928c1ee16155
+  onboardingContactEmails: robert@example.com
+  riskContactEmails: robert.j@example.com
+  inactive: 0
+  frozen: 0

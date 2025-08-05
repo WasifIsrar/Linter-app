@@ -1,0 +1,19 @@
+title: accountRefPutRequest
+properties:
+  account:
+    type: string
+    description: The parent account that owns this accountRef and for which the reference
+      is set.
+  ref:
+    type: string
+    description: The reference ID from the third party.
+  stage:
+    $ref: ../enums/accountStageModel.yaml
+  platform:
+    $ref: ../enums/accountRefPlatformModel.yaml
+
+example:
+  account: t1_act_67aafff2c40a8cecf5cb702
+  ref: access-demo-54b9d626-8730-4f3f-8837-789d41d34953
+  platform: PLAID
+  stage: accessToken

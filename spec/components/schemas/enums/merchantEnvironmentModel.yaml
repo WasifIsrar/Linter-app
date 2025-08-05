@@ -1,0 +1,40 @@
+title: merchantEnvironment
+type: string
+description: |
+  The environment which the Merchant is in, if applicable.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `supermarket` - **Supermarkets / Grocery**
+  - `moto` - **Mail Order / Telephone Order**
+  - `cardPresent` - **Card Present Environment**
+  - `fuel` - **Fuel / Gas Stations**
+  - `serviceStation` - **Service Stations**
+  - `restaurant` - **Restaurants**
+  - `ecommerce` - **eCommerce / Online Sales**
+
+  </details>
+enum:
+- supermarket
+- moto
+- cardPresent
+- fuel
+- serviceStation
+- restaurant
+- ecommerce
+x-enum-elements:
+- name: Supermarket
+  description: Supermarkets / Grocery.
+- name: Moto
+  description: Mail Order / Telephone Order.
+- name: CardPresent
+  description: Card Present Environment.
+- name: Fuel
+  description: Fuel / Gas Stations.
+- name: ServiceStation
+  description: Service Stations.
+- name: Restaurant
+  description: Restaurants.
+- name: Ecommerce
+  description: eCommerce / Online Sales.

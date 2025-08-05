@@ -1,0 +1,37 @@
+title: terminalTxnStatus
+type: integer
+description: |
+  The status of the Transaction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Pending.**
+  - `1` - **Approved.** Payments can be voided or cancelled.
+  - `2` - **Failed.**
+  - `3` - **Captured.** Payments can be refunded.
+  - `4` - **Settled.** Payments can be refunded.
+  - `5` - **Returned.** Payments have been successfully refunded.
+
+  </details>
+enum:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+x-enum-elements:
+- name: Pending
+  description: Pending.
+- name: Approved
+  description: Payments can be voided or cancelled.
+- name: Failed
+  description: Failed.
+- name: Captured
+  description: Payments can be refunded.
+- name: Settled
+  description: Payments can be refunded.
+- name: Returned
+  description: Payments have been successfully refunded.
+default: 0

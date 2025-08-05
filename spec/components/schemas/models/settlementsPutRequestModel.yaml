@@ -1,0 +1,23 @@
+title: settlementsPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this settlement.
+  payment:
+    type: string
+    description: The identifier of the Payment used with this settlement.
+  platform:
+    $ref: ../enums/platformModel.yaml
+  ref:
+    type: string
+    description: The reference code used to identify the settlement in the platform.
+  status:
+    $ref: ../enums/settlementStatusModel.yaml
+  amount:
+    type: integer
+    description: The amount of the settlement.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+

@@ -1,0 +1,119 @@
+get:
+  description: Query Orgs VAS OmniTokens.
+  parameters:
+  - description: The ID of this resource, or the (unknown) ID associated with the
+      Orgs VAS OmniTokens.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovo_680bfd41d139cba791290z0
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/orgsVASOmniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASOmniTokensModel200Response.yaml
+      description: Response for retrieve Orgs VAS OmniTokens.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Orgs VAS OmniTokens.
+  tags:
+  - Orgs VAS OmniTokens
+  - Facilitator
+  - Partner
+  operationId: getOrgsVASOmniTokensId
+put:
+  description:  Update Orgs VAS OmniTokens.
+  parameters:
+  - description: The ID of this Orgs VAS OmniToken.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovo_680bfd41d139cba791290z0
+    required: true
+    schema:
+      type: string
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASOmniTokensPutRequestModel.yaml
+    description: Update Orgs VAS OmniToken
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/orgsVASOmniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASOmniTokensModel200Response.yaml
+      description: The response for update Orgs VAS OmniToken.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Orgs VAS OmniTokens.
+  tags:
+  - Orgs VAS OmniTokens
+  - Facilitator
+  - Partner
+  operationId: putOrgsVASOmniTokensId
+delete:
+  description: Delete Token.
+  parameters:
+  - description: The ID of this Orgs VAS OmniToken.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovo_680bfd41d139cba791290z0
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      description: A successful deletion
+      content:
+        application/json:
+          examples:
+            Delete orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/orgsVASOmniTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASOmniTokensModel200Response.yaml
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASOmniTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Token by it's ID.
+  tags:
+  - Orgs VAS OmniTokens
+  - Facilitator
+  - Partner
+  operationId: deleteOrgsVASOmniTokensId  

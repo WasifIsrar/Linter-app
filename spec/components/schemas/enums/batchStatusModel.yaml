@@ -1,0 +1,21 @@
+title: batchStatus
+type: string
+description: |
+  The current status of this Batch.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `open`  - **This Batch can accept more Transactions.**
+  - `closed` - **This Batch is closed to new Transactions and is ready to be sent to the processor.**
+
+  </details>
+default: open
+enum:
+- open
+- closed
+x-enum-elements:
+- name: "Open"
+  description: "This Batch can accept more Transactions."
+- name: "Closed"
+  description: "This Batch is closed to new Transactions and is ready to be sent to the processor."

@@ -1,0 +1,123 @@
+title: disbursementResultsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  disbursement:
+    type: string
+    description: The identifier of the Disbursement that this disbursementResult
+      resource refers to.
+  disbursementRef:
+    type: string
+    description: The ID of the disbursementRef for which this result is recorded.
+  code:
+    title: disbursementResultCode
+    type: string
+    description: "The code identifying the disbursement result.\n\n<details>\n<summary>Valid\
+      \ Values</summary> \n\n- `pending` - **Disbursement processing is pending account\
+      \ verification.**\n\n- `internal` - **Failed. Internal note and/or failure.**\n\
+      \n- `nsf` - **Failed. Disbursement return due to insufficient funds.**\n\n- `badAccount`\
+      \ - **Failed. Disbursement return due to incorrect payment account information.**\n\
+      \n- `unauthorized` - **Failed. Disbursement return due to customer dispute of\
+      \ authorization.**\n\n- `general` - **General note and/or failure.**\n\n- `noc`\
+      \ - **Notice of change.**\n\n- `parameter` - **Disbursement processing withheld\
+      \ due to parameter configuration.**\n\n- `sameDay` - **Failed. Same-day processing\
+      \ note and/or failure.**\n\n- `transferDetails` - **Trace number note and/or\
+      \ data.**\n\n- `platform` - **Failed. Processor note and/or failure.**\n\n</details>\n"
+    enum:
+    - pending
+    - internal
+    - nsf
+    - badAccount
+    - unauthorized
+    - general
+    - noc
+    - parameter
+    - sameDay
+    - transferDetails
+    - platform
+    x-enum-elements:
+    - name: "Pending"
+      description: "Disbursement processing is pending account verification."
+    - name: "Internal"
+      description: "Failed. Internal note and/or failure."
+    - name: "Nsf"
+      description: "Failed. Disbursement return due to insufficient funds."
+    - name: "BadAccount"
+      description: "Failed. Disbursement return due to incorrect payment account information."
+    - name: "Unauthorized"
+      description: "Failed. Disbursement return due to customer dispute of authorization."
+    - name: "General"
+      description: "General note and/or failure."
+    - name: "Noc"
+      description: "Notice of change."
+    - name: "Parameter"
+      description: "Disbursement processing withheld due to parameter configuration."
+    - name: "SameDay"
+      description: "Failed. Same-day processing note and/or failure."
+    - name: "TransferDetails"
+      description: "Trace number note and/or data."
+    - name: "Platform"
+      description: "Failed. Processor note and/or failure."
+  originalCode:
+    type: string
+    description: The original, unmapped code as received from the processor for this
+      result.
+  platform:
+    title: disbursementPlatform
+    type: string
+    description: "The platform used to process this Disbursement. \n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `ELAVON`  - **The Elavon processor.**\n\n- `VANTIV`\
+      \  - **The Worldpay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\n-\
+      \ `VCORE` - **The Worldpay (aka Vantiv) Core processor.**\n\n- `TDBANK` - **External\
+      \ funding with TD Bank via the Operating Account.**\n\n- `TDBANKCA` - **External\
+      \ funding with TD Bank Canada via the Operating Account.**\n\n- `WELLSACH` -\
+      \ **The Wells Fargo ACH processor.**\n\n- `WELLSFARGO` - **The Wells Fargo Merchant\
+      \ Services processor.**\n\n- `WFSINGLE` - **The WFSINGLE processor.**\n\n- `WORLDPAY`\
+      \ - **The WORLDPAY processor.**\n\n</details>\n"
+    enum:
+    - ELAVON
+    - VANTIV
+    - VCORE
+    - TDBANK
+    - TDBANKCA
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    x-enum-elements:
+    - name: "Elavon"
+      description: "The Elavon processor."
+    - name: "Vantiv"
+      description: "The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor."
+    - name: "VCore"
+      description: "The WorldPay (aka Vantiv) Core processor."
+    - name: "TdBank"
+      description: "External funding with TD Bank via the Operating Account."
+    - name: "TdBankCa"
+      description: "External funding with TD Bank Canada via the Operating Account."
+    - name: "WellsAch"
+      description: "The Wells Fargo ACH processor."
+    - name: "WellsFargo"
+      description: "The Wells Fargo Merchant Services processor."
+    - name: "WfSingle"
+      description: "The WFSINGLE processor."
+    - name: "WorldPay"
+      description: "The WORLDPAY processor."
+  message:
+    type: string
+    description: The message string for this result.
+  amount:
+    type: integer
+    format: int64
+    description: The amount of the disbursement relevant for this result.
+  data:
+    type: string
+    description: Data (the trace number, if applicable).

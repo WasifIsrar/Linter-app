@@ -1,0 +1,126 @@
+get:
+  description: Query an Account. An Account represents a bank account associated with
+    an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_act_12a003cde5d6b2ec3d9canb
+    required: true
+    schema:
+      type: string
+      description: The Account ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/accountsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountsModel200Response.yaml
+      description: Response for query on accounts resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Bank Account by its ID.
+  tags:
+  - Accounts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAccountsId
+put:
+  description: Update an existing Account representing a bank account associated with
+    an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of the Account associated with the Entity's bank account.
+    example: t1_act_12a003cde5d6b2ec3d9canb
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/accountsPutRequestModel.yaml
+    description: A request body for updating existing bank account information for
+      one or more entities.
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/accountsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountsModel200Response.yaml
+      description: Response for update on accounts resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a bank account by its Account ID.
+  tags:
+  - Accounts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putAccountsId
+delete:
+  description: Delete an Account. An Account represents a bank account associated
+    with an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_act_12a003cde5d6b2ec3d9canb
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/accountsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountsModel200Response.yaml
+      description: Response for delete on accounts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a bank account by its Account ID.
+  tags:
+  - Accounts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAccountsId

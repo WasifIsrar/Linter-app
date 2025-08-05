@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ini_67a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_8ad114b7edbf6f641b7c2f2",
+        "modifier": "t1_log_00d114b7edbf6f641b7c2f2",
+        "login": "t1_log_5ed514b7edbf6f641b7c2f2",
+        "item": "Jay",
+        "description": "Jay",
+        "custom": "Sample custom field 1",
+        "um": "kilogram",
+        "commodityCode": "03000",
+        "productCode": "SKU23456",
+        "price": 150000,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

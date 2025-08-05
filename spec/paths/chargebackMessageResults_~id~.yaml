@@ -1,0 +1,39 @@
+get:
+  description: Query a chargebackMessageResults resource, which represents a message
+    that is received from the processor in relation to a Chargeback message.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The Chargeback Message Result ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_cmr_671a55a6a0d0821cc4acf00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessageResults:
+              $ref: ../components/schemas/samples/chargebackMessageResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackMessageResultsModel200Response.yaml
+      description: Retrieve response for query on chargebackMessageResults resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessageResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Chargeback Message Result by it's ID.
+  tags:
+  - Chargeback Message Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChargebackMessageResultsId

@@ -1,0 +1,35 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_chm_fd94438bed7d5e80f0000ea",
+        "created": "2019-09-08 22:30:00.0000",
+        "modified": "2019-09-08 22:30:00.0000",
+        "creator": "t1_log_6564b6476c2015fa1c04ec7",
+        "modifier": "t1_log_6564b6476c2015fa1c04ec7",
+        "chargeback": "t1_chb_2c2443d86f1c94d3846f85b",
+        "date": "20190908",
+        "type": "respond",
+        "fromQueue": "",
+        "toQueue": "",
+        "contact": "",
+        "amount": 1,
+        "currency": "USD",
+        "note": "Charge Merchant",
+        "status": "processed",
+        "inactive": 0,
+        "frozen": 0,
+        "imported": 1
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

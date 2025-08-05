@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ofr_6810c6e4dad2480c7733b00",
+        "created": "2025-04-29 08:32:36.9093",
+        "modified": "2025-04-29 08:37:03.2240",
+        "creator": "t1_log_656d51cd565edf13a27c494",
+        "modifier": "t1_log_656d51cd565edf13a27c494",
+        "orgFlow": "t1_ofw_6810c6cfc7699f50be577dc",
+        "name": "test1",
+        "description": "test1 description",
+        "type": "MCC",
+        "value": "5552",
+        "grouping": "portalgroup_2",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

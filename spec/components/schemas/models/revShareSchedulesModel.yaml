@@ -1,0 +1,38 @@
+title: revShareSchedulesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The Entities object which is collecting the money.
+  forentity:
+    type: string
+    description: The Entities object which is paying the money.
+  start:
+    type: string
+    description: The start date of rev share. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  end:
+    type: string
+    description: The end date of rev share. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  share:
+    type: integer
+    format: int64
+    description: The percentage that payrix receives.
+  event:
+    $ref: ../enums/revShareScheduleEventModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

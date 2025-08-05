@@ -1,0 +1,13 @@
+title: alertActionsResponseResult
+properties:
+  response:
+    title: alertActionsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/alertActionsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

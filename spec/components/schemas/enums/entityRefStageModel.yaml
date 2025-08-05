@@ -1,0 +1,112 @@
+title: entityRefStage
+type: string
+description: |
+  An indicator showing what this terminalRef refers to.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `amexCharge` - **Amex Charge.**
+  - `batch` - **Batch.**
+  - `batchSuffix` - **Batch Suffix.**
+  - `boarding` - **Boarding.**
+  - `chain` - **The store chain ID for this Merchant.**
+  - `chargeback` - **Chargeback.**
+  - `companyDebit` - **Company Debit.**
+  - `companyCredit` - **Company Credit.**
+  - `create` - **Terminal Creation.**
+  - `disbursement` - **Disbursement.**
+  - `entity` - **The Entity ID.**
+  - `batchFile` - **Batch File.**
+  - `payoutFile` - **Payout File.**
+  - `frontend` - **Frontend.**
+  - `funding` - **The Payout funding ID for this Merchant.**
+  - `member` - **The member ID for this Member.**
+  - `merchant` - **The Merchant ID.**
+  - `mid` - **The transaction Merchant ID (MID).**
+  - `origId` - **Original ID.**
+  - `store` - **The store ID for this Merchant.**
+  - `software` - **Software.**
+  - `terminal` - **Terminal.**
+  - `displayName` - **Display Name.**
+  - `domain` - **Domain.**
+  - `expressCreds` - **Express Credentials.**
+
+  </details>
+enum:
+- amexCharge
+- batch
+- batchSuffix
+- boarding
+- chain
+- chargeback
+- companyDebit
+- companyCredit
+- create
+- disbursement
+- entity
+- batchFile
+- payoutFile
+- frontend
+- funding
+- member
+- merchant
+- mid
+- origId
+- store
+- software
+- terminal
+- displayName
+- domain
+- expressCreds
+x-enum-elements:
+- name: AmexCharge
+  description: Amex Charge.
+- name: Batch
+  description: Batch.
+- name: BatchSuffix
+  description: Batch Suffix.
+- name: Boarding
+  description: Boarding.
+- name: Chain
+  description: The store chain ID for this Merchant.
+- name: Chargeback
+  description: Chargeback.
+- name: CompanyDebit
+  description: Company Debit.
+- name: CompanyCredit
+  description: Company Credit.
+- name: Create
+  description: Terminal Creation.
+- name: Disbursement
+  description: Disbursement.
+- name: Entity
+  description: The Entity ID.
+- name: BatchFile
+  description: Batch File.
+- name: PayoutFile
+  description: Payout File.
+- name: Frontend
+  description: Frontend.
+- name: Funding
+  description: The Payout funding ID for this Merchant.
+- name: Member
+  description: The member ID for this Member.
+- name: Merchant
+  description: The Merchant ID.
+- name: Mid
+  description: The transaction Merchant ID (MID).
+- name: OrigId
+  description: Original ID.
+- name: Store
+  description: The store ID for this Merchant.
+- name: Software
+  description: Software.
+- name: Terminal
+  description: Terminal.
+- name: DisplayName
+  description: Display Name.
+- name: Domain
+  description: Domain.
+- name: ExpressCreds
+  description: Express Credentials.

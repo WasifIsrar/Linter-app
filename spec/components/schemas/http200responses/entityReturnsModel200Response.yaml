@@ -1,0 +1,13 @@
+title: entityReturnsResponseResult
+properties:
+  response:
+    title: entityReturnsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/entityReturnsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

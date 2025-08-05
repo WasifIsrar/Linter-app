@@ -1,0 +1,13 @@
+title: messageThreadsResponseResult
+properties:
+  response:
+    title: messageThreadsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/messageThreadsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

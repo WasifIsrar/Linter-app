@@ -1,0 +1,1800 @@
+title: txnResultsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  txn:
+    type: string
+    description: The identifier of the Transaction associated with this txnResults
+      resource.
+  type:
+    title: txnResultType
+    type: integer
+    description: |
+      The type of this txnResult is the type of this txnResult.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1`  -  **A general type of result.**
+      - `2`  -  **Fraud prevention alert.**
+      - `3`  -  **Processor error.**
+      - `4`  -  **CVV matching alert.**
+      - `5`  -  **AVS check alert.**
+      - `6`  -  **AAVS check alert.**
+      - `7`  -  **Network error.**
+      - `8`  -  **3DS check alert.**
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    x-enum-elements:
+    - name: GeneralResult
+      description: A general type of result.
+    - name: FraudPreventionAlert
+      description: Fraud prevention alert.
+    - name: ProcessorError
+      description: Processor error.
+    - name: CVVMatchingAlert
+      description: CVV matching alert.
+    - name: AVSCheckAlert
+      description: AVS check alert.
+    - name: AAVSCheckAlert
+      description: AAVS check alert.
+    - name: NetworkError
+      description: Network error.
+    - name: 3DSCheckAlert
+      description: 3DS check alert.
+  message:
+    type: string
+    description: A message that accompanies and describes this Transaction result.
+  code:
+    title: txnResultsCode
+    type: integer
+    description: |
+      TxnResult is the result code that is associated with this terminal  
+
+      <details>
+      <summary>Valid Values</summary>  
+
+      - `0` - **Transaction approved.**
+      - `1` - **Partially approved. The processor has only approved a portion of the total transaction amount.**
+      - `2` - **Declined. The processor has declined the Transaction.**
+      - `3` - **Verification successful, values provided matched.**
+      - `4` - **Verification unsuccessful, values provided did not match.**
+      - `5` - **The ZIP code in the Transaction data does not match the customer details held by the card issuer.**
+      - `6` - **The address in the Transaction data does not match the customer details held by the card issuer.**
+      - `7` - **The name in the Transaction data does not match the customer details held by the card issuer.**
+      - `8` - **The name and phone number in the Transaction data do not match the details held by the card issuer.**
+      - `9` - **The name and email address in the Transaction data do not match the customer details held by the card issuer.**
+      - `10` - **The phone number in the Transaction data does not match the customer details held by the card issuer.**
+      - `11` - **The phone number and email address in the Transaction data do not match the customer details held by the card issuer.**
+      - `12` - **The email address in the Transaction data does not match the customer details held by the card issuer.**
+      - `13` - **The customer name could not be found in the Transaction data.**
+      - `14` - **The customer name and phone number were not found in the Transaction data.**
+      - `15` - **The customer name and email address were not found in the Transaction data.**
+      - `16` - **The customer phone number was not found in the Transaction data.**
+      - `17` - **The customer phone number and email address were not found in the Transaction data.**
+      - `18` - **The customer email address was not found in the Transaction data.**
+      - `19` - **Information about the customer was not found in the Transaction data.**
+      - `20` - **Non-sufficient funds. The customer did not have sufficient credit or balance to cover the Transaction.**
+      - `21` - **The account in the Transaction data is not valid.**
+      - `22` - **The account is unauthorized.**
+      - `23` - **General error.**
+      - `24` - **The ZIP code in the Transaction data was not verified.**
+      - `25` - **The ZIP code and the Address in the Transaction data were not verified.**
+      - `26` - **The Address in the Transaction data was not verified.**
+      - `27` - **Txn did not fail but was not captured.**
+      - `28` - **3DS authentication passed.**
+      - `29` - **3DS authentication is invalid.**
+      - `30` - **3DS authentication failed.**
+      - `31` - **3DS authentication was not validated.**
+      - `32` - **3DS authentication passed without liability shift.**
+      - `33` - **Transaction processing timed out.**
+      - `34` - **Transaction cancelled  
+      
+      </details>
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    x-enum-elements:
+    - name: Approved
+      description: Transaction approved.
+    - name: PartiallyApproved
+      description: Partially approved. The processor has only approved a portion of the total transaction amount.
+    - name: Declined
+      description: Declined. The processor has declined the Transaction.
+    - name: Match
+      description: Verification successful, values provided matched.
+    - name: NoMatch
+      description: Verification unsuccessful, values provided did not match.
+    - name: ZipNoMatch
+      description: The ZIP code in the Transaction data does not match the customer details held by the card issuer.
+    - name: AddressNoMatch
+      description: The address in the Transaction data does not match the customer details held by the card issuer.
+    - name: NameNoMatch
+      description: The name in the Transaction data does not match the customer details held by the card issuer.
+    - name: NamePhoneNoMatch
+      description: The name and phone number in the Transaction data do not match the details held by the card issuer.
+    - name: NameEmailNoMatch
+      description: The name and email address in the Transaction data do not match the customer details held by the card issuer.
+    - name: PhoneNoMatch
+      description: The phone number in the Transaction data does not match the customer details held by the card issuer.
+    - name: PhoneEmailNoMatch
+      description: The phone number and email address in the Transaction data do not match the customer details held by the card issuer.
+    - name: EmailNoMatch
+      description: The email address in the Transaction data does not match the customer details held by the card issuer.
+    - name: NameUnavailable
+      description: The customer name could not be found in the Transaction data.
+    - name: NamePhoneUnavailable
+      description: The customer name and phone number were not found in the Transaction data.
+    - name: NameEmailUnavailable
+      description: The customer name and email address were not found in the Transaction data.
+    - name: PhoneUnavailable
+      description: The customer phone number was not found in the Transaction data.
+    - name: PhoneEmailUnavailable
+      description: The customer phone number and email address were not found in the Transaction data.
+    - name: EmailUnavailable
+      description: The customer email address was not found in the Transaction data.
+    - name: Unavailable
+      description: Information about the customer was not found in the Transaction data.
+    - name: Nsf
+      description: Non-sufficient funds. The customer did not have sufficient credit or balance to cover the Transaction.
+    - name: BadAccount
+      description: The account in the Transaction data is not valid.
+    - name: Unauthorized
+      description: The account is unauthorized.
+    - name: General
+      description: General error.
+    - name: ZipNotVerified
+      description: The ZIP code in the Transaction data was not verified.
+    - name: ZipAddressNotVerified
+      description: The ZIP code and the Address in the Transaction data were not verified.
+    - name: AddressNotVerified
+      description: The Address in the Transaction data was not verified.
+    - name: Warning
+      description: Txn did not fail but was not captured.
+    - name: 3DSAuthenticationSuccessful
+      description: 3DS authentication passed.
+    - name: 3DSAuthenticationInvalid
+      description: 3DS authentication is invalid.
+    - name: 3DSAuthenticationFailed
+      description: 3DS authentication failed.
+    - name: 3DSAuthenticationNotValidated
+      description: 3DS authentication was not validated.
+    - name: 3DSAuthenticationSuccessfulWithoutLiabilityShift
+      description: 3DS authentication passed without liability shift.
+    - name: Timeout
+      description: Transaction processing timed out.
+    - name: Cancelled
+      description: Transaction cancelled.
+  originalCode:
+    type: string
+    description: Exact message code as received from the activation integration or
+      from the processor for the resulting transaction.
+
+  bankCode:
+    type: string
+    description: |
+      Exact message code as received from the activation integration or
+      from the processor for the resulting transaction.
+
+      <details>
+      <summary>Valid Values</summary>
+  
+      - `ACCEPTED_BUT_NOT_YET_PROCESSED` - **accepted_but_not_yet_processed**
+      - `ACCOUNT_BLOCKED` - **account_blocked**
+      - `ACCOUNT_IS_PURGED` - **account_is_purged**
+      - `ACCOUNT_LOCKED` - **account_locked**
+      - `ACCOUNT_ON_HOLD_OR_NOT_ACTIVE` - **account_on_hold_or_not_active**
+      - `ACCOUNT_NOT_ACTIVATED` - **account_not_activated**
+      - `ACCOUNT_RELOADS_EXCEEDED` - **account_reloads_exceeded**
+      - `ACCOUNT_ROW_LOCKED` - **account_row_locked**
+      - `ACCOUNT_STATUS_IS_VOID_LOCK` - **account_status_is_void_lock**
+      - `ACH_PAYMENT_NOT_ACCEPTED` - **ach_payment_not_accepted**
+      - `ACQUIRER_CHANNEL_UNAVAILABLE` - **acquirer_channel_unavailable**
+      - `ACTIVATION_FAILED` - **activation_failed**
+      - `ADDITIVE_LIMIT_EXCEEDED` - **additive_limit_exceeded**
+      - `ADDRESS_NO_MATCH` - **zip_match_address_mismatch**
+      - `ADDRESS_NOT_VERIFIED` - **zip_match_address_not_verified**
+      - `ALREADY_REDEEMED` - **already_redeemed**
+      - `ALREADY_REVERSED` - **already_reversed**
+      - `AMOUNT_LIMIT_EXCEEDED` - **amount_limit_exceeded**
+      - `AMOUNT_TOO_LARGE` - **amount_too_large**
+      - `APPROVE_WITH_ID` - **approve_with_id**
+      - `APPROVED` - **approved**
+      - `APPROVED_EMV_KEY_LOAD` - **approved_emv_key_load**
+      - `APPROVED_WITH_NO_CASH` - **approved_with_no_cash**
+      - `APPROVED_WITH_OVERDRAFT` - **approved_with_overdraft**
+      - `AUTHORIZATION_ID_NEEDED` - **authorization_id_needed**
+      - `BAD_ACCOUNT` - **bad_account**
+      - `BAD_CHECKSUM` - **bad_checksum**
+      - `BAD_CLOSE` - **bad_close**
+      - `BAD_MAG_STRIPE` - **bad_mag_stripe**
+      - `BAD_POST_DATE` - **bad_post_date**
+      - `BAD_REPAY_DATE` - **bad_repay_date**
+      - `BALANCE_NOT_AVAILABLE` - **balance_not_available**
+      - `BILL_TO_SHIP_TO_MISMATCH` - **bill_to_ship_to_mismatch**
+      - `BIN_BLOCKED` - **bin_blocked**
+      - `BLOCKED_BY_CARDHOLDER` - **blocked_by_cardholder**
+      - `BULK_ACTIVATION_ERROR` - **bulk_activation_error**
+      - `BULK_ACTIVATION_PACKAGE_AMOUNT_ERROR` - **bulk_activation_package_amount_error**
+      - `CALL_ACQUIRER` - **call_acquirer**
+      - `CALL_FOR_AUTHORIZATION` - **call_for_authorization**
+      - `CALL_ISSUER` - **call_issuer**
+      - `CALL_TELECHECK` - **call_telecheck**
+      - `CANNOT_FIND_NETWORK` - **cannot_find_network**
+      - `CARD_ALREADY_ACTIVE` - **card_already_active**
+      - `CARD_ALREADY_CLOSED` - **card_already_closed**
+      - `CARD_NOT_ACTIVE` - **card_not_active**
+      - `CARD_NOT_SUPPORTED` - **card_not_supported**
+      - `CARD_VELOCITY_AMOUNT_EXCEEDED` - **card_velocity_amount_exceeded**
+      - `CARD_VELOCITY_COUNT_EXCEEDED` - **card_velocity_count_exceeded**
+      - `CARD_VELOCITY_EXCEEDED` - **card_velocity_exceeded**
+      - `CASHBACK_GREATER_THAN_TRANSACTION_AMOUNT` - **cashback_greater_than_transaction_amount**
+      - `CASH_LIMIT_EXCEEDED` - **cash_limit_exceeded**
+      - `CENTER_CLOSED` - **center_closed**
+      - `CHECKER/MANAGER_NOT_FOUND` - **checker/manager_not_found**
+      - `CHIP_FAILURE` - **chip_failure**
+      - `CLOSE_UNAVAILABLE` - **close_unavailable**
+      - `CLOSE_NOT_VALID` - **close_not_valid**
+      - `CLOSED_ACCOUNT` - **closed_account**
+      - `COUNT_EXCEEDS_LIMIT` - **count_exceeds_limit**
+      - `COUNTERFEIT_CARD` - **counterfeit_card**
+      - `COUNTER_OFFER_TO_SUPPLY_PERSONAL_GUARANTY` - **counter_offer_to_supply_personal_guaranty**
+      - `CRYPTOGRAM_DECRYPTION_ERROR` - **cryptogram_decryption_error**
+      - `CRYPTO_BOX_IS_OFFLINE` - **crypto_box_is_offline**
+      - `CURRENCY_CONVERSION_COMPLETE` - **currency_conversion_complete**
+      - `CURRENCY_CONVERSION_ERROR` - **currency_conversion_error**
+      - `CURRENCY_NOT_SUPPORTED` - **currency_not_supported**
+      - `CUSTOMER_CANCELLATION` - **customer_cancellation**
+      - `CUSTOMER_OPT_OUT` - **customer_opt_out**
+      - `CUT_TIME_CLOSE_TO_1400` - **cut_time_close_to_1400**
+      - `CVV_DECLINED` - **cvv_declined**
+      - `CVV_FAILED` - **cvv_failed**
+      - `DAILY_LIMIT_EXCEEDED` - **daily_limit_exceeded**
+      - `DATE_OF_BIRTH_ERROR` - **date_of_birth_error**
+      - `DEBIT_GATEWAY_UNAVAILABLE` - **debit_gateway_unavailable**
+      - `DECLINED` - **declined**
+      - `DECLINED_DUE_TO_STAND_IN_RULES` - **declined_due_to_stand_in_rules**
+      - `DECONVERTED_BIN` - **deconverted_bin**
+      - `DO_NOT_HONOR` - **do_not_honor**
+      - `DO_NOT_TRY_AGAIN` - **do_not_try_again**
+      - `DO_NOT_TRY_AGAIN_SUBSEQUENT_MAY_CONTINUE` - **do_not_try_again_subsequent_may_continue**
+      - `DRIVERS_LICENSE_OR_ID_REQUIRED` - **drivers_license_or_id_required**
+      - `DUPLICATE_CAPTURE` - **duplicate_capture**
+      - `DUPLICATE_RETURN` - **duplicate_return**
+      - `DUPLICATE_REVERSAL` - **duplicate_reversal**
+      - `DUPLICATE_TRANSACTION` - **duplicate_transaction**
+      - `EDIT_HONOR` - **edit_honor**
+      - `EMAIL_NO_MATCH` - **email_no_match**
+      - `EMAIL_UNAVAILABLE` - **email_unavailable**
+      - `EMV_KEY_DOWNLOAD_ERROR` - **emv_key_download_error**
+      - `ENTER_LESSER_AMOUNT` - **enter_lesser_amount**
+      - `ERROR_PROCESSING_PIN_BLOCK` - **error_processing_pin_block**
+      - `EXCEEDS_GLOBAL_AMOUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_global_amount_for_period_pay_inside**
+      - `EXCEEDS_GLOBAL_COUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_global_count_for_period_pay_inside**
+      - `EXCEEDS_GLOBAL_LIMITS_FOR_PERIOD_PAY_INSIDE` - **exceeds_global_limits_for_period_pay_inside**
+      - `EXCEEDS_LIMIT` - **exceeds_limit**
+      - `EXCEEDS_MERCHANT_AMOUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_merchant_amount_for_period_pay_inside**
+      - `EXCEEDS_MERCHANT_COUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_merchant_count_for_period_pay_inside**
+      - `EXCEEDS_MERCHANT_LIMITS_FOR_PERIOD_PAY_INSIDE` - **exceeds_merchant_limits_for_period_pay_inside**
+      - `EXCEEDS_STATE_AMOUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_state_amount_for_period_pay_inside**
+      - `EXCEEDS_STATE_COUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_state_count_for_period_pay_inside**
+      - `EXCEEDS_STATE_LIMITS_FOR_PERIOD_PAY_INSIDE` - **exceeds_state_limits_for_period_pay_inside**
+      - `EXCEEDS_TRANSACTION_COUNT_OR_AMOUNT_LIMIT_IN_24_HOURS` - **exceeds_transaction_count_or_amount_limit_in_24_hours**
+      - `EXCEEDS_TRANSACTION_COUNT_OR_AMOUNT_LIMIT_IN_7_DAYS` - **exceeds_transaction_count_or_amount_limit_in_7_days**
+      - `EXCEEDS_TRANSACTION_COUNT_OR_AMOUNT_LIMIT_IN_30_DAYS` - **exceeds_transaction_count_or_amount_limit_in_30_days**
+      - `EXCEEDS_ZIP_CODE_AMOUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_zip_code_amount_for_period_pay_inside**
+      - `EXCEEDS_ZIP_CODE_COUNT_FOR_PERIOD_PAY_INSIDE` - **exceeds_zip_code_count_for_period_pay_inside**
+      - `EXCEEDS_ZIP_CODE_LIMITS_FOR_PERIOD_PAY_INSIDE` - **exceeds_zip_code_limits_for_period_pay_inside**
+      - `EXPIRED_CARD` - **expired_card**
+      - `EXPIRED_LOCK` - **expired_lock**
+      - `FRAUDULENT` - **fraudulent**
+      - `FILE_TEMPORARILY_UNAVAILABLE` - **file_temporarily_unavailable**
+      - `FILE_UPDATE_ERROR` - **file_update_error**
+      - `FILE_UPDATE_UNAVAILABLE` - **file_update_unavailable**
+      - `FORMAT_ERROR` - **format_error**
+      - `FORWARD_TO_ISSUER` - **forward_to_issuer**
+      - `FUEL_LIMIT_EXCEEDED` - **fuel_limit_exceeded**
+      - `FUEL_ONLY` - **fuel_only**
+      - `FUEL_PRICE_ERROR` - **fuel_price_error**
+      - `FULL_SSN_REQUIRED` - **full_ssn_required**
+      - `FUNCTION_NOT_SUPPORTED` - **function_not_supported**
+      - `FUNDS_ON_HOLD` - **funds_on_hold**
+      - `GENERAL` - **general**
+      - `GENERAL_ERROR` - **general_error**
+      - `GENERIC_DECLINE` - **generic_decline**
+      - `HARD_CAPTURE_PICKUP_CARD` - **hard_capture_pickup_card**
+      - `HARD_NEGATIVE_INFO_ON_FILE` - **hard_negative_info_on_file**
+      - `HIGH_RISK` - **high_risk**
+      - `HOLD_SHIPPING_FOR_24H` - **hold_shipping_for_24h**
+      - `HONOR_WITH_AUTHENTICATION` - **honor_with_authentication**
+      - `ILLEGAL_TRANSACTION` - **illegal_transaction**
+      - `IMPRINT_CARD` - **imprint_card**
+      - `INCORRECT_CVV` - **incorrect_cvv**
+      - `INCORRECT_NUMBER` - **incorrect_number**
+      - `INCORRECT_PIN` - **incorrect_pin**
+      - `INCORRECT_MERCHANT_LOCATION` - **incorrect_merchant_location**
+      - `INCORRECT_TRANSACTION_VERSION` - **incorrect_transaction_version**
+      - `INQUIRY_DECLINED` - **inquiry_declined**
+      - `INSUFFICIENT_DATA` - **insufficient_data**
+      - `INSUFFICIENT_FUNDS` - **insufficient_funds**
+      - `INSUFFICIENT_SECURITY` - **insufficient_security**
+      - `INTERNET_ACCESS_DISABLED` - **internet_access_disabled**
+      - `INVALID_3D_PASSWORD` - **invalid_3d_password**
+      - `INVALID_ACCOUNT` - **invalid_account**
+      - `INVALID_ACCOUNT/DATE` - **invalid_account/date**
+      - `INVALID_ACCOUNT_TYPE` - **invalid_account_type**
+      - `INVALID_ACTIVATE` - **invalid_activate**
+      - `INVALID_AMOUNT` - **invalid_amount**
+      - `INVALID_AUTHORIZATION_CODE` - **invalid_authorization_code**
+      - `INVALID_BATCH_NUMBER/ID` - **invalid_batch_number/id**
+      - `INVALID_CASHBACK` - **invalid_cashback**
+      - `INVALID_CHECKING_ACCOUNT` - **invalid_checking_account**
+      - `INVALID_CHECKING_ACCOUNT_NUMBER` - **invalid_checking_account_number**
+      - `INVALID_CLERK` - **invalid_clerk**
+      - `INVALID_CREDIT_ACCOUNT` - **invalid_credit_account**
+      - `INVALID_CURRENCY` - **invalid_currency**
+      - `INVALID_CVV` - **invalid_cvv**
+      - `INVALID_DATE_OR_TIME` - **invalid_date_or_time**
+      - `INVALID_DRIVER` - **invalid_driver**
+      - `INVALID_EAN_OR_SCV` - **invalid_ean_or_scv**
+      - `INVALID_EFFECTIVE_DATE` - **invalid_effective_date**
+      - `INVALID_EMAIL_ADDRESS` - **invalid_email_address**
+      - `INVALID_ENTRY` - **invalid_entry**
+      - `INVALID_EXPIRY_DATE` - **invalid_expiry_date**
+      - `INVALID_EXPIRY_YEAR` - **invalid_expiry_year**
+      - `INVALID_HOST` - **invalid_host**
+      - `INVALID_LOCATION` - **invalid_location**
+      - `INVALID_MAIDEN_NAME` - **invalid_maiden_name**
+      - `INVALID_MCC` - **invalid_mcc**
+      - `INVALID_MERCHANT` - **invalid_merchant**
+      - `INVALID_MERCHANT_ID` - **invalid_merchant_id**
+      - `INVALID_MERCHANT_ID/SE` - **invalid_merchant_id/se**
+      - `INVALID_MERCHANT_SETUP` - **invalid_merchant_setup**
+      - `INVALID_MICR_DATA` - **invalid_micr_data**
+      - `INVALID_NEW_PASSWORD` - **invalid_new_password**
+      - `INVALID_NOT_PRESENT` - **invalid_not_present**
+      - `INVALID_NUMBER` - **invalid_number**
+      - `INVALID_ODOMETER` - **invalid_odometer**
+      - `INVALID_PASSWORD` - **invalid_password**
+      - `INVALID_PIN` - **invalid_pin**
+      - `INVALID_POS` - **invalid_pos**
+      - `INVALID_PREAPPROVAL_NUMBER` - **invalid_preapproval_number**
+      - `INVALID_PREFIX` - **invalid_prefix**
+      - `INVALID_PRODUCT` - **invalid_product**
+      - `INVALID_PROMPT_ENTRY` - **invalid_prompt_entry**
+      - `INVALID_REQUEST` - **invalid_request**
+      - `INVALID_RESPONSE` - **invalid_response**
+      - `INVALID_RESPONSE_DATE` - **invalid_response_date**
+      - `INVALID_RESTRICTION_CODE` - **invalid_restriction_code**
+      - `INVALID_SAVINGS_ACCOUNT` - **invalid_savings_account**
+      - `INVALID_SECURE_PAYMENT_DATA` - **invalid_secure_payment_data**
+      - `INVALID_SKU` - **invalid_sku**
+      - `INVALID_SSN` - **invalid_ssn**
+      - `INVALID_STATE_CODE` - **invalid_state_code**
+      - `INVALID_STATUS_CHANGE` - **invalid_status_change**
+      - `INVALID_TERMINAL` - **invalid_terminal**
+      - `INVALID_TGN_CIC` - **invalid_tgn_cic**
+      - `INVALID_TIMEZONE` - **invalid_timezone**
+      - `INVALID_TPPID` - **invalid_tppid**
+      - `INVALID_TRACK_DATA` - **invalid_track_data**
+      - `INVALID_TRANSACTION` - **invalid_transaction**
+      - `INVALID_TRANSARMOR_TRANSACTION` - **invalid_transarmor_transaction**
+      - `INVALID_USER` - **invalid_user**
+      - `INVALID_VALUE_IN_THE_FIELD` - **invalid_value_in_the_field**
+      - `INVALID_VEHICLE` - **invalid_vehicle**
+      - `INVALID_VOID_OF_ACTIVATION` - **invalid_void_of_activation**
+      - `INVALID_ZIP_CODE` - **invalid_zip_code**
+      - `ISSUANCE_UNDER_MINIMUM_AMOUNT` - **issuance_under_minimum_amount**
+      - `ISSUER_NOT_AVAILABLE` - **issuer_not_available**
+      - `ISSUER_PROCESSOR_OR_SWITCH_NOT_AVAILABLE` - **issuer_processor_or_switch_not_available**
+      - `ISSUER_SPECIAL_CONDITIONS` - **issuer_special_conditions**
+      - `ISSUER_VELOCITY_AMOUNT_EXCEEDED` - **issuer_velocity_amount_exceeded**
+      - `ISSUER_VELOCITY_COUNT_EXCEEDED` - **issuer_velocity_count_exceeded**
+      - `LATE_REVERSAL` - **late_reversal**
+      - `LAW_VIOLATION` - **law_violation**
+      - `LIMIT_CHECK_FAILED` - **limit_check_failed**
+      - `LOST_CARD` - **lost_card**
+      - `MAIDEN_NAME_UNAVAILABLE` - **maiden_name_unavailable**
+      - `MANUAL_TRIES_EXCEEDED` - **manual_tries_exceeded**
+      - `MATCH` - **match**
+      - `MAX_BALANCE_EXCEEDED` - **max_balance_exceeded**
+      - `MERCHANT_DEPLETED` - **merchant_depleted**
+      - `MERCHANT_HAS_MAIL_PENDING` - **merchant_has_mail_pending**
+      - `MESSAGE_FORMAT_ERROR` - **message_format_error**
+      - `MINUS2_DEBIT` - **minus2_debit**
+      - `MISSING_CONDITIONAL_DATA` - **missing_conditional_data**
+      - `MISSING_CUSTOMER_SERVICE_PHONE` - **missing_customer_service_phone**
+      - `MISSING_FROM_ACCOUNT` - **missing_from_account**
+      - `MISSING_TO_ACCOUNT` - **missing_to_account**
+      - `MULTI_CURRENCY_DCC_FAIL` - **multi_currency_dcc_fail**
+      - `MULTI_CURRENCY_INVERT_FAIL` - **multi_currency_invert_fail**
+      - `MULTIPLE_ACCOUNTS_FOR_TYPE` - **multiple_accounts_for_type**
+      - `NAME_EMAIL_NO_MATCH` - **name_email_no_match**
+      - `NAME_EMAIL_UNAVAILABLE` - **name_email_unavailable**
+      - `NAME_NO_MATCH` - **name_no_match**
+      - `NAME_PHONE_NO_MATCH` - **name_phone_no_match**
+      - `NAME_PHONE_UNAVAILABLE` - **name_phone_unavailable**
+      - `NAME_UNAVAILABLE` - **name_unavailable**
+      - `NEGATIVE_FILE_EXCEPTION` - **negative_file_exception**
+      - `NEW_ACCOUNT_INFORMATION_AVAILABLE` - **new_account_information_available**
+      - `NEW_CARD_ISSUED` - **new_card_issued**
+      - `NEW_PASSWORD_REQUIRED` - **new_password_required**
+      - `NO_ACCOUNT_LINK` - **no_account_link**
+      - `NO_ACTION_TAKEN` - **no_action_taken**
+      - `NO_CARD_RECORD` - **no_card_record**
+      - `NO_CHAIN_ID` - **no_chain_id**
+      - `NO_CHECKING_ACCOUNT` - **no_checking_account**
+      - `NO_MATCH` - **mismatch**
+      - `NO_MESSAGES_PENDING` - **no_messages_pending**
+      - `NO_OPEN_BATCH` - **no_open_batch**
+      - `NO_PHONE_SERVICE` - **no_phone_service**
+      - `NO_PREVIOUS_TRANSACTION` - **no_previous_transaction**
+      - `NO_REASON_TO_DECLINE` - **no_reason_to_decline**
+      - `NO_SAVINGS_ACCOUNT` - **no_savings_account**
+      - `NO_SUCH_ISSUER` - **no_such_issuer**
+      - `NO_TO_ACCOUNT` - **no_to_account**
+      - `NO_TRANSACTIONS_AVAILABLE` - **no_transactions_available**
+      - `NO_TRANSACTION_SECURITY_RECORD` - **no_transaction_security_record**
+      - `NOT_ACCEPTED` - ** not_accepted**
+      - `NOT_ACTIVE` - **not_active**
+      - `NOT_LOST_OR_STOLEN` - **not_lost_or_stolen**
+      - `NOT_ON_FILE` - **not_on_file**
+      - `NOT_PERMITTED` - **not_permitted**
+      - `NOT_PERFORMED` - **not_performed**
+      - `NOT_PROCESSED` - **not_processed**
+      - `NOT_SUPPORTED` - **not_supported**
+      - `NSF` - **nsf**
+      - `ONE_TIME_STOP_PAYMENT` - **one_time_stop_payment**
+      - `ORIGINAL_AUTHORIZATION_MISMATCH` - **original_authorization_mismatch**
+      - `ORIGINAL_AUTHORIZATION_NOT_FOUND` - **original_authorization_not_found**
+      - `ORIGINAL_REPEATED` - **original_repeated**
+      - `ORIGINAL_TRANSACTION_NOT_APPROVED` - **original_transaction_not_approved**
+      - `OVER_CHAIN_DAILY_VELOCITY_AMOUNT` - **over_chain_daily_velocity_amount**
+      - `OVER_CHAIN_DAILY_VELOCITY_COUNT` - **over_chain_daily_velocity_count**
+      - `OVER_CHAIN_DAILY_VELOCITY_LIMITS` - **over_chain_product_velocity_limits**
+      - `OVER_CHAIN_PRODUCT_VELOCITY_AMOUNT` - **over_chain_product_velocity_amount**
+      - `OVER_CHAIN_PRODUCT_VELOCITY_COUNT` - **over_chain_product_velocity_count**
+      - `OVER_CHAIN_PRODUCT_VELOCITY_LIMITS` - **over_chain_product_velocity_limits**
+      - `OVER_MAX_BALANCE` - **over_max_balance**
+      - `OVER_MERCHANDISE_LIMIT` - **over_merchandise_limit**
+      - `OVER_MERCHANT_DAILY_VELOCITY_AMOUNT` - **over_merchant_daily_velocity_amount**
+      - `OVER_MERCHANT_DAILY_VELOCITY_COUNT` - **over_merchant_daily_velocity_count**
+      - `OVER_MERCHANT_DAILY_VELOCITY_LIMITS` - **over_merchant_daily_velocity_limits**
+      - `OVER_MERCHANT_PRODUCT_VELOCITY_AMOUNT` - **over_merchant_product_velocity_amount**
+      - `OVER_MERCHANT_PRODUCT_VELOCITY_COUNT` - **over_merchant_product_velocity_count**
+      - `OVER_MERCHANT_PRODUCT_VELOCITY_LIMITS` - **over_merchant_product_velocity_limits**
+      - `OVER_MONTHLY_LIMIT` - **over_monthly_limit**
+      - `OVER_NON_FUEL_LIMIT` - **over_non_fuel_limit**
+      - `PAN_TRANS_ERROR` - **pan_trans_error**
+      - `PARTIAL_AUTH_NOT_ALLOWED` - **partial_auth_not_allowed**
+      - `PARTIAL_REVERSAL` - **partial_reversal**
+      - `PARTIALLY_APPROVED` - **partially_approved**
+      - `PASSWORD_RETRIES_EXCEEDED` - **password_retries_exceeded**
+      - `PAY_AT_PUMP_NOT_ALLOWED` - **pay_at_pump_not_allowed**
+      - `PHONE_EMAIL_NO_MATCH` - **phone_email_no_match**
+      - `PHONE_EMAIL_UNAVAILABLE` - **phone_email_unavailable**
+      - `PHONE_NO_MATCH` - **phone_no_match**
+      - `PHONE_UNAVAILABLE` - **phone_unavailable**
+      - `PICKUP_CARD` - **pickup_card**
+      - `PIN_ALREADY_EXISTS` - **pin_already_exists**
+      - `PIN_KEY_ERROR` - **pin_key_error**
+      - `PIN_KEY_SYNCHRONIZATION_ERROR` - **pin_key_sychronization_error**
+      - `PIN_TRY_EXCEEDED` - **pin_try_exceeded**
+      - `PLEASE_RETRY` - **please_retry**
+      - `PROCESS_AS_DEBIT` - **process_as_debit**
+      - `PROCESSING_ERROR` - **processing_error**
+      - `PRODUCT_CODE_RESTRICTED` - **product_code_restricted**
+      - `PROMO_LOCATION_RESTRICTED` - **promo_location_restricted**
+      - `QUANTITY_EXCEEDED` - **quantity_exceeded**
+      - `REAUTHORIZATION_TIMEFRAME_EXPIRED` - **reauthorization_timeframe_expired**
+      - `RECHARGE_AMOUNT_EXCEEDED` - **recharge_amount_exceeded**
+      - `RECHARGE_COUNT_EXCEEDED` - **recharge_count_exceeded**
+      - `REENTER_TRANSACTION` - **reenter_transaction**
+      - `REFERRAL` - **referral**
+      - `REJECT_MESSAGE` - **reject_message**
+      - `REJECTED_LOST/STOLEN_CHECKS` - **rejected_lost/stolen_checks**
+      - `REPAIR_LIMIT_EXCEEDED` - **repair_limit_exceeded**
+      - `REQUEST_IN_PROGRESS` - **request_in_progress**
+      - `RESPONSE_RECEIVED_LATE` - **response_received_late**
+      - `RESTRICTED_CARD` - **restricted_card**
+      - `RESUBMISSION_VIOLATES_NETWORK_FREQUENCY` - **resubmission_violates_network_frequency**
+      - `RETAIN_CARD` - **retain_card**
+      - `REVERSAL` - **reversal**
+      - `REVERSAL_NO_MATCH` - **reversal_no_match**
+      - `REVERSAL_UNSUCCESSFUL` - **reversal_unsuccessful**
+      - `REVOCATION_OF_ALL_AUTHORIZATIONS` - **revocation_of_all_authorizations**
+      - `REVOCATION_OF_AUTHORIZATION` - **revocation_of_authorization**
+      - `SECURE_CODE_NOT_ENABLED` - **secure_code_not_enabled**
+      - `SECURITY_ERROR` - **security_error**
+      - `SECURITY_ERROR_TRY_AGAIN` - **security_error_try_again**
+      - `SECURITY_VIOLATION` - **security_violation**
+      - `SEE_ATTENDANT` - **see_attendant**
+      - `SEE_EXHIBIT_FOR_ERROR` - **see_exhibit_for_error**
+      - `SERVICE_NOT_ALLOWED` - **service_not_allowed**
+      - `SIGNATURE_REQUIRED` - **signature_required**
+      - `SKIP_TRACE_INFO` - **skip_trace_info**
+      - `SOFT_DESCRIPTOR_NOT_ENABLED` - **soft_descriptor_not_enabled**
+      - `SSN_NOT_AVAILABLE` - **ssn_not_available**
+      - `STOLEN_CARD` - **stolen_card**
+      - `STOP_PAYMENT_ORDER` - **stop_payment_order**
+      - `STOP_RECURRING_PAYMENT_REQUESTS` - **stop_recurring_payment_requests**
+      - `STORE_LOCATION_ZERO_NOT_ALLOWED` - **store_location_zero_not_allowed**
+      - `SUBSYSTEM_UNAVAILABLE` - **subsystem_unavailable**
+      - `SURCHARGE_LIMIT_EXCEEDED` - **surcharge_limit_exceeded**
+      - `SYSTEM_ERROR` - **system_error**
+      - `TARGET_CARD_AND_TRANSACTION_COUNT_MISMATCH` - **target_card_and_transaction_count_mismatch**
+      - `TERMINAL_TRANSACTION_NUMBER_MISMATCH` - **terminal_transaction_number_mismatch**
+      - `TESTMODE_DECLINE` - **testmode_decline**
+      - `TICKET_LIMIT_EXCEEDED` - **ticket_limit_exceeded**
+      - `TIMEOUT` - **timeout**
+      - `TIMEOUT_REVERSAL_NOT_SUPPORTED` - **timeout_reversal_not_supported**
+      - `TOO_MANY_TRANSACTIONS_REQUESTED` - **too_many_transactions_requested**
+      - `TOTALS_UNAVAILABLE` - **totals_unavailable**
+      - `TRANSACTION_COUNT_OR_WITHDRAWAL_LIMIT_EXCEEDED` - **transaction_count_or_withdrawal_limit_exceeded**
+      - `TRANSACTION_DESTINATION_NOT_FOUND_FOR_ROUTING` - **transaction_destination_not_found_for_routing**
+      - `TRANSACTION_HISTORY_UNAVAILABLE` - **transaction_history_unavailable**
+      - `TRANSACTION_NOT_ALLOWED` - **transaction_not_allowed**
+      - `TRANSACTION_NOT_PERMITTED` - **transaction_not_permitted**
+      - `TRANSACTION_NOT_SUPPORTED` - **transaction_not_supported**
+      - `TRANSACTION_TOTAL_LIMIT_PER_PRODUCT_CLASS_EXCEEDED` - **transaction_total_limit_per_product_class_exceeded**
+      - `TRANSARMOR_INVALID_TOKEN_OR_ACCOUNT_NUMBER` - **transarmor_invalid_token_or_account_number**
+      - `TRANSARMOR_KEY_ERROR` - **transarmor_key_error**
+      - `TRANSARMOR_SERVICE_UNAVAILABLE` - **transarmor_service_unavailable**
+      - `TRY_AGAIN_LATER` - **try_again_later**
+      - `UNABLE_TO_LOCATE_PREVIOUS_MESSAGE` - **unable_to_locate_previous_message**
+      - `UNABLE_TO_LOCATE_RECORD` - **unable_to_locate_record**
+      - `UNABLE_TO_PROCESS` - **unable_to_process**
+      - `UNABLE_TO_VERIFY_PIN` - **unable_to_verify_pin**
+      - `UNAUTHORIZED` - **unauthorized**
+      - `UNAVAILABLE` - **unavailable**
+      - `UNDEFINED_CARD` - **undefined_card**
+      - `UNDERAGE_CUSTOMER` - **underage_customer**
+      - `UNKNOWN_VELOCITY_ERROR_PAY_INSIDE` - **unknown_velocity_error_pay_inside**
+      - `UNSUCCESSFUL` - **unsuccessful**
+      - `UNSUPPORTED_MESSAGE` - **unsupported_message**
+      - `VALIDATION_ERROR` - **validation_error**
+      - `VELOCITY_ERROR_PAY_INSIDE` - **velocity_error_pay_inside**
+      - `VERIFICATION_TRANSACTION` - **verification_transaction**
+      - `VIOLATION_OF_BUSINESS_ARRANGEMENT` - **violation_of_business_arrangement**
+      - `VISA_OCT/MASTERCARD_MONEYSEND_TRANSACTIONS_BLOCKED` - **visa_oct/mastercard_moneysend_transactions_blocked**
+      - `VOID_CAPTURED_ITEM` - **void_captured_item**
+      - `VOYAGER_ID_PROBLEM` - **voyager_id_problem**
+      - `Y_OR_N_REQUIRED` - **y_or_n_required**
+      - `WAIT_2_PM_EASTERN` - **wait_2_pm_eastern**
+      - `WITHDRAWAL_COUNT_LIMIT_EXCEEDED` - **withdrawal_count_limit_exceeded**
+      - `WITHDRAWAL_LIMIT_EXCEEDED` - **withdrawal_limit_exceeded**
+      - `ZIP_ADDRESS_NOT_VERIFIED` - **zip_and_address_not_verified**
+      - `ZIP_NO_MATCH` - **address_match_zip_mismatch**
+      - `ZIP_NOT_VERIFIED` - **zip_not_verified**
+      - `3DS_AUTHENTICATION_SUCCESSFUL` - **3ds_authentication_successful**
+      - `3DS_AUTHENTICATION_INVALID` - **3ds_authentication_invalid**
+      - `3DS_AUTHENTICATION_FAILED` - **3ds_authentication_failed**
+      - `3DS_AUTHENTICATION_NOT_VALIDATED` - **3ds_authentication_not_validated**
+      - `3DS_AUTHENTICATION_SUCCESSFUL_WITHOUT_LIABILITY_SHIFT` - **3ds_authentication_successful_without_liability_shift**      
+
+      </details>
+    enum:
+    - accepted_but_not_yet_processed
+    - account_blocked
+    - account_is_purged
+    - account_locked
+    - account_on_hold_or_not_active
+    - account_not_activated
+    - account_reloads_exceeded
+    - account_row_locked
+    - account_status_is_void_lock
+    - ach_payment_not_accepted
+    - acquirer_channel_unavailable
+    - activation_failed
+    - additive_limit_exceeded
+    - zip_match_address_mismatch
+    - zip_match_address_not_verified
+    - already_redeemed
+    - already_reversed
+    - amount_limit_exceeded
+    - amount_too_large
+    - approve_with_id
+    - approved
+    - approved_emv_key_load
+    - approved_with_no_cash
+    - approved_with_overdraft
+    - authorization_id_needed
+    - bad_account
+    - bad_checksum
+    - bad_close
+    - bad_mag_stripe
+    - bad_post_date
+    - bad_repay_date
+    - balance_not_available
+    - bill_to_ship_to_mismatch
+    - bin_blocked
+    - blocked_by_cardholder
+    - bulk_activation_error
+    - bulk_activation_package_amount_error
+    - call_acquirer
+    - call_for_authorization
+    - call_issuer
+    - call_telecheck
+    - cannot_find_network
+    - card_already_active
+    - card_already_closed
+    - card_not_active
+    - card_not_supported
+    - card_velocity_amount_exceeded
+    - card_velocity_count_exceeded
+    - card_velocity_exceeded
+    - cashback_greater_than_transaction_amount
+    - cash_limit_exceeded
+    - center_closed
+    - checker/manager_not_found
+    - chip_failure
+    - close_unavailable
+    - close_not_valid
+    - closed_account
+    - count_exceeds_limit
+    - counterfeit_card
+    - counter_offer_to_supply_personal_guaranty
+    - cryptogram_decryption_error
+    - crypto_box_is_offline
+    - currency_conversion_complete
+    - currency_conversion_error
+    - currency_not_supported
+    - customer_cancellation
+    - customer_opt_out
+    - cut_time_close_to_1400
+    - cvv_declined
+    - cvv_failed
+    - daily_limit_exceeded
+    - date_of_birth_error
+    - debit_gateway_unavailable
+    - declined
+    - declined_due_to_stand_in_rules
+    - deconverted_bin
+    - do_not_honor
+    - do_not_try_again
+    - do_not_try_again_subsequent_may_continue
+    - drivers_license_or_id_required
+    - duplicate_capture
+    - duplicate_return
+    - duplicate_reversal
+    - duplicate_transaction
+    - edit_honor
+    - email_no_match
+    - email_unavailable
+    - emv_key_download_error
+    - enter_lesser_amount
+    - error_processing_pin_block
+    - exceeds_global_amount_for_period_pay_inside
+    - exceeds_global_count_for_period_pay_inside
+    - exceeds_global_limits_for_period_pay_inside
+    - exceeds_limit
+    - exceeds_merchant_amount_for_period_pay_inside
+    - exceeds_merchant_count_for_period_pay_inside
+    - exceeds_merchant_limits_for_period_pay_inside
+    - exceeds_state_amount_for_period_pay_inside
+    - exceeds_state_count_for_period_pay_inside
+    - exceeds_state_limits_for_period_pay_inside
+    - exceeds_transaction_count_or_amount_limit_in_24_hours
+    - exceeds_transaction_count_or_amount_limit_in_7_days
+    - exceeds_transaction_count_or_amount_limit_in_30_days
+    - exceeds_zip_code_amount_for_period_pay_inside
+    - exceeds_zip_code_count_for_period_pay_inside
+    - exceeds_zip_code_limits_for_period_pay_inside
+    - expired_card
+    - expired_lock
+    - fraudulent
+    - file_temporarily_unavailable
+    - file_update_error
+    - file_update_unavailable
+    - format_error
+    - forward_to_issuer
+    - fuel_limit_exceeded
+    - fuel_only
+    - fuel_price_error
+    - full_ssn_required
+    - function_not_supported
+    - funds_on_hold
+    - general
+    - general_error
+    - generic_decline
+    - hard_capture_pickup_card
+    - hard_negative_info_on_file
+    - high_risk
+    - hold_shipping_for_24h
+    - honor_with_authentication
+    - illegal_transaction
+    - imprint_card
+    - incorrect_cvv
+    - incorrect_number
+    - incorrect_pin
+    - incorrect_merchant_location
+    - incorrect_transaction_version
+    - inquiry_declined
+    - insufficient_data
+    - insufficient_funds
+    - insufficient_security
+    - internet_access_disabled
+    - invalid_3d_password
+    - invalid_account
+    - invalid_account/date
+    - invalid_account_type
+    - invalid_activate
+    - invalid_amount
+    - invalid_authorization_code
+    - invalid_batch_number/id
+    - invalid_cashback
+    - invalid_checking_account_number
+    - invalid_clerk
+    - invalid_currency
+    - invalid_cvv
+    - invalid_date_or_time
+    - invalid_driver
+    - invalid_ean_or_scv
+    - invalid_effective_date
+    - invalid_email_address
+    - invalid_entry
+    - invalid_expiry_date
+    - invalid_expiry_year
+    - invalid_host
+    - invalid_location
+    - invalid_maiden_name
+    - invalid_mcc
+    - invalid_merchant
+    - invalid_merchant_id
+    - invalid_merchant_id/se
+    - invalid_merchant_setup
+    - invalid_micr_data
+    - invalid_new_password
+    - invalid_not_present
+    - invalid_number
+    - invalid_odometer
+    - invalid_password
+    - invalid_pin
+    - invalid_pos
+    - invalid_preapproval_number
+    - invalid_prefix
+    - invalid_product
+    - invalid_prompt_entry
+    - invalid_request
+    - invalid_response
+    - invalid_response_date
+    - invalid_restriction_code
+    - invalid_savings_account
+    - invalid_secure_payment_data
+    - invalid_sku
+    - invalid_ssn
+    - invalid_state_code
+    - invalid_status_change
+    - invalid_terminal
+    - invalid_tgn_cic
+    - invalid_timezone
+    - invalid_tppid
+    - invalid_track_data
+    - invalid_transaction
+    - invalid_transarmor_transaction
+    - invalid_user
+    - invalid_value_in_the_field
+    - invalid_vehicle
+    - invalid_void_of_activation
+    - invalid_zip_code
+    - issuance_under_minimum_amount
+    - issuer_not_available
+    - issuer_processor_or_switch_not_available
+    - issuer_special_conditions
+    - issuer_velocity_amount_exceeded
+    - issuer_velocity_count_exceeded
+    - late_reversal
+    - law_violation
+    - limit_check_failed
+    - lost_card
+    - maiden_name_unavailable
+    - manual_tries_exceeded
+    - match
+    - max_balance_exceeded
+    - merchant_depleted
+    - merchant_has_mail_pending
+    - message_format_error
+    - minus2_debit
+    - missing_conditional_data
+    - missing_customer_service_phone
+    - missing_from_account
+    - missing_to_account
+    - multi_currency_dcc_fail
+    - multi_currency_invert_fail
+    - multiple_accounts_for_type
+    - name_email_no_match
+    - name_email_unavailable
+    - name_no_match
+    - name_phone_no_match
+    - name_phone_unavailable
+    - name_unavailable
+    - negative_file_exception
+    - new_account_information_available
+    - new_card_issued
+    - new_password_required
+    - no_account_link
+    - no_action_taken
+    - no_card_record
+    - no_chain_id
+    - no_checking_account
+    - mismatch
+    - no_messages_pending
+    - no_open_batch
+    - no_phone_service
+    - no_previous_transaction
+    - no_reason_to_decline
+    - no_savings_account
+    - no_such_issuer
+    - no_to_account
+    - no_transactions_available
+    - no_transaction_security_record
+    - not_accepted
+    - not_active
+    - not_lost_or_stolen
+    - not_on_file
+    - not_permitted
+    - not_performed
+    - not_processed
+    - not_supported
+    - nsf
+    - one_time_stop_payment
+    - original_authorization_mismatch
+    - original_authorization_not_found
+    - original_repeated
+    - original_transaction_not_approved
+    - over_chain_daily_velocity_amount
+    - over_chain_daily_velocity_count
+    - over_chain_product_velocity_limits
+    - over_chain_product_velocity_amount
+    - over_chain_product_velocity_count
+    - over_max_balance
+    - over_merchandise_limit
+    - over_merchant_daily_velocity_amount
+    - over_merchant_daily_velocity_count
+    - over_merchant_daily_velocity_limits
+    - over_merchant_product_velocity_amount
+    - over_merchant_product_velocity_count
+    - over_merchant_product_velocity_limits
+    - over_monthly_limit
+    - over_non_fuel_limit
+    - pan_trans_error
+    - partial_auth_not_allowed
+    - partial_reversal
+    - partially_approved
+    - password_retries_exceeded
+    - pay_at_pump_not_allowed
+    - phone_email_no_match
+    - phone_email_unavailable
+    - phone_no_match
+    - phone_unavailable
+    - pickup_card
+    - pin_already_exists
+    - pin_key_error
+    - pin_key_sychronization_error
+    - pin_try_exceeded
+    - please_retry
+    - process_as_debit
+    - processing_error
+    - product_code_restricted
+    - promo_location_restricted
+    - quantity_exceeded
+    - reauthorization_timeframe_expired
+    - recharge_amount_exceeded
+    - recharge_count_exceeded
+    - reenter_transaction
+    - referral
+    - reject_message
+    - rejected_lost/stolen_checks
+    - repair_limit_exceeded
+    - request_in_progress
+    - response_received_late
+    - restricted_card
+    - resubmission_violates_network_frequency
+    - retain_card
+    - reversal
+    - reversal_no_match
+    - reversal_unsuccessful
+    - revocation_of_all_authorizations
+    - revocation_of_authorization
+    - secure_code_not_enabled
+    - security_error
+    - security_error_try_again
+    - security_violation
+    - see_attendant
+    - see_exhibit_for_error
+    - service_not_allowed
+    - signature_required
+    - skip_trace_info
+    - soft_descriptor_not_enabled
+    - ssn_not_available
+    - stolen_card
+    - stop_payment_order
+    - stop_recurring_payment_requests
+    - store_location_zero_not_allowed
+    - subsystem_unavailable
+    - surcharge_limit_exceeded
+    - system_error
+    - target_card_and_transaction_count_mismatch
+    - terminal_transaction_number_mismatch
+    - testmode_decline
+    - ticket_limit_exceeded
+    - timeout
+    - timeout_reversal_not_supported
+    - too_many_transactions_requested
+    - totals_unavailable
+    - transaction_count_or_withdrawal_limit_exceeded
+    - transaction_destination_not_found_for_routing
+    - transaction_history_unavailable
+    - transaction_not_allowed
+    - transaction_not_permitted
+    - transaction_not_supported
+    - transaction_total_limit_per_product_class_exceeded
+    - transarmor_invalid_token_or_account_number
+    - transarmor_key_error
+    - transarmor_service_unavailable
+    - try_again_later
+    - unable_to_locate_previous_message
+    - unable_to_locate_record
+    - unable_to_process
+    - unable_to_verify_pin
+    - unauthorized
+    - unavailable
+    - undefined_card
+    - underage_customer
+    - unknown_velocity_error_pay_inside
+    - unsuccessful
+    - unsupported_message
+    - validation_error
+    - velocity_error_pay_inside
+    - verification_transaction
+    - violation_of_business_arrangement
+    - visa_oct/mastercard_moneysend_transactions_blocked
+    - void_captured_item
+    - voyager_id_problem
+    - y_or_n_required
+    - wait_2_pm_eastern
+    - withdrawal_count_limit_exceeded
+    - withdrawal_limit_exceeded
+    - zip_and_address_not_verified
+    - address_match_zip_mismatch
+    - zip_not_verified
+    - 3ds_authentication_successful
+    - 3ds_authentication_invalid
+    - 3ds_authentication_failed
+    - 3ds_authentication_not_validated
+    - 3ds_authentication_successful_without_liability_shift
+    x-enum-elements:
+    - name: AcceptedButNotYetProcessed
+      description: Accepted but not yet processed.
+    - name: AccountBlocked
+      description: Account is blocked.
+    - name: AccountIsPurged
+      description: Account is purged.
+    - name: AccountLocked
+      description: Account is locked.
+    - name: AccountOnHoldOrNotActive
+      description: Account is on hold or not active.
+    - name: AccountNotActivated
+      description: Card not Active.
+    - name: AccountReloadsExceeded
+      description: Account reloads exceeded.
+    - name: AccountRowLocked
+      description: Account row is locked.
+    - name: AccountStatusIsVoidLock
+      description: Account status is void lock.
+    - name: AchPaymentNotAccepted
+      description: ACH payment not accepted.
+    - name: AcquirerChannelUnavailable
+      description: Acquirer channel unavailable.
+    - name: ActivationFailed
+      description: Activation failed.
+    - name: AdditiveLimitExceeded
+      description: Additive limit exceeded.
+    - name: ZipMatchAddressMismatch
+      description: ZIP code matches but address mismatched.
+    - name: ZipMatchAddressNotVerified
+      description: ZIP code matches but address not verified.
+    - name: AlreadyRedeemed
+      description: Already redeemed.
+    - name: AlreadyReversed
+      description: Already reversed.
+    - name: AmountLimitExceeded
+      description: Amount limit exceeded.
+    - name: AmountTooLarge
+      description: Amount too large.
+    - name: ApproveWithId
+      description: Approve with ID.
+    - name: Approved
+      description: Approved.
+    - name: ApprovedEmvKeyLoad
+      description: Approved EMV key load.
+    - name: ApprovedWithNoCash
+      description: Approved with no cash.
+    - name: ApprovedWithOverdraft
+      description: Approved with overdraft.
+    - name: AuthorizationIdNeeded
+      description: Authorization ID needed.
+    - name: BadAccount
+      description: Bad account.
+    - name: BadChecksum
+      description: Bad checksum.
+    - name: BadClose
+      description: Bad close.
+    - name: BadMagStripe
+      description: Bad magnetic stripe.
+    - name: BadPostDate
+      description: Bad post date.
+    - name: BadRepayDate
+      description: Bad repay date.
+    - name: BalanceNotAvailable
+      description: Balance not available.
+    - name: BillToShipToMismatch
+      description: Bill-to and ship-to mismatch.
+    - name: BlockedByCardHolder
+      description: Blocked by cardholder/contact cardholder.
+    - name: BinBlocked
+      description: BIN blocked.
+    - name: BulkActivationError
+      description: Bulk activation error.
+    - name: BulkActivationPackageAmountError
+      description: Bulk activation package amount error.
+    - name: CallAcquirer
+      description: Call acquirer.
+    - name: CallForAuthorization
+      description: Call for authorization.
+    - name: CallIssuer
+      description: Call issuer.
+    - name: CallTelecheck
+      description: Call TeleCheck.
+    - name: CannotFindNetwork
+      description: Cannot find network.
+    - name: CardAlreadyActive
+      description: Card already active.
+    - name: CardAlreadyClosed
+      description: Card already closed.
+    - name: CardNotActive
+      description: Card not active.
+    - name: CardNotSupported
+      description: Card not supported.
+    - name: CardVelocityAmountExceeded
+      description: Card velocity amount exceeded.
+    - name: CardVelocityCountExceeded
+      description: Card velocity count exceeded.
+    - name: CardVelocityExceeded
+      description: Card velocity exceeded.
+    - name: CashbackGreaterThanTransactionAmount
+      description: Cashback greater than transaction amount.
+    - name: CashLimitExceeded
+      description: Cash limit exceeded.
+    - name: CenterClosed
+      description: Center closed.
+    - name: CheckerManagerNotFound
+      description: Checker/Manager not found.
+    - name: ChipFailure
+      description: Chip failure.
+    - name: CloseUnavailable
+      description: Close unavailable.
+    - name: CloseNotValid
+      description: Close not valid.
+    - name: ClosedAccount
+      description: Closed account.
+    - name: CountExceedsLimit
+      description: Count exceeds limit.
+    - name: CounterfeitCard
+      description: Counterfeit card.
+    - name: CounterOfferToSupplyPersonalGuaranty
+      description: Counter offer to supply personal guaranty.
+    - name: CryptogramDecryptionError
+      description: Cryptogram decryption error.
+    - name: CryptoBoxIsOffline
+      description: Crypto box is offline.
+    - name: CurrencyConversionComplete
+      description: Currency conversion complete.
+    - name: CurrencyConversionError
+      description: Currency conversion error.
+    - name: CurrencyNotSupported
+      description: Currency not supported.
+    - name: CustomerCancellation
+      description: Customer cancellation.
+    - name: CustomerOptOut
+      description: Customer opted out.
+    - name: CutTimeCloseTo1400
+      description: Cut time close to 2:00 PM.
+    - name: CvvDeclined
+      description: CVV declined.
+    - name: CvvFailed
+      description: CVV failed.
+    - name: DailyLimitExceeded
+      description: Daily limit exceeded.
+    - name: DateOfBirthError
+      description: Date of birth error.
+    - name: DebitGatewayUnavailable
+      description: Debit gateway unavailable.
+    - name: Declined
+      description: Declined.
+    - name: DeclinedDueToStandInRules
+      description: Declined due to stand-in rules.
+    - name: DeconvertedBin
+      description: Deconverted BIN.
+    - name: DoNotHonor
+      description: Do not honor.
+    - name: DoNotTryAgain
+      description: Do not try again.
+    - name: DoNotTryAgainSubsequentMayContinue
+      description: Do not try again; subsequent may continue.
+    - name: DriversLicenseOrIdRequired
+      description: Driver's license or ID required.
+    - name: DuplicateCapture
+      description: Duplicate capture.
+    - name: DuplicateReturn
+      description: Duplicate return.
+    - name: DuplicateReversal
+      description: Duplicate reversal.
+    - name: DuplicateTransaction
+      description: Duplicate transaction.
+    - name: EditHonor
+      description: Edit honor.
+    - name: EmailNoMatch
+      description: Email does not match.
+    - name: EmailUnavailable
+      description: Email unavailable.
+    - name: EmvKeyDownloadError
+      description: EMV key download error.
+    - name: EnterLesserAmount
+      description: Enter a lesser amount.
+    - name: ErrorProcessingPinBlock
+      description: Error processing PIN block.
+    - name: ExceedsGlobalAmountForPeriodPayInside
+      description: Exceeds global amount for period; pay inside.
+    - name: ExceedsGlobalCountForPeriodPayInside
+      description: Exceeds global count for period; pay inside.
+    - name: ExceedsGlobalLimitsForPeriodPayInside
+      description: Exceeds global limits for period; pay inside.
+    - name: ExceedsLimit
+      description: Exceeds limit.
+    - name: ExceedsMerchantAmountForPeriodPayInside
+      description: Exceeds merchant amount for period; pay inside.
+    - name: ExceedsMerchantCountForPeriodPayInside
+      description: Exceeds merchant count for period; pay inside.
+    - name: ExceedsMerchantLimitsForPeriodPayInside
+      description: Exceeds merchant limits for period; pay inside.
+    - name: ExceedsStateAmountForPeriodPayInside
+      description: Exceeds state amount for period; pay inside.
+    - name: ExceedsStateCountForPeriodPayInside
+      description: Exceeds state count for period; pay inside.
+    - name: ExceedsStateLimitsForPeriodPayInside
+      description: Exceeds state limits for period; pay inside.
+    - name: ExceedsTransactionCountOrAmountLimitIn24Hours
+      description: Exceeds transaction count or amount limit in 24 hours.
+    - name: ExceedsTransactionCountOrAmountLimitIn7Days
+      description: Exceeds transaction count or amount limit in 7 days.
+    - name: ExceedsTransactionCountOrAmountLimitIn30Days
+      description: Exceeds transaction count or amount limit in 30 days.
+    - name: ExceedsZipCodeAmountForPeriodPayInside
+      description: Exceeds ZIP code amount for period; pay inside.
+    - name: ExceedsZipCodeCountForPeriodPayInside
+      description: Exceeds ZIP code count for period; pay inside.
+    - name: ExceedsZipCodeLimitsForPeriodPayInside
+      description: Exceeds ZIP code limits for period; pay inside.
+    - name: ExpiredCard
+      description: Expired card.
+    - name: ExpiredLock
+      description: Expired lock.
+    - name: Fraudulent
+      description: Fraudulent.
+    - name: FileTemporarilyUnavailable
+      description: File temporarily unavailable.
+    - name: FileUpdateError
+      description: File update error.
+    - name: FileUpdateUnavailable
+      description: File update unavailable.
+    - name: FormatError
+      description: Format error.
+    - name: ForwardToIssuer
+      description: Forward to issuer.
+    - name: FuelLimitExceeded
+      description: Fuel limit exceeded.
+    - name: FuelOnly
+      description: Fuel only.
+    - name: FuelPriceError
+      description: Fuel price error.
+    - name: FullSsnRequired
+      description: Full SSN required.
+    - name: FunctionNotSupported
+      description: Function not supported.
+    - name: FundsOnHold
+      description: Funds on hold.
+    - name: General
+      description: General.
+    - name: GeneralError
+      description: General error.
+    - name: GenericDecline
+      description: Generic decline.
+    - name: HardCapturePickupCard
+      description: Hard capture; pickup card.
+    - name: HardNegativeInfoOnFile
+      description: Hard negative info on file.
+    - name: HighRisk
+      description: High risk.
+    - name: HoldShippingFor24H
+      description: Hold shipping for 24 hours.
+    - name: HonorWithAuthentication
+      description: Honor with authentication.
+    - name: IllegalTransaction
+      description: Illegal transaction.
+    - name: ImprintCard
+      description: Imprint card.
+    - name: IncorrectCvv
+      description: Incorrect CVV.
+    - name: IncorrectNumber
+      description: Incorrect number.
+    - name: IncorrectPin
+      description: Incorrect PIN.
+    - name: IncorrectMerchantLocation
+      description: Incorrect merchant location.
+    - name: IncorrectTransactionVersion
+      description: Incorrect transaction version.
+    - name: InquiryDeclined
+      description: Inquiry declined.
+    - name: InsufficientData
+      description: Insufficient data.
+    - name: InsufficientFunds
+      description: Insufficient funds.
+    - name: InsufficientSecurity
+      description: Insufficient security.
+    - name: InternetAccessDisabled
+      description: Internet access disabled.
+    - name: Invalid3DPassword
+      description: Invalid 3D password.
+    - name: InvalidAccount
+      description: Invalid account.
+    - name: InvalidAccountDate
+      description: Invalid account/date.
+    - name: InvalidAccountType
+      description: Invalid account type.
+    - name: InvalidActivate
+      description: Invalid activate.
+    - name: InvalidAmount
+      description: Invalid amount.
+    - name: InvalidAuthorizationCode
+      description: Invalid authorization code.
+    - name: InvalidBatchNumberId
+      description: Invalid batch number/ID.
+    - name: InvalidCashback
+      description: Invalid cashback.
+    - name: InvalidCheckingAccount
+      description: Invalid checking account.
+    - name: InvalidCheckingAccountNumber
+      description: Invalid checking account number.
+    - name: InvalidClerk
+      description: Invalid clerk.
+    - name: InvalidCreditAccount
+      description: Invalid credit account.
+    - name: InvalidCurrency
+      description: Invalid currency.
+    - name: InvalidCvv
+      description: Invalid CVV.
+    - name: InvalidDateOrTime
+      description: Invalid date or time.
+    - name: InvalidDriver
+      description: Invalid driver.
+    - name: InvalidEanOrScv
+      description: Invalid EAN or SCV.
+    - name: InvalidEffectiveDate
+      description: Invalid effective date.
+    - name: InvalidEmailAddress
+      description: Invalid email address.
+    - name: InvalidEntry
+      description: Invalid entry.
+    - name: InvalidExpiryDate
+      description: Invalid expiry date.
+    - name: InvalidExpiryYear
+      description: Invalid expiry year.
+    - name: InvalidHost
+      description: Invalid host.
+    - name: InvalidLocation
+      description: Invalid location.
+    - name: InvalidMaidenName
+      description: Invalid maiden name.
+    - name: InvalidMcc
+      description: Invalid MCC.
+    - name: InvalidMerchant
+      description: Invalid merchant.
+    - name: InvalidMerchantId
+      description: Invalid merchant ID.
+    - name: InvalidMerchantIdSe
+      description: Invalid merchant ID/SE.
+    - name: InvalidMerchantSetup
+      description: Invalid merchant setup.
+    - name: InvalidMicrData
+      description: Invalid MICR data.
+    - name: InvalidNewPassword
+      description: Invalid new password.
+    - name: InvalidNotPresent
+      description: Invalid not present.
+    - name: InvalidNumber
+      description: Invalid number.
+    - name: InvalidOdometer
+      description: Invalid odometer.
+    - name: InvalidPassword
+      description: Invalid password.
+    - name: InvalidPin
+      description: Invalid PIN.
+    - name: InvalidPos
+      description: Invalid POS.
+    - name: InvalidPreapprovalNumber
+      description: Invalid preapproval number.
+    - name: InvalidPrefix
+      description: Invalid prefix.
+    - name: InvalidProduct
+      description: Invalid product.
+    - name: InvalidPromptEntry
+      description: Invalid prompt entry.
+    - name: InvalidRequest
+      description: Invalid request.
+    - name: InvalidResponse
+      description: Invalid response.
+    - name: InvalidResponseDate
+      description: Invalid response date.
+    - name: InvalidRestrictionCode
+      description: Invalid restriction code.
+    - name: InvalidSavingsCode
+      description: Invalid savings code.
+    - name: InvalidSecurePaymentData
+      description: Invalid secure payment data.
+    - name: InvalidSku
+      description: Invalid SKU.
+    - name: InvalidSsn
+      description: Invalid SSN.
+    - name: InvalidStateCode
+      description: Invalid state code.
+    - name: InvalidStatusChange
+      description: Invalid status change.
+    - name: InvalidTerminal
+      description: Invalid terminal.
+    - name: InvalidTgnCic
+      description: Invalid TGN CIC.
+    - name: InvalidTimezone
+      description: Invalid timezone.
+    - name: InvalidTppid
+      description: Invalid TPPID.
+    - name: InvalidTrackData
+      description: Invalid track data.
+    - name: InvalidTransaction
+      description: Invalid transaction.
+    - name: InvalidTransarmorTransaction
+      description: Invalid TransArmor transaction.
+    - name: InvalidUser
+      description: Invalid user.
+    - name: InvalidValueInTheField
+      description: Invalid value in the field.
+    - name: InvalidVehicle
+      description: Invalid vehicle.
+    - name: InvalidVoidOfActivation
+      description: Invalid void of activation.
+    - name: InvalidZipCode
+      description: Invalid ZIP code.
+    - name: IssuanceUnderMinimumAmount
+      description: Issuance under minimum amount.
+    - name: IssuerNotAvailable
+      description: Issuer not available.
+    - name: IssuerProcessorOrSwitchNotAvailable
+      description: Issuer processor or switch not available.
+    - name: IssuerSpecialConditions
+      description: Issuer special conditions.
+    - name: IssuerVelocityAmountExceeded
+      description: Issuer velocity amount exceeded.
+    - name: IssuerVelocityCountExceeded
+      description: Issuer velocity count exceeded.
+    - name: LateReversal
+      description: Late reversal.
+    - name: LawViolation
+      description: Law violation.
+    - name: LimitCheckFailed
+      description: Limit check failed.
+    - name: LostCard
+      description: Lost card.
+    - name: MaidenNameUnavailable
+      description: Maiden name unavailable.
+    - name: ManualTriesExceeded
+      description: Manual tries exceeded.
+    - name: Match
+      description: Match.
+    - name: MaxBalanceExceeded
+      description: Max balance exceeded.
+    - name: MerchantDepleted
+      description: Merchant depleted.
+    - name: MerchantHasMailPending
+      description: Merchant has mail pending.
+    - name: MessageFormatError
+      description: Message format error.
+    - name: Minus2Debit
+      description: Minus 2 debit.
+    - name: MissingConditionalData
+      description: Missing conditional data.
+    - name: MissingCustomerServicePhone
+      description: Missing customer service phone.
+    - name: MissingFromAccount
+      description: Missing from account.
+    - name: MissingToAccount
+      description: Missing to account.
+    - name: MultiCurrencyDccFail
+      description: Multi-currency DCC fail.
+    - name: MultiCurrencyInvertFail
+      description: Multi-currency invert fail.
+    - name: MultipleAccountsForType
+      description: Multiple accounts for type.
+    - name: NameEmailNoMatch
+      description: Name and email do not match.
+    - name: NameEmailUnavailable
+      description: Name and email unavailable.
+    - name: NameNoMatch
+      description: Name does not match.
+    - name: NamePhoneNoMatch
+      description: Name and phone do not match.
+    - name: NamePhoneUnavailable
+      description: Name and phone unavailable.
+    - name: NameUnavailable
+      description: Name unavailable.
+    - name: NegativeFileException
+      description: Negative file exception.
+    - name: NewAccountInformationAvailable
+      description: New account information available.
+    - name: NewCardIssued
+      description: New card issued.
+    - name: NewPasswordRequired
+      description: New password required.
+    - name: NoAccountLink
+      description: No account link.
+    - name: NoActionTaken
+      description: No action taken.
+    - name: NoCardRecord
+      description: No card record.
+    - name: NoChainId
+      description: No chain ID.
+    - name: NoCheckingAccount
+      description: No checking account.
+    - name: Mismatch
+      description: Mismatch.
+    - name: NoMessagesPending
+      description: No messages pending.
+    - name: NoOpenBatch
+      description: No open batch.
+    - name: NoPhoneService
+      description: No phone service.
+    - name: NoPreviousTransaction
+      description: No previous transaction.
+    - name: NoReasonToDecline
+      description: No reason to decline.
+    - name: NoSavingsAccount
+      description: No savings account.
+    - name: NoSuchIssuer
+      description: No such issuer.
+    - name: NoToAccount
+      description: No to account.
+    - name: NoTransactionsAvailable
+      description: No transactions available.
+    - name: NoTransactionSecurityRecord
+      description: No transaction security record.
+    - name: NotAccepted
+      description: Transaction not accepted.
+    - name: NotActive
+      description: Not active.
+    - name: NotLostOrStolen
+      description: Not lost or stolen.
+    - name: NotOnFile
+      description: Not on file.
+    - name: NotPermitted
+      description: Transaction not permitted.
+    - name: NotPerformed
+      description: Transaction not performed.
+    - name: NotProcessed
+      description: Transaction not processed.
+    - name: NotSupported
+      description: Not supported.
+    - name: Nsf
+      description: Not sufficient funds.
+    - name: OneTimeStopPayment
+      description: One-time stop payment.
+    - name: OriginalAuthorizationMismatch
+      description: Original authorization mismatch.
+    - name: OriginalAuthorizationNotFound
+      description: Original authorization not found.
+    - name: OriginalRepeated
+      description: Original repeated.
+    - name: OriginalTransactionNotApproved
+      description: Original transaction not approved.
+    - name: OverChainDailyVelocityAmount
+      description: Over chain daily velocity amount.
+    - name: OverChainDailyVelocityCount
+      description: Over chain daily velocity count.
+    - name: OverChainDailyVelocityLimits
+      description: Over chain daily velocity limits.
+    - name: OverChainProductVelocityAmount
+      description: Over chain product velocity amount.
+    - name: OverChainProductVelocityCount
+      description: Over chain product velocity count.
+    - name: OverChainProductVelocityLimits
+      description: Over chain product velocity limits.
+    - name: OverMaxBalance
+      description: Over maximum balance.
+    - name: OverMerchandiseLimit
+      description: Over merchandise limit.
+    - name: OverMerchantDailyVelocityAmount
+      description: Over merchant daily velocity amount.
+    - name: OverMerchantDailyVelocityCount
+      description: Over merchant daily velocity count.
+    - name: OverMerchantDailyVelocityLimits
+      description: Over merchant daily velocity limits.
+    - name: OverMerchantProductVelocityAmount
+      description: Over merchant product velocity amount.
+    - name: OverMerchantProductVelocityCount
+      description: Over merchant product velocity count.
+    - name: OverMerchantProductVelocityLimits
+      description: Over merchant product velocity limits.
+    - name: OverMonthlyLimit
+      description: Over monthly limit.
+    - name: OverNonFuelLimit
+      description: Over non-fuel limit.
+    - name: PanTransError
+      description: PAN transaction error.
+    - name: PartialAuthNotAllowed
+      description: Partial authorization not allowed.
+    - name: PartialReversal
+      description: Partial reversal.
+    - name: PartiallyApproved
+      description: Partially approved.
+    - name: PasswordRetriesExceeded
+      description: Password retries exceeded.
+    - name: PayAtPumpNotAllowed
+      description: Pay at pump not allowed.
+    - name: PhoneEmailNoMatch
+      description: Phone and email do not match.
+    - name: PhoneEmailUnavailable
+      description: Phone and email unavailable.
+    - name: PhoneNoMatch
+      description: Phone does not match.
+    - name: PhoneUnavailable
+      description: Phone unavailable.
+    - name: PickupCard
+      description: Pickup card.
+    - name: PinAlreadyExists
+      description: PIN already exists.
+    - name: PinKeyError
+      description: PIN key error.
+    - name: PinKeySynchronizationError
+      description: PIN key synchronization error.
+    - name: PinTryExceeded
+      description: PIN try exceeded.
+    - name: PleaseRetry
+      description: Please retry.
+    - name: ProcessAsDebit
+      description: Process as debit.
+    - name: ProcessingError
+      description: Processing error.
+    - name: ProductCodeRestricted
+      description: Product code restricted.
+    - name: PromoLocationRestricted
+      description: Promotional location restricted.
+    - name: QuantityExceeded
+      description: Quantity exceeded.
+    - name: ReauthorizationTimeframeExpired
+      description: Reauthorization timeframe expired.
+    - name: RechargeAmountExceeded
+      description: Recharge amount exceeded.
+    - name: RechargeCountExceeded
+      description: Recharge count exceeded.
+    - name: ReenterTransaction
+      description: Reenter transaction.
+    - name: Referral
+      description: Referral.
+    - name: RejectMessage
+      description: Reject message.
+    - name: RejectedLostStolenChecks
+      description: Rejected lost/stolen checks.
+    - name: RepairLimitExceeded
+      description: Repair limit exceeded.
+    - name: RequestInProgress
+      description: Request in progress.
+    - name: ResponseReceivedLate
+      description: Response received late.
+    - name: RestrictedCard
+      description: Restricted card.
+    - name: ResubmissionViolatesNetworkFrequency
+      description: Resubmission violates network frequency.
+    - name: RetainCard
+      description: Retain card.
+    - name: Reversal
+      description: Reversal.
+    - name: ReversalNoMatch
+      description: Reversal does not match.
+    - name: ReversalUnsuccessful
+      description: Reversal unsuccessful.
+    - name: RevocationOfAllAuthorizations
+      description: Revocation of all authorizations.
+    - name: RevocationOfAuthorization
+      description: Revocation of authorization.
+    - name: SecureCodeNotEnabled
+      description: Secure code not enabled.
+    - name: SecurityError
+      description: Security error.
+    - name: SecurityErrorTryAgain
+      description: Security error; try again.
+    - name: SecurityViolation
+      description: Security violation.
+    - name: SeeAttendant
+      description: See attendant.
+    - name: SeeExhibitForError
+      description: See exhibit for error.
+    - name: ServiceNotAllowed
+      description: Service not allowed.
+    - name: SignatureRequired
+      description: Signature required.
+    - name: SkipTraceInfo
+      description: Skip trace info.
+    - name: SoftDescriptorNotEnabled
+      description: Soft descriptor not enabled.
+    - name: SsnNotAvailable
+      description: SSN not available.
+    - name: StolenCard
+      description: Stolen card.
+    - name: StopPaymentOrder
+      description: Stop payment order.
+    - name: StopRecurringPaymentRequests
+      description: Stop recurring payment requests.
+    - name: StoreLocationZeroNotAllowed
+      description: Store location zero not allowed.
+    - name: SubsystemUnavailable
+      description: Subsystem unavailable.
+    - name: SurchargeLimitExceeded
+      description: The submitted surcharge exceeds the maximum allowed limit.
+    - name: SystemError
+      description: System error.
+    - name: TargetCardAndTransactionCountMismatch
+      description: Target card and transaction count mismatch.
+    - name: TerminalTransactionNumberMismatch
+      description: Terminal transaction number mismatch.
+    - name: TestmodeDecline
+      description: Test mode decline.
+    - name: TicketLimitExceeded
+      description: Ticket limit exceeded.
+    - name: Timeout
+      description: Timeout.
+    - name: TimeoutReversalNotSupported
+      description: Timeout reversal not supported.
+    - name: TooManyTransactionsRequested
+      description: Too many transactions requested.
+    - name: TotalsUnavailable
+      description: Totals unavailable.
+    - name: TransactionCountOrWithdrawalLimitExceeded
+      description: Transaction count or withdrawal limit exceeded.
+    - name: TransactionDestinationNotFoundForRouting
+      description: Transaction destination not found for routing.
+    - name: TransactionHistoryUnavailable
+      description: Transaction history unavailable.
+    - name: TransactionNotAllowed
+      description: Transaction not allowed.
+    - name: TransactionNotPermitted
+      description: Transaction not permitted.
+    - name: TransactionNotSupported
+      description: Transaction Not Supported by issuer
+    - name: TransactionTotalLimitPerProductClassExceeded
+      description: Transaction total limit per product class exceeded.
+    - name: TransarmorInvalidTokenOrAccountNumber
+      description: TransArmor invalid token or account number.
+    - name: TransarmorKeyError
+      description: TransArmor key error.
+    - name: TransarmorServiceUnavailable
+      description: TransArmor service unavailable.
+    - name: TryAgainLater
+      description: Try again later.
+    - name: UnableToLocatePreviousMessage
+      description: Unable to locate previous message.
+    - name: UnableToLocateRecord
+      description: Unable to locate record.
+    - name: UnableToProcess
+      description: Unable to process.
+    - name: UnableToVerifyPin
+      description: Unable to verify PIN.
+    - name: Unauthorized
+      description: Unauthorized.
+    - name: Unavailable
+      description: Unavailable.
+    - name: UndefinedCard
+      description: Undefined card.
+    - name: UnderageCustomer
+      description: Underage customer.
+    - name: UnknownVelocityErrorPayInside
+      description: Unknown velocity error; pay inside.
+    - name: Unsuccessful
+      description: Unsuccessful.
+    - name: UnsupportedMessage
+      description: Unsupported message.
+    - name: ValidationError
+      description: Validation error.
+    - name: VelocityErrorPayInside
+      description: Velocity error; pay inside.
+    - name: VerificationTransaction
+      description: Verification transaction.
+    - name: ViolationOfBusinessArrangement
+      description: Violation of business arrangement.
+    - name: VisaOctMastercardMoneysendTransactionsBlocked
+      description: Visa OCT/MasterCard MoneySend transactions blocked.
+    - name: VoidCapturedItem
+      description: Void captured item.
+    - name: VoyagerIdProblem
+      description: Voyager ID problem.
+    - name: YOrNRequired
+      description: "'Y' or 'N' required."
+    - name: Wait2PmEastern
+      description: Wait until 2:00 PM Eastern.
+    - name: WithdrawalCountLimitExceeded
+      description: Withdrawal count limit exceeded.
+    - name: WithdrawalLimitExceeded
+      description: Withdrawal limit exceeded.
+    - name: ZipAddressNotVerified
+      description: ZIP code and address not verified.
+    - name: ZipNoMatch
+      description: ZIP code does not match.
+    - name: ZipNotVerified
+      description: ZIP code not verified.
+    - name: 3DSAuthenticationSuccessful
+      description: 3DS authentication successful.
+    - name: 3DSAuthenticationInvalid
+      description: 3DS authentication invalid.
+    - name: 3DSAuthenticationFailed
+      description: 3DS authentication failed.
+    - name: 3DSAuthenticationNotValidated
+      description: 3DS authentication not validated.
+    - name: 3DSAuthenticationSuccessfulWithoutLiabilityShift
+      description: 3DS authentication successful without liability shift.

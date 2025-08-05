@@ -1,0 +1,21 @@
+title: feeType
+type: integer
+description: |
+  The type of the fee.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Fee.** A Standard Fee.
+  - `2` - **Assessment.** A Third-Party Platform Fee.
+
+  </details>
+default: 1
+enum:
+- 1
+- 2
+x-enum-elements:
+- name: Fee
+  description: A Standard Fee.
+- name: Assessment
+  description: A Third-Party Platform Fee.

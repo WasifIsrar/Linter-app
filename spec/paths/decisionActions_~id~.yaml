@@ -1,0 +1,128 @@
+get:
+  description: Query a Decision Action, which is a piece of conditional logic that
+    makes a VerificationResult change the application and the decision action in certain
+    circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_dca_67ddc0163f51a4ffd1ea3d0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/decisionActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionActionsModel200Response.yaml
+      description: Retrieve the Response for the query on the Decision Actions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Decision Action by it's ID.
+  tags:
+  - Decision Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDecisionActionsId
+put:
+  description: Update a Decision Action, which is a piece of conditional logic that
+    makes a VerificationResult change the application and the decision action in certain
+    circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_dca_67ddc0163f51a4ffd1ea3d0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/decisionActionsPutRequestModel.yaml
+    description: Update Decision Action Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update decisionActions:
+              $ref: ../components/schemas/samples/decisionActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionActionsModel200Response.yaml
+      description: 'Response for update on Decision Actions resource: Update Decision
+        Action Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Decision Action by it's ID.
+  tags:
+  - Decision Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putDecisionActionsId
+delete:
+  description: Delete a Decision Action. A Decision Action is a piece of conditional
+    logic that makes a VerificationResult change the application and the decision
+    action in certain circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Decision Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_dca_67ddc0163f51a4ffd1ea3d0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete decisionActions:
+              $ref: ../components/schemas/samples/decisionActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionActionsModel200Response.yaml
+      description: Delete Decision Action Response for decisionActions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Decision Action by it's ID.
+  tags:
+  - Decision Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteDecisionActionsId

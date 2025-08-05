@@ -1,0 +1,66 @@
+get:
+  description: "Query a orgsVASEfeProducts."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/orgsVASEfeProductsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASEfeProductsModel200Response.yaml
+      description: Response for query on Orgs VAS EfeProducts
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Orgs VAS EfeProducts
+  - Facilitator
+  - Partner
+  operationId: getOrgsVASEfeProducts
+post:
+  description: "Create a orgsVASEfeProducts."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASEfeProductsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create a OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/orgsVASEfeProductsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASEfeProductsModel200Response.yaml
+      description: Response for create Orgs VAS EfeProducts
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Orgs VAS EfeProducts
+  - Partner
+  - Facilitator
+  operationId: postOrgsVASEfeProducts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

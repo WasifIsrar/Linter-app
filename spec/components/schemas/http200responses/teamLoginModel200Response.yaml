@@ -1,0 +1,13 @@
+title: teamLoginResponseResult
+properties:
+  response:
+    title: teamLoginResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/teamLoginModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

@@ -1,0 +1,65 @@
+title: tokensResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  customer:
+    type: string
+    description: The Customer that this Token is associated with.
+  payment:
+    type: string
+    description: The payment method that is associated with this Token.
+  status:
+    $ref: ../enums/tokenStatusModel.yaml
+  token:
+    type: string
+    description: The auto-generated token identifier.
+  track:
+    type: string
+    description: The magnetic stripe track data for the payment record for use in
+      a transaction.
+  cvv:
+    type: string
+    description: The CVV (Card Verification Value) for the payment record for use
+      in a transaction
+  expiration:
+    type: string
+    description: "The expiry month for the payment method associated with this Token.\n\
+      \ This field is stored as a text string in 'MMYY' format, where 'MM' is the\
+      \ number of a month and 'YY' is the last two digits of a year. For example,\
+      \ '0623' for June 2023. \nThe value must reflect a future date."
+  name:
+    type: string
+    description: "The name of this Token. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A description of this Token. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  custom:
+    type: string
+    description: Custom, free-form field for client-supplied text, must be between
+      0 and 1000 characters long.
+  authTokenCustomer:
+    type: string
+    description: The customer reference from the authToken used for user authentication
+  origin:
+    type: string
+    description: The origin of the token.
+  entryMode:
+    type: integer
+    description: Entry mode set to the token.
+  omnitoken:
+    type: string
+    description: The omnitoken value. If this field has a value, the whole record is treated as an omnitoken.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

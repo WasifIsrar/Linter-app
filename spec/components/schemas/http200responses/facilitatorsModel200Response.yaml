@@ -1,0 +1,13 @@
+title: facilitatorsResponseResult
+properties:
+  response:
+    title: facilitatorsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/facilitatorsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

@@ -1,0 +1,25 @@
+  title: orgFlowTrigger
+  type: string
+  description: |
+    This field sets the trigger that determines when this orgFlow runs.
+    <details>
+    <summary>Valid Values</summary>
+    - `create` - **Entity creation.**
+    - `low` - **Entity verification through decisions hits a configured low score.**
+    - `high` - **Entity verification through decisions hits a configured high score.**
+    - `board` - **Merchant boarding.**
+    </details>
+  enum:
+  - create
+  - low
+  - high
+  - board
+  x-enum-elements:
+  - name: Create
+    description: Entity creation.
+  - name: Low
+    description: Entity verification through decisions hits a configured low score.
+  - name: High
+    description: Entity verification through decisions hits a configured high score.
+  - name: Board
+    description: Merchant boarding.

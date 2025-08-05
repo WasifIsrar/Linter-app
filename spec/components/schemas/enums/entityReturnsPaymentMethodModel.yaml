@@ -1,0 +1,28 @@
+title: entityReturnsPaymentMethod
+type: integer
+description: |
+  The account method used to issue the return.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `8` - **Checking account**
+  - `9` - **Savings account**
+  - `10` - **Corporate checking account**
+  - `11` - **Corporate savings account**
+
+  </details>
+enum:
+- 8
+- 9
+- 10
+- 11
+x-enum-elements:
+- name: CheckingAccount
+  description: Checking account.
+- name: SavingsAccount
+  description: Savings account.
+- name: CorporateCheckingAccount
+  description: Corporate checking account.
+- name: CorporateSavingsAccount
+  description: Corporate savings account.

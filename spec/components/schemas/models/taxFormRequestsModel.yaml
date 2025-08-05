@@ -1,0 +1,31 @@
+title: taxFormRequestsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  merchant:
+    type: string
+    description: The identifies of the Merchant requesting the tax document.
+  type: 
+    type: string
+    description: |
+      The tax document type.
+      Valid Value - `1099k` - **1099k Tax Document.**
+    enum:
+    - "1099k"
+    x-enum-elements:
+    - name: "1099k"
+      description: "1099k Tax Document"
+  taxYear: 
+    type: integer
+    description: The tax year for which the document is requested.
+  responseCode:
+    type: integer
+    description: The API call response code.

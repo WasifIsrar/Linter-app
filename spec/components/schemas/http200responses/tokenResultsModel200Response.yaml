@@ -1,0 +1,13 @@
+title: tokenResultsResponseResult
+properties:
+  response:
+    title: tokenResultsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/tokenResultsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

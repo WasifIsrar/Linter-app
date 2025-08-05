@@ -1,0 +1,72 @@
+title: statementEntriesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The paying entity for which this statementEntry applies.
+  onentity:
+    type: string
+    description: The identifier of the Entity that triggered the charge.
+  forentity:
+    type: string
+    description: The identifier of the Entity that will be paid for this charge.
+  billing:
+    type: string
+    description: The identifier of the Billing that this StatementEntry refers to.
+  statement:
+    type: string
+    description: The identifier of the Statement that this StatementEntry refers to.
+  fee:
+    type: string
+    description: If the activity that this StatementEntry refers to is the charging
+      of a Fee, then this field stores the identifier of the corresponding Fee resource.
+  profitShare:
+    type: string
+    description: If the activity that this StatementEntry refers to is a ProfitShare,
+      then this field stores the identifier of the corresponding ProfitShare resource.
+  event:
+    $ref: ../enums/statementEntryEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this StatementEntry.
+  originalEventId:
+    type: string
+    description: ID of the original event.
+  originalEvent:
+    $ref: ../enums/statementEntryOriginalEventModel.yaml
+  description:
+    type: string
+    description: A description of this StatementEntry.
+  amount:
+    type: number
+    format: double
+    description: The amount involved in this StatementEntry. It refers to the amount
+      charged, transferred, or disbursed. This field is specified in cents(up to three decimal points).
+  deductedFromBalance:
+    type: integer
+    description: "Whether or not the amount was deducted from the paying entity's\
+      \ balance and is already paid for. \n\n  <details>\n  <summary>Valid Values</summary>\n\
+      \n  - `0` - **Not deducted from balance.** \n\n  - `1` - **Deducted from balance.**\n\
+      \n  </details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotDeducted"
+      description: "Not deducted from balance."
+    - name: "Deducted"
+      description: "Deducted from balance."
+  revShareStatement:
+    type: string
+    description: If the activity that this StatementEntry refers to is a Revenue Share,
+      then this field stores the identifier of the corresponding RevShareStatement
+      resource

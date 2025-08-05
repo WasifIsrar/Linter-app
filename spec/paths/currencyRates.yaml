@@ -1,0 +1,58 @@
+get:
+  description: "Query a Currency Rate. \nA Currency Rate is a record that is used\
+    \ to store data about a particular currency rate of an entity, division, org,\
+    \ or partition. You can use it to associate rate to be used base on entity's default\
+    \ currency, or for use with other API features."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/currencyRatesModel200Response.yaml
+      description: Response for query on currencyRates resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Currency Rates
+  - Facilitator
+  operationId: getCurrencyRates
+post:
+  description: "Create a Currency Rate. \nA Currency Rate is a record that is used\
+    \ to store data about a particular currency rate of an entity, division, org,\
+    \ or partition. You can use it to associate rate to be used base on entity's default\
+    \ currency, or for use with other API features."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/currencyRatesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/currencyRatesModel200Response.yaml
+      description: Response for create on currencyRates resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Currency Rates
+  - Facilitator
+  operationId: postCurrencyRates
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,17 @@
+title: billingCollection
+type: string
+description: |
+  Determines who will be billed.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `entity` - **The entity will be billed.**
+
+  </details>
+default: entity
+enum:
+- entity
+x-enum-elements:
+- name: Entity
+  description: The entity will be billed.

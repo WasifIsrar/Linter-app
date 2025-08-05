@@ -1,0 +1,75 @@
+get:
+  description: Query a Decision Action, A Decision Action is a piece of conditional
+    logic that makes a VerificationResult change the application and the decision
+    action in certain circumstances.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/decisionActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionActionsModel200Response.yaml
+      description: Retrieve Response for query on decisionActions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Decision Actions.
+  tags:
+  - Decision Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDecisionActions
+post:
+  description: Create a Decision Action in conjunction with This resource, which is
+    used to further tune the reactions based on conditions defined in the DecisionAction.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/decisionActionsPostRequestModel.yaml
+    description: Create Decision Action Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/decisionActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionActionsModel200Response.yaml
+      description: Create Decision Actions Response for create on decisionActions
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisionActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Decision Action
+  tags:
+  - Decision Actions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postDecisionActions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

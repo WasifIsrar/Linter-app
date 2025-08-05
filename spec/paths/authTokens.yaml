@@ -1,0 +1,74 @@
+get:
+  description: Query an AuthToken, which is an additional layer of authentication
+    security and tracking for Apikeys and Sessions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/authTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/authTokensModel200Response.yaml
+      description: The response for retrieving authentication tokens.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: ErrorError
+  summary: Retrieve all Authentication Tokens.
+  tags:
+  - Authentication Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAuthTokens
+post:
+  description: Create an AuthToken to add an additional layer of authentication, security,
+    and tracking for Apikeys and Sessions.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/authTokensPostRequestModel.yaml
+    description: Create Authentication Token Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create authTokens:
+              $ref: ../components/schemas/samples/authTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/authTokensModel200Response.yaml
+      description: The Response for creating an authentication token on the authTokens
+        resource is a Create Authentication Token Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all authTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Authentication Token.
+  tags:
+  - Authentication Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postAuthTokens
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

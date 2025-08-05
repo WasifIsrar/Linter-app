@@ -1,0 +1,67 @@
+get:
+  description: Query Report Result.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            fetch all reportResults:
+              $ref: ../components/schemas/samples/reportResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reportResultsModel200Response.yaml
+      description: Retrieve Report Results Response for query on reportResults resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reportResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Report Results.
+  tags:
+  - Report Results
+  - Facilitator
+  operationId: getReportResults
+post:
+  description: Create a Report Result.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/reportResultsPostRequestModel.yaml
+    description: Create Report Results Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create reportResults:
+              $ref: ../components/schemas/samples/reportResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reportResultsModel200Response.yaml
+      description: Response for create on reportResults resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reportResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create new Report Results
+  tags:
+  - Report Results
+  - Facilitator
+  operationId: postReportResults
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,13 @@
+title: merchantPlatformStatusesResponseResult
+properties:
+  response:
+    title: merchantPlatformStatusesResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/merchantPlatformStatusesModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

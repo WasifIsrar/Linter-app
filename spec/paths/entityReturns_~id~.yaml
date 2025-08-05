@@ -1,0 +1,106 @@
+get:
+  description: Query an EntityReturn represents an ACH transaction or disbursement
+    that has been rejected, which will block ACH creations or send out related to
+    its entity and payment.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity return.
+    explode: false
+    in: path
+    name: id
+    example: t1_ern_67c9b2996c2944b0ffc9090
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReturns:
+              $ref: ../components/schemas/samples/entityReturnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityReturnsModel200Response.yaml
+      description: Retrieve an Entity Returns Response for query on entity.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all accounts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Entity Return by it's ID.
+  tags:
+  - Entity Returns
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityReturnsId
+put:
+  description: "Update an EntityReturn. \nAn EntityReturn represents an ACH transaction\
+    \ or disbursement that has been rejected. \nThe EntityReturn will block ACH creations\
+    \ or send out related to its entity and payment."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityReturnsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityReturnsModel200Response.yaml
+      description: Response for update on entityReturns resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Entity Returns
+  - Facilitator
+  operationId: putEntityReturnsId
+delete:
+  description: "Delete an EntityReturn. \nAn EntityReturn represents an ACH transaction\
+    \ or disbursement that has been rejected. \nThe EntityReturn will block ACH creations\
+    \ or send out related to its entity and payment."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/entityReturnsModel200Response.yaml
+      description: Response for delete on entityReturns resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Entity Returns
+  - Facilitator
+  operationId: deleteEntityReturnsId

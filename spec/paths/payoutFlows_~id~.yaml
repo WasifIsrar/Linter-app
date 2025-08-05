@@ -1,0 +1,127 @@
+get:
+  description: "Query a payoutFlows resource. \nA payoutFlows resource represents\
+    \ a way to set up a Payouts resource automatically for an Entity or Org when it\
+    \ is boarded, or when a bank account is associated. \nYou can set up the schedule\
+    \ and amount for the Payouts in the payoutFlows resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payout flow.
+    explode: false
+    in: path
+    name: id
+    example: t1_pfw_67e2ff129aad30995408a00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/payoutFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutFlowsModel200Response.yaml
+      description: Retrieve the Response for query on Payout Flows resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Payout Flow by it's ID.
+  tags:
+  - Payout Flows
+  - Facilitator
+  - Partner
+  operationId: getPayoutFlowsId
+put:
+  description: Update a payoutFlows resource that represents a way to set up a Payouts
+    resource automatically for an Entity or Org when it is boarded, or when a bank
+    account is associated, allowing you to set up the schedule and amount for the
+    Payouts in the payoutFlows resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payout flow.
+    explode: false
+    in: path
+    name: id
+    example: t1_pfw_67e2ff129aad30995408a00
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/payoutFlowsPutRequestModel.yaml
+    description: Update Payout Flow Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update payoutFlows:
+              $ref: ../components/schemas/samples/payoutFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutFlowsModel200Response.yaml
+      description: Response for updating a Payout Flow.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Payout Flow by it's ID.
+  tags:
+  - Payout Flows
+  - Facilitator
+  - Partner
+  operationId: putPayoutFlowsId
+delete:
+  description: Delete a payoutFlows resource that represents a way to set up a Payouts
+    resource automatically for an Entity or Org when it is boarded, or when a bank
+    account is associated, allowing you to set up the schedule and amount for the
+    Payouts in the payoutFlows resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payout flow.
+    explode: false
+    in: path
+    name: id
+    example: t1_pfw_67e2ff129aad30995408a00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete payoutFlows:
+              $ref: ../components/schemas/samples/payoutFlowsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutFlowsModel200Response.yaml
+      description: Response for deleting a Payout Flow.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payoutFlows:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Payout Flow by it's ID.
+  tags:
+  - Payout Flows
+  - Facilitator
+  - Partner
+  operationId: deletePayoutFlowsId

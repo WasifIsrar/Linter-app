@@ -1,0 +1,40 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_act_67a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "entity": "t1_ent_67a18bcde1a1b2ec3d9c9az",
+        "account": "t1_pmt_67a18bcde1a1b2ec3d9c9az",  
+        "token": "1dc2304a56783be9f31001459981abab",
+        "name": "Bank Account Non-Primary",
+        "description": "Test merchant 9af2d883c7b2c",
+        "primary": 0,
+        "type": "all",
+        "status": 0,
+        "reserved": 0,
+        "checkStage": "createAccount",
+        "expiration": "",
+        "inactive": 0,
+        "currency": "USD",
+        "frozen": 0,
+        "publicToken": "public-test-a12eeba1-1234-4567-af1g-d80cc1bfd713",
+        "mask": "2345",
+        "plaidAccountId": "aK6w4rjrdrIEAcPKp3KyABkaz5NordiRRkbzBP",
+        "updateMethod": "NOC"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

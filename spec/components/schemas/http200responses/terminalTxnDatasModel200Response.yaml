@@ -1,0 +1,13 @@
+title: terminalTxnDatasResponseResult
+properties:
+  response:
+    title: terminalTxnDatasResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/terminalTxnsDatasModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

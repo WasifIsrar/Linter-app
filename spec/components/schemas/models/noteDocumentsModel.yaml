@@ -1,0 +1,51 @@
+title: noteDocumentsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  note:
+    type: string
+    description: The identifier of the Note that owns this note documents resource.
+  custom:
+    type: string
+    description: The identifier of the Custom that relates to this notes resource.
+  type:
+    $ref: ../enums/noteDocumentTypeModel.yaml
+  documentType:
+    $ref: ../enums/noteDocumentsDocumentTypeModel.yaml
+  name:
+    type: string
+    description: The name of the document on the referenced NoteDocument.
+  description:
+    type: string
+    description: A brief description of the document.
+  status:
+    title: noteStatus
+    type: string
+    description: "The current status of the document upload. \n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `created` - **The database record has been created.**\n\
+      \n- `processed` - **The document upload for this record was processed successfully.**\n\
+      \n- `failed` - **The document upload for this record could not be processed**\n\
+      \n</details>\n"
+    enum:
+    - created
+    - processed
+    - failed
+    x-enum-elements:
+    - name: "Created"
+      description: "The database record has been created."
+    - name: "Processed"
+      description: "The document upload for this record was processed successfully."
+    - name: "Failed"
+      description: "The document upload for this record could not be processed."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

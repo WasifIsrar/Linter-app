@@ -1,0 +1,44 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_fee_67b5422dda39a7c36059988",
+        "created": "2025-02-18 21:30:05.9053",
+        "modified": "2025-02-18 21:30:05.9053",
+        "creator": "t1_log_0a008e990c7a922100d4f00",
+        "modifier": "t1_log_0a008e990c7a922100d4f00",
+        "entity": "t1_ent_00758e990d7437d51cdf1aa",
+        "forentity": "t1_ent_0088c831a31ca8841c81111",
+        "org": "t1_org_00b2ac11ed8bed97fb81111",
+        "partition": "t1_ptn_000111d4d504f21414978f0",
+        "type": 1,
+        "name": "Boarding Fee",
+        "description": "Boarding Fee",
+        "schedule": 5,
+        "scheduleFactor": 1,
+        "start": 20160120,
+        "finish": 20160120,
+        "collection": 2,
+        "collectionFactor": 2,
+        "collectionOffset": 5,
+        "um": 2,
+        "amount": 45,
+        "currency": "USD",
+        "inactive": 0,
+        "frozen": 0,
+        "txnFee": 0,
+        "collectionIncludeCurrent": 0,
+        "maximum": 30
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

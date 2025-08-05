@@ -1,0 +1,15 @@
+title: orgEntitiesPostRequest
+properties:
+  org:
+    type: string
+    description: The identifier of the Org that this orgEntity is associated with.
+  entity:
+    type: string
+    description: The identifier of the Entity that this orgEntity is associated with.
+required:
+- entity
+- org
+
+example:
+  org: t1_org_5b0e08025ec790d3f9b8c11
+  entity: t1_ent_10c99d558e910765c164a01

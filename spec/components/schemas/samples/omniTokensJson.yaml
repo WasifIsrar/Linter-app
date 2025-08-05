@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_otk_6809db98230a5b02b08f00z",
+        "created": "2025-04-24 02:35:04.1649",
+        "modified": "2025-04-24 02:35:04.1649",
+        "creator": "t1_log_663ce214b2f25f2325a9935",
+        "modifier": "t1_log_663ce214b2f25f2325a9935",
+        "enablementDate": "2025-04-24 02:35:04",
+        "org": "t1_org_5b0e08025ec790d3f9b8c00",
+        "division": "t1_div_67c56806728fbbf0bae0b00",
+        "partition": "t1_ptn_666834d4d504f21414978z0",
+        "entity": "t1_ent_6809db6dd78923dadbfd904",
+        "platform": "VCORE",
+        "inactive": 0,
+        "frozen": 0,
+        "deleted": "2025-04-24 02:35:04",
+        "deleter": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

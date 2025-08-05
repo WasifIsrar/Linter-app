@@ -1,0 +1,36 @@
+title: messagesPostRequest
+properties:
+  messageThread:
+    type: string
+    description: The identifier of the messageThreads that owns this Messages resource.
+  secure:
+    type: integer
+    description: "Whether this resource is marked as secure.\n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `0` - **Messages will protected in email notifications.**\
+      \ \n\n- `1` - **Message will display entirely.**\n\n</details>\n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Protected"
+      description: "Messages will be protected in email notifications."
+    - name: "Displayed"
+      description: "Message will display entirely."
+  read:
+    $ref: ../enums/messagesReadModel.yaml
+  message:
+    type: string
+    description: Free-form text for adding a message to a messageThread resource.
+required:
+- messageThread
+- secure
+- read
+- message
+
+example:
+  messageThread: t1_mtd_10ca1fcf172a9ac47656a21
+  secure: 1
+  read: 0
+  message: This is a test message
+

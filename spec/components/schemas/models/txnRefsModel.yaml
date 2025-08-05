@@ -1,0 +1,71 @@
+title: txnRefsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  txn:
+    type: string
+    description: The parent transaction that owns this txnRef and to which this reference
+      applies.
+  ref:
+    type: string
+    description: The reference value retrieved from the third party (platform).
+  stage:
+    title: txnRefStage
+    type: string
+    description: |
+      An indicator showing what this txnRef refers to, such as auth, capture, draft, file, refund, or an unknown value.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `auth`  -  **Related to transaction authorization stage.**
+      - `capture`  -  **Related to transaction capture stage.**
+      - `draft`  -  **Transaction is in draft stage. Draft locator for transaction.**
+      - `file`  -  **Import Transaction Reference file.**
+      - `refund`  -  **Related to transaction refund stage.**
+      - `retrieval`  -  **A reference to the retrieval number (a reference exchanged with the processor for later cross-reference).**
+      - `threatMetrix`  -  **Threat Matrix.**
+
+      </details>
+    enum:
+    - auth
+    - capture
+    - draft
+    - file
+    - network
+    - refund
+    - retrieval
+    - threatMetrix
+    - txnHash
+    - ARN
+    x-enum-elements:
+    - name: auth
+      description: Related to transaction authorization stage.
+    - name: capture
+      description: Related to transaction capture stage.
+    - name: draft
+      description: Transaction is in draft stage. Draft locator for transaction.
+    - name: file
+      description: Import Transaction Reference file.
+    - name: network
+      description: Network-related reference.
+    - name: refund
+      description: Related to transaction refund stage.
+    - name: retrieval
+      description: A reference to the retrieval number (a reference exchanged with the processor for later cross-reference).
+    - name: threatMetrix
+      description: Threat Matrix.
+    - name: txnHash
+      description: Transaction hash reference.
+    - name: ARN
+      description: Acquirer Reference Number.
+  platform:
+    $ref: ../enums/platformModel.yaml

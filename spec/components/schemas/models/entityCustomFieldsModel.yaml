@@ -1,0 +1,26 @@
+title: entityCustomFieldsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: Entity for which we are creating custom field.
+  key:
+    type: string
+    description: Name of custom field.
+  value:
+    type: string
+    description: Value of custom field.
+  deleted:
+    type: string
+    description: Time when custom field is deleted. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'

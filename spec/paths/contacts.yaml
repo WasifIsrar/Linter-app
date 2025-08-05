@@ -1,0 +1,73 @@
+get:
+  description: Query a Contact, which represents an individual who is associated with
+    an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all contacts:
+              $ref: ../components/schemas/samples/contactsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/contactsModel200Response.yaml
+      description: The Response for query to retrieve from contacts resources.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all contacts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Contacts.
+  tags:
+  - Contacts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getContacts
+post:
+  description: "Create a Contact. \nA Contact resource represents an individual who\
+    \ is associated with an Entity."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/contactsPostRequestModel.yaml
+    description: Create Contact Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create contacts:
+              $ref: ../components/schemas/samples/contactsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/contactsModel200Response.yaml
+      description: 'Response for create on Contacts resource: Create Contact Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all contacts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Contact
+  tags:
+  - Contacts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postContacts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

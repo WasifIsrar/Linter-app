@@ -1,0 +1,32 @@
+title: aggregationSchedule
+type: string
+description: |
+  The schedule that determines when the aggregation function will be processed.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `hours` - **Hourly schedule.**
+  - `days` - **Daily schedule.**
+  - `weeks` - **Weekly schedule.**
+  - `months` - **Monthly schedule.**
+  - `years` - **Annual schedule.**
+
+  </details>
+enum:
+- hours
+- days
+- weeks
+- months
+- years
+x-enum-elements:
+- name: Hours
+  description: Hourly schedule.
+- name: Days
+  description: Daily schedule.
+- name: Weeks
+  description: Weekly schedule.
+- name: Months
+  description: Monthly schedule.
+- name: Years
+  description: Annual schedule.

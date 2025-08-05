@@ -1,0 +1,66 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_mbr_67d0336c01048ea41c4382z",
+        "created": "2025-03-11 08:58:20.0258",
+        "modified": "2025-03-11 08:58:20.0258",
+        "creator": "g1577139c2304b7",
+        "modifier": "g1577139c2304b7",
+        "merchant": "t1_mer_67d033698c234e74c399ddd",
+        "title": "CEO",
+        "first": "Chad",
+        "middle": "",
+        "last": "Foster",
+        "ssn": "1924",
+        "dob": 20160120,
+        "dl": "6679",
+        "dlstate": "MD",
+        "ownership": 10000,
+        "email": "Jerrod_Glover@hotmail.com",
+        "fax": "",
+        "phone": "5106406000",
+        "country": "MAR",
+        "zip": "60064",
+        "state": "MD",
+        "city": "East Bettye",
+        "address2": "",
+        "address1": "83 Dan Ways",
+        "primary": 1,
+        "inactive": 0,
+        "frozen": 0,
+        "timezone": "est",
+        "gender": "male",
+        "creditScore": 334,
+        "creditScoreDate": "2025-03-11 08:58:20",
+        "significantResponsibility": 0,
+        "politicallyExposed": 0,
+        "citizenship": "MAR",
+        "mailingAddress1": "",
+        "mailingAddress2": "",
+        "mailingCity": "",
+        "mailingState": "MD",
+        "mailingPostalCode": "",
+        "mailingCountry": "MAR",
+        "treasuryPrimeRoles": "",
+        "facilitator": "",
+        "vendor": "",
+        "shareableUrl": "",
+        "status": "",
+        "createdAt": 1123,
+        "completedAt": 1123,
+        "plaidIdvId": "",
+        "templateId": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

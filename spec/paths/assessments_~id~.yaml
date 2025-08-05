@@ -1,0 +1,39 @@
+get:
+  description: Query an Assessment resource that represents a record of fees charged
+    by processors or other third parties to Entities or Orgs. Fees can represent charges
+    that are levied on a one-off, regularly scheduled, or event-driven basis.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this assessment.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+    example: t1_ast_12a003cde5d6b2ec3d9canb
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all assessments:
+              $ref: ../components/schemas/samples/assessmentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/assessmentsModel200Response.yaml
+      description: Retrieve assessment response for query on assessments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all assessments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Assessment by its ID.
+  tags:
+  - Assessments
+  - Facilitator
+  - Partner
+  operationId: getAssessmentsId

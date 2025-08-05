@@ -1,0 +1,71 @@
+get:
+  description: "Query a txnMetadatas resource. \nA txnMetadatas resource represents\
+    \ data from an EMV Transaction and/or returned by the credit card network associated\
+    \ with a Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnMetaDatas:
+              $ref: ../components/schemas/samples/txnMetaDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnMetaDatasModel200Response.yaml
+      description: Response for query on txnMetadatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnMetaDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all transaction metadata (txnMetadatas).
+  tags:
+  - Transaction Metadatas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxnMetadatas
+post:
+  description: "Create a txnMetadatas resource. \nA txnMetadatas resource represents\
+    \ data from an EMV Transaction and/or returned by the credit card network associated\
+    \ with a Transaction."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/txnMetadatasPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnMetaDatas:
+              $ref: ../components/schemas/samples/txnMetaDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnMetaDatasModel200Response.yaml
+      description: Response for create on txnMetadatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnMetaDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Transaction Metadatas
+  - Facilitator
+  operationId: postTxnMetadatas
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,25 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "t1_rfd_67b3a4c7a86e243a0911234",
+              "created": "2025-01-31 08:42:16.7318",
+              "modified": "2025-01-31 08:42:16.7318",
+              "creator": "t1_log_66747a41188e1a5d000e4e1",
+              "modifier": "t1_log_66747a41188e1a5d000e4e1",
+              "entry": "t1_etr_6785d50e925b93e699f1234",
+              "description": "Negative Tax Reimbursement",
+              "amount": 248
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

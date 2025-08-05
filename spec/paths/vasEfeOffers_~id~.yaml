@@ -1,0 +1,37 @@
+get:
+  description: "Query a vasEfeOffers."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: 000000000000002
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all vasEfeOffers:
+              $ref: ../components/schemas/samples/vasEfeOffersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/vasEfeOffersModel200Response.yaml
+      description: Response for query on vasEfeOffers resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - VAS EfeOffers
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getVasEfeOffersId

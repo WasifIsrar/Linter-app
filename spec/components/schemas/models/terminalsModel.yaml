@@ -1,0 +1,206 @@
+title: terminalsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  merchant:
+    type: string
+    description: The identifier of the Merchant that owns this terminals resource.
+  type:
+    $ref: ../enums/terminalTypeModel.yaml
+  capability:
+    type: integer
+    description: |
+      The credit card terminal’s capabilities.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **KEYED.** Manual Card Payment Entry.
+      - `2` - **MAGSTRIPE.** Magstripe/Swipe.
+      - `3` - **EMV.** (EuroPay, Mastercard, & Visa) Chip Card Payments.
+      - `4` - **TAP.** Tap-to-Pay.
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    x-enum-elements:
+    - name: Keyed
+      description: Manual Card Payment Entry.
+    - name: Magstripe
+      description: Magstripe/Swipe.
+    - name: Emv
+      description: (EuroPay, Mastercard, & Visa) Chip Card Payments.
+    - name: Tap
+      description: Tap-to-Pay.
+  environment:
+    $ref: ../enums/terminalEnvironmentModel.yaml
+  autoClose:
+    type: integer
+    description: |
+      If the terminal should be manually or automatically closed for the day.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Automatic**
+      - `1` - **Manual**
+      - `2` - **None**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    - 2
+    x-enum-elements:
+    - name: Automatic
+      description: The terminal is automatically closed for the day.
+    - name: Manual
+      description: The terminal is manually closed for the day.
+    - name: None
+      description: No auto-close behavior is set for the terminal.
+  autoCloseTime:
+    type: integer
+    description: The time when the terminal should be automatically closed for the
+      day. This field is only required when AutoClose is set to automatic; the format
+      should be HHMM (1145, 2200, etc).
+  cloudEnabled:
+    type: integer
+    description: |
+      Whether or not the terminal has cloud services enabled.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Cloud Services Disabled**
+      - `1` - **Cloud Services Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: CloudServicesDisabled
+      description: Cloud services are disabled for the terminal.
+    - name: CloudServicesEnabled
+      description: Cloud services are enabled for the terminal.
+  serial:
+    type: string
+    description: The serial number of the terminal device.
+  token:
+    type: string
+    description: The ID of the token record to associate with this terminal transaction request.
+  name:
+    type: string
+    description: The name of this Terminal. This field is stored as a text string
+      and must be between 1 and 100 characters long.
+  description:
+    type: string
+    description: A description of the Terminal. This field is stored as a text string
+      and must be between 1 and 100 characters long.
+  address1:
+    type: string
+    description: The first line of the address associated with this Terminal's location.
+      This field is stored as a text string and must be between 1 and 500 characters
+      long.
+  address2:
+    type: string
+    description: The second line of the address associated with this Terminal's location.
+      This field is stored as a text string and must be between 1 and 500 characters
+      long.
+  city:
+    type: string
+    description: The name of the city in the address associated with this Terminal's
+      location. This field is stored as a text string and must be between 1 and 500
+      characters long.
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: The ZIP code in the address associated with this Terminal's location,
+      This field is stored as a text string and must be between 1 and 20 characters
+      long.
+  country:
+    $ref: ../models/countryModel.yaml
+    description: The country in the address associated with the Terminal's location.
+      Currently, this field only accepts the value 'USA'.
+  phone:
+    type: string
+    description: The Phone number is the telephone number associated with the Terminal's
+      location, stored as a text string and must be between 5 and 15 characters long
+      and numeric characters only.
+  timezone:
+    type: string
+    description: |+
+      The timezone for the address associated with the terminal's location.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `est`  - **Eastern Standard Time**
+      - `cst`  - **Central Standard Time**
+      - `pst`  - **Pacific Standard Time**
+      - `mst`  - **Mountain Standard Time**
+      - `akst`  - **Alaska Standard Time**
+      - `hst`  - **Hawaii Standard Time**
+      - `sst`  - **Samoa Standard Time**
+      - `chst`  - **Chamorro Standard Time**
+      - `ast`  - **Atlantic Standard Time**
+      - `pwt`  - **Palau Time**
+      - `mht`  - **Marshall Islands Time**
+      - `chut`  - **Chuuk Time**
+      - `nst`  - **Newfoundland Standard Time**
+
+      </details>
+    enum:
+    - est
+    - cst
+    - pst
+    - mst
+    - akst
+    - hst
+    - sst
+    - chst
+    - ast
+    - pwt
+    - mht
+    - chut
+    - nst
+    x-enum-elements:
+    - name: "EST"
+      description: "Eastern Standard Time"
+    - name: "CST"
+      description: "Central Standard Time"
+    - name: "PST"
+      description: "Pacific Standard Time"
+    - name: "MST"
+      description: "Mountain Standard Time"
+    - name: "AKST"
+      description: "Alaska Standard Time"
+    - name: "HST"
+      description: "Hawaii Standard Time"
+    - name: "SST"
+      description: "Samoa Standard Time"
+    - name: "CHST"
+      description: "Chamorro Standard Time"
+    - name: "AST"
+      description: "Atlantic Standard Time"
+    - name: "PWT"
+      description: "Palau Time"
+    - name: "MHT"
+      description: "Marshall Islands Time"
+    - name: "CHUT"
+      description: "Chuuk Time"
+    - name: "NST"
+      description: "Newfoundland Standard Time"
+  status:
+    $ref: ../enums/terminalStatusModel.yaml

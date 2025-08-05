@@ -1,0 +1,74 @@
+get:
+  description: Query a chargebackMessage resource, which represents a message that
+    is sent by a Merchant, processor, or bank in relation to a Chargeback.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessages:
+              $ref: ../components/schemas/samples/chargebackMessagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackMessagesModel200Response.yaml
+      description: Retrieve Response for query on chargebackMessages resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Chargeback Messages.
+  tags:
+  - Chargeback Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChargebackMessages
+post:
+  description: Create a chargebackMessage. A chargebackMessage resource represents
+    a message that is sent by a Merchant, processor, or bank in relation to a Chargeback.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/chargebackMessagePostRequestModel.yaml
+    description: Create Chargeback Message Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create chargebackMessages:
+              $ref: ../components/schemas/samples/chargebackMessagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackMessagesModel200Response.yaml
+      description: Create Chargeback Message Response for creating on chargebackMessages
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackMessages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a Chargeback Message
+  tags:
+  - Chargeback Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postChargebackMessages
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

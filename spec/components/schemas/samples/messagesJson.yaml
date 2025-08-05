@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+         "id": "t1_mtd_10ca1fcf172a9ac47656a21",
+          "created": "2025-03-07 00:10:39.1099",
+          "modified": "2025-03-07 00:10:39.1099",
+          "creator": "t1_log_0092b50e8812b18e41d511s",
+          "modifier": "t1_log_0092b50e8812b18e41d511s",
+          "messageThread": "t1_mtd_10ca7fcf172a9ac47656a2c",
+          "opposingMessage": "",
+          "type": "incoming",
+          "generated": 1,
+          "secure": 1,
+          "read": 0,
+          "message": "This is a test message"
+        }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

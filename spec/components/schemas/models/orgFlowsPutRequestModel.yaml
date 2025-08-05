@@ -1,0 +1,34 @@
+title: orgFlowsPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  forlogin:
+    type: string
+    description: The identifier of the Login resource for which this orgFlows resource
+      is triggered.
+  team:
+    type: string
+    description: The identifier of the Team resource for which this orgFlows resource
+      is triggered.
+  division:
+    type: string
+    description: The identified of the Division resource for which this orgFlows resource
+      is triggered.
+  trigger:
+    $ref: ../enums/orgFlowTriggerModel.yaml
+  partition:
+    type: string
+    description: The identified of the Partition resource for which this orgFlows
+      resource is triggered.
+required:
+- login
+- trigger
+
+example: 
+  login: g1577139c2304b7
+  forlogin: t1_log_67c203583fbd0a4437d1332
+  team: t1_tem_67c202b908935b505104500
+  division: t1_div_67c56806728fbbf0bae0b10
+  trigger: create
+  partition: t1_ptn_666834d4d504f21414978f5

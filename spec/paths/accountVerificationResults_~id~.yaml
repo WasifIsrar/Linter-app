@@ -1,0 +1,37 @@
+get:
+  description: "Query an accountVerificationResults resource. \nAn accountVerificationResults\
+    \ resource represents the result of an attempt to verify a bank account. It is\
+    \ linked to an accountVerification resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    example: ti_avr_12a003cde5d6b2ec3d9canb
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all account Verification results:
+              $ref: ../components/schemas/samples/accountVerificationResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/accountVerificationResultsModel200Response.yaml
+      description: Response for query on accountVerificationResults resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all account Verification results:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Accounts Verification Results
+  - Facilitator
+  operationId: getAccountVerificationResultsId

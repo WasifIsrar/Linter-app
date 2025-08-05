@@ -1,0 +1,33 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_adm_00073f32d2450f385ec0001",
+        "created": "2024-05-17 07:27:46.8613",
+        "modified": "2024-05-17 07:27:46.8613",
+        "creator": "t1_log_0009cc497e1545b08f41010",
+        "modifier": "t1_log_0009cc497e1545b08f41010",
+        "login": "t1_log_00c2b2d6ee66314295700001",
+        "entity": "t1_ent_00c2b1a6102ffdd33f11010",
+        "fromentity": "t1_ent_00c2b2c70e08745cf1e1010",
+        "description": "Correction for a duplicate fee",
+        "amount": 20000,
+        "currency": "USD",
+        "platform": "VANTIV",
+        "funding": "12345678901234",
+        "onentity": "t1_ent_00c2b1a6102ffdd33f11010",
+        "fbo": "WORLDPAY_AB00",
+        "disbursement": "t1_dbm_00c2b1a6102ffdd33f11010"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

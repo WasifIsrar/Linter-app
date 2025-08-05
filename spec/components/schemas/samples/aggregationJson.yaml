@@ -1,0 +1,45 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_agg_67b339d00940f0d12b000b7",
+        "created": "2025-02-17 08:30:00.5718",
+        "modified": "2025-02-17 08:30:00.5718",
+        "creator": "t1_log_6279a44f109090941bbc4c0",
+        "modifier": "t1_log_6279a44f109090941bbc4c0",
+        "login": "t1_log_67b339d2dc878984b96b225",
+        "name": "Default merchantTxnFailedAll",
+        "description": "Automatically created aggregation",
+        "resource": 18,
+        "search": "status[equals]=2",
+        "totals": "sum[0]=total&count[0]=id&groups[0]=merchant&groups[1]=type&groups[2][payment][0]=method",
+        "status": "ready",
+        "schedule": "days",
+        "scheduleFactor": 1,
+        "start": 202502180000,
+        "inactive": 0,
+        "frozen": 0,
+        "entity": "t1_ent_676057654c1b7452e4884f0",
+        "forlogin": "t1_log_67b339d2dc878984b96b225",
+        "org": "t1_org_67b736ad7d05922343246cf",
+        "team": "teamBoarding",
+        "division": "t1_div_67b51635da21f7399ce2af1",
+        "partition": "t1_ptn_666834d4d504f11234578f5",
+        "type": "merchantTxnFailedAll",
+        "level": "merchant",
+        "default": 1,
+        "degrouping": "groups[0]=merchant&groups[1][payment][0]=method"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }
+

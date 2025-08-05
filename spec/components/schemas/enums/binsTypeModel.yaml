@@ -1,0 +1,36 @@
+title: binsType
+type: string
+description: |
+  The type of the card used in the Transaction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `credit` - **Credit Card**
+  - `debit` - **Debit Card**
+  - `debitCredit` - **Debit or Credit Card**
+  - `charge` - **Charge Card**
+  - `prepaid` - **Prepaid Debit Card**
+  - `bankAccount` - **Bank Account Card**
+
+  </details>
+enum:
+- credit
+- debit
+- debitCredit
+- charge
+- prepaid
+- bankAccount
+x-enum-elements:
+- name: Credit
+  description: Credit Card.
+- name: Debit
+  description: Debit Card.
+- name: DebitCredit
+  description: Debit or Credit Card.
+- name: Charge
+  description: Charge Card.
+- name: Prepaid
+  description: Prepaid Debit Card.
+- name: BankAccount
+  description: Bank Account Card.

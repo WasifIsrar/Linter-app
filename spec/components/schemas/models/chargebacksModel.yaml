@@ -1,0 +1,171 @@
+title: chargebacksResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  merchant:
+    type: string
+    description: The ID of the Merchant associated with the Chargeback.
+  txn:
+    type: string
+    description: The ID of the Transaction associated with the Chargeback.
+  mid:
+    type: string
+    description: The Merchant's processing MID.
+  description:
+    type: string
+    description: Description of the chargeback.
+  total:
+    type: integer
+    format: int64
+    description: The total amount of the Chargeback.
+  representedTotal:
+    type: integer
+    format: int64
+    description: The representedTotal for this Chargeback if it has been represented.
+  cycle:
+    type: string
+    description: "<details><summary>Valid Values</summary>\n\n - `retrieval` - **Initial\
+      \ request from the issuer for more information on this Transaction.**\n  \n\
+      \ - `first` - **First Chargeback from issuer for this Transaction.**\n  \n -\
+      \ `arbitration` - **Arbitration is being sought for this Chargeback.**\n  \n\
+      \ - `reversal` - **Chargeback was reversed.**\n  \n - `representment` - **Merchant\
+      \ is being represented to the issuer with the Chargeback response posted.**\n\
+      \n \n - `preArbitration` - **Chargeback is no longer representable. Merchant\
+      \ must choose to accept or arbitrate with the card brand.**\n  \n - `arbitrationLost`\
+      \ - **Arbitration lost.**\n  \n - `arbitrationSplit` - **Arbitration split.**\n\
+      \  \n - `arbitrationWon` - **Arbitration won.**\n  \n - `issuerAcceptPreArbitration`\
+      \ - **Issuer accepted the pre-arbitration response.**\n  \n - `issuerDeclinedPreArbitration`\
+      \ - **Issuer declined pre-arbitration.**\n  \n - `responseToIssuerPreArbitration`\
+      \ - **Response to issuer pre-arbitration.**\n  \n - `merchantAcceptedPreArbitration`\
+      \ - **Merchant accepted the pre-arbitration response.**\n  \n - `merchantDeclinedPreArbitration`\
+      \ - **Merchant declined the pre-arbitration response.**\n  \n - `preCompliance`\
+      \ - **Pre-compliance.**\n  \n - `compliance` - **Compliance.** </details>"
+    enum:
+    - retrieval
+    - first
+    - arbitration
+    - reversal
+    - representment
+    - preArbitration
+    - arbitrationLost
+    - arbitrationSplit
+    - arbitrationWon
+    - issuerAcceptPreArbitration
+    - issuerDeclinedPreArbitration
+    - responseToIssuerPreArbitration
+    - merchantAcceptedPreArbitration
+    - merchantDeclinedPreArbitration
+    - preCompliance
+    - compliance
+    x-enum-elements:
+    - name: "Retrieval"
+      description: "Initial request from the issuer for more information on this Transaction."
+    - name: "First"
+      description: "First Chargeback from issuer for this Transaction."
+    - name: "Arbitration"
+      description: "Arbitration is being sought for this Chargeback."
+    - name: "Reversal"
+      description: "Chargeback was reversed."
+    - name: "Representment"
+      description: "Merchant is being represented to the issuer with the Chargeback response posted."
+    - name: "PreArbitration"
+      description: "Chargeback is no longer representable, Merchant must choose to accept or arbitrate with the card brand."
+    - name: "ArbitrationLost"
+      description: "Arbitration lost."
+    - name: "ArbitrationSplit"
+      description: "Arbitration split."
+    - name: "ArbitrationWon"
+      description: "Arbitration won."
+    - name: "IssuerAcceptPreArbitration"
+      description: "Issuer accepted the pre-arbitration response."
+    - name: "IssuerDeclinedPreArbitration"
+      description: "Issuer declined pre-arbitration."
+    - name: "ResponseToIssuerPreArbitration"
+      description: "Response to issuer pre-arbitration."
+    - name: "MerchantAcceptedPreArbitration"
+      description: "Merchant accepted the pre-arbitration response."
+    - name: "MerchantDeclinedPreArbitration"
+      description: "Merchant declined the pre-arbitration response."
+    - name: "PreCompliance"
+      description: "Pre-compliance."
+    - name: "Compliance"
+      description: "Compliance."
+  currency:
+    type: string
+    description: The currency for this statement. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+    $ref: ../models/currencyModel.yaml
+  platform:
+    $ref: ../enums/chargebackPlatformModel.yaml
+  paymentMethod:
+    $ref: ../enums/chargebackPaymentMethodModel.yaml
+  ref:
+    type: string
+    description: The processing reference number for this Chargeback.
+  reason:
+    type: string
+    description: The reason description for this Chargeback.
+  reasonCode:
+    type: string
+    description: The reason code for this Chargeback.
+  issued:
+    type: integer
+    description: The date when the Chargeback was issued.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2}'
+  received:
+    type: integer
+    description: The date when the Chargeback was received.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2}'
+  reply:
+    type: integer
+    description: The deadline to submit a reply for the Chargeback.
+  bankRef:
+    type: string
+    description: The issuing bank's reference number for this Chargeback.
+  chargebackRef:
+    type: string
+    description: Chargeback reference number.
+  status:
+    $ref: ../enums/chargebackStatusModel.yaml
+  lastStatusChange:
+    type: string
+    description: The ID of the ChargebackStatus representing the latest status change for this
+      Chargeback.
+  actionable:
+    type: integer
+    description: "Whether the Chargeback is actionable and can be responded to. \n\n\
+      <details>\n<summary>Valid Values</summary>\n\n- `0` - **Not actionable**\
+      \ \n\n- `1` - **Actionable**\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotActionable"
+      description: "Not actionable."
+    - name: "Actionable"
+      description: "Actionable."
+  shadow:
+    type: integer
+    description: "\n\n<details>\n<summary>Valid Values</summary>\n\n- `0` - **Not shadowed.**\
+      \ \n\n- `1` - **Shadowed.**\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotShadowed"
+      description: "Not shadowed."
+    - name: "Shadowed"
+      description: "Shadowed."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,119 @@
+get:
+  description: Query an Org Flow Actions resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Org Flow Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofa_67ed51ecf3330d5d808000z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowActions:
+              $ref: ../components/schemas/samples/orgFlowActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowActionsModel200Response.yaml
+      description: Retrieve an Org Flow Action Response for the query on orgFlowActions
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Org Flow Action by it's ID.
+  tags:
+  - Org Flow Actions
+  - Facilitator
+  - Partner
+  operationId: getOrgFlowActionsId
+put:
+  description: Update an Org Flow Action.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Org Flow Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofa_67ed51ecf3330d5d808000z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgFlowActionsPutRequestModel.yaml
+    description: Update an Org Flow Action Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update orgFlowActions:
+              $ref: ../components/schemas/samples/orgFlowActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowActionsModel200Response.yaml
+      description: Response for updating an Org Flow Action.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Org Flow Action by it's ID.
+  tags:
+  - Org Flow Actions
+  - Facilitator
+  - Partner
+  operationId: putOrgFlowActionsId
+delete:
+  description: Delete an Org Flow Action.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Org Flow Action ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ofa_67ed51ecf3330d5d808000z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete orgFlowActions:
+              $ref: ../components/schemas/samples/orgFlowActionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgFlowActionsModel200Response.yaml
+      description: Delete an Org Flow Action Response for the orgFlowActions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgFlowActions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Org Flow Action by it's ID.
+  tags:
+  - Org Flow Actions
+  - Facilitator
+  - Partner
+  operationId: deleteOrgFlowActionsId

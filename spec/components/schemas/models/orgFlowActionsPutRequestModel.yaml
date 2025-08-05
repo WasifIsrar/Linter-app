@@ -1,0 +1,20 @@
+title: orgFlowActionsPutRequest
+properties:
+  orgFlow:
+    type: string
+    description: The identifier of the orgFlow resource that this orgFlowActions resource
+      is associated with.
+  org:
+    type: string
+    description: The identifier of the Org resource that this orgFlowActions resource
+      is associated with.
+  action:
+    $ref: ../enums/orgFlowActionModel.yaml
+required:
+- action
+- org
+- orgFlow
+example:
+  orgFlow: t1_ofw_67ed51ece84aae1a7d0783z
+  org: t1_org_67c89c538efe67fbf018d00
+  action: add

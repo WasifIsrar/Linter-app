@@ -1,0 +1,21 @@
+title: iplistType
+type: integer
+description: |
+  The type of this IP List.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Blacklisted IP address range.**
+  - `1` - **Whitelisted IP address range.**
+
+  </details>
+default: 0
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: Blacklist
+  description: Blacklisted IP address range.
+- name: Whitelist
+  description: Whitelisted IP address range.

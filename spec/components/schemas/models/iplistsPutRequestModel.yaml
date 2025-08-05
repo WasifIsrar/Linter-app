@@ -1,0 +1,33 @@
+title: iplistsPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  type:
+    $ref: ../enums/iplistTypeModel.yaml
+  start:
+    type: string
+    description: "The lowest IP address that should be included in this IP List. \n\
+      The valid data type for this field depends on whether the IP list is set to\
+      \ be an IPv4 or IPv6 list in the 'type' field. \nFor an IPv4 list, only IPv4\
+      \ addresses such as 198.51.100.113 are permitted. For an IPv6 list, only IPv6\
+      \ addresses such as 2001:0db8:85a3:0000:0000:8a2e:0370:7334 are permitted."
+  finish:
+    type: string
+    description: "The highest IP address that should be included in this IP List.\
+      \ \nThe valid values for this field depend on whether the IP list is set to\
+      \ be an IPv4 or IPv6 list in the 'type' field. \nFor an IPv4 list, only IPv4\
+      \ addresses, such as '198.51.100.113', are permitted. For an IPv6 list, only\
+      \ IPv6 addresses, such as '2001:0db8:85a3:0000:0000:8a2e:0370:7334' are permitted."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: t1_log_61d874fe8b166d56672d0f9
+  type: 1
+  start: "1.1.1.1"
+  finish: "1.1.1.89"
+  inactive: 0
+  frozen: 0

@@ -1,0 +1,110 @@
+title: txnsPutRequest
+properties:
+  batch:
+    type: string
+    description: If the Transaction is linked to a Batch, this field specifies the
+      identifier of the Batch.
+  debtRepayment:
+    type: integer
+    description: |+
+      If this transaction is for debt repayment or not for debt repayment.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Transaction not for debt repayment.**
+
+      - `1` - **Transaction for debt repayment.**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Off"
+      description: "Transaction not for debt repayment."
+    - name: "On"
+      description: "Transaction for debt repayment."
+  processedSequence:
+    type: integer
+    description: 'For entry creation and deletion job sequencing: the current processed
+      sequence number for this transaction.'
+  funded:
+    type: integer
+    description: "A date indicating when this Transaction was funded. \nThis field\
+      \ is set automatically."
+  returned:
+    type: string
+    description: The transaction has been returned by the receiver.
+  fundingEnabled:
+    $ref: ../enums/txnsFundingEnabledModel.yaml
+  requestSequence:
+    type: integer
+    description: 'For entry creation and deletion job sequencing: the current processed
+      sequence number for this transaction.'
+  token:
+    type: string
+    description: The token of the Tokens resource this Transaction is associated with.
+  authTokenCustomer:
+    type: string
+    description: The customer identifier from the AuthToken used during authentication.
+  channel:
+    type: string
+    description: This field is stored as a text string and must be between 0 and 1000
+      characters long.
+  clientIp:
+    type: string
+    description: "The client ip address from which the Transaction was created. \n\
+      Valid values are any Ipv4 or Ipv6 address."
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for this transaction. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  feeConsumed:
+    type: integer
+    description: "When fee is set, this will track the amount of the fee that has\
+      \ been consumed. \nThis field is specified as an integer in cents."
+  signature:
+    type: integer
+    description: |+
+      Whether a signature was captured during this Transaction. You can set this field if you took a signature for the Transaction. The API also sets this field automatically if you associate a signature to the Transaction by creating a 'txnDatas' resource.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not captured.**
+
+      - `1` - **Captured.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotCaptured
+      description: Not captured.
+    - name: Captured
+      description: Captured.
+  tmxSessionId:
+    type: string
+    description: Threatmetrix session ID, used to trace the financial session and
+      prevent possible frauds.
+  firstTxn:
+    type: string
+    description: For external recurring systems, this is the first transaction ID related to this recurring payment.
+example:
+  currency: 'USD'
+  batch: t1_bth_67b6129bcca1cbb7cdac000
+  debtRepayment: 1
+  processedSequence: 0
+  funded: 0623
+  returned: Returned Transaction
+  fundingEnabled: 1
+  requestSequence: 1
+  token: 7f36eeabbdce941fb564243936402a00
+  authTokenCustomer: Customer Identifier
+  channel: LA
+  clientIp: '216.80.4.000'
+  signature: 1
+  tmxSessionId: Threatmetrix session ID
+  firstTxn: t1_txn_67b6129bcca1cbb7cdac001

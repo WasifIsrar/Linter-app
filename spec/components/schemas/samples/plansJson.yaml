@@ -1,0 +1,36 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "p1_pln_00cb491aa15f9b515c3b59b",
+              "created": "2025-03-07 14:29:30.6772",
+              "modified": "2025-03-07 14:29:30.6772",
+              "creator": "p1_log_000444ad99da5eb18e00207",
+              "modifier": "p1_log_000444ad99da5eb18e00207",
+              "merchant": "p1_mer_000444add0403c3553f4d20",
+              "name": "Lind - Wyman Subscription Plan weekly",
+              "description": "regular plan",
+              "schedule": 3,
+              "scheduleFactor": 1,
+              "amount": 9211,
+              "inactive": 0,
+              "frozen": 0,
+              "maxFailures": 2,
+              "type": "recurring",
+              "txnDescription": "plan txn description",
+              "order": "S1 - 1000 - LAST",
+              "billing": "p1_bil_00cee36329ead6ae6d31e43",
+              "um": "actual"
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

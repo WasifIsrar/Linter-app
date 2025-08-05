@@ -1,0 +1,855 @@
+title: configurationStagesPutRequest
+properties:
+  configuration:
+    type: string
+    description: The identifier of the Configuration that owns this configurationStage
+      resource.
+  name:
+    type: string
+    description: "The name of this configurationStage resource. \n\n<details>\n<summary>Valid\
+      \ Values</summary> \n\n - `blank` - **Blank. Used for a stage with no name.**\n\
+      \n - `acceptedCards` - **Set card types accepted by the merchant.**\n\n - `ack`\
+      \ - **''**\n\n - `activateSrs` - **First Data merchant SRS activation.**\n\n\
+      \ - `alert` - **''**\n\n - `acceptedCards` - **'This holds the parameter to\
+      \ pull the accepted cards for a merchant, this is specific to VCORE'**\n\n -\
+      \ `amexUpdate` - **Update merchant card enablement for American Express.**\n\
+      \n - `applepay` - **''**\n\n - `balance` - **Bank account balance request for\
+      \ decisions and verifications processes.**\n\n - `batch` - **Send batch command\
+      \ to terminal.**\n\n - `chargeback` - **Chargeback. The standard name used for\
+      \ chargeback related stages.**\n\n - `chargebackList` - **ChargebackList. The\
+      \ specific name to get chargeback reports.**\n\n - `confirmDisbursement` - **Disbursement\
+      \ confirmation report retrieval.**\n\n - `contactUpdate` - **Update merchant\
+      \ contacts.**\n\n - `createMerchant` - **Send merchant details for merchant\
+      \ boarding.**\n\n - `credit` - **''**\n\n - `decrypt` - **Set card types accepted\
+      \ by the merchant.**\n\n - `debit` - **Set card types accepted by the merchant.**\n\
+      \n - `debitPinEnable` - **Set merchant Pin Debit enablement.**\n\n - `debitPinlessEnable`\
+      \ - **Set merchant Pinless Debit enablement.**\n\n - `discoverUrl` - **Retrieve\
+      \ merchant transaction processing url.**\n\n - `discoverUpdate` - **Update merchant\
+      \ card enablement for Discover.**\n\n - `document` - **Document. The standard\
+      \ name for chargeback related documentation such as uploading a document or\
+      \ updating a document.**\n\n - `documentList` - **DocumentList. Used for receiving\
+      \ documents related to a chargeback.**\n\n - `interchange` - **''**\n\n - `encrypt`\
+      \ - **''**\n\n - `entity` - **Entity. The standard name used when it comes to\
+      \ entity related stages such as retrieving an entity or updating.**\n\n - `entityAddressUpdate`\
+      \ - **Update merchant legal entity address.**\n\n - `entityRetrieval` - **EntityRetrieval.\
+      \ Used when entity stage name is already being used in that crud configuration.**\n\
+      \n - `entityUpdate` - **EntityUpdate. Used when entity stage name is already\
+      \ being used in that crud configuration.**\n\n - `expressSubAccountUpdate` -\
+      \ **'This holds the parameter for updating express subaccount'**\n\n - `return`\
+      \ - **Return. Used for return stage name.**\n\n - `feeList` - **FeeList. The\
+      \ specific name to get fees reports.**\n\n - `googlepay` - **''**\n\n - `memberCreate`\
+      \ - **MemberCreate. Stage name used to indicate creating a merchant member.**\n\
+      \n - `memberDelete` - **MemberDelete. Stage name used to indicate deleting a\
+      \ merchant member.**\n\n - `members` - **Members. Stage name used for creating\
+      \ several members for the merchant.**\n\n - `memberUpdate` - **Update merchant\
+      \ member.**\n\n - `merchant` - **Merchant. The standard name used for merchant\
+      \ related stages such retrieving a merchant or updating a merchant.**\n\n -\
+      \ `merchantCardPresent` - **'This holds the parameter for creating merchants\
+      \ with card present options, this is specific for WF and WFSingle platform'**\n\
+      \n - `merchantCardNotPresent` - **'This holds the parameter for creating merchants\
+      \ with card not present options, this is specific for WF and WFSingle platform'**\n\
+      \n - `merchantUpdate` - **Update merchant details.**\n\n - `merchantRetrieval`\
+      \ - **MerchantRetrieval. Used when merchant stage name is already being used\
+      \ in that crud configuration.**\n\n - `noc` - **Noc. Stage name used for notification\
+      \ of change for disbursement related integrations.**\n\n - `nocReturns` - **''**\n\
+      \n - `omniTokenEnable` - **'This holds the parameters for omni token enablement'**\n\
+      \n - `passTokenEnable` - **'This holds the parameters for pass token enablement'**\n\
+      \n - `payment` - **Send payment details for Account Updater request.**\n\n -\
+      \ `paymentConfirmation` - **Retrieve Account Updater request echo confirmation.**\n\
+      \n - `paymentUpdate` - **Retrieve Account Updater updates.**\n\n - `payout`\
+      \ - **Payout. Stage name used for payouts.**\n\n - `primaryMemberUpdate` - **Update\
+      \ merchant primary member.**\n\n - `registerSrs` - **First Data merchant SRS\
+      \ registration.**\n\n - `returnCredit` - **''**\n\n - `returnDebit` - **''**\n\
+      \n - `returns` - **''**\n\n - `saferPaymentEnable` - **'This holds the parameters\
+      \ for safer payment enablement'**\n\n - `terminalCreate` - **Send terminal details\
+      \ for terminal boarding.**\n\n - `terminalList` - **Retrieve list of terminals\
+      \ for a merchant.**\n\n - `terminalsSupported` - **Retrieve list of supported\
+      \ terminals for a merchant.**\n\n - `txn` - **Txn. The standard name used for\
+      \ transaction related stages.**\n\n - `txnList` - **TxnList. The specific name\
+      \ to get transaction reports.**\n\n - `varsheet` - **'This hold the parameter\
+      \ for accessing the terminal VARSHEET retrieval'**\n\n </details>\n"
+    enum:
+    - blank
+    - acceptedCards
+    - ack
+    - activateSrs
+    - alert
+    - amexUpdate
+    - applepay
+    - balance
+    - batch
+    - chargeback
+    - chargebackList
+    - confirmDisbursement
+    - contactUpdate
+    - createMerchant
+    - credit
+    - decrypt
+    - debit
+    - debitPinEnable
+    - debitPinlessEnable
+    - discoverUrl
+    - discoverUpdate
+    - document
+    - documentList
+    - interchange
+    - encrypt
+    - entity
+    - entityAddressUpdate
+    - entityRetrieval
+    - entityUpdate
+    - expressSubAccountUpdate
+    - return
+    - feeList
+    - googlepay
+    - memberCreate
+    - memberDelete
+    - members
+    - memberUpdate
+    - merchant
+    - merchantCardPresent
+    - merchantCardNotPresent
+    - merchantUpdate
+    - merchantRetrieval
+    - noc
+    - nocReturns
+    - omniTokenEnable
+    - passTokenEnable
+    - payment
+    - paymentConfirmation
+    - paymentUpdate
+    - payout
+    - primaryMemberUpdate
+    - registerSrs
+    - returnCredit
+    - returnDebit
+    - returns
+    - saferPaymentEnable
+    - terminalCreate
+    - terminalList
+    - terminalsSupported
+    - txn
+    - txnList
+    - varsheet
+    x-enum-descriptions:
+    - Blank. Used for a stage with no name
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - Chargeback. The standard name used for chargeback related stages
+    - ChargebackList. The specific name to get chargeback reports
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - 'Document. The standard name for chargeback related documentation such as uploading
+      a document or updating a document '
+    - DocumentList. Used for receiving documents related to a chargeback
+    - ''
+    - ''
+    - Entity. The standard name used when it comes to entity related stages such as
+      retrieving an entity or updating
+    - ''
+    - EntityRetrieval. Used when entity stage name is already being used in that crud
+      configuration
+    - EntityUpdate. Used when entity stage name is already being used in that crud
+      configuration
+    - ''
+    - Return. Used for return stage name
+    - FeeList. The specific name to get fees reports
+    - ''
+    - MemberCreate. Stage name used to indicate creating a merchant member
+    - MemberDelete. Stage name used to indicate deleting a merchant member
+    - Members. Stage name used for creating several members for the merchant
+    - ''
+    - Merchant. The standard name used for merchant related stages such retrieving
+      a merchant or updating a merchant
+    - ''
+    - ''
+    - ''
+    - MerchantRetrieval. Used when merchant stage name is already being used in that
+      crud configuration
+    - Noc. Stage name used for notification of change for disbursement related integrations
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - Payout. Stage name used for payouts
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - Txn. The standard name used for transaction related stages
+    - TxnList. The specific name to get transaction reports
+    - ''
+  method:
+    $ref: ../enums/configurationStageMethodModel.yaml
+  sequence:
+    type: integer
+    description: A free-form sequence identifier to order the execution of stages
+      for a configuration.
+  input:
+    type: string
+    description: "The input used for configurationStage resource. <details><summary>Valid\
+      \ Values</summary>\n\n - `APPLE_PAYMENTSESSION_REQUEST_JSON` - **APPLE_PAYMENTSESSION_REQUEST_JSON\
+      \ input file.**\n\n - `APPLE_REGISTER_MERCHANT_REQUEST_JSON` - **APPLE_REGISTER_MERCHANT_REQUEST_JSON\
+      \ input file.**\n\n - `APPLE_UNREGISTER_MERCHANT_REQUEST_JSON` - **APPLE_UNREGISTER_MERCHANT_REQUEST_JSON\
+      \ input file.**\n\n - `EFT` - **EFT input file.**\n\n - `ELAVON_BATCH_FLAT`\
+      \ - **ELAVON_BATCH_FLAT input file. Batch file upload format and structure for\
+      \ the Elavon processor.**\n\n - `ELAVON_BATCH_READ_FLAT` - **ELAVON_BATCH_READ_FLAT\
+      \ input file. Batch file download format and structure for the Elavon processor.**\n\
+      \n - `ELAVON_BOARD_JSON` - **ELAVON_BOARD_JSON input file. Merchant boarding\
+      \ format and structure for the Elavon processor.**\n\n - `ELAVON_REPORTS_CSV`\
+      \ - **ELAVON_REPORTS_CSV input file. Settlement report format and structure\
+      \ for the Elavon processor.**\n\n - `ELAVON_TXN_XML` - **ELAVON_TXN_XML input\
+      \ file. Transaction authorization processing format and structure for the Elavon\
+      \ processor.**\n\n - `FEDACH_REPORT_FLAT` - **FEDACH_REPORT_FLAT input file.\
+      \ Fed ACH routing number file format and structure.**\n\n - `FIRSTDATA_BATCH_FLAT`\
+      \ - **FIRSTDATA_BATCH_FLAT input file. Batch file format and structure for the\
+      \ First Data processor.**\n\n - `FIRSTDATA_BATCH_READ_FLAT` - **FIRSTDATA_BATCH_READ_FLAT\
+      \ input file.**\n\n - `FIRSTDATA_BOARD_JSON` - **FIRSTDATA_BOARD_JSON input\
+      \ file. Merchant boarding format and structure for the First Data processor.**\n\
+      \n - `FIRSTDATA_REPORTS_FLAT` - **FIRSTDATA_REPORTS_FLAT input file. Settlement\
+      \ report format and structure for the First Data processor.**\n\n - `FIRSTDATA_SRS_XML`\
+      \ - **FIRSTDATA_SRS_XML input file. SRS registration and activation format and\
+      \ structure for the First Data Processor.**\n\n - `FIRSTDATA_TXN_XML` - **FIRSTDATA_TXN_XML\
+      \ input file. Transaction authorization processing format and structure for\
+      \ the First Data processor.**\n\n - `FIRSTDATA_SINGLE_BATCH_FLAT` - **FIRSTDATA_SINGLE_BATCH_FLAT\
+      \ input file.**\n\n - `FIRSTDATA_SINGLE_TXN_XML` - **FIRSTDATA_SINGLE_TXN_XML\
+      \ input file.**\n\n - `NACHA` - **NACHA input file. Disbursement file format\
+      \ and structure for the NACHA funding platform.**\n\n - `NEUTRINO_CSV` - **NEUTRINO_CSV\
+      \ input file. BIN (Bank Issuer Number) file download format and structure for\
+      \ the Neutrino API service.**\n\n - `NEUTRINO_FORM` - **NEUTRINO_FORM input\
+      \ file. BIN (Bank Issuer Number) file request format and structure for the Neutrino\
+      \ API service.**\n\n - `NEUTRINO_JSON` - **NEUTRINO_JSON input file. BIN (Bank\
+      \ Issuer Number) file format and structure for the Neutrino API service.**\n\
+      \n - `OFAC_XML` - **OFAC_XML input file. Entity and member watchlist file download\
+      \ for the OFAC SDN list.**\n\n - `PAYRIX_CHARGEBACK_JSON` - **PAYRIX_CHARGEBACK_JSON\
+      \ input file.**\n\n - `PAYRIX_DECISION_JSON` - **PAYRIX_DECISION_JSON input\
+      \ file. Risk decision integration format and structure for the Payrix integration\
+      \ service.**\n\n - `PAYRIX_ENCRYPTION_JSON` - **PAYRIX_ENCRYPTION_JSON input\
+      \ file.**\n\n - `PAYRIX_GOOGLEPAY_DECRYPTION_JSON` - **PAYRIX_GOOGLEPAY_DECRYPTION_JSON\
+      \ Blank.**\n\n - `PAYRIX_TXN_JSON` - **PAYRIX_TXN_JSON input file. Terminal\
+      \ activation response format and structure for the Payrix terminal app.**\n\n\
+      \ - `PUSHY_TXN_JSON` - **PUSHY_TXN_JSON input file. Terminal activation request\
+      \ format and structure for the Pushy app messaging service.**\n\n - `SIFT_JSON`\
+      \ - **SIFT_JSON input file. Risk decision integration format and structure for\
+      \ the SIFT transaction monitoring service.**\n\n - `SOCURE_ALLOY_JSON` - **SOCURE_ALLOY_JSON\
+      \ input file. Risk decision integration format and structure for the Alloy integrator\
+      \ to Socure.**\n\n - `SOCURE_FORM` - **SOCURE_FORM input file. Risk decision\
+      \ integration request format and structure for the Socure member underwriting\
+      \ service.**\n\n - `SOCURE_JSON` - **SOCURE_JSON input file. Risk decision integration\
+      \ response format and structure for the Socure member underwriting service.**\n\
+      \n - `SOUNDPAYMENTS_TXN_FORM` - **SOUNDPAYMENTS_TXN_FORM input file. Terminal\
+      \ activation request format and structure for the Sound Payments cloud activation\
+      \ service.**\n\n - `SOUNDPAYMENTS_TXN_XML` - **SOUNDPAYMENTS_TXN_XML input file.\
+      \ Terminal activation response format and structure for the Sound Payments cloud\
+      \ activation service.**\n\n - `VANTIV_BATCH_XML` - **VANTIV_BATCH_XML input\
+      \ file. Batch file format and structure for the WorldPay (aka Vantiv or Litle)\
+      \ eComm (aka VAP) processor.**\n\n - `VANTIV_BOARD_XML` - **VANTIV_BOARD_XML\
+      \ input file. Merchant boarding format and structure for the WorldPay (aka Vantiv\
+      \ or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_CHARGEBACK_XML` - **VANTIV_CHARGEBACK_XML\
+      \ input file. Chargeback API format and structure for the WorldPay (aka Vantiv\
+      \ or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_PAYMENT_UPDATES_XML`\
+      \ - **VANTIV_PAYMENT_UPDATES_XML input file. Account Updater format and structure\
+      \ for the WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\n -\
+      \ `VANTIV_PAYOUT_CSV` - **VANTIV_PAYOUT_CSV input file. Payout reports format\
+      \ and structure for the WoldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\
+      \n - `VANTIV_PAYOUT_XML` - **VANTIV_PAYOUT_XML input file. Disbursement file\
+      \ format and structure for the WorldPay (aka Vantiv or Litle) eComm (aka VAP)\
+      \ processor.**\n\n - `VANTIV_PAYOUT_XML_V9` - **VANTIV_PAYOUT_XML_V9 input file.\
+      \ Old version 9 disbursement file format and structure for the WorldPay (aka\
+      \ Vantiv or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_REPORTS_CSV` -\
+      \ **VANTIV_REPORTS_CSV input file. Settlement report format and structure for\
+      \ the WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_TXN_CSV`\
+      \ - **VANTIV_TXN_CSV input file. Echeck reports format and structure for the\
+      \ WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_TXN_XML`\
+      \ - **VANTIV_TXN_XML input file. Transaction authorization processing format\
+      \ and structure for the WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\
+      \n - `VCORE_BATCH_FLAT` - **VCORE_BATCH_FLAT input file. Batch file upload format\
+      \ and structure for the WorldPay (aka Vantiv) Core processor.**\n\n - `VCORE_BATCH_READ_FLAT`\
+      \ - **VCORE_BATCH_READ_FLAT input file. Batch file download format and structure\
+      \ for the WorldPay (aka Vantiv) Core processor.**\n\n - `VCORE_BINREPORT_FLAT`\
+      \ - **VCORE_BINREPORT_FLAT input file. BIN (Bank Issuer Number) file download\
+      \ format and structure for the WorldPay (aka Vantiv) Core processor.**\n\n -\
+      \ `VCORE_BOARD_API` - **VCORE_BOARD_API input file. New merchant boarding API\
+      \ format and structure for the WorldPay (aka Vantiv) Core processor.**\n\n -\
+      \ `VCORE_BOARD_FLAT` - **VCORE_BOARD_FLAT input file. Old merchant boarding\
+      \ creation file format and structure for the WorldPay (aka Vantiv) Core processor.**\n\
+      \n - `VCORE_CHARGEBACK_FLAT` - **VCORE_CHARGEBACK_FLAT input file. Chargeback\
+      \ file format and structure for the WorldPay (aka Vantiv) Core processor.**\n\
+      \n - `VCORE_OMNITOKEN_JSON` - **VCORE_OMNITOKEN_JSON input file.**\n\n - `VCORE_REPORTS_FLAT`\
+      \ - **VCORE_REPORTS_FLAT input file. Settlement report format and structure\
+      \ for the WorldPay (aka Vantiv) Core processor.**\n\n - `VCORE_SAFERPAYMENT_JSON`\
+      \ - **VCORE_SAFERPAYMENT_JSON input file.**\n\n - `VCORE_TXN_ISO8583` - **VCORE_TXN_ISO8583\
+      \ input file. Transaction authorization processing for the WorldPay (aka Vantiv)\
+      \ Core processor.**\n\n - `VCORE_UPDATE_FLAT` - **VCORE_UPDATE_FLAT input file.\
+      \ Old merchant boarding update file format and structure for the WorldPay (aka\
+      \ Vantiv) Core processor.**\n\n - `VCORE_VARSHEET_JSON` - **VCORE_VARSHEET_JSON\
+      \ input file.**\n\n - `WEBSHIELD_FORM` - **WEBSHIELD_FORM input file. Risk decision\
+      \ integration request format and structure for the Webshield entity underwriting\
+      \ service.**\n\n - `WEBSHIELD_JSON` - **WEBSHIELD_JSON input file. Risk decision\
+      \ integration response format and structure for the Webshield entity underwriting\
+      \ service.**\n\n - `WELLSACH_BATCH_FLAT` - **WELLSACH_BATCH_FLAT input file.**\n\
+      \n - `WELLSACH_PAYOUT_FLAT` - **WELLSACH_PAYOUT_FLAT input file.**\n\n - `WELLSACH_TXN_FLAT`\
+      \ - **WELLSACH_TXN_FLAT input file.**\n\n - `WELLSFARGO_BOARD_XML` - **WELLSFARGO_BOARD_XML\
+      \ input file. Merchant boarding format and structure for the Wells Fargo Merchant\
+      \ Services processor.**\n\n - `WELLSFARGO_REPORT_CSV` - **WELLSFARGO_REPORT_CSV\
+      \ input file.**\n\n - `WELLSFARGO_REPORT_FLAT` - **WELLSFARGO_REPORT_FLAT input\
+      \ file.**\n\n - `WFSINGLE_REPORT_FLAT` - **WFSINGLE_REPORT_FLAT input file.**\n\
+      \n - `WFSINGLE_BOARD_XML` - **WFSINGLE_BOARD_XML input file.**\n\n </details>\n"
+    enum:
+    - APPLE_PAYMENTSESSION_REQUEST_JSON
+    - APPLE_REGISTER_MERCHANT_REQUEST_JSON
+    - APPLE_UNREGISTER_MERCHANT_REQUEST_JSON
+    - EFT
+    - ELAVON_BATCH_FLAT
+    - ELAVON_BATCH_READ_FLAT
+    - ELAVON_BOARD_JSON
+    - ELAVON_REPORTS_CSV
+    - ELAVON_TXN_XML
+    - FEDACH_REPORT_FLAT
+    - FIRSTDATA_BATCH_FLAT
+    - FIRSTDATA_BATCH_READ_FLAT
+    - FIRSTDATA_BOARD_JSON
+    - FIRSTDATA_REPORTS_FLAT
+    - FIRSTDATA_SRS_XML
+    - FIRSTDATA_TXN_XML
+    - FIRSTDATA_SINGLE_BATCH_FLAT
+    - FIRSTDATA_SINGLE_TXN_XML
+    - NACHA
+    - NEUTRINO_CSV
+    - NEUTRINO_FORM
+    - NEUTRINO_JSON
+    - OFAC_XML
+    - PAYRIX_CHARGEBACK_JSON
+    - PAYRIX_DECISION_JSON
+    - PAYRIX_ENCRYPTION_JSON
+    - PAYRIX_GOOGLEPAY_DECRYPTION_JSON
+    - PAYRIX_TXN_JSON
+    - PUSHY_TXN_JSON
+    - SIFT_JSON
+    - SOCURE_ALLOY_JSON
+    - SOCURE_FORM
+    - SOCURE_JSON
+    - SOUNDPAYMENTS_TXN_FORM
+    - SOUNDPAYMENTS_TXN_XML
+    - VANTIV_BATCH_XML
+    - VANTIV_BOARD_XML
+    - VANTIV_CHARGEBACK_XML
+    - VANTIV_PAYMENT_UPDATES_XML
+    - VANTIV_PAYOUT_CSV
+    - VANTIV_PAYOUT_XML
+    - VANTIV_PAYOUT_XML_V9
+    - VANTIV_REPORTS_CSV
+    - VANTIV_TXN_CSV
+    - VANTIV_TXN_XML
+    - VCORE_BATCH_FLAT
+    - VCORE_BATCH_READ_FLAT
+    - VCORE_BINREPORT_FLAT
+    - VCORE_BOARD_API
+    - VCORE_BOARD_FLAT
+    - VCORE_CHARGEBACK_FLAT
+    - VCORE_OMNITOKEN_JSON
+    - VCORE_REPORTS_FLAT
+    - VCORE_SAFERPAYMENT_JSON
+    - VCORE_TXN_ISO8583
+    - VCORE_UPDATE_FLAT
+    - VCORE_VARSHEET_JSON
+    - WEBSHIELD_FORM
+    - WEBSHIELD_JSON
+    - WELLSACH_BATCH_FLAT
+    - WELLSACH_PAYOUT_FLAT
+    - WELLSACH_TXN_FLAT
+    - WELLSFARGO_BOARD_XML
+    - WELLSFARGO_REPORT_CSV
+    - WELLSFARGO_REPORT_FLAT
+    - WFSINGLE_REPORT_FLAT
+    - WFSINGLE_BOARD_XML
+    x-enum-descriptions:
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - NACHA input file
+    - ''
+    - NEUTRINO_FORM input file
+    - ''
+    - OFAC_XML input file
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - SIFT_JSON input file
+    - ''
+    - SOCURE_FORM input file
+    - SOCURE_JSON input file
+    - SOUNDPAYMENTS_TXN_FORM input file
+    - SOUNDPAYMENTS_TXN_XML input file
+    - VANTIV_BATCH_XML input file
+    - VANTIV_BOARD_XML input file
+    - VANTIV_CHARGEBACK_XML input file
+    - ''
+    - VANTIV_PAYOUT_CSV input file
+    - VANTIV_PAYOUT_XML input file
+    - ''
+    - VANTIV_REPORTS_CSV input file
+    - VANTIV_TXN_CSV input file
+    - VANTIV_TXN_XML input file
+    - VCORE_BATCH_FLAT input file
+    - VCORE_BATCH_READ_FLAT input file
+    - ''
+    - ''
+    - VCORE_BOARD_FLAT input file
+    - VCORE_CHARGEBACK_FLAT input file
+    - ''
+    - VCORE_REPORTS_FLAT input file
+    - ''
+    - VCORE_TXN_ISO8583 input file
+    - VCORE_UPDATE_FLAT input file
+    - ''
+    - WEBSHIELD_FORM input file
+    - WEBSHIELD_JSON input file
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+  output:
+    type: string
+    description: "The output used for configurationStage resource. <details><summary>Valid\
+      \ Values</summary>\n\n - `APPLE_PAYMENTSESSION_REQUEST_JSON` - **APPLE_PAYMENTSESSION_REQUEST_JSON\
+      \ output file.**\n\n - `APPLE_REGISTER_MERCHANT_REQUEST_JSON` - **APPLE_REGISTER_MERCHANT_REQUEST_JSON\
+      \ output file.**\n\n - `APPLE_UNREGISTER_MERCHANT_REQUEST_JSON` - **APPLE_UNREGISTER_MERCHANT_REQUEST_JSON\
+      \ output file.**\n\n - `EFT` - **EFT output file.**\n\n - `ELAVON_BATCH_FLAT`\
+      \ - **ELAVON_BATCH_FLAT output file. Batch file upload format and structure\
+      \ for the Elavon processor.**\n\n - `ELAVON_BATCH_READ_FLAT` - **ELAVON_BATCH_READ_FLAT\
+      \ output file. Batch file download format and structure for the Elavon processor.**\n\
+      \n - `ELAVON_BOARD_JSON` - **ELAVON_BOARD_JSON output file. Merchant boarding\
+      \ format and structure for the Elavon processor.**\n\n - `ELAVON_REPORTS_CSV`\
+      \ - **ELAVON_REPORTS_CSV output file. Settlement report format and structure\
+      \ for the Elavon processor.**\n\n - `ELAVON_TXN_XML` - **ELAVON_TXN_XML output\
+      \ file. Transaction authorization processing format and structure for the Elavon\
+      \ processor.**\n\n - `FEDACH_REPORT_FLAT` - **FEDACH_REPORT_FLAT output file.\
+      \ Fed ACH routing number file format and structure.**\n\n - `FIRSTDATA_BATCH_FLAT`\
+      \ - **FIRSTDATA_BATCH_FLAT output file. Batch file format and structure for\
+      \ the First Data processor.**\n\n - `FIRSTDATA_BATCH_READ_FLAT` - **FIRSTDATA_BATCH_READ_FLAT\
+      \ output file.**\n\n - `FIRSTDATA_BOARD_JSON` - **FIRSTDATA_BOARD_JSON output\
+      \ file. Merchant boarding format and structure for the First Data processor.**\n\
+      \n - `FIRSTDATA_REPORTS_FLAT` - **FIRSTDATA_REPORTS_FLAT output file. Settlement\
+      \ report format and structure for the First Data processor.**\n\n - `FIRSTDATA_SRS_XML`\
+      \ - **FIRSTDATA_SRS_XML output file. SRS registration and activation format\
+      \ and structure for the First Data Processor.**\n\n - `FIRSTDATA_TXN_XML` -\
+      \ **FIRSTDATA_TXN_XML output file. Transaction authorization processing format\
+      \ and structure for the First Data processor.**\n\n - `FIRSTDATA_SINGLE_BATCH_FLAT`\
+      \ - **FIRSTDATA_SINGLE_BATCH_FLAT output file.**\n\n - `FIRSTDATA_SINGLE_TXN_XML`\
+      \ - **FIRSTDATA_SINGLE_TXN_XML output file.**\n\n - `NACHA` - **NACHA output\
+      \ file. Disbursement file format and structure for the NACHA funding platform.**\n\
+      \n - `NEUTRINO_CSV` - **NEUTRINO_CSV output file. BIN (Bank Issuer Number) file\
+      \ download format and structure for the Neutrino API service.**\n\n - `NEUTRINO_FORM`\
+      \ - **NEUTRINO_FORM output file. BIN (Bank Issuer Number) file request format\
+      \ and structure for the Neutrino API service.**\n\n - `NEUTRINO_JSON` - **NEUTRINO_JSON\
+      \ output file. BIN (Bank Issuer Number) file format and structure for the Neutrino\
+      \ API service.**\n\n - `OFAC_XML` - **OFAC_XML output file. Entity and member\
+      \ watchlist file download for the OFAC SDN list.**\n\n - `PAYRIX_CHARGEBACK_JSON`\
+      \ - **PAYRIX_CHARGEBACK_JSON output file.**\n\n - `PAYRIX_DECISION_JSON` - **PAYRIX_DECISION_JSON\
+      \ output file. Risk decision integration format and structure for the Payrix\
+      \ integration service.**\n\n - `PAYRIX_ENCRYPTION_JSON` - **PAYRIX_ENCRYPTION_JSON\
+      \ output file.**\n\n - `PAYRIX_GOOGLEPAY_DECRYPTION_JSON` - **PAYRIX_GOOGLEPAY_DECRYPTION_JSON\
+      \ output file.**\n\n - `PAYRIX_TXN_JSON` - **PAYRIX_TXN_JSON output file. Terminal\
+      \ activation response format and structure for the Payrix terminal app.**\n\n\
+      \ - `PUSHY_TXN_JSON` - **PUSHY_TXN_JSON output file. Terminal activation request\
+      \ format and structure for the Pushy app messaging service.**\n\n - `SIFT_JSON`\
+      \ - **SIFT_JSON output file. Risk decision integration format and structure\
+      \ for the SIFT transaction monitoring service.**\n\n - `SOCURE_ALLOY_JSON` -\
+      \ **SOCURE_ALLOY_JSON output file. Risk decision integration format and structure\
+      \ for the Alloy integrator to Socure.**\n\n - `SOCURE_FORM` - **SOCURE_FORM\
+      \ output file. Risk decision integration request format and structure for the\
+      \ Socure member underwriting service.**\n\n - `SOCURE_JSON` - **SOCURE_JSON\
+      \ output file. Risk decision integration response format and structure for the\
+      \ Socure member underwriting service.**\n\n - `SOUNDPAYMENTS_TXN_FORM` - **SOUNDPAYMENTS_TXN_FORM\
+      \ output file. Terminal activation request format and structure for the Sound\
+      \ Payments cloud activation service.**\n\n - `SOUNDPAYMENTS_TXN_XML` - **SOUNDPAYMENTS_TXN_XML\
+      \ output file. Terminal activation response format and structure for the Sound\
+      \ Payments cloud activation service.**\n\n - `VANTIV_BATCH_XML` - **VANTIV_BATCH_XML\
+      \ output file. Batch file format and structure for the WorldPay (aka Vantiv\
+      \ or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_BOARD_XML` - **VANTIV_BOARD_XML\
+      \ output file. Merchant boarding format and structure for the WorldPay (aka\
+      \ Vantiv or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_CHARGEBACK_XML`\
+      \ - **VANTIV_CHARGEBACK_XML output file. Chargeback API format and structure\
+      \ for the WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\n -\
+      \ `VANTIV_PAYMENT_UPDATES_XML` - **VANTIV_PAYMENT_UPDATES_XML output file. Account\
+      \ Updater format and structure for the WorldPay (aka Vantiv or Litle) eComm\
+      \ (aka VAP) processor.**\n\n - `VANTIV_PAYOUT_CSV` - **VANTIV_PAYOUT_CSV output\
+      \ file. Payout reports format and structure for the WoldPay (aka Vantiv or Litle)\
+      \ eComm (aka VAP) processor.**\n\n - `VANTIV_PAYOUT_XML` - **VANTIV_PAYOUT_XML\
+      \ output file. Disbursement file format and structure for the WorldPay (aka\
+      \ Vantiv or Litle) eComm (aka VAP) processor.**\n\n - `VANTIV_PAYOUT_XML_V9`\
+      \ - **VANTIV_PAYOUT_XML_V9 output file. Old version 9 disbursement file format\
+      \ and structure for the WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\
+      \n - `VANTIV_REPORTS_CSV` - **VANTIV_REPORTS_CSV output file. Settlement report\
+      \ format and structure for the WorldPay (aka Vantiv or Litle) eComm (aka VAP)\
+      \ processor.**\n\n - `VANTIV_TXN_CSV` - **VANTIV_TXN_CSV output file. Echeck\
+      \ reports format and structure for the WorldPay (aka Vantiv or Litle) eComm\
+      \ (aka VAP) processor.**\n\n - `VANTIV_TXN_XML` - **VANTIV_TXN_XML output file.\
+      \ Transaction authorization processing format and structure for the WorldPay\
+      \ (aka Vantiv or Litle) eComm (aka VAP) processor.**\n\n - `VCORE_BATCH_FLAT`\
+      \ - **VCORE_BATCH_FLAT output file. Batch file upload format and structure for\
+      \ the WorldPay (aka Vantiv) Core processor.**\n\n - `VCORE_BATCH_READ_FLAT`\
+      \ - **VCORE_BATCH_READ_FLAT output file. Batch file download format and structure\
+      \ for the WorldPay (aka Vantiv) Core processor.**\n\n - `VCORE_BINREPORT_FLAT`\
+      \ - **VCORE_BINREPORT_FLAT output file. BIN (Bank Issuer Number) file download\
+      \ format and structure for the WorldPay (aka Vantiv) Core processor.**\n\n -\
+      \ `VCORE_BOARD_API` - **VCORE_BOARD_API output file. New merchant boarding API\
+      \ format and structure for the WorldPay (aka Vantiv) Core processor.**\n\n -\
+      \ `VCORE_BOARD_FLAT` - **VCORE_BOARD_FLAT output file. Old merchant boarding\
+      \ creation file format and structure for the WorldPay (aka Vantiv) Core processor.**\n\
+      \n - `VCORE_CHARGEBACK_FLAT` - **VCORE_CHARGEBACK_FLAT output file. Chargeback\
+      \ file format and structure for the WorldPay (aka Vantiv) Core processor.**\n\
+      \n - `VCORE_OMNITOKEN_JSON` - **VCORE_OMNITOKEN_JSON output file.**\n\n - `VCORE_REPORTS_FLAT`\
+      \ - **VCORE_REPORTS_FLAT output file. Settlement report format and structure\
+      \ for the WorldPay (aka Vantiv) Core processor.**\n\n - `VCORE_SAFERPAYMENT_JSON`\
+      \ - **VCORE_SAFERPAYMENT_JSON output file.**\n\n - `VCORE_TXN_ISO8583` - **VCORE_TXN_ISO8583\
+      \ output file. Transaction authorization processing for the WorldPay (aka Vantiv)\
+      \ Core processor.**\n\n - `VCORE_UPDATE_FLAT` - **VCORE_UPDATE_FLAT output file.\
+      \ Old merchant boarding update file format and structure for the WorldPay (aka\
+      \ Vantiv) Core processor.**\n\n - `VCORE_VARSHEET_JSON` - **VCORE_VARSHEET_JSON\
+      \ output file.**\n\n - `WEBSHIELD_FORM` - **WEBSHIELD_FORM output file. Risk\
+      \ decision integration request format and structure for the Webshield entity\
+      \ underwriting service.**\n\n - `WEBSHIELD_JSON` - **WEBSHIELD_JSON output file.\
+      \ Risk decision integration response format and structure for the Webshield\
+      \ entity underwriting service.**\n\n - `WELLSACH_BATCH_FLAT` - **WELLSACH_BATCH_FLAT\
+      \ output file.**\n\n - `WELLSACH_PAYOUT_FLAT` - **WELLSACH_PAYOUT_FLAT output\
+      \ file.**\n\n - `WELLSACH_TXN_FLAT` - **WELLSACH_TXN_FLAT output file.**\n\n\
+      \ - `WELLSFARGO_BOARD_XML` - **WELLSFARGO_BOARD_XML output file. Merchant boarding\
+      \ format and structure for the Wells Fargo Merchant Services processor.**\n\n\
+      \ - `WELLSFARGO_REPORT_CSV` - **WELLSFARGO_REPORT_CSV output file.**\n\n - `WELLSFARGO_REPORT_FLAT`\
+      \ - **WELLSFARGO_REPORT_FLAT output file.**\n\n - `WFSINGLE_REPORT_FLAT` - **WFSINGLE_REPORT_FLAT\
+      \ output file.**\n\n - `WFSINGLE_BOARD_XML` - **WFSINGLE_BOARD_XML output file.**\n\
+      \n </details>\n"
+    enum:
+    - APPLE_PAYMENTSESSION_REQUEST_JSON
+    - APPLE_REGISTER_MERCHANT_REQUEST_JSON
+    - APPLE_UNREGISTER_MERCHANT_REQUEST_JSON
+    - EFT
+    - ELAVON_BATCH_FLAT
+    - ELAVON_BATCH_READ_FLAT
+    - ELAVON_BOARD_JSON
+    - ELAVON_REPORTS_CSV
+    - ELAVON_TXN_XML
+    - FEDACH_REPORT_FLAT
+    - FIRSTDATA_BATCH_FLAT
+    - FIRSTDATA_BATCH_READ_FLAT
+    - FIRSTDATA_BOARD_JSON
+    - FIRSTDATA_REPORTS_FLAT
+    - FIRSTDATA_SRS_XML
+    - FIRSTDATA_TXN_XML
+    - FIRSTDATA_SINGLE_BATCH_FLAT
+    - FIRSTDATA_SINGLE_TXN_XML
+    - NACHA
+    - NEUTRINO_CSV
+    - NEUTRINO_FORM
+    - NEUTRINO_JSON
+    - OFAC_XML
+    - PAYRIX_CHARGEBACK_JSON
+    - PAYRIX_DECISION_JSON
+    - PAYRIX_ENCRYPTION_JSON
+    - PAYRIX_GOOGLEPAY_DECRYPTION_JSON
+    - PAYRIX_TXN_JSON
+    - PUSHY_TXN_JSON
+    - SIFT_JSON
+    - SOCURE_ALLOY_JSON
+    - SOCURE_FORM
+    - SOCURE_JSON
+    - SOUNDPAYMENTS_TXN_FORM
+    - SOUNDPAYMENTS_TXN_XML
+    - VANTIV_BATCH_XML
+    - VANTIV_BOARD_XML
+    - VANTIV_CHARGEBACK_XML
+    - VANTIV_PAYMENT_UPDATES_XML
+    - VANTIV_PAYOUT_CSV
+    - VANTIV_PAYOUT_XML
+    - VANTIV_PAYOUT_XML_V9
+    - VANTIV_REPORTS_CSV
+    - VANTIV_TXN_CSV
+    - VANTIV_TXN_XML
+    - VCORE_BATCH_FLAT
+    - VCORE_BATCH_READ_FLAT
+    - VCORE_BINREPORT_FLAT
+    - VCORE_BOARD_API
+    - VCORE_BOARD_FLAT
+    - VCORE_CHARGEBACK_FLAT
+    - VCORE_OMNITOKEN_JSON
+    - VCORE_REPORTS_FLAT
+    - VCORE_SAFERPAYMENT_JSON
+    - VCORE_TXN_ISO8583
+    - VCORE_UPDATE_FLAT
+    - VCORE_VARSHEET_JSON
+    - WEBSHIELD_FORM
+    - WEBSHIELD_JSON
+    - WELLSACH_BATCH_FLAT
+    - WELLSACH_PAYOUT_FLAT
+    - WELLSACH_TXN_FLAT
+    - WELLSFARGO_BOARD_XML
+    - WELLSFARGO_REPORT_CSV
+    - WELLSFARGO_REPORT_FLAT
+    - WFSINGLE_REPORT_FLAT
+    - WFSINGLE_BOARD_XML
+    x-enum-descriptions:
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - NACHA output file
+    - ''
+    - NEUTRINO_FORM output file
+    - ''
+    - OFAC_XML output file
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - SIFT_JSON output file
+    - ''
+    - SOCURE_FORM output file
+    - SOCURE_JSON output file
+    - SOUNDPAYMENTS_TXN_FORM output file
+    - SOUNDPAYMENTS_TXN_XML output file
+    - VANTIV_BATCH_XML output file
+    - VANTIV_BOARD_XML output file
+    - VANTIV_CHARGEBACK_XML output file
+    - ''
+    - VANTIV_PAYOUT_CSV output file
+    - VANTIV_PAYOUT_XML output file
+    - ''
+    - VANTIV_REPORTS_CSV output file
+    - VANTIV_TXN_CSV output file
+    - VANTIV_TXN_XML output file
+    - VCORE_BATCH_FLAT output file
+    - VCORE_BATCH_READ_FLAT output file
+    - ''
+    - ''
+    - VCORE_BOARD_FLAT output file
+    - VCORE_CHARGEBACK_FLAT output file
+    - ''
+    - VCORE_REPORTS_FLAT output file
+    - ''
+    - VCORE_TXN_ISO8583 output file
+    - VCORE_UPDATE_FLAT output file
+    - ''
+    - WEBSHIELD_FORM output file
+    - WEBSHIELD_JSON output file
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+  credential:
+    type: string
+    description: "The credential used for configurationStage resource. \n\n<details>\n\
+      <summary>Valid Values</summary> \n\n - `transaction` - **Credential used for\
+      \ transaction processing.**\n\n - `batch` - **Credential used for transaction\
+      \ batches.**\n\n - `boarding` - **Credential used merchant boarding.**\n\n -\
+      \ `paymentUpdates` - **Account updater (the process through which old/expired\
+      \ credit cards are automatically updated).**\n\n - `payout` - **Credential used\
+      \ for payouts.**\n\n - `payoutCredit` - **Credential used for transaction batches.**\n\
+      \n - `payoutDebit` - **Credential used for transaction batches.**\n\n - `chargeback`\
+      \ - **Credential used for chargeback processing and updating.**\n\n - `txnReport`\
+      \ - **Credential used for transaction reports.**\n\n - `account` - **Credential\
+      \ used for account integrations.**\n\n - `entityDecision` - **Credential used\
+      \ for entity decisions.**\n\n - `txnCheck` - **Credential used for transaction\
+      \ verifications.**\n\n - `payoutReport` - **Credential used for payout reports.**\n\
+      \n - `feeReport` - **Credential used for fee reports.**\n\n - `chargebackReport`\
+      \ - **Credential used for chargeback reports.**\n\n - `binReport` - **Credential\
+      \ used for binReports.**\n\n - `watchlist` - **Third party watchlist download\
+      \ .**\n\n - `encryption` - **Credential used for encryption.**\n\n - `changeRequest`\
+      \ - **Credential used for changeRequest.**\n\n </details>\n"
+    enum:
+    - transaction
+    - batch
+    - boarding
+    - paymentUpdates
+    - payout
+    - payoutCredit
+    - payoutDebit
+    - chargeback
+    - txnReport
+    - account
+    - entityDecision
+    - txnCheck
+    - payoutReport
+    - feeReport
+    - chargebackReport
+    - binReport
+    - watchlist
+    - encryption
+    - changeRequest
+    x-enum-descriptions:
+    - Credential used for transaction processing
+    - Credential used for transaction batches
+    - Credential used merchant boarding
+    - ''
+    - Credential used for payouts
+    - ''
+    - ''
+    - Credential used for chargeback processing and updating
+    - Credential used for transaction reports
+    - Credential used for account integrations
+    - Credential used for entity decisions
+    - Credential used for transaction verifications
+    - Credential used for payout reports
+    - Credential used for fee reports
+    - Credential used for chargeback reports
+    - Credential used binReports
+    - ''
+    - ''
+    - ''
+  url:
+    type: string
+    description: 'The url used for configurationStage resource. It will consist of
+      a combination of at least one path, and restful id. Placeholders can be used
+      for the restful ids such as https://sample.com/:placeholder:. Valid placeholders
+      are: entity, merchant, member, chargeback, and document. The field is stored
+      as a text string and must be between 1 and 500 characters long.'
+  dir:
+    type: string
+    description: "The directory used once connected. \nThis field is stored as a text\
+      \ string and must be between 1 and 500 characters long."
+  restId:
+    type: string
+    description: "The indicator of the field when ref Id is found. \nThis field is\
+      \ stored as a text string and must be between 0 and 100 characters long."
+  mapToData:
+    type: string
+    description: "A string-JSON representing the data injection mapping between the\
+      \ third party\u2019s response and our internal data array."
+  file:
+    type: string
+    description: "The specification on how the file will be named on write. \nThis\
+      \ field is stored as a JSON string and must be between 0 and 5000 characters\
+      \ long."
+  filter:
+    type: string
+    description: "The filter applied when successful on data read. \nThis field is\
+      \ stored as a JSON string and must be between 0 and 5000 characters long."
+  extension:
+    type: string
+    description: The extension of the file.
+    enum:
+    - jpg
+    - jpeg
+    - gif
+    - png
+    - pdf
+    - tif
+    - tiff
+    - txt
+    - xml
+    - asc
+    - rtf
+    - csv
+    - xls
+    - doc
+    - odt
+    - ods
+    - json
+    - soap
+    x-enum-descriptions:
+    - jpg extension file type for the input and output files
+    - jpeg extension file type for the input and output files
+    - gif extension file type for the input and output files
+    - png extension file type for the input and output files
+    - pdf extension file type for the input and output files
+    - tif extension file type for the input and output files
+    - tiff extension file type for the input and output files
+    - txt extension file type for the input and output files
+    - xml extension file type for the input and output files
+    - asc extension file type for the input and output files
+    - rtf extension file type for the input and output files
+    - csv extension file type for the input and output files
+    - xls extension file type for the input and output files
+    - doc extension file type for the input and output files
+    - odt extension file type for the input and output files
+    - ods extension file type for the input and output files
+    - ''
+    - ''
+  namespace:
+    type: string
+    description: "The namespace used for the configurationStage resource. \nThis field\
+      \ is stored as a text string and must be between 0 and 500 characters long."
+  dynamicStage:
+    type: string
+    description: "Only used in case the it is dynamic stage. \nThis field is stored\
+      \ as a JSON string, must be between 0 and 5000 characters long, and have a property\
+      \ key name with value of stage name and id key."
+  curlOptions:
+    type: string
+    description: With the specificity of the configuration stages, it holds different
+      integration methods, part of it is holding specific connection details that
+      is needed to consume the service. The curlOptions is used to hold those specifics,
+      things like SSLCERT, SSLKEY etc
+  headers:
+    type: string
+    description: "The headers used for the configurationStage resource. \nThis field\
+      \ is stored as a JSON string and must be between 0 and 5000 characters long."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+

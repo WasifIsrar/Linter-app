@@ -1,0 +1,89 @@
+title: disbursementRefsPutRequest
+properties:
+  amount:
+    type: integer
+    format: int64
+    description: The amount of the disbursement related to this disbursementRef
+  disbursement:
+    type: string
+    description: The identifier of the Disbursement that this disbursementRef resource
+      refers to.
+  disbursementRef:
+    type: string
+    description: The identifier of the DisbursementRef that this disbursementRef resource
+      refers to.
+  platform:
+    title: disbursementPlatform
+    type: string
+    description: "The platform used to process this Transaction. \n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `ELAVON`  - The Elavon processor.\n\n- `VANTIV`  - The\
+      \ WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor.\n\n- `VCORE` - The\
+      \ WorldPay (aka Vantiv) Core processor.\n\n- `TDBANK` - External funding with\
+      \ TD Bank via the Operating Account.\n\n- `TDBANKCA` - External funding with\
+      \ TD Bank Canada via the Operating Account.\n\n- `WELLSACH` - The Wells Fargo\
+      \ ACH processor.\n\n- `WELLSFARGO` - The Wells Fargo Merchant Services processor.\n\
+      \n- `WFSINGLE` - The WFSINGLE processor.\n\n- `WORLDPAY` - The WORLDPAY processor.\n\
+      \n</details>\n"
+    enum:
+    - ELAVON
+    - VANTIV
+    - VCORE
+    - TDBANK
+    - TDBANKCA
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    x-enum-elements:
+    - name: "Elavon"
+      description: "The Elavon processor."
+    - name: "Vantiv"
+      description: "The WorldPay (aka Vantiv or Litle) eComm (aka VAP) processor."
+    - name: "VCore"
+      description: "The WorldPay (aka Vantiv) Core processor."
+    - name: "TdBank"
+      description: "External funding with TD Bank via the Operating Account."
+    - name: "TdBankCa"
+      description: "External funding with TD Bank Canada via the Operating Account."
+    - name: "WellsAch"
+      description: "The Wells Fargo ACH processor."
+    - name: "WellsFargo"
+      description: "The Wells Fargo Merchant Services processor."
+    - name: "WfSingle"
+      description: "The WFSINGLE processor."
+    - name: "WorldPay"
+      description: "The WORLDPAY processor."
+  companyId:
+    type: string
+    description: An identification document for a company.
+  ref:
+    type: string
+    description: The Disbursement reference code itself; This field is stored as a
+      text string and must be between 1 and 50 characters long.
+  fileRef:
+    type: string
+    description: A file reference code. This field is stored as a text string and
+      must be between 1 and 50 characters long.
+  stage:
+    title: disbursementRefStage
+    type: string
+    description: "The stage of the Disbursement reference. \n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `create`  - Funding is sent to the processor (based\
+      \ on prior split setup).\n\n- `approve`  - Funding approved by the processor.\n\
+      \n- `split` - Disbursement amount is split for processing.\n\n- `failed` - Funding\
+      \ failed.\n\n</details>\n"
+    enum:
+    - create
+    - approve
+    - split
+    - failed
+    x-enum-elements:
+    - name: "Create"
+      description: "Funding is sent to the processor (based on prior split setup)."
+    - name: "Approve"
+      description: "Funding approved by the processor."
+    - name: "Split"
+      description: "Disbursement amount is split for processing."
+    - name: "Failed"
+      description: "Funding failed."
+

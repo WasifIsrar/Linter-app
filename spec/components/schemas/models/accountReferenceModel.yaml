@@ -1,0 +1,47 @@
+title: accountReferenceResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  account:
+    type: string
+    description: An object representing details of the Account, including the type
+      of Account (method), Account number and routing code.
+  ref:
+    type: string
+    description: The reference ID from the third party
+  stage:
+    title: accountRefStage
+    type: string
+    description: |
+      The stage for which this reference is set.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `accessToken` - **The accessToken is used to obtain information about account.**
+      - `accountToken` - **The account token used to represent the id of the account in the integration platform.**
+      - `clientUserId` - **Plaid client user ID, the client user ID we sent when creating the link token.**
+
+      </details>
+    enum:
+    - accessToken
+    - accountToken
+    - clientUserId
+    x-enum-elements:
+    - name: "AccessToken"
+      description: "The access token used to obtain information about an account."
+    - name: "AccountToken"
+      description: "The account token used to represent the ID of the account in the integration platform."
+    - name: "ClientUserId"
+      description: "Plaid client user ID, the client user ID we sent when creating the link token."
+  platform:
+    $ref: ../enums/accountRefPlatformModel.yaml
+    

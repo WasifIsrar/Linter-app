@@ -1,0 +1,176 @@
+title: loginsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The identifier of the Login.
+  lastLogin:
+    type: string
+    description: The timestamp when this Login last logged in to the API. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  username:
+    type: string
+    description: "The username associated with this Login. \nThis field is stored\
+      \ as a text string, all lowercase, and must be between 0 and 50 characters long."
+  password:
+    type: string
+    description: "The password associated with this Login. \nThis field is stored\
+      \ as a text string and must be between 0 and 100 characters long."
+  ssoId:
+    type: string
+    description: "The SSO (Single Sign On) ID setup for the login. \nThis field is\
+      \ stored as a text string and must be between 1 and 100 characters long."
+  first:
+    type: string
+    description: The first name associated with this Login.
+  middle:
+    type: string
+    description: The middle name associated with this Login.
+  last:
+    type: string
+    description: The last name associated with this Login.
+  email:
+    type: string
+    description: The email address associated with this Login.
+  fax:
+    type: string
+    description: "The fax number associated with this Login. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  phone:
+    type: string
+    description: "The phone number associated with this Login. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  country:
+    description: "The country associated with this Customer. \nValid values for this\
+      \ field is the 3-letter ISO code for the country."
+    $ref: ../models/countryModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Login. \nThis field\
+      \ is stored as a text string and must be between 1 and 20 characters long."
+  state:
+    $ref: ../models/stateModel.yaml
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Login.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Login. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address1:
+    type: string
+    description: "The first line of the address associated with this Login. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  confirmed:
+    type: integer
+    description: "Whether the email associated with this Login was confirmed. This\
+      \ field is stored as an integer and will be set to '1' when the email is confirmed.\
+      \ \n\n<details> <summary>Valid Values</summary>\n\n - `0`  - **Not confirmed.**\n\
+      \n - `1`  - **Confirmed.**\n\n </details>"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotConfirmed"
+      description: "The email is not confirmed."
+    - name: "Confirmed"
+      description: "The email is confirmed."
+  roles:
+    type: integer
+    format: int64
+    description: The roles associated with this Login, specified as an integer.
+  partition:
+    type: string
+    description: The partition that this Login is associated with.
+  division:
+    type: string
+    description: The division that this Login belongs to.
+  parentDivision:
+    type: string
+    description: The parent division that this Login belongs to. Children of this
+      Login will inherit its parent division.
+  allowedResources:
+    type: string
+    description: The allowedResources field specifies the actions and resources a user can access. The JSON structure includes action keys (create, update, read, delete, totals) and lists of resources (e.g., logins, apikeys, sessions). Omitted action keys indicate no access for those actions.
+  restrictedResources:
+    type: string
+    description: The restrictedResources field defines the actions and resources a user is restricted from accessing. The JSON structure includes action keys (create, update, read, delete, totals) and lists of resources (e.g., logins, apikeys, sessions). Omitted action keys indicate no restrictions for those actions.
+  portalAccess:
+    type: integer
+    description: "Whether or not this user should have access to portal functionality.\
+      \ \n\n<details>\n<summary>Valid Values</summary> \n\n - `0` - **No access to\
+      \ the portal**\n\n - `1` - **Has access to the portal**\n\n </details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NoAccess"
+      description: "No access to the portal."
+    - name: "HasAccess"
+      description: "Has access to the portal."
+  mfaEnabled:
+    type: integer
+    description: |
+      Whether or not this user should have multi factor authentication (MFA) feature.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "MFA is disabled."
+    - name: "Enabled"
+      description: "MFA is enabled."
+  mfaSecret:
+    type: string
+    description: "The MFA secret key used to link the MFA device with this Login.\
+      \ \nThis field is stored as a text string and must be between 1 and 128 characters\
+      \ long."
+  mfaEnrolledDate:
+    type: string
+    description: The datetimestamp  when this Login was enabled for
+      MFA.
+  mfaType:
+    type: string
+    description: "The Type of the MFA enrolled. \nThis field is stored as a text string\
+      \ and must be between 1 and 50 characters long."
+  effectiveRoles:
+    type: integer
+    format: int64
+    description: EffectiveRoles is included in the response when a user record is returned via API indicating the full effective roles of the user (as an integer), broken down by role, for roles that include other roles automatically.
+  mfaSmsCodesCount: 
+    type: integer
+    description: The end time of the current MFA SMS window which is a sliding window limitinig how many codes can be generated during a given window
+  mfaSmsWindow: 
+    type: integer
+    description: The most recent SMS Code which has been texted to the user
+  loginAsEnabled:
+    type: integer
+    description: Whether the associated login can use loginAs or not      
+  inactive:
+    type: integer
+    $ref: ../../../components/schemas/inactive.yaml
+  frozen:
+    type: integer
+    $ref: ../../../components/schemas/frozen.yaml

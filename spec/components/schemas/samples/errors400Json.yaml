@@ -1,0 +1,9 @@
+value:
+  "errors": [
+        {
+            "code": 4,
+            "severity": 3,
+            "msg": "Invalid authentication",
+            "errorCode": "invalid_auth"
+        }
+    ]

@@ -1,0 +1,69 @@
+title: plansResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  merchant:
+    type: string
+    description: The identifier of the Merchant associated with this Plan.
+  billing:
+    type: string
+    description: The attached billing for which recurring payments should be made
+      to pay off statements.
+  type:
+    title: planType
+    type: string
+    description: "The type of plan.\n\n<details>\n<summary>Valid Values</summary>\n\
+      \n- `recurring` - **A recurring payment plan (subcription).**\n\n- `installment`\
+      \  - **A deferred payment installment plan.** \n\n</details>          \n"
+    enum:
+    - recurring
+    - installment
+    x-enum-elements:
+    - name: "Recurring"
+      description: "A recurring payment plan (subscription)."
+    - name: "Installment"
+      description: "A deferred payment installment plan."
+  name:
+    type: string
+    description: "The name of this Plan. \nThis field is stored as a text string and\
+      \ must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A description of this Plan. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  txnDescription:
+    type: string
+    description: The description of the Txn that will be created through this Plan.
+  order:
+    type: string
+    description: The order of the Txn that will be created through this Plan.
+  schedule:
+    $ref: ../enums/planScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: "A multiplier that you can use to adjust the schedule set in the\
+      \ 'schedule' field, such as daily, weekly, monthly, or annually. \nThis field\
+      \ is specified as an integer and its value determines how the interval is multiplied. "
+  um:
+    $ref: ../enums/planUmModel.yaml
+  amount:
+    type: integer
+    format: int64
+    description: "The amount to charge with each payment under this Plan. \nThis field\
+      \ is specified as an integer in cents."
+  maxFailures:
+    type: integer
+    description: The maximum consecutive amount of payment failures to allow for a
+      subscription before inactivating it.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

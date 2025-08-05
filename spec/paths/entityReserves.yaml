@@ -1,0 +1,72 @@
+get:
+  description: Query an EntityReserves resource that represents funds held by an Entity
+    in reserve, separately from amounts in any entityFunds.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReserves:
+              $ref: ../components/schemas/samples/entityReservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityReservesModel200Response.yaml
+      description: Retrieve an Entity Reserves Response for the query on entityReserves
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Entity Reserves.
+  tags:
+  - Entity Reserves
+  - Facilitator
+  - Partner
+  operationId: getEntityReserves
+post:
+  description: Create an EntityReserves resource that represents funds held by an
+    Entity in reserve, separately from amounts in any entityFunds.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityReservesPostRequestModel.yaml
+    description: Create Entity Reserve Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create entityReserves:
+              $ref: ../components/schemas/samples/entityReservesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityReservesModel200Response.yaml
+      description: Response for create on entityReserves resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityReserves:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Entity Reserve
+  tags:
+  - Entity Reserves
+  - Facilitator
+  - Partner
+  operationId: postEntityReserves
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

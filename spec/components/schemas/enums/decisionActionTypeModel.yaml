@@ -1,0 +1,32 @@
+title: decisionActionType
+type: string
+description: |
+  The type of DecisionAction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `equal` - **Equal.**
+  - `notEqual` - **Not Equal.**
+  - `contains` - **Contains.**
+  - `greater` - **Greater.**
+  - `less` - **Less.**
+
+  </details>
+enum:
+- equal
+- notEqual
+- contains
+- greater
+- less
+x-enum-elements:
+- name: Equal
+  description: Equal.
+- name: NotEqual
+  description: Not Equal.
+- name: Contains
+  description: Contains.
+- name: Greater
+  description: Greater.
+- name: Less
+  description: Less.

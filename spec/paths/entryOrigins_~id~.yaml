@@ -1,0 +1,38 @@
+get:
+  description: Query an Entry Origin.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The Entry Origin ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_eon_67bf03038fd84a4437c37ez
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entryOrigins:
+              $ref: ../components/schemas/samples/entryOriginsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entryOriginsModel200Response.yaml
+      description: Retrieve Entry Origin Response for query on entryOrigins resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entryOrigins:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Entry Origin by it's ID.
+  tags:
+  - Entry Origin
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntryOriginsId

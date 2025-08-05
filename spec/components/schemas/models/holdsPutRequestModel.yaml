@@ -1,0 +1,133 @@
+title: holdsPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this holds resource.
+  verificationRef:
+    type: string
+    description: If this hold resource was triggered through Payrix Integration Risk,
+      then this field stores the identifier of the VerificationRef.
+  released:
+    type: string
+    description: If this hold was released, this will contain the timestamp for when
+      it was released. (YYYY-MM-DD HH:II:SS)
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+  reviewed:
+    type: string
+    description: If this hold was reviewed, this will contain the timestamp for when
+      it was reviewed. (YYYY-MM-DD HH:II:SS)
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+  releaseAction:
+    type: integer
+    example: '[releaseAction]'
+    description: |
+      The final action taken on the hold while it's been released.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `1` - **Holds released because the hold resource was approved.**
+      - `2` - **Holds released because the hold resource was cancelled.**
+      - `3` - **Holds released because the hold resource was refunded.**
+      - `4` - **Holds released because the hold resource was failed.**
+      - `5` - **Expired.**
+
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    x-enum-elements:
+    - name: Approved
+      description: Holds released because the hold resource was approved.
+    - name: Cancelled
+      description: Holds released because the hold resource was cancelled.
+    - name: Refunded
+      description: Holds released because the hold resource was refunded.
+    - name: Failed
+      description: Holds released because the hold resource was failed.
+    - name: Expired
+      description: Holds expired.
+  holdSource:
+    type: string
+    description: |
+      Field created to know the reason for why a hold was created.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `DS_MODEL_POLICY_RUN` - **DS_MODEL_POLICY_RUN**
+      - `API_DECISION` - **API_DECISION**
+      - `POLICY_RUN` - **POLICY_RUN**
+      - `RISK_ALERT` - **RISK_ALERT**
+      - `MANUAL` - **MANUAL**
+      - `ERROR` - **ERROR**
+
+      </details>
+    enum:
+    - DS_MODEL_POLICY_RUN
+    - API_DECISION
+    - POLICY_RUN
+    - RISK_ALERT
+    - MANUAL
+    - ERROR
+    x-enum-elements:
+    - name: DS_MODEL_POLICY_RUN
+      description: DS_MODEL_POLICY_RUN.
+    - name: API_DECISION
+      description: API_DECISION.
+    - name: POLICY_RUN
+      description: POLICY_RUN.
+    - name: RISK_ALERT
+      description: RISK_ALERT.
+    - name: MANUAL
+      description: MANUAL.
+    - name: ERROR
+      description: ERROR.
+  holdSourceId:
+    type: string
+    description: reasonid for why a hold was created.
+  delayedFundingStartDate:
+    type: string
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+    description: The timestamp when hold was considered to be delaying funding. (YYYY-MM-DD
+      HH:II:SS)
+  delayedFundingEndDate:
+    type: string
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+    description: The timestamp when hold stopped delaying funding, this might be due
+      to the hold been released, cancelled or funded. (YYYY-MM-DD HH:II:SS)
+  analyst:
+    type: string
+    description: The person who review the hold applied.
+  claimed:
+    type: string
+    format: custom-date-time
+    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$
+    description: The timestamp for the most recent update of the analyst field. (YYYY-MM-DD
+      HH:II:SS)
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: t1_hld_0000fc11df8e4c00000e00c
+  verificationRef: t1_xyz_12345eb00f0cf1bfc00be0f
+  released: '2025-01-31 08:42:16'
+  reviewed: '2025-01-31 08:42:16'
+  releaseAction: 2
+  holdSource: API_DECISION
+  holdSourceId: 5a9bba34-38eb-489e-abd8-765e18562a08
+  delayedFundingStartDate: '2025-01-31 08:42:16'
+  delayedFundingEndDate: '2025-01-31 08:42:16'
+  analyst: name
+  claimed: '2025-01-31 08:42:16'
+  inactive: 0
+  frozen: 0

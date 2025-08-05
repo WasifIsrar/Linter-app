@@ -1,0 +1,125 @@
+get:
+  description: Query a TerminalTxn holds all of the information to a related final
+    transaction, which they are used to be reconciled with that actual, final transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Terminal Transaction ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ttx_67c76e07ebc6fbbbd476ee0
+    required: true
+    schema:
+      type: string
+  operationId: getTerminalTxnsById
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/terminalTxnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnsModel200Response.yaml
+      description: Retrieve the Response for query on terminalTxns resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Terminal Transaction by it's ID.
+  tags:
+  - Terminal Transactions
+  - Merchant
+  - Facilitator
+  - Partner
+put:
+  description: Update a TerminalTxn holds all of the information to a related final
+    transaction and is used to be reconciled with that actual, final transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Terminal Transaction ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ttx_67c76e07ebc6fbbbd476ee0
+    required: true
+    schema:
+      type: string
+  operationId: updateTerminalTxnsById
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/terminalTxnsPutRequestModel.yaml
+    description: Update Terminal Transaction Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update terminalTxns:
+              $ref: ../components/schemas/samples/terminalTxnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnsModel200Response.yaml
+      description: 'Response for update on Terminal Txns resource: Update Terminal
+        Transaction Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Terminal Transaction by it's ID.
+  tags:
+  - Terminal Transactions
+  - Merchant
+  - Facilitator
+  - Partner
+delete:
+  description: Delete a TerminalTxn that holds all of the information to a related
+    final transaction and is used to be reconciled with that actual, final transaction.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Terminal Transaction ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_ttx_67c76e07ebc6fbbbd476ee0
+    required: true
+    schema:
+      type: string
+  operationId: deleteTerminalTxnsById
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete terminalTxns:
+              $ref: ../components/schemas/samples/terminalTxnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/terminalTxnsModel200Response.yaml
+      description: Delete Terminal Transaction Response for terminalTxns resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all terminalTxns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Terminal Transaction by it's ID.
+  tags:
+  - Terminal Transactions
+  - Merchant
+  - Facilitator
+  - Partner

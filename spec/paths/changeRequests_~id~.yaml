@@ -1,0 +1,118 @@
+get:
+  description: "Query a Change Request. \nChangeRequests is a resource that manages\
+    \ changes to a certain resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_chr_67461c21ce3bae674b5500a
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all changeRequests:
+              $ref: ../components/schemas/samples/changeRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/changeRequestsModel200Response.yaml
+      description: Response for query on changeRequests resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all changeRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Change Requests
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChangeRequestsId
+put:
+  description: "Update a Change Request. \nChangeRequests is a resource that manages\
+    \ changes to a certain resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_chr_67461c21ce3bae674b5500a
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/changeRequestPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update changeRequests:
+              $ref: ../components/schemas/samples/changeRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/changeRequestsModel200Response.yaml
+      description: Response for update on changeRequests resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all changeRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Change Requests
+  - Facilitator
+  operationId: putChangeRequestsId
+delete:
+  description: "Delete a Change Request. \nChangeRequests is a resource that manages\
+    \ changes to a certain resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_chr_67461c21ce3bae674b5500a
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete changeRequests:
+              $ref: ../components/schemas/samples/changeRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/changeRequestsModel200Response.yaml
+      description: Response for delete on changeRequests resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all changeRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Change Requests
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteChangeRequestsId

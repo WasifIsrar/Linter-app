@@ -1,0 +1,70 @@
+get:
+  description: Query embeddedFinance.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/embeddedFinanceJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/embeddedFinanceModel200Response.yaml
+      description: Retrieve embeddedFinance Response for query on embeddedFinance resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all embeddedFinance.
+  tags:
+  - Embedded Finance
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: getEmbeddedFinance
+post:
+  description: Create a embeddedFinance.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/embeddedFinancePostRequestModel.yaml
+    description: Create embeddedFinance
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/embeddedFinanceJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/embeddedFinanceModel200Response.yaml
+      description: Create embeddedFinance Response for creating embeddedFinance.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all embeddedFinance:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new embeddedFinance
+  tags:
+  - Embedded Finance
+  - Facilitator
+  - Partner
+  operationId: postEmbeddedFinance
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

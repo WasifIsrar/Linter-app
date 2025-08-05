@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ipl_67d42f7567ea0e8f1b43e0z",
+        "created": "2025-03-14 09:30:29.4334",
+        "modified": "2025-03-14 09:30:29.4334",
+        "creator": "t1_log_61d874fe8b166d56672d0f9",
+        "modifier": "t1_log_61d874fe8b166d56672d0f9",
+        "login": "t1_log_61d874fe8b166d56672d0f9",
+        "version": 4,
+        "type": 1,
+        "start": "1.1.1.1",
+        "finish": "1.1.1.89",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,39 @@
+get:
+  description: Query an Adjustment, which is a way to make monetary adjustments to
+    an entity's funds.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Adjustment ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_adm_00073f32d2450f385ec0001
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all adjustments:
+              $ref: ../components/schemas/samples/adjustmentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/adjustmentsModel200Response.yaml
+      description: Retrieve the adjustment response for query on adjustments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all adjustments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Adjustment by it's ID.
+  tags:
+  - Adjustments
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAdjustmentsId

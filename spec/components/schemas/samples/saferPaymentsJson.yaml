@@ -1,0 +1,34 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_vas_65de13bb68f138dc751dc0z",
+        "created": "2024-02-27 11:54:19.4389",
+        "modified": "2024-02-27 11:54:19.4389",
+        "creator": "t1_log_633455983e5e7fe16fb078b",
+        "modifier": "t1_log_633455983e5e7fe16fb078b",
+        "entity": "t1_ent_65de12aabb1f58e2a3441f7",
+        "status": "compliance",
+        "enablementDate": "2024-02-27 11:54:19",
+        "pciNonValidationFeeEnabled": 0,
+        "org": "t1_org_00b2ac11ed8bed97fb80000",
+        "division": "t1_div_67c56806728fbbf0bae0b00",
+        "partition": "t1_ptn_666834d4d504f21414978z5",
+        "program": "basic",
+        "deleted": "2024-02-27 11:54:19",
+        "deleter": "",
+        "inactive": 0,
+        "frozen": 0,
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

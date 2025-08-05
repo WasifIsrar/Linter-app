@@ -1,0 +1,95 @@
+title: batchesPostRequest
+properties:
+  merchant:
+    type: string
+    description: The identifier of the Merchant that is associated with this Batch.
+  platform:
+    title: batchPlatform
+    type: string
+    description: |
+      The platform used to process this Batch.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `APPLE` - **Apple Payment Processor**
+      - `ELAVON` - **ELAVON Payment Processor**
+      - `FIRSTDATA` - **FirstData Payment Processor**
+      - `GOOGLE` - **Google Payment Processor**
+      - `VANTIV` - **Worldpay / Vantiv eComm Payment Processor (VAP)**
+      - `VCORE` - **Worldpay / Vantiv Core Payment Processor**
+      - `WELLSACH` - **Wells Fargo Merchant Services Payment Processor (ACH)**
+      - `WELLSFARGO` - **Wells Fargo Merchant Services Payment Processor**
+      - `WFSINGLE` - **Wells Fargo Single Payment Processor**
+      - `WORLDPAY` - **Worldpay Payment Processor**
+      - `TDBANKCA` - **TD Bank Canada Payment Processor**
+
+      </details>  
+    enum:
+    - APPLE
+    - ELAVON
+    - FIRSTDATA
+    - GOOGLE
+    - VANTIV
+    - VCORE
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    - TDBANKCA
+    x-enum-elements:
+    - name: "Apple"
+      description: "Apple Payment Processor"
+    - name: "Elavon"
+      description: "ELAVON Payment Processor"
+    - name: "Firstdata"
+      description: "FirstData Payment Processor"
+    - name: "Google"
+      description: "Google Payment Processor"
+    - name: "Vantiv"
+      description: "WorldPay / Vantiv eComm Payment Processor (VAP)"
+    - name: "Vcore"
+      description: "WorldPay / Vantiv Core Payment Processor"
+    - name: "Wellsach"
+      description: "Wells Fargo Merchant Services Payment Processor (ACH)"
+    - name: "Wellsfargo"
+      description: "Wells Fargo Merchant Services Payment Processor"
+    - name: "Wfsingle"
+      description: "Wells Fargo Single Payment Processor"
+    - name: "Worldpay"
+      description: "Worldpay"
+    - name: "Tdbankca"
+      description: "Tdbankca"
+  status:
+    $ref: ../enums/batchStatusModel.yaml
+  ref:
+    type: string
+    description: "The reference code of the batch. \nThis field is automatically generated\
+      \ and stored as a text string and must be between 0 and 50 characters long."
+  clientRef:
+    type: string
+    description: "The merchant's reference code of the batch. \nThis field is stored\
+      \ as a text string and must be between 0 and 50 characters long."
+  processingId:
+    type: string
+    description: Internal ID set for processing.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- merchant
+- platform
+- status
+
+example: 
+  merchant: t1_mer_63341144b40742676bea201
+  platform: VANTIV
+  status: open
+  ref: reference code of batch
+  clientRef: merchant's reference code
+  processingId: Internal ID
+  inactive: 0
+  frozen: 0

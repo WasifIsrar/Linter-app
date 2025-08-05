@@ -1,0 +1,46 @@
+title: alertsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  forlogin:
+    type: string
+    description: "The identifier of the Login that this Alert relates to. \nThe Alert\
+      \ is triggered based on the activity of this Login."
+  team:
+    type: string
+    description: The identifier (ID) of the team that this Alert relates to. The Alert is triggered based on the activity of this Team.
+  division:
+    type: string
+    description: The division for which this Alerts applies.
+  partition:
+    type: string
+    description: The partition for which this Alerts applies.
+  name:
+    type: string
+    description: "The name of this Alert. \nThis field is stored as a text string\
+      \ and must be between 1 and 100 characters long."
+    default: ""
+  description:
+    type: string
+    description: Description of Alerts.
+    default: ""
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- login
+
+example:
+  login: t1_log_61f2efc258eb7bf6d380000
+  forlogin: t1_log_61f2efc258eb7bf6d380000
+  team: t1_tem_67c202b908935b505104500
+  division: t1_div_67c56806728fbbf0bae0z00
+  partition: t1_ptn_666834d4d504f21414978f0
+  name: williamson
+  description: Used by the FrontDesk system to keep information up to date via webhook alerts
+  inactive: 0
+  frozen: 0

@@ -1,0 +1,75 @@
+get:
+  description: "Query txnDatas resource. \nA txnDatas resource represents data associated\
+    \ with a Transaction - in particular, a Base64 encoded image of a signature captured\
+    \ at the time of entering the Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnDatas:
+              $ref: ../components/schemas/samples/txnDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnDatasModel200Response.yaml
+      description: Response for query on txnDatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all transaction data (txnDatas).
+  tags:
+  - Transaction Datas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxnDatas
+post:
+  description: Create a txnData. A txnDatas resource represents data associated with
+    a Transaction - in particular, a Base64 encoded image of a signature captured
+    at the time of entering the Transaction.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/txnDatasPostRequestModel.yaml
+    description: Create txnDatas Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnDatas:
+              $ref: ../components/schemas/samples/txnDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnDatasModel200Response.yaml
+      description: Response for create on txnDatas resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create transaction data (txnDatas).
+  tags:
+  - Transaction Datas
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postTxnDatas
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

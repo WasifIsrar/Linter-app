@@ -1,0 +1,20 @@
+title: accountRefPlatform
+type: string
+description: |
+  The third party from which the account reference was retrieved.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `PLAID` - **The Plaid account verification platform.**
+  - `PAYRIX` - **The Payrix account verification platform.**
+
+  </details>
+enum:
+- PLAID
+- PAYRIX
+x-enum-elements:
+- name: "Plaid"
+  description: "The Plaid account verification platform."
+- name: "Payrix"
+  description: "The Payrix account verification platform."

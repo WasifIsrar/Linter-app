@@ -1,0 +1,57 @@
+title: iplistsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  version:
+    type: integer
+    description: |
+      Whether this IP List contains IPv4 addresses (for example, 198.51.100.113) or IPv6 addresses (for example, 2001:0db8:85a3:0000:0000:8a2e:0370:7334).
+
+      You can only use one type in each IP List resource.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `4` - **IPv4 addresses.** (Example: 198.51.100.113)
+      - `6` - **IPv6 addresses.** (Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334)
+
+      </details>
+    enum:
+    - 4
+    - 6
+    x-enum-elements:
+    - name: IPv4
+      description: "IPv4 addresses (Example: 198.51.100.113)."
+    - name: IPv6
+      description: "IPv6 addresses (Example: 2001:0db8:85a3:0000:0000:8a2e:0370:7334)."
+  type:
+    $ref: ../enums/iplistTypeModel.yaml
+  start:
+    type: string
+    description: "The lowest IP address that should be included in this IP List. \n\
+      The valid data type for this field depends on whether the IP list is set to\
+      \ be an IPv4 or IPv6 list in the 'type' field. \nFor an IPv4 list, only IPv4\
+      \ addresses such as 198.51.100.113 are permitted. For an IPv6 list, only IPv6\
+      \ addresses such as 2001:0db8:85a3:0000:0000:8a2e:0370:7334 are permitted."
+  finish:
+    type: string
+    description: "The highest IP address that should be included in this IP List.\
+      \ \nThe valid values for this field depend on whether the IP list is set to\
+      \ be an IPv4 or IPv6 list in the 'type' field. \nFor an IPv4 list, only IPv4\
+      \ addresses, such as '198.51.100.113', are permitted. For an IPv6 list, only\
+      \ IPv6 addresses, such as '2001:0db8:85a3:0000:0000:8a2e:0370:7334' are permitted."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

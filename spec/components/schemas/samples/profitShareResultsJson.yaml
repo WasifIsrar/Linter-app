@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_psr_655c21ba778461b81b98b00",
+        "created": "2023-11-20 22:19:22.4970",
+        "modified": "2023-11-20 22:19:22.4970",
+        "creator": "t1_log_673245a79517f80bf2e0000",
+        "modifier": "t1_log_673245a79517f80bf2e0000",
+        "profitShare": "t1_psh_65369bffac4c88d0d3df1f0",
+        "entry": "t1_etr_655c21ba5e65de16142b2c3",
+        "amount": 434,
+        "message": "Could not share income"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

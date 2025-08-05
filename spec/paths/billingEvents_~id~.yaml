@@ -1,0 +1,119 @@
+get:
+  description: Query a Billing Event.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this billing event.
+    explode: false
+    in: path
+    name: id
+    example: t1_ble_67d9cfac3d58e3fe0414bf0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/billingEventsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingEventsModel200Response.yaml
+      description: Retrieve Response for query on billingEvents resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Billing Event by it's ID.
+  tags:
+  - Billing Events
+  - Facilitator
+  - Partner
+  operationId: getBillingEventsId
+put:
+  description: Update a Billing Event.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this billing event.
+    explode: false
+    in: path
+    name: id
+    example: t1_ble_67d9cfac3d58e3fe0414bf0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/billingEventsPutRequestModel.yaml
+    description: Update Billing Event Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update billingEvents:
+              $ref: ../components/schemas/samples/billingEventsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingEventsModel200Response.yaml
+      description: Response for update on billingEvents resource Update Billing Event
+        Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Billing Event by it's ID.
+  tags:
+  - Billing Events
+  - Facilitator
+  - Partner
+  operationId: putBillingEventsId
+delete:
+  description: Delete a Billing Event.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this billing event.
+    explode: false
+    in: path
+    name: id
+    example: t1_ble_67d9cfac3d58e3fe0414bf0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete billingEvents:
+              $ref: ../components/schemas/samples/billingEventsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingEventsModel200Response.yaml
+      description: Response for delete on Billing Events resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billingEvents:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Billing Event by it's ID.
+  tags:
+  - Billing Events
+  - Facilitator
+  - Partner
+  operationId: deleteBillingEventsId

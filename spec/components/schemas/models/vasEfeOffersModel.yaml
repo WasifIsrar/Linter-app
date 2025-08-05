@@ -1,0 +1,156 @@
+title: vasEfeOffersResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  offerId:
+    type: string
+    description: Id of the offer
+  expiry:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+    description: Expire date of offer
+  entity:
+    type: string
+    description: EntityId for merchant
+  mid:
+    type: string
+    description: MID
+  primaryContactEmail:
+    type: string
+    description: Primary point of contacts email
+  merchantLenderId:
+    type: string
+    description: This refers to the partner product association
+  vendorName:
+    type: string
+    description: Vendor associated with the product
+  offerDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: Date of provided offer
+  totalApprovedAmount:
+    type: string
+    description: Amount approved for
+  feeAmount:
+    type: string
+    description: Fee amount charged
+  originationFee:
+    type: string
+    description: Refers to fee charged by a lender to process a new loan application.
+  offerUrl:
+    type: string
+    description: Url of corresponding offer
+  productName:
+    type: string
+    description: Name associated with the product
+  productLongDescription:
+    type: string
+    description: Long description of the product.
+  acquirePlatform:
+    type: string
+    description: To identify whether a partner belongs to Core or VAP platforms.
+  prequalificationSentDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: The date when preliminary information is submitted for vendor assessment
+      to determine merchant eligibility to receive the cash advance.
+  prequalificationReceivedDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: Date when the vendor provides the preQualification status of a given
+      sub-merchant.
+  isMerchantPrequalified:
+    type: integer
+    description: A flag that indicates if a merchant meets predetermined vendor criteria
+      to receive cash advance funding.
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: not prequalified
+      description: Merchant is not prequalified.
+    - name: prequalified
+      description: Merchant is prequalified.
+  appliedDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: Date when merchant submitted an application to receive cash advance
+      from a vendor. Date should be past or present in the format YYYY-MM-DD.
+  offerStatus:
+    type: string
+    description: Indicates the status of a cash advance application submitted by the
+      sub-merchant
+    enum:
+    - "ACTIVE"
+    - "APPLIED"
+    - "APPROVED"
+    - "EXPIRED"
+    x-enum-elements:
+    - name: ACTIVE
+      description: Indicates that the cash advance application is active and the sub-merchant
+        is currently repaying the cash advance.
+    - name: APPLIED
+      description: Indicates that the sub-merchant has applied for a cash advance and
+        is awaiting approval from the vendor.
+    - name: APPROVED
+      description: Indicates that the sub-merchant's cash advance application has been
+        approved by the vendor and the sub-merchant is expected to start repaying the
+        cash advance.
+    - name: EXPIRED
+      description: Indicates that the cash advance application has expired and the sub-merchant
+        is no longer eligible to receive the cash advance.
+  productCode:
+    type: string
+    description: Type of product which partner has enrolled into.
+  startDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: Date when sub merchant started re-paying cash advance.
+  endDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: Date when sub merchant is expected to complete the repayment of cash
+      advance.
+  splitFundingCap:
+    type: string
+    description: Maximum amount to be repaid by sub merchant.
+  splitFundingRate:
+    type: string
+    description: Repayment percentage as defined by lender.
+  dailyFundingMaxLimit:
+    type: string
+    description: Maximum daily repayment limit as defined by lender.
+  splitFundingAmount:
+    type: string
+    description: Split Funding Amount refers to the cash advance provided to the merchant.
+  optInDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{4}$'
+    description: The date when the merchant has opted in.
+  splitSettlementEnabled:
+    type: integer
+    description: Indicates if split funding settlement allowed for merchant.
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Not Enabled
+      description: Split settlement is not enabled.
+    - name: Enabled
+      description: Split settlement is enabled.

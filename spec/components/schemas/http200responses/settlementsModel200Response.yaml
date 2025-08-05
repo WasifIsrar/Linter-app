@@ -1,0 +1,13 @@
+title: settlementsResponseResult
+properties:
+  response:
+    title: settlementsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/settlementsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

@@ -1,0 +1,69 @@
+get:
+  description: "Query a txnRefs resource. \nA txnRefs resource represents a reference\
+    \ code issued by the Processor in relation to a particular Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/txnRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnRefsModel200Response.yaml
+      description: Response for query on txnRefs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all transaction references (txnRefs).
+  tags:
+  - Transactions References
+  - Facilitator
+  operationId: getTxnRefs
+post:
+  description: "Create a txnRefs resource. \nA txnRefs resource represents a reference\
+    \ code issued by the Processor in relation to a particular Transaction."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/txnRefsPostRequestModel.yaml
+    description: 'Create txnRefs Request'
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create txnRefs:
+              $ref: ../components/schemas/samples/txnRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnRefsModel200Response.yaml
+      description: Response for create on txnRefs resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a transaction reference (txnRefs).
+  tags:
+  - Transactions References
+  - Facilitator
+  operationId: postTxnRefs
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,13 @@
+title: watchlistsResponseResult
+properties:
+  response:
+    title: watchlistsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/watchlistsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

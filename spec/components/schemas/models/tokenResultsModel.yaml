@@ -1,0 +1,48 @@
+title: tokenResultsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  txn: 
+    type: string
+    description: The identifier of the Txn resource that this tokenResult relates to.
+  token: 
+    type: string
+    description: The identifier of the Token resource that this tokenResult relates to.
+  merchant: 
+    type: string
+    description: The identifier of the Merchant resource that this tokenResult relates to.
+  code:
+    type: string
+    description: |
+      The code type of the tokenResult.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `omnitokenMinting` - **Indicates omnitoken minting event**
+      - `omnitokenLookup` - **Indicates omnitoken lookup event**
+      - `omnitokenUsage` - **Indicates omnitoken usage event**
+      
+      </details>
+    enum:
+    - omnitokenMinting
+    - omnitokenLookup
+    - omnitokenUsage     
+    x-enum-elements:
+    - name: "omnitokenMinting"
+      description: "Indicates omnitoken minting event"
+    - name: "omnitokenLookup"
+      description: "Indicates omnitoken lookup event"
+    - name: "omnitokenUsage"
+      description: "Indicates omnitoken usage event"  
+  omniToken:
+    type: string
+    description: The omniToken value.    

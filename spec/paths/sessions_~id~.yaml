@@ -1,0 +1,78 @@
+get:
+  description: Querying a session resource represents a third-party session who interacts
+    with the API, for example, a referral platform.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this session, The session ID.
+    explode: false
+    in: path
+    name: id
+    example: p1_ssn_00c741e02fbbe0645cb1fe7
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch session:
+              $ref: ../components/schemas/samples/sessionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/sessionsModel200Response.yaml
+      description: Response for retrieving session response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all sessions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Session by their ID.
+  tags:
+  - Sessions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSessionsId
+delete:
+  description: "Query a Statement. \nA Statement resource represents the total collection\
+    \ of funds owed for a Billing period."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: p1_ssn_00c741e02fbbe0645cb1fe7
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete session:
+              $ref: ../components/schemas/samples/sessionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/sessionsModel200Response.yaml
+      description: Response for deleted session.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all sessions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Session by their ID.
+  tags:
+  - Sessions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteSessionsId

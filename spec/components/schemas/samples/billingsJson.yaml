@@ -1,0 +1,40 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_bil_67dbdc94ee1b1a43e6ab400",
+        "created": "2025-03-20 05:15:00.9831",
+        "modified": "2025-03-20 05:15:00.9831",
+        "creator": "t1_log_5cd987a73478a6179b95008",
+        "modifier": "t1_log_5cd987a73478a6179b95008",
+        "login": "t1_log_5cd987a73478a6179b95008",
+        "entity": "t1_ent_5cd987a735c33bab09e7570",
+        "org": "t1_org_5b0e08025ec790d3f9b8c00",
+        "division": "t1_div_67c56806728fbbf0bae0b00",
+        "partition": "t1_ptn_666834d4d504f21414970z0",
+        "description": "Monthly Billing",
+        "schedule": "months",
+        "scheduleFactor": 1,
+        "start": 20250401,
+        "finish": 20250401,
+        "collection": "entity",
+        "collectionFactor": "months",
+        "collectionOffset": 1,
+        "collectionIncludeCurrent": 0,
+        "currency": "USD",
+        "inactive": 0,
+        "frozen": 0,
+        "forentity": "t1_ent_67dbdc7bb6b1dd5dbf396e0"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

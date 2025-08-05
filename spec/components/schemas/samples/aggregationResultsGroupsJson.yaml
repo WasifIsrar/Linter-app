@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_arg_66ebb2d6c50b04f8956be00",
+        "created": "2024-09-19 01:12:54.8084",
+        "modified": "2024-09-19 01:12:54.8084",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "aggregation": "t1_agg_66eb3bbb34fcd59400728ba",
+        "resource": 27,
+        "search": "created[like]={{\"expand\": [{\"type\": \"date\",\"value\": \"-1 days\",\"format\": \"Y-m-d\",\"relativeTimestamp\":\"1726719301\"}]}}%",
+        "totals": "sum[0]=amount&count[0]=id&groups[0]=event&groups[1]=isFee",
+        "lastModified": "2024-09-19 01:12:54",
+        "effective": 202409190010,
+        "default": 1,
+        "type": "entityEntryEventMerchant",
+        "level": "merchant",
+        "degrouping": "groups[0]="
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

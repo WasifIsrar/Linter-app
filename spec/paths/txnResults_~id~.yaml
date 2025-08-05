@@ -1,0 +1,40 @@
+get:
+  description: "Query a txnResults resource. \nA txnResults resource represents the\
+    \ result of a Transaction from a processor. \nFor example, the Transaction may\
+    \ be approved, declined, or raise an error."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The TXN result ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_trs_67b867ff0b004311c46fb0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnResults:
+              $ref: ../components/schemas/samples/txnResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnResultsModel200Response.yaml
+      description: Response for query on txnResults resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve transaction result info (txnResults) by its ID.
+  tags:
+  - Transactions Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxnResultsId

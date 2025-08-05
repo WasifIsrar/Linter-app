@@ -1,0 +1,177 @@
+title: disbursementsPutRequest
+properties:
+  payment:
+    description: "A reference to the actual account/card data used for this dibursement.\
+      \ \n(If someone changes the details in their bank account within Payrix, the\
+      \ account token will point to a new account but the payment wil always point\
+      \ to the data used for this disbursement."
+    type: string
+  statement:
+    type: string
+    description: The identifier of the Statement being paid by this Disbursement.
+  settlement:
+    type: string
+    description: The settlement record for this disbursement.
+  originalDisbursement:
+    type: string
+    description: The original disbursement that generated this disbursement.
+  description:
+    type: string
+    description: A description of this Disbursement.
+  secondaryDescriptor:
+    type: string
+    description: A secondary descriptor for the ACH transaction sent to the receiving
+      bank.
+  amount:
+    type: integer
+    format: int64
+    description: The total amount of this Disbursement.
+  returnedAmount:
+    type: integer
+    format: int64
+    description: The amount that has been returned within the disbursement.
+  deletedDisbursementEntries:
+    type: integer
+    description: "Whether one or more disbursementEntries have been deleted due to\
+      \ adjustment. \n\n<details>\n<summary>Valid Values</summary>\n\n- `0`  - **Disbursement\
+      \ Entries not Deleted.**\n\n- `1` - **Disbursement Entries Deleted.**\n\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotDeleted"
+      description: "Disbursement Entries not Deleted."
+    - name: "Deleted"
+      description: "Disbursement Entries Deleted."
+  disbursementEntriesStatus:
+    type: string
+    description: "The current status of disbursementEntries creation.\n\n<details>\n\
+      <summary>Valid Values</summary>\n\n- `pending` - **Pending entry creation and\
+      \ processing.**\n\n- `processing` - **Entry is still processing.** \n\n- `processed`\
+      \ - **Entry created and processed.**\n\n</details>\n"
+    enum:
+    - pending
+    - processing
+    - processed
+    x-enum-elements:
+    - name: "Pending"
+      description: "Pending entry creation and processing."
+    - name: "Processing"
+      description: "Entry is still processing."
+    - name: "Processed"
+      description: "Entry created and processed."
+  lastNegativeEntry:
+    type: string
+    description: The last negative Entry processed included in the disbursement.
+  lastNegativePendingEntry:
+    type: string
+    description: The last negative PendingEntry processed included in the disbursement.
+  lastPositiveReserveEntry:
+    type: string
+    description: The last positive ReserveEntry processed included in the disbursement.
+  lastPositiveEntry:
+    type: string
+    description: The last positive Entry processed included in the disbursement.
+  lastPositivePendingEntry:
+    type: string
+    description: The last positive PendingEntry processed included in the disbursement.
+  lastNegativeReserveEntry:
+    type: string
+    description: The last negative ReserveEntry processed included in the disbursement.
+  status:
+    title: disbursementStatus
+    type: integer
+    description: |
+      The current status of this Disbursement
+      <details><summary>Valid Values</summary>
+
+       - `1` - **Requested.** The request for this Disbursement has been received.
+
+       - `2` - **Processing.** This Disbursement is being processed to be paid out.
+
+       - `3` - **Processed.** This Disbursement has been paid by ACH to the bank account referenced in the Disbursement data.
+
+       - `4` - **Failed.** A problem occurred and the payment processor has failed to process this Disbursement.
+
+       - `6` - **Returned.** This Disbursement has been returned.
+
+       </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    x-enum-elements:
+    - name: "Requested"
+      description: "The request for this Disbursement has been received."
+    - name: "Processing"
+      description: "This Disbursement is being processed to be paid out."
+    - name: "Processed"
+      description: "This Disbursement has been paid by ACH to the bank account referenced in the Disbursement data."
+    - name: "Failed"
+      description: "A problem occurred and the payment processor has failed to process this Disbursement."
+    - name: "Denied"
+      description: "This Disbursement has been refused."
+    - name: "Returned"
+      description: "This Disbursement has been returned."
+  fundingStatus:
+    type: string
+    description: |
+      Indicates if entries were processed for this Disbursement. <details><summary>Valid Values</summary>
+
+       - `pending` - **Pending entry creation and processing.**
+
+       - `processed` - **Entry created and processed.**
+
+       </details>
+    enum:
+    - pending
+    - processed
+    x-enum-elements:
+    - name: "Pending"
+      description: "Pending entry creation and processing."
+    - name: "Processed"
+      description: "Entry created and processed."
+  expiration:
+    type: string
+    description: The expiration date of the related debit account.
+  sameDay:
+    title: disbursementsSameDay
+    type: integer
+    description: "Whether sameDay funding is enabled or disabled for this disbursement.\
+      \ \n\n<details>\n<summary>Valid Values</summary>\n\n- `0`  - **Disabled.**\n\
+      \n- `1` - **Enabled.**\n\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "SameDay funding is disabled for this disbursement."
+    - name: "Enabled"
+      description: "SameDay funding is enabled for this disbursement."
+
+example:
+  entity: "t1_ent_6744c2ebece01009406db29"
+  statement: "t1_stm_67b80ed378abd1096554ced"
+  account: "16301c27317f65918a6ae08f8147bdab"
+  payout: "t1_pay_66db7258de0b89589df3134"
+  description: "Disbursement for negative balance"
+  amount: -3000
+  status: 2
+  payment: "t1_pmt_5a61d0825eaa78d67955b54"
+  expiration: "1127"
+  sameDay: 0
+  lastNegativeEntry: "t1_etr_67b69cfdaf0abd231d9a151"
+  lastNegativePendingEntry: "t1_per_67b50120226e12c1205bee3"
+  lastPositiveReserveEntry: ""
+  disbursementEntriesStatus: "pending"
+  lastPositiveEntry: "t1_etr_67b69b65ac20bbcfdf42478"
+  lastPositivePendingEntry: ""
+  lastNegativeReserveEntry: ""
+  fundingStatus: "pending"
+  settlement: "t1_stm_67b80ed378abd1096554ced"
+  originalDisbursement: "t1_dbm_1234527c0771be7e9157c"
+  secondaryDescriptor: "SGH Bank"
+  returnedAmount: 1200

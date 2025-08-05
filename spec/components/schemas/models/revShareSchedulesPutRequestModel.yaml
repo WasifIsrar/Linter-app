@@ -1,0 +1,37 @@
+title: revShareSchedulesPutRequest
+properties:
+  entity:
+    type: string
+    description: The Entities object which is collecting the money.
+  forentity:
+    type: string
+    description: The Entities object which is paying the money.
+  start:
+    type: string
+    description: The start date of rev share. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  end:
+    type: string
+    description: The end date of rev share. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  share:
+    type: integer
+    description: The percentage that payrix receives.
+  event:
+    $ref: ../enums/revShareScheduleEventModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  entity: t1_ent_5f9058fe8c8d21ead8f68dc
+  forentity: t1_ent_67c96d183e9b9aa6c6f190c
+  start: "2025-04-17 18:17:20"
+  end: "2025-04-17 18:17:20"
+  share: 2000
+  event: 84
+  inactive: 0
+  frozen: 0

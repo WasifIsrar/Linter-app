@@ -1,0 +1,10 @@
+     description: A custom, one-time identifier for any API request (GET, PUT, POST, or DELETE). 
+          Blocks future requests with the same token for 48 hours, ensuring only the first request is processed. 
+          Valid values can contain 1-100 alphanumeric and special characters. 
+          See <a href="/apis/payrix/dev-int-guide/references/request-tokens" target="_blank">Request Tokens</a>  for more information.
+     explode: false
+     in: header
+     name: request-token
+     required: false
+     schema: {type: string} 
+     example: 20250423-yourmerchant-refunds-001

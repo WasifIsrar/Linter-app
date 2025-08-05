@@ -1,0 +1,91 @@
+get:
+  description: Query an Aggregation resource using the search to query for records
+    on the given resource and apply desired calculations (count, sum, min, and/or
+    max) to the specified field.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  - description: "Set this header to filter or sort the list of resources that the\
+      \ method returns. \nFor example, to find all resources that have a property\
+      \ of 'public' set to '1', set this header to 'public[equals]=1'. You can use\
+      \ the operators 'equals', 'greater', 'less', 'like', 'in' and 'sort'. To sort\
+      \ the resources, use the keywords 'asc' (for an ascending sort) or 'desc' (for\
+      \ a descending sort).\nYou may also use explicit 'and/or' querying by passing\
+      \ arrays of or and arrays of and parameters. For example, to find all resources\
+      \ that have a property of 'public' set to '1' or a property of 'active' set\
+      \ to '0', set this header to 'or[][public][equals]=1&or[][active][equals]=0'."
+    explode: false
+    in: header
+    x-unique-name: searchFilter
+    name: search
+    required: false
+    schema:
+      type: string
+    example: created[greater]=2024-01-01
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregations:
+              $ref: ../components/schemas/samples/aggregationJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationsModel200Response.yaml
+      description: Retrieve aggregations response for query on aggregations resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregations:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Aggregations.
+  tags:
+  - Aggregations
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAggregations
+post:
+  description: Create an Aggregation resource that uses the search to query for records
+    on a given resource and applies the desired calculations (count, sum, min, and/or
+    max) to the field in question.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/aggregationsPostRequestModel.yaml
+    description: Create Aggregation Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregations:
+              $ref: ../components/schemas/samples/aggregationJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationsModel200Response.yaml
+      description: Response for creating an aggregation resource. Create Aggregation
+        Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregations:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Aggregation
+  tags:
+  - Aggregations
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postAggregations
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

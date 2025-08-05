@@ -1,0 +1,25 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_cmr_671a55a6a0d0821cc4acf00",
+        "created": "2024-10-24 10:11:50.6683",
+        "modified": "2024-10-24 10:11:50.6683",
+        "creator": "t1_log_6564b6476c2015fa1c04ec7",
+        "modifier": "t1_log_6564b6476c2015fa1c04ec7",
+        "chargebackMessage": "t1_chm_671a559cbc6e7cef24a2e54",
+        "type": "platform",
+        "message": "There was an internal server error while processing your request: (Failed to send request to WorldPay API: Request failed with status code 404)."
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

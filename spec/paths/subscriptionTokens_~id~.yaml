@@ -1,0 +1,125 @@
+get:
+  description: Query a Subscription Token, which represents an association between
+    a Subscription and a means of payment (Token) for that Subscription.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this subscription token.
+    explode: false
+    in: path
+    name: id
+    example: t1_stn_680064d2e16ab367d7dffz0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/subscriptionTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionTokensModel200Response.yaml
+      description: Response for retrieve subscription token response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Subscription Token by it's ID.
+  tags:
+  - Subscription Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getSubscriptionTokensId
+put:
+  description: Update a Subscription Token, which represents an association between
+    a Subscription and a means of payment (Token) for that Subscription.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Subscription Token ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_stn_680064d2e16ab367d7dffz0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/subscriptionTokensPutRequestModel.yaml
+    description: Update Subscription Token Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update subscriptionTokens:
+              $ref: ../components/schemas/samples/subscriptionTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionTokensModel200Response.yaml
+      description: 'Response for update on subscriptionTokens resource: Update Subscription
+        Token Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Subscription Token by it's ID.
+  tags:
+  - Subscription Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putSubscriptionTokensId
+delete:
+  description: Delete a Subscription Token, which represents an association between
+    a Subscription and a means of payment (Token) for that Subscription.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource or The Subscription Token ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_stn_680064d2e16ab367d7dffz0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete subscriptionTokens:
+              $ref: ../components/schemas/samples/subscriptionTokensJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/subscriptionTokensModel200Response.yaml
+      description: Response for delete on subscriptionTokens response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all subscriptionTokens:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Subscription Token by it's ID.
+  tags:
+  - Subscription Tokens
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteSubscriptionTokensId

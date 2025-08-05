@@ -1,0 +1,162 @@
+title: payoutFlowsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  payoutLogin:
+    type: string
+    description: The Login that will own the Payout resource. When set to null, the
+      Payout resource will be owned by the triggerring Entity.
+  org:
+    type: string
+    description: "The identifier of the Org that this payoutFlows resource applies\
+      \ to. \nIf you set this field, then the payoutFlow applies to all Entities in\
+      \ the Org."
+  entity:
+    type: string
+    description: The identifier of the Entity that this payoutFlow applies to.
+  billing:
+    type: string
+    description: "The identifier of a Billing that this PayoutFlow is associated with.\
+      \ \nThe Billing identifier will be carried over to Payouts created based on\
+      \ this PayoutFlow."
+  trigger:
+    $ref: ../enums/payoutFlowTriggerModel.yaml
+  schedule:
+    $ref: ../enums/payoutFlowScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: "A multiplier that you can use to adjust the schedule set in the\
+      \ 'schedule' field, if it is set to a duration-based trigger, such as daily,\
+      \ weekly, monthly, or annually. This affects the Payout resource that is created\
+      \ by this payoutFlow. This field is specified as an integer and its value determines\
+      \ how the interval is multiplied. \n\n<details>\n<summary>Valid Values</summary>\
+      \ \n\n - `1`  - **Subscription to trigger daily**.\n\n </details>\n"
+    default: 1
+  start:
+    type: integer
+    description: "The date on which payment of the Payout should start. \nThe date\
+      \ is specified as an eight digit string in YYYYMMDD format, for example, '20160120'\
+      \ for January 20, 2016."
+  um:
+    $ref: ../enums/payoutFlowUmModel.yaml
+  amount:
+    type: integer
+    format: int64
+    description: "The total amount of the Payout resource that is created. \nThe units\
+      \ used in this field are determined by the value of the 'um' field on the Payout.\
+      \ If the 'um' field is set to '1' or '3', then this field specifies the Payout\
+      \ percentage to levy in basis points. If the 'um' field is set to '2', then\
+      \ this field specifies the Payout in cents."
+    default: 10000
+  minimum:
+    type: integer
+    format: int64
+    description: The minium amount of payout that will process.
+  payoutInactive:
+    type: integer
+    description: |
+      Whether the Payout resource will be marked as inactive.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Inactive**
+      - `1` - **Active**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Inactive
+      description: The Payout resource is marked as inactive.
+    - name: Active
+      description: The Payout resource is marked as active.
+  skipOffDays:
+    type: integer
+    description: |
+      Whether the Payout resource will be marked to skip the creation of disbursements on holidays and weekends.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Do not skip Holidays and Weekends.** Disbursement will be generated in a Requested status and process the next business day.
+      - `1` - **Skip Holidays and Weekends.** IMPORTANT: We do not advise setting this for weekly, monthly, or yearly Payout schedules as the disbursement will skip and not be generated until the next scheduled date.
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: DoNotSkip
+      description: Do not skip Holidays and Weekends, Disbursement will be generated in a Requested status and process the next business day.
+    - name: Skip
+      description: Skip Holidays and Weekends, We do not advise setting this for weekly, monthly, or yearly Payout schedules as the disbursement will skip and not be generated until the next scheduled date.
+  secondaryDescriptor:
+    type: string
+    description: The secondary billing descriptor to appear on the bank statements
+      in which entities will have automated payouts generated.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The identifier of the currency that this PayoutFlow is associated
+      with, or the currency for this statement if it's not set. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  sameDay:
+    type: integer
+    description: |
+      Whether the payout workflow allows for same day payouts.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Same day payouts are not allowed.
+    - name: Enabled
+      description: Same day payouts are allowed.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- amount
+- frozen
+- inactive
+- login
+- payoutInactive
+- schedule
+- scheduleFactor
+- skipOffDays
+- trigger
+- um
+
+example:
+  login: t1_log_673245a79517f80bf2e7738
+  payoutLogin: payoutLogin
+  org: t1_org_67b8f82d4f96c5a520ef5c8
+  entity: p1_ent_00ce6d2c1f773f68e9cbe00
+  billing: t1_bil_67d9c8a7df33cf77a3e5e0z
+  trigger: board
+  schedule: weeks
+  scheduleFactor: 1
+  start: 20160120
+  um: percent
+  amount: 10000
+  minimum: 5000
+  payoutInactive: 0
+  skipOffDays: 0
+  secondaryDescriptor: Wellness
+  currency: USD
+  sameDay: 0
+  inactive: 0
+  frozen: 0

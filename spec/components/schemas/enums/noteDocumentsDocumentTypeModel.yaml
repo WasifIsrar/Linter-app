@@ -1,0 +1,45 @@
+title: noteDocumentsDocumentType
+type: string
+description: |
+  The purpose of the document upload.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `general` - **General use for unspecified type.**
+  - `personalId` - **An identification document for a person.**
+  - `companyId` - **An identification document for a company.**
+  - `voidCheck` - **A voided check for bank account verification.**
+  - `bankStatement` - **A bank statement.**
+  - `bankLetter` - **A bank letter for verification.**
+  - `contract` - **A contract for goods or services.**
+  - `taxDocument` - **A tax document for verification.**
+
+  </details>
+default: general
+enum:
+- general
+- personalId
+- companyId
+- voidCheck
+- bankStatement
+- bankLetter
+- contract
+- taxDocument
+x-enum-elements:
+- name: General
+  description: General use for unspecified type.
+- name: PersonalId
+  description: An identification document for a person.
+- name: CompanyId
+  description: An identification document for a company.
+- name: VoidCheck
+  description: A voided check for bank account verification.
+- name: BankStatement
+  description: A bank statement.
+- name: BankLetter
+  description: A bank letter for verification.
+- name: Contract
+  description: A contract for goods or services.
+- name: TaxDocument
+  description: A tax document for verification.

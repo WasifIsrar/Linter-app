@@ -1,0 +1,20 @@
+title: saferPaymentProgram
+type: string
+description: |
+  This field contains the program type of the saferPayments.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `basic` - **Basic**
+  - `managed` - **Managed**
+
+  </details>
+enum:
+- basic
+- managed
+x-enum-elements:
+- name: "basic"
+  description: "Basic"
+- name: "managed"
+  description: "Managed"

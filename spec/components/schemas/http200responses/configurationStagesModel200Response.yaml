@@ -1,0 +1,13 @@
+title: configurationStagesResponseResult
+properties:
+  response:
+    title: configurationStagesResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/configurationStagesModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

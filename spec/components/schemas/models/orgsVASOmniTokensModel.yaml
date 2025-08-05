@@ -1,0 +1,19 @@
+title: orgsVASOmniTokensResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  org: 
+    type: string
+    description: The identifier of the Org (group) that OrgsVASOmniTokens is associated to.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

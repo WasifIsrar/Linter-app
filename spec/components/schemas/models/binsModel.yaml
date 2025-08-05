@@ -1,0 +1,199 @@
+title: binsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  bin:
+    type: string
+    description: The first 6 digits of the card used in a Transaction.
+  method:
+    $ref: ../enums/binMethodModel.yaml
+  type:
+    $ref: ../enums/binsTypeModel.yaml
+  category:
+    type: string
+    description: |
+      The category of the account product.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `classic` - **Classic credit or debit card.**
+      - `business` - **Business credit or debit card.**
+      - `corporate` - **Corporate credit or debit card.**
+      - `fleet` - **Fleet card for transportation-related expenses.**
+      - `hsaFsa` - **HSA (Health Savings Account) or FSA (Flexible Spending Account) card.**
+      - `platinum` - **Platinum credit card.**
+      - `prepaid` - **Prepaid card.**
+      - `coreCard` - **Core card.**
+      - `personal` - **Personal account.**
+      - `standard` - **Standard account.**
+      - `other` - **Other type of account.**
+      - `international` - **International account.**
+
+      </details>
+    enum:
+    - classic
+    - business
+    - corporate
+    - fleet
+    - hsaFsa
+    - platinum
+    - prepaid
+    - coreCard
+    - personal
+    - standard
+    - other
+    - international
+    x-enum-elements:
+    - name: Classic
+      description: Classic credit or debit card.
+    - name: Business
+      description: Business credit or debit card.
+    - name: Corporate
+      description: Corporate credit or debit card.
+    - name: Fleet
+      description: Fleet card for transportation-related expenses.
+    - name: HsaFsa
+      description: HSA (Health Savings Account) or FSA (Flexible Spending Account) card.
+    - name: Platinum
+      description: Platinum credit card.
+    - name: Prepaid
+      description: Prepaid card.
+    - name: CoreCard
+      description: Core card.
+    - name: Personal
+      description: Personal account.
+    - name: Standard
+      description: Standard account.
+    - name: Other
+      description: Other type of account.
+    - name: International
+      description: International account.
+  name:
+    type: string
+    description: The name of the bank that issued the card used in the Transaction.
+  address:
+    type: string
+    description: Street address of the bank.
+  city:
+    type: string
+    description: City of the bank.
+  state:
+    $ref: ../models/stateModel.yaml
+  country:
+    $ref: ../models/countryModel.yaml
+    description: The country of the bank that issued the card used in the Transaction.
+  zip:
+    type: string
+    description: Zip code of the banking institution.
+  locationType:
+    $ref: ../enums/binLocationTypeModel.yaml
+  newBin:
+    type: string
+    description: The BIN (Bank Issuer Number) or routing number that replaces or supersedes
+      this bin.
+  website:
+    type: string
+    description: The website of the bank that issued the card used in the Transaction.
+  phone:
+    type: string
+    description: The phone of the bank that issued the card used in the Transaction.
+  transferEnabled:
+    type: integer
+    description: |
+      Whether funds may be “pushed” to this debit card (with push-to-card).
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Push-to-card transfer disabled.**
+      - `1` - **Push-to-card transfer enabled.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: PushToCardDisabled
+      description: Push-to-card transfer disabled.
+    - name: PushToCardEnabled
+      description: Push-to-card transfer enabled.
+  numberLength:
+    type: integer
+    description: The amount of digits expected for account numbers with this bin.
+  debitOverCreditEnabled:
+    type: integer
+    description: |
+      Whether this debit card may be charged as credit over the credit networks.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Debit charge as 'credit' disabled.**
+      - `1` - **Debit charge as 'credit' enabled.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: DebitAsCreditDisabled
+      description: Debit charge as 'credit' disabled.
+    - name: DebitAsCreditEnabled
+      description: Debit charge as 'credit' enabled.
+  billPayEnabled:
+    type: integer
+    description: |
+      Whether this card may be used for bill pay features.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Bill pay capability disabled.**
+      - `1` - **Bill pay capability enabled.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: BillPayDisabled
+      description: Bill pay capability disabled.
+    - name: BillPayEnabled
+      description: Bill pay capability enabled.
+  pinlessSupport:
+    type: string
+    description: |
+      What type of pinless charging is allowed on this debit card.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `none` - **No pinless support, PIN (Personal Identification Number) must always be provided.**
+      - `restricted` - **Some pinless support, PIN (Personal Identification Number) may not always be necessary.**
+      - `full` - **Full pinless support, PIN (Personal Identification Number) may be omitted for pinless payments.**
+
+      </details>
+    enum:
+    - none
+    - restricted
+    - full
+    x-enum-elements:
+    - name: None
+      description: No pinless support, PIN (Personal Identification Number) must always be provided.
+    - name: Restricted
+      description: Some pinless support, PIN (Personal Identification Number) may not always be necessary.
+    - name: Full
+      description: Full pinless support, PIN (Personal Identification Number) may be omitted for pinless payments.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

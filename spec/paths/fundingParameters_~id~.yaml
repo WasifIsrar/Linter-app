@@ -1,0 +1,93 @@
+get:
+  description: "Query a fundingParameter. \nA fundingParameter resource holds a certain\
+    \ configuration used for funding such as delays."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/fundingParametersModel200Response.yaml
+      description: Response for query on fundingParameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Funding Parameters
+  - Facilitator
+  operationId: getFundingParametersId
+put:
+  description: "Update a fundingParameter. \nA fundingParameter resource holds a certain\
+    \ configuration used for funding such as delays."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/fundingParameterPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/fundingParametersModel200Response.yaml
+      description: Response for update on fundingParameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Funding Parameters
+  - Facilitator
+  operationId: putFundingParametersId
+delete:
+  description: "Delete a fundingParameter. \nA fundingParameter resource holds a certain\
+    \ configuration used for funding such as delays."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/fundingParametersModel200Response.yaml
+      description: Response for delete on fundingParameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Funding Parameters
+  - Facilitator
+  operationId: deleteFundingParametersId

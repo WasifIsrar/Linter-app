@@ -1,0 +1,27 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rst_680197f6aa2a84514675c7z",
+        "created": "2025-04-18 00:08:28.0550",
+        "modified": "2025-04-18 00:08:28.0550",
+        "creator": "t1_log_670d8844ef246e80758e000",
+        "modifier": "t1_log_670d8844ef246e80758e000",
+        "revShareSchedule": "t1_rsc_652585105831ac00499ac15",
+        "entity": "g157715bca1f55c",
+        "forentity": "t1_ent_5cd31628c78e5ab17b6212c",
+        "billing": "2025-04-01 00:00:00",
+        "revenueShare": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

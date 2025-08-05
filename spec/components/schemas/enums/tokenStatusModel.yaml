@@ -1,0 +1,15 @@
+    title: tokenStatus
+    type: string
+    description: "Indicates if this token is ready for use in transactions and subscriptions\
+      \ or not. \nA token without complete payment details will be marked as 'pending'.\n\
+      \n<details>\n<summary>Valid Values</summary>\n\n- `pending` - **The payment\
+      \ data is not yet available, Token is not ready for use.**\n\n- `ready` - **The\
+      \ payment data is available, Token is ready for use.**\n\n</details>\n"
+    enum:
+    - pending
+    - ready
+    x-enum-elements:
+    - name: "Pending"
+      description: "The payment data is not yet available, Token is not ready for use."
+    - name: "Ready"
+      description: "The payment data is available, Token is ready for use."

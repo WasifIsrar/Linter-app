@@ -1,0 +1,62 @@
+title: paymentUpdateGroupsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that this resource belongs to.
+  processing:
+    type: integer
+    description: Whether payment is processing.
+  processed:
+    type: integer
+    description: Whether payment is processed.
+  numberUpdated:
+    type: integer
+    description: |
+      Whether payment number changes.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Updated**
+      - `1` - **Updated**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotUpdated
+      description: Payment number is not updated.
+    - name: Updated
+      description: Payment number is updated.
+
+  expirationUpdated:
+    type: integer
+    description: |
+      Whether token expiration date changes.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Updated**
+      - `1` - **Updated**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotUpdated
+      description: Token expiration date is not updated.
+    - name: Updated
+      description: Token expiration date is updated.

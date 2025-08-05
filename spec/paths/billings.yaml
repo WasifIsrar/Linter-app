@@ -1,0 +1,73 @@
+get:
+  description: Query a Billing is a means to collect and invoice for any funds owed
+    for a particular period of time, such as setting up a billing to collect fees
+    and create a statement on a monthly basis.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/billingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingsModel200Response.yaml
+      description: Retrieve Response for query on billings resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Billings.
+  tags:
+  - Billing
+  - Facilitator
+  - Partner
+  operationId: getBillings
+post:
+  description: Create a Billing that is a means to collect and invoice for any funds
+    owed for a particular period of time, such as statement of fees collected on a
+    monthly basis.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/billingsPostRequestModel.yaml
+    description: Create Billing Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create billings:
+              $ref: ../components/schemas/samples/billingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/billingsModel200Response.yaml
+      description: Create Billing Response for creating on billing resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all billings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Billing
+  tags:
+  - Billing
+  - Facilitator
+  - Partner
+  operationId: postBillings
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

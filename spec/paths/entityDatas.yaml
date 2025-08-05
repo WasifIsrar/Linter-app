@@ -1,0 +1,73 @@
+get:
+  description: Query an EntityDatas, which is the data related to an entity containing
+    information about that entity such as the signature for the terms and conditions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/entityDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityDatasModel200Response.yaml
+      description: Retrieve an Entity Data Response for the query on entityDatas resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Entity Data.
+  tags:
+  - EntityData
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityDatas
+post:
+  description: Create an EntityDatas containing the data related to an entity, including
+    information such as the signature for the terms and conditions.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityDataPostRequestModel.yaml
+    description: Create Entity Data Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create entityDatas:
+              $ref: ../components/schemas/samples/entityDatasJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityDatasModel200Response.yaml
+      description: The create on entityDatas response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDatas:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create new Entity Data
+  tags:
+  - EntityData
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postEntityDatas
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

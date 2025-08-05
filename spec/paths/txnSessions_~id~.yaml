@@ -1,0 +1,82 @@
+get:
+  description: "Query a TxnSession. \nA TxnSession represents a temporary method of\
+    \ authentication to the API. Each TxnSession expires automatically after 10 minutes\
+    \ of inactivity or by the customizable configurations field. \nThey are similar\
+    \ to API Keys (/apikeys) in their capabilities and field structure - but unlike\
+    \ API Keys, TxnSessions are not permanent."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_tss_67bc56867a5c6b8f7756d1z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnSessions:
+              $ref: ../components/schemas/samples/txnSessionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnSessionsModel200Response.yaml
+      description: Response for query on txnSessions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnSessions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Txn Sessions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxnSessionsId
+delete:
+  description: "Delete a TxnSession. \nA TxnSession represents a temporary method\
+    \ of authentication to the API. Each TxnSession expires automatically after 10\
+    \ minutes of inactivity or by the customizable configurations field. \nThey are\
+    \ similar to API Keys (/apikeys) in their capabilities and field structure - but\
+    \ unlike API Keys, TxnSessions are not permanent."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_tss_67bc56867a5c6b8f7756d1z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete txnSessions:
+              $ref: ../components/schemas/samples/txnSessionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnSessionsModel200Response.yaml
+      description: Response for delete on txnSessions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnSessions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Txn Sessions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteTxnSessionsId

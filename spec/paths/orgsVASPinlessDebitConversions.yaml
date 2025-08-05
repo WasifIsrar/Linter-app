@@ -1,0 +1,64 @@
+get:
+  description: "Query a orgsVASPinlessDebitConversions."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/orgsVASPinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASPinlessDebitConversionsModel200Response.yaml
+      description: Response for query on orgsVASPinlessDebitConversions
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Orgs VAS PinlessDebitConversions
+  - Facilitator
+  operationId: getOrgsVASPinlessDebitConversions
+post:
+  description: "Create a orgsVASPinlessDebitConversions."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASPinlessDebitConversionsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create a orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/orgsVASPinlessDebitConversionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASPinlessDebitConversionsModel200Response.yaml
+      description: Response for create orgsVASPinlessDebitConversions
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASPinlessDebitConversions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Orgs VAS PinlessDebitConversions
+  - Facilitator
+  operationId: postOrgsVASPinlessDebitConversions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

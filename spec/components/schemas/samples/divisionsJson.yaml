@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_div_67e151c6b0210514824000a",
+        "created": "2025-03-24 08:36:22.7392",
+        "modified": "2025-03-24 08:36:22.7392",
+        "creator": "t1_log_663ce214b2f25f2325a9935",
+        "modifier": "t1_log_663ce214b2f25f2325a9935",
+        "login": "t1_log_67e150467ee225924163f18",
+        "name": "sampleDivision",
+        "email": "testuse1@example.com",
+        "minPasswordLength": 9,
+        "minPasswordComplexity": 1,
+        "changeManagementEnabled": 0,
+        "canUsePlaidWrapperMicroservice": 0,
+        "simplifiedDepositEnabled": 1
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

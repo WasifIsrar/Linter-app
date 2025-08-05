@@ -1,0 +1,72 @@
+title: fundingParameterType
+type: string
+description: |
+  The type of fundingParameter that we will be configuring.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `agentCnp` - **The id to use for boarding merchants that are card not present**
+  - `agentCp` - **The id to use for boarding merchants that are card present**
+  - `creditCompanyId` - **Company credit identifier**
+  - `debitCompanyId` - **Company debit identifier**
+  - `delay` - **Delay**
+  - `offDaysAdditionalDelay` - **Additional delay for off days.**
+  - `settlementAccountTransferDelay` - **The amount of time in days to wait before issuing a transfer, will be counted from the date of the first item within the total settlement amount.**
+  - `settlementAccountTransferEnabled` - **Indication if during settlements credits should be transferred from the merchant's operating account.**
+  - `settlementAccountTransferFloat` - **Additional amount to keep at the merchant's operating account.**
+  - `settlementAccountTransferMaximum` - **The maximum amount needed to transfer funds from merchant's operating account.**
+  - `settlementAccountTransferMinimum` - **The minimum amount needed to transfer funds from the merchant's operating account.**
+  - `settlementAccountTransferPercent` - **The percent amount to transfer from the total settlement amount.**
+  - `customBatchCloseTime` - **The specified time to close a batch**
+  - `lateFunding` - **2 am late funding cutoff time**
+  - `5AmFunding` - **5 am funding cutoff time**
+
+  </details>
+enum:
+- agentCnp
+- agentCp
+- creditCompanyId
+- debitCompanyId
+- delay
+- offDaysAdditionalDelay
+- settlementAccountTransferDelay
+- settlementAccountTransferEnabled
+- settlementAccountTransferFloat
+- settlementAccountTransferMaximum
+- settlementAccountTransferMinimum
+- settlementAccountTransferPercent
+- customBatchCloseTime
+- lateFunding
+- 5AmFunding
+x-enum-elements:
+- name: AgentCnp
+  description: The id to use for boarding merchants that are card not present.
+- name: AgentCp
+  description: The id to use for boarding merchants that are card present.
+- name: CreditCompanyId
+  description: Company credit identifier.
+- name: DebitCompanyId
+  description: Company debit identifier.
+- name: Delay
+  description: Delay.
+- name: OffDaysAdditionalDelay
+  description: Additional delay for off days.
+- name: SettlementAccountTransferDelay
+  description: The amount of time in days to wait before issuing a transfer, counted from the date of the first item within the total settlement amount.
+- name: SettlementAccountTransferEnabled
+  description: Indication if during settlements credits should be transferred from the merchant's operating account.
+- name: SettlementAccountTransferFloat
+  description: Additional amount to keep at the merchant's operating account.
+- name: SettlementAccountTransferMaximum
+  description: The maximum amount needed to transfer funds from merchant's operating account.
+- name: SettlementAccountTransferMinimum
+  description: The minimum amount needed to transfer funds from the merchant's operating account.
+- name: SettlementAccountTransferPercent
+  description: The percent amount to transfer from the total settlement amount.
+- name: CustomBatchCloseTime
+  description: The specified time to close a batch.
+- name: LateFunding
+  description: 2 am late funding cutoff time.
+- name: FiveAmFunding
+  description: 5 am funding cutoff time.

@@ -1,0 +1,22 @@
+
+    title: entitiesPublic
+    type: integer
+    description: |
+      Indicates whether this is a publicly held entity.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Private entity**
+      - `1` - **Public entity**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: PrivateEntity
+      description: The entity is privately held.
+    - name: PublicEntity
+      description: The entity is publicly held.

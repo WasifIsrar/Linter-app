@@ -1,0 +1,13 @@
+title: profitShareResultsResponseResult
+properties:
+  response:
+    title: profitShareResultsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/profitShareResultsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

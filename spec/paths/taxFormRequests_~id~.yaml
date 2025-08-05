@@ -1,0 +1,38 @@
+get:
+  description: Query a taxFormRequests.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this Tax Form Requests.
+    explode: false
+    in: path
+    name: id
+    example: t1_tdr_67ea5cb2c4be3c25dbc1zz0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all taxFormRequests:
+              $ref: ../components/schemas/samples/taxFormRequestsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/taxFormRequestsModel200Response.yaml
+      description: Response for retrieve Tax Form Requests response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all taxFormRequests:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Tax Form Requests by it's ID.
+  tags:
+  - Tax Form Requests
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTaxFormRequestsId

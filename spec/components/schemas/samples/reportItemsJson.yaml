@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rpi_5e06092a13747b9234c6c00",
+        "created": "2019-12-27 08:37:46.0797",
+        "modified": "2019-12-27 08:37:46.0797",
+        "creator": "t1_log_5c91a8a711b9c706df60fd0",
+        "modifier": "t1_log_5c91a8a711b9c706df60fd0",
+        "report": "t1_rpt_5dfb80b682d41467d9a6b4z",
+        "search": "id[greater] = 0",
+        "totals": "sum[]=total",
+        "resource": 18,
+        "inactive": 0,
+        "frozen": 0,
+        "expand": "",
+        "expandSearch": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

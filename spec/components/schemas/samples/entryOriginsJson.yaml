@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_eon_67bf03038fd84a4437c37ez",
+        "created": "2025-02-26 07:03:15.5933",
+        "modified": "2025-02-26 07:03:15.5933",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "entry": "t1_etr_669da2179f2e004f7f33c0a",
+        "disbursement": "",
+        "cancellation": "t1_etr_67bf030376b923896de6700",
+        "amount": 30,
+        "funding": "Funding ID",
+        "platform": "VANTIV",
+        "fbo": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

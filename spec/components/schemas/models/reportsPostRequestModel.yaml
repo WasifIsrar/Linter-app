@@ -1,0 +1,62 @@
+title: reportsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  type:
+    $ref: ../enums/reportTypeModel.yaml
+  description:
+    type: string
+    description: Description of the Reports.
+  status:
+    $ref: ../enums/reportStatusModel.yaml
+  schedule:
+    $ref: ../enums/reportScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: |
+      Whether or not to trigger reports daily.
+
+      Default Value:
+
+      - `1` - **Subscription to trigger daily.**
+
+    default: 1
+    enum:
+    - 1
+    x-enum-elements:
+    - name: DailyTrigger
+      description: Subscription to trigger reports daily.
+  start:
+    type: integer
+    format: int64
+    description: Start Date.
+  finish:
+    type: integer
+    format: int64
+    description: End Date.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- login
+- schedule
+- scheduleFactor
+- start
+- status
+- type
+
+example:
+  login: t1_log_678e7f565c4252b75c0de8d
+  type: json
+  description: Test Report
+  status: notReady
+  schedule: days
+  scheduleFactor: 1
+  start: 202503180000
+  finish: 202503180000
+  inactive: 0
+  frozen: 0

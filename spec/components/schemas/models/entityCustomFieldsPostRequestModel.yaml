@@ -1,0 +1,16 @@
+title: entityCustomFieldsPostRequest
+properties:
+  entity:
+    type: string
+    description: Entity for which we are creating custom field.
+  key:
+    type: string
+    description: Name of custom field.
+  value:
+    type: string
+    description: Value of custom field.
+
+example: 
+  entity: t1_ent_67d3ab7bc0ef1d4284d4578
+  key: companyId
+  value: 70bbd35e-8500-f011-90cb-6045bdc7c168

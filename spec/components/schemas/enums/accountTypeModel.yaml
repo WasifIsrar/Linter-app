@@ -1,0 +1,25 @@
+title: accountType
+type: string
+description: |
+  The type of financial account: debit, credit, or both.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `all` - **Debit/checking and credit**
+  - `credit` - **Credit only**
+  - `debit` - **Debit/checking only**
+
+  </details>
+default: all
+enum:
+- all
+- credit
+- debit
+x-enum-elements:
+- name: "All"
+  description: "Debit/Checking + Credit"
+- name: "Credit"
+  description: "Credit-Only"
+- name: "Debit"
+  description: "Debit/Checking-Only"

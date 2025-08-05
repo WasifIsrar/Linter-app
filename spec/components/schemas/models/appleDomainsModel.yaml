@@ -1,0 +1,63 @@
+title: appleDomainsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  registeredMerchant:
+    type: string
+    description: The identifier of the Merchant registered with Apple Pay for this domain.
+  ownerEntity:
+    type: string
+    description: The identifier of the Entity that controls this domain. This is to identify the Vendor or Facilitator hosting the Apple Pay domain for the merchant. 
+      If this domain is controlled by the actual registered Merchant, the Entity field will be the Merchant's Entity.
+  status:
+    type: string
+    description: |
+      The registration status of this domain for the given Registered Merchant.
+      <details>
+      <summary>Valid Values</summary>
+
+      - `registration_requested` **The domains that have been requested to be registered.**
+      - `registering` **In the process of being registered with Apple.**
+      - `registered` **Successfully Registered with Apple.**
+      - `failed_registration` **A Failure occurred Registering.**
+      - `unregistration_requested` **Unregistration requested.**
+      - `unregistering` **In the process of being un-registered from Apple.**
+      - `unregistered` **Successfully Unregistered with Apple.**
+      </details>
+    enum:
+    - registration_requested
+    - registering
+    - registered
+    - failed_registration
+    - unregistration_requested
+    - unregistering
+    - unregistered
+    x-enum-elements:
+    - name: RegistrationRequested
+      description: The domains that have been requested to be registered.
+    - name: Registering
+      description: In the process of being registered with Apple.
+    - name: Registered
+      description: Successfully Registered with Apple.
+    - name: FailedRegistration
+      description: A Failure occurred Registering.
+    - name: UnregistrationRequested
+      description: Unregistration requested.
+    - name: Unregistering
+      description: In the process of being un-registered from Apple.
+    - name: Unregistered
+      description: Successfully Unregistered with Apple.
+  domain:
+    type: string
+    description: The domain(FQDN) associated with the Registered Merchant.
+  errorNote:
+    type: string
+    description: For a failed Registration or Un-Registration, will contain the reason for the failure. 

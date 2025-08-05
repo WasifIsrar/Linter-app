@@ -1,0 +1,76 @@
+get:
+  description: "Query a Transaction. \nTransactions hold all of the information relating\
+    \ to a particular credit card transaction, including the merchant, token, subscription,\
+    \ customer and card information."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txns:
+              $ref: ../components/schemas/samples/txnsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnsModel200Response.yaml
+      description: The transactions resource returns multiple transaction (txns) objects
+        in response to a query.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Transactions.
+  tags:
+  - Transactions (Txns)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getTxns
+post:
+  description: "Create a Transaction. \nTransactions hold all of the information relating\
+    \ to a particular credit card transaction, including the merchant, token, subscription,\
+    \ customer and card information."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/txnsPostRequestModel.yaml
+    description: Create a new transaction.
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create txns:
+              $ref: ../components/schemas/samples/txnsPostJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnsPostModel200Response.yaml
+      description: Response for create on txns resource
+    '400':
+      content:
+        application/json:
+          examples:
+            fetch all txns:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a Transaction.
+  tags:
+  - Transactions (Txns)
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postTxns
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

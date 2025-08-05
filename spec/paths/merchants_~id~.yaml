@@ -1,0 +1,123 @@
+get:
+  description: Query a Merchant, which is an organization that processes credit card
+    payments and each is associated with an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as the Merchant ID (MID).
+    explode: false
+    in: path
+    name: id
+    example: p1_mer_00c6b12d04ac280ed694323
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch merchant:
+              $ref: ../components/schemas/samples/merchantsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/merchantsModel200Response.yaml
+      description: Response for retrieving merchant response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch a merchant:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Merchant by its ID
+  tags:
+  - Merchants
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMerchantsId
+put:
+  description: Update a Merchant, A Merchant is an organization that processes credit
+    card payments. Each Merchant is associated with an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as the Merchant ID (MID).
+    explode: false
+    in: path
+    name: id
+    example: p1_mer_00c6b12d04ac280ed694323
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/merchantsPutRequestModel.yaml
+    description: Update Merchant Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update merchant:
+              $ref: ../components/schemas/samples/merchantsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/merchantsModel200Response.yaml
+      description: Response for update on merchant's response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all merchants:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Merchant by its ID
+  tags:
+  - Merchants
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putMerchantsId
+delete:
+  description: Delete a Merchant. A Merchant is an organization that processes credit
+    card payments. Each Merchant is associated with an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as the Merchant ID (MID).
+    explode: false
+    in: path
+    name: id
+    example: p1_mer_00c6b12d04ac280ed694323
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete merchant:
+              $ref: ../components/schemas/samples/merchantsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/merchantsModel200Response.yaml
+      description: Response for deleted merchant.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch merchant:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Merchant by its ID
+  tags:
+  - Merchants
+  - Facilitator
+  - Partner
+  operationId: deleteMerchantsId

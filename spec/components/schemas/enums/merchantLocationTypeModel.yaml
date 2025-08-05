@@ -1,0 +1,32 @@
+title: merchantLocationType
+type: integer
+description: |
+  Description of the type of address that the business operates at.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `77` - **Retail Storefront**
+  - `78` - **Warehouse**
+  - `79` - **Private Residence**
+  - `80` - **Others**
+  - `81` - **P. RES-PROF/Construction**
+
+  </details>
+enum:
+- 77
+- 78
+- 79
+- 80
+- 81
+x-enum-elements:
+- name: RetailStorefront
+  description: Retail Storefront.
+- name: Warehouse
+  description: Warehouse.
+- name: PrivateResidence
+  description: Private Residence.
+- name: Others
+  description: Others.
+- name: PresProfConstruction
+  description: P. RES-PROF/Construction.

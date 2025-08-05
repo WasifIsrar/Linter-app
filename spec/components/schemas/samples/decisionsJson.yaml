@@ -1,0 +1,52 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_dcs_67ddb8ad653487caf88cc00",
+        "created": "2025-03-21 15:06:21.4313",
+        "modified": "2025-03-21 15:06:21.4313",
+        "creator": "t1_log_61e72ab44fd39df9483aa2c",
+        "modifier": "t1_log_61e72ab44fd39df9483aa2c",
+        "login": "t1_log_61e72ab44fd39df9483aa2c",
+        "org": "t1_org_5fada4629c317f80bc9cb12",
+        "entity": "",
+        "decision": "",
+        "type": "cvv",
+        "target": "postauth",
+        "action": 1,
+        "sequence": 0,
+        "amount": 0,
+        "value": "1",
+        "period": "days",
+        "periodFactor": 1,
+        "low": 1,
+        "high": 2,
+        "inactive": 0,
+        "frozen": 0,
+        "division": "t1_div_67c56806728fbbf0bae0b00",
+        "partition": "t1_ptn_000111d4d504f21414978f0",
+        "application": "txn",
+        "options": 0,
+        "errorMessage": "Unable to accept without CVV.",
+        "reason": "",
+        "additionalOptions": 0,
+        "level": "partition",
+        "schedule": "",
+        "scheduleFactor": 1,
+        "start": 20160120,
+        "finish": 20160120,
+        "useCache": 0,
+        "cacheTime": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

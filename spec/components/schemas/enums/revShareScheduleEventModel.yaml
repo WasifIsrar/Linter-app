@@ -1,0 +1,505 @@
+title: revShareScheduleEvent
+type: integer
+description: |
+  The bucket of rev share fees, comma-separated list with no spaces
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **DAYS.** Daily scheduled event (like a fee).
+  - `2` - **WEEKS.** Weekly scheduled event.
+  - `3` - **MONTHS.** Monthly scheduled event.
+  - `4` - **YEARS.** Yearly scheduled event.
+  - `5` - **SINGLE.** One-off event.
+  - `6` - **AUTH.** Auth and sale transaction (types 1 and 2) authorization.
+  - `7` - **CAPTURE.** Capture and sale transaction (types 1 and 3) capture (settlement to processor).
+  - `8` - **REFUND.** Refund transaction capture (settlement to processor).
+  - `9` - **BOARD.** Merchant boarding (mid stage entityRef creation).
+  - `10` - **PAYOUT.** Disbursement creation.
+  - `11` - **CHARGEBACK.** Chargeback creation for the following cycles: first, representment, preArbitration.
+  - `12` - **OVERDRAFT.** Disbursement return due to insufficient funds.
+  - `13` - **INTERCHANGE.** Transaction interchange fees assessment.
+  - `14` - **PROCESSOR.** Transaction processed by a payment processor.
+  - `15` - **ACHFAIL.** Disbursement return due to any failure other than insufficient funds.
+  - `16` - **ACCOUNT.** Bank account verification.
+  - `17` - **SIFT.** Transaction fraud score.
+  - `18` - **ADJUSTMENT.** Adjusted funds.
+  - `19` - **RETRIEVAL.** Retrieval chargeback creation (retrieval cycle).
+  - `20` - **ARBITRATION.** Arbitration chargeback creation (arbitration cycle).
+  - `21` - **ECSALE.** Transaction e-check Sale.
+  - `22` - **ECREFUND.** Transaction e-check Refund.
+  - `23` - **ECRETURN.** eCheck transaction return.
+  - `24` - **SETTLEMENT.** Transaction settlement (processor to issuer, reported in processor’s settlement report).
+  - `25` - **MISUSE.** Transaction misuse (transaction violated Visa authorization misuse rules or MasterCard’s integrity rules).
+  - `26` - **PROFIT_SHARE.** Profit sharing entry event.
+  - `27` - **UNAUTH.** Unauthorized entry.
+  - `28` - **ACHNOC.** Disbursement notice of change (NOC).
+  - `29` - **ECNOC.** eCheck transaction notice of change (NOC).
+  - `30` - **ECFAIL.** eCheck transaction return due to any failure other than insufficient funds.
+  - `31` - **ECNSF.** eCheck transaction return due to insufficient funds.
+  - `32` - **CURRENCY_CONVERSION.** Currency conversion.
+  - `33` - **TERMINAL_TXN.** Terminal transaction.
+  - `34` - **REVERSE_PAYOUT.** Payout that has been reversed.
+  - `35` - **PARTIAL_REVERSE_PAYOUT.** Payout that has been partially reversed.
+  - `43` - **PAYMENT_CHECK.** Account updater request sent (paymentUpdate status of processing).
+  - `44` - **PAYMENT_UPDATE.** Account updater response processed (paymentUpdate status of processed).
+  - `45` - **PAYMENT_GROUP_CHECK.** Account updater unique request sent (one paymentUpdate status of processing per entity of entire paymentUpdateGroup).
+  - `46` - **PAYMENT_GROUP_UPDATE.** Account updater unique response processed (one paymentUpdate status of processed per entity for entire paymentUpdateGroup).
+  - `47` - **ENTRY_REFUND.** Entry refunds.
+  - `51` - **STATEMENT.** Billing statement (when paid by debit disbursement).
+  - `52` - **MERCHANT_CREATION.** Merchant creation.
+  - `53` - **REALTIME_BUSINESS_SEARCH.** Real time business search.
+  - `54` - **REALTIME_MEMBER_SEARCH.** Real time member search.
+  - `55` - **MASTER_CARD_MATCH.** Mastercard match.
+  - `56` - **BUSINESS_INSTANT_ID.** Business instant id.
+  - `57` - **CONSUMER_INSTANT_ID.** Consumer instant id.
+  - `58` - **THREAT_METRIX.** Threat metrix.
+  - `59` - **LEGIT_SCRIPT_REGISTER.** Legit script register.
+  - `60` - **EQUIFAX_CONSUMER_REPORT.** Equifax consumer report.
+  - `61` - **GUIDE_STAR.** Guidestar.
+  - `62` - **PAYLOAD_ATTRIBUTE.** Internal Decision V2.
+  - `63` - **TIN_CHECK.** Tin check.
+  - `64` - **EQUIFAX_COMMERCIAL_REPORT.** Equifax commercial report.
+  - `65` - **LEGIT_SCRIPT_CHECK_MERCHANT.** Legit script check merchant.
+  - `66` - **PLAID.** Plaid.
+  - `67` - **STATEMENT_REVERSAL.** Reversal of statement.
+  - `68` - **GIACT_ECHECK.** GIACT call made to verify creator Echeck bank Account.
+  - `69` - **GIACT_BANK_ACCOUNT.** Giact calls to verify merchant settlement account on sign up or post boarding account.
+  - `70` - **BOARD_DECISION.** Process decision fee after board.
+  - `71` - **TXN_RISK_DECISION.** Txn going through a risk decision.
+  - `72` - **FANF.** FANF - External fees.
+  - `73` - **MCLOCATION.** MCLOCATION - External fees.
+  - `74` - **VISAINTEGRITY.** VISAINTEGRITY - External fees.
+  - `75` - **SAFERPAYMENTS_BASIC.** External Fees.
+  - `76` - **SAFERPAYMENTS_MANAGED.** External Fees.
+  - `77` - **SAFERPAYMENTS_PCI_NONVALIDATION.** External Fees.
+  - `78` - **OMNITOKENS_VOLUME.** External Fees.
+  - `79` - **PAYOUT_RETURN.** Payout Return.
+  - `80` - **PAYOUT_PARTIAL_RETURN.** Payout Partial Return.
+  - `81` - **REV_SHARE.** Rev share.
+  - `82` - **CARD_SETTLEMENT.** Transaction card settlement.
+  - `83` - **ECHECK_SETTLEMENT.** Transaction e-check settlement.
+  - `84` - **REV_SHARE_CARD.** Rev share card Schedules.
+  - `85` - **REV_SHARE_ECHECK.** Rev share e-chek Schedules.
+  - `86` - **REV_SHARE_DBM.** Rev share DBM Schedules.
+  - `87` - **PREARBITRATION.** Chargeback PreArbitration.
+  - `88` - **PLAID_IDENTITY_MACH.** Plaid.
+  - `89` - **TXN_PLAID_IDENTITY_MACH.** Txns Plaid.
+  - `90` - **PLAID_GET_IDENTITY.** Plaid.
+  - `91` - **TXN_PLAID_GET_IDENTITY.** Txns Plaid.
+  - `92` - **PLAID_GET_AUTH.** Plaid.
+  - `93` - **TXN_PLAID_GET_AUTH.** Txns Plaid.
+  - `94` - **REVERSAL.** Chargeback Reversal.
+  - `95` - **REPRESENTMENT.** Chargeback Representment.
+  - `101` - **IC_RETAIN_PASSTHRU_REFUND.** Interchange retain pass on refund.
+  - `200` - **VALUTEC_ESSENTIAL_GIFT.** External Fees.
+  - `201` - **VALUTEC_ESSENTIAL_MONTHLY_TXN.** External Fees.
+  - `202` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE.** External Fees.
+  - `203` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_TXN.** External Fees.
+  - `204` - **VALUTEC_LOYALTY_PLUS_PACKAGE.** External Fees.
+  - `205` - **VALUTEC_LOYALTY_PLUS_PACKAGE_TXN.** External Fees.
+  - `206` - **VALUTEC_TRANSACTION_FEE.** External Fees.
+  - `207` - **VALUTEC_SETUP_FEE.** External Fees.
+  - `208` - **VALUTEC_GIFT_ACH_POOLING.** External Fees.
+  - `209` - **VALUTEC_JUMP_START_KIT.** External Fees.
+  - `210` - **VALUTEC_LAUNCH_BOX_KIT.** External Fees.
+  - `211` - **VALUTEC_500_CUSTOM_CARDS.** External Fees.
+  - `212` - **VALUTEC_MAINTENANCE_FEE.** External Fees.
+  - `213` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_ME.** External Fees.
+  - `214` - **EFE_MWC_RESIDUAL_ATELIO.** EFE External Fees.
+  - `215` - **EFE_MWC_RESIDUAL_PARAFIN.** EFE External Fees.
+  - `216` - **EFE_MWC_BILLING.** EFE External Fees.
+  - `217` - **FRAUDSIGHT_CNP_DECISION.** External Fees.
+  - `218` - **FRAUDSIGHT_CP_DECISION.** External Fees.
+  - `400` - **REVBOOST_EMBEDDED_TMS_MONTHLY.** External Fees.
+  - `401` - **REVBOOST_EMBEDDED_TMS_PPT.** External Fees.
+  - `402` - **TXN_THREAT_METRIX.** External Fees.
+  - `403` - **THREAT_METRIX_EMAILAGE.** External Fees.
+  - `404` - **THREAT_METRIX_FRAUD_POINT.** External Fees.
+  - `405` - **GIACT_INQUIRY.** External Fees.
+  - `406` - **GIACT_TXN_GAUTHENTICATE.** External Fees.
+  - `407` - **TRULIOO_IDV.** External Fees.
+  - `408` - **TRULIOO_AMLLDV.** External Fees.
+  - `409` - **TRULIOO_BUSINESS_VERIFICATION.** External Fees.
+  - `410` - **THREAT_METRIX_PHONE_FINDER.** External Fees.
+  - `601` - **TIER_NON_QUALIFIED_COUNT.** Risk Based Tier Fees.
+  - `602` - **TIER_QUALIFIED_COUNT.** Risk Based Tier Fees.
+  - `603` - **TIER_MID_QUALIFIED_COUNT.** Risk Based Tier Fees.
+  - `604` - **TIER_HIGH_RISK_COUNT.** Risk Based Tier Fees.
+  - `605` - **TIER_NON_QUALIFIED_VOLUME.** Risk Based Tier Fees.
+  - `606` - **TIER_QUALIFIED_VOLUME.** Risk Based Tier Fees.
+  - `607` - **TIER_MID_QUALIFIED_VOLUME.** Risk Based Tier Fees.
+  - `608` - **TIER_HIGH_RISK_VOLUME.** Risk Based Tier Fees.
+enum:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
+- 21
+- 22
+- 23
+- 24
+- 25
+- 26
+- 27
+- 28
+- 29
+- 30
+- 31
+- 32
+- 33
+- 34
+- 35
+- 43
+- 44
+- 45
+- 46
+- 47
+- 51
+- 52
+- 53
+- 54
+- 55
+- 56
+- 57
+- 58
+- 59
+- 60
+- 61
+- 62
+- 63
+- 64
+- 65
+- 66
+- 67
+- 68
+- 69
+- 70
+- 71
+- 72
+- 73
+- 74
+- 75
+- 76
+- 77
+- 78
+- 79
+- 80
+- 81
+- 82
+- 83
+- 84
+- 85
+- 86
+- 87
+- 88
+- 89
+- 90
+- 91
+- 92
+- 93
+- 94
+- 95
+- 101
+- 200
+- 201
+- 202
+- 203
+- 204
+- 205
+- 206
+- 207
+- 208
+- 209
+- 210
+- 211
+- 212
+- 213
+- 214
+- 215
+- 216
+- 217
+- 218
+- 400
+- 401
+- 402
+- 403
+- 404
+- 405
+- 406
+- 407
+- 408
+- 409
+- 410
+- 601
+- 602
+- 603
+- 604
+- 605
+- 606
+- 607
+- 608
+x-enum-elements:
+  - name: Days
+    description: Daily scheduled event (like a fee).
+  - name: Weeks
+    description: Weekly scheduled event.
+  - name: Months
+    description: Monthly scheduled event.
+  - name: Years
+    description: Yearly scheduled event.
+  - name: Single
+    description: One-off event.
+  - name: Auth
+    description: Auth and sale transaction (types 1 and 2) authorization.
+  - name: Capture
+    description: Capture and sale transaction (types 1 and 3) capture (settlement to processor).
+  - name: Refund
+    description: Refund transaction capture (settlement to processor).
+  - name: Board
+    description: Merchant boarding (mid stage entityRef creation).
+  - name: Payout
+    description: Disbursement creation.
+  - name: Chargeback
+    description: Triggers when a card chargeback occurs.
+  - name: Overdraft
+    description: Disbursement return due to insufficient funds.
+  - name: Interchange
+    description: Transaction interchange fees assessment.
+  - name: Processor
+    description: Transaction processed by a payment processor.
+  - name: Achfail
+    description: Disbursement return due to any failure other than insufficient funds.
+  - name: Account
+    description: Bank account verification.
+  - name: Sift
+    description: Transaction fraud score.
+  - name: Adjustment
+    description: Adjusted funds.
+  - name: Retrieval
+    description: Retrieval chargeback creation (retrieval cycle).
+  - name: Arbitration
+    description: Arbitration chargeback creation (arbitration cycle).
+  - name: Ecsale
+    description: Transaction e-check Sale.
+  - name: Ecrefund
+    description: Transaction e-check Refund.
+  - name: Ecreturn
+    description: eCheck transaction return.
+  - name: Settlement
+    description: Transaction settlement (processor to issuer, reported in processor’s settlement report).
+  - name: Misuse
+    description: Transaction misuse (transaction violated Visa authorization misuse rules or MasterCard’s integrity rules).
+  - name: ProfitShare
+    description: Profit sharing entry event.
+  - name: Unauth
+    description: Unauthorized entry.
+  - name: Achnoc
+    description: Disbursement notice of change (NOC).
+  - name: Ecnoc
+    description: eCheck transaction notice of change (NOC).
+  - name: Ecfail
+    description: eCheck transaction return due to any failure other than insufficient funds.
+  - name: Ecnsf
+    description: eCheck transaction return due to insufficient funds.
+  - name: CurrencyConversion
+    description: Currency conversion.
+  - name: TerminalTxn
+    description: Terminal transaction.
+  - name: ReversePayout
+    description: Payout that has been reversed.
+  - name: PartialReversePayout
+    description: Payout that has been partially reversed.
+  - name: PaymentCheck
+    description: Account updater request sent (paymentUpdate status of processing).
+  - name: PaymentUpdate
+    description: Account updater response processed (paymentUpdate status of processed).
+  - name: PaymentGroupCheck
+    description: Account updater unique request sent (one paymentUpdate status of processing per entity of entire paymentUpdateGroup).
+  - name: PaymentGroupUpdate
+    description: Account updater unique response processed (one paymentUpdate status of processed per entity for entire paymentUpdateGroup).
+  - name: EntryRefund
+    description: Entry refunds.
+  - name: Statement
+    description: Billing statement (when paid by debit disbursement).
+  - name: MerchantCreation
+    description: Merchant creation.
+  - name: RealtimeBusinessSearch
+    description: Real time business search.
+  - name: RealtimeMemberSearch
+    description: Real time member search.
+  - name: MasterCardMatch
+    description: Mastercard match.
+  - name: BusinessInstantId
+    description: Business instant id.
+  - name: ConsumerInstantId
+    description: Consumer instant id.
+  - name: ThreatMetrix
+    description: Threat metrix.
+  - name: LegitScriptRegister
+    description: Legit script register.
+  - name: EquifaxConsumerReport
+    description: Equifax consumer report.
+  - name: GuideStar
+    description: Guidestar.
+  - name: PayloadAttribute
+    description: Internal Decision V2.
+  - name: TinCheck
+    description: Tin check.
+  - name: EquifaxCommercialReport
+    description: Equifax commercial report.
+  - name: LegitScriptCheckMerchant
+    description: Legit script check merchant.
+  - name: Plaid
+    description: Plaid.
+  - name: StatementReversal
+    description: Reversal of statement.
+  - name: GiactEcheck
+    description: GIACT call made to verify creator Echeck bank Account.
+  - name: GiactBankAccount
+    description: Giact calls to verify merchant settlement account on sign up or post boarding account.
+  - name: BoardDecision
+    description: Process decision fee after board.
+  - name: TxnRiskDecision
+    description: Txn going through a risk decision.
+  - name: Fanf
+    description: FANF - External fees.
+  - name: Mclocation
+    description: MCLOCATION - External fees.
+  - name: Visaintegrity
+    description: VISAINTEGRITY - External fees.
+  - name: SaferpaymentsBasic
+    description: External Fees.
+  - name: SaferpaymentsManaged
+    description: External Fees.
+  - name: SaferpaymentsPciNonvalidation
+    description: External Fees.
+  - name: OmnitokensVolume
+    description: External Fees.
+  - name: PayoutReturn
+    description: Payout Return.
+  - name: PayoutPartialReturn
+    description: Payout Partial Return.
+  - name: RevShare
+    description: Rev share.
+  - name: CardSettlement
+    description: Transaction card settlement.
+  - name: EcheckSettlement
+    description: Transaction e-check settlement.
+  - name: RevShareCard
+    description: Rev share card Schedules.
+  - name: RevShareEcheck
+    description: Rev share e-chek Schedules.
+  - name: RevShareDbm
+    description: Rev share DBM Schedules.
+  - name: Prearbitration
+    description: Chargeback PreArbitration.
+  - name: PlaidIdentityMach
+    description: Plaid.
+  - name: TxnPlaidIdentityMach
+    description: Txns Plaid.
+  - name: PlaidGetIdentity
+    description: Plaid.
+  - name: TxnPlaidGetIdentity
+    description: Txns Plaid.
+  - name: PlaidGetAuth
+    description: Plaid.
+  - name: TxnPlaidGetAuth
+    description: Txns Plaid.
+  - name: Reversal
+    description: Chargeback Reversal.
+  - name: Representment
+    description: Chargeback Representment.
+  - name: IcRetainPassthruRefund
+    description: Interchange retain pass on refund.
+  - name: ValutecEssentialGift
+    description: External Fees.
+  - name: ValutecEssentialMonthlyTxn
+    description: External Fees.
+  - name: ValutecDigitalGiftPlusPackage
+    description: External Fees.
+  - name: ValutecDigitalGiftPlusPackageTxn
+    description: External Fees.
+  - name: ValutecLoyaltyPlusPackage
+    description: External Fees.
+  - name: ValutecLoyaltyPlusPackageTxn
+    description: External Fees.
+  - name: ValutecTransactionFee
+    description: External Fees.
+  - name: ValutecSetupFee
+    description: External Fees.
+  - name: ValutecGiftAchPooling
+    description: External Fees.
+  - name: ValutecJumpStartKit
+    description: External Fees.
+  - name: ValutecLaunchBoxKit
+    description: External Fees.
+  - name: Valutec500CustomCards
+    description: External Fees.
+  - name: ValutecMaintenanceFee
+    description: External Fees.
+  - name: ValutecDigitalGiftPlusPackageMe
+    description: External Fees.
+  - name: EfeMwcResidualAtelio
+    description: EFE External Fees.
+  - name: EfeMwcResidualParafin
+    description: EFE External Fees.
+  - name: EfeMwcBilling
+    description: EFE External Fees.
+  - name: FraudsightCnpDecision
+    description: External Fees.
+  - name: FraudsightCpDecision
+    description: External Fees.
+  - name: RevboostEmbeddedTmsMonthly
+    description: External Fees.
+  - name: RevboostEmbeddedTmsPpt
+    description: External Fees.
+  - name: TxnThreatMetrix
+    description: External Fees.
+  - name: ThreatMetrixEmailage
+    description: External Fees.
+  - name: ThreatMetrixFraudPoint
+    description: External Fees.
+  - name: GiactInquiry
+    description: External Fees.
+  - name: GiactTxnGauthenticate
+    description: External Fees.
+  - name: TruliooIdv
+    description: External Fees.
+  - name: TruliooAmllDv
+    description: External Fees.
+  - name: TruliooBusinessVerification
+    description: External Fees.
+  - name: ThreatMetrixPhoneFinder
+    description: External Fees.
+  - name: TierNonQualifiedCount
+    description: Risk Based Tier Fees.
+  - name: TierQualifiedCount
+    description: Risk Based Tier Fees.
+  - name: TierMidQualifiedCount
+    description: Risk Based Tier Fees.
+  - name: TierHighRiskCount
+    description: Risk Based Tier Fees.
+  - name: TierNonQualifiedVolume
+    description: Risk Based Tier Fees.
+  - name: TierQualifiedVolume
+    description: Risk Based Tier Fees.
+  - name: TierMidQualifiedVolume
+    description: Risk Based Tier Fees.
+  - name: TierHighRiskVolume
+    description: Risk Based Tier Fees.

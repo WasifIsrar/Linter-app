@@ -1,0 +1,52 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "000000000000002",
+              "created": "2025-06-05 16:36:15.9522",
+              "modified": "2025-06-05 16:36:15.9522",
+              "creator": "000000000000001",
+              "modifier": "000000000000001",
+              "offerId": "c00ef79c-f024-4254-ae17-c67a2e691d00",
+              "expiry": "2029-12-03 00:00:00",
+              "entity": "000000000000001",
+              "mid": "4445061757076",
+              "primaryContactEmail": "jorge@fisglobal.com",
+              "merchantLenderId": "M67890",
+              "vendorName": "Parafin",
+              "offerDate": "2024-12-03 22:35:18.3837",
+              "totalApprovedAmount": "10000.000",
+              "feeAmount": "1250.000",
+              "originationFee": "",
+              "offerUrl": "efos-test-merchant-portal.nonprod.nb01.local/offers/c00ef79c-f024-4254-ae17-c67a2e691d00",
+              "productName": "flex loan",
+              "productLongDescription": "Loan1",
+              "acquirePlatform": "",
+              "prequalificationSentDate": "2024-12-03 22:35:18.3837",
+              "prequalificationReceivedDate": "2024-12-03 22:35:18.3837",
+              "isMerchantPrequalified": 0,
+              "appliedDate": "2024-12-03 22:35:18.3837",
+              "offerStatus": "ACTIVE",
+              "productCode": "",
+              "startDate": "2024-12-03 22:35:18.3837",
+              "endDate": "2024-12-03 22:35:18.3837",
+              "splitFundingCap": "",
+              "splitFundingRate": "",
+              "dailyFundingMaxLimit": "",
+              "splitFundingAmount": "",
+              "optInDate": "2024-12-03 22:35:18.3837",
+              "splitSettlementEnabled": 0
+              
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

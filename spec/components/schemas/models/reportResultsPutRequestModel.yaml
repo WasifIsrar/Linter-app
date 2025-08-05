@@ -1,0 +1,20 @@
+title: reportResultsPutRequest
+properties:
+  report:
+    type: string
+    description: Id of the reports
+  documentType:
+    $ref: ../enums/reportDocumentTypeModel.yaml
+  status:
+    $ref: ../enums/reportResultStatusModel.yaml
+  effective:
+    type: integer
+    format: int64
+    description: The date format as below and it is the effective date of the report
+      query and it is taking all the characters except last one and appending 0 to
+      end. and even DB values have the same  format.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+

@@ -1,0 +1,119 @@
+get:
+  description: Query orgsVASEfeProducts.
+  parameters:
+  - description: The ID of this resource, or the (unknown) ID associated with the
+      Orgs VAS EfeProducts.
+    explode: false
+    in: path
+    name: id
+    example: t1_ove_6862c122527a9042ec000c0
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/orgsVASEfeProductsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASEfeProductsModel200Response.yaml
+      description: Response for retrieve Orgs VAS EfeProducts.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Orgs VAS Efe Products.
+  tags:
+  - Orgs VAS EfeProducts
+  - Facilitator
+  - Partner
+  operationId: getOrgsVASEfeProductsId
+put:
+  description:  Update orgsVASEfeProducts.
+  parameters:
+  - description: The ID of this Orgs VAS EfeProducts.
+    explode: false
+    in: path
+    name: id
+    example: t1_ove_6862c122527a9042ec000c0
+    required: true
+    schema:
+      type: string
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/orgsVASEfeProductsPutRequestModel.yaml
+    description: Update Orgs VAS EfeProducts
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/orgsVASEfeProductsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASEfeProductsModel200Response.yaml
+      description: The response for update Orgs VAS Efe Products.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all OrgsVASEfeProducts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Orgs VAS Efe Products.
+  tags:
+  - Orgs VAS EfeProducts
+  - Facilitator
+  - Partner
+  operationId: putOrgsVASEfeProductsId
+delete:
+  description: Delete orgsVASEfeProducts.
+  parameters:
+  - description: The ID of this Orgs VAS EfeProducts.
+    explode: false
+    in: path
+    name: id
+    example: t1_ove_6862c122527a9042ec000c0
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      description: A successful deletion
+      content:
+        application/json:
+          examples:
+            Delete orgsVASEfeProducts:
+              $ref: ../components/schemas/samples/orgsVASEfeProductsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASEfeProductsModel200Response.yaml
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASEfeProducts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a orgsVASEfeProducts by it's ID.
+  tags:
+  - Orgs VAS EfeProducts
+  - Facilitator
+  - Partner
+  operationId: deleteOrgsVASEfeProductsId  

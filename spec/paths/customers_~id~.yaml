@@ -1,0 +1,127 @@
+get:
+  description: Query a Customer, which is a record that stores data about a particular
+    customer of a Merchant and can be used to associate payment data or with other
+    API features.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this customer.
+    explode: false
+    in: path
+    name: id
+    example: t1_cus_67a527f32862c3e51bcce51
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/customersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/customersModel200Response.yaml
+      description: Response for retrieve customer response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Customer by its ID.
+  tags:
+  - Customers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getCustomersId
+put:
+  description: Update a Customer. A Customer is a record that is used to store data
+    about a particular customer of a Merchant, which you can use to associate payment
+    data or for use with other API features.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this customer.
+    explode: false
+    in: path
+    name: id
+    example: t1_cus_67a527f32862c3e51bcce51
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/customersPutRequestModel.yaml
+    description: Update Customer Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/customersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/customersModel200Response.yaml
+      description: 'Response for update on customer''s resource: Update Customer Response'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Customer by its ID.
+  tags:
+  - Customers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putCustomersId
+delete:
+  description: Delete a Customer. A Customer is a record that is used to store data
+    about a particular customer of a Merchant. You can use it to associate payment
+    data to the Customer, or for use with other API features.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this customer.
+    explode: false
+    in: path
+    name: id
+    example: t1_cus_67a527f32862c3e51bcce51
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/customersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/customersModel200Response.yaml
+      description: The response for deleting a customer.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all customers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Customer by its ID.
+  tags:
+  - Customers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteCustomersId

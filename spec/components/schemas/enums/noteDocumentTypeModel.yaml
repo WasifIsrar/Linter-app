@@ -1,0 +1,84 @@
+title: noteDocumentType
+type: string
+description: |
+  The desired type to take on the referenced Note.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `jpg` - **JPG Image File Type**
+  - `jpeg` - **JPEG Image File Type**
+  - `gif` - **GIF Image File Type**
+  - `png` - **PNG Image File Type**
+  - `pdf` - **PDF Document File Type**
+  - `tif` - **TIF Tag Image File Type**
+  - `tiff` - **TIFF Tag Image File Type**
+  - `txt` - **TXT Document File Type**
+  - `xml` - **XML Document File Type**
+  - `asc` - **American Standard Code II File Type**
+  - `rtf` - **Rich Text Document File Type**
+  - `csv` - **Comma Separated Values Table File Type**
+  - `xls` - **Microsoft Excel File Type**
+  - `doc` - **Microsoft Word File Type**
+  - `odt` - **OpenDocument Text File Type**
+  - `ods` - **OpenDocument Spreadsheet File Type**
+  - `json` - **JSON Document File Type**
+  - `soap` - **SOAP Document File Type**
+
+  </details>
+enum:
+- jpg
+- jpeg
+- gif
+- png
+- pdf
+- tif
+- tiff
+- txt
+- xml
+- asc
+- rtf
+- csv
+- xls
+- doc
+- odt
+- ods
+- json
+- soap
+x-enum-elements:
+- name: Jpg
+  description: JPG Image File Type.
+- name: Jpeg
+  description: JPEG Image File Type.
+- name: Gif
+  description: GIF Image File Type.
+- name: Png
+  description: PNG Image File Type.
+- name: Pdf
+  description: PDF Document File Type.
+- name: Tif
+  description: TIF Tag Image File Type.
+- name: Tiff
+  description: TIFF Tag Image File Type.
+- name: Txt
+  description: TXT Document File Type.
+- name: Xml
+  description: XML Document File Type.
+- name: Asc
+  description: American Standard Code II File Type.
+- name: Rtf
+  description: Rich Text Document File Type.
+- name: Csv
+  description: Comma Separated Values Table File Type.
+- name: Xls
+  description: Microsoft Excel File Type.
+- name: Doc
+  description: Microsoft Word File Type.
+- name: Odt
+  description: OpenDocument Text File Type.
+- name: Ods
+  description: OpenDocument Spreadsheet File Type.
+- name: Json
+  description: JSON Document File Type.
+- name: Soap
+  description: SOAP Document File Type.

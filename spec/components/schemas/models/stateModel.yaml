@@ -1,0 +1,70 @@
+type: string
+description: "The U.S. state or Canadian province relevant to the address provided here. If the location is within the U.S. and Canada, specify the 2-character postal abbreviation for the state. If the location is outside of the U.S. and Canada, provide the full state name. This field is stored as a text string and must be between 2 and 100 characters long.\n\n
+    \n<details>\n<summary>U.S. States</summary>\n
+    \n - `AK` - **Alaska (US)**\n  
+    \n - `AR` - **Arkansas (US)**\n  
+    \n - `AL` - **Alabama (US)**\n  
+    \n - `AZ` - **Arizona (US)**\n
+    \n - `CA` - **California (US)**\n 
+    \n - `CO` - **Colorado (US)**\n  
+    \n - `CT` - **Connecticut (US)**\n  
+    \n - `DE` - **Delaware (US)**\n  
+    \n - `FL` - **Florida (US)**\n  
+    \n - `GA` - **Georgia (US)**\n  
+    \n - `HI` - **Hawaii (US)**\n  
+    \n - `IA` - **Iowa (US)**\n  
+    \n - `ID` - **Idaho (US)**\n  
+    \n - `IL` - **Illinois (US)**\n  
+    \n - `IN` - **Indiana (US)**\n  
+    \n - `KY` - **Kentucky (US)**\n  
+    \n - `KS` - **Kansas (US)**\n 
+    \n - `LA` - **Louisiana (US)**\n  
+    \n - `MA` - **Massachusetts (US)**\n    
+    \n - `MD` - **Maryland (US)**\n  
+    \n - `ME` - **Maine (US)**\n  
+    \n - `MI` - **Michigan (US)**\n  
+    \n - `MN` - **Minnesota (US)**\n
+    \n - `MO` - **Missouri (US)**\n  
+    \n - `MS` - **Mississippi (US)**\n  
+    \n - `MT` - **Montana (US)**\n    
+    \n - `NC` - **North Carolina (US)**\n  
+    \n - `ND` - **North Dakota (US)**\n  
+    \n - `NE` - **Nebraska (US)**\n  
+    \n - `NH` - **New Hampshire (US)**\n  
+    \n - `NJ` - **New Jersey (US)**\n    
+    \n - `NM` - **New Mexico (US)**\n    
+    \n - `NV` - **Nevada (US)**\n
+    \n - `NY` - **New York (US)**\n  
+    \n - `OH` - **Ohio (US)**\n  
+    \n - `OK`- **Oklahoma (US)**\n    
+    \n - `OR` - **Oregon (US)**\n
+    \n - `PA` - **Pennsylvania (US)**\n    
+    \n - `RI` - **Rhode Island (US)**\n  
+    \n - `SC`- **South Carolina (US)**\n  
+    \n - `SD` - **South Dakota (US)**\n    
+    \n - `TN` - **Tennessee (US)**\n  
+    \n - `TX` - **Texas (US)**\n  
+    \n - `UT` - **Utah (US)**\n  
+    \n - `VA` - **Virginia (US)**\n  
+    \n - `VT` - **Vermont (US)**\n  
+    \n - `WA` - **Washington (US)**\n  
+    \n - `WI` - **Wisconsin (US)**\n  
+    \n - `WV` - **West Virginia (US)**\n  
+    \n - `WY` - **Wyoming (US)**\n  
+    </details>\n\n
+
+    \n <details>\n<summary>Canada Provinces and Territories</summary>\n
+    \n - `AB` - **Alberta (CAN)**\n
+    \n - `BC` - **British Columbia (CAN)**\n
+    \n - `MB` - **Manitoba (CAN)**\n
+    \n - `ON` - **Ontario (CAN)**\n
+    \n - `NS` - **Nova Scotia (CAN)**\n  
+    \n - `NB` - **New Brunswick (CAN)**\n
+    \n - `NL` - **Newfoundland and Labrador (CAN)**\n
+    \n - `NT` - **Northwest Territories (CAN)**\n
+    \n - `NU` - **Nunavut (CAN)**\n
+    \n - `PE` - **Prince Edward Island (CAN)**\n  
+    \n - `QC` - **Quebec (CAN)**\n
+    \n - `SK` - **Saskatchewan (CAN)**\n
+    \n - `YT` - **Yukon (CAN)**\n
+    </details>\n"

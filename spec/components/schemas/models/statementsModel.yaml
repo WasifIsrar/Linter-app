@@ -1,0 +1,46 @@
+title: statementsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  billing:
+    type: string
+    description: The identifier of the Billing of this statement resource.
+  entity:
+    type: string
+    description: The paying entity for which this statement applies.
+  start:
+    type: integer
+    description: The date on which this Statement period should start. The date is
+      specified as an eight digit string in YYYYMMDD format, for example, '20160120'
+      for January 20, 2016.
+  finish:
+    type: integer
+    description: The date on which this Statement period should finish. The date is
+      specified as an eight digit string in YYYYMMDD format, for example, '20160120'
+      for January 20, 2016.
+  status:
+    $ref: ../enums/statementStatusModel.yaml
+  totalPaid:
+    type: integer
+    format: int64
+    description: The total paid amount for this statement, specified as an integer
+      in cents.
+  total:
+    type: integer
+    format: int64
+    description: The total amount for this statement. This field is specified as an
+      integer in cents.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency for this statement. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  forentity:
+    type: string
+    description: The payee entity of the statement.

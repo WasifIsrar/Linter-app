@@ -1,0 +1,61 @@
+title: accountsPutRequest
+properties:
+  account:
+    type: object
+    description: An object representing details of the Account, including the type
+      of Account (method), Account number, and routing code.
+    title: accountsPutRequestSchemaProperties
+    properties:
+      method:
+        $ref: ../enums/accountMethodModel.yaml
+      number:
+        type: string
+        description: The number of the bank account.
+      routing:
+        type: string
+        description: The routing number of the bank account. This field is stored
+          as a text string and must be between 5 and 20 characters long.
+  name:
+    type: string
+    description: "A client-supplied name for this bank account. \nThis field is stored\
+      \ as a text string and must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A client-supplied description for this bank account. \nThis field\
+      \ is stored as a text string and must be between 0 and 100 characters long."
+  primary:
+    $ref: ../enums/accountPrimaryModel.yaml
+  type:
+    $ref: ../enums/accountTypeModel.yaml
+  status:
+    $ref: ../enums/accountStatusModel.yaml
+  expiration:
+    type: string
+    description: The expiration date of the related debit account in MMYY format,
+      for example, `0118` for January 2018 or `0225` for February 2025.
+    example: '225'
+  mask:
+    type: string
+    description: The account number mask, showing the last four digits of the account
+      number.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+example:
+  id: t1_act_5a1ef5e55656698eefaf8b6
+  entity: t1_ent_5a1pf5a1234531155a12345
+  primary: 1
+  name: Bank Account Name
+  description: Bank account description
+  account:
+    method: 8
+    routing: '1'
+    number: '2'
+  currency: USD
+  type: all
+  status: 1
+  expiration: '0118'
+  mask: '2345'
+  inactive: 0
+  frozen: 0

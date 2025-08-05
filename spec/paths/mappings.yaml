@@ -1,0 +1,79 @@
+get:
+  description: "Query a Mapping resource. \nA Mapping resource represents a way to\
+    \ re-map the fields in the API for either input or output, using a set of JSON\
+    \ field mappings. \nFor example, if your system uses a different format for output\
+    \ data that it will send to the API, then you can re-map the input fields for\
+    \ the API using a Mapping resource."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/mappingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/mappingsModel200Response.yaml
+      description: Response for query on mappings resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Mapping.
+  tags:
+  - Mappings
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMappings
+post:
+  description: "Create a Mapping resource. \nA Mapping resource represents a way to\
+    \ re-map the fields in the API for either input or output, using a set of JSON\
+    \ field mappings. \nFor example, if your system uses a different format for output\
+    \ data that it will send to the API, then you can re-map the input fields for\
+    \ the API using a Mapping resource."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/mappingsPostRequestModel.yaml
+    description: Create Mapping Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create mappings:
+              $ref: ../components/schemas/samples/mappingsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/mappingsModel200Response.yaml
+      description: Response for create on mappings resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all mappings:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Mapping
+  tags:
+  - Mappings
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postMappings
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

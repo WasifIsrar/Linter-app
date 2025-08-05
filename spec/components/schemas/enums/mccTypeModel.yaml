@@ -1,0 +1,21 @@
+title: mccType
+type: string
+description: |
+  Type. Indicates if the Mcc is blacklisted/whitelisted.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `blacklist` - **Indicates if the Mcc is blacklisted.**
+  - `whitelist` - **Indicates if the Mcc is whitelisted.**
+
+  </details>
+default: whitelist
+enum:
+- blacklist
+- whitelist
+x-enum-elements:
+- name: Blacklist
+  description: Blacklist this MCC (Merchant Category Code).
+- name: Whitelist
+  description: Whitelist this MCC (Merchant Category Code).

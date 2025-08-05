@@ -1,0 +1,35 @@
+get:
+  description: Query Disbursement Result resources, each of which represents a reference
+    code issued by the Payout facilitator when a Disbursement is paid.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch disbursement results:
+              $ref: ../components/schemas/samples/disbursementResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementResultsModel200Response.yaml
+      description: Retrieve Response for query on disbursementResults resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch disbursement results:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Disbursement Results.
+  tags:
+  - Disbursement Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDisbursementResults

@@ -1,0 +1,267 @@
+title: loginsPutRequest
+properties:
+  login:
+    type: string
+    description: The parent user that owns this user. Defaults to authenticated user’s ID if no value is explicitly set.
+  partition:
+    type: string
+    description: The partition that this Login is associated with. The partition association is required and opens access to partition-level administrators on this user and all records owned by this user. Defaults to authenticated user’s partition if no value is explicitly set.
+  division:
+    type: string
+    description: The division that this Login belongs to.The division association opens access to division-level administrators on this user and all records owned by this user. Defaults to authenticated user’s division if no value is explicitly set.
+  parentDivision:
+    type: string
+    description: The parent division that this Login belongs to. Children of this
+      Login will inherit its parent division. The parentDivision association may be used for whitelabeling the user experience for parent divisions that have implemented a whitelabel solution (as long as the child division that the user is associated with has not implemented their own).
+      Defaults to authenticated user’s parentDivision if no value is explicitly set.
+  roles:
+    type: integer
+    format: int64
+    description: The roles associated with this Login, specified as an integer.
+      <details>
+      <summary>Single Roles- Valid Values</summary>
+      <ul>
+        <li><code>16</code> - Entity</li>
+        <li><code>64</code> - Vendor</li>
+        <li><code>128</code> - Merchant</li>
+        <li><code>256</code> - Create Merchant</li>
+        <li><code>512</code> - Password</li>
+        <li><code>1024</code> - Log</li>
+        <li><code>2048</code> - Unfreeze</li>
+        <li><code>4096</code> - Modify Roles</li>
+        <li><code>8192</code> - Payment IDs</li>
+        <li><code>65536</code> - MCC</li>
+        <li><code>131072</code> - TXN Report</li>
+        <li><code>262144</code> - Disbursement</li>
+        <li><code>524288</code> - Fund Reserve</li>
+        <li><code>1048576</code> - Platform Refs</li>
+        <li><code>2097152</code> - Verification</li>
+        <li><code>4194304</code> - Fee</li>
+        <li><code>8388608</code> - Challenge</li>
+        <li><code>16777216</code> - Reserve TXN</li>
+        <li><code>33554432</code> - Set Boarded</li>
+        <li><code>67108864</code> - Assessment</li>
+        <li><code>134217728</code> - Adjustment</li>
+        <li><code>268435456</code> - Merchant Flow</li>
+        <li><code>1073741824</code> - Confirm Email</li>
+        <li><code>2147483648</code> - TIN Status</li>
+        <li><code>4294967296</code> - Entity Route</li>
+        <li><code>8589934592</code> - Files</li>
+        <li><code>17179869184</code> - Unmask Private</li>
+        <li><code>34359738368</code> - Unmask Bank</li>
+        <li><code>68719476736</code> - Thread Create</li>
+        <li><code>137438953472</code> - BIN Query</li>
+        <li><code>274877906944</code> - BIN Change</li>
+        <li><code>1099511627776</code> - Assessment View</li>
+        <li><code>17592186044416</code> - Entity Return</li>
+        <li><code>70368744177664</code> - Watchlist</li>
+        <li><code>140737488355328</code> - Profit Share</li>
+        <li><code>281474976710656</code> - MFA</li>
+      </ul>
+      </details>
+      <details>
+      <summary>Multi-Roles- Valid Values</summary>
+     <ul>
+      <li><code>144</code> - Entity, Merchant</li>
+      <li><code>192</code> - Vendor, Merchant</li>
+      <li><code>208</code> - Entity, Vendor, Merchant</li>
+      <li><code>320</code> - Vendor, Create Merchant</li>
+      <li><code>384</code> - Merchant, Create Merchant</li>
+      <li><code>400</code> - Entity, Merchant, Create Merchant</li>
+      <li><code>131136</code> - Vendor, TXN Report</li>
+      <li><code>131200</code> - Merchant, TXN Report</li>
+      <li><code>131456</code> - Merchant, Create Merchant, TXN Report</li>
+      <li><code>1048640</code> - Vendor, Platform Refs</li>
+      <li><code>1048704</code> - Merchant, Platform Refs</li>
+      <li><code>1048768</code> - Vendor, Merchant, Platform Refs</li>
+      <li><code>2097216</code> - Vendor, Verification</li>
+      <li><code>4194368</code> - Vendor, Fee</li>
+      <li><code>4194384</code> - Entity, Vendor, Fee</li>
+      <li><code>134217792</code> - Vendor, Adjustment</li>
+      <li><code>268435584</code> - Merchant, Merchant Flow</li>
+      <li><code>272630160</code> - Entity, Merchant, Create Merchant, Fee, Merchant Flow</li>
+      <li><code>272630224</code> - Entity, Vendor, Merchant, Create Merchant, Fee, Merchant Flow</li>
+      <li><code>273154512</code> - Entity, Vendor, Merchant, Create Merchant, Fund Reserve, Fee, Merchant Flow</li>
+      <li><code>1099511627840</code> - Vendor, Assessment View</li>
+      <li><code>1099511758912</code> - Vendor, TXN Report, Assessment View</li>
+      </ul>
+     </details>
+  confirmed:
+    type: integer
+    description: "Whether the email associated with this Login was confirmed. This\
+      \ field is stored as an integer and will be set to '1' when the email is confirmed.\
+      \ \n\n<details> <summary>Valid Values</summary>\n\n - `0`  - **Not confirmed.**\n\
+      \n - `1`  - **Confirmed.**\n\n </details>"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotConfirmed"
+      description: "The email is not confirmed."
+    - name: "Confirmed"
+      description: "The email is confirmed."
+  username:
+    type: string
+    description: "The username associated with this Login. \nThis field is stored\
+      \ as a text string, all lowercase, and must be between 0 and 50 characters long."
+  password:
+    type: string
+    description: "The password associated with this Login. \nThis field is stored\
+      \ as a text string and must be between 0 and 100 characters long."
+  first:
+    type: string
+    description: The first name associated with this Login.
+  middle:
+    type: string
+    description: The middle name associated with this Login.
+  last:
+    type: string
+    description: The last name associated with this Login.
+  email:
+    type: string
+    description: The email address associated with this Login.
+  allowedResources:
+    type: string
+    description: 'The allowedResources field specifies the actions and resources a user can access. The JSON structure includes action keys (create, update, read, delete, totals) and lists of resources (e.g., logins, apikeys, sessions). Omitted action keys indicate no access for those actions.
+      <details>
+      <summary>Instructions</summary>
+      In addition to the roles for this login, you can specify API functionality by creating a JSON object as the value for this field using with data arrays titled: <code>”create”: []</code>, <code>”read”: []</code>, <code>”update”: []</code>, <code>”delete”: []</code>, and <code>”totals”: []</code> for their API CRUD functions <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>DELETE</code> with the <code>totals</code> array setting users ability to calculate and report on disbursements, funds, and other monetary totals relevant to the specified endpoint resources.
+      Add the names of each endpoint resource separated by a comma (<code>,</code>) for which you want to provide functionality.
+
+      For example, <code>{ "create": ["payouts"] }</code> allows this login to create payout transactions using the <code>POST /payouts</code> API request method. 
+
+      <ul>
+      <li><strong>Note:</strong> Resources are case sensitive. Our API uses <a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>. If you are unsure of formatting, refer to the API specification to copy the exact endpoint title without the initial forward slash ( / ) for the relevant allowedResources or restrictedResources arrays.</li>
+      </ul>
+
+      </details>'
+  restrictedResources:
+    type: string
+    description: 'The restrictedResources field defines the actions and resources a user is restricted from accessing. The JSON structure includes action keys (create, update, read, delete, totals) and lists of resources (e.g., logins, apikeys, sessions). Omitted action keys indicate no restrictions for those actions.
+      <details>
+      <summary>Instructions</summary>
+      In addition to the roles for this login, you can specify API functionality by creating a JSON object as the value for this field using with data arrays titled: <code>”create”: []</code>, <code>”read”: []</code>, <code>”update”: []</code>, <code>”delete”: []</code>, and <code>”totals”: []</code> for their API CRUD functions <code>POST</code>, <code>GET</code>, <code>PUT</code>, <code>DELETE</code> with the <code>totals</code> array setting users ability to calculate and report on disbursements, funds, and other monetary totals relevant to the specified endpoint resources.
+      Add the names of each endpoint resource separated by a comma (<code>,</code>) for which you want to provide functionality.
+      
+      For example, <code>{ "create": ["payouts"] }</code> allows this login to create payout transactions using the <code>POST /payouts</code> API request method. 
+
+      <ul>
+      <li><strong>Note:</strong> Resources are case sensitive. Our API uses <a href="https://en.wikipedia.org/wiki/Camel_case">camelCase</a>. If you are unsure of formatting, refer to the API specification to copy the exact endpoint title without the initial forward slash ( / ) for the relevant allowedResources or restrictedResources arrays.</li>
+      </ul>
+
+      </details>'
+  portalAccess:
+    type: integer
+    description: "Whether or not this user should have access to portal functionality.\n\
+      \n<details>\n<summary>Valid Values</summary>\n\n- `0` - **No Portal access.**\
+      \ \n\n- `1` - **Portal access.**\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NoAccess"
+      description: "No access to the portal."
+    - name: "HasAccess"
+      description: "Has access to the portal."
+  mfaEnabled:
+    type: integer
+    description: |
+      Whether or not this user should have multi factor authentication (MFA) feature.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Disabled"
+      description: "MFA is disabled."
+    - name: "Enabled"
+      description: "MFA is enabled."
+  mfaSecret:
+    type: string
+    description: "The MFA secret key used to link the MFA device with this Login.\
+      \ \nThis field is stored as a text string and must be between 1 and 128 characters\
+      \ long."
+  mfaEnrolledDate:
+    type: string
+    description: The datetimestamp when this Login was enabled for
+      MFA.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  mfaType:
+    type: string
+    description: "The Type of the MFA enrolled. \nThis field is stored as a text string\
+      \ and must be between 1 and 50 characters long."
+  address1:
+    type: string
+    description: "The first line of the address associated with this Login. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Login. \nThis\
+      \ field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Login.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Login. \nThis field\
+      \ is stored as a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../models/countryModel.yaml
+    description: The country associated with this Customer/InvoiceResult, valid values
+      for this field are the 3-letter ISO code for the country.
+  phone:
+    type: string
+    description: "The phone number associated with this Login. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  fax:
+    type: string
+    description: "The fax number associated with this Login. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  inactive:
+    $ref: ../../../components/schemas/inactive.yaml
+  frozen:
+    $ref: ../../../components/schemas/frozen.yaml
+
+example: 
+  confirmed: 0
+  email: user2118145526@example.com
+  first: John
+  inactive: 0
+  frozen: 0
+  last: Doe
+  mfaEnabled: 0
+  partition: g157713aff9b946
+  division: t1_div_67c56806728fbbf0bae0b10
+  password: '****'
+  portalAccess: 1
+  roles: 64
+  username: user9287347954
+  login: g15967a6e0d7cf6
+  parentDivision: t1_div_67c56806728fbbf0bae0b10
+  allowedResources: "{\"create\":[\"accounts\",\"payouts\"],\"read\":[\"disbursements\",\"disbursementResults\"],\"update\":[\"accounts\",\"payouts\"],\"delete\":[\"accounts\",\"payouts\"],\"totals\":[\"disbursements\",\"disbursementResults\"]}"
+  restrictedResources: "{\"create\":[\"ltxns\"],\"read\":[\"txnResults\"],\"update\":[\"txns\"],\"delete\":[\"txns\"],\"totals\":[\"txns\"]}"
+  mfaSecret: '****'
+  mfaEnrolledDate: 2025-06-16 08:02:53
+  mfaType: totp
+  address1: 9337 SPRING CYPRESS RD STE A413
+  address2: Suite 403
+  city: Spring
+  state: TX
+  zip: 77379
+  country: USA
+  phone: 1028106820
+  fax: 1085069293

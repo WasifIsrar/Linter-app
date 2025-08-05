@@ -1,0 +1,73 @@
+get:
+  description: Query a Decision's resource. A decisions resource represents the schedule
+    and rules for a check done on Transactions.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/decisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionsModel200Response.yaml
+      description: Retrieve Decisions Response for query on decisions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Decisions.
+  tags:
+  - Decisions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDecisions
+post:
+  description: Create a Decisions resource that represents the schedule and rules
+    for a check done on Transactions.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/decisionsPostRequestModel.yaml
+    description: Create Decision Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create decisions:
+              $ref: ../components/schemas/samples/decisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/decisionsModel200Response.yaml
+      description: Response for create on decisions resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all decisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Decision
+  tags:
+  - Decisions
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postDecisions
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

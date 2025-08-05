@@ -1,0 +1,40 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rsv_66f27fca06f8a777998c000",
+        "created": "2024-09-24 05:00:58.0528",
+        "modified": "2024-09-24 05:00:58.0528",
+        "creator": "t1_log_611e6ca320fae7afab2f000",
+        "modifier": "t1_log_611e6ca320fae7afab2f000",
+        "login": "t1_log_611e6ca320fae7afab2f256",
+        "org": "t1_org_5fada4629c317f80bc9cb00",
+        "entity": "t1_ent_5f9058fe8c8d21ead8f68dc",
+        "name": "Additional Underwriting Review Required",
+        "description": "Will release the reserve once all information is verified.",
+        "percent": 10000,
+        "release": "never",
+        "releaseFactor": 1,
+        "finish": 20160120,
+        "inactive": 0,
+        "frozen": 0,
+        "max": 0,
+        "start": 20160120,
+        "hold": "t1_hld_66f27fca0236545c4f125d2",
+        "division": t1_div_67b51635da21f7399ce2az0,
+        "partition": t1_ptn_000834d4d504f11234578f0,
+        "level": "merchant",
+        "status": 1
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

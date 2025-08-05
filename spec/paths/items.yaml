@@ -1,0 +1,75 @@
+get:
+  description: "Query an Item. \nAn Item is a line item that is associated with a\
+    \ particular Transaction. It allows you to describe the cost, quantity and other\
+    \ details of each line in the Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/txnItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/itemsModel200Response.yaml
+      description: Response for query on items resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Items.
+  tags:
+  - Transaction Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getItems
+post:
+  description: "Create an Item. \nAn Item is a line item that is associated with a\
+    \ particular Transaction. It allows you to describe the cost, quantity and other\
+    \ details of each line in the Transaction."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/itemsPostRequestModel.yaml
+    description: Create an Item Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/txnItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/itemsModel200Response.yaml
+      description: Response for creating an item.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create an Item.
+  tags:
+  - Transaction Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postItems
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,36 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_erf_67c6cec3bae7182e38d05b0",
+        "created": "2025-03-04 04:58:27.7684",
+        "modified": "2025-03-04 04:58:27.7684",
+        "creator": "t1_log_5e2888af4800e540557ece0",
+        "modifier": "t1_log_5e2888af4800e540557ece0",
+        "entity": "t1_ent_67c6ceba8a94b8cea9664f3",
+        "ref": "7c6cec3badbf",
+        "stage": "create",
+        "platform": "VCORE",
+        "currency": "USD",
+        "inactive": 0,
+        "frozen": 0,
+        "member": "",
+        "default": 0,
+        "fundingCurrency": "USD",
+        "options": "",
+        "entityRoute": "g1599c89ae26f9c",
+        "staging": 0,
+        "fbo": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

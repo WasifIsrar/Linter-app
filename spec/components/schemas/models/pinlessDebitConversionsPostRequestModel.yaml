@@ -1,0 +1,46 @@
+title: pinlessDebitConversionsPostRequest
+properties:
+  enablementDate:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+    description: "The Date and time when an entity was enabled for pinlessDebitConversion.\nThe date is specified as an eight digit string in YYYY-MM-DD hh:mm:ss format, for example, '2023-06-01 01:00:00' for June 01, 2023. 1:00 am."
+  org:
+    type: string
+    description: "The identifier of the Org (group) that pinlessDebitConversion is associated to."
+  division:
+    type: string
+    description: "The identifier of the Division that pinlessDebitConversion is associated to."
+  partition:
+    type: string
+    description: "The identifier of the Partition that pinlessDebitConversion is associated to."
+  platform:
+    type: string
+    description: "The platform used to process this transaction."
+    enum:
+    - VCORE
+    x-enum-elements:
+    - name: VCORE
+      description: VCORE
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+  deleted:
+    type: string
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+    description: "In case resource is deleted, this field will then show the date it occurred."
+  deleter:
+    type: string
+    description: "The id of user who deleted the pinlessDebitConversion."
+example:
+  enablementDate: '2023-06-01 01:00:00'
+  org: 't1_org_684c7ae33b2d4f98520a79a'
+  division: 't1_div_684c7ae33b2d4f98520a00b'
+  partition: 't1_ptn_666834d4d504f11234578f0'
+  platform: 'VCORE'
+  inactive: 0
+  frozen: 0
+  deleted: '2023-06-01 01:00:00'
+  deleter: 't1_log_67a4e72ad2ccca060a2fcfb'    

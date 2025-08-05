@@ -1,0 +1,39 @@
+get:
+  description: Query a Disbursement Reference that represents a reference code issued
+    by the Payout facilitator when a Disbursement is paid.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, also known as The Disbursement Reference
+      ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_drf_68096caedcc4f27c86021z0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursementRefs:
+              $ref: ../components/schemas/samples/disbursementRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementRefsModel200Response.yaml
+      description: Retrieve the Response for query on Disbursement References resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursementRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Disbursement Reference by it's ID.
+  tags:
+  - Disbursement Reference
+  - Facilitator
+  - Partner
+  operationId: getDisbursementRefsId

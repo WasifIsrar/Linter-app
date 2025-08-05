@@ -1,0 +1,142 @@
+title: aggregationsPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this Aggregation.
+  entity:
+    type: string
+    description: The identifier of the Entity that this Aggregation applies to.
+  forlogin:
+    type: string
+    description: The identifier of the Login that this Aggregation applies to.
+  org:
+    type: string
+    description: The identifier of the Org that this Aggregation applies to.
+  team:
+    type: string
+    description: The identifier of the Team that this Aggregation applies to.
+  division:
+    type: string
+    description: The identifier of the Division that this Aggregation applies to.
+  partition:
+    type: string
+    description: The identifier of the Partition that this Aggregation applies to.
+  type:
+    $ref: ../enums/aggregationTypeModel.yaml
+  level:
+    type: string
+    description: |
+      The level of user that this aggregation will run for.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `admin` - **Admin User.**
+      - `division` - **Division-level User.**
+      - `merchant` - **Merchant-level User.**
+      - `partition` - **Partition-level User.**
+
+      </details>
+    enum:
+    - admin
+    - division
+    - merchant
+    - partition
+    x-enum-elements:
+    - name: Admin
+      description: Admin User.
+    - name: Division
+      description: Division-level User.
+    - name: Merchant
+      description: Merchant-level User.
+    - name: Partition
+      description: Partition-level User.
+  name:
+    type: string
+    description: The name of this Aggregation. This field is stored as a text string
+      and must be between 0 and 100 characters long.
+  description:
+    type: string
+    description: A description of this Aggregation. This field is stored as a text
+      string and must be between 0 and 100 characters long.
+  resource:
+    $ref: ../enums/resourceModel.yaml
+  search:
+    type: string
+    description: The search query used to find records and apply the desired calculation.
+      This field is stored as a text string and must be between 0 and 1000 characters
+      long.
+  totals:
+    type: string
+    description: The specification of the desired aggregation functions including
+      count, sum, min and max. This field is stored as a text string and must be between
+      1 and 100 characters long.
+  degrouping:
+    type: string
+    description: Degrouping is the reverse process of grouping, where progressively smaller groups are removed to provide aggregated results at higher levels. This is useful when you want to see overall totals without the detailed breakdowns. For example, degrouping can be used to sum up all transactions across all merchants and payment methods, providing a total approval count without needing to look at individual merchant or payment method details.
+  status:
+    $ref: ../enums/aggregationStatusModel.yaml
+  schedule:
+    $ref: ../enums/aggregationScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: A multiplier that you can use to adjust the schedule set in the 'schedule'
+      field, such as daily, weekly, monthly, or annually. In This field is specified
+      as an integer and its value determines how the interval is multiplied.
+  start:
+    type: integer
+    format: int64
+    description: The date on which the aggregation processing should start. The date
+      is specified as a twelve digit string in YYYYMMDDHHII format, for example, '201601201528'
+      for January 20, 2016 at 15:28 (3:28 pm). The value of this field must represent
+      a date in the future, or the present date. When the schedule is set to HOURLY
+      (1) the minute part of the time must be divisible by 10 (15:10, 15:20, 15:30,
+      etc...).
+  default:
+    type: integer
+    description: |
+      Indicates whether this aggregation was automatically created.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Manually created.**
+      - `1` - **Automatically created.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: ManuallyCreated
+      description: Manually created.
+    - name: AutomaticallyCreated
+      description: Automatically created.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: t1_log_67b5002a5de3b716ad97e07
+  name: Default merchantTxnFailedAll
+  description: Automatically created aggregation
+  resource: 18
+  search: "status[equals]=2&created[like]={{\"expand\": [{\"type\": \"date\",\"value\": \"-1 days\",\"format\": \"Y-m-d\",\"relativeTimestamp\":\":effective:\"}]}}%"
+  totals: sum[0]=total&count[0]=id&groups[0]=merchant&groups[1]=type&groups[2][payment][0]=method
+  status: ready
+  schedule: days
+  scheduleFactor: 1
+  start: 202502200000
+  inactive: 0
+  frozen: 0
+  entity: t1_ent_676057654c1b7452e4884f0
+  forlogin: t1_log_67b5002a5de3b716ad97e07
+  org: t1_org_67b736ad7d05922343246cf
+  team: teamBoarding
+  division: t1_div_67b51635da21f7399ce2af1
+  partition: t1_ptn_666834d4d504f11234578f5
+  type: merchantTxnFailedAll
+  level: merchant
+  default: 1
+  degrouping: groups[0]=merchant&groups[1][payment][0]=method

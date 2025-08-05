@@ -1,0 +1,28 @@
+title: billingSchedule
+type: string
+description: |
+  The schedule that determines when this Billing is triggered to start collecting data.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `days` - **Daily schedule.**
+  - `weeks` - **Weekly schedule.**
+  - `months` - **Monthly schedule.**
+  - `years` - **Annual schedule.**
+
+  </details>
+enum:
+- days
+- weeks
+- months
+- years
+x-enum-elements:
+- name: Days
+  description: Daily schedule.
+- name: Weeks
+  description: Weekly schedule.
+- name: Months
+  description: Monthly schedule.
+- name: Years
+  description: Annual schedule.

@@ -1,0 +1,287 @@
+title: decisionsPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this decisions resource.
+  org:
+    type: string
+    description: If this decision resource relates to an Org, then this field stores
+      the identifier of the Org.
+  entity:
+    type: string
+    description: If this decision resource relates to an Entity, then this field stores
+      the identifier of the Entity.
+  decision:
+    type: string
+    description: The identifier of a linked decision resource that acts in coordination
+      with this decision. When you define a decision attribute here, the referenced
+      decision becomes the 'parent' resource. The action field set on the 'parent'
+      resource determines the action that occurs if all of the linked decisions fail.
+  division:
+    type: string
+    description: Identifier of the division to which the decision resource belongs.
+  partition:
+    type: string
+    description: Identifier of the partition to which the decision resource belongs.
+  application:
+    type: string
+    description: |-
+      Where the action defined by this DecisionAction should apply.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `account` - **Account type Decision.**
+      - `txn` - **Txn type Decision.**
+      - `entity` - **Entity type Decision.**
+
+      </details>
+    enum:
+    - account
+    - txn
+    - entity
+    x-enum-elements:
+    - name: account
+      description: Account type Decision.
+    - name: txn
+      description: Applies the action to the transaction.
+    - name: entity
+      description: Applies the action on the entity.
+  level:
+    type: string
+    description: The levels of decision admin, merchant, division, partition.
+  type:
+    $ref: ../enums/decisionTypeModel.yaml
+  target:
+    type: string
+    description: |
+      The target that this decision should apply at.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `activation` - **Terminal activation.**
+      - `auth` - **Apply this decision during transaction authorization.**
+      - `postauth` - **Immediately after authorization.**
+      - `capture` - **Apply this decision during transaction capture.**
+      - `refund` - **Apply this decision when processing a refund.**
+      - `createEntity` - **createEntity. Process decisions during entity creation.**
+      - `underwriting` - **Underwriting. Check the members before they are boarded.**
+      - `preboard` - **Preboard. Check the Merchant before they are boarded.**
+      - `postboard` - **Check the Merchant after they are boarded.**
+      - `txn` - **Check the Merchant when they process a Transaction.**
+      - `txnVolume` - **Check the Merchant when their transaction volume hits a certain amount.**
+      - `payout` - **Check the Merchant when a Payout occurs.**
+      - `payoutVolume` - **Check the Merchant when the volume of Payouts to the Merchant hits a certain amount.**
+
+      </details>
+    enum:
+    - activation
+    - auth
+    - postauth
+    - capture
+    - refund
+    - createEntity
+    - underwriting
+    - preboard
+    - postboard
+    - txn
+    - txnVolume
+    - payout
+    - payoutVolume
+    x-enum-elements:
+    - name: activation
+      description: Terminal activation.
+    - name: auth
+      description: Apply this decision during transaction authorization.
+    - name: postauth
+      description: Immediately after authorization.
+    - name: capture
+      description: Apply this decision during transaction capture.
+    - name: refund
+      description: Apply this decision when processing a refund.
+    - name: createEntity
+      description: Process decisions during entity creation.
+    - name: underwriting
+      description: Underwriting. Check the members before they are boarded.
+    - name: preboard
+      description: Preboard. Check the Merchant before they are boarded.
+    - name: postboard
+      description: Check the Merchant after they are boarded.
+    - name: txn
+      description: Check the Merchant when they process a Transaction.
+    - name: txnVolume
+      description: Check the Merchant when their transaction volume hits a certain amount.
+    - name: payout
+      description: Check the Merchant when a Payout occurs.
+    - name: payoutVolume
+      description: Check the Merchant when the volume of Payouts to the Merchant hits a certain amount.
+  action:
+    $ref: ../enums/descisionActionModel.yaml
+  sequence:
+    type: integer
+    description: 'A sequence number to use when applying multiple linked decisions:
+      When two or more decisions are linked using their ''decision'' fields, the checks
+      with lower ''sequence'' numbers are applied first; this field is specified as
+      an integer.'
+  amount:
+    type: integer
+    description: The minimum value that the Transaction must be to target this decision,
+      The unit of measure is determined by the type of check.
+  value:
+    type: string
+    description: 'The amount that the associated Transaction should be compared against.
+      The units for this field depend on the type of check: for checks that are based
+      on a ratio, specify the amount as a percentage in basis points; for checks that
+      are based on a dollar amount, specify the amount in cents; for checks that are based
+      on a count, specify the exact value as an integer.'
+  period:
+    type: string
+    description: |-
+      A date indicator that determines how far back in time time-based checks should be checked. This field works in conjunction with the 'periodFactor' field, which multiplies this basic period.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `days` - **Days. The basic value for the date range is set in days.**
+      - `weeks` - **Weeks. The basic value for the date range is set in weeks.**
+      - `months` - **Months. The basic value for the date range is set in months.**
+      - `years` - **Years. The basic value for the date range is set in years.**
+      - `seconds` - **Seconds. The basic value for the date range is set in seconds.**
+      - `minutes` - **Minutes. The basic value for the date range is set in minutes.**
+      - `hours` - **Hours. The basic value for the date range is set in hours.**
+
+      </details>
+    enum:
+    - days
+    - weeks
+    - months
+    - years
+    - seconds
+    - minutes
+    - hours
+    x-enum-elements:
+    - name: days
+      description: Days. The basic value for the date range is set in days.
+    - name: weeks
+      description: Weeks. The basic value for the date range is set in weeks.
+    - name: months
+      description: Months. The basic value for the date range is set in months.
+    - name: years
+      description: Years. The basic value for the date range is set in years.
+    - name: seconds
+      description: Seconds. The basic value for the date range is set in seconds.
+    - name: minutes
+      description: Minutes. The basic value for the date range is set in minutes.
+    - name: hours
+      description: Hours. The basic value for the date range is set in hours.
+  periodFactor:
+    type: integer
+    description: A multiplier that you can use to adjust the basic date range set
+      in the 'period' field, such as daily, weekly, monthly, or annually; this field
+      is specified as an integer and its value determines how the interval is multiplied.
+  schedule:
+    type: string
+    description: The schedule that determines when this Decision is triggered to check
+      entities.
+  scheduleFactor:
+    type: integer
+    description: A multiplier that you can use to adjust the schedule set in the 'schedule'
+      field, if it is set to a duration-based trigger, such as daily, weekly, monthly,
+      or annually. This field is specified as an integer and its value determines
+      how the interval is multiplied.
+  start:
+    type: integer
+    description: The date on which checking of the Decision should start is specified
+      as an eight digit string in YYYYMMDD format, for example, '20160120' for January
+      20, 2016; the value of this field must represent a date in the future, or the
+      present date.
+  finish:
+    type: integer
+    description: The date on which checking of the Decision should end. The date is
+      specified as an eight digit string in YYYYMMDD format, for example, '20160120'
+      for January 20, 2016. The value of this field must represent a date in the future.
+  low:
+    type: integer
+    description: A lower cut-off value for the score in this decision; the check fails
+      if the score is equal to or below this value.
+  high:
+    type: integer
+    description: An upper cut-off value for the score in this decision; the check
+      fails if the score is equal to or above this value.
+  useCache:
+    type: integer
+    description: |-
+      Whether to check for and use existing Verifications and Verification Results for this decision.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Disabled.
+    - name: Enabled
+      description: Enabled.
+  cacheTime:
+    type: integer
+    description: The time caching limit to check for existing verification.
+  options:
+    type: integer
+    description: The options for the Verification are specified as a sum of the desired
+      options.
+  additionalOptions:
+    type: integer
+    description: The additionalOptions for the Verification are specified as a sum
+      of the desired options.
+  errorMessage:
+    type: string
+    description: 'The error message for the decision: If the field is null the error
+      message will be a generic failure message, if the field is empty the error message
+      will be a specific error message, if the field is set to a string the error
+      message will be that string.'
+  reason:
+    type: string
+    description: The reason for the decision. If the field is null the error message
+      will be a generic message, if the field is set to a string the reason message
+      will be that string.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: t1_log_61e72ab44fd39df9483aa2c
+  application: txn
+  level: partition
+  type: cvv
+  target: postauth
+  action: 1
+  value: '1'
+  period: days
+  periodFactor: 1
+  scheduleFactor: 1
+  start: 20160120
+  finish: 20160120
+  low: 1
+  useCache: 0
+  org: t1_org_5fada4629c317f80bc9cb12
+  entity: t1_ent_67d86dfd3442f3e2927ecbd
+  division: t1_div_67c56806728fbbf0bae0b00
+  partition: t1_ptn_000111d4d504f21414978f0
+  decision: t1_dcs_6789a1b36647513d66cf30a
+  sequence: 0
+  amount: 1
+  high: 2
+  cacheTime: 0
+  options: 0
+  additionalOptions: 0
+  errorMessage: Unable to accept without CVV
+  inactive: 0
+  frozen: 0

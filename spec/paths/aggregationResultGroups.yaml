@@ -1,0 +1,36 @@
+get:
+  description: Query an AggregationResultGroup resource, which holds data regarding
+    a processed aggregation.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResultsGroups:
+              $ref: ../components/schemas/samples/aggregationResultsGroupsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/aggregationResultsGroupsModel200Response.yaml
+      description: Retrieve Aggregation Result Groups Response for querying the aggregationResultGroups
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all aggregationResultsGroups:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Aggregation Result Groups.
+  tags:
+  - Aggregation Result Groups
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAggregationResultGroups

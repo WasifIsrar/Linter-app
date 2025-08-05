@@ -1,0 +1,81 @@
+get:
+  description: Query a Division.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, The Division ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_div_67e151c6b0210514824000a
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all divisions:
+              $ref: ../components/schemas/samples/divisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/divisionsModel200Response.yaml
+      description: Retrieve Division Response for query on divisions resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all divisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Division by it's ID.
+  tags:
+  - Divisions
+  - Facilitator
+  - Partner
+  operationId: getDivisionsId
+put:
+  description: Update a Division.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, The Division ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_div_67e151c6b0210514824000a
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/divisionsPutRequestModel.yaml
+    description: Update Division Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update divisions:
+              $ref: ../components/schemas/samples/divisionsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/divisionsModel200Response.yaml
+      description: Response for update on divisions resource Update Division Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all divisions:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Division by it's ID.
+  tags:
+  - Divisions
+  - Facilitator
+  - Partner
+  operationId: putDivisionsId

@@ -1,0 +1,22 @@
+title: fundingParameterLocked
+type: integer
+description: |
+  Whether this fundingParameter is locked or not.
+  If it is locked, then the value of this type of fundingParameter will prevail.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **OFF**
+  - `1` - **ON**
+
+  </details>
+default: 0
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: Off
+  description: OFF.
+- name: On
+  description: ON.

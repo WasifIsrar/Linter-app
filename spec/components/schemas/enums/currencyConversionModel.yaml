@@ -1,0 +1,24 @@
+title: CurrencyConversion
+type: string
+description: |
+  The status of the currency conversion.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `customerAccepted` - **The customer accepted the currency conversion rate.**
+  - `customerRejected` - **The customer rejected the currency conversion rate.**
+  - `notEligible` - **This transaction is not eligible for currency conversion.**
+
+  </details>
+enum:
+- customerAccepted
+- customerRejected
+- notEligible
+x-enum-elements:
+- name: CustomerAccepted
+  description: The customer accepted the currency conversion rate.
+- name: CustomerRejected
+  description: The customer rejected the currency conversion rate.
+- name: NotEligible
+  description: This transaction is not eligible for currency conversion.

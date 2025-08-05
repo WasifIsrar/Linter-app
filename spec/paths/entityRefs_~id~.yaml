@@ -1,0 +1,125 @@
+get:
+  description: Query an EntityRefs resource that represents a reference code issued
+    by the Processor that represents a particular Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity reference.
+    explode: false
+    in: path
+    name: id
+    example: t1_erf_67c6cec3bae7182e38d05b0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityRefs:
+              $ref: ../components/schemas/samples/entityRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityRefsModel200Response.yaml
+      description: The response for retrieving an Entity Reference.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Entity Reference by it's ID.
+  tags:
+  - EntityRefs
+  - Facilitator
+  - Partner
+  operationId: getEntityRefsId
+put:
+  description: Update an entityRefs resource, which represents a reference code issued
+    by the Processor that represents a particular Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity reference.
+    explode: false
+    in: path
+    name: id
+    example: t1_erf_67c6cec3bae7182e38d05b0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityRefsPutRequestModel.yaml
+    description: Update an Entity Reference Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update entityRefs:
+              $ref: ../components/schemas/samples/entityRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityRefsModel200Response.yaml
+      description: The response for updating an entity reference.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Entity Reference by it's ID.
+  tags:
+  - EntityRefs
+  - Facilitator
+  operationId: putEntityRefsId
+delete:
+  description: Delete an entityRefs resource, which represents a reference code issued
+    by the Processor that represents a particular Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity reference.
+    explode: false
+    in: path
+    name: id
+    example: t1_erf_67c6cec3bae7182e38d05b0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete entityRefs:
+              $ref: ../components/schemas/samples/entityRefsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityRefsModel200Response.yaml
+      description: 'The response for deleting an entity reference.
+
+
+        Details:
+
+
+        * None'
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityRefs:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Entity Reference by it's ID.
+  tags:
+  - EntityRefs
+  - Facilitator
+  operationId: deleteEntityRefsId

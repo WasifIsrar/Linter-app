@@ -1,0 +1,53 @@
+title: loginHelpersResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  mfaSmsCode:
+    type: string
+    description: The most recent SMS Code which has been texted to the user.
+  mfaSmsCodeUnixTime:
+    type: integer
+    description: The expiry date of the most recent SMS Code.
+  mfaSmsCodeAttempts:
+    type: integer
+    description: The number of times the most recent code has been attempted.
+  mfaSmsCodesCount:
+    type: integer
+    description: "The number of codes which has been created in the current window.\
+      \ \n If this goes above the max, you must wait until a new window to create\
+      \ more."
+  mfaSmsWindow:
+    type: integer
+    description: The end time of the current MFA SMS window which is a sliding window
+      limiting how many codes can be generated during a given window.
+  loginAsEnabled:
+    type: integer
+    description: |
+      Whether the associated login can use loginAs or not.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **OFF**
+      - `1` - **ON**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: OFF
+      description: LoginAs is disabled.
+    - name: ON
+      description: LoginAs is enabled.

@@ -1,0 +1,31 @@
+type: object
+description: An object describing the response, including the request ID and pagination
+  indicators.
+title: details
+properties:
+  requestId:
+    type: string
+    description: "A unique identifier set by the API client, that is echoed by the\
+      \ response. \nThe request ID can be useful in troubleshooting and monitoring."
+  totals:
+    anyOf:
+      - type: array
+        description: "Returns an empty array if we don't pass totals header"
+      - type: object
+        description: "Returns a total (e.g., sum) for all instances of a field in a result set."
+  page:
+    type: object
+    description: "Where the response lists multiple resources, the API splits the\
+      \ response into several 'pages'. \nThis object indicates the current and last\
+      \ available pages in the list."
+    title: detailsProperties
+    properties:
+      current:
+        type: integer
+        description: The current page in the paginated resource list.
+      last:
+        type: integer
+        description: The last available page in the paginated resource list.
+      hasMore:
+        type: boolean
+        description: Indicates if another page of results is available.

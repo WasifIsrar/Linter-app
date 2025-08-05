@@ -1,0 +1,39 @@
+get:
+  description: Query a OrgsVasNetworkPaymentManager.
+    an Entity.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_ovr_67a18bcde1a1b2ec3d9c9az
+    required: true
+    schema:
+      type: string
+      description: The OrgsVASRevenueBoost ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASRevenueBoosts:
+              $ref: ../components/schemas/samples/orgsVASRevenueBoostsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/orgsVASRevenueBoostsModel200Response.yaml
+      description: Response for query on orgsVASRevenueBoosts resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all orgsVASRevenueBoosts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a OrgsVASRevenueBoosts by its ID.
+  tags:
+  - Orgs VAS RevenueBoosts
+  - Merchant
+  - Partner
+  operationId: getOrgsVASRevenueBoostsId

@@ -1,0 +1,47 @@
+title: invoiceParametersPostRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login that owns this invoiceParameter resource.
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this invoiceParameter.
+  division:
+    type: string
+    description: The identifier of the Division associated with this invoiceParameter.
+  org:
+    type: string
+    description: The identifier of the Org associated with this invoiceParameter.
+  partition:
+    type: string
+    description: The identifier of the Partition associated with this invoiceParameter.
+  locked:
+    $ref: ../enums/invoiceParameterLockedModel.yaml
+  type:
+    $ref: ../enums/invoiceParameterTypeModel.yaml
+  value:
+    type: string
+    description: The value of this type of invoiceParameter.
+  inactive:
+    $ref: ../../../components/schemas/inactive.yaml
+  frozen:
+    $ref: ../../../components/schemas/frozen.yaml
+required:
+- frozen
+- inactive
+- locked
+- login
+- type
+- value
+
+example:
+  login: t1_log_67c272f9078d060d291fdez
+  entity: t1_ent_67c272f920c1724d2709c0b
+  division: t1_div_67c56806728fbbf0bae0b00
+  org: t1_org_67b736ad7d05922340000cf
+  partition: t1_ptn_666834d4d504f11234578f0
+  locked: 0
+  type: apikey
+  value: ecfb12e30dcfc1421a2e6c18345cb0a6
+  inactive: 0
+  frozen: 0

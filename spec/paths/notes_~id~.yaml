@@ -1,0 +1,122 @@
+get:
+  description: Query a Notes resource that represents risk management notes, reviews,
+    and releases for a Hold, Txn, and Entity specific data.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this note.
+    explode: false
+    in: path
+    name: id
+    example: p1_not_00c7145c4daae43427e0d91
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch note:
+              $ref: ../components/schemas/samples/notesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/notesModel200Response.yaml
+      description: Response for retrieving note response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all notes:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Note by it's ID.
+  tags:
+  - Notes
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getNotesId
+put:
+  description: Update a Note.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this note.
+    explode: false
+    in: path
+    name: id
+    example: p1_not_00c7145c4daae43427e0d91
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/notesPutRequestModel.yaml
+    description: Update Note Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update note:
+              $ref: ../components/schemas/samples/notesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/notesModel200Response.yaml
+      description: Response for update on note's response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all notes:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Note by it's ID.
+  tags:
+  - Notes
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putNotesId
+delete:
+  description: Delete a Note.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this note.
+    explode: false
+    in: path
+    name: id
+    example: p1_not_00c7145c4daae43427e0d91
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete note:
+              $ref: ../components/schemas/samples/notesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/notesModel200Response.yaml
+      description: Response for deleted note.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all notes:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete Note by it's ID.
+  tags:
+  - Notes
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteNotesId

@@ -1,0 +1,16 @@
+title: orgsVASSaferPaymentsPostRequest
+properties:
+  org: 
+    type: string
+    description: The identifier of the Org (group) that OrgsVASOmniTokens is associated to.
+  defaultProgram: 
+    $ref: ../enums/orgsVASSaferPaymentsDefaultProgramModel.yaml  
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+example:
+  org: t1_org_680bfd2cea2729081810000
+  defaultProgram: basic
+  inactive: 0
+  frozen: 0  

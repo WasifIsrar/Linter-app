@@ -1,0 +1,102 @@
+get:
+  description: "Query a Parameter resource. \nA Parameter resource is a setting that\
+    \ you can apply to an Org or Entity that determines key attributes of how it is\
+    \ able to use the API. \nWhen applied to an Org, the parameter affects every entity\
+    \ in that Org. \nExamples of Parameters include minimum and maximum processing\
+    \ totals and whether particular card types are enabled."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/parametersModel200Response.yaml
+      description: Response for query on parameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Parameters
+  - Facilitator
+  operationId: getParametersId
+put:
+  description: "Update a Parameter resource. \nA Parameter resource is a setting that\
+    \ you can apply to an Org or Entity that determines key attributes of how it is\
+    \ able to use the API. \nWhen applied to an Org, the parameter affects every entity\
+    \ in that Org. \nExamples of Parameters include minimum and maximum processing\
+    \ totals and whether particular card types are enabled."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/parametersPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/parametersModel200Response.yaml
+      description: Response for update on parameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Parameters
+  - Facilitator
+  operationId: putParametersId
+delete:
+  description: "Delete a Parameter resource. \nA Parameter resource is a setting that\
+    \ you can apply to an Org or Entity that determines key attributes of how it is\
+    \ able to use the API. \nWhen applied to an Org, the parameter affects every entity\
+    \ in that Org. \nExamples of Parameters include minimum and maximum processing\
+    \ totals and whether particular card types are enabled."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/parametersModel200Response.yaml
+      description: Response for delete on parameters resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Parameters
+  - Facilitator
+  operationId: deleteParametersId

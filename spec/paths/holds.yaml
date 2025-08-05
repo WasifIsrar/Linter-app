@@ -1,0 +1,74 @@
+get:
+  description: "Query a holds resource. \nA holds resource represents a reviewable\
+    \ action taken on a Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/holdsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/holdsModel200Response.yaml
+      description: Retrieve all Transaction Holds and response for query on holds
+        resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Transaction Holds.
+  tags:
+  - Transaction Holds
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getHolds
+post:
+  description: "Create a holds resource. \nA holds resource represents a reviewable\
+    \ action taken on a Transaction."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/holdsPostRequestModel.yaml
+    description: Create a Transaction Hold Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/holdsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/holdsModel200Response.yaml
+      description: Create a Transaction Hold Response for the holds resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all holds:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a Transaction Hold.
+  tags:
+  - Transaction Holds
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postHolds
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,34 @@
+get:
+  description: "Query a txnReports resource. \nA txnReports resource represents information\
+    \ about a transaction received from the Processor. \nIn particular, it captures\
+    \ information about the interchange type and issuing bank, as well as the fees\
+    \ that were levied."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnReports:
+              $ref: ../components/schemas/samples/txnReportsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/txnReportsModel200Response.yaml
+      description: Response for query on txnReports resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnReports:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Txn Reports
+  - Facilitator
+  operationId: getTxnReports

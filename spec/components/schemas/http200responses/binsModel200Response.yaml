@@ -1,0 +1,13 @@
+title: binsResponseResult
+properties:
+  response:
+    title: binsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/binsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

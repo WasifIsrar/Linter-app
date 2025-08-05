@@ -1,0 +1,110 @@
+title: billingsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  entity:
+    type: string
+    description: The alphanumeric identifier of the Entity associated with this Account.
+  forentity:
+    type: string
+    description: The alphanumeric identifier of the Entity associated with this Account.
+  org:
+    type: string
+    description: The identifier of the Org associated with this invoiceParameter.
+  division:
+    type: string
+    description: ID of the division associated with this vendor
+  partition:
+    type: string
+    description: The identifier of the Partition associated with this invoiceParameter.
+  description:
+    type: string
+    description: The billing details.
+  schedule:
+    $ref: ../enums/billingScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: "A multiplier that you can use to adjust the schedule set in the\
+      \ 'schedule' field, if it is set to a duration-based trigger, such as daily,\
+      \ weekly, monthly, or annually. \nThis field is specified as an integer and\
+      \ its value determines how the interval is multiplied."
+  start:
+    type: integer
+    format: date-time
+    description: The date on which this Billing period should start.
+  finish:
+    type: integer
+    format: date-time
+    description: The date on which this Billing period should end.
+  collectionFactor:
+    type: string
+    description: |
+      A multiplier that you can use to adjust the set of data to be used in the collection calculation.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `days` - **Days.** Multiplier based on days.
+      - `weeks` - **Weeks.** Multiplier based on weeks.
+      - `months` - **Months.** Multiplier based on months.
+      - `years` - **Years.** Multiplier based on years.
+
+      </details>
+    enum:
+    - days
+    - weeks
+    - months
+    - years
+    x-enum-elements:
+    - name: Days
+      description: Multiplier based on days.
+    - name: Weeks
+      description: Multiplier based on weeks.
+    - name: Months
+      description: Multiplier based on months.
+    - name: Years
+      description: Multiplier based on years.
+  collectionOffset:
+    type: integer
+    description: The number of days, weeks, months or years to go back when selecting
+      data for collection calculation.
+  collectionIncludeCurrent:
+    type: integer
+    description: |
+      Whether to include the current period in the collection calculation.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Exclude Current Period.** Do not include the current period in the calculation.
+      - `1` - **Include Current Period.** Include the current period in the calculation.
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: ExcludeCurrentPeriod
+      description: Do not include the current period in the calculation.
+    - name: IncludeCurrentPeriod
+      description: Include the current period in the calculation.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of the amount in this billing. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+  collection:
+    $ref: ../enums/billingCollectionModel.yaml

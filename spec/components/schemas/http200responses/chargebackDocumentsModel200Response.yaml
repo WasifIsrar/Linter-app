@@ -1,0 +1,13 @@
+title: chargebackDocumentsResponseResult
+properties:
+  response:
+    title: chargebackDocumentsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/chargebackDocumentsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

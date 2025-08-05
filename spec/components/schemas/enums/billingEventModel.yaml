@@ -1,0 +1,32 @@
+title: billingEvent
+type: string
+description: |
+  The type of event that triggers billing.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `fees` - **Fee.** Fee events trigger the billing configuration.
+  - `chargebacks` - **Chargebacks.** Chargeback events trigger the billing configuration.
+  - `returns` - **Returns.** Return events trigger the billing configuration.
+  - `profitShares` - **Profit Shares.** Profit Sharing events trigger the billing configuration.
+  - `revShares` - **RevShares.** Rev Sharing events trigger the billing configuration.
+
+  </details>
+enum:
+- fees
+- chargebacks
+- returns
+- profitShares
+- revShares
+x-enum-elements:
+- name: Fees
+  description: Fee events trigger the billing configuration.
+- name: Chargebacks
+  description: Chargeback events trigger the billing configuration.
+- name: Returns
+  description: Return events trigger the billing configuration.
+- name: ProfitShares
+  description: Profit Sharing events trigger the billing configuration.
+- name: revShares
+  description: Rev Sharing events trigger the billing configuration.

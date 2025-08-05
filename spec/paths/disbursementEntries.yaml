@@ -1,0 +1,70 @@
+get:
+  description: Query DisbursementEntries to get records of where each disbursement
+    amount is coming from.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entries:
+              $ref: ../components/schemas/samples/disbursementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementEntriesModel200Response.yaml
+      description: Retrieve Response for query on DisbursementEntries resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all Disbursement entries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Disbursement Entries.
+  tags:
+  - Disbursement Entries
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getDisbursementEntries
+post:
+  description: "Create a DisbursementEntry. \nA DisbursementEntry is a record of where\
+    \ the disbursement amount comes from."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/disbursementEntriesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch disbursement entries:
+              $ref: ../components/schemas/samples/disbursementEntriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/disbursementEntriesModel200Response.yaml
+      description: Response for create on disbursementEntries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all disbursement entries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create new disbursement entries.
+  tags:
+  - Disbursement Entries
+  - Facilitator
+  operationId: postDisbursementEntries
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

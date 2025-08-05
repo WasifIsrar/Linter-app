@@ -1,0 +1,59 @@
+title: chargebackDocumentsPostRequest
+properties:
+  chargeback:
+    type: string
+    description: The identifier of the Chargeback resource that this chargebackDocument
+      relates to.
+  type:
+    $ref: ../enums/chargebackDocumentTypeModel.yaml
+  ref:
+    type: string
+    description: The reference of this chargeback document is stored as a text string
+      and must be between 1 and 100 characters long, with the value being set when
+      the file is properly integrated, otherwise it will be null.
+  description:
+    type: string
+    description: "The description of this chargebackDocument. \nThis field is stored\
+      \ as a text string and must be between 1 and 100 characters long."
+  name:
+    type: string
+    description: The name of this chargeback document holds the real file name used
+      by the user, stored as a text string and must be between 1 and 100 characters
+      long.
+  documentSource:  
+    type: string
+    description: |-
+      The source of the document.
+      <details> 
+      <summary>Valid Values</summary>
+      - `merchant` - **Merchant.**
+      - `issuer` - **Issuer.**
+      </details>
+    nullable: true
+    enum: 
+    - merchant 
+    - issuer 
+    x-enum-elements:
+    - name: "Merchant"
+      description: "Merchant."
+    - name: "Issuer"
+      description: "Issuer."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- chargeback
+- frozen
+- inactive
+
+example: 
+  chargeback: t1_chb_679918b34232ae6145ec03e
+  ref: p1_chd_67b31fca23feed2b88d8a59.pdf
+  type: pdf
+  name: Test PDF  copy.pdf
+  description: Test PDF  copy.pdf
+  inactive: 0
+  frozen: 0
+  documentSource: merchant
+

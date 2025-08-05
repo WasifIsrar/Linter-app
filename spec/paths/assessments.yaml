@@ -1,0 +1,71 @@
+get:
+  description: Query an Assessment resource that represents a record of fees charged
+    by processors or other third parties to Entities or Orgs. These fees are levied
+    on a one-off, regularly scheduled, or event-driven basis.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all assessments:
+              $ref: ../components/schemas/samples/assessmentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/assessmentsModel200Response.yaml
+      description: Retrieve assessments response for query on assessments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all assessments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Assessments.
+  tags:
+  - Assessments
+  - Facilitator
+  - Partner
+  operationId: getAssessments
+post:
+  description: "Create an Assessment resource. \nAn Assessment resource represents\
+    \ a record of fees charged by processors or other third parties to Entities or\
+    \ Orgs. \nThese can represent charges that are levied on a one-off, regularly\
+    \ scheduled, or event-driven basis."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/assessmentsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all assessments:
+              $ref: ../components/schemas/samples/assessmentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/assessmentsModel200Response.yaml
+      description: Response for create on assessments resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all assessments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Assessments
+  - Facilitator
+  operationId: postAssessments
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

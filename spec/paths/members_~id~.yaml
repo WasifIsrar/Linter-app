@@ -1,0 +1,128 @@
+get:
+  description: Query a Member. A Member is a person who is associated with a Merchant;
+    One Member associated with each Merchant can be the 'primary' Member, meaning
+    the Member with the most share of ownership in the Merchant.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this member.
+    explode: false
+    in: path
+    name: id
+    example: t1_mbr_67d0336c01048ea41c4382z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/membersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/membersModel200Response.yaml
+      description: Response for retrieve member.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Member by their ID.
+  tags:
+  - Members
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMembersId
+put:
+  description: Update a Member, A Member is a person who is associated with a Merchant,
+    One Member associated with each Merchant can be the 'primary' Member, meaning
+    the Member with the most share of ownership in the Merchant.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this member.
+    explode: false
+    in: path
+    name: id
+    example: t1_mbr_67d0336c01048ea41c4382z
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/membersPutRequestModel.yaml
+    description: Update Member Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update members:
+              $ref: ../components/schemas/samples/membersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/membersModel200Response.yaml
+      description: Response for update on members resource Update Member Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Member by their ID.
+  tags:
+  - Members
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putMembersId
+delete:
+  description: Delete a Member. A Member is a person who is associated with a Merchant.
+    One Member associated with each Merchant can be the 'primary' Member, meaning
+    the Member with the most share of ownership in the Merchant.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this member.
+    explode: false
+    in: path
+    name: id
+    example: t1_mbr_67d0336c01048ea41c4382z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete members:
+              $ref: ../components/schemas/samples/membersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/membersModel200Response.yaml
+      description: The response for deleting a member from the members resource is
+        the Delete Member Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Member by their ID.
+  tags:
+  - Members
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteMembersId

@@ -1,0 +1,28 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ove_6862c122527a9042ec000c0",
+        "created": "2025-06-30 12:53:54.3584",
+        "modified": "2025-06-30 12:53:54.3584",
+        "creator": "t1_log_65c6415ad9791e3796f000c",
+        "modifier": "t1_log_65c6415ad9791e3796f000c",
+        "org": "t1_org_6862c1211b366bbfe87657c",
+        "product": "merchantWorkingCapital",
+        "contractType": "{\"residualFeeType\": \"rev_share\"}",
+        "platform": "PARAFIN",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

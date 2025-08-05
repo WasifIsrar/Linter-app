@@ -1,0 +1,13 @@
+    title: messagesRead
+    type: integer
+    description: "Whether this resource is marked as read.\n\n<details>\n<summary>Valid\
+      \ Values</summary>\n\n- `0` - **Message has not been read yet.**\n\n- `1` -\
+      \ **Message has been read and a value.** \n\n</details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Unread"
+      description: "Message has not been read yet."
+    - name: "Read"
+      description: "Message has been read."

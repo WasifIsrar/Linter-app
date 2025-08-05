@@ -1,0 +1,52 @@
+get:
+  description: Query mfaRecoveryCodes.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mfaRecoveryCodesModel200Response.yaml
+      description: Response for query on mfaRecoveryCodes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - MFA Recovery Codes
+  - Facilitator
+  operationId: getMfaRecoveryCodes
+post:
+  description: Create a mfaRecoveryCode.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/mfaRecoveryCodesPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/mfaRecoveryCodesModel200Response.yaml
+      description: Response for create on mfaRecoveryCodes resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - MFA Recovery Codes
+  - Facilitator
+  operationId: postMfaRecoveryCodes
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

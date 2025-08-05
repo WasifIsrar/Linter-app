@@ -1,0 +1,29 @@
+title: aggregationStatus
+type: string
+description: |
+  The current status of the aggregation process.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `notReady` - **Aggregation is not ready.**
+  - `ready` - **Aggregation is ready.**
+  - `processing` - **Aggregation is processing.**
+  - `processed` - **Aggregation has been processed.**
+
+  </details>
+default: notReady
+enum:
+- notReady
+- ready
+- processing
+- processed
+x-enum-elements:
+- name: NotReady
+  description: Aggregation is not ready.
+- name: Ready
+  description: Aggregation is ready.
+- name: Processing
+  description: Aggregation is processing.
+- name: Processed
+  description: Aggregation has been processed.

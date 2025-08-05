@@ -1,0 +1,75 @@
+get:
+  description: Query a Member, A Member being a person who is associated with a Merchant,
+    and one Member associated with each Merchant can be the 'primary' Member, meaning
+    the Member with the most share of ownership in the Merchant.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/membersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/membersModel200Response.yaml
+      description: Retrieve Members Response for query on members resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Members.
+  tags:
+  - Members
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMembers
+post:
+  description: Create a Member. A Member is a person who is associated with a Merchant,
+    and one Member associated with each Merchant can be the 'primary' Member, meaning
+    the Member with the most share of ownership in the Merchant.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/membersPostRequestModel.yaml
+    description: Create Member Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create members:
+              $ref: ../components/schemas/samples/membersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/membersModel200Response.yaml
+      description: Response for create on members resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all members:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Member
+  tags:
+  - Members
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postMembers
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

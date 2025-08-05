@@ -1,0 +1,28 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_trs_67b867ff0b004311c46fb0z",
+        "created": "2025-02-21 06:48:15.0557",
+        "modified": "2025-02-21 06:48:15.0557",
+        "creator": "t1_log_5d13d9c20a39da6f5030426",
+        "modifier": "t1_log_5d13d9c20a39da6f5030426",
+        "txn": "t1_txn_00b867fdf2ec4fd7bf7c59e",
+        "type": 4,
+        "message": "CVV match confirmed",
+        "code": 3,
+        "bankCode": "match",
+        "originalCode": "M"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

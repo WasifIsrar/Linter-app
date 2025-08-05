@@ -1,0 +1,527 @@
+type: string
+#description: "The country in the address to match. Currently,
+#      this field only accepts the value 'USA'.",
+enum: [ ABW, AFG, AGO, AIA, ALA, ALB, AND, ARE, ARG, ARM,
+        ASM, ATA, ATF, ATG, AUS, AUT, AZE, BDI, BEL, BEN, BES,
+        BFA, BGD, BGR, BHR, BHS, BIH, BLM, BLR, BLZ, BMU, BOL,
+        BRA, BRB, BRN, BTN, BVT, BWA, CAF, CAN, CCK, CHE, CHL,
+        CHN, CIV, CMR, COD, COG, COK, COL, COM, CPV, CRI, CUB,
+        CUW, CXR, CYM, CYP, CZE, DEU, DJI, DMA, DNK, DOM, DZA,
+        ECU, EGY, ERI, ESH, ESP, EST, ETH, FIN, FJI, FLK, FRA,
+        FRO, FSM, GAB, GBR, GEO, GGY, GHA, GIB, GIN, GLP, GMB,
+        GNB, GNQ, GRC, GRD, GRL, GTM, GUF, GUM, GUY, HKG, HMD,
+        HND, HRV, HTI, HUN, IDN, IMN, IND, IOT, IRL, IRN, IRQ,
+        ISL, ISR, ITA, JAM, JEY, JOR, JPN, KAZ, KEN, KGZ, KHM,
+        KIR, KNA, KOR, KWT, LAO, LBN, LBR, LBY, LCA, LIE, LKA,
+        LSO, LTU, LUX, LVA, MAC, MAF, MAR, MCO, MDA, MDG, MDV,
+        MEX, MHL, MKD, MLI, MLT, MMR, MNE, MNG, MNP, MOZ, MRT,
+        MSR, MTQ, MUS, MWI, MYS, MYT, NAM, NCL, NER, NFK, NGA,
+        NIC, NIU, NLD, NOR, NPL, NRU, NZL, OMN, PAK, PAN, PCN,
+        PER, PHL, PLW, PNG, POL, PRI, PRK, PRT, PRY, PSE, PYF,
+        QAT, REU, ROU, RUS, RWA, SAU, SDN, SEN, SGP, SGS, SHN,
+        SJM, SLB, SLE, SLV, SMR, SOM, SPM, SRB, SSD, STP, SUR,
+        SVK, SVN, SWE, SWZ, SXM, SYC, SYR, TCA, TCD, TGO, THA,
+        TJK, TKL, TKM, TLS, TON, TTO, TUN, TUR, TUV, TWN, TZA,
+        UGA, UKR, UMI, URY, USA, UZB, VAT, VCT, VEN, VGB, VIR,
+        VNM, VUT, WLF, WSM, XXK, YEM, ZAF, ZMB, ZWE ]
+x-enum-elements:
+- name: ABW
+  description: Aruba
+- name: AFG
+  description: Afghanistan
+- name: AGO
+  description: Angola
+- name: AIA
+  description: Anguilla
+- name: ALA
+  description: Aland Islands
+- name: ALB
+  description: Albania
+- name: AND
+  description: Andorra
+- name: ARE
+  description: United Arab Emirates
+- name: ARG
+  description: Argentina
+- name: ARM
+  description: Armenia
+- name: ASM
+  description: American Samoa
+- name: ATA
+  description: Antarctica
+- name: ATF
+  description: French Southern Territories
+- name: ATG
+  description: Antigua and Barbuda
+- name: AUS
+  description: Australia
+- name: AUT
+  description: Austria
+- name: AZE
+  description: Azerbaijan
+- name: BDI
+  description: Burundi
+- name: BEL
+  description: Belgium
+- name: BEN
+  description: Benin
+- name: BES
+  description: Bonaire, Sint Eustatius and Saba
+- name: BFA
+  description: Burkina Faso
+- name: BGD
+  description: Bangladesh
+- name: BGR
+  description: Bulgaria
+- name: BHR
+  description: Bahrain
+- name: BHS
+  description: Bahamas
+- name: BIH
+  description: Bosnia and Herzegovina
+- name: BLM
+  description: Saint Barthélemy
+- name: BLR
+  description: Belarus
+- name: BLZ
+  description: Belize
+- name: BMU
+  description: Bermuda
+- name: BOL
+  description: Bolivia, Plurinational State of
+- name: BRA
+  description: Brazil
+- name: BRB
+  description: Barbados
+- name: BRN
+  description: Brunei Darussalam
+- name: BTN
+  description: Bhutan
+- name: BVT
+  description: Bouvet Island
+- name: BWA
+  description: Botswana
+- name: CAF
+  description: Central African Republic
+- name: CAN
+  description: Canada
+- name: CCK
+  description: Cocos (Keeling) Islands
+- name: CHE
+  description: Switzerland
+- name: CHL
+  description: Chile
+- name: CHN
+  description: China
+- name: CIV
+  description: Côte d’Ivoire
+- name: CMR
+  description: Cameroon
+- name: COD
+  description: Congo, the Democratic Republic of the
+- name: COG
+  description: Congo
+- name: COK
+  description: Cook Islands
+- name: COL
+  description: Colombia
+- name: COM
+  description: Comoros
+- name: CPV
+  description: Cape Verde
+- name: CRI
+  description: Costa Rica
+- name: CUB
+  description: Cuba
+- name: CUW
+  description: Curaçao
+- name: CXR
+  description: Christmas Island
+- name: CYM
+  description: Cayman Islands
+- name: CYP
+  description: Cyprus
+- name: CZE
+  description: Czech Republic
+- name: DEU
+  description: Germany
+- name: DJI
+  description: Djibouti
+- name: DMA
+  description: Dominica
+- name: DNK
+  description: Denmark
+- name: DOM
+  description: Dominican Republic
+- name: DZA
+  description: Algeria
+- name: ECU
+  description: Ecuador
+- name: EGY
+  description: Egypt
+- name: ERI
+  description: Eritrea
+- name: ESH
+  description: Western Sahara
+- name: ESP
+  description: Spain
+- name: EST
+  description: Estonia
+- name: ETH
+  description: Ethiopia
+- name: FIN
+  description: Finland
+- name: FJI
+  description: Fiji
+- name: FLK
+  description: Falkland Islands (Malvinas)
+- name: FRA
+  description: France
+- name: FRO
+  description: Faroe Islands
+- name: FSM
+  description: Micronesia, Federated States of
+- name: GAB
+  description: Gabon
+- name: GBR
+  description: United Kingdom
+- name: GEO
+  description: Georgia
+- name: GGY
+  description: Guernsey
+- name: GHA
+  description: Ghana
+- name: GIB
+  description: Gibraltar
+- name: GIN
+  description: Guinea
+- name: GLP
+  description: Guadeloupe
+- name: GMB
+  description: Gambia
+- name: GNB
+  description: Guinea-Bissau
+- name: GNQ
+  description: Equatorial Guinea
+- name: GRC
+  description: Greece
+- name: GRD
+  description: Grenada
+- name: GRL
+  description: Greenland
+- name: GTM
+  description: Guatemala
+- name: GUF
+  description: French Guiana
+- name: GUM
+  description: Guam
+- name: GUY
+  description: Guyana
+- name: HKG
+  description: Hong Kong
+- name: HMD
+  description: Heard Island and McDonald Islands
+- name: HND
+  description: Honduras
+- name: HRV
+  description: Croatia
+- name: HTI
+  description: Haiti
+- name: HUN
+  description: Hungary
+- name: IDN
+  description: Indonesia
+- name: IMN
+  description: Isle of Man
+- name: IND
+  description: India
+- name: IOT
+  description: British Indian Ocean Territory
+- name: IRL
+  description: Ireland
+- name: IRN
+  description: Iran, Islamic Republic of
+- name: IRQ
+  description: Iraq
+- name: ISL
+  description: Iceland
+- name: ISR
+  description: Israel
+- name: ITA
+  description: Italy
+- name: JAM
+  description: Jamaica
+- name: JEY
+  description: Jersey
+- name: JOR
+  description: Jordan
+- name: JPN
+  description: Japan
+- name: KAZ
+  description: Kazakhstan
+- name: KEN
+  description: Kenya
+- name: KGZ
+  description: Kyrgyzstan
+- name: KHM
+  description: Cambodia
+- name: KIR
+  description: Kiribati
+- name: KNA
+  description: Saint Kitts and Nevis
+- name: KOR
+  description: Korea, Republic of
+- name: KWT
+  description: Kuwait
+- name: LAO
+  description: Lao People's Democratic Republic
+- name: LBN
+  description: Lebanon
+- name: LBR
+  description: Liberia
+- name: LBY
+  description: Libya
+- name: LCA
+  description: Saint Lucia
+- name: LIE
+  description: Liechtenstein
+- name: LKA
+  description: Sri Lanka
+- name: LSO
+  description: Lesotho
+- name: LTU
+  description: Lithuania
+- name: LUX
+  description: Luxembourg
+- name: LVA
+  description: Latvia
+- name: MAC
+  description: Macao
+- name: MAF
+  description: Saint Martin (French part)
+- name: MAR
+  description: Morocco
+- name: MCO
+  description: Monaco
+- name: MDA
+  description: Moldova, Republic of
+- name: MDG
+  description: Madagascar
+- name: MDV
+  description: Maldives
+- name: MEX
+  description: Mexico
+- name: MHL
+  description: Marshall Islands
+- name: MKD
+  description: Macedonia, the former Yugoslav Republic of
+- name: MLI
+  description: Mali
+- name: MLT
+  description: Malta
+- name: MMR
+  description: Myanmar
+- name: MNE
+  description: Montenegro
+- name: MNG
+  description: Mongolia
+- name: MNP
+  description: Northern Mariana Islands
+- name: MOZ
+  description: Mozambique
+- name: MRT
+  description: Mauritania
+- name: MSR
+  description: Montserrat
+- name: MTQ
+  description: Martinique
+- name: MUS
+  description: Mauritius
+- name: MWI
+  description: Malawi
+- name: MYS
+  description: Malaysia
+- name: MYT
+  description: Mayotte
+- name: NAM
+  description: Namibia
+- name: NCL
+  description: New Caledonia
+- name: NER
+  description: Niger
+- name: NFK
+  description: Norfolk Island
+- name: NGA
+  description: Nigeria
+- name: NIC
+  description: Nicaragua
+- name: NIU
+  description: Niue
+- name: NLD
+  description: Netherlands
+- name: NOR
+  description: Norway
+- name: NPL
+  description: Nepal
+- name: NRU
+  description: Nauru
+- name: NZL
+  description: New Zealand
+- name: OMN
+  description: Oman
+- name: PAK
+  description: Pakistan
+- name: PAN
+  description: Panama
+- name: PCN
+  description: Pitcairn
+- name: PER
+  description: Peru
+- name: PHL
+  description: Philippines
+- name: PLW
+  description: Palau
+- name: PNG
+  description: Papua New Guinea
+- name: POL
+  description: Poland
+- name: PRI
+  description: Puerto Rico
+- name: PRK
+  description: Korea, Democratic People's Republic of
+- name: PRT
+  description: Portugal
+- name: PRY
+  description: Paraguay
+- name: PSE
+  description: Palestine, State of
+- name: PYF
+  description: French Polynesia
+- name: QAT
+  description: Qatar
+- name: REU
+  description: Réunion
+- name: ROU
+  description: Romania
+- name: RUS
+  description: Russian Federation
+- name: RWA
+  description: Rwanda
+- name: SAU
+  description: Saudi Arabia
+- name: SDN
+  description: Sudan
+- name: SEN
+  description: Senegal
+- name: SGP
+  description: Singapore
+- name: SGS
+  description: South Georgia and the South Sandwich Islands
+- name: SHN
+  description: Saint Helena, Ascension and Tristan da Cunha
+- name: SJM
+  description: Svalbard and Jan Mayen
+- name: SLB
+  description: Solomon Islands
+- name: SLE
+  description: Sierra Leone
+- name: SLV
+  description: El Salvador
+- name: SMR
+  description: San Marino
+- name: SOM
+  description: Somalia
+- name: SPM
+  description: Saint Pierre and Miquelon
+- name: SRB
+  description: Serbia
+- name: SSD
+  description: South Sudan
+- name: STP
+  description: Sao Tome and Principe
+- name: SUR
+  description: Suriname
+- name: SVK
+  description: Slovakia
+- name: SVN
+  description: Slovenia
+- name: SWE
+  description: Sweden
+- name: SWZ
+  description: Swaziland
+- name: SXM
+  description: Sint Maarten (Dutch part)
+- name: SYC
+  description: Seychelles
+- name: SYR
+  description: Syrian Arab Republic
+- name: TCA
+  description: Turks and Caicos Islands
+- name: TCD
+  description: Chad
+- name: TGO
+  description: Togo
+- name: THA
+  description: Thailand
+- name: TJK
+  description: Tajikistan
+- name: TKL
+  description: Tokelau
+- name: TKM
+  description: Turkmenistan
+- name: TLS
+  description: Timor-Leste
+- name: TON
+  description: Tonga
+- name: TTO
+  description: Trinidad and Tobago
+- name: TUN
+  description: Tunisia
+- name: TUR
+  description: Turkey
+- name: TUV
+  description: Tuvalu
+- name: TWN
+  description: Taiwan, Province of China
+- name: TZA
+  description: Tanzania, United Republic of
+- name: UGA
+  description: Uganda
+- name: UKR
+  description: Ukraine
+- name: UMI
+  description: United States Minor Outlying Islands
+- name: URY
+  description: Uruguay
+- name: USA
+  description: United States
+- name: UZB
+  description: Uzbekistan
+- name: VAT
+  description: Holy See (Vatican City State)
+- name: VCT
+  description: Saint Vincent and the Grenadines
+- name: VEN
+  description: Venezuela, Bolivarian Republic of
+- name: VGB
+  description: Virgin Islands, British
+- name: VIR
+  description: Virgin Islands, U.S.
+- name: VNM
+  description: Viet Nam
+- name: VUT
+  description: Vanuatu
+- name: WLF
+  description: Wallis and Futuna
+- name: WSM
+  description: Samoa
+- name: XXK
+  description: Kosovo
+- name: YEM
+  description: Yemen
+- name: ZAF
+  description: South Africa
+- name: ZMB
+  description: Zambia
+- name: ZWE
+  description: Zimbabwe

@@ -1,0 +1,25 @@
+title: reportType
+type: string
+description: |
+  The report data format type.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `json` - **JSON data format.**
+  - `xml` - **XML data format.**
+  - `soap` - **SOAP data format.**
+
+  </details>
+default: json
+enum:
+- json
+- xml
+- soap
+x-enum-elements:
+- name: Json
+  description: JSON data format.
+- name: Xml
+  description: XML data format.
+- name: Soap
+  description: SOAP data format.

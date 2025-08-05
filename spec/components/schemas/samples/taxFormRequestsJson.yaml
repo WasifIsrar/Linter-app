@@ -1,0 +1,26 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tdr_67ea5cb2c4be3c25dbc1zz0",
+        "created": "2025-03-31 05:13:22.8143",
+        "modified": "2025-03-31 05:13:22.9880",
+        "creator": "t1_log_6705400bf224a9c0b4ee098",
+        "modifier": "t1_log_6705400bf224a9c0b4ee098",
+        "merchant": "t1_mer_6705400c6dbd095b4cb0000",
+        "type": "1099k",
+        "taxYear": 2024,
+        "responseCode": 500
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

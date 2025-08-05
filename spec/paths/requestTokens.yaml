@@ -1,0 +1,56 @@
+get:
+  description: "Query a RequestToken. \nA RequestToken represents a method of assuring\
+    \ a request is only processed once. Each RequestToken expires automatically after\
+    \ 48 hours of being created."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/requestTokensModel200Response.yaml
+      description: Response for query on requestTokens resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Request Tokens
+  - Facilitator
+  operationId: getRequestTokens
+post:
+  description: "Create a RequestToken. \nA RequestToken represents a method of assuring\
+    \ a request is only processed once. Each RequestToken expires automatically after\
+    \ 48 hours of being created."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/requestTokensPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/requestTokensModel200Response.yaml
+      description: Response for create on requestTokens resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Request Tokens
+  - Facilitator
+  operationId: postRequestTokens
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

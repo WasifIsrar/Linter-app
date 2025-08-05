@@ -1,0 +1,27 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_apd_67a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "registeredMerchant": "t1_mer_17v8dfe6cba78382bd1a07c",
+        "ownerEntity": "g157895bca1f55c",
+        "status": "failed_registration",
+        "domain": "9919-2814-1a3-aa10-50a0-21a7-76bc-7c6f-2096.ngrok-free.app",
+        "errorNote": "applePaySyncError"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,32 @@
+value:
+    "response": {
+        "data": [
+            {
+                "id": "t1_dbe_672ebb36f08a2a1a6ecfdce",
+                "created": "2024-11-11 12:03:56.5234",
+                "modified": "2024-11-11 12:03:56.5234",
+                "creator": "t1_log_5ed514b7edbf6f641b7c2f2",
+                "modifier": "t1_log_5ed514b7edbf6f641b7c2f2",
+                "disbursement": "t1_dbm_672e2fa70f484124eed2fdf",
+                "entry": "t1_etr_672d7ed5ec259204656ab73",
+                "pendingEntry": "t1_per_67b4fgt67uc4cf30f44fea5",
+                "reserveEntry": "t1_rer_67bgh6797dbafac6fd255c0",
+                "event": 40,
+                "eventId": "t1_txn_672cc0c41a79e0c85240983",
+                "amount": 51,
+                "amountUsed": 0,
+                "description": "Remaining available funds not disbursed in this disbursement"
+
+            }
+        ],
+        "details": {
+            "requestId": "1",
+            "totals": [],
+            "page": {
+                "current": 1,
+                "last": 1,
+                "hasMore": false
+            }
+        },
+        "errors": []
+    }

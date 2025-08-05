@@ -1,0 +1,24 @@
+title: loginsHelpersPutRequest
+properties:
+  loginAsEnabled:
+    type: integer
+    description: |
+      Whether the associated login can use loginAs or not.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **OFF**
+      - `1` - **ON**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: OFF
+      description: LoginAs is disabled.
+    - name: ON
+      description: LoginAs is enabled.
+example:
+  loginAsEnabled: 0

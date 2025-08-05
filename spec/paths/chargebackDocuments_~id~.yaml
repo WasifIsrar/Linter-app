@@ -1,0 +1,124 @@
+get:
+  description: Query a chargebackDocument. A chargebackDocument resource represents
+    a file related to a Chargeback.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this chargeback document.
+    explode: false
+    in: path
+    name: id
+    example: t1_chd_679a4a2ba49405540af4856
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/chargebackDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackDocumentsModel200Response.yaml
+      description: Response for query on chargebackDocuments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Chargeback Document by its ID.
+  tags:
+  - Chargeback Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChargebackDocumentsId
+put:
+  description: Update a chargebackDocument. A chargebackDocument resource represents
+    a file related to a Chargeback.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this chargeback document.
+    explode: false
+    in: path
+    name: id
+    example: t1_chd_679a4a2ba49405540af4856
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/chargebackDocumentsPutRequestModel.yaml
+    description: Update Chargeback Document Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update chargebackDocuments:
+              $ref: ../components/schemas/samples/chargebackDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackDocumentsModel200Response.yaml
+      description: Response for updating a chargebackDocuments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Chargeback Document by its ID.
+  tags:
+  - Chargeback Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putChargebackDocumentsId
+delete:
+  description: Delete a chargebackDocument. A chargebackDocument resource represents
+    a file related to a Chargeback.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this chargeback document.
+    explode: false
+    in: path
+    name: id
+    example: t1_chd_679a4a2ba49405540af4856
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete chargebackDocuments:
+              $ref: ../components/schemas/samples/chargebackDocumentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebackDocumentsModel200Response.yaml
+      description: Response for deleting a chargebackDocuments resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebackDocuments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Chargeback Document by its ID.
+  tags:
+  - Chargeback Documents
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteChargebackDocumentsId

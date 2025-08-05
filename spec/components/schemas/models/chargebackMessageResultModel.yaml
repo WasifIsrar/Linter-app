@@ -1,0 +1,40 @@
+title: chargebackMessageResultResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  chargebackMessage:
+    type: string
+    description: The identifier of the chargebackMessage resource that this chargebackMessageResult
+      relates to.
+  type:
+    title: chargebackMessageResultType
+    type: string
+    description: |
+      The type of this chargebackMessageResult.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `general` - **A general type of result.**
+      - `platform` - **Platform message.**
+
+      </details>
+    enum:
+    - general
+    - platform
+    x-enum-elements:
+    - name: General
+      description: A general type of result.
+    - name: Platform
+      description: Platform message.
+  message:
+    type: string
+    description: The Chargeback message itself.

@@ -1,0 +1,58 @@
+title: alertActionsPutRequest
+properties:
+  alert:
+    type: string
+    description: The identifier of the Alert resource that defines this alertAction.
+  headerName:
+    type: string
+    description: The request header name for authentication to the endpoint.
+  headerValue:
+    type: string
+    description: The request header value for authentication to the endpoint.
+  options:
+    type: string
+    description: When the 'type' field of this resource is set to 'web', this field
+      determines the format that the Alert data should be sent in.
+  value:
+    type: string
+    description: A value used to deliver the alert. Thie field should be set to an
+      email address if the type is email, an endpoint if the type is web, etc.
+  retries:
+    type: integer
+    description: The number of times an alert should be resent in case of a failure.
+      This fields can only be set for web type alertActions.
+  maxAttemptsTempDisabled:
+    type: integer
+    description: |
+      Whether it was temporarily disabled for reaching the maximum number of failed attempts.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Temporarily Disabled**
+      - `1` - **Temporarily Disabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotTemporarilyDisabled
+      description: Not Temporarily Disabled.
+    - name: TemporarilyDisabled
+      description: Temporarily Disabled.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  alert: t1_alt_65fddb118236188e055d54c
+  options: JSON
+  value: https://test.payrix.com/apix/test/t1
+  maxAttemptsTempDisabled: 0
+  headerName: Authorization
+  headerValue: SecrtToken1234!
+  retries: 3
+  inactive: 0
+  frozen: 0

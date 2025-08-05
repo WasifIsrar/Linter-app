@@ -1,0 +1,85 @@
+get:
+  description: Query Safer Payment.
+  parameters:
+  - description: The ID of this resource, or the (unknown) ID associated with the
+      Safer Payments.
+    explode: false
+    in: path
+    name: id
+    example: t1_saf_67f4d59664ed122a5915300
+    required: true
+    schema:
+      type: string
+
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all saferPayments:
+              $ref: ../components/schemas/samples/saferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/saferPaymentsModel200Response.yaml
+      description: Response for retrieve Safer Payment.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all saferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Safer Payment.
+  tags:
+  - Safer Payments
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getSaferPaymentsId
+put:
+  description:  Update Safer Payment.
+  parameters:
+  - description: The ID of this resource, or the (unknown) ID associated with the
+      Safer Payment.
+    explode: false
+    in: path
+    name: id
+    example: t1_saf_67f4d59664ed122a5915300
+    required: true
+    schema:
+      type: string
+
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/saferPaymentsPutRequestModel.yaml
+    description: Update Safer Payment Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update saferPayments:
+              $ref: ../components/schemas/samples/saferPaymentsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/saferPaymentsModel200Response.yaml
+      description: The response for update Safer Payment.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all saferPayments:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update Safer Payment.
+  tags:
+  - Safer Payments
+  - Facilitator
+  - Partner
+  operationId: putSaferPaymentsId
+    

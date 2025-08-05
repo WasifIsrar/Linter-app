@@ -1,0 +1,105 @@
+get:
+  description: _CONFLICT Query a Payment Update that holds information about the payment
+    update, related to a payment, subscriptionToken or account, and owned by a paymentUpdateGroup.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payment update.
+    explode: false
+    in: path
+    name: id
+    example: t1_pmu_67c80c49a8274b15ad4dd0z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch paymentUpdates:
+              $ref: ../components/schemas/samples/paymentUpdatesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdatesModel200Response.yaml
+      description: Response for retrieve payment update response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all paymentUpdates:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Payment Update by it's ID.
+  tags:
+  - Payment Updates
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPaymentUpdatesId
+put:
+  description: "Update a PaymentUpdate. \nA PaymentUpdate holds information about\
+    \ the payment update. The paymentUpdate will be related to a payment, subscriptionToken\
+    \ or account, and owned by a paymentUpdateGroup."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/paymentUpdatesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdatesModel200Response.yaml
+      description: Response for update on paymentUpdates resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Payment Updates
+  - Facilitator
+  operationId: putPaymentUpdatesId
+delete:
+  description: "Delete a PaymentUpdate. \nA PaymentUpdate holds information about\
+    \ the payment update. The paymentUpdate will be related to a payment, subscriptionToken\
+    \ or account, and owned by a paymentUpdateGroup."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/paymentUpdatesModel200Response.yaml
+      description: Response for delete on paymentUpdates resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Payment Updates
+  - Facilitator
+  operationId: deletePaymentUpdatesId

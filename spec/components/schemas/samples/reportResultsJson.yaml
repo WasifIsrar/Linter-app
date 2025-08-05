@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rpr_639231c86f6167eab039d00",
+        "created": "2022-12-08 13:49:44.4563",
+        "modified": "2022-12-08 13:49:44.4563",
+        "creator": "t1_log_6089c713bc9dcebdaf1cbd7",
+        "modifier": "t1_log_6089c713bc9dcebdaf1cbd7",
+        "report": "t1_rpt_6392314c1a84efe834bf04b",
+        "type": "json",
+        "documentType": "json",
+        "original": 0,
+        "status": "pending",
+        "effective": 202212250000,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

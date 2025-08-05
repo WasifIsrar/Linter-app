@@ -1,0 +1,135 @@
+title: invoicesPutRequest
+properties:
+  login:
+    type: string
+    description: The identifier of the Login of this invoice resource.
+  merchant:
+    type: string
+    description: The identifier of the Merchant of this invoice resource.
+  customer:
+    type: string
+    description: The identifier of the Customer of this invoice resource.
+  subscription:
+    type: string
+    description: The identifier of the Subscription of this invoice resource.
+  allowedPaymentMethods:
+    description: |
+      The methods of payment allowed for this invoice. This field accepts multiple options concatenated into a 
+      single string with a pipe (|) separator between each option.
+
+      <details>
+      <summary>Allowed Values</summary>
+
+      - `Amex` - **American Express**
+      - `Visa` - **Visa card**
+      - `Mc` - **MasterCard**
+      - `Diners` - **Diners Club card**
+      - `Discover` - **Discover card**
+      - `PayPal` - **PayPal payment method**
+      - `Debit` - **Debit card**
+      - `Checking` - **Checking account**
+      - `Savings` - **Savings account**
+      - `CorpChecking` - **Corporate checking account**
+      - `CorpSavings` - **Corporate savings account**
+      - `Gift` - **Gift card**
+      - `EBT` - **Electronic Benefits Transfer**
+      - `WIC` - **Women, Infants, and Children program**
+      - `Accel` - **Accel network**
+      - `ATH` - **ATH network**
+      - `AFFN` - **Armed Forces Financial Network**
+      - `Culiance` - **Culiance network**
+      - `Interlink` - **Interlink network**
+      - `Jeanie` - **Jeanie network**
+      - `Maestro` - **Maestro card**
+      - `NYCE` - **NYCE network**
+      - `Pulse` - **Pulse network**
+      - `Shazam` - **Shazam network**
+      - `Star` - **Star network**
+      - `Interac` - **Interac network**
+      - `Omnitoken` - **Omnitoken**
+
+      </details>
+    type: string
+  title:
+    type: string
+    description: The title of the invoice.
+  message:
+    type: string
+    description: The message that will be sent with the invoice.
+  total:
+    type: integer
+    format: int64
+    description: The total amount for this invoice.
+  tax:
+    type: integer
+    format: int64
+    description: The tax amount for this invoice.
+  discount:
+    type: integer
+    format: int64
+    description: The discount amount applied to this invoice.
+  dueDate:
+    type: integer
+    description: The date the invoice is due.
+  expirationDate:
+    type: integer
+    description: The date the invoice is due.
+  sendOn:
+    type: integer
+    description: The date to send this invoice.
+  status:
+    $ref: ../enums/invoiceStatusModel.yaml
+  emailStatus:
+    type: string
+    description: |
+      The current status of the invoice.
+
+      <details>
+      <summary>Valid Values</summary>
+
+       - `send` - **Updated email status to indicate the invoice is ready to be sent to the customer.**
+       - `sent` - **Updated email status once the invoice is sent to the customer.**
+       - `pending` - **Updated email status pending**
+       
+       </details>
+    enum:
+    - send
+    - sent
+    - pending
+    x-enum-elements:
+    - name: "Send"
+      description: "Updated email status to indicate the invoice is ready to be sent to the customer."
+    - name: "Sent"
+      description: "Updated email status once the invoice is sent to the customer."
+    - name: "Pending"
+      description: "Updated email status as pending."
+  emails:
+    type: string
+    description: The email addresses to send the invoice to.
+  type:
+    $ref: ../enums/invoiceTypeModel.yaml
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  login: t1_log_0092b50e1112b18e41d521e
+  merchant: t1_mer_008e7f511d5c5a2d2fade82
+  customer: t1_cus_00b39e97b2110ba9075dfda
+  subscription: t1_sbn_00fc6fxx7a871bbce685897
+  title: Test Invoice Alert
+  message: Testing the invoice alerts
+  emails: erik@test.com
+  total: 100
+  tax: 1000
+  discount: 1000
+  type: single
+  status: paid
+  dueDate: 20250217
+  expirationDate: 20250217
+  sendOn: 20250217
+  emailStatus: pending
+  inactive: 0
+  frozen: 0
+  allowedPaymentMethods: visa

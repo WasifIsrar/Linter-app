@@ -1,0 +1,124 @@
+title: binMethod
+type: integer
+description: |
+  The type of payment method used for this transaction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Unknown Payment Method**
+  - `1` - **American Express**
+  - `2` - **Visa**
+  - `3` - **MasterCard**
+  - `4` - **Diners Club**
+  - `5` - **Discover**
+  - `6` - **PayPal**
+  - `7` - **Debit Card**
+  - `8` - **Checking Account**
+  - `9` - **Savings Account**
+  - `10` - **Corporate Checking Account**
+  - `11` - **Corporate Savings Account**
+  - `12` - **Gift Card**
+  - `13` - **EBT (Electronic Benefits Transfer) Card**
+  - `14` - **WIC (Women, Infants and Children) Card**
+  - `15` - **Accel**
+  - `16` - **ATH**
+  - `17` - **AFFN**
+  - `18` - **Culiance**
+  - `19` - **Interlink**
+  - `20` - **Jeanie**
+  - `21` - **Maestro**
+  - `22` - **NYCE**
+  - `23` - **Pulse**
+  - `24` - **Shazam**
+  - `25` - **Star**
+  - `26` - **Interac**
+  - `27` - **OmniToken**
+
+  </details>
+enum:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+- 15
+- 16
+- 17
+- 18
+- 19
+- 20
+- 21
+- 22
+- 23
+- 24
+- 25
+- 26
+- 27
+x-enum-elements:
+- name: Unknown
+  description: Unknown Payment Method.
+- name: AMEX
+  description: American Express.
+- name: VISA
+  description: Visa.
+- name: MC
+  description: MasterCard.
+- name: DINERS
+  description: Diners Club.
+- name: DISCOVER
+  description: Discover.
+- name: PAYPAL
+  description: PayPal.
+- name: DEBIT
+  description: Debit Card.
+- name: CHECKING
+  description: Checking Account.
+- name: SAVINGS
+  description: Savings Account.
+- name: CORPCHECKING
+  description: Corporate Checking Account.
+- name: CORPSAVINGS
+  description: Corporate Savings Account.
+- name: GIFT
+  description: Gift Card.
+- name: EBT
+  description: EBT (Electronic Benefits Transfer) Card.
+- name: WIC
+  description: WIC (Women, Infants and Children) Card.
+- name: ACCEL
+  description: Accel.
+- name: ATH
+  description: ATH.
+- name: AFFN
+  description: AFFN.
+- name: CULIANCE
+  description: Culiance.
+- name: INTERLINK
+  description: Interlink.
+- name: JEANIE
+  description: Jeanie.
+- name: MAESTRO
+  description: Maestro.
+- name: NYCE
+  description: NYCE.
+- name: PULSE
+  description: Pulse.
+- name: SHAZAM
+  description: Shazam.
+- name: STAR
+  description: Star.
+- name: INTERAC
+  description: Interac.
+- name: OMNITOKEN
+  description: OmniToken.

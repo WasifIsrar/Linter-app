@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_erv_67a0e0072f9c059e59a66b0",
+        "created": "2025-02-03 10:25:59.2069",
+        "modified": "2025-02-03 10:25:59.2069",
+        "creator": "t1_log_5f2d5e3e67a6fb5b3521361",
+        "modifier": "t1_log_5f2d5e3e67a6fb5b3521361",
+        "login": "t1_log_5f2d5e3e67a6fb5b3521361",
+        "fund": "t1_fun_5f20126254c14a171b8d2d0",
+        "total": 0,
+        "name": "EntityReserve1",
+        "description": "EntityReserve",
+        "requestSequence": 0,
+        "processedSequence": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

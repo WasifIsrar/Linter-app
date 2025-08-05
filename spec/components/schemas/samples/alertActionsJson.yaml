@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ala_67d0924f1919ec362341d00",
+        "created": "2025-03-11 15:43:11.1194",
+        "modified": "2025-03-11 15:43:11.1194",
+        "creator": "t1_log_65b2c883d793216616f16ab",
+        "modifier": "t1_log_65b2c883d793216616f16ab",
+        "type": "web",
+        "options": "JSON",
+        "value": "https://test.payrix.com/apix/test/t1",
+        "alert": "t1_alt_65fddb118236188e055d54c",
+        "retries": 3,
+        "headerName": "Authorization",
+        "headerValue": "SecretToken123!",
+        "maxAttemptsTempDisabled": 0,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

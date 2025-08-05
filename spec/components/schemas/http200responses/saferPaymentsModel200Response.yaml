@@ -1,0 +1,13 @@
+title: saferPaymentsResponseResult
+properties:
+  response:
+    title: saferPaymentsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/saferPaymentsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

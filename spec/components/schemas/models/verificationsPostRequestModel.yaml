@@ -1,0 +1,280 @@
+title: verificationsPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  entity:
+    type: string
+    description: The identifier of the Entity that you want to verify.
+  member:
+    type: string
+    description: The identifier of the Member that you want to verify.
+  txn:
+    type: string
+    description: The Txn id in which this Verification belongs to.
+  terminalTxn:
+    type: string
+    description: The TerminalTxn id in which this Verification belongs to.
+  account:
+    type: string
+    description: The Account id in which this Verification belongs to.
+  decision:
+    type: string
+    description: Used to link multiple decisions together.
+  type:
+    title: verificationType
+    type: string
+    description: |
+     The type of check to perform on the Entity, Member or Txn.
+      <details>
+        <summary>Entity Types - Valid Values</summary>
+        <ul>
+          <li>`advancedEntity` - <b>Advanced Entity Verification</b></li>
+          <li>`ofac` - <b>OFAC Watchlist Verification</b></li>
+          <li>`entity` - <b>Entity Verification</b></li>
+          <li>`overall` - <b>Overall Entity Verification</b></li>
+          <li>`watchlist` - <b>Watchlist Verification</b></li>
+          <li>`dataVerification` - <b>Data Verification</b></li>
+          <li>`advancedMerchant` - <b>Advanced Merchant Verification</b></li>
+        </ul>
+      </details>
+      <details>
+        <summary>Member Types - Valid Values</summary>
+        <ul>
+          <li>`advancedMember` - <b>Advanced Member Verification</b></li>
+          <li>`association` - <b>Association Verification</b></li>
+          <li>`member` - <b>Member Verification</b></li>
+          <li>`ofac` - <b>OFAC Watchlist Verification</b></li>
+          <li>`watchlist` - <b>Watchlist Verification</b></li>
+        </ul>
+      </details>
+      <details>
+        <summary>Transaction Types - Valid Values</summary>
+        <ul>
+          <li>`merchantFailureLimit` - <b>Merchant Failure Limit</b></li>
+          <li>`merchantPaymentFailureLimit` - <b>Merchant Payment Failure Limit</b></li>
+          <li>`saleTotalLimit` - <b>Sale Total Limit</b></li>
+          <li>`saleTotalMinimum` - <b>Sale Total Minimum</b></li>
+          <li>`merchantCaptureWithoutAuthLimit` - <b>Merchant Capture Without Auth Limit</b></li>
+          <li>`refundTotalLimit` - <b>Refund Total Limit</b></li>
+          <li>`averageSaleCountLimit` - <b>Average Sale Count Limit</b></li>
+          <li>`merchantRefundSaleRatio` - <b>Merchant Refund Sale Ratio</b></li>
+          <li>`merchantPaymentSuccessLimit` - <b>Merchant Payment Success Limit</b></li>
+          <li>`ipFailureLimit` - <b>IP Failure Limit</b></li>
+          <li>`ipFailureRatio` - <b>IP Failure Ratio</b></li>
+          <li>`inactiveMerchant` - <b>Inactive Merchant</b></li>
+          <li>`refundWithoutSale` - <b>Refund Without Sale</b></li>
+          <li>`refundWithoutSaleLimit` - <b>Refund Without Sale Limit</b></li>
+          <li>`captureAboveAuthLimit` - <b>Capture Above Auth Limit</b></li>
+          <li>`cvv` - <b>CVV Verification</b></li>
+          <li>`avs` - <b>AVS Verification</b></li>
+          <li>`aavs` - <b>AAVS Verification</b></li>
+          <li>`duplicateTxn` - <b>Duplicate Transaction</b></li>
+          <li>`merchantMatch` - <b>Merchant Match</b></li>
+          <li>`currencyConversion` - <b>Currency Conversion</b></li>
+          <li>`settledCurrencyMismatch` - <b>Settled Currency Mismatch</b></li>
+          <li>`initialTxn` - <b>Initial Transaction</b></li>
+          <li>`similarTotalLimit` - <b>Similar Total Limit</b></li>
+          <li>`similarTotalRatio` - <b>Similar Total Ratio</b></li>
+          <li>`limit` - <b>Limit</b></li>
+          <li>`ratio` - <b>Ratio</b></li>
+          <li>`txnWatchlist` - <b>Transaction Watchlist</b></li>
+          <li>`balanceRefundLimit` - <b>Balance Refund Limit</b></li>
+          <li>`saleApprovedLimit` - <b>Sale Approved Limit</b></li>
+          <li>`refundApprovedLimit` - <b>Refund Approved Limit</b></li>
+        </ul>
+      </details>
+    enum:
+      - advancedEntity
+      - ofac
+      - entity
+      - overall
+      - watchlist
+      - dataVerification
+      - advancedMerchant
+      - advancedMember
+      - association
+      - member
+      - merchantFailureLimit
+      - merchantPaymentFailureLimit
+      - saleTotalLimit
+      - saleTotalMinimum
+      - merchantCaptureWithoutAuthLimit
+      - refundTotalLimit
+      - averageSaleCountLimit
+      - merchantRefundSaleRatio
+      - merchantPaymentSuccessLimit
+      - ipFailureLimit
+      - ipFailureRatio
+      - inactiveMerchant
+      - refundWithoutSale
+      - refundWithoutSaleLimit
+      - captureAboveAuthLimit
+      - cvv
+      - avs
+      - aavs
+      - duplicateTxn
+      - merchantMatch
+      - currencyConversion
+      - settledCurrencyMismatch
+      - initialTxn
+      - similarTotalLimit
+      - similarTotalRatio
+      - limit
+      - ratio
+      - txnWatchlist
+      - balanceRefundLimit
+      - saleApprovedLimit
+      - refundApprovedLimit
+    x-enum-elements:
+      - name: AdvancedEntity
+        description: Advanced Entity Verification
+      - name: Ofac
+        description: OFAC Watchlist Verification
+      - name: Entity
+        description: Entity Verification
+      - name: Overall
+        description: Overall Entity Verification
+      - name: Watchlist
+        description: Watchlist Verification
+      - name: DataVerification
+        description: Data Verification
+      - name: AdvancedMerchant
+        description: Advanced Merchant Verification
+      - name: AdvancedMember
+        description: Advanced Member Verification
+      - name: Association
+        description: Association Verification
+      - name: Member
+        description: Member Verification
+      - name: MerchantFailureLimit
+        description: Merchant Failure Limit
+      - name: MerchantPaymentFailureLimit
+        description: Merchant Payment Failure Limit
+      - name: SaleTotalLimit
+        description: Sale Total Limit
+      - name: SaleTotalMinimum
+        description: Sale Total Minimum
+      - name: MerchantCaptureWithoutAuthLimit
+        description: Merchant Capture Without Auth Limit
+      - name: RefundTotalLimit
+        description: Refund Total Limit
+      - name: AverageSaleCountLimit
+        description: Average Sale Count Limit
+      - name: MerchantRefundSaleRatio
+        description: Merchant Refund Sale Ratio
+      - name: MerchantPaymentSuccessLimit
+        description: Merchant Payment Success Limit
+      - name: IpFailureLimit
+        description: IP Failure Limit
+      - name: IpFailureRatio
+        description: IP Failure Ratio
+      - name: InactiveMerchant
+        description: Inactive Merchant
+      - name: RefundWithoutSale
+        description: Refund Without Sale
+      - name: RefundWithoutSaleLimit
+        description: Refund Without Sale Limit
+      - name: CaptureAboveAuthLimit
+        description: Capture Above Auth Limit
+      - name: Cvv
+        description: CVV Verification
+      - name: Avs
+        description: AVS Verification
+      - name: Aavs
+        description: AAVS Verification
+      - name: DuplicateTxn
+        description: Duplicate Transaction
+      - name: MerchantMatch
+        description: Merchant Match
+      - name: CurrencyConversion
+        description: Currency Conversion
+      - name: SettledCurrencyMismatch
+        description: Settled Currency Mismatch
+      - name: InitialTxn
+        description: Initial Transaction
+      - name: SimilarTotalLimit
+        description: Similar Total Limit
+      - name: SimilarTotalRatio
+        description: Similar Total Ratio
+      - name: Limit
+        description: Limit
+      - name: Ratio
+        description: Ratio
+      - name: TxnWatchlist
+        description: Transaction Watchlist
+      - name: BalanceRefundLimit
+        description: Balance Refund Limit
+      - name: SaleApprovedLimit
+        description: Sale Approved Limit
+      - name: RefundApprovedLimit
+        description: Refund Approved Limit
+  fromCache:
+    type: string
+    description: Whether this verification was created from cache. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  options:
+    type: integer
+    description: The Options for this Verification.
+    default: 0
+  additionalOptions:
+    type: integer
+    description: The Additional Options for this Verification.
+    default: 0
+  level:
+    type: string
+    description: Level conditions.
+  value:
+    type: string
+    description: The value for this Verification. This is used to associate a Verification
+      to a Watchlist for Watchlist Verifications.
+  score:
+    type: integer
+    description: "The score for this Verification. \nThis field is specified as an\
+      \ integer between 0 and 100."
+  description:
+    type: string
+    description: Description of the verification.
+  ref:
+    type: string
+    description: The reference number for this verification.
+  generated:
+    type: integer
+    description: "\n\n<details>\n<summary>Valid Values</summary> \n\n - `0` - **OFF**\n\
+      \n - `1` - **ON**\n\n </details>\n"
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Off"
+      description: "The generated field is OFF."
+    - name: "On"
+      description: "The generated field is ON."
+required:
+- decision
+- generated
+- level
+- login
+- type
+- value
+
+example:
+  login: t1_log_5d13d9c20a39da6f5030426
+  decision: t1_dcs_5da60b66e6283dc0169504a
+  level: partition
+  type: accountVerified
+  value: t1_wlt_5da6075acf9d2767ebecede
+  genearted: 1
+  entity: identifier of the Entity
+  member: identifier of the Member
+  txn: t1_txn_67caef0a014c280a6caa5fc
+  terminalTxn: TerminalTxn id
+  account: Account id
+  fromCache: 2025-03-07 08:05:15
+  options: 0
+  additionalOptions: 0
+  score: 100
+  description: General watchlist score
+  ref: reference number

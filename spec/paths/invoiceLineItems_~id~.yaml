@@ -1,0 +1,122 @@
+get:
+  description: Query an InvoiceLineItem or Invoice Line Item.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice line item.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+    example: t1_ini_00a18bcde1a1b2ec1d9c9az
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch invoiceLineItems:
+              $ref: ../components/schemas/samples/invoiceLineItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceLineItemsModel200Response.yaml
+      description: Retrieve the Response for query on invoiceLineItems resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceLineItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Invoice Line Item by it's ID.
+  tags:
+  - Invoice Line Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getInvoiceLineItemsId
+put:
+  description: Update an InvoiceLineItem or Invoice Line Item.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice line item.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+    example: t1_ini_00a18bcde1a1b2ec1d9c9az
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/invoiceLineItemsPutRequestModel.yaml
+    description: Update Invoice Line Item Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update invoiceLineItems:
+              $ref: ../components/schemas/samples/invoiceLineItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceLineItemsModel200Response.yaml
+      description: Response for updating an Invoice Line Item.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceLineItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Invoice Line Item by it's ID.
+  tags:
+  - Invoice Line Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putInvoiceLineItemsId
+delete:
+  description: Delete an InvoiceLineItem or Invoice Line Item.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this invoice line item.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+    example: t1_ini_00a18bcde1a1b2ec1d9c9az
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete invoiceLineItems:
+              $ref: ../components/schemas/samples/invoiceLineItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/invoiceLineItemsModel200Response.yaml
+      description: The response for deleting an invoice line item is the Delete Invoice
+        Line Item Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all invoiceLineItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Invoice Line Item by it's ID.
+  tags:
+  - Invoice Line Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteInvoiceLineItemsId

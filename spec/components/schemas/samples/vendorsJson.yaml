@@ -1,0 +1,29 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "p1_ven_00be57c6efdce043adae8a1",
+              "created": "2025-02-25 18:52:38.9990",
+              "modified": "2025-02-25 18:52:43.4509",
+              "creator": "g1577d7719644a9",
+              "modifier": "g1577d7719644a9",
+              "entity": "p1_ent_67be57c6a1d97f564021b6b",
+              "division": "p1_div_67be57c6d34928c1ee16155",
+              "inactive": 0,
+              "frozen": 0,
+              "dealId": "",
+              "onboardingContactEmails": "",
+              "riskContactEmails": ""
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

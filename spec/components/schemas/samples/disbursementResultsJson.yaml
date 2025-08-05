@@ -1,0 +1,30 @@
+value:
+    "response": {
+        "data": [
+            {
+                "id": "t1_drt_33c4e7a864c7e9d52e29553",
+                "created": "2025-03-02 18:20:08.4145",
+                "modified": "2025-03-02 18:20:08.4145",
+                "creator": "t1_log_5ed514b7edbf6f641b7c2f2",
+                "modifier": "t1_log_5ed514b7edbf6f641b7c2f2",
+                "disbursement": "t1_dbm_67c4e7a85e18eac87de61b8",
+                "code": "internal",
+                "platform": "VANTIV",
+                "message": "Not enough funds available for this disbursement request",
+                "disbursementRef": "t1_drf_00c4e7a85e18eac87de61b8",
+                "amount": 2400,
+                "data": "",
+                "originalCode": "101"
+            }
+        ],
+        "details": {
+            "requestId": "1",
+            "totals": [],
+            "page": {
+                "current": 1,
+                "last": 1,
+                "hasMore": false
+            }
+        },
+        "errors": []
+    }

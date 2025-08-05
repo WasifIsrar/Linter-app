@@ -1,0 +1,13 @@
+title: payoutsResponseResult
+properties:
+  response:
+    title: payoutsResponseItem
+    properties:
+      data:
+        description: The data object that the API returns for this request.
+        items:
+          $ref: ../models/payoutsModel.yaml
+      details:
+        $ref: ../details.yaml
+      errors:
+        $ref: ../error.yaml

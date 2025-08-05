@@ -1,0 +1,127 @@
+get:
+  description: Query an Entity, which is the top-level resource of a business in the
+    API and describes the details of that business in its fields. An Entity can describe
+    a Merchant, a Partner, or a Facilitator (payment facilitator).
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity.
+    explode: false
+    in: path
+    name: id
+    example: t1_ent_6733015a977c2cdd6277d89
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entities:
+              $ref: ../components/schemas/samples/entitiesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entitiesModel200Response.yaml
+      description: Retrieve an Entity response for query on entities resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entities:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Entity by its ID.
+  tags:
+  - Entities
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntitiesId
+put:
+  description: Update an Entity, which is the top-level resource of a business in
+    the API and describes the details of that business in its fields. An Entity can
+    be a Merchant, a Partner, or a Facilitator (payment facilitator).
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity.
+    explode: false
+    in: path
+    name: id
+    example: t1_ent_6733015a977c2cdd6277d89
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entitiesPutRequestModel.yaml
+    description: Update Entity Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update entities:
+              $ref: ../components/schemas/samples/entitiesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entitiesModel200Response.yaml
+      description: Response for update on entities resource Update Entity Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entities:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Entity by its ID.
+  tags:
+  - Entities
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putEntitiesId
+delete:
+  description: Delete an Entity, which is the top-level resource of a business in
+    the API and describes the details of that business in its fields, including a
+    Merchant, a Partner, or a Facilitator (payment facilitator).
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity.
+    explode: false
+    in: path
+    name: id
+    example: t1_ent_6733015a977c2cdd6277d89
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete entities:
+              $ref: ../components/schemas/samples/entitiesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entitiesModel200Response.yaml
+      description: The response for deleting an entity on the entities resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entities:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Entity by its ID.
+  tags:
+  - Entities
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteEntitiesId

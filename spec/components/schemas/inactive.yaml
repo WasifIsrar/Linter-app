@@ -1,0 +1,20 @@
+type: integer
+description: |
+  Whether this resource is marked as inactive.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Active**
+  - `1` - **Inactive**
+
+  </details>
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: Active
+  description: Active.
+- name: Inactive
+  description: Inactive.
+default: 0

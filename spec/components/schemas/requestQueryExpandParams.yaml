@@ -1,0 +1,16 @@
+     description: "Set this path parameter to retrieve nested objects and return them\
+       \ as part of the response. \nThe parameter name that you specify determines\
+       \ the resources to return. \nFor example, set '?expand[login][]' to return a\
+       \ nested login resource."
+     explode: true
+     in: query
+     name: expand
+     required: false
+     schema: 
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+     style: deepObject
+     

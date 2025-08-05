@@ -1,0 +1,52 @@
+title: profitShareRuleType
+type: string
+description: |
+  The type of logic to apply with this ProfitShare Rule.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `less` - **The ProfitShare applies only if the entry amount is lower than the amount set in the 'value' field of the ProfitShare Rule.**
+  - `equal` - **The ProfitShare applies only if the entry amount is exactly the same as the amount set in the 'value' field of the ProfitShare Rule.**
+  - `notEqual` - **The ProfitShare applies only if the entry amount is not exactly equal to the amount set in the 'value' field of the ProfitShare Rule.**
+  - `greater` - **The ProfitShare applies only if the entry amount is higher than the amount set in the 'value' field of the ProfitShare Rule.**
+  - `event` - **The ProfitShare applies only if the entry event is exactly the same as the event set in the 'value' field of the ProfitShare Rule.**
+  - `notEvent` - **The ProfitShare applies only if the entry event is not exactly equal to the event set in the 'value' field of the ProfitShare Rule.**
+  - `fee` - **The ProfitShare applies only if the entry fee is exactly the same as the fee set in the 'value' field of the ProfitShare Rule.**
+  - `notFee` - **The ProfitShare applies only if the entry fee is not exactly equal to the fee set in the 'value' field of the ProfitShare Rule.**
+  - `fromentity` - **The ProfitShare applies only if the entry fromentity (or opposingEntryfromentity) is exactly the same as the entity set in the 'value' field of the ProfitShare Rule.**
+  - `notFromentity` - **The ProfitShare applies only if the entry fromentity (or opposingEntryfromentity) is not exactly equal to the entity set in the 'value' field of the ProfitShare Rule.**
+
+  </details>
+enum:
+- less
+- equal
+- notEqual
+- greater
+- event
+- notEvent
+- fee
+- notFee
+- fromentity
+- notFromentity
+x-enum-elements:
+- name: Less
+  description: The ProfitShare applies only if the entry amount is lower than the amount set in the 'value' field of the ProfitShare Rule.
+- name: Equal
+  description: The ProfitShare applies only if the entry amount is exactly the same as the amount set in the 'value' field of the ProfitShare Rule.
+- name: NotEqual
+  description: The ProfitShare applies only if the entry amount is not exactly equal to the amount set in the 'value' field of the ProfitShare Rule.
+- name: Greater
+  description: The ProfitShare applies only if the entry amount is higher than the amount set in the 'value' field of the ProfitShare Rule.
+- name: Event
+  description: The ProfitShare applies only if the entry event is exactly the same as the event set in the 'value' field of the ProfitShare Rule.
+- name: NotEvent
+  description: The ProfitShare applies only if the entry event is not exactly equal to the event set in the 'value' field of the ProfitShare Rule.
+- name: Fee
+  description: The ProfitShare applies only if the entry fee is exactly the same as the fee set in the 'value' field of the ProfitShare Rule.
+- name: NotFee
+  description: The ProfitShare applies only if the entry fee is not exactly equal to the fee set in the 'value' field of the ProfitShare Rule.
+- name: FromEntity
+  description: The ProfitShare applies only if the entry fromentity (or opposingEntryfromentity) is exactly the same as the entity set in the 'value' field of the ProfitShare Rule.
+- name: NotFromEntity
+  description: The ProfitShare applies only if the entry fromentity (or opposingEntryfromentity) is not exactly equal to the entity set in the 'value' field of the ProfitShare Rule.

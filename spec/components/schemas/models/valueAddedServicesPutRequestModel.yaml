@@ -1,0 +1,79 @@
+title: valueAddedServicesPutRequest
+properties:
+  entity:
+    type: string
+    description: The identifier of the Entity that this valueAddedServices is associated
+      to.
+  serviceName:
+    type: string
+    description: |
+      The name of this valueAddedService.
+      <details>
+      <summary>Valid Values</summary>
+    
+        - `omniToken` - **Omni Token service.**
+        - `passToken` - **Pass Token service.**
+        - `networkToken` - **Network Token service.**
+        - `saferPayment` - **Safer Payment service.**
+      </details>
+    enum:
+    - omniToken
+    - passToken
+    - networkToken
+    - saferPayment
+    x-enum-elements:
+    - name: omniToken
+      description: Omni Token service
+    - name: passToken
+      description: Pass Token service
+    - name: networkToken
+      description: Network Token service
+    - name: saferPayment
+      description: Safer Payment service
+  isEnabled:
+    type: integer
+    description: |
+      This field indicates if the current service is enabled.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Disabled**
+      - `1` - **Enabled**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Disabled
+      description: Service is disabled
+    - name: Enabled
+      description: Service is enabled
+  additionalInformation:
+    type: string
+    description: This field contains additional information like program type or some
+      other details of the current valueAddedService.
+  enablementDate:
+    type: string
+    description: Date of Enablement.
+    format: date-time
+  valueAddedServicesFlow:
+    type: string
+    description: The Value Added Services Flow associated with the current Value Added
+      Service.
+  platform:
+    $ref: ../enums/platformModel.yaml
+  status:
+    type: string
+    description: This field indicates the entity's current PCI compliance status for
+      the service.
+  pciNonValidationFeeEnabled:
+    type: string
+    description: 'A boolean flag indicating whether non-validation fees for PCI compliance
+      are enabled for the service(default : false).This is like a penalty fee.'
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+

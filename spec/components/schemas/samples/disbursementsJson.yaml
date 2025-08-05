@@ -1,0 +1,46 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_dbm_67b7b9a27c0771be7e9157c",
+        "created": "2024-02-20 18:24:18.5096",
+        "modified": "2024-02-20 20:30:08.9457",
+        "creator": "t1_log_67b7b9a1234771be7e9157c",
+        "modifier": "t1_log_67b7b9a1234771be7e9157c",
+        "entity": "t1_ent_6744c2ebece01009406db29",
+        "account": "90e8b943cf752ffe0ba77c0d2bc8b4c1",
+        "payout": "t1_pay_67b7b0d13d70006226d27ff",
+        "description": "Disbursement for payout t1_pay_67b7b0d13d70006226d27ff",
+        "amount": 23400,
+        "status": 3,
+        "processed": "2024-02-20 19:41:52",
+        "currency": "USD",
+        "payment": "t1_pmt_6765c49660f8e2f40424d91",
+        "expiration": "1235",
+        "sameDay": 0,
+        "returnedAmount": 1200,
+        "statement": "t1_stm_67bc033e4rt5dd88aa4b9973",
+        "settlement": "",
+        "lastNegativeEntry": "t1_etr_67b69cfdaf0abd231d9a151",
+        "lastNegativePendingEntry": "t1_per_67b50120226e12c1205bee3",
+        "lastPositiveReserveEntry": "",
+        "disbursementEntriesStatus": "processed",
+        "lastPositiveEntry": "t1_etr_67b69b65ac20bbcfdf42478",
+        "lastPositivePendingEntry": "",
+        "lastNegativeReserveEntry": "",
+        "fundingStatus": "pending",
+        "secondaryDescriptor": "SGH Bank"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }
+

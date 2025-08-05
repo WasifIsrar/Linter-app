@@ -1,0 +1,74 @@
+get:
+  description: "Query an Entity Custom Field. \nCustom Fields can be added to entities\
+    \ associated by the Entity Id. \nAn Entity Id can have various fields associated\
+    \ to it."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityCustomFields:
+              $ref: ../components/schemas/samples/entityCustomFieldJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityCustomFieldsModel200Response.yaml
+      description: Response for query on entityCustomFields resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityCustomFields:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - EntitiesCustomFields
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityCustomFields
+post:
+  description: Create an Entity Custom Field. Custom Fields can be added to entities
+    associated by the Entity Id. An Entity Id can have various fields associated to
+    it.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityCustomFieldsPostRequestModel.yaml
+    description: Add Entity Cutom Field Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create an entityCustomField:
+              $ref: ../components/schemas/samples/entityCustomFieldJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityCustomFieldsModel200Response.yaml
+      description: Response for create on entityCustomFields resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Create and entityCustomField:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Add a new Entity Cutom Field.
+  tags:
+  - EntitiesCustomFields
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postEntityCustomFields
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

@@ -1,0 +1,29 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_alr_67d489a76383d013e6295c0",
+        "created": "2025-03-14 15:55:19.4151",
+        "modified": "2025-03-14 15:55:19.4151",
+        "creator": "t1_log_66b14333927997a2f3cf7b2",
+        "modifier": "t1_log_66b14333927997a2f3cf7b2",
+        "alert": "t1_alt_67d489a72e5e8fdec85a910",
+        "event": "delete",
+        "resource": 9,
+        "name": "name of alertTrigger",
+        "description": "description of alertTrigger",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

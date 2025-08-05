@@ -1,0 +1,88 @@
+title: sessionResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  key:
+    type: string
+    description: The cryptographically secure, randomly generated key to be used in
+      authentication.
+  public:
+    title: sessionPublic
+    type: integer
+    description: "Whether this Session should have access to only public resources.\
+      \ \nAll other resources are private. <details> <summary>Valid Values</summary>\n\
+      \ - `0` - **Session can also access private resources.**\n - `1` - **Session\
+      \ can only access public resources.**\n </details>"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "PrivateAccess"
+      description: "Session can also access private resources."
+    - name: "PublicAccess"
+      description: "Session can only access public resources."
+  sso:
+    type: integer
+    description: |-
+      Whether or not the Session is created using SSO. <details> <summary>Valid Values</summary>
+       - `0` - **Session not created with SSO.**
+       - `1` - **Session created with SSO.**
+       </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotCreatedWithSSO"
+      description: "Session not created with SSO."
+    - name: "CreatedWithSSO"
+      description: "Session created with SSO."
+  token:
+    type: integer
+    description: |
+      Whether or not an AuthToken is required as part of the authentication when this Apikey is used.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **The authToken mechanism is disabled.**
+      - `1` - **The authToken mechanism is required for 'POST' and 'DELETE' requests.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: AuthTokenDisabled
+      description: The authToken mechanism is disabled.
+    - name: AuthTokenRequired
+      description: The authToken mechanism is required for POST and DELETE requests.
+  mfaAuthenticated:
+    type: integer
+    description: |-
+      Whether or not the MFA is enabled.. <details> <summary>Valid Values</summary>
+       - `0` - **MFA is disabled.**
+       - `1` - **MFA is enabled.**
+       </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "MfaDisabled"
+      description: "MFA is disabled."
+    - name: "MfaEnabled"
+      description: "MFA is enabled."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,64 @@
+title: merchantResultsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  merchant:
+    type: string
+    description: The merchant associated with this merchant result.
+  type:
+    title: merchantType
+    type: string
+    description: |
+      The type of this merchant result
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `general` - **General use for unspecified type.**
+      - `internal` - **An internal failure result message.**
+      - `data` - **Missing merchant boarding related data failure message.**
+      - `legal` - **Result message related to legal matters.**
+      - `denial` - **Merchant boarding denial result message.**
+      - `platform` - **Processor boarding failure result message.**
+      - `platformNote` - **Processor note from merchant boarding.**
+
+      </details>
+    enum:
+    - general
+    - internal
+    - data
+    - legal
+    - denial
+    - platform
+    - platformNote
+    x-enum-elements:
+    - name: general
+      description: General use for unspecified type.
+    - name: internal
+      description: An internal failure result message.
+    - name: data
+      description: Missing merchant boarding related data failure message.
+    - name: legal
+      description: Result message related to legal matters.
+    - name: denial
+      description: Merchant boarding denial result message.
+    - name: platform
+      description: Processor boarding failure result message.
+    - name: platformNote
+      description: Processor note from merchant boarding.
+  platform:
+    $ref: ../enums/platformModel.yaml
+  message:
+    type: string
+    description: The message of this merchant result.
+  boardingProcessID:
+    type: string
+    description: Unique identification number that refers merchant.

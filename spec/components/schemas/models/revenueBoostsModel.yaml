@@ -1,0 +1,76 @@
+title: revenueBoostsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that networkPaymentManager is associated with.
+  platform:
+    type: string
+    description: |+
+      The platform used to process this transaction.
+      Valid Values :  - `VCORE` - **VCORE**
+    enum:
+    - VCORE
+    x-enum-elements:
+    - name: "VCore"
+      description: "VCore platform."
+  org:
+    type: string
+    description: The identifier of the Org (group) that networkPaymentManager is associated with.
+  division:
+    type: string
+    description: The identifier of the Division that networkPaymentManager is associated with.
+  partition:
+    type: string
+    description: The identifier of the Partition that networkPaymentManager is associated with.
+  enablementDate:
+    type: string
+    description: The Date and time when an entity was enabled for networkPaymentManager. 
+      The date is specified as an eight digit string in YYYY-MM-DD hh:mm:ss format, 
+      for example, '2023-06-01 01:00:00' for June 01, 2023. 1:00 am.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  enableRevenueBoost:
+    type: integer
+    description: |
+      Flag to depict if entity was enabled for networkPaymentManager.
+      <details>
+      <summary>Valid Values</summary>
+    
+        - `0` - **NotEnabled.**
+        - `1` - **Enabled.**
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "NotEnabled"
+      description: "Not EnableRevenueBoost"
+    - name: "Enabled"
+      description: "EnableRevenueBoost"
+  resourceId:
+    type: string
+    description: The identifier of the record created/updated in the original request.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+  deleted: 
+    type: string
+    nullable: true
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+    description: The date and time at which this resource was deleted.\nThe date is specified as an eight digit string in YYYY-MM-DD hh:mm:ss format, for example, '2023-06-01 01:00:00' for June 01, 2023. 1:00 am.
+  deleter:
+    type: string 
+    nullable: true
+    description: The id of user who deleted the revenueBoost entity.

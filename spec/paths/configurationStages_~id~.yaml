@@ -1,0 +1,93 @@
+get:
+  description: "Query a ConfigurationStage resource. \nA ConfigurationStage resource\
+    \ will hold relevant information about a certain stage of integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationStagesModel200Response.yaml
+      description: Response for query on configurationStages resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configuration Stages
+  - Facilitator
+  operationId: getConfigurationStagesId
+put:
+  description: "Update a ConfigurationStage resource. \nA ConfigurationStage resource\
+    \ will hold relevant information about a certain stage of integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/configurationStagesPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationStagesModel200Response.yaml
+      description: Response for update on configurationStages resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configuration Stages
+  - Facilitator
+  operationId: putConfigurationStagesId
+delete:
+  description: "Delete a ConfigurationStage resource. \nA ConfigurationStage resource\
+    \ will hold relevant information about a certain stage of integration configuration."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/configurationStagesModel200Response.yaml
+      description: Response for delete on configurationStages resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Configuration Stages
+  - Facilitator
+  operationId: deleteConfigurationStagesId

@@ -1,0 +1,57 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_log_67c56806038bb4eb85a0000",
+        "created": "2025-03-03 03:27:50.0511",
+        "modified": "2025-03-03 03:38:26.1424",
+        "creator": "g1577139c2304b0",
+        "modifier": "t1_log_67c56806038bb4eb85a0000",
+        "login": "g15967a6e0d7cf6",
+        "lastLogin": "2025-03-03 03:38:26",
+        "username": "user9287347954",
+        "password": "myPassword",
+        "first": "John",
+        "middle": "",
+        "last": "Doe",
+        "email": "user2118145526@example.com",
+        "fax": "",
+        "phone": "0028106820",
+        "country": "USA",
+        "zip": "77379",
+        "state": "TX",
+        "city": "Spring",
+        "address2": "",
+        "address1": "9337 SPRING CYPRESS RD STE A413",
+        "confirmed": 0,
+        "roles": 64,
+        "partition": "g157713aff9b946",
+        "division": "t1_div_67c56806728fbbf0bae0b10",
+        "inactive": 0,
+        "frozen": 0,
+        "allowedResources": "",
+        "restrictedResources": "",
+        "parentDivision": "",
+        "portalAccess": 1,
+        "ssoId": "",
+        "mfaEnabled": 1,
+        "mfaSecret": "",
+        "mfaEnrolledDate": "2025-06-16 08:02:53",
+        "mfaType": "",
+        "mfaSmsCodesCount": 0,
+        "mfaSmsWindow": 0,
+        "loginAsEnabled": 1,
+        "effectiveRoles": 1550314
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

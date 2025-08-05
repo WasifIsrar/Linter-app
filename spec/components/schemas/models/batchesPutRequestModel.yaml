@@ -1,0 +1,27 @@
+title: batchesPutRequest
+properties:
+  status:
+    $ref: ../enums/batchStatusModel.yaml
+  ref:
+    type: string
+    description: "The reference code of the batch. \nThis field is automatically generated\
+      \ and stored as a text string and must be between 0 and 50 characters long."
+  clientRef:
+    type: string
+    description: "The merchant's reference code of the batch. \nThis field is stored\
+      \ as a text string and must be between 0 and 50 characters long."
+  processingId:
+    type: string
+    description: Internal ID set for processing.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  status: open
+  ref: reference code of batch
+  clientRef: merchant's reference code
+  processingId: Internal ID
+  inactive: 0
+  frozen: 0

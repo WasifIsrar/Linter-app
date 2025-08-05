@@ -1,0 +1,26 @@
+title: payoutUm
+type: integer
+description: |
+  The unit of measure for this Payout is the percentage of funds. 
+  If the Entity has a negative balance of $10 and the amount is set to 10000 (100%), 
+  then $10 will be drawn from their account to fully replenish the balance to $0.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `1` - **Percentage unit measurement.** (Percentage of Funds).
+  - `2` - **Actual unit measurement.** (Exact Currency Amount).
+  - `3` - **Negative Percentage unit measurement.** (Replenish account by percent negative back to $0).
+
+  </details>
+enum:
+- 1
+- 2
+- 3
+x-enum-elements:
+- name: Percentage
+  description: Percentage unit measurement. (Percentage of Funds).
+- name: Actual
+  description: Actual unit measurement. (Exact Currency Amount).
+- name: NegativePercentage
+  description: Negative Percentage unit measurement. (Replenish account by percent negative back to $0).

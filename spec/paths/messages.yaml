@@ -1,0 +1,72 @@
+get:
+  description: Query a Message or query a messages resource that represents a message
+    for a messageThreads.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/messagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messagesModel200Response.yaml
+      description: Response for query on messages resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Messages.
+  tags:
+  - Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getMessages
+post:
+  description: Create a Messages resource, which represents a message for a messageThread.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/messagesPostRequestModel.yaml
+    description: Create Message Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create messages:
+              $ref: ../components/schemas/samples/messagesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/messagesModel200Response.yaml
+      description: The response for creating a message in the messages resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all messages:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Message
+  tags:
+  - Messages
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postMessages
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

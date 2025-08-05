@@ -1,0 +1,45 @@
+title: profitShareRulesPostRequest
+properties:
+  profitShare:
+    type: string
+    description: The identifier of the ProfitShare that this ProfitShare Rule applies
+      to.
+  name:
+    type: string
+    description: "The name of this ProfitShare Rule. \nThis field is stored as a text\
+      \ string and must be between 0 and 100 characters long."
+    default: ""
+  description:
+    type: string
+    description: Description of the Profit Share Rules.
+    default: ""
+  type:
+    $ref: ../enums/profitShareRuleTypeModel.yaml
+  value:
+    type: string
+    description: The value to compare against when evaluating this ProfitShare Rule.
+  grouping:
+    type: string
+    description: "A name for a group of rules to be applied in conjunction when evaluating\
+      \ this ProfitShare Rule. \nWhen grouping is used the ProfitShare will be allowed\
+      \ to be processed if at least one of the rules are matched."
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- frozen
+- inactive
+- profitShare
+- type
+- value
+
+example:
+  profitShare: t1_psh_63de0ece4959d9de8194a4d
+  name: Test2
+  description: Test2
+  type: less
+  value: "5"
+  grouping: "group1"
+  inactive: 0
+  frozen: 0

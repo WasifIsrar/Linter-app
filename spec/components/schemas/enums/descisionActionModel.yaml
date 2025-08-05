@@ -1,0 +1,52 @@
+title: descisionAction
+type: integer
+description: |
+  The action to take when this check fails.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **No action.**
+  - `1` - **Block txn, will never be processed. The Entity is sent to the manual review queue.**
+  - `3` - **Hold txn, will not be captured.**
+  - `4` - **Reserve txn, funds should be reserved.**
+  - `5` - **Block current activity, no change for merchant.**
+  - `6` - **Passed decision(s). Will not be set anywhere, will only be used for integration purposes.**
+  - `7` - **We did not have policies to process.**
+  - `8` - **We onboard the merchant and wait for manual check later.**
+  - `9` - **Schedule the automatic release of the reserve.**
+  - `10` - **Hold txn, will not be captured. Automatic release when the associated sale is done.**
+
+  </details>
+enum:
+- 0
+- 1
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+x-enum-elements:
+- name: None
+  description: No action.
+- name: Block
+  description: Block txn, will never be processed. The Entity is sent to the manual review queue.
+- name: Hold
+  description: Hold txn, will not be captured.
+- name: Reserve
+  description: Reserve txn, funds should be reserved.
+- name: Limit
+  description: Block current activity, no change for merchant.
+- name: Pass
+  description: Passed decision(s). Will not be set anywhere, will only be used for integration purposes.
+- name: Skip
+  description: We did not have policies to process.
+- name: PostReviewOnly
+  description: We onboard the merchant and wait for manual check later.
+- name: ScheduleReserveRelease
+  description: Schedule the automatic release of the reserve.
+- name: AutomaticRefundHold
+  description: Hold txn, will not be captured. Automatic release when the associated sale is done.

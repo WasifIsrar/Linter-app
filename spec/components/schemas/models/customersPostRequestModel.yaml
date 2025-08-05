@@ -1,0 +1,153 @@
+title: customersPostRequest
+properties:
+  login:
+    type: string
+    description: The ID of the Login that owns this resource.
+  merchant:
+    type: string
+    description: The ID of the Merchant associated with this Customer.
+    nullable: true
+  entity:
+    type: string
+    description: The ID of the Entity that owns this resource.
+    nullable: true
+  first:
+    type: string
+    description: The first name associated with this Customer.
+  middle:
+    type: string
+    description: The middle name associated with this Customer.
+  last:
+    type: string
+    description: The last name associated with this Customer.
+  company:
+    type: string
+    description: The name of the company associated with this Customer.
+  email:
+    type: string
+    description: The email address of this Customer.
+  shippingFirst:
+    type: string
+    description: The first name associated with this Customer's shipping information.
+  shippingMiddle:
+    type: string
+    description: The middle name associated with this Customer's shipping information.
+  shippingLast:
+    type: string
+    description: The last name associated with this Customer's shipping information.
+  shippingCompany:
+    type: string
+    description: The name of the company associated with this Customer's shipping information.
+  shippingAddress1:
+    type: string
+    description: "The first line of the address associated with this Customer's shipping information.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  shippingAddress2:
+    type: string
+    description: "The second line of the address associated with this Customer's shipping information.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  shippingCity:
+    type: string
+    description: "The name of the city associated with this Customer's shipping\
+      \ information. \nThis field is stored as a text string and must be between 1 and\
+      \ 500 characters long."
+  shippingState:
+    $ref: ../models/stateModel.yaml
+  shippingZip:
+    type: string
+    description: "The ZIP code associated with this Customer's shipping information.\
+      \ \nThis field is stored as a text string and must be between 1 and 20 characters\
+      \ long."
+  shippingCountry:
+    $ref: ../models/countryModel.yaml
+    description: "The country associated with this Customer's shipping information. \nValid values\
+      \ for this field is the 3-letter ISO code for the country."
+  shippingPhone:
+    type: string
+    description: "The phone number associated with this Customer's shipping information. \nThis\
+      \ field is stored as a text string and must be between 10 and 15 characters\
+      \ long."
+  shippingFax:
+    type: string
+    description: "The fax number associated with this Customer's shipping information. \nThis field\
+      \ is stored as a text string and must be between 10 and 15 characters long."
+  custom:
+    type: string
+    description: Custom, free-form field for client-supplied text, must be between
+      0 and 1,000 characters long.
+  address1:
+    type: string
+    description: "The first line of the address associated with this Customer. \n\
+      This field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  address2:
+    type: string
+    description: "The second line of the address associated with this Customer. \n\
+      This field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  city:
+    type: string
+    description: "The name of the city in the address associated with this Customer.\
+      \ \nThis field is stored as a text string and must be between 1 and 500 characters\
+      \ long."
+  state:
+    $ref: ../models/stateModel.yaml
+  zip:
+    type: string
+    description: "The ZIP code in the address associated with this Customer. \nThis\
+      \ field is stored as a text string and must be between 1 and 20 characters long."
+  country:
+    $ref: ../models/countryModel.yaml
+    description: "The country associated with this Customer. \nValid values for this\
+      \ field is the 3-letter ISO code for the country."
+  phone:
+    type: string
+    description: "The phone number associated with this Transaction. \nThis field\
+      \ is stored as a text string and must be between 10 and 15 characters long."
+  fax:
+    type: string
+    description: "The fax number associated with this Customer. \nThis field is stored\
+      \ as a text string and must be between 10 and 15 characters long."
+  frozen:
+    $ref: ../frozen.yaml
+  inactive:
+    $ref: ../inactive.yaml
+required:
+- frozen
+- inactive
+- login
+
+example: 
+  login: t1_log_0089616d2294ec86ba6076c
+  merchant: t1_mer_00415e924c58c616f8a119b
+  first: John
+  middle: M
+  last: Doe
+  company: Doe Enterprises
+  email: somename@emaol.com
+  fax: +11234567845
+  phone: +11324567845
+  country: USA
+  zip: 75001
+  state: TX
+  city: Shelbyville
+  address2: Apt 4B
+  address1: 456 Secondary Ave
+  inactive: 0
+  frozen: 0
+  shippingFirst: John
+  shippingMiddle: M
+  shippingLast: Doe
+  shippingCompany: Doe Shipping Co.
+  shippingAddress1: 123 Main st.
+  shippingAddress2: Apt 4B
+  shippingCity: Shelbyville
+  shippingState: TX
+  shippingZip: 75001
+  shippingCountry: USA
+  shippingPhone: +11234567845
+  shippingFax: +11234567845
+  custom: Customer's custom data
+  entity: "t1_ent_64415e922e9000ef8bf3c1d"

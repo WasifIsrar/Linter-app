@@ -1,0 +1,33 @@
+title: settlementStatus
+type: string
+description: |
+  The current status of the settlement.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `cancelled` - **Cancelled.**
+  - `failed` - **Failed.**
+  - `pending` - **Pending.**
+  - `processed` - **Processed.**
+  - `processing` - **Processing.**
+
+  </details>
+default: pending
+enum:
+- cancelled
+- failed
+- pending
+- processed
+- processing
+x-enum-elements:
+- name: Cancelled
+  description: Cancelled.
+- name: Failed
+  description: Failed.
+- name: Pending
+  description: Pending.
+- name: Processed
+  description: Processed.
+- name: Processing
+  description: Processing.

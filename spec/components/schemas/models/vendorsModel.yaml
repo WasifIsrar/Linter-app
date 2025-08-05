@@ -1,0 +1,31 @@
+title: vendorsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this Vendor resource.
+  division:
+    type: string
+    description: ID of the division associated with this vendor.
+  dealId:
+    type: string
+    description: Deprecated.
+  onboardingContactEmails:
+    type: string
+    description: This holds the different emails the partners will want to be reached for onboarding related queries/concerns, this is a way of allowing the risk team to manage contacts more efficiently.
+  riskContactEmails:
+    type: string
+    description: This holds the different emails the partners will want to be reached for risk related queries/concerns, this is a way of allowing the risk team to manage contacts more efficiently.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

@@ -1,0 +1,73 @@
+get:
+  description: Query Chargebacks. A Chargeback is the reversal of a Transaction, meaning
+    that the funds have been returned to their source. The resource for each Chargeback
+    gives details of the Chargeback, including the reason why it occurred and the
+    date when it occurred.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebacks:
+              $ref: ../components/schemas/samples/chargebackJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebacksModel200Response.yaml
+      description: Response for query on chargebacks resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebacks:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Chargebacks.
+  tags:
+  - Chargebacks
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getChargebacks
+post:
+  description: Create a chargeback. A Chargeback is the reversal of a Transaction,
+    meaning that the funds have been returned to their source. The resource for a
+    Chargeback gives details of the Chargeback, including the reason why it occurred
+    and the date when it occurred.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/chargebacksPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebacks:
+              $ref: ../components/schemas/samples/chargebackJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/chargebacksModel200Response.yaml
+      description: Create Chargebacks Response for query on chargebacks resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all chargebacks:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Chargebacks
+  - Facilitator
+  operationId: postChargebacks
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

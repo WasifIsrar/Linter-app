@@ -1,0 +1,28 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_tts_67fd471bc46e25858d21f0z",
+        "created": "2025-04-14 13:34:19.8126",
+        "modified": "2025-04-14 13:34:19.8126",
+        "creator": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+        "modifier": "t1_log_62fd0aa37c3d8ec3a9dcea8",
+        "terminalTxn": "t1_ttx_67fd46fc4ba8da0b2a2d65b",
+        "type": 3,
+        "message": "Terminal Transaction Request Timeout",
+        "code": 34,
+        "originalCode": "909909",
+        "bankCode": "account_blocked"
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

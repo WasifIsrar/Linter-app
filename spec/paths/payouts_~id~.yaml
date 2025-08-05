@@ -1,0 +1,127 @@
+get:
+  description: Query a Payout. A Payout is a resource that represents all the details
+    that allow a Disbursement to be paid or debited; these details include the schedule
+    or trigger, the beneficiary account and the amount.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payout.
+    explode: false
+    in: path
+    name: id
+    example: p1_pay_00ce7e77b58ffe7d31b250e
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch payout:
+              $ref: ../components/schemas/samples/payoutsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutsModel200Response.yaml
+      description: Response for retrieving payout response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch a payout:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Payout by it's ID.
+  tags:
+  - Payouts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getPayoutsId
+put:
+  description: Update a Payout. A Payout is a resource that represents all the details
+    that allow a Disbursement to be paid or debited. These details include the schedule
+    or trigger, the beneficiary account and the amount.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payout.
+    explode: false
+    in: path
+    name: id
+    example: p1_pay_00ce7e77b58ffe7d31b250e
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/payoutsPutRequestModel.yaml
+    description: Update Payout Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update payout:
+              $ref: ../components/schemas/samples/payoutsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutsModel200Response.yaml
+      description: Update Payout Response for payouts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all payouts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update a Payout by it's ID.
+  tags:
+  - Payouts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putPayoutsId
+delete:
+  description: Delete a Payout. A Payout is a resource that represents all the details
+    that allow a Disbursement to be paid or debited. These details include the schedule
+    or trigger, the beneficiary account and the amount.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this payout.
+    explode: false
+    in: path
+    name: id
+    example: p1_pay_00ce7e77b58ffe7d31b250e
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete payout:
+              $ref: ../components/schemas/samples/payoutsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/payoutsModel200Response.yaml
+      description: Response for deleted payout.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch payout:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Payout by it's ID.
+  tags:
+  - Payouts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deletePayoutsId

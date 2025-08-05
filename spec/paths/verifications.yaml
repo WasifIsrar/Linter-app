@@ -1,0 +1,68 @@
+get:
+  description: "Query a Verification. \nA Verification is a type of check that you\
+    \ can perform on a particular Entity, Member or Transaction. \nAny messages associated\
+    \ with the Verification are stored in verificationResults resources."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all verifications:
+              $ref: ../components/schemas/samples/verificationsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/verificationsModel200Response.yaml
+      description: Response for query on verifications resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all verifications:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Verifications
+  - Facilitator
+  operationId: getVerifications
+post:
+  description: "Create a Verification. \nA Verification is a type of check that you\
+    \ can perform on a particular Entity, Member or Transaction. \nAny messages associated\
+    \ with the Verification are stored in verificationResults resources."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/verificationsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create verifications:
+              $ref: ../components/schemas/samples/verificationsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/verificationsModel200Response.yaml
+      description: Response for create on verifications resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all verifications:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Verifications
+  - Facilitator
+  operationId: postVerifications
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

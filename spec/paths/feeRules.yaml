@@ -1,0 +1,72 @@
+get:
+  description: Query a Fee Rule that makes a Fee apply only in certain circumstances,
+    such as applying an administration charge if a payment is under $50.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/feeRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeRulesModel200Response.yaml
+      description: Response for query on feeRules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Fee Rules.
+  tags:
+  - Fee Rules
+  - Facilitator
+  - Partner
+  operationId: getFeeRules
+post:
+  description: Create a conditional Fee Rule that makes fees apply only in certain
+    circumstances, such as applying an administration charge if a payment is under
+    $50.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/feeRulesPostRequestModel.yaml
+    description: Create Fee Rule Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create feeRules:
+              $ref: ../components/schemas/samples/feeRulesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/feeRulesModel200Response.yaml
+      description: Response for create on feeRules resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all feeRules:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Fee Rule
+  tags:
+  - Fee Rules
+  - Facilitator
+  - Partner
+  operationId: postFeeRules
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

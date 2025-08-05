@@ -1,0 +1,50 @@
+title: reportsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  type:
+    $ref: ../enums/reportTypeModel.yaml
+  description:
+    type: string
+    description: Description of the Reports.
+  status:
+    $ref: ../enums/reportStatusModel.yaml
+  schedule:
+    $ref: ../enums/reportScheduleModel.yaml
+  scheduleFactor:
+    type: integer
+    description: |
+      Whether or not to trigger reports daily.
+
+      Default Value:
+
+      - `1` - **Subscription to trigger daily.**
+
+    enum:
+    - 1
+    x-enum-elements:
+    - name: DailyTrigger
+      description: Subscription to trigger reports daily.
+  start:
+    type: integer
+    format: int64
+    description: Start Date.
+  finish:
+    type: integer
+    format: int64
+    description: End Date.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml

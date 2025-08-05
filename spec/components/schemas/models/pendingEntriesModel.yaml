@@ -1,0 +1,1176 @@
+title: pendingEntriesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that owns this PendingEntry.
+  onentity:
+    type: string
+    description: The identifier of the Entity that this PendingEntry refers to. This
+      is the owner of the record that triggered the charge.
+  fromentity:
+    type: string
+    description: If the activity that this PendingEntry refers to involves two parties
+      in the system with one paying a charge of any kind, then this field stores the
+      identifier of the Entity that the charge or other activity is for.
+  fund:
+    type: string
+    description: The identifier of the Fund that this PendingEntry refers to.
+  opposingEntry:
+    type: string
+    description: The identifier of the Entry that this entry was created based on.
+  entry:
+    type: string
+    description: The entry ID associated with this pendingEntry.
+  adjustment:
+    type: string
+    description: The adjustment ID from which the funding activity was triggered.
+  chargeback:
+    type: string
+    description: If the activity that this PendingEntry refers to is a Chargeback,
+      then this field stores the identifier of the corresponding Chargeback resource. 
+  disbursement:
+    type: string
+    description: If the activity that this PendingEntry refers to is the charging
+      of a Disbursement, then this field stores the identifier of the corresponding
+      Disbursement resource.
+  fee:
+    type: string
+    description: If the activity that this PendingEntry refers to is the charging
+      of a Fee, then this field stores the identifier of the corresponding Fee resource.
+  refund:
+    type: string
+    description: If the activity that this PendingEntry refers to is the paying of
+      a Refund, then this field stores the identifier of the corresponding Refund
+      resource.
+  txn:
+    type: string
+    description: If the activity that this PendingEntry refers to is a Transaction,
+      then this field stores the identifier of the corresponding Transaction resource.
+  event:
+    title: pendingEntryEvent
+    type: integer
+    description: |
+      The bucket of rev share fees, comma-separated list with no spaces
+      <details>
+      <summary>Valid Values</summary>
+      - `1` - **DAYS** The PendingEntry for an Entry that triggers every day.
+      - `2` - **WEEKS** The PendingEntry for an Entry that triggers every week.
+      - `3` - **MONTHS** The PendingEntry for an Entry that triggers every month.
+      - `4` - **YEARS** The PendingEntry for an Entry that triggers every year.
+      - `5` - **SINGLE** The PendingEntry for an Entry related to a one-off event.
+      - `6` - **AUTH** The PendingEntry for an Entry related to the time of authorization of a transaction.
+      - `7` - **CAPTURE** The PendingEntry for an Entry related to the capture time of a Transaction.
+      - `8` - **REFUND** The PendingEntry for an Entry related to when a refund transaction is processed.
+      - `9` - **BOARD** The PendingEntry for an Entry related to when the Merchant is boarded.
+      - `10` - **PAYOUT** The PendingEntry for an Entry related to when a payout is processed.
+      - `11` - **CHARGEBACK** The PendingEntry for an Entry related to when a card chargeback occurs.
+      - `12` - **OVERDRAFT** The PendingEntry for an Entry related to when an overdraft usage charge from a bank is levied.
+      - `13` - **INTERCHANGE** The PendingEntry for an Entry related to when interchange Fees are assessed for the Transactions of this Merchant.
+      - `14` - **PROCESSOR** The PendingEntry for an Entry related to when the Transactions of this Merchant are processed by a payment processor.
+      - `15` - **ACHFAIL** The PendingEntry for an Entry related to when an automated clearing house failure occurs.
+      - `16` - **ACCOUNT** The PendingEntry for an Entry related to when a bank account is verified.
+      - `17` - **SIFT** The PendingEntry for an Entry related to Transaction fraud score.
+      - `18` - **ADJUSTMENT** The PendingEntry for an Entry related to adjusted funds.
+      - `19` - **RETRIEVAL** The PendingEntry for an Entry related to Retrieval Request Chargeback.
+      - `20` - **ARBITRATION** The PendingEntry for an Entry related to Arbitration Chargeback.
+      - `21` - **ECSALE** The PendingEntry for an Entry related to an eCheck Sale.
+      - `22` - **ECREFUND** The PendingEntry for an Entry related to an eCheck Refund.
+      - `23` - **ECRETURN** The PendingEntry for an Entry related to an eCheck Return.
+      - `24` - **SETTLEMENT** The PendingEntry for an Entry related to transaction settlement.
+      - `25` - **MISUSE** The PendingEntry for an Entry related to Misuse of authorization.
+      - `26` - **PROFIT_SHARE** The PendingEntry for an Entry related to a profit sharing entry.
+      - `27` - **UNAUTH** The PendingEntry for an Entry related to an unauthorized entry.
+      - `28` - **ACHNOC** The PendingEntry for an Entry related to an ACH Notification of Change.
+      - `29` - **ECNOC** The PendingEntry for an Entry related to an eCheck Notifications of Change.
+      - `30` - **ECFAIL** The PendingEntry for an Entry related to an eCheck Fail.
+      - `31` - **ECNSF** The PendingEntry for an Entry related to an eCheck Non-Sufficient Funds.
+      - `32` - **CURRENCY_CONVERSION** The PendingEntry for an Entry related to a currency conversion.
+      - `33` - **TERMINAL_TXN** The PendingEntry for an Entry related to a terminal transaction.
+      - `34` - **REVERSE_PAYOUT** The PendingEntry for an Entry related to a payout that's been reversed.
+      - `35` - **PARTIAL_REVERSE_PAYOUT** The PendingEntry for an Entry related to a payout that's been partially reversed.
+      - `43` - **PAYMENT_CHECK** Single payment check (deprecated).
+      - `44` - **PAYMENT_UPDATE** Single payment update.
+      - `45` - **PAYMENT_GROUP_CHECK** Group payment check (deprecated).
+      - `46` - **PAYMENT_GROUP_UPDATE** Group payment update.
+      - `47` - **ENTRY_REFUND** Entry refunds.
+      - `51` - **STATEMENT** Payment of statement.
+      - `52` - **MERCHANT_CREATION** Merchant fee upon creation.
+      - `53` - **REALTIME_BUSINESS_SEARCH** Real-time business search.
+      - `54` - **REALTIME_MEMBER_SEARCH** Real-time member search.
+      - `55` - **MASTER_CARD_MATCH** Mastercard match.
+      - `56` - **BUSINESS_INSTANT_ID** Business instant ID.
+      - `57` - **CONSUMER_INSTANT_ID** Consumer instant ID.
+      - `58` - **THREAT_METRIX** Threat metrix.
+      - `59` - **LEGIT_SCRIPT_REGISTER** Legit script register.
+      - `60` - **EQUIFAX_CONSUMER_REPORT** Equifax consumer report.
+      - `61` - **GUIDE_STAR** Guidestar.
+      - `62` - **PAYLOAD_ATTRIBUTE** Internal Decision V2.
+      - `63` - **TIN_CHECK** Tin check.
+      - `64` - **EQUIFAX_COMMERCIAL_REPORT** Equifax commercial report.
+      - `65` - **LEGIT_SCRIPT_CHECK_MERCHANT** Legit script check merchant.
+      - `66` - **PLAID** Plaid.
+      - `67` - **STATEMENT_REVERSAL** Reversal of statement.
+      - `68` - **GIACT_ECHECK** GIACT call made to verify creator Echeck bank Account.
+      - `69` - **GIACT_BANK_ACCOUNT** Giact calls to verify merchant settlement account on sign-up or post-boarding account.
+      - `70` - **BOARD_DECISION** Process decision fee after board.
+      - `71` - **TXN_RISK_DECISION** Txn going through a risk decision.
+      - `72` - **FANF** External Fees.
+      - `73` - **MCLOCATION** External Fees.
+      - `74` - **VISAINTEGRITY** External Fees.
+      - `75` - **SAFERPAYMENTS_BASIC** External Fees.
+      - `76` - **SAFERPAYMENTS_MANAGED** External Fees.
+      - `77` - **SAFERPAYMENTS_PCI_NONVALIDATION** External Fees.
+      - `78` - **OMNITOKENS_VOLUME** External Fees.
+      - `79` - **PAYOUT_RETURN** Payout Return.
+      - `80` - **PAYOUT_PARTIAL_RETURN** Payout Partial Return.
+      - `81` - **REV_SHARE** Rev share.
+      - `82` - **CARD_SETTLEMENT** Txns card settlement.
+      - `83` - **ECHECK_SETTLEMENT** Txns e-check settlement.
+      - `84` - **REV_SHARE_CARD** Rev Share Schedules.
+      - `85` - **REV_SHARE_ECHECK** Rev Share Schedules.
+      - `86` - **REV_SHARE_DBM** Rev Share Schedules.
+      - `87` - **PREARBITRATION** Chargeback PreArbitration.
+      - `88` - **PLAID_IDENTITY_MACH** Plaid.
+      - `89` - **TXN_PLAID_IDENTITY_MACH** Txns Plaid.
+      - `90` - **PLAID_GET_IDENTITY** Plaid.
+      - `91` - **TXN_PLAID_GET_IDENTITY** Txns Plaid.
+      - `92` - **PLAID_GET_AUTH** Plaid.
+      - `93` - **TXN_PLAID_GET_AUTH** Txns Plaid.
+      - `94` - **REVERSAL** Chargeback Reversal.
+      - `95` - **REPRESENTMENT** Chargeback Representment.
+      - `101` - **IC_RETAIN_PASSTHRU_REFUND** Interchange retain pass on refund.
+      - `200` - **VALUTEC_ESSENTIAL_GIFT** External Fees.
+      - `201` - **VALUTEC_ESSENTIAL_MONTHLY_TXN** External Fees.
+      - `202` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE** External Fees.
+      - `203` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_TXN** External Fees.
+      - `204` - **VALUTEC_LOYALTY_PLUS_PACKAGE** External Fees.
+      - `205` - **VALUTEC_LOYALTY_PLUS_PACKAGE_TXN** External Fees.
+      - `206` - **VALUTEC_TRANSACTION_FEE** External Fees.
+      - `207` - **VALUTEC_SETUP_FEE** External Fees.
+      - `208` - **VALUTEC_GIFT_ACH_POOLING** External Fees.
+      - `209` - **VALUTEC_JUMP_START_KIT** External Fees.
+      - `210` - **VALUTEC_LAUNCH_BOX_KIT** External Fees.
+      - `211` - **VALUTEC_500_CUSTOM_CARDS** External Fees.
+      - `212` - **VALUTEC_MAINTENANCE_FEE** External Fees.
+      - `213` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_ME** External Fees.
+      - `214` - **EFE_MWC_RESIDUAL_ATELIO** EFE External Fees.
+      - `215` - **EFE_MWC_RESIDUAL_PARAFIN** EFE External Fees.
+      - `216` - **EFE_MWC_BILLING** EFE External Fees.
+      - `217` - **FRAUDSIGHT_CNP_DECISION** External Fees.
+      - `218` - **FRAUDSIGHT_CP_DECISION** External Fees.
+      - `400` - **REVBOOST_EMBEDDED_TMS_MONTHLY** External Fees.
+      - `401` - **REVBOOST_EMBEDDED_TMS_PPT** External Fees.
+      - `402` - **TXN_THREAT_METRIX** External Fees.
+      - `403` - **THREAT_METRIX_EMAILAGE** External Fees.
+      - `404` - **THREAT_METRIX_FRAUD_POINT** External Fees.
+      - `405` - **GIACT_INQUIRY** External Fees.
+      - `406` - **GIACT_TXN_GAUTHENTICATE** External Fees.
+      - `407` - **TRULIOO_IDV** External Fees.
+      - `408` - **TRULIOO_AMLLDV** External Fees.
+      - `409` - **TRULIOO_BUSINESS_VERIFICATION** External Fees.
+      - `410` - **THREAT_METRIX_PHONE_FINDER** External Fees.
+      - `601` - **TIER_NON_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `602` - **TIER_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `603` - **TIER_MID_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `604` - **TIER_HIGH_RISK_COUNT** Risk Based Tier Fees.
+      - `605` - **TIER_NON_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `606` - **TIER_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `607` - **TIER_MID_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `608` - **TIER_HIGH_RISK_VOLUME** Risk Based Tier Fees
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 51
+    - 52
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+    - 61
+    - 62
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+    - 92
+    - 93
+    - 94
+    - 95
+    - 101
+    - 200
+    - 201
+    - 202
+    - 203
+    - 204
+    - 205
+    - 206
+    - 207
+    - 208
+    - 209
+    - 210
+    - 211
+    - 212
+    - 213
+    - 214
+    - 215
+    - 216
+    - 217
+    - 218
+    - 400
+    - 401
+    - 402
+    - 403
+    - 404
+    - 405
+    - 406
+    - 407
+    - 408
+    - 409
+    - 410
+    - 601
+    - 602
+    - 603
+    - 604
+    - 605
+    - 606
+    - 607
+    - 608
+    x-enum-elements:
+    - name: "Days"
+      description: "The PendingEntry for an Entry that triggers every day."
+    - name: "Weeks"
+      description: "The PendingEntry for an Entry that triggers every week."
+    - name: "Months"
+      description: "The PendingEntry for an Entry that triggers every month."
+    - name: "Years"
+      description: "The PendingEntry for an Entry that triggers every year."
+    - name: "Single"
+      description: "The PendingEntry for an Entry related to a one-off event."
+    - name: "Auth"
+      description: "The PendingEntry for an Entry related to the time of authorization of a transaction."
+    - name: "Capture"
+      description: "The PendingEntry for an Entry related to the capture time of a Transaction."
+    - name: "Refund"
+      description: "The PendingEntry for an Entry related to when a refund transaction is processed."
+    - name: "Board"
+      description: "The PendingEntry for an Entry related to when the Merchant is boarded."
+    - name: "Payout"
+      description: "The PendingEntry for an Entry related to when a payout is processed."
+    - name: "Chargeback"
+      description: "The PendingEntry for an Entry related to when a card chargeback occurs."
+    - name: "Overdraft"
+      description: "The PendingEntry for an Entry related to when an overdraft usage charge from a bank is levied."
+    - name: "Interchange"
+      description: "The PendingEntry for an Entry related to when interchange Fees are assessed for the Transactions of this Merchant."
+    - name: "Processor"
+      description: "The PendingEntry for an Entry related to when the Transactions of this Merchant are processed by a payment processor."
+    - name: "AchFail"
+      description: "The PendingEntry for an Entry related to when an automated clearing house failure occurs."
+    - name: "Account"
+      description: "The PendingEntry for an Entry related to when a bank account is verified."
+    - name: "Sift"
+      description: "The PendingEntry for an Entry related to Transaction fraud score."
+    - name: "Adjustment"
+      description: "The PendingEntry for an Entry related to adjusted funds."
+    - name: "Retrieval"
+      description: "The PendingEntry for an Entry related to Retrieval Request Chargeback."
+    - name: "Arbitration"
+      description: "The PendingEntry for an Entry related to Arbitration Chargeback."
+    - name: "EcSale"
+      description: "The PendingEntry for an Entry related to an eCheck Sale."
+    - name: "EcRefund"
+      description: "The PendingEntry for an Entry related to an eCheck Refund."
+    - name: "EcReturn"
+      description: "The PendingEntry for an Entry related to an eCheck Return."
+    - name: "Settlement"
+      description: "The PendingEntry for an Entry related to transaction settlement."
+    - name: "Misuse"
+      description: "The PendingEntry for an Entry related to Misuse of authorization."
+    - name: "ProfitShare"
+      description: "The PendingEntry for an Entry related to a profit sharing entry."
+    - name: "Unauth"
+      description: "The PendingEntry for an Entry related to an unauthorized entry."
+    - name: "AchNoc"
+      description: "The PendingEntry for an Entry related to an ACH Notification of Change."
+    - name: "EcNoc"
+      description: "The PendingEntry for an Entry related to an eCheck Notifications of Change."
+    - name: "EcFail"
+      description: "The PendingEntry for an Entry related to an eCheck Fail."
+    - name: "EcNsf"
+      description: "The PendingEntry for an Entry related to an eCheck Non-Sufficient Funds."
+    - name: "CurrencyConversion"
+      description: "The PendingEntry for an Entry related to a currency conversion."
+    - name: "TerminalTxn"
+      description: "The PendingEntry for an Entry related to a terminal transaction."
+    - name: "ReversePayout"
+      description: "The PendingEntry for an Entry related to a payout that's been reversed."
+    - name: "PartialReversePayout"
+      description: "The PendingEntry for an Entry related to a payout that's been partially reversed."
+    - name: "PaymentCheck"
+      description: "The PendingEntry for an Entry related to a single payment check (deprecated)."
+    - name: "PaymentUpdate"
+      description: "The PendingEntry for an Entry related to a single payment update."
+    - name: "PaymentGroupCheck"
+      description: "The PendingEntry for an Entry related to a group payment check (deprecated)."
+    - name: "PaymentGroupUpdate"
+      description: "The PendingEntry for an Entry related to a group payment update."
+    - name: "EntryRefund"
+      description: "The PendingEntry for an Entry related to entry refunds."
+    - name: "Statement"
+      description: "The PendingEntry for an Entry related to the payment of a statement."
+    - name: "MerchantCreation"
+      description: "The PendingEntry for an Entry related to a merchant fee upon creation."
+    - name: "RealtimeBusinessSearch"
+      description: "The PendingEntry for an Entry related to a real-time business search."
+    - name: "RealtimeMemberSearch"
+      description: "The PendingEntry for an Entry related to a real-time member search."
+    - name: "MasterCardMatch"
+      description: "The PendingEntry for an Entry related to Mastercard match."
+    - name: "BusinessInstantId"
+      description: "The PendingEntry for an Entry related to a business instant ID."
+    - name: "ConsumerInstantId"
+      description: "The PendingEntry for an Entry related to a consumer instant ID."
+    - name: "ThreatMetrix"
+      description: "The PendingEntry for an Entry related to Threat Metrix."
+    - name: "LegitScriptRegister"
+      description: "The PendingEntry for an Entry related to Legit Script Register."
+    - name: "EquifaxConsumerReport"
+      description: "The PendingEntry for an Entry related to Equifax consumer report."
+    - name: "GuideStar"
+      description: "The PendingEntry for an Entry related to Guide Star."
+    - name: "PayloadAttribute"
+      description: "The PendingEntry for an Entry related to internal decision V2."
+    - name: "TinCheck"
+      description: "The PendingEntry for an Entry related to a Tin Check."
+    - name: "EquifaxCommercialReport"
+      description: "The PendingEntry for an Entry related to Equifax commercial report."
+    - name: "LegitScriptCheckMerchant"
+      description: "The PendingEntry for an Entry related to Legit Script Check Merchant."
+    - name: "Plaid"
+      description: "The PendingEntry for an Entry related to Plaid."
+    - name: "StatementReversal"
+      description: "The PendingEntry for an Entry related to the reversal of a statement."
+    - name: "GiactEcheck"
+      description: "The PendingEntry for an Entry related to GIACT call made to verify creator Echeck bank account."
+    - name: "GiactBankAccount"
+      description: "The PendingEntry for an Entry related to Giact calls to verify merchant settlement account."
+    - name: "BoardDecision"
+      description: "The PendingEntry for an Entry related to process decision fee after board."
+    - name: "TxnRiskDecision"
+      description: "The PendingEntry for an Entry related to a transaction going through a risk decision."
+    - name: "Fanf"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "McLocation"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "VisaIntegrity"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "SaferPaymentsBasic"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "SaferPaymentsManaged"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "SaferPaymentsPciNonValidation"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "OmniTokensVolume"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "PayoutReturn"
+      description: "The PendingEntry for an Entry related to a payout return."
+    - name: "PayoutPartialReturn"
+      description: "The PendingEntry for an Entry related to a partial payout return."
+    - name: "RevShare"
+      description: "The PendingEntry for an Entry related to revenue sharing."
+    - name: "CardSettlement"
+      description: "The PendingEntry for an Entry related to card settlement."
+    - name: "EcheckSettlement"
+      description: "The PendingEntry for an Entry related to e-check settlement."
+    - name: "RevShareCard"
+      description: "The PendingEntry for an Entry related to revenue sharing for cards."
+    - name: "RevShareEcheck"
+      description: "The PendingEntry for an Entry related to revenue sharing for e-checks."
+    - name: "RevShareDbm"
+      description: "The PendingEntry for an Entry related to revenue sharing for DBM."
+    - name: "PreArbitration"
+      description: "The PendingEntry for an Entry related to chargeback pre-arbitration."
+    - name: "PlaidIdentityMach"
+      description: "The PendingEntry for an Entry related to Plaid Identity Mach."
+    - name: "TxnPlaidIdentityMach"
+      description: "The PendingEntry for an Entry related to transactions with Plaid Identity Mach."
+    - name: "PlaidGetIdentity"
+      description: "The PendingEntry for an Entry related to Plaid Get Identity."
+    - name: "TxnPlaidGetIdentity"
+      description: "The PendingEntry for an Entry related to transactions with Plaid Get Identity."
+    - name: "PlaidGetAuth"
+      description: "The PendingEntry for an Entry related to Plaid Get Auth."
+    - name: "TxnPlaidGetAuth"
+      description: "The PendingEntry for an Entry related to transactions with Plaid Get Auth."
+    - name: "Reversal"
+      description: "The PendingEntry for an Entry related to chargeback reversal."
+    - name: "Representment"
+      description: "The PendingEntry for an Entry related to chargeback representment."
+    - name: "IcRetainPassthruRefund"
+      description: "The PendingEntry for an Entry related to interchange retain pass-through refund."
+    - name: "ValutecEssentialGift"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecEssentialMonthlyTxn"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecDigitalGiftPlusPackage"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecDigitalGiftPlusPackageTxn"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecLoyaltyPlusPackage"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecLoyaltyPlusPackageTxn"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecTransactionFee"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecSetupFee"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecGiftAchPooling"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecJumpStartKit"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecLaunchBoxKit"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "Valutec500CustomCards"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecMaintenanceFee"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecDigitalGiftPlusPackageMe"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "EfeMwcResidualAtelio"
+      description: "The PendingEntry for an Entry related to EFE external fees."
+    - name: "EfeMwcResidualParafin"
+      description: "The PendingEntry for an Entry related to EFE external fees."
+    - name: "EfeMwcBilling"
+      description: "The PendingEntry for an Entry related to EFE external fees."
+    - name: "FraudsightCnpDecision"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "FraudsightCpDecision"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "RevboostEmbeddedTmsMonthly"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "RevboostEmbeddedTmsPpt"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TxnThreatMetrix"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ThreatMetrixEmailage"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ThreatMetrixFraudPoint"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "GiactInquiry"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "GiactTxnGauthenticate"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TruliooIdv"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TruliooAmllDv"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TruliooBusinessVerification"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ThreatMetrixPhoneFinder"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TierNonQualifiedCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierQualifiedCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierMidQualifiedCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierHighRiskCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierNonQualifiedVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierQualifiedVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierMidQualifiedVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierHighRiskVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this PendingEntry. 
+  description:
+    type: string
+    description: A description of this PendingEntry.
+  amount:
+    type: number
+    format: double
+    description: "The amount involved in this PendingEntry. It refers to the amount\
+      \ charged, transferred, or disbursed. \nThis field is specified in cents(up to three decimal points)"
+  pending:
+    type: integer
+    description: |
+      Whether this resource is marked as pending.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Pending.**
+      - `1` - **Pending.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotPending
+      description: The resource is not marked as pending.
+    - name: Pending
+      description: The resource is marked as pending.
+  profitShare:
+    type: string
+    description: If the activity that this PendingEntry refers to is a ProfitShare,
+      then this field stores the identifier of the corresponding ProfitShare resource.
+  originalCurrency:
+    $ref: ../models/currencyModel.yaml
+    description: Original Currency describes the currency, set automatically based
+      on the settled total. The default is 'USD'. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.   
+  currencyRate:
+    type: number
+    format: double
+    description: currency conversion rate(up to three decimal points).    
+  terminalTxn:
+    type: string
+    description: The terminal transaction ID from which the funding activity was triggered.
+  isFee:
+    title: pendingEntriesIsFee
+    type: integer
+    description: |
+      Whether this resource is marked as a fee.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not a Fee.**
+      - `1` - **Is a Fee.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: NotFee
+      description: The resource is not marked as a fee.
+    - name: Fee
+      description: The resource is marked as a fee.
+  entityDebt:
+    type: string
+    description: The ID of the entityDebt representing the relationship for the debt  
+  statement:
+    type: string
+    description: If the activity that this PendingEntry refers to is a Statement,
+      then this field stores the identifier of the corresponding Statement resource.
+  settlement:
+    type: string
+    description: If the activity that this PendingEntry refers to is a Settlement,
+      then this field stores the identifier of the corresponding Settlement resource.
+  originalEventId:
+    type: string
+    description: ID of the original event.
+  originalEvent:
+    type: integer
+    description: |
+      The event that originally triggered the entry.
+      <details>
+      <summary>Valid Values</summary>
+      <summary>Valid Values</summary>
+      - `1` - **DAYS** The PendingEntry for an Entry that triggers every day.
+      - `2` - **WEEKS** The PendingEntry for an Entry that triggers every week.
+      - `3` - **MONTHS** The PendingEntry for an Entry that triggers every month.
+      - `4` - **YEARS** The PendingEntry for an Entry that triggers every year.
+      - `5` - **SINGLE** The PendingEntry for an Entry related to a one-off event.
+      - `6` - **AUTH** The PendingEntry for an Entry related to the time of authorization of a transaction.
+      - `7` - **CAPTURE** The PendingEntry for an Entry related to the capture time of a Transaction.
+      - `8` - **REFUND** The PendingEntry for an Entry related to when a refund transaction is processed.
+      - `9` - **BOARD** The PendingEntry for an Entry related to when the Merchant is boarded.
+      - `10` - **PAYOUT** The PendingEntry for an Entry related to when a payout is processed.
+      - `11` - **CHARGEBACK** The PendingEntry for an Entry related to when a card chargeback occurs.
+      - `12` - **OVERDRAFT** The PendingEntry for an Entry related to when an overdraft usage charge from a bank is levied.
+      - `13` - **INTERCHANGE** The PendingEntry for an Entry related to when interchange Fees are assessed for the Transactions of this Merchant.
+      - `14` - **PROCESSOR** The PendingEntry for an Entry related to when the Transactions of this Merchant are processed by a payment processor.
+      - `15` - **ACHFAIL** The PendingEntry for an Entry related to when an automated clearing house failure occurs.
+      - `16` - **ACCOUNT** The PendingEntry for an Entry related to when a bank account is verified.
+      - `17` - **SIFT** The PendingEntry for an Entry related to Transaction fraud score.
+      - `18` - **ADJUSTMENT** The PendingEntry for an Entry related to adjusted funds.
+      - `19` - **RETRIEVAL** The PendingEntry for an Entry related to Retrieval Request Chargeback.
+      - `20` - **ARBITRATION** The PendingEntry for an Entry related to Arbitration Chargeback.
+      - `21` - **ECSALE** The PendingEntry for an Entry related to an eCheck Sale.
+      - `22` - **ECREFUND** The PendingEntry for an Entry related to an eCheck Refund.
+      - `23` - **ECRETURN** The PendingEntry for an Entry related to an eCheck Return.
+      - `24` - **SETTLEMENT** The PendingEntry for an Entry related to transaction settlement.
+      - `25` - **MISUSE** The PendingEntry for an Entry related to Misuse of authorization.
+      - `26` - **PROFIT_SHARE** The PendingEntry for an Entry related to a profit sharing entry.
+      - `27` - **UNAUTH** The PendingEntry for an Entry related to an unauthorized entry.
+      - `28` - **ACHNOC** The PendingEntry for an Entry related to an ACH Notification of Change.
+      - `29` - **ECNOC** The PendingEntry for an Entry related to an eCheck Notifications of Change.
+      - `30` - **ECFAIL** The PendingEntry for an Entry related to an eCheck Fail.
+      - `31` - **ECNSF** The PendingEntry for an Entry related to an eCheck Non-Sufficient Funds.
+      - `32` - **CURRENCY_CONVERSION** The PendingEntry for an Entry related to a currency conversion.
+      - `33` - **TERMINAL_TXN** The PendingEntry for an Entry related to a terminal transaction.
+      - `34` - **REVERSE_PAYOUT** The PendingEntry for an Entry related to a payout that's been reversed.
+      - `35` - **PARTIAL_REVERSE_PAYOUT** The PendingEntry for an Entry related to a payout that's been partially reversed.
+      - `43` - **PAYMENT_CHECK** Single payment check (deprecated).
+      - `44` - **PAYMENT_UPDATE** Single payment update.
+      - `45` - **PAYMENT_GROUP_CHECK** Group payment check (deprecated).
+      - `46` - **PAYMENT_GROUP_UPDATE** Group payment update.
+      - `47` - **ENTRY_REFUND** Entry refunds.
+      - `51` - **STATEMENT** Payment of statement.
+      - `52` - **MERCHANT_CREATION** Merchant fee upon creation.
+      - `53` - **REALTIME_BUSINESS_SEARCH** Real-time business search.
+      - `54` - **REALTIME_MEMBER_SEARCH** Real-time member search.
+      - `55` - **MASTER_CARD_MATCH** Mastercard match.
+      - `56` - **BUSINESS_INSTANT_ID** Business instant ID.
+      - `57` - **CONSUMER_INSTANT_ID** Consumer instant ID.
+      - `58` - **THREAT_METRIX** Threat metrix.
+      - `59` - **LEGIT_SCRIPT_REGISTER** Legit script register.
+      - `60` - **EQUIFAX_CONSUMER_REPORT** Equifax consumer report.
+      - `61` - **GUIDE_STAR** Guidestar.
+      - `62` - **PAYLOAD_ATTRIBUTE** Internal Decision V2.
+      - `63` - **TIN_CHECK** Tin check.
+      - `64` - **EQUIFAX_COMMERCIAL_REPORT** Equifax commercial report.
+      - `65` - **LEGIT_SCRIPT_CHECK_MERCHANT** Legit script check merchant.
+      - `66` - **PLAID** Plaid.
+      - `67` - **STATEMENT_REVERSAL** Reversal of statement.
+      - `68` - **GIACT_ECHECK** GIACT call made to verify creator Echeck bank Account.
+      - `69` - **GIACT_BANK_ACCOUNT** Giact calls to verify merchant settlement account on sign-up or post-boarding account.
+      - `70` - **BOARD_DECISION** Process decision fee after board.
+      - `71` - **TXN_RISK_DECISION** Txn going through a risk decision.
+      - `72` - **FANF** External Fees.
+      - `73` - **MCLOCATION** External Fees.
+      - `74` - **VISAINTEGRITY** External Fees.
+      - `75` - **SAFERPAYMENTS_BASIC** External Fees.
+      - `76` - **SAFERPAYMENTS_MANAGED** External Fees.
+      - `77` - **SAFERPAYMENTS_PCI_NONVALIDATION** External Fees.
+      - `78` - **OMNITOKENS_VOLUME** External Fees.
+      - `79` - **PAYOUT_RETURN** Payout Return.
+      - `80` - **PAYOUT_PARTIAL_RETURN** Payout Partial Return.
+      - `81` - **REV_SHARE** Rev share.
+      - `82` - **CARD_SETTLEMENT** Txns card settlement.
+      - `83` - **ECHECK_SETTLEMENT** Txns e-check settlement.
+      - `84` - **REV_SHARE_CARD** Rev Share Schedules.
+      - `85` - **REV_SHARE_ECHECK** Rev Share Schedules.
+      - `86` - **REV_SHARE_DBM** Rev Share Schedules.
+      - `87` - **PREARBITRATION** Chargeback PreArbitration.
+      - `88` - **PLAID_IDENTITY_MACH** Plaid.
+      - `89` - **TXN_PLAID_IDENTITY_MACH** Txns Plaid.
+      - `90` - **PLAID_GET_IDENTITY** Plaid.
+      - `91` - **TXN_PLAID_GET_IDENTITY** Txns Plaid.
+      - `92` - **PLAID_GET_AUTH** Plaid.
+      - `93` - **TXN_PLAID_GET_AUTH** Txns Plaid.
+      - `94` - **REVERSAL** Chargeback Reversal.
+      - `95` - **REPRESENTMENT** Chargeback Representment.
+      - `101` - **IC_RETAIN_PASSTHRU_REFUND** Interchange retain pass on refund.
+      - `200` - **VALUTEC_ESSENTIAL_GIFT** External Fees.
+      - `201` - **VALUTEC_ESSENTIAL_MONTHLY_TXN** External Fees.
+      - `202` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE** External Fees.
+      - `203` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_TXN** External Fees.
+      - `204` - **VALUTEC_LOYALTY_PLUS_PACKAGE** External Fees.
+      - `205` - **VALUTEC_LOYALTY_PLUS_PACKAGE_TXN** External Fees.
+      - `206` - **VALUTEC_TRANSACTION_FEE** External Fees.
+      - `207` - **VALUTEC_SETUP_FEE** External Fees.
+      - `208` - **VALUTEC_GIFT_ACH_POOLING** External Fees.
+      - `209` - **VALUTEC_JUMP_START_KIT** External Fees.
+      - `210` - **VALUTEC_LAUNCH_BOX_KIT** External Fees.
+      - `211` - **VALUTEC_500_CUSTOM_CARDS** External Fees.
+      - `212` - **VALUTEC_MAINTENANCE_FEE** External Fees.
+      - `213` - **VALUTEC_DIGITAL_GIFT_PLUS_PACKAGE_ME** External Fees.
+      - `214` - **EFE_MWC_RESIDUAL_ATELIO** EFE External Fees.
+      - `215` - **EFE_MWC_RESIDUAL_PARAFIN** EFE External Fees.
+      - `216` - **EFE_MWC_BILLING** EFE External Fees.
+      - `217` - **FRAUDSIGHT_CNP_DECISION** External Fees.
+      - `218` - **FRAUDSIGHT_CP_DECISION** External Fees.
+      - `400` - **REVBOOST_EMBEDDED_TMS_MONTHLY** External Fees.
+      - `401` - **REVBOOST_EMBEDDED_TMS_PPT** External Fees.
+      - `402` - **TXN_THREAT_METRIX** External Fees.
+      - `403` - **THREAT_METRIX_EMAILAGE** External Fees.
+      - `404` - **THREAT_METRIX_FRAUD_POINT** External Fees.
+      - `405` - **GIACT_INQUIRY** External Fees.
+      - `406` - **GIACT_TXN_GAUTHENTICATE** External Fees.
+      - `407` - **TRULIOO_IDV** External Fees.
+      - `408` - **TRULIOO_AMLLDV** External Fees.
+      - `409` - **TRULIOO_BUSINESS_VERIFICATION** External Fees.
+      - `410` - **THREAT_METRIX_PHONE_FINDER** External Fees.
+      - `601` - **TIER_NON_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `602` - **TIER_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `603` - **TIER_MID_QUALIFIED_COUNT** Risk Based Tier Fees.
+      - `604` - **TIER_HIGH_RISK_COUNT** Risk Based Tier Fees.
+      - `605` - **TIER_NON_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `606` - **TIER_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `607` - **TIER_MID_QUALIFIED_VOLUME** Risk Based Tier Fees.
+      - `608` - **TIER_HIGH_RISK_VOLUME** Risk Based Tier Fees
+      </details>
+    enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 51
+    - 52
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+    - 61
+    - 62
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+    - 92
+    - 93
+    - 94
+    - 95
+    - 101
+    - 200
+    - 201
+    - 202
+    - 203
+    - 204
+    - 205
+    - 206
+    - 207
+    - 208
+    - 209
+    - 210
+    - 211
+    - 212
+    - 213
+    - 214
+    - 215
+    - 216
+    - 217
+    - 218
+    - 400
+    - 401
+    - 402
+    - 403
+    - 404
+    - 405
+    - 406
+    - 407
+    - 408
+    - 409
+    - 410
+    - 601
+    - 602
+    - 603
+    - 604
+    - 605
+    - 606
+    - 607
+    - 608
+    x-enum-elements:
+    - name: "Days"
+      description: "The PendingEntry for an Entry that triggers every day."
+    - name: "Weeks"
+      description: "The PendingEntry for an Entry that triggers every week."
+    - name: "Months"
+      description: "The PendingEntry for an Entry that triggers every month."
+    - name: "Years"
+      description: "The PendingEntry for an Entry that triggers every year."
+    - name: "Single"
+      description: "The PendingEntry for an Entry related to a one-off event."
+    - name: "Auth"
+      description: "The PendingEntry for an Entry related to the time of authorization of a transaction."
+    - name: "Capture"
+      description: "The PendingEntry for an Entry related to the capture time of a Transaction."
+    - name: "Refund"
+      description: "The PendingEntry for an Entry related to when a refund transaction is processed."
+    - name: "Board"
+      description: "The PendingEntry for an Entry related to when the Merchant is boarded."
+    - name: "Payout"
+      description: "The PendingEntry for an Entry related to when a payout is processed."
+    - name: "Chargeback"
+      description: "The PendingEntry for an Entry related to when a card chargeback occurs."
+    - name: "Overdraft"
+      description: "The PendingEntry for an Entry related to when an overdraft usage charge from a bank is levied."
+    - name: "Interchange"
+      description: "The PendingEntry for an Entry related to when interchange Fees are assessed for the Transactions of this Merchant."
+    - name: "Processor"
+      description: "The PendingEntry for an Entry related to when the Transactions of this Merchant are processed by a payment processor."
+    - name: "AchFail"
+      description: "The PendingEntry for an Entry related to when an automated clearing house failure occurs."
+    - name: "Account"
+      description: "The PendingEntry for an Entry related to when a bank account is verified."
+    - name: "Sift"
+      description: "The PendingEntry for an Entry related to Transaction fraud score."
+    - name: "Adjustment"
+      description: "The PendingEntry for an Entry related to adjusted funds."
+    - name: "Retrieval"
+      description: "The PendingEntry for an Entry related to Retrieval Request Chargeback."
+    - name: "Arbitration"
+      description: "The PendingEntry for an Entry related to Arbitration Chargeback."
+    - name: "EcSale"
+      description: "The PendingEntry for an Entry related to an eCheck Sale."
+    - name: "EcRefund"
+      description: "The PendingEntry for an Entry related to an eCheck Refund."
+    - name: "EcReturn"
+      description: "The PendingEntry for an Entry related to an eCheck Return."
+    - name: "Settlement"
+      description: "The PendingEntry for an Entry related to transaction settlement."
+    - name: "Misuse"
+      description: "The PendingEntry for an Entry related to Misuse of authorization."
+    - name: "ProfitShare"
+      description: "The PendingEntry for an Entry related to a profit sharing entry."
+    - name: "Unauth"
+      description: "The PendingEntry for an Entry related to an unauthorized entry."
+    - name: "AchNoc"
+      description: "The PendingEntry for an Entry related to an ACH Notification of Change."
+    - name: "EcNoc"
+      description: "The PendingEntry for an Entry related to an eCheck Notifications of Change."
+    - name: "EcFail"
+      description: "The PendingEntry for an Entry related to an eCheck Fail."
+    - name: "EcNsf"
+      description: "The PendingEntry for an Entry related to an eCheck Non-Sufficient Funds."
+    - name: "CurrencyConversion"
+      description: "The PendingEntry for an Entry related to a currency conversion."
+    - name: "TerminalTxn"
+      description: "The PendingEntry for an Entry related to a terminal transaction."
+    - name: "ReversePayout"
+      description: "The PendingEntry for an Entry related to a payout that's been reversed."
+    - name: "PartialReversePayout"
+      description: "The PendingEntry for an Entry related to a payout that's been partially reversed."
+    - name: "PaymentCheck"
+      description: "The PendingEntry for an Entry related to a single payment check (deprecated)."
+    - name: "PaymentUpdate"
+      description: "The PendingEntry for an Entry related to a single payment update."
+    - name: "PaymentGroupCheck"
+      description: "The PendingEntry for an Entry related to a group payment check (deprecated)."
+    - name: "PaymentGroupUpdate"
+      description: "The PendingEntry for an Entry related to a group payment update."
+    - name: "EntryRefund"
+      description: "The PendingEntry for an Entry related to entry refunds."
+    - name: "Statement"
+      description: "The PendingEntry for an Entry related to the payment of a statement."
+    - name: "MerchantCreation"
+      description: "The PendingEntry for an Entry related to a merchant fee upon creation."
+    - name: "RealtimeBusinessSearch"
+      description: "The PendingEntry for an Entry related to a real-time business search."
+    - name: "RealtimeMemberSearch"
+      description: "The PendingEntry for an Entry related to a real-time member search."
+    - name: "MasterCardMatch"
+      description: "The PendingEntry for an Entry related to Mastercard match."
+    - name: "BusinessInstantId"
+      description: "The PendingEntry for an Entry related to a business instant ID."
+    - name: "ConsumerInstantId"
+      description: "The PendingEntry for an Entry related to a consumer instant ID."
+    - name: "ThreatMetrix"
+      description: "The PendingEntry for an Entry related to Threat Metrix."
+    - name: "LegitScriptRegister"
+      description: "The PendingEntry for an Entry related to Legit Script Register."
+    - name: "EquifaxConsumerReport"
+      description: "The PendingEntry for an Entry related to Equifax consumer report."
+    - name: "GuideStar"
+      description: "The PendingEntry for an Entry related to Guide Star."
+    - name: "PayloadAttribute"
+      description: "The PendingEntry for an Entry related to internal decision V2."
+    - name: "TinCheck"
+      description: "The PendingEntry for an Entry related to a Tin Check."
+    - name: "EquifaxCommercialReport"
+      description: "The PendingEntry for an Entry related to Equifax commercial report."
+    - name: "LegitScriptCheckMerchant"
+      description: "The PendingEntry for an Entry related to Legit Script Check Merchant."
+    - name: "Plaid"
+      description: "The PendingEntry for an Entry related to Plaid."
+    - name: "StatementReversal"
+      description: "The PendingEntry for an Entry related to the reversal of a statement."
+    - name: "GiactEcheck"
+      description: "The PendingEntry for an Entry related to GIACT call made to verify creator Echeck bank account."
+    - name: "GiactBankAccount"
+      description: "The PendingEntry for an Entry related to Giact calls to verify merchant settlement account."
+    - name: "BoardDecision"
+      description: "The PendingEntry for an Entry related to process decision fee after board."
+    - name: "TxnRiskDecision"
+      description: "The PendingEntry for an Entry related to a transaction going through a risk decision."
+    - name: "Fanf"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "McLocation"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "VisaIntegrity"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "SaferPaymentsBasic"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "SaferPaymentsManaged"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "SaferPaymentsPciNonValidation"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "OmniTokensVolume"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "PayoutReturn"
+      description: "The PendingEntry for an Entry related to a payout return."
+    - name: "PayoutPartialReturn"
+      description: "The PendingEntry for an Entry related to a partial payout return."
+    - name: "RevShare"
+      description: "The PendingEntry for an Entry related to revenue sharing."
+    - name: "CardSettlement"
+      description: "The PendingEntry for an Entry related to card settlement."
+    - name: "EcheckSettlement"
+      description: "The PendingEntry for an Entry related to e-check settlement."
+    - name: "RevShareCard"
+      description: "The PendingEntry for an Entry related to revenue sharing for cards."
+    - name: "RevShareEcheck"
+      description: "The PendingEntry for an Entry related to revenue sharing for e-checks."
+    - name: "RevShareDbm"
+      description: "The PendingEntry for an Entry related to revenue sharing for DBM."
+    - name: "PreArbitration"
+      description: "The PendingEntry for an Entry related to chargeback pre-arbitration."
+    - name: "PlaidIdentityMach"
+      description: "The PendingEntry for an Entry related to Plaid Identity Mach."
+    - name: "TxnPlaidIdentityMach"
+      description: "The PendingEntry for an Entry related to transactions with Plaid Identity Mach."
+    - name: "PlaidGetIdentity"
+      description: "The PendingEntry for an Entry related to Plaid Get Identity."
+    - name: "TxnPlaidGetIdentity"
+      description: "The PendingEntry for an Entry related to transactions with Plaid Get Identity."
+    - name: "PlaidGetAuth"
+      description: "The PendingEntry for an Entry related to Plaid Get Auth."
+    - name: "TxnPlaidGetAuth"
+      description: "The PendingEntry for an Entry related to transactions with Plaid Get Auth."
+    - name: "Reversal"
+      description: "The PendingEntry for an Entry related to chargeback reversal."
+    - name: "Representment"
+      description: "The PendingEntry for an Entry related to chargeback representment."
+    - name: "IcRetainPassthruRefund"
+      description: "The PendingEntry for an Entry related to interchange retain pass-through refund."
+    - name: "ValutecEssentialGift"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecEssentialMonthlyTxn"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecDigitalGiftPlusPackage"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecDigitalGiftPlusPackageTxn"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecLoyaltyPlusPackage"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecLoyaltyPlusPackageTxn"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecTransactionFee"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecSetupFee"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecGiftAchPooling"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecJumpStartKit"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecLaunchBoxKit"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "Valutec500CustomCards"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecMaintenanceFee"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ValutecDigitalGiftPlusPackageMe"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "EfeMwcResidualAtelio"
+      description: "The PendingEntry for an Entry related to EFE external fees."
+    - name: "EfeMwcResidualParafin"
+      description: "The PendingEntry for an Entry related to EFE external fees."
+    - name: "EfeMwcBilling"
+      description: "The PendingEntry for an Entry related to EFE external fees."
+    - name: "FraudsightCnpDecision"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "FraudsightCpDecision"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "RevboostEmbeddedTmsMonthly"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "RevboostEmbeddedTmsPpt"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TxnThreatMetrix"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ThreatMetrixEmailage"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ThreatMetrixFraudPoint"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "GiactInquiry"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "GiactTxnGauthenticate"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TruliooIdv"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TruliooAmllDv"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TruliooBusinessVerification"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "ThreatMetrixPhoneFinder"
+      description: "The PendingEntry for an Entry related to external fees."
+    - name: "TierNonQualifiedCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierQualifiedCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierMidQualifiedCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierHighRiskCount"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierNonQualifiedVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierQualifiedVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierMidQualifiedVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+    - name: "TierHighRiskVolume"
+      description: "The PendingEntry for an Entry related to risk-based tier fees."
+  revShareStatement:
+    type: string
+    description: If the activity that this PendingEntry refers to is a Revenue Share,
+      then this field stores the identifier of the corresponding RevShareStatement
+      resource
+  isEFE: 
+    type: integer
+    description: |+
+      An integer-boolean indicating whether or not the funding activity was triggered by a fee assessment.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Off**
+      - `1` - **On**
+
+      </details>
+    enum:  
+    - 0 
+    - 1
+    x-enum-elements:
+    - name: Off
+      description: OFF.
+    - name: On
+      description: ON.

@@ -1,0 +1,38 @@
+get:
+  description: Query an EntityDebt resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this entity debt.
+    explode: false
+    in: path
+    name: id
+    example: t1_edt_67e2f62ae3e7ce229c2526z
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDebts:
+              $ref: ../components/schemas/samples/entityDebtsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityDebtsModel200Response.yaml
+      description: Retrieve an Entity Debt Response for the query on entityDebts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityDebts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Entity Debt by it's ID.
+  tags:
+  - Entity Debts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntityDebtsId

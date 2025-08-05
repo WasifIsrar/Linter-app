@@ -1,0 +1,72 @@
+title: chargebackPaymentMethod
+type: integer
+description: |
+  The type of payment method used for the transaction.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **No payment method specified.**
+  - `1` - **American Express.**
+  - `2` - **Visa.**
+  - `3` - **MasterCard.**
+  - `4` - **Diners Club.**
+  - `5` - **Discover.**
+  - `6` - **PayPal.**
+  - `7` - **Debit card.**
+  - `8` - **Checking account.**
+  - `9` - **Savings account.**
+  - `10` - **Corporate checking account.**
+  - `11` - **Corporate savings account.**
+  - `12` - **Gift card.**
+  - `13` - **EBT card.**
+  - `14` - **WIC card.**
+
+  </details>
+enum:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+x-enum-elements:
+- name: Unknown
+  description: No payment method specified.
+- name: AmericanExpress
+  description: American Express.
+- name: Visa
+  description: Visa.
+- name: MasterCard
+  description: MasterCard.
+- name: DinersClub
+  description: Diners Club.
+- name: Discover
+  description: Discover.
+- name: PayPal
+  description: PayPal.
+- name: DebitCard
+  description: Debit card.
+- name: CheckingAccount
+  description: Checking account.
+- name: SavingsAccount
+  description: Savings account.
+- name: CorporateCheckingAccount
+  description: Corporate checking account.
+- name: CorporateSavingsAccount
+  description: Corporate savings account.
+- name: GiftCard
+  description: Gift card.
+- name: EBTCard
+  description: EBT card.
+- name: WICCard
+  description: WIC card.

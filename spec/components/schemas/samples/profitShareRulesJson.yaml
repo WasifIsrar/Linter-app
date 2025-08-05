@@ -1,0 +1,30 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_psl_63de0f98555d322f0513b00",
+        "created": "2023-02-04 02:56:08.3497",
+        "modified": "2023-02-04 02:56:08.3497",
+        "creator": "t1_log_63d25f51ea7ddb271d78304",
+        "modifier": "t1_log_63d25f51ea7ddb271d78304",
+        "profitShare": "t1_psh_63de0ece4959d9de8194a4d",
+        "name": "Test2",
+        "description": "Test2",
+        "type": "less",
+        "value": "5",
+        "grouping": "",
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

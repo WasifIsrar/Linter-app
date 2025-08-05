@@ -1,0 +1,68 @@
+title: aggregationResultGroupsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  aggregation:
+    type: string
+    description: The identifier of the Aggregation that this AggregationResult refers
+      to.
+  resource:
+    $ref: ../enums/resourceModel.yaml
+  search:
+    type: string
+    description: The search query used to find records and apply the desired calculation.
+      This field is stored as a text string, must be between 0 and 1000 characters
+      long, and is copied from the aggregation.
+  totals:
+    type: string
+    description: The especification of the desired aggregation functions including
+      count, sum, min and max. This field is stored as a text string, must be between
+      1 and 100 characters long, and is copied from the aggregation.
+  degrouping:
+    type: string
+    description: Degrouping is the reverse process of grouping, where progressively smaller groups are removed to provide aggregated results at higher levels. This is useful when you want to see overall totals without the detailed breakdowns. For example, degrouping can be used to sum up all transactions across all merchants and payment methods, providing a total approval count without needing to look at individual merchant or payment method details.
+  lastModified:
+    type: string
+    description: The last modified date and time. The format
+      should be YYYY-MM-DD HH:MM:SS
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  effective:
+    type: integer
+    format: int64
+    description: Effective date time of aggregation.
+  default:
+    type: integer
+    description: |
+      Indicates whether this aggregation was automatically created.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Manually created.**
+      - `1` - **Automatically created.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: ManuallyCreated
+      description: Manually created.
+    - name: AutomaticallyCreated
+      description: Automatically created.
+  type:
+    type: string
+    description: The type of aggregation which auto-sets the search and total values.
+  level:
+    type: string
+    description: The level of user the aggregation should be processed for (similar
+      to Decisions.level).

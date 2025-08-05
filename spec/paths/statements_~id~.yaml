@@ -1,0 +1,117 @@
+get:
+  description: Query a Statement. A Statement resource represents the total collection
+    of funds owed for a Billing period.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Statement ID.
+    explode: false
+    in: path
+    name: id
+    example: p1_stm_00ce6abbac436354cd82bba
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch statement:
+              $ref: ../components/schemas/samples/statementsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementsModel200Response.yaml
+      description: Response for retrieving statement response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statements:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Statement by it's ID.
+  tags:
+  - Statements
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getStatementsId
+put:
+  description: "Query a Statement. \nA Statement resource represents the total collection\
+    \ of funds owed for a Billing period."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: p1_stm_00ce6abbac436354cd82bba
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/statementsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update statement:
+              $ref: ../components/schemas/samples/statementsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementsModel200Response.yaml
+      description: Response for update on statements resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statements:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Statements
+  - Facilitator
+  operationId: putStatementsId
+delete:
+  description: "Query a Statement. \nA Statement resource represents the total collection\
+    \ of funds owed for a Billing period."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: p1_stm_00ce6abbac436354cd82bba
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete statement:
+              $ref: ../components/schemas/samples/statementsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/statementsModel200Response.yaml
+      description: Response for delete on statements resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all statements:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Statements
+  - Facilitator
+  operationId: deleteStatementsId

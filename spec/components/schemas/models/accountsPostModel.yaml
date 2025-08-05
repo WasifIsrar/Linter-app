@@ -1,0 +1,189 @@
+title: accountsPostResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity associated with this Account.
+  account:
+    type: object
+    description: The payment method associated with this Account, including the
+      card details.
+    title: accountPayment
+    properties:
+      id:
+        $ref: ../id.yaml
+      created:
+        $ref: ../created.yaml
+      modified:
+        $ref: ../modified.yaml
+      creator:
+        $ref: ../creator.yaml
+      modifier:
+        $ref: ../modifier.yaml
+      method:
+        $ref: ../enums/accountMethodModel.yaml
+      number:
+        type: string
+        description: |-
+          For credit payment method, the card number of the credit card associated with this Transaction.
+          For eCheck payment method, the bank account number associated with this Transaction.
+      last4:
+        type: string
+      routing:
+        type: string
+        description: The routing code for the eCheck or bank account payment associated
+          with this Transaction.
+      bin:
+        type: string 
+      payment:
+        type: string    
+      lastChecked:
+        type: string
+      mask:
+        type: string  
+      inactive:
+        $ref: ../inactive.yaml
+      frozen:
+        $ref: ../frozen.yaml
+  token:
+    type: string
+    description: A unique token that can be used to refer to this Account in other
+      parts of the API.
+  name:
+    type: string
+    description: "A client-supplied name for this bank account. \nThis field is stored\
+      \ as a string and must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A client-supplied description for this bank account. \nThis field\
+      \ is stored as a string and must be between 0 and 100 characters long."
+  primary:
+    $ref: ../enums/accountPrimaryModel.yaml
+  type:
+    $ref: ../enums/accountTypeModel.yaml
+  status:
+    $ref: ../enums/accountStatusModel.yaml
+  reserved:
+    type: integer
+    description: |
+      Indicates whether the Account is reserved and the action that will be taken as a result.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **No reserve.**
+      - `1` - **Block transaction, will never be processed. The Entity is sent to the manual review queue..**
+      - `3` - **Hold transaction, will not be captured.**
+      - `4` - **Reserve transaction, funds should be reserved.**
+      - `5` - **Block current activity, no change for merchant.**
+      - `6` - **Passed decision(s). Will not be set anywhere, will only be used for integration purposes.**
+      - `7` - **We did not have policies to process.**
+      - `8` - **We onboard the merchant and wait for manual check later.**
+      - `9` - **Schedule the automatic release of the reserve.**
+      - `10` - **Hold transaction, will not be captured. Automatic release when the associated sale is done.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    x-enum-elements:
+    - name: None
+      description: No action.
+    - name: Block
+      description: Block transaction, will never be processed. The Entity is sent to the manual review queue.
+    - name: Hold
+      description: Hold transaction, will not be captured.
+    - name: Reserve
+      description: Reserve transaction, funds should be reserved.
+    - name: Limit
+      description: Block current activity, no change for merchant.
+    - name: Pass
+      description: Passed decision(s). Will not be set anywhere, will only be used for integration purposes.
+    - name: Skip
+      description: We did not have policies to process.
+    - name: PostReviewOnly
+      description: We onboard the merchant and wait for manual check later.
+    - name: ScheduleReserveRelease
+      description: Schedule the automatic release of the reserve.
+    - name: AutomaticRefundHold
+      description: Hold transaction, will not be captured. Automatic release when the associated sale is done.
+  checkStage:
+    title: accountCheckStage
+    type: string
+    description: |
+      The last stage completed for risk.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `createAccount` - **Create Account**
+
+      </details>
+    enum:
+    - createAccount
+    x-enum-elements:
+    - name: CreateAccount
+      description: Create Account
+  expiration:
+    type: string
+    description: "The expiration date of the related debit account. \nThe date is\
+      \ specified as a four-digit string in MMYY format, for example, `0118` for January\
+      \ 2018."
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of this Account. The default is `USD`. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  publicToken:
+    type: string
+    description: The token received from the Plaid account connection process.
+  mask:
+    type: string
+    description: The account number mask, showing the last four digits of the account
+      number.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+  plaidAccountId:
+    type: string
+    description: The account identifier that is returned by the Plaid flow.
+  updateMethod:
+    type: string
+    description: |
+      The method used to update the account.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `NOC` - **Notification of change**
+      - `PLAID` - **Plaid.**
+      - `MANUAL` - **Manual**
+
+      </details>
+    enum:
+    - NOC
+    - PLAID
+    - MANUAL
+    x-enum-elements:
+    - name: NOC
+      description: Notification of change
+    - name: Plaid
+      description: Plaid
+    - name: Manual
+      description: Manual

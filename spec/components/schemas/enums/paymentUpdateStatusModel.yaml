@@ -1,0 +1,29 @@
+title: paymentUpdateStatus
+type: string
+description: |
+  The status of the payment update.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `pending` - **The Payment Update was sent and is pending to be processed.**
+  - `processing` - **The Payment Update was received and is processing.**
+  - `failed` - **The Payment Update has failed.**
+  - `processed` - **The Payment Update was processed.**
+
+  </details>
+default: pending
+enum:
+- pending
+- processing
+- failed
+- processed
+x-enum-elements:
+- name: Pending
+  description: The Payment Update was sent and is pending to be processed.
+- name: Processing
+  description: The Payment Update was received and is processing.
+- name: Failed
+  description: The Payment Update has failed.
+- name: Processed
+  description: The Payment Update was processed.

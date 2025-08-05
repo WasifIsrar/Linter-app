@@ -1,0 +1,21 @@
+title: invoiceParameterLocked
+type: integer
+description: |
+  Whether this invoiceParameter is locked. If locked, it defaults to the value of the invoiceParameter.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Not locked**
+  - `1` - **Locked**
+
+  </details>
+default: 0
+enum:
+- 0
+- 1
+x-enum-elements:
+- name: NotLocked
+  description: Not locked.
+- name: Locked
+  description: Locked.

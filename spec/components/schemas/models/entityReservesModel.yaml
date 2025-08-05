@@ -1,0 +1,40 @@
+title: entityReservesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  fund:
+    type: string
+    description: The identifier of the Fund that this entityReserves resource relates
+      to.
+  total:
+    type: integer
+    format: int64
+    description: "The amount held in this entityReserve. \nThis field is specified\
+      \ as an integer in cents."
+  requestSequence:
+    type: integer
+    format: int64
+    description: The current sequentially numbered activity requested for this entityReserve.
+  processedSequence:
+    type: integer
+    format: int64
+    description: The current sequentially numbered activity processed for this entityReserve.
+  name:
+    type: string
+    description: "The name of this EntityReserve. \nThis field is stored as a text\
+      \ string and must be between 0 and 50 characters long."
+  description:
+    type: string
+    description: "A description of this EntityReserve. \nThis field is stored as a\
+      \ text string and must be between 0 and 100 characters long."

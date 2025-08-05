@@ -1,0 +1,26 @@
+value:
+  "response": {
+      "data": [
+          {
+              "id": "t1_acr_67aafff35f35bb47924b913",
+              "created": "2025-02-11 02:44:51.4063",
+              "modified": "2025-02-11 02:44:51.4063",
+              "creator": "t1_log_67a27e960536abbbede94dc",
+              "modifier": "t1_log_67a27e960536abbbede94dc",
+              "account": "t1_act_67aafff2c40a8cecf5cb702",
+              "ref": "access-demo-54b9d626-8730-4f3f-8837-789d41d34953",
+              "stage": "accessToken",
+              "platform": "PLAID"
+          }
+      ],
+      "details": {
+          "requestId": "1",
+          "totals": [],
+          "page": {
+              "current": 1,
+              "last": 1,
+              "hasMore": false
+          }
+      },
+      "errors": []
+  }

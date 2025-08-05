@@ -1,0 +1,79 @@
+get:
+  description: Query an Alert resource, which represents a particular event notification
+    delivered to a user; you can invoke alerts by setting up triggers in an alertTriggers
+    resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/alertsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertsModel200Response.yaml
+      description: Response for querying the alerts resource to retrieve all alerts.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Alert configurations.
+  tags:
+  - Alerts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAlerts
+post:
+  description: Create an Alert resource, which represents a particular event notification
+    delivered to a user. You can invoke alerts by setting up triggers in an [AlertTriggers]($e/Alert%20Triggers/postAlertTriggers)
+    resource and specify the delivery method through an alertActions resource. [Alert
+    Actions]($h/Alert%20Actions/_overview) represent particular instances of an Alert sent out
+    through specific channels, such as SMS, mobile application notifications, or email.
+    Each Alert Action is associated with an Alert resource.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/alertsPostRequestModel.yaml
+    description: Create Alert Configuration Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create alerts:
+              $ref: ../components/schemas/samples/alertsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertsModel200Response.yaml
+      description: Create Alert Configuration Response for creating an alert on the
+        alerts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Alert configuration.
+  tags:
+  - Alerts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: postAlerts
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

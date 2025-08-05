@@ -1,0 +1,67 @@
+get:
+  description: Query Reports.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            fetch all reports:
+              $ref: ../components/schemas/samples/reportsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reportsModel200Response.yaml
+      description: Retrieve Reports Response for query on reports resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reports:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all Reports.
+  tags:
+  - Reports
+  - Facilitator
+  operationId: getReports
+post:
+  description: Create a Report.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/reportsPostRequestModel.yaml
+    description: Create Report Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create reports:
+              $ref: ../components/schemas/samples/reportsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reportsModel200Response.yaml
+      description: Response for create on reports resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reports:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Create a new Report
+  tags:
+  - Reports
+  - Facilitator
+  operationId: postReports
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

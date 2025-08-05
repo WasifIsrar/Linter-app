@@ -1,0 +1,28 @@
+title: configurationType
+type: string
+description: |
+  The type of configuration resource.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `create` - **Create type of configuration.**
+  - `read` - **Read type of configuration.**
+  - `update` - **Update type of configuration.**
+  - `delete` - **Delete type of configuration.**
+
+  </details>
+enum:
+- create
+- read
+- update
+- delete
+x-enum-elements:
+- name: Create
+  description: Create type of configuration.
+- name: Read
+  description: Read type of configuration.
+- name: Update
+  description: Update type of configuration.
+- name: Delete
+  description: Delete type of configuration.

@@ -1,0 +1,85 @@
+get:
+  description: Query a confirmCode resource, which represents a unique confirmation
+    code issued to an email address, either when a user indicates that they have forgotten
+    their password, or when the system needs to verify the email address associated
+    with a login.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Confirmation Code ID.
+    explode: false
+    in: path
+    name: id
+    example: p1_cfc_67dd2714a9a1fc91f994e00
+    required: true
+    schema:
+      type: string
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all confirmCodes:
+              $ref: ../components/schemas/samples/confirmCodesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/confirmCodesModel200Response.yaml
+      description: The response for query on confirmCodes resource retrieves the Confirmation
+        Code Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all confirmCodes:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve a Confirmation Code by it's ID.
+  tags:
+  - Confirmation Codes
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getConfirmCodesId
+delete:
+  description: Delete a confirmCode resource. A confirmCode resource represents a
+    unique confirmation code issued to an email address, either when a user indicates
+    that they have forgotten their password, or when the system needs to verify the
+    email address associated with a login.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The Confirmation Code ID.
+    explode: false
+    in: path
+    name: id
+    example: p1_cfc_67dd2714a9a1fc91f994e00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all confirmCodes:
+              $ref: ../components/schemas/samples/confirmCodesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/confirmCodesModel200Response.yaml
+      description: Response for delete on confirmCodes resource Delete Confirmation
+        Code Response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all confirmCodes:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete a Confirmation Code by it's ID.
+  tags:
+  - Confirmation Codes
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteConfirmCodesId

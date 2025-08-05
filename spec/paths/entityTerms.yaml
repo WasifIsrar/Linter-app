@@ -1,0 +1,68 @@
+get:
+  description: "Query an entityTerms"
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entityTerms:
+              $ref: ../components/schemas/samples/entityTermsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityTermsModel200Response.yaml
+      description: Response for query on entityTerms resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityTerms:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Entity Terms
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: getEntityTerms
+post:
+  description: "Create an entityTerms."
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/entityTermsPostRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Create a Entity Terms:
+              $ref: ../components/schemas/samples/entityTermsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entityTermsModel200Response.yaml
+      description: Response for create on entityTerms resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entityTerms:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Entity Terms
+  - Facilitator
+  - Merchant
+  - Partner
+  operationId: postEntityTerms
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml

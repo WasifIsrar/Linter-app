@@ -1,0 +1,28 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_fon_67e54d049d19a73f57449b0",
+        "created": "2025-03-27 09:05:08.6436",
+        "modified": "2025-03-27 12:00:28.3183",
+        "creator": "t1_log_003ae6ec24a9357ace75ebf",
+        "modifier": "t1_log_003ae6ec24a9357ace75ebf",
+        "fund": "t1_fun_67e5159729ac5309dcf591d",
+        "disbursement": "",
+        "amount": 0,
+        "funding": APPLE,
+        "platform": "VANTIV",
+        "fbo": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,76 @@
+title: entityRoutesPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this EntityRoute.
+  division:
+    type: string
+    description: Division ID in which the entity route is associated.
+  entity:
+    type: string
+    description: The identifier of the Entity that this entityRoute applies to.
+  org:
+    type: string
+    description: The identifier of the Org that this entityRoute applies to.
+  partition:
+    type: string
+    description: ID of the partition in which this entity operates.
+  platform:
+    $ref: ../enums/entityPlatformModel.yaml
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency in which an entity should board with. This is an
+      optional field that is only required for some platforms. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.
+  fundingCurrency:
+    type: string
+    description: |
+      The currency for which this entity will be funded on.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `USD` - **US Dollar.**
+      - `CAD` - **Canadian Dollar.**
+
+      </details>
+    enum:
+    - USD
+    - CAD
+    x-enum-elements:
+    - name: USD
+      description: United States dollar.
+    - name: CAD
+      description: Canadian dollar.
+
+  options:
+    type: string
+    description: |
+      Whether to disable ACH.
+      This is a JSON field.
+      Accepted values are {"eCheckDisabled": true}.
+
+  default:
+    type: integer
+    description: |
+      Whether all entityRefs created through this entityRoute will be set as default. Default entityRefs will have priority when processing transactions with no MID or Platform set.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **Not Default.**
+      - `1` - **Default.**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: Not Default
+      description: Not default.
+    - name: Default
+      description: Default.
+  inactive:
+    $ref: ../../../components/schemas/inactive.yaml
+  frozen:
+    $ref: ../../../components/schemas/frozen.yaml
+

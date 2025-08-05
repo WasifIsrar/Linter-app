@@ -1,0 +1,35 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_chr_67461c21ce3bae674b5500a",
+        "created": "2024-11-26 14:06:09.8529",
+        "modified": "2024-11-26 14:06:10.1982",
+        "creator": "t1_log_5c758e990c7a922100d4f36",
+        "modifier": "t1_log_5c758e990c7a922100d4f36",
+        "deleted": "2024-11-26 14:06:10",
+        "login": "t1_log_5c758e990c7a922100d4f36",
+        "operation": "update",
+        "status": "manualReview",
+        "reason": "",
+        "changes": "{\"account\":{\"method\":8,\"number\":\"4444\",\"routing\":\"3123\"},\"primary\":1}",
+        "model": "accounts",
+        "recordId": "t1_act_6491d8a2bbbae477f00e5d0",
+        "reasonType": "",
+        "analyst": "",
+        "reviewed": "2024-11-26 14:06:10",
+        "entity": "t1_ent_6491d8a2b75c8b71b1d6c96",
+        "authType": 3
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,33 @@
+title: accountStatus
+type: integer
+description: |
+  The status of the Account.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Not Ready.**
+  - `1` - **Ready.**
+  - `2` - **Challenged.**
+  - `3` - **Verified.**
+  - `4` - **Manual.**
+
+  </details>
+default: 0
+enum:
+- 0
+- 1
+- 2
+- 3
+- 4
+x-enum-elements:
+- name: "NotReady"
+  description: "Not Ready. The account holder is not yet ready to verify the Account."
+- name: "Ready"
+  description: "Ready. The account is ready to be verified."
+- name: "Challenged"
+  description: "Challenged. The account has processed the challenge."
+- name: "Verified"
+  description: "Verified. The Account has been verified."
+- name: "Manual"
+  description: "Manual. There has been an issue during verification and further attempts to verify the Account will require manual intervention."

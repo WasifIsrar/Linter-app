@@ -1,0 +1,93 @@
+get:
+  description: "Query a StatementEntry resource. \nA Settlement represents a transfer\
+    \ of funds between a credit and debit account."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/settlementsModel200Response.yaml
+      description: Response for query on settlements resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Settlements
+  - Facilitator
+  operationId: getSettlementsId
+put:
+  description: "Update a StatementEntry resource. \nA Settlement represents a transfer\
+    \ of funds between a credit and debit account."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/settlementsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/settlementsModel200Response.yaml
+      description: Response for update on settlements resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Settlements
+  - Facilitator
+  operationId: putSettlementsId
+delete:
+  description: "Delete a StatementEntry resource. \nA Settlement represents a transfer\
+    \ of funds between a credit and debit account."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/settlementsModel200Response.yaml
+      description: Response for delete on settlements resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Settlements
+  - Facilitator
+  operationId: deleteSettlementsId

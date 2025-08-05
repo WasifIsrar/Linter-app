@@ -1,0 +1,51 @@
+title: disbursementEntriesPutRequest
+properties:
+  disbursement:
+    type: string
+    description: The identifier of the Disbursement that this DisbursementEntry resource
+      refers to.
+  entry:
+    type: string
+    description: The identifier of the Entry that this DisbursementEntry resource
+      refers to.
+  pendingEntry:
+    type: string
+    description: The identifier of the PendingEntry that this DisbursementEntry resource
+      refers to.
+  reserveEntry:
+    type: string
+    description: The identifier of the ReserveEntry that this DisbursementEntry resource
+      refers to.
+  event:
+    $ref: ../enums/disbursementEntryEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this DisbursementEntry
+      resource.
+  amount:
+    type: number
+    format: double
+    description: The total amount of this DisbursementEntry, This field is specified in cents(up to three decimal points).
+  amountUsed:
+    type: number
+    format: double
+    description: The total amount used of this DisbursementEntry, This field is specified in cents(up to three decimal points).
+  description:
+    type: string
+    description: A description of this DisbursementEntry.
+
+example:
+  id: t1_dbe_67b1w3e4082e80b54b9acc5
+  created: 2025-02-24 20:30:39.0335
+  modified: 2025-02-24 20:30:39.0335
+  creator: t1_log_5ed514b7edbf6f641b7c2f2
+  modifier: t1_log_5ed514b7edbf6f641b7c2f2
+  disbursement: t1_dbm_67as34r450a9ad24e7d0b75
+  entry: t1_etr_67b93ew456u511c7a53e3bc
+  pendingEntry: t1_per_67b4fgt67uc4cf30f44fea5
+  reserveEntry: t1_rer_67bgh6797dbafac6fd255c0
+  event: 40
+  eventId: t1_txn_67b85t6y92419947abb4560
+  amount: 51
+  amountUsed: 0
+  description: Remaining available funds not disbursed in this disbursement

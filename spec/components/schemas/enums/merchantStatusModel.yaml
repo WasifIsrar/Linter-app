@@ -1,0 +1,41 @@
+title: merchantStatus
+type: integer
+description: |
+  The status of the Merchant.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `0` - **Not ready**. Occurs when a new Merchant is created. Unable to process payments.
+  - `1` - **Ready**. New Merchant submitted for underwriting approval after submitting a signup form.
+  - `2` - **Boarded**. Merchant has been approved and boarded to the platform. Payment processing now available.
+  - `3` - **Manual**. Set internally by platform underwriting. New Merchant is pending manual verification.
+  - `4` - **Closed**. Set internally by platform underwriting. New Merchant was declined and cannot access the platform.
+  - `5` - **Incomplete**. Set by user boarding the merchant. Can be manually set to "save" an incomplete Merchant boarding request for a later time.
+  - `6` - **Pending**. New Merchant was submitted for boarding, platform access pending review.
+
+  </details>
+enum:
+- 0
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+x-enum-elements:
+- name: NotReady
+  description: Occurs when a new Merchant is created. Unable to process payments.
+- name: Ready
+  description: New Merchant submitted for underwriting approval after submitting a signup form.
+- name: Boarded
+  description: Merchant has been approved and boarded to the platform. Payment processing now available.
+- name: Manual
+  description: Set internally by platform underwriting. New Merchant is pending manual verification.
+- name: Closed
+  description: Set internally by platform underwriting. New Merchant was declined and cannot access the platform.
+- name: Incomplete
+  description: Set by user boarding the merchant. Can be manually set to "save" an incomplete Merchant boarding request for a later time.
+- name: Pending
+  description: New Merchant was submitted for boarding, platform access pending review.
+default: 0

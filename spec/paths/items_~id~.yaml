@@ -1,0 +1,130 @@
+get:
+  description: "Query an Item. \nAn Item is a line item that is associated with a\
+    \ particular Transaction. It allows you to describe the cost, quantity and other\
+    \ details of each line in the Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_itm_67b48390abd89e15be2d000
+    required: true
+    schema:
+      type: string
+      description: The Item ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/txnItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/itemsModel200Response.yaml
+      description: Response for retrieving an item response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Item by it's ID.
+  tags:
+  - Transaction Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getItemsId
+put:
+  description: "Update an Item. \nAn Item is a line item that is associated with a\
+    \ particular Transaction. It allows you to describe the cost, quantity and other\
+    \ details of each line in the Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_itm_67b48390abd89e15be2d000
+    required: true
+    schema:
+      type: string
+      description: The Item ID.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/itemsPutRequestModel.yaml
+    description: Update Item Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/txnItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/itemsModel200Response.yaml
+      description: Successful update of the items
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Item by it's ID.
+  tags:
+  - Transaction Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putItemsId
+delete:
+  description: "Delete an Item. \nAn Item is a line item that is associated with a\
+    \ particular Transaction. It allows you to describe the cost, quantity and other\
+    \ details of each line in the Transaction."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_itm_67b48390abd89e15be2d000
+    required: true
+    schema:
+      type: string
+      description: The Item ID.
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/txnItemsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/itemsModel200Response.yaml
+      description: The response for deleting an item from the items resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all txnItems:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Item by it's ID.
+  tags:
+  - Transaction Items
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteItemsId

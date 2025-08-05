@@ -1,0 +1,56 @@
+title: verificationsPutRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  decision:
+    type: string
+    description: Used to link multiple decisions together.
+  level:
+    type: string
+    description: Level conditions.
+  fromCache:
+    type: string
+    description: Whether this verification was created from cache. The format should be YYYY-MM-DD HH:MM:SS.
+    format: custom-date-time
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
+  options:
+    type: integer
+    description: The Options for this Verification.
+  additionalOptions:
+    type: integer
+    description: The Additional Options for this Verification.
+  score:
+    type: integer
+    description: "The score for this Verification. \nThis field is specified as an\
+      \ integer between 0 and 100."
+  description:
+    type: string
+    description: Description of the verification.
+  ref:
+    type: string
+    description: The reference number for this verification.
+  generated:
+    type: integer
+    description: "\n\n<details>\n<summary>Valid Values</summary> \n\n - `0` - **OFF**\n\
+      \n - `1` - **ON**\n\n </details>\n"
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: "Off"
+      description: "The generated field is OFF."
+    - name: "On"
+      description: "The generated field is ON."
+
+example:
+  login: t1_log_5d13d9c20a39da6f5030426
+  decision: t1_dcs_5da60b66e6283dc0169504a
+  level: partition
+  genearted: 1
+  fromCache: 2025-03-07 08:05:15
+  options: 0
+  additionalOptions: 0
+  score: 100
+  description: General watchlist score
+  ref: reference number

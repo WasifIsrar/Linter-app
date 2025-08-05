@@ -1,0 +1,125 @@
+get:
+  description: Query an API key that represents a permanent method of authentication
+    to the API, remaining active until marked as inactive or deleted.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of the API Key.
+    explode: false
+    in: path
+    name: id
+    example: t1_api_676a5353d67a6df2c47b198
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/apiKeysJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/apikeysModel200Response.yaml
+      description: Response for query on API Keys Resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an API Key by its ID.
+  tags:
+  - API Keys
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: getApikeysId
+put:
+  description: Update an API key, which represents a permanent method of authentication
+    to the API. Each API key remains active until you mark it as inactive or delete
+    it.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource and The API Key ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_api_676a5353d67a6df2c47b198
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/apiKeysPutRequestModel.yaml
+    description: Update API Key Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/apiKeysJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/apikeysModel200Response.yaml
+      description: Response for query on API Keys Resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an API Key by its ID.
+  tags:
+  - API Keys
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: putApikeysId
+delete:
+  description: Delete an API key that represents a permanent method of authentication
+    to the API and remains active until marked as inactive or deleted.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of the API Key.
+    explode: false
+    in: path
+    name: id
+    example: t1_api_676a5353d67a6df2c47b198
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/apiKeysJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/apikeysModel200Response.yaml
+      description: Response for query on API Keys Resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all apiKeys:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an API Key by its ID.
+  tags:
+  - API Keys
+  - Facilitator
+  - Partner
+  - Merchant
+  operationId: deleteApikeysId

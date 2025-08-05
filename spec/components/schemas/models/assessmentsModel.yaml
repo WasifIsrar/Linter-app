@@ -1,0 +1,122 @@
+title: assessmentsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entity:
+    type: string
+    description: The identifier of the Entity that owns this assessment.
+  onentity:
+    type: string
+    description: The identifier of the Entity that this assessment refers to. This
+      is the owner of the record that triggered the charge.
+  forentity:
+    type: string
+    description: "The identifier of the Entity that this assessment applies to. \n\
+      An opposing assessment is associated with this entity."
+  partition:
+    type: string
+    description: The identifier of the Partition that this assessment resource refers
+      to.
+  opposingAssessment:
+    type: string
+    description: The identifier of the Assessment of the `forentity` assessment.
+  fee:
+    type: string
+    description: The identifier of the Fee that this assessment resource refers to.
+  disbursement:
+    type: string
+    description: The identifier of the Disbursement that this assessment resource
+      refers to.
+  txn:
+    type: string
+    description: The identifier of the Txn that this assessment resource refers to.
+  chargeback:
+    type: string
+    description: The identifier of the Chargeback that this assessment resource refers
+      to.
+  merchant:
+    type: string
+    description: The identifier of the Merchant that this assessment resource refers
+      to.
+  event:
+    $ref: ../enums/assessmentEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this assessments
+      resource.
+  description:
+    type: string
+    description: A description of this assessments resource.
+  amount:
+    type: number
+    format: double
+    description: "The amount involved in this assessments resource. It refers to the\
+      \ amount charged, transferred, or disbursed. \nThis field is specified in cents(up to three decimal points)"
+  platform:
+    title: assessmentPlatform
+    type: string
+    description: |
+      The platform used to process this assessment.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `APPLE` - **Apple Payment Processor**
+      - `ELAVON` - **ELAVON Payment Processor**
+      - `FIRSTDATA` - **FirstData Payment Processor**
+      - `GOOGLE` - **Google Payment Processor**
+      - `VANTIV` - **Worldpay / Vantiv eComm Payment Processor (VAP)**
+      - `VCORE` - **Worldpay / Vantiv Core Payment Processor**
+      - `WELLSACH` - **Wells Fargo Merchant Services Payment Processor (ACH)**
+      - `WELLSFARGO` - **Wells Fargo Merchant Services Payment Processor**
+      - `WFSINGLE` - **Wells Fargo Single Payment Processor**
+      - `WORLDPAY` - **Worldpay Payment Processor**
+      - `TDBANKCA` - **TD Bank Canada Payment Processor**
+
+      </details>
+    enum:
+    - APPLE
+    - ELAVON
+    - FIRSTDATA
+    - GOOGLE
+    - VANTIV
+    - VCORE
+    - WELLSACH
+    - WELLSFARGO
+    - WFSINGLE
+    - WORLDPAY
+    - TDBANKCA
+    x-enum-elements:
+    - name: Apple
+      description: Apple Payment Processor.
+    - name: Elavon
+      description: ELAVON Payment Processor.
+    - name: FirstData
+      description: FirstData Payment Processor.
+    - name: Google
+      description: Google Payment Processor.
+    - name: Vantiv
+      description: Worldpay / Vantiv eComm Payment Processor (VAP).
+    - name: VCore
+      description: Worldpay / Vantiv Core Payment Processor.
+    - name: WellsAch
+      description: Wells Fargo Merchant Services Payment Processor (ACH).
+    - name: WellsFargo
+      description: Wells Fargo Merchant Services Payment Processor.
+    - name: WfSingle
+      description: Wells Fargo Single Payment Processor.
+    - name: WorldPay
+      description: Worldpay Payment Processor.
+    - name: TdBankCa
+      description: TD Bank Canada Payment Processor.
+  currency:
+    $ref: ../models/currencyModel.yaml
+    description: The currency of the amount in this assessments resource. See <a href="https://www.iban.com/currency-codes" target="_blank">Currency codes</a>  for all valid values.

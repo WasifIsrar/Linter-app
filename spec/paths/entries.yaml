@@ -1,0 +1,38 @@
+get:
+  description: Query an Entry resource. An Entry resource represents a record of amounts
+    moving in or out of the funds held by an Entity. This could be a time-based activity
+    such as a weekly or monthly summary, or an event-based activity such as a Capture,
+    a Payout, or a Fee. In the case of an event-based activity, the Entry contains
+    references to the activity in the appropriate field.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - $ref: ../components/schemas/requestHeaderSearchParams.yaml
+  - $ref: ../components/schemas/requestHeaderTotalsParams.yaml
+  - $ref: ../components/schemas/requestQueryPageNumberParams.yaml
+  - $ref: ../components/schemas/requestQueryPageLimitParams.yaml
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all entries:
+              $ref: ../components/schemas/samples/entriesJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/entriesModel200Response.yaml
+      description: Response for query on entries resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all entries:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve all entries.
+  tags:
+  - Entries
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getEntries

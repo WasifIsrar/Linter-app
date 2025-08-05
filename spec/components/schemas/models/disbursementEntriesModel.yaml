@@ -1,0 +1,45 @@
+title: disbursementEntriesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  disbursement:
+    type: string
+    description: The identifier of the Disbursement that this DisbursementEntry resource
+      refers to.
+  entry:
+    type: string
+    description: The identifier of the Entry that this DisbursementEntry resource
+      refers to.
+  pendingEntry:
+    type: string
+    description: The identifier of the PendingEntry that this DisbursementEntry resource
+      refers to.
+  reserveEntry:
+    type: string
+    description: The identifier of the ReserveEntry that this DisbursementEntry resource
+      refers to.
+  event:
+    $ref: ../enums/disbursementEntryEventModel.yaml
+  eventId:
+    type: string
+    description: The identifier of the record that is associated with this DisbursementEntry
+      resource.
+  amount:
+    type: number
+    format: double
+    description: The total amount of this DisbursementEntry, This field is specified in cents(up to three decimal points).
+  amountUsed:
+    type: number
+    format: double
+    description: The total amount used of this DisbursementEntry, This field is specified in cents(up to three decimal points).
+  description:
+    type: string
+    description: A description of this DisbursementEntry.

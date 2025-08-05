@@ -1,0 +1,36 @@
+title: mappingsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  name:
+    type: string
+    description: Name of Mappings.
+  description:
+    type: string
+    description: A description of this Mapping.
+  input:
+    type: string
+    description: "A JSON document that describes the input fields that should be mapped.\
+      \ \nThis field is stored as a text string and must be between 1 and 5000 characters\
+      \ long."
+  output:
+    type: string
+    description: "A JSON document that describes the fields that should appear in\
+      \ the output, after the input fields have been mapped. \nThis field is stored\
+      \ as a text string and must be between 1 and 5000 characters long."
+  namespace:
+    type: string
+    description: "A valid URL that represents the XML namespace of the input and output\
+      \ documents. \nThis field is stored as a text string and must be between 1 and\
+      \ 100 characters long."

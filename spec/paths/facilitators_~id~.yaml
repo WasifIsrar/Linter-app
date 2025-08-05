@@ -1,0 +1,93 @@
+get:
+  description: "Query a Facilitator resource. \nA Facilitator resource represents\
+    \ a payment facilitator that processes payments for a Partition. \nYou can only\
+    \ associate one Facilitator to each Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/facilitatorsModel200Response.yaml
+      description: Response for query on facilitators resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Facilitator
+  operationId: getFacilitatorsId
+put:
+  description: "Update a Facilitator resource. \nA Facilitator resource represents\
+    \ a payment facilitator that processes payments for a Partition. \nYou can only\
+    \ associate one Facilitator to each Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/facilitatorsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/facilitatorsModel200Response.yaml
+      description: Response for update on facilitators resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Facilitator
+  operationId: putFacilitatorsId
+delete:
+  description: "Delete a Facilitator resource. \nA Facilitator resource represents\
+    \ a payment facilitator that processes payments for a Partition. \nYou can only\
+    \ associate one Facilitator to each Partition."
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/facilitatorsModel200Response.yaml
+      description: Response for delete on facilitators resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Facilitator
+  operationId: deleteFacilitatorsId

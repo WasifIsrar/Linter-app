@@ -1,0 +1,128 @@
+get:
+  description: Query an Alert resource, which represents a particular event notification
+    delivered to a user, and you can invoke alerts by setting up triggers in an alertTriggers
+    resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this alert.
+    explode: false
+    in: path
+    name: id
+    example: t1_alt_67d1a66d3af03677cdc7db0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/alertsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertsModel200Response.yaml
+      description: Response for retrieve alert response.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve an Alert configuration by it's ID.
+  tags:
+  - Alerts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getAlertsId
+put:
+  description: Update an Alert resource, which represents a particular event notification
+    delivered to a user, and you can invoke alerts by setting up triggers in an alertTriggers
+    resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this alert.
+    explode: false
+    in: path
+    name: id
+    example: t1_alt_67d1a66d3af03677cdc7db0
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/alertsPutRequestModel.yaml
+    description: Update Alert Configuration Request
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update alerts:
+              $ref: ../components/schemas/samples/alertsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertsModel200Response.yaml
+      description: Response for update on alerts resource Update Alert Configuration
+        Response
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Update an Alert configuration by it's ID.
+  tags:
+  - Alerts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putAlertsId
+delete:
+  description: Delete an Alert resource, which represents a particular event notification
+    delivered to a user, and you can invoke alerts by setting up triggers in an alertTriggers
+    resource.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this alert.
+    explode: false
+    in: path
+    name: id
+    example: t1_alt_67d1a66d3af03677cdc7db0
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Delete alerts:
+              $ref: ../components/schemas/samples/alertsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/alertsModel200Response.yaml
+      description: Response for update and delete on alerts resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all alerts:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Delete an Alert configuration by it's ID.
+  tags:
+  - Alerts
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: deleteAlertsId

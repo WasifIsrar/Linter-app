@@ -1,0 +1,80 @@
+get:
+  description: Query a loginsHelper.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_lgh_67ee09c7402cff94765db3c
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all loginsHelpers:
+              $ref: ../components/schemas/samples/loginHelpersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsHelpersModel200Response.yaml
+      description: Response for query on loginsHelpers resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all loginsHelpers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Logins Helpers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getLoginsHelpersId
+put:
+  description: Update a loginsHelper.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    example: t1_lgh_67ee09c7402cff94765db3c
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/loginHelpersPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Update loginsHelpers:
+              $ref: ../components/schemas/samples/loginHelpersJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/loginsHelpersModel200Response.yaml
+      description: Response for update on loginsHelpers resource
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all loginsHelpers:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Logins Helpers
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: putLoginsHelpersId

@@ -1,0 +1,32 @@
+title: invoiceStatus
+type: string
+description: "The current status of the transaction.\n<details>\n<summary>Valid Values</summary>\n\
+  \ - `pending` - **Pending**\n - `cancelled` - **Cancelled**\n - `expired` - **Expired**\n\
+  \ - `viewed` - **Viewed**\n - `paid` - **Paid**\n - `confirmed` - **Confirmed**\n\
+  \ - `refunded` - **Refunded**       \n - `rejected` - **Rejected**\n </details>\n"
+enum:
+- pending
+- cancelled
+- expired
+- viewed
+- paid
+- confirmed
+- refunded
+- rejected
+x-enum-elements:
+- name: Pending
+  description: Initial status of invoice before any action is taken.
+- name: Cancelled
+  description: Updated status to indicate the invoice has expired.
+- name: Expired
+  description: Updated status once the invoice has expired.
+- name: Viewed
+  description: Updated status once the invoice is viewed by the customer.
+- name: Paid
+  description: Updated status once the invoice has been paid by the customer.
+- name: Confirmed
+  description: Updated status once the invoice has been confirmed by the customer.
+- name: Refunded
+  description: Updated status once the invoice has been refunded.
+- name: Rejected
+  description: Updated status once the invoice has been rejected by the customer.

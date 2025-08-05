@@ -1,0 +1,38 @@
+get:
+  description: Query a ProfitShareResult or Profit Share Result.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource, The Profit Share Result ID.
+    explode: false
+    in: path
+    name: id
+    example: t1_psr_655c21ba778461b81b98b00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareResults:
+              $ref: ../components/schemas/samples/profitShareResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/profitShareResultsModel200Response.yaml
+      description: Retrieve the Response for query on Profit Share Results resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all profitShareResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Profit Share Result by it's ID.
+  tags:
+  - Profit Share Results
+  - Merchant
+  - Facilitator
+  - Partner
+  operationId: getProfitShareResultsId

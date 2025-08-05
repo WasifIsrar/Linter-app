@@ -1,0 +1,23 @@
+type: array
+description: An array of zero or more errors that occurred when the API processed
+  the request.
+items:
+  type: object
+  title: errorItem
+  properties:
+    code:
+      type: integer
+      description: The error code associated with a particular error.
+    severity:
+      type: integer
+      description: "The severity level of a particular error. \nPossible values are\
+        \ '0' (informational), '1' (warning), '2' (error) and '4' (failure)."
+    msg:
+      type: string
+      description: The message associated with a particular error.
+    field:
+      type: string
+      description: Field name associated with error.
+    errorCode:
+      type: string
+      description: An identifying string code for this error.

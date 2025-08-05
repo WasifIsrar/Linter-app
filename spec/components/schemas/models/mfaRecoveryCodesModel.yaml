@@ -1,0 +1,36 @@
+title: mfaRecoveryCodesResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this resource.
+  code:
+    type: string
+    description: Authentication generated code.
+  used:
+    type: integer
+    description: |
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **OFF**
+      - `1` - **ON**
+
+      </details>
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: OFF
+      description: OFF
+    - name: ON
+      description: ON

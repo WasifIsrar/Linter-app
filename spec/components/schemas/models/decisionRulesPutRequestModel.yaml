@@ -1,0 +1,36 @@
+title: decisionRulesPutRequest
+properties:
+  decision:
+    type: string
+    description: The identifier of the Decision that this Decision Rule applies.
+  name:
+    type: string
+    description: The name of this Decision Rule. This field is stored as a text string
+      and must be between 0 and 100 characters long.
+  description:
+    type: string
+    description: Description of the Decision Rules.
+  type:
+    $ref: ../enums/decisionRuleTypeModel.yaml
+  value:
+    type: integer
+    description: The value to compare against when evaluating this Decision Rule.
+  grouping:
+    type: string
+    description: A name for a group of rules to be applied in conjunction when evaluating
+      this Decision Rule; When grouping is used, the Decision will be allowed to be
+      processed if at least one of the rules are matched.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+
+example:
+  decision: t1_dcs_67d97ed1a0fc6848c89d537
+  name: DecisionRule11
+  description: Rule Description
+  type: type
+  value: 8
+  grouping: portalgroup_2
+  inactive: 0
+  frozen: 0

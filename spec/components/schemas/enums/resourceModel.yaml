@@ -1,0 +1,826 @@
+type: integer
+description: |-
+      <details><summary>Valid Values</summary>
+
+      - `1` - **apiKeys**
+
+      - `2` - **contacts**
+
+      - `3` - **customers**
+
+      - `4` - **alertTriggers**
+
+      - `5` - **iplists**
+
+      - `6` - **items**
+
+      - `7` - **alerts**
+
+      - `8` - **logins**
+
+      - `9` - **merchants**
+
+      - `10` - **orgs**
+
+      - `12` - **permissions**
+
+      - `13` - **decisions**
+
+      - `14` - **parameters**
+
+      - `15` - **sessions**
+
+      - `16` - **alertActions**
+
+      - `17` - **tokens**
+
+      - `18` - **txns**
+
+      - `19` - **teamLogins**
+
+      - `20` - **credentials**
+
+      - `21` - **members**
+
+      - `22` - **accounts**
+
+      - `23` - **plans**
+
+      - `24` - **subscriptions**
+
+      - `25` - **subscriptionTokens**
+
+      - `26` - **disbursements**
+
+      - `27` - **entries**
+
+      - `28` - **fees**
+
+      - `29` - **funds**
+
+      - `30` - **orgEntities**
+
+      - `31` - **payouts**
+
+      - `32` - **feeRules**
+
+      - `33` - **entityRefs**
+
+      - `34` - **chargebacks**
+
+      - `35` - **decisionRules**
+
+      - `36` - **entities**
+
+      - `37` - **facilitators**
+
+      - `38` - **partitions**
+
+      - `39` - **merchantResults**
+
+      - `40` - **mccs**
+
+      - `41` - **mappings**
+
+      - `42` - **refunds**
+
+      - `43` - **batches**
+
+      - `44` - **txnResults**
+
+      - `45` - **confirmCodes**
+
+      - `46` - **accountVerifications**
+
+      - `47` - **disbursementResults**
+
+      - `48` - **reserveEntries**
+
+      - `49` - **chargebackMessages**
+
+      - `50` - **hosts**
+
+      - `53` - **txnRefs**
+
+      - `54` - **verifications**
+
+      - `55` - **verificationResults**
+
+      - `56` - **chargebackMessageResults**
+
+      - `57` - **assessments**
+
+      - `58` - **entryOrigins**
+
+      - `59` - **adjustments**
+
+      - `60` - **txnDatas**
+
+      - `61` - **revenueBoosts**
+
+      - `62` - **orgFlows**
+
+      - `63` - **orgFlowActions**
+
+      - `64` - **accountVerificationResults**
+
+      - `65` - **disbursementRefs**
+
+      - `66` - **reserves**
+
+      - `67` - **entityReserves**
+
+      - `68` - **txnReports**
+
+      - `69` - **payoutFlows**
+
+      - `70` - **vendors**
+
+      - `71` - **fundOrigins**
+
+      - `72` - **entityRoutes**
+
+      - `73` - **pendingEntries**
+
+      - `74` - **terminals**
+
+      - `75` - **terminalRefs**
+
+      - `76` - **holds**
+
+      - `77` - **holdNotes**
+
+      - `78` - **files**
+
+      - `79` - **messageThreads**
+
+      - `80` - **messages**
+
+      - `81` - **bins**
+
+      - `82` - **feeModifiers**
+
+      - `83` - **versions**
+
+      - `84` - **chargebackDocuments**
+
+      - `85` - **divisions**
+
+      - `86` - **entityReturns**
+
+      - `87` - **chargebackStatuses**
+
+      - `88` - **profitShares**
+
+      - `89` - **profitShareResults**
+
+      - `90` - **aggregations**
+
+      - `91` - **aggregationResultGroups**
+
+      - `92` - **aggregationResults**
+
+      - `93` - **auditLogs**
+
+      - `94` - **invoiceParameters**
+
+      - `95` - **invoices**
+
+      - `96` - **secrets**
+
+      - `97` - **watchlists**
+
+      - `98` - **watchlistItems**
+
+      - `99` - **txnMetadatas**
+
+      - `100` - **invoiceResults**
+
+      - `101` - **invoiceItems**
+
+      - `102` - **invoiceLineItems**
+
+      - `103` - **profitShareRules**
+
+      - `104` - **configurations**
+
+      - `105` - **currencyRates**
+
+      - `106` - **terminalTxns**
+
+      - `107` - **terminalTxnDatas**
+
+      - `108` - **terminalTxnRefs**
+
+      - `109` - **terminalTxnResults**
+
+      - `110` - **configurationStages**
+
+      - `111` - **disbursementEntries**
+
+      - `112` - **decisionActions**
+
+      - `113` - **notes**
+
+      - `114` - **noteDocuments**
+
+      - `115` - **paymentUpdates**
+
+      - `117` - **paymentUpdateGroups**
+
+      - `118` - **authTokens**
+
+      - `119` - **reportResults**
+
+      - `120` - **reports**
+
+      - `121` - **reportItems**
+
+      - `122` - **entityDebts**
+
+      - `123` - **billings**
+
+      - `124` - **billingModifiers**
+
+      - `125` - **statements**
+
+      - `126` - **statementEntries**
+
+      - `127` - **billingEvents**
+
+      - `128` - **fundingParameters**
+
+      - `129` - **requestTokens**
+
+      - `130` - **accountRefs**
+
+      - `131` - **settlements**
+
+      - `132` - **entityDatas**
+
+      - `133` - **terminalTxnMetadatas**
+
+      - `134` - **batchRefs**
+
+      - `135` - **verificationRefs**
+
+      - `136` - **externalFees**
+
+      - `137` - **saferPayments**
+
+      - `138` - **mfaRecoveryCodes**
+
+      - `139` - **debtorEntities**
+
+      - `140` - **omniTokens**
+
+      - `141` - **changeRequests**
+
+      - `142` - **txnSession**
+
+      - `143` - **revShareSchedules**
+
+      - `144` - **revShareStatements**
+
+      - `145` - **loginsHelpers**
+
+      - `146` - **entityCustomFields**
+
+      - `147' - **DisbursementEntriesLog**
+
+      - `148` - **merchantPlatformStatuses**
+
+      - `149` - **DisbursementEntitiesLog**
+
+      - `150` - **orgsVASSaferPayments**
+
+      - `151` - **orgsVASOmniTokens**
+
+      - `152` - **orgsVASRevenueBoosts**
+
+      - `153` - **tokenResults**
+
+      - `154` - **PlaidConsumerAccounts**
+
+      - `155` - **appleDomains**
+
+      - `156` - **PlaidConsumerPayments**
+
+      - `157` - **saferPaymentsCompliance**
+
+      - `158` - **orgFlowRules**
+
+      - `159` - **TaxFormRequests**
+
+      - `160` - **HostThemes**
+      
+      - `161` - **IntegrationResults**
+
+      - `162` - **VasEfeOffers**
+
+      - `163` - **VasEfeOfferUpdates**
+
+      - `165` - **EmbeddedFinance**
+
+      - `166` - **OrgsVASEfeProducts**
+
+      - `167` - **EntityTerms**
+
+      - `168` - **PinlessDebitConversions**
+
+      - `169` - **OrgsVASPinlessDebitConversions**
+      </details>
+enum:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 36
+    - 37
+    - 38
+    - 39
+    - 40
+    - 41
+    - 42
+    - 43
+    - 44
+    - 45
+    - 46
+    - 47
+    - 48
+    - 49
+    - 50
+    - 53
+    - 54
+    - 55
+    - 56
+    - 57
+    - 58
+    - 59
+    - 60
+    - 61
+    - 62
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 68
+    - 69
+    - 70
+    - 71
+    - 72
+    - 73
+    - 74
+    - 75
+    - 76
+    - 77
+    - 78
+    - 79
+    - 80
+    - 81
+    - 82
+    - 83
+    - 84
+    - 85
+    - 86
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+    - 92
+    - 93
+    - 94
+    - 95
+    - 96
+    - 97
+    - 98
+    - 99
+    - 100
+    - 101
+    - 102
+    - 103
+    - 104
+    - 105
+    - 106
+    - 107
+    - 108
+    - 109
+    - 110
+    - 111
+    - 112
+    - 113
+    - 114
+    - 115
+    - 117
+    - 118
+    - 119
+    - 120
+    - 121
+    - 122
+    - 123
+    - 124
+    - 125
+    - 126
+    - 127
+    - 128
+    - 129
+    - 130
+    - 131
+    - 132
+    - 133
+    - 134
+    - 135
+    - 136
+    - 137
+    - 138
+    - 139
+    - 140
+    - 141
+    - 142
+    - 143
+    - 144
+    - 145
+    - 146
+    - 147
+    - 148
+    - 149
+    - 150
+    - 151
+    - 152
+    - 153
+    - 154
+    - 155
+    - 156
+    - 157
+    - 158
+    - 159
+    - 160
+    - 161
+    - 162
+    - 163
+    - 165
+    - 166
+    - 167
+    - 168
+    - 169
+x-enum-elements:
+  - name: "ApiKeys"
+    description: "apiKeys"
+  - name: "Contacts"
+    description: "contacts"
+  - name: "Customers"
+    description: "customers"
+  - name: "AlertTriggers"
+    description: "alertTriggers"
+  - name: "Iplists"
+    description: "iplists"
+  - name: "Items"
+    description: "items"
+  - name: "Alerts"
+    description: "alerts"
+  - name: "Logins"
+    description: "logins"
+  - name: "Merchants"
+    description: "merchants"
+  - name: "Orgs"
+    description: "orgs"
+  - name: "Permissions"
+    description: "permissions"
+  - name: "Decisions"
+    description: "decisions"
+  - name: "Parameters"
+    description: "parameters"
+  - name: "Sessions"
+    description: "sessions"
+  - name: "AlertActions"
+    description: "alertActions"
+  - name: "Tokens"
+    description: "tokens"
+  - name: "Txns"
+    description: "txns"
+  - name: "TeamLogins"
+    description: "teamLogins"
+  - name: "Credentials"
+    description: "credentials"
+  - name: "Members"
+    description: "members"
+  - name: "Accounts"
+    description: "accounts"
+  - name: "Plans"
+    description: "plans"
+  - name: "Subscriptions"
+    description: "subscriptions"
+  - name: "SubscriptionTokens"
+    description: "subscriptionTokens"
+  - name: "Disbursements"
+    description: "disbursements"
+  - name: "Entries"
+    description: "entries"
+  - name: "Fees"
+    description: "fees"
+  - name: "Funds"
+    description: "funds"
+  - name: "OrgEntities"
+    description: "orgEntities"
+  - name: "Payouts"
+    description: "payouts"
+  - name: "FeeRules"
+    description: "feeRules"
+  - name: "EntityRefs"
+    description: "entityRefs"
+  - name: "Chargebacks"
+    description: "chargebacks"
+  - name: "DecisionRules"
+    description: "decisionRules"
+  - name: "Entities"
+    description: "entities"
+  - name: "Facilitators"
+    description: "facilitators"
+  - name: "Partitions"
+    description: "partitions"
+  - name: "MerchantResults"
+    description: "merchantResults"
+  - name: "Mccs"
+    description: "mccs"
+  - name: "Mappings"
+    description: "mappings"
+  - name: "Refunds"
+    description: "refunds"
+  - name: "Batches"
+    description: "batches"
+  - name: "TxnResults"
+    description: "txnResults"
+  - name: "ConfirmCodes"
+    description: "confirmCodes"
+  - name: "AccountVerifications"
+    description: "accountVerifications"
+  - name: "DisbursementResults"
+    description: "disbursementResults"
+  - name: "ReserveEntries"
+    description: "reserveEntries"
+  - name: "ChargebackMessages"
+    description: "chargebackMessages"
+  - name: "Hosts"
+    description: "hosts"
+  - name: "TxnRefs"
+    description: "txnRefs"
+  - name: "Verifications"
+    description: "verifications"
+  - name: "VerificationResults"
+    description: "verificationResults"
+  - name: "ChargebackMessageResults"
+    description: "chargebackMessageResults"
+  - name: "Assessments"
+    description: "assessments"
+  - name: "EntryOrigins"
+    description: "entryOrigins"
+  - name: "Adjustments"
+    description: "adjustments"
+  - name: "TxnDatas"
+    description: "txnDatas"
+  - name: "RevenueBoosts"
+    description: "revenueBoosts"
+  - name: "OrgFlows"
+    description: "orgFlows"
+  - name: "OrgFlowActions"
+    description: "orgFlowActions"
+  - name: "AccountVerificationResults"
+    description: "accountVerificationResults"
+  - name: "DisbursementRefs"
+    description: "disbursementRefs"
+  - name: "Reserves"
+    description: "reserves"
+  - name: "EntityReserves"
+    description: "entityReserves"
+  - name: "TxnReports"
+    description: "txnReports"
+  - name: "PayoutFlows"
+    description: "payoutFlows"
+  - name: "Vendors"
+    description: "vendors"
+  - name: "FundOrigins"
+    description: "fundOrigins"
+  - name: "EntityRoutes"
+    description: "entityRoutes"
+  - name: "PendingEntries"
+    description: "pendingEntries"
+  - name: "Terminals"
+    description: "terminals"
+  - name: "TerminalRefs"
+    description: "terminalRefs"
+  - name: "Holds"
+    description: "holds"
+  - name: "HoldNotes"
+    description: "holdNotes"
+  - name: "Files"
+    description: "files"
+  - name: "MessageThreads"
+    description: "messageThreads"
+  - name: "Messages"
+    description: "messages"
+  - name: "Bins"
+    description: "bins"
+  - name: "FeeModifiers"
+    description: "feeModifiers"
+  - name: "Versions"
+    description: "versions"
+  - name: "ChargebackDocuments"
+    description: "chargebackDocuments"
+  - name: "Divisions"
+    description: "divisions"
+  - name: "EntityReturns"
+    description: "entityReturns"
+  - name: "ChargebackStatuses"
+    description: "chargebackStatuses"
+  - name: "ProfitShares"
+    description: "profitShares"
+  - name: "ProfitShareResults"
+    description: "profitShareResults"
+  - name: "Aggregations"
+    description: "aggregations"
+  - name: "AggregationResultGroups"
+    description: "aggregationResultGroups"
+  - name: "AggregationResults"
+    description: "aggregationResults"
+  - name: "AuditLogs"
+    description: "auditLogs"
+  - name: "InvoiceParameters"
+    description: "invoiceParameters"
+  - name: "Invoices"
+    description: "invoices"
+  - name: "Secrets"
+    description: "secrets"
+  - name: "Watchlists"
+    description: "watchlists"
+  - name: "WatchlistItems"
+    description: "watchlistItems"
+  - name: "TxnMetadatas"
+    description: "txnMetadatas"
+  - name: "InvoiceResults"
+    description: "invoiceResults"
+  - name: "InvoiceItems"
+    description: "invoiceItems"
+  - name: "InvoiceLineItems"
+    description: "invoiceLineItems"
+  - name: "ProfitShareRules"
+    description: "profitShareRules"
+  - name: "Configurations"
+    description: "configurations"
+  - name: "CurrencyRates"
+    description: "currencyRates"
+  - name: "TerminalTxns"
+    description: "terminalTxns"
+  - name: "TerminalTxnDatas"
+    description: "terminalTxnDatas"
+  - name: "TerminalTxnRefs"
+    description: "terminalTxnRefs"
+  - name: "TerminalTxnResults"
+    description: "terminalTxnResults"
+  - name: "ConfigurationStages"
+    description: "configurationStages"
+  - name: "DisbursementEntries"
+    description: "disbursementEntries"
+  - name: "DecisionActions"
+    description: "decisionActions"
+  - name: "Notes"
+    description: "notes"
+  - name: "NoteDocuments"
+    description: "noteDocuments"
+  - name: "PaymentUpdates"
+    description: "paymentUpdates"
+  - name: "PaymentUpdateGroups"
+    description: "paymentUpdateGroups"
+  - name: "AuthTokens"
+    description: "authTokens"
+  - name: "ReportResults"
+    description: "reportResults"
+  - name: "Reports"
+    description: "reports"
+  - name: "ReportItems"
+    description: "reportItems"
+  - name: "EntityDebts"
+    description: "entityDebts"
+  - name: "Billings"
+    description: "billings"
+  - name: "BillingModifiers"
+    description: "billingModifiers"
+  - name: "Statements"
+    description: "statements"
+  - name: "StatementEntries"
+    description: "statementEntries"
+  - name: "BillingEvents"
+    description: "billingEvents"
+  - name: "FundingParameters"
+    description: "fundingParameters"
+  - name: "RequestTokens"
+    description: "requestTokens"
+  - name: "AccountRefs"
+    description: "accountRefs"
+  - name: "Settlements"
+    description: "settlements"
+  - name: "EntityDatas"
+    description: "entityDatas"
+  - name: "TerminalTxnMetadatas"
+    description: "terminalTxnMetadatas"
+  - name: "BatchRefs"
+    description: "batchRefs"
+  - name: "VerificationRefs"
+    description: "verificationRefs"
+  - name: "ExternalFees"
+    description: "externalFees"
+  - name: "SaferPayments"
+    description: "saferPayments"
+  - name: "MfaRecoveryCodes"
+    description: "mfaRecoveryCodes"
+  - name: "DebtorEntities"
+    description: "debtorEntities"
+  - name: "OmniTokens"
+    description: "omniTokens"
+  - name: "ChangeRequests"
+    description: "changeRequests"
+  - name: "TxnSession"
+    description: "txnSession"
+  - name: "RevShareSchedules"
+    description: "revShareSchedules"
+  - name: "RevShareStatements"
+    description: "revShareStatements"
+  - name: "LoginsHelpers"
+    description: "loginsHelpers"
+  - name: "EntityCustomFields"
+    description: "entityCustomFields"
+  - name: "DisbursementEntriesLog"
+    description: "disbursementEntriesLog"
+  - name: "MerchantPlatformStatuses"
+    description: "merchantPlatformStatuses"
+  - name: "DisbursementEntitiesLog"
+    description: "disbursementEntitiesLog"
+  - name: "OrgsVASSaferPayments"
+    description: "orgsVASSaferPayments"
+  - name: "OrgsVASOmniTokens"
+    description: "orgsVASOmniTokens"
+  - name: "OrgsVASRevenueBoosts"
+    description: "orgsVASRevenueBoosts"
+  - name: "TokenResults"
+    description: "tokenResults"
+  - name: "PlaidConsumerAccounts"
+    description: "plaidConsumerAccounts"
+  - name: "AppleDomains"
+    description: "appleDomains"
+  - name: "PlaidConsumerPayments"
+    description: "plaidConsumerPayments"
+  - name: "SaferPaymentsCompliance"
+    description: "saferPaymentsCompliance"
+  - name: "OrgFlowRules"
+    description: "orgFlowRules"
+  - name: "TaxFormRequests"
+    description: "taxFormRequests"
+  - name: "HostThemes"
+    description: "hostThemes"
+  - name: "IntegrationResults"
+    description: "integrationResults"
+  - name: "VasEfeOffers"
+    description: "vasEfeOffers"
+  - name: "VasEfeOfferUpdates"
+    description: "vasEfeOfferUpdates"
+  - name: "EmbeddedFinance"
+    description: "embeddedFinance"
+  - name: "OrgsVASEfeProducts"
+    description: "orgsVASEfeProducts"
+  - name: "EntityTerms"
+    description: "entityTerms"
+  - name: "PinlessDebitConversions"
+    description: "pinlessDebitConversions"
+  - name: "OrgsVASPinlessDebitConversions"
+    description: "orgsVASPinlessDebitConversions"

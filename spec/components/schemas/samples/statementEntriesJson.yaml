@@ -1,0 +1,37 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_ste_67a18bcde1a1b2ec3d9c9az",
+        "created": "2025-01-31 08:42:16.7318",
+        "modified": "2025-01-31 08:42:16.7318",
+        "creator": "t1_log_0092b50e8812b18e41d511s",
+        "modifier": "t1_log_0092b50e8812b18e41d511s",
+        "onentity": "t1_ent_5603d7c605d246c48c43fb5",
+        "billing": "t1_bil_09506bd083f5dc8539d3a4f",
+        "statement": "p1_stm_0088a64f48d47e4e0c8012c",
+        "fee": "t1_fee_90fafb488200de80848de1e",
+        "profitShare": "",
+        "event": 6,
+        "eventId": "t1_txn_98ca80b33efecf1b1c5f807",
+        "description": "AUTH fee schedule",
+        "amount": 30,
+        "deductedFromBalance": 0,
+        "entity": "t1_ent_1103d7c605d246c48c43fb5",
+        "forentity": "t1_ent_110d5f86c965eb277f498d8",
+        "originalEventId": "t1_txn_00ca80b33efecf1b1c5d807",
+        "originalEvent": 7,
+        "revShareStatement": ""
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

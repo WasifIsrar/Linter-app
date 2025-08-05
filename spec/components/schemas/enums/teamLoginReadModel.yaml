@@ -1,0 +1,22 @@
+
+    title: teamLoginRead
+    type: integer
+    description: |
+      Read rights for this Login on this Team.
+
+      <details>
+      <summary>Valid Values</summary>
+
+      - `0` - **None**
+      - `1` - **Allow**
+
+      </details>
+    default: 0
+    enum:
+    - 0
+    - 1
+    x-enum-elements:
+    - name: None
+      description: No read rights.
+    - name: Allow
+      description: Read rights are allowed.

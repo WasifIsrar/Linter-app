@@ -1,0 +1,28 @@
+title: authTokensPostRequest
+properties:
+  login:
+    type: string
+    description: The Login that owns this resource.
+  customer:
+    type: string
+    description: The customer identifier from the AuthToken used during authentication.
+  token:
+    type: string
+    description: The auto-generated token identifier.
+  inactive:
+    $ref: ../inactive.yaml
+  frozen:
+    $ref: ../frozen.yaml
+required:
+- customer
+- frozen
+- inactive
+- login
+- token
+
+example: 
+  login: t1_log_6372b01eed9b6a8c75ac8a3
+  customer: 000a1eafdfdb335179adf94c1d8bc36d
+  token: 261cf67bb2dc20f492abcdb39ecee847
+  inactive: 0
+  frozen: 0

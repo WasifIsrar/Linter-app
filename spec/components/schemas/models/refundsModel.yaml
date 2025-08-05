@@ -1,0 +1,24 @@
+title: refundsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  entry:
+    type: string
+    description: The identifier of the Entries resource that is being refunded.
+  description:
+    type: string
+    description: "A description of this Refund. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  amount:
+    type: number
+    format: double
+    description: "The amount of this Refund. \nThis field is specified in cents(up to three decimal points). \nThis field is optional. If it is not set, then the API uses the\
+      \ amount that is specified in the related Entry resource."

@@ -1,0 +1,26 @@
+title: orgsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The Login that owns this Org.
+  name:
+    type: string
+    description: "The name of this Org. \nThis field is stored as a text string and\
+      \ must be between 0 and 100 characters long."
+  description:
+    type: string
+    description: "A description of this Org. \nThis field is stored as a text string\
+      \ and must be between 0 and 100 characters long."
+  defaultFeeFromEntity: 
+    type: string
+    description: This is used to specify a default fee for a group. 

@@ -1,0 +1,98 @@
+get:
+  description: Query a Report Result.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this report.
+    explode: false
+    in: path
+    name: id
+    example: t1_rpr_639231c86f6167eab039d00
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          examples:
+            fetch all reportResults:
+              $ref: ../components/schemas/samples/reportResultsJson.yaml
+          schema:
+            $ref: ../components/schemas/http200responses/reportResultsModel200Response.yaml
+      description: Retrieve Report Results Response for query on reportResults resource.
+    '400':
+      content:
+        application/json:
+          examples:
+            Fetch all reportResults:
+              $ref: ../components/schemas/samples/errors400Json.yaml
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  summary: Retrieve Report Results by it's ID.
+  tags:
+  - Report Results
+  - Facilitator
+  operationId: getReportResultsId
+put:
+  description: Update a reportResults.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/models/reportResultsPutRequestModel.yaml
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/reportResultsModel200Response.yaml
+      description: Response for update on reportResults resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Report Results
+  - Facilitator
+  operationId: putReportResultsId
+delete:
+  description: Delete a reportResults.
+  parameters:
+  - $ref: ../components/schemas/requestHeaderRequestTokensParams.yaml
+  - description: The ID of this resource.
+    explode: false
+    in: path
+    name: id
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/http200responses/reportResultsModel200Response.yaml
+      description: Response for delete on reportResults resource
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/error-four-hundred.yaml
+      description: Error
+  tags:
+  - Report Results
+  - Facilitator
+  operationId: deleteReportResultsId

@@ -1,0 +1,54 @@
+title: txnSessionsResponse
+properties:
+  id:
+    $ref: ../id.yaml
+  created:
+    $ref: ../created.yaml
+  modified:
+    $ref: ../modified.yaml
+  creator:
+    $ref: ../creator.yaml
+  modifier:
+    $ref: ../modifier.yaml
+  login:
+    type: string
+    description: The login under which to perform this action. If you do not supply
+      a login in this field, then the API defaults to the login that is currently
+      authenticated.
+  merchant:
+    type: string
+    description: The Merchant being used to create this txn session.
+  status:
+    title: txnSessionStatus
+    type: string
+    description: The current status of this key.
+  configurations:
+    type: object
+    description: Configurable data to be used to enhance security.
+    title: txnSessionsConfigurations
+    properties:
+      duration:
+        type: integer
+        description: duration refers to How many minutes this key should live (automated voided when tried to use after expired).
+      maxTimesApproved:
+        type: integer
+        description: maxTimesApproved refers to how many approved transactions related it can be used.
+      maxTimesUse:
+        type: integer
+        description: maxTimesUse refers to how many times we can make request with this key.
+  origin: 
+    title: txnSessionOrigin
+    type: string
+    description: The origin from this request.  
+  durationAvailable:
+    type: integer
+    description: Specifies the number of minutes for which the key remains valid. Once this duration expires, the key will be automatically voided and cannot be used.
+  timesUsed:
+    type: integer
+    description: Indicates the number of times the key has been used to make requests.
+  timesApproved:
+    type: integer
+    description: Indicates the number of approved transactions that have been made using this key.
+  key:
+    type: string
+    description: The randomly generated key used to authenticate a user.

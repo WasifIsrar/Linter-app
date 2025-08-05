@@ -1,0 +1,32 @@
+value:
+  "response": {
+    "data": [
+        {
+        "id": "t1_rpt_67d9f10c0b15f8dd83ef00z",
+        "created": "2025-03-18 18:17:48.0636",
+        "modified": "2025-03-18 18:23:47.3872",
+        "creator": "t1_log_678e7f565c4252b75c0de8d",
+        "modifier": "t1_log_678e7f565c4252b75c0de8d",
+        "login": "t1_log_678e7f565c4252b75c0de8d",
+        "type": "json",
+        "description": "Test Report",
+        "status": "notReady",
+        "schedule": "days",
+        "scheduleFactor": 1,
+        "start": 202503180000,
+        "finish": 202503180000,
+        "inactive": 0,
+        "frozen": 0
+      }
+    ],
+    "details": {
+      "requestId": "1",
+      "totals": [],
+      "page": {
+        "current": 1,
+        "last": 1,
+        "hasMore": false
+      }
+    },
+    "errors": []
+  }

@@ -1,0 +1,21 @@
+title: planUm
+type: string
+description: |
+  The unit of measure for the amount on the plan.
+
+  <details>
+  <summary>Valid Values</summary>
+
+  - `actual` - **An actual amount to charge, in cents.**
+  - `percent` - **A percentage of another amount, in basis points.**
+
+  </details>
+enum:
+- actual
+- percent
+x-enum-elements:
+- name: Actual
+  description: An actual amount to charge, in cents.
+- name: Percent
+  description: A percentage of another amount, in basis points.
+default: actual
