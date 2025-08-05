@@ -1,0 +1,39 @@
+{
+  "ImportSettings": {
+    "PreferJsonSchemaNameOverTitle": false,
+    "AppendParentNameForClashes": false,
+    "AllowModelTypesWithNoFields": false,
+    "AutoGenerateTestCases": false,
+    "ImportTypeCombinatorsWithOnlyOneType": false
+  },
+  "CodeGenSettings": {
+    "ValidateRequiredParameters": true,
+    "LiftParameterDescriptionFromCustomType": true,
+    "UseEnumPrefix": false,
+    "SynchronyMode": "Synchronous",
+    "ModelSerializationScheme": "Json",
+    "ArraySerialization": "CSV",
+    "ApplyCustomizations": ["maxio-ghua3c"],
+    "StoreTimezoneInformation": true,
+    "AddSingleAuthDeprecatedCode": false,
+
+    "ProjectName": "Advanced Billing",
+    "BrandLabel": "Maxio",
+
+    "javaPackageName": "com.maxio.advancedbilling",
+    "JavaGroupId": "com.maxio",
+    "javaArtifactId": "advanced-billing-sdk",
+
+    "EnableGlobalUserAgent": true,
+    "UserAgent": "AB SDK {language}:{version} on OS {os-info}",
+
+    "UserConfigurableRetries": true,
+    "Timeout": 0,
+    "errorTemplates": {
+      "404": "Not Found:'{$response.body}'",
+      "0": "HTTP Response Not OK. Status code: {$statusCode}. Response: '{$response.body}'."
+    },
+
+    "EnableAdditionalModelProperties": true
+  }
+}

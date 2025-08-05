@@ -1,0 +1,13 @@
+title: List Invoice Events Response
+type: object
+properties:
+  events:
+    type: array
+    items:
+      $ref: "./Invoice-Event.yaml"
+  page:
+    type: integer
+  per_page:
+    type: integer
+  total_pages:
+    type: integer

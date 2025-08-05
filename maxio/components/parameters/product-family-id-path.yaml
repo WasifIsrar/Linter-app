@@ -1,0 +1,6 @@
+name: product_family_id
+in: path
+description: The Chargify id of the product family to which the component belongs
+schema:
+  type: integer
+required: true

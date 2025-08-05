@@ -1,0 +1,10 @@
+title: Subscription Group Signup Failure
+type: object
+properties:
+  subscription_group:
+    $ref: "./Subscription-Group-Failure-Data.yaml"
+  customer:
+    type: "null"
+required:
+  - subscription_group
+  - customer

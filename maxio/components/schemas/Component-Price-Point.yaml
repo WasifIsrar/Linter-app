@@ -1,0 +1,57 @@
+title: Component Price Point
+type: object
+properties:
+  id:
+    type: integer
+  type:
+    $ref: "./Price-Point-Type.yaml"
+  default:
+    type: boolean
+    deprecated: true
+    description: "Note: Refer to type attribute instead"
+  name:
+    type: string
+  pricing_scheme:
+    $ref: "./Pricing-Scheme.yaml"
+  component_id:
+    type: integer
+  handle:
+    type: string
+  archived_at:
+    format: date-time
+    type:
+      - string
+      - "null"
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  prices:
+    type: array
+    items:
+      $ref: "./Component-Price.yaml"
+  use_site_exchange_rate:
+    type: boolean
+    description: Whether to use the site level exchange rate or define your own prices for each currency if you have multiple currencies defined on the site. Defaults to true during creation.
+  subscription_id:
+    type: integer
+    description: (only used for Custom Pricing - ie. when the price point's type is `custom`) The id of the subscription that the custom price point is for.
+  tax_included:
+    type: boolean
+  interval:
+    type:
+      - integer
+      - "null"
+    description: The numerical interval. i.e. an interval of ‘30’ coupled with an interval_unit of day would mean this component price point would renew every 30 days. This property is only available for sites with Multifrequency enabled.
+  interval_unit:
+    oneOf:
+      - $ref: "./Interval-Unit.yaml"
+      - type: "null"
+    description: A string representing the interval unit for this component price point, either month or day. This property is only available for sites with Multifrequency enabled.
+  currency_prices:
+    type: array
+    description: "An array of currency pricing data is available when multiple currencies are defined for the site. It varies based on the use_site_exchange_rate setting for the price point. This parameter is present only in the response of read endpoints, after including the appropriate query parameter."
+    items:
+      $ref: "./Component-Currency-Price.yaml"

@@ -1,0 +1,55 @@
+title: Create Product Price Point
+type: object
+properties:
+  name:
+    type: string
+    description: The product price point name
+  handle:
+    type: string
+    description: The product price point API handle
+  price_in_cents:
+    type: integer
+    format: int64
+    description: The product price point price, in integer cents
+  interval:
+    type: integer
+    description: The numerical interval. i.e. an interval of ‘30’ coupled with an interval_unit of day would mean this product price point would renew every 30 days
+  interval_unit:
+    allOf:
+      - $ref: "./Interval-Unit.yaml"
+    description: "A string representing the interval unit for this product price point, either month or day"
+  trial_price_in_cents:
+    type: integer
+    format: int64
+    description: The product price point trial price, in integer cents
+  trial_interval:
+    type: integer
+    description: "The numerical trial interval. i.e. an interval of ‘30’ coupled with a trial_interval_unit of day would mean this product price point trial would last 30 days."
+  trial_interval_unit:
+    allOf:
+      - $ref: "./Interval-Unit.yaml"
+    description: "A string representing the trial interval unit for this product price point, either month or day"
+  trial_type:
+    type: string
+  initial_charge_in_cents:
+    type: integer
+    format: int64
+    description: The product price point initial charge, in integer cents
+  initial_charge_after_trial:
+    type: boolean
+  expiration_interval:
+    type: integer
+    description: "The numerical expiration interval. i.e. an expiration_interval of ‘30’ coupled with an expiration_interval_unit of day would mean this product price point would expire after 30 days."
+  expiration_interval_unit:
+    allOf:
+      - $ref: "./Interval-Unit.yaml"
+    description: "A string representing the expiration interval unit for this product price point, either month or day"
+  use_site_exchange_rate:
+    type: boolean
+    description: Whether or not to use the site's exchange rate or define your own pricing when your site has multiple currencies defined.
+    default: true
+required:
+  - name
+  - price_in_cents
+  - interval
+  - interval_unit

@@ -1,0 +1,7 @@
+title: Add Subscription to a Group
+type: object
+properties:
+  group:
+    oneOf:
+      - $ref: "./Group-Settings.yaml"
+      - type: boolean

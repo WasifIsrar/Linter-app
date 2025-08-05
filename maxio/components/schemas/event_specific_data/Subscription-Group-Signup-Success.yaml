@@ -1,0 +1,10 @@
+title: Subscription Group Signup Success
+type: object
+properties:
+  subscription_group:
+    $ref: "./Subscription-Group-Success-Data.yaml"
+  customer:
+    $ref: "../Customer.yaml"
+required:
+  - subscription_group
+  - customer

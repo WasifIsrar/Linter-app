@@ -1,0 +1,37 @@
+title: Create or Update Flat Amount Coupon
+type: object
+properties:
+  name:
+    type: string
+    description: the name of the coupon
+  code:
+    type: string
+    description: "may contain uppercase alphanumeric characters and these special characters (which allow for email addresses to be used): “%”, “@”, “+”, “-”, “_”, and “.”"
+  description:
+    type: string
+  amount_in_cents:
+    type: integer
+    format: int64
+  allow_negative_balance:
+    type: boolean
+  recurring:
+    type: boolean
+  end_date:
+    format: date-time
+    type: string
+  product_family_id:
+    type: string
+  stackable:
+    type: boolean
+  compounding_strategy:
+    $ref: "./Compounding-Strategy.yaml"
+  exclude_mid_period_allocations:
+    type: boolean
+  apply_on_cancel_at_end_of_period:
+    type: boolean
+  apply_on_subscription_expiration:
+    type: boolean
+required:
+  - name
+  - code
+  - amount_in_cents

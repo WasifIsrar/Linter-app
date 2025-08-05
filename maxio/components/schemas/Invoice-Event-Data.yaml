@@ -1,0 +1,13 @@
+title: Invoice Event Data
+type: object
+description: "The event data is the data that, when combined with the command, results in the output invoice found in the invoice field."
+anyOf:
+  - $ref: "./invoice_event_specific_data/Apply-Credit-Note-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Apply-Debit-Note-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Apply-Payment-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Change-Invoice-Collection-Method-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Issue-Invoice-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Refund-Invoice-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Remove-Payment-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Void-Invoice-Event-Data.yaml"
+  - $ref: "./invoice_event_specific_data/Void-Remainder-Event-Data.yaml"

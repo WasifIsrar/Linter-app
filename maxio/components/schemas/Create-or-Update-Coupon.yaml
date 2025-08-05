@@ -1,0 +1,17 @@
+title: Create or Update Coupon
+type: object
+properties:
+  coupon:
+    oneOf:
+      - $ref: "./Create-or-Update-Percentage-Coupon.yaml"
+      - $ref: "./Create-or-Update-Flat-Amount-Coupon.yaml"
+  restricted_products:
+    type: object
+    description: An object where the keys are product_ids and the values are booleans indicating if the coupon should be applicable to the product
+    additionalProperties:
+      type: boolean
+  restricted_components:
+    type: object
+    additionalProperties:
+      type: boolean
+    description: An object where the keys are component_ids and the values are booleans indicating if the coupon should be applicable to the component
