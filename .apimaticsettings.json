@@ -1,0 +1,4 @@
+{
+  "OpenAPIDefinitionPaths": ["paypal-api-portal (2)/spec/payments_payment_v2/payments_payment_v2.json"],
+  "IgnoreValidationErrors": false
+}
