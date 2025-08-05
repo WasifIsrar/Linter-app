@@ -1,4 +1,4 @@
 {
-  "OpenAPIDefinitionPaths": ["spec"],
+  "OpenAPIDefinitionPaths": ["spec","maxio"],
   "IgnoreValidationErrors": false
 }
