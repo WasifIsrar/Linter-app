@@ -1,0 +1,369 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Rules Engine 2.0",
+    "description": "Suspend and restore service for a ProfileShare individual change plan",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "https://thingspace.verizon.com/legal/terms-of-services/"
+    },
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_Token": []
+    },
+    {
+      "vz-m2m-session_token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "/v2/triggers",
+      "description": "Helps to create and manage promo alert triggers"
+    }
+  ],
+  "paths": {
+    "/m2m/v2/triggers": {
+      "post": {
+        "tags": [
+          "/v2/triggers"
+        ],
+        "summary": "Create trigger based on the category.",
+        "description": "This suspends service for a ProfileShare individual change plan.",
+        "operationId": "createTrigger",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTriggerV2Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trigger ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerV2Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RulesEngineRestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      },
+      "put": {
+        "tags": [
+          "/v2/triggers"
+        ],
+        "summary": "Update trigger Operation.",
+        "description": "This restores service for a ProfileShare individual change plan.",
+        "operationId": "updateTrigger",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTriggerV2Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trigger ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerV2Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RulesEngineRestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "type": "object",
+        "properties": {
+          "suspend": {
+            "type": "boolean"
+          },
+          "suspendDetails": {
+            "$ref": "#/components/schemas/SuspendDetailsObj"
+          }
+        }
+      },
+      "AllowanceThreshold": {
+        "type": "object",
+        "properties": {
+          "percentage50": {
+            "type": "boolean"
+          },
+          "percentage75": {
+            "type": "boolean"
+          },
+          "percentage90": {
+            "type": "boolean"
+          },
+          "percentage100": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ConditionPricePlan": {
+        "type": "object",
+        "properties": {
+          "conditionType": {
+            "type": "string"
+          },
+          "comparator": {
+            "type": "string"
+          },
+          "threshold": {
+            "type": "string"
+          },
+          "thresholdUnit": {
+            "type": "string"
+          },
+          "cycleType": {
+            "type": "string"
+          },
+          "separateOrCombined": {
+            "type": "string"
+          },
+          "allowanceThreshold": {
+            "$ref": "#/components/schemas/AllowanceThreshold"
+          }
+        }
+      },
+      "FilterCriteriaPricePlan": {
+        "type": "object",
+        "properties": {
+          "carrierServicePlanCode": {
+            "type": "string"
+          },
+          "accountNameList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Notification": {
+        "$ref": "../schemas/notification.json"
+      },
+      "PricePlanTrigger": {
+        "type": "object",
+        "properties": {
+          "profileShare": {
+            "$ref": "#/components/schemas/ProfileShare"
+          }
+        }
+      },
+      "SmsNumbers": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "carrier": {
+            "type": "string"
+          }
+        }
+      },
+      "ProfileShare": {
+        "type": "object",
+        "properties": {
+          "filterCriteria": {
+            "$ref": "#/components/schemas/FilterCriteriaPricePlan"
+          },
+          "condition": {
+            "$ref": "#/components/schemas/ConditionPricePlan"
+          },
+          "action": {
+            "$ref": "#/components/schemas/Action"
+          }
+        }
+      },
+      "SuspendDetailsObj": {
+        "type": "object",
+        "properties": {
+          "suspendFromAccounts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "suspendDuration": {
+            "type": "string"
+          },
+          "suspendOption": {
+            "type": "string"
+          },
+          "threshold": {
+            "type": "string"
+          },
+          "thresholdUnit": {
+            "type": "string"
+          }
+        }
+      },
+      "TriggerV2Response": {
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string"
+          }
+        }
+      },
+      "RulesEngineRestErrorResponse": {
+        "$ref": "../schemas/rest-error-response.json"
+      },
+      "CreateTriggerV2Request": {
+        "type": "object",
+        "properties": {
+          "triggerName": {
+            "type": "string"
+          },
+          "ecpdId": {
+            "type": "string"
+          },
+          "deviceGroupName": {
+            "type": "string"
+          },
+          "triggerCategory": {
+            "type": "string"
+          },
+          "pricePlanTrigger": {
+            "$ref": "#/components/schemas/PricePlanTrigger"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/Notification"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "description": "Create Trigger Request"
+      },
+      "UpdateTriggerV2Request": {
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string"
+          },
+          "triggerName": {
+            "type": "string"
+          },
+          "ecpdId": {
+            "type": "string"
+          },
+          "deviceGroupName": {
+            "type": "string"
+          },
+          "triggerCategory": {
+            "type": "string"
+          },
+          "pricePlanTrigger": {
+            "$ref": "#/components/schemas/PricePlanTrigger"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/Notification"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "description": "Update Trigger Request"
+      }
+    },
+    "securitySchemes": {
+      "thingspace_Token": {
+        "type": "apiKey",
+        "name": "Bearer",
+        "in": "header",
+        "description": "This is where the ThingSpace token, from [Getting Started](/content/thingspace-portal/documentation/apis/telus-jasper-idemia-integration0/get-started.html) is used"
+      },
+      "vz-m2m-session_token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "The VZ-M2M session token from [Getting Started](/content/thingspace-portal/documentation/apis/telus-jasper-idemia-integration0/get-started.html)    "
+      }
+    }
+  }
+}

@@ -1,0 +1,5925 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Sensor Insights API Endpoints",
+    "description": "API endpoints for Sensor Insight acounts to monitor and manage devices, health of devices and their network, gateways, alerts,  rules and users.",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "http://www.verizon.com/about/terms/"
+    },
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Sensor Insights Sensors",
+      "description": "Sensor tasks and information"
+    },
+    {
+      "name": "Sensor Insights Devices",
+      "description": "Device tasks and information"
+    },
+    {
+      "name": "Sensor Insights Gateways",
+      "description": "Query gateway information"
+    },
+    {
+      "name": "Sensor Insights Smart Alerts",
+      "description": "Rules based alerts"
+    },
+    {
+      "name": "Sensor Insights Rules",
+      "description": "Create and manage rules"
+    },
+    {
+      "name": "Sensor Insights Health Score",
+      "description": "Monitor the health of devices and the network"
+    },
+    {
+      "name": "Sensor Insights Notification Groups",
+      "description": "Create and manage groups to recieve notifications and alerts"
+    },
+    {
+      "name": "Sensor Insights Users",
+      "description": "Create user accounts and manage user roles and permissions"
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "vz-m2m-session_token": []
+    }
+  ],
+  "paths": {
+    "/dm/v1/devices/sensors/actions/query": {
+      "post": {
+        "summary": "Query sensors on an account",
+        "tags": [
+          "Sensor Insights Sensors"
+        ],
+        "operationId": "SensorInsightsListSensorDevicesRequest",
+        "requestBody": {
+          "description": "List details of the sensors",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListSensorDevicesRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 1,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                },
+                "resourceidentifier": {
+                  "deveui": "The unique EUI64 address of the device",
+                  "deviceid": "The UUID of the device",
+                  "esn": 223372036854775800,
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "node_uuid": "The UUID of the node the device is associated with",
+                  "qrcode": "The Quick Response (QR) code",
+                  "serial": "The device's serial number"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/resource.Device"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/actions/query": {
+      "post": {
+        "summary": "List all device details on the account",
+        "tags": [
+          "Sensor Insights Devices"
+        ],
+        "operationId": "SensorInsightsListDevicesRequest",
+        "requestBody": {
+          "description": "List all device details on an account",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListDevicesRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                },
+                "resourceidentifier": {
+                  "deveui": "The unique EUI64 address of the device",
+                  "deviceid": "The UUID of the device",
+                  "esn": 223372036854775800,
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "node_uuid": "The UUID of the node the device is associated with",
+                  "qrcode": "The Quick Response (QR) code",
+                  "serial": "The device's serial number"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/dto.ExpandedDeviceResponse"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/sensors/onboard": {
+      "post": {
+        "summary": "OnBoard a sensor",
+        "tags": [
+          "Sensor Insights Sensors"
+        ],
+        "operationId": "SensorInsightsOnBoardSensorRequest",
+        "requestBody": {
+          "description": "Onboarding a sensor",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.OnBoardSensorRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "payload": {
+                  "addsensor": {
+                    "deveui": "The unique EUI64 address of the device",
+                    "appeui": "global application ID in IEEE EUI64 address space that uniquely identifies the entity able to process the JoinReq frame",
+                    "appkey": "Encryption key used for messages during every over the air activation",
+                    "class": "A",
+                    "kind": "ts.device.sensor.lorawan.radiobridge.RBS301-DWS-US",
+                    "customdata": {
+                      "additionalProp1": [
+                        100
+                      ],
+                      "additionalProp2": [
+                        100
+                      ],
+                      "additionalProp3": [
+                        100
+                      ]
+                    }
+                  },
+                  "description": "used to identify water leaks",
+                  "name": "Water Leak sensor"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/sensors/onboard/status/actions/query": {
+      "post": {
+        "summary": "Get a sensor's onboarding status",
+        "tags": [
+          "Sensor Insights Sensors"
+        ],
+        "operationId": "SensorInsightsSensorOnBoardStatusRequest",
+        "requestBody": {
+          "description": "Get the sensor's onboarding status",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.SensorOnBoardStatusRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "gatewayidentifier": {
+                  "deviceid": "00000000-0000-0000-0000-000000000255"
+                },
+                "onboarding": {
+                  "sensoridentifiers": {
+                    "deveui": "The unique EUI64 address of the device"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.SensorOnBoardingStatusResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/sensors/offboard": {
+      "post": {
+        "summary": "OffBoard a sensor",
+        "tags": [
+          "Sensor Insights Sensors"
+        ],
+        "operationId": "SensorInsightsOffBoardSensorRequest",
+        "requestBody": {
+          "description": "Offboard a sensor",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.OffBoardSensorRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "configuration": {
+                  "removesensor": {
+                    "deveui": "The unique EUI64 address of the device"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/sensors/offboard/status/actions/query": {
+      "post": {
+        "summary": "Get a sensor's offboarding status",
+        "tags": [
+          "Sensor Insights Sensors"
+        ],
+        "operationId": "SensorInsightsSensorOffBoardingStatusRequest",
+        "requestBody": {
+          "description": "Get a sensor's offboarding status",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.SensorOffBoardStatusRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "gatewayidentifier": {
+                  "deviceid": "UUID of the Gateway device"
+                },
+                "offboarding": {
+                  "sensoridentifiers": {
+                    "deveui": "The unique EUI64 address of the device"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.SensorOffBoardingStatusResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/gateways/actions/query": {
+      "post": {
+        "summary": "Get gateway information",
+        "tags": [
+          "Sensor Insights Gateways"
+        ],
+        "operationId": "SensorInsightsListGatewayDevicesRequest",
+        "requestBody": {
+          "description": "Get gateway information",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListDevicesRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                },
+                "resourceidentifier": {
+                  "deveui": "The unique EUI64 address of the device",
+                  "deviceid": "The UUID of the device",
+                  "esn": 223372036854775800,
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "node_uuid": "The UUID of the node the device is associated with",
+                  "qrcode": "The Quick Response (QR) code",
+                  "serial": "The device's serial number"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/resource.Device"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices": {
+      "patch": {
+        "summary": "Partially update a device",
+        "tags": [
+          "Sensor Insights Devices"
+        ],
+        "operationId": "SensorInsightsPatchDeviceRequest",
+        "requestBody": {
+          "description": "Partially update a device's details",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.PatchDeviceRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "device": {
+                  "accountclientid": "null",
+                  "billingaccountid": "0000123456-00001",
+                  "chipset": "The chipset used by the device",
+                  "createdon": "2023-10-02T15:46:34.562Z",
+                  "customdata": {
+                    "additionalProp1": [
+                      100
+                    ],
+                    "additionalProp2": [
+                      100
+                    ],
+                    "additionalProp3": [
+                      100
+                    ]
+                  },
+                  "description": "a short description",
+                  "esn": 223372036854775800,
+                  "eventretention": 90,
+                  "fields": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  },
+                  "foreignid": "c1f178d3-eeee-ffff-gggg-0d6b7ae6022a",
+                  "hardwareversion": "1.0",
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "id": "33e21f61-a44a-44c9-b7a0-a63f5d19bd4f",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "lastupdated": "2023-10-02T15:46:34.562Z",
+                  "licenses": [
+                    "licenses assigned to the device"
+                  ],
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "name": "User defined name of the record",
+                  "parentdeviceid": "BLE device ID",
+                  "productmodel": "Model name of the device",
+                  "providerid": "Verizon Wireless",
+                  "qrcode": "The Quick Response (QR) code",
+                  "refid": "P3730-1422323050860",
+                  "refidtype": "The type of value represented by `refid`",
+                  "serial": "The device's serial number",
+                  "services": [
+                    "configuration"
+                  ],
+                  "sku": "The Stock Keeping Unit (SKU) number",
+                  "softwareversion": "the current device software version",
+                  "state": "success",
+                  "version": "1.0",
+                  "versionid": "337bd2e8-eeee-ffff-gggg-5207992fd395"
+                },
+                "resourceidentifier": {
+                  "deveui": "The unique EUI64 address of the device",
+                  "deviceid": "The UUID of the device",
+                  "esn": 223372036854775800,
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "node_uuid": "The UUID of the node the device is associated with",
+                  "qrcode": "The Quick Response (QR) code",
+                  "serial": "The device's serial number"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resource.Device"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/lastreported": {
+      "post": {
+        "summary": "Get last reported information for a device",
+        "tags": [
+          "Sensor Insights Devices"
+        ],
+        "operationId": "SensorInsightsLastReportedTimeRequest",
+        "requestBody": {
+          "description": "Get the last reported information for a device",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.LastReportedTimeRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "resourceidentifier": {
+                  "deveui": "The unique EUI64 address of the device",
+                  "deviceid": "The UUID of the device",
+                  "esn": 223372036854775800,
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "node_uuid": "The UUID of the node the device is associated with",
+                  "qrcode": "The Quick Response (QR) code",
+                  "serial": "The device's serial number"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.LastReportedTimeResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/actions/set": {
+      "post": {
+        "summary": "Set device configuration",
+        "tags": [
+          "Sensor Insights Devices"
+        ],
+        "operationId": "SensorInsightsDeviceActionSetRequest",
+        "requestBody": {
+          "description": "Set device configuration",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.DeviceActionSetRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "configuration": {
+                  "deviceConfig": {
+                    "ble": {
+                      "dataMode": 1,
+                      "manufacturerId": 13200,
+                      "maxNumScan": 100,
+                      "minSigStr": -115,
+                      "monitorPeriod": 300,
+                      "moreManufId": [
+                        {}
+                      ],
+                      "opMode": 1,
+                      "reportOffset": 0,
+                      "reportPeriod": 300,
+                      "reportType": 2,
+                      "scanDuration": 20
+                    }
+                  }
+                },
+                "resourceidentifier": {
+                  "deveui": "The unique EUI64 address of the device",
+                  "deviceid": "The UUID of the device",
+                  "esn": 223372036854775800,
+                  "iccid": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+                  "imei": 223372036854775,
+                  "imsi": 223372036854775800,
+                  "mac": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+                  "manufacturer": "REOLINK",
+                  "meid": "The 56-bit Mobile Equipment ID",
+                  "msisdn": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+                  "node_uuid": "The UUID of the node the device is associated with",
+                  "qrcode": "The Quick Response (QR) code",
+                  "serial": "The device's serial number"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.DeviceActionSetResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dm/v1/smartAlerts/actions/query": {
+      "post": {
+        "summary": "Retrieve a smart alert",
+        "tags": [
+          "Sensor Insights Smart Alerts"
+        ],
+        "operationId": "SensorInsightsListSmartAlertsRequest",
+        "requestBody": {
+          "description": "Retrieve a smart alert",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListSmartAlertsRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                },
+                "resourceidentifier": {
+                  "id": "cb3eea68-eeee-ffff-gggg-ac4463ccd073"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user.SmartAlert"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/smartAlerts": {
+      "patch": {
+        "summary": "Partially update a smart alert",
+        "tags": [
+          "Sensor Insights Smart Alerts"
+        ],
+        "operationId": "SensorInsightsPatchSmartAlertRequest",
+        "requestBody": {
+          "description": "Partially update a smart alert",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.PatchSmartAlertRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "resourceidentifier": {
+                  "id": "0b37ab8b-eeee-ffff-gggg-e0149af43f43"
+                },
+                "smartalert": {
+                  "accountclientid": "null",
+                  "billingaccountid": "0000123456-00001",
+                  "category": "telemetry",
+                  "condition": "2592000",
+                  "createdon": "2023-10-02T15:46:34.562Z",
+                  "description": "a short description",
+                  "deviceid": "The UUID of the device",
+                  "foreignid": "c1f178d3-eeee-ffff-gggg-0d6b7ae6022a",
+                  "id": "fecbe450-eeee-ffff-gggg-aa166fd5f8e3",
+                  "isacknowledged": true,
+                  "iscleared": true,
+                  "isdisabled": false,
+                  "lastupdated": "2023-10-02T15:46:34.562Z",
+                  "name": "User defined name of the record",
+                  "ruleid": "The UUID of a rule",
+                  "severity": "minor",
+                  "state": "success",
+                  "template": "The template ID",
+                  "version": "1.0",
+                  "versionid": "337bd2e8-eeee-ffff-gggg-5207992fd395"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user.SmartAlert"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/smartAlerts/actions/bulkupdate": {
+      "post": {
+        "summary": "Bulk update smart alerts",
+        "tags": [
+          "Sensor Insights Smart Alerts"
+        ],
+        "operationId": "SensorInsightsBulkUpdate",
+        "requestBody": {
+          "description": "Bulk update smart alerts",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.BulkUpdate"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "resourceidentifiers": [
+                  {
+                    "id": "ee70a869-eeee-ffff-gggg-07c14c31f96e"
+                  },
+                  {
+                    "deviceid": "The UUID of the device"
+                  }
+                ],
+                "smartalert": {
+                  "name": "User defined name of the record"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user.SmartAlert"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/rules": {
+      "post": {
+        "summary": "Overwrite a rule",
+        "tags": [
+          "Sensor Insights Rules"
+        ],
+        "operationId": "SensorInsightsOverwriteRuleRequest",
+        "requestBody": {
+          "description": "Overwrite a rule",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.OverwriteRuleRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "resourceidentifier": {
+                  "id": "7f5f610a-eeee-ffff-gggg-4d20cf3dcfbc"
+                },
+                "rule": {
+                  "accountclientid": "null",
+                  "billingaccountid": "The billing account ID",
+                  "createdon": "2023-10-02T15:46:34.562Z",
+                  "description": "a short description",
+                  "deviceid": "The UUID of the device",
+                  "disabled": true,
+                  "foreignid": "c1f178d3-eeee-ffff-gggg-0d6b7ae6022a",
+                  "id": "bc5b5b5a-eeee-ffff-gggg-cb2cb2533d47",
+                  "lastupdated": "2023-10-02T15:46:34.562Z",
+                  "name": "User defined name of the record",
+                  "rulechain": {},
+                  "rulesyntax": "The rule syntax",
+                  "version": "1.0",
+                  "versionid": "337bd2e8-eeee-ffff-gggg-5207992fd395"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resource.Rule"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/rules/actions/query": {
+      "post": {
+        "summary": "Retrieve a rule",
+        "tags": [
+          "Sensor Insights Rules"
+        ],
+        "operationId": "SensorInsightsListRulesRequest",
+        "requestBody": {
+          "description": "Retrieve a rule",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListRulesRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                },
+                "resourceidentifier": {
+                  "id": "ffb86390-eeee-ffff-gggg-9d1180882d63"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/resource.Rule"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/healthscore/summary": {
+      "post": {
+        "summary": "Get health score summary",
+        "tags": [
+          "Sensor Insights Health Score"
+        ],
+        "operationId": "SensorInsightsHealthScoreSummary",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.HealthScoreSummary"
+                }
+              }
+            },
+            "description": "Get health score summary"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/healthscore/network": {
+      "post": {
+        "summary": "Get a network health score",
+        "tags": [
+          "Sensor Insights Health Score"
+        ],
+        "operationId": "SensorInsightsGetNetworkHealthScoreResponse",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.GetNetworkHealthScoreResponse"
+                }
+              }
+            },
+            "description": "Get a network health score"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/experience/actions/query": {
+      "post": {
+        "summary": "List the device experience",
+        "tags": [
+          "Sensor Insights Devices"
+        ],
+        "operationId": "SensorInsightsListDeviceExperienceHistoryRequest",
+        "requestBody": {
+          "description": "List the device experience",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListDeviceExperienceHistoryRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user.DeviceExperienceHistory"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/devices/networkexperience/actions/query": {
+      "post": {
+        "summary": "List the network experience",
+        "tags": [
+          "Sensor Insights Devices"
+        ],
+        "operationId": "SensorInsightsListNetworkExperienceHistoryRequest",
+        "requestBody": {
+          "description": "List the network experience",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListNetworkExperienceHistoryRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user.NetworkExperienceHistory"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/notificationGroups/actions/query": {
+      "post": {
+        "summary": "Retrieve a notification group",
+        "tags": [
+          "Sensor Insights Notification Groups"
+        ],
+        "operationId": "SensorInsightsListNotificationGroupRequest",
+        "requestBody": {
+          "description": "Retrieve a notification group",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListNotificationGroupRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/dto.NotificationGroupResponseEntity"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/notificationGroups": {
+      "patch": {
+        "summary": "Partially update a notification group",
+        "tags": [
+          "Sensor Insights Notification Groups"
+        ],
+        "operationId": "SensorInsightsUpdateNotificationGroupRequest",
+        "requestBody": {
+          "description": "Partially update a notification group",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.UpdateNotificationGroupRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "group": {
+                  "description": "a short description",
+                  "groupemail": "email@domain.com",
+                  "name": "User defined name of the record"
+                },
+                "id": "7b0b9c53-eeee-ffff-gggg-bde5e44f4b12",
+                "userids": [
+                  "ee70a869-eeee-ffff-gggg-07c14c31f96e",
+                  "131501ff-eeee-ffff-gggg-647d19179a12"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.NotificationGroupResponseEntity"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a notification group",
+        "tags": [
+          "Sensor Insights Notification Groups"
+        ],
+        "operationId": "SensorInsightsCreateNotificationGroupRequest",
+        "requestBody": {
+          "description": "Create a notification group",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.CreateNotificationGroupRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "group": {
+                  "description": "a short description",
+                  "groupemail": "email@domain.com",
+                  "name": "User defined name of the record"
+                },
+                "userids": [
+                  "ee70a869-eeee-ffff-gggg-07c14c31f96e",
+                  "131501ff-eeee-ffff-gggg-647d19179a12"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dto.NotificationGroupResponseEntity"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a notification group",
+        "tags": [
+          "Sensor Insights Notification Groups"
+        ],
+        "operationId": "SensorInsightsDeleteNotificationGroup",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "payload",
+            "description": "Payload for the delete request.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/dto.DeleteNotificationGroupRequest"
+            },
+            "example": {
+              "accountname": "0000123456-00001",
+              "force": true,
+              "id": "6737ca22-eeee-ffff-gggg-84c09f2ede8e"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dm/v1/notificationGroups/actions/add-users": {
+      "post": {
+        "summary": "Add users to a notification group",
+        "tags": [
+          "Sensor Insights Notification Groups"
+        ],
+        "operationId": "SensorInsightsAddUsersToNotificationGroupRequest",
+        "requestBody": {
+          "description": "Add users to a notification group",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.AddUsersToNotificationGroupRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "id": "45f1a56e-eeee-ffff-gggg-68cb994feb5f",
+                "userids": [
+                  "ee70a869-eeee-ffff-gggg-07c14c31f96e",
+                  "131501ff-eeee-ffff-gggg-647d19179a12"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/notificationGroups/actions/remove-users": {
+      "post": {
+        "summary": "Remove users from a notification group",
+        "tags": [
+          "Sensor Insights Notification Groups"
+        ],
+        "operationId": "SensorInsightsRemoveUsersFromNotificationGroupRequest",
+        "requestBody": {
+          "description": "Remove users from a notification group",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.RemoveUsersFromNotificationGroupRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "id": "111538a8-eeee-ffff-gggg-3b72804403e8",
+                "userids": [
+                  "ee70a869-eeee-ffff-gggg-07c14c31f96e",
+                  "131501ff-eeee-ffff-gggg-647d19179a12"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/users": {
+      "post": {
+        "summary": "Create a user profile",
+        "tags": [
+          "Sensor Insights Users"
+        ],
+        "operationId": "SensorInsightsCreateUserRequest",
+        "requestBody": {
+          "description": "Create a user profile",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.CreateUserRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "user": {
+                  "email": "email@domain.com",
+                  "firstname": "First name",
+                  "lastname": "Last name or Surname",
+                  "mdn": "908-555-1234",
+                  "customdata": {
+                    "additionalProp1": [
+                      100
+                    ],
+                    "additionalProp2": [
+                      100
+                    ],
+                    "additionalProp3": [
+                      100
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resource.User"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user profile",
+        "tags": [
+          "Sensor Insights Users"
+        ],
+        "operationId": "SensorInsightsDeleteUser",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "deleterequestpayload",
+            "description": "Payload for the delete user request.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/dto.DeleteUserRequest"
+            },
+            "example": {
+              "accountname": "0000123456-00001",
+              "id": "8ea30999-eeee-ffff-gggg-3ea409f5fee4"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Partially update a user profile",
+        "tags": [
+          "Sensor Insights Users"
+        ],
+        "operationId": "SensorInsightsUpdateUserRequest",
+        "requestBody": {
+          "description": "Partially update a user profile",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.UpdateUserRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "id": "9dd573ba-eeee-ffff-gggg-8009758bcaca",
+                "user": {
+                  "email": "email@domain.com",
+                  "firstname": "First name",
+                  "lastname": "Last name or Surname",
+                  "mdn": "908-555-1234",
+                  "customdata": {
+                    "additionalProp1": [
+                      100
+                    ],
+                    "additionalProp2": [
+                      100
+                    ],
+                    "additionalProp3": [
+                      100
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resource.User"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/dm/v1/users/actions/query": {
+      "post": {
+        "summary": "A summary of user profile records on an account",
+        "tags": [
+          "Sensor Insights Users"
+        ],
+        "operationId": "SensorInsightsListUserRequest",
+        "requestBody": {
+          "description": "A summary of user profile records on an account",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dto.ListUserRequest"
+              },
+              "example": {
+                "accountname": "0000123456-00001",
+                "filter": {
+                  "$expand": "device detail(s)",
+                  "$limitnumber": 100,
+                  "$nopagination": true,
+                  "$page": "The number of pages",
+                  "$pagenumber": 100,
+                  "$projection": [
+                    "specific device fields requested"
+                  ],
+                  "$selection": {
+                    "additionalProp1": "string",
+                    "additionalProp2": "string",
+                    "additionalProp3": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/resource.User"
+                  },
+                  "maxItems": 100
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400.management.Error"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "UnAuthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/403.management.Error"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404.management.Error"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unsupported media type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Too many requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500.management.Error"
+                }
+              }
+            },
+            "description": "Internal server error."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/management.Error"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "dto.devicestotal": {
+        "type": "integer",
+        "description": "A count of all devices",
+        "format": "int32",
+        "example": 12,
+        "additionalProperties": false
+      },
+      "dto.devicesgood": {
+        "type": "integer",
+        "description": "This is a score based on combination of network coverage and network outage affecting the device's ability to connect to the network. This is a count of devices that have no issues",
+        "format": "int32",
+        "example": 8,
+        "additionalProperties": false
+      },
+      "dto.devicesfair": {
+        "type": "integer",
+        "description": "This is a score based on combination of network coverage and network outage affecting the device's ability to connect to the network. This is a count of devices that are impaired",
+        "format": "int32",
+        "example": 2,
+        "additionalProperties": false
+      },
+      "dto.devicesbad": {
+        "type": "integer",
+        "description": "This is a score based on combination of network coverage and network outage affecting the device's ability to connect to the network. This is a count of devices that have failed",
+        "format": "int32",
+        "example": 2,
+        "additionalProperties": false
+      },
+      "dto.mdn": {
+        "type": "string",
+        "description": "The Mobile Directory Number",
+        "example": "908-555-1234",
+        "additionalProperties": false
+      },
+      "dto.lastname": {
+        "type": "string",
+        "description": "The last name in the user record",
+        "example": "Last name or Surname",
+        "additionalProperties": false
+      },
+      "dto.firstname": {
+        "type": "string",
+        "description": "The first name in the user record",
+        "example": "First name",
+        "additionalProperties": false
+      },
+      "dto.groupemail": {
+        "type": "string",
+        "description": "Contact email for the group",
+        "example": "email@domain.com",
+        "additionalProperties": false
+      },
+      "dto.refidtype": {
+        "type": "string",
+        "description": "The type of value represented by `refid`",
+        "example": "The type of value represented by `refid`",
+        "additionalProperties": false
+      },
+      "dto.refid": {
+        "type": "string",
+        "description": "The device reference ID",
+        "example": "P3730-1422323050860",
+        "additionalProperties": false
+      },
+      "dto.providerid": {
+        "type": "string",
+        "description": "The id of the provider who is responible for talking to the device",
+        "example": "Verizon Wireless",
+        "additionalProperties": false
+      },
+      "dto.productmodel": {
+        "type": "string",
+        "description": "The device model name",
+        "example": "Model name of the device",
+        "additionalProperties": false
+      },
+      "dto.parentdeviceid": {
+        "type": "string",
+        "description": "this field is applicable for BLE sensors. This represents the value of parent gateway device",
+        "example": "a gateway UUID",
+        "additionalProperties": false
+      },
+      "dto.description": {
+        "type": "string",
+        "description": "a short description",
+        "example": "a short description",
+        "additionalProperties": false
+      },
+      "dto.softwareversion": {
+        "type": "string",
+        "description": "the current device software version",
+        "example": "the current device software version",
+        "additionalProperties": false
+      },
+      "dto.services": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "example": "configuration"
+        },
+        "maxItems": 100,
+        "uniqueItems": false,
+        "additionalProperties": false
+      },
+      "dto.sku": {
+        "type": "string",
+        "description": "The Stock Keeping Unit (SKU) number of the device",
+        "example": "The Stock Keeping Unit (SKU) number",
+        "additionalProperties": false
+      },
+      "dto.licenses": {
+        "type": "array",
+        "description": "licenses assigned to the device",
+        "items": {
+          "type": "string",
+          "example": "licenses assigned to the device"
+        },
+        "maxItems": 100,
+        "uniqueItems": false,
+        "additionalProperties": false
+      },
+      "dto.hardwareversion": {
+        "type": "string",
+        "description": "The manufacturer's hardware version of the device",
+        "example": "1.0",
+        "additionalProperties": false
+      },
+      "dto.eventretention": {
+        "type": "integer",
+        "description": "Data retention period",
+        "format": "int32",
+        "example": 90,
+        "additionalProperties": false
+      },
+      "dto.chipset": {
+        "type": "string",
+        "description": "The Identifier of chipset used by the device",
+        "example": "The chipset used by the device",
+        "additionalProperties": false
+      },
+      "dto.serial": {
+        "type": "string",
+        "description": "The device's serial number",
+        "example": "The device's serial number",
+        "additionalProperties": false
+      },
+      "dto.qrcode": {
+        "type": "string",
+        "description": "The numeric value of the Quick Response (QR) code",
+        "example": "The Quick Response (QR) code",
+        "additionalProperties": false
+      },
+      "dto.msisdn": {
+        "type": "string",
+        "description": "The Mobile Station International Subscriber Directory Number. In the USA, this is 1+ a 10-digit phone number",
+        "example": "The Mobile Station International Subscriber Directory Number",
+        "additionalProperties": false
+      },
+      "dto.meid": {
+        "type": "string",
+        "description": "The 56-bit Mobile Equipment ID",
+        "example": "The 56-bit Mobile Equipment ID",
+        "additionalProperties": false
+      },
+      "dto.manufacturer": {
+        "type": "string",
+        "description": "The manufacturer of the device",
+        "example": "REOLINK",
+        "additionalProperties": false
+      },
+      "dto.mac": {
+        "type": "string",
+        "description": "The Media Access Control address of the device, listed on the device in the format XX-XX-XX-XX-XX-XX or XX:XX:XX:XX:XX:XX",
+        "example": "The Media Access Control (MAC) address",
+        "additionalProperties": false
+      },
+      "dto.imsi": {
+        "type": "integer",
+        "description": "The 64-bit International Mobile Subscriber Identity",
+        "format": "uint64",
+        "example": 223372036854775800,
+        "additionalProperties": false
+      },
+      "dto.imei": {
+        "type": "integer",
+        "description": "The 15-digit International Mobile Equipment ID",
+        "format": "uint64",
+        "example": 223372036854775,
+        "additionalProperties": false
+      },
+      "dto.iccid": {
+        "type": "string",
+        "description": "The 20-digit Integrated Circuit Card ID (SIM card ID)",
+        "example": "The 20-digit ICCID",
+        "additionalProperties": false
+      },
+      "dto.esn": {
+        "type": "integer",
+        "description": "The Electronic Serial Number (ESN) of the device",
+        "format": "uint64",
+        "example": 223372036854775800,
+        "additionalProperties": false
+      },
+      "dto.name": {
+        "type": "string",
+        "description": "User defined name of the record",
+        "example": "name of the record",
+        "additionalProperties": false
+      },
+      "dto.appeui": {
+        "type": "string",
+        "description": "global application ID in IEEE EUI64 address space that uniquely identifies the entity able to process the JoinReq frame",
+        "example": "application ID",
+        "additionalProperties": false
+      },
+      "dto.appkey": {
+        "type": "string",
+        "description": "an encryption key used for messages during every over the air activation",
+        "example": "Encryption key",
+        "additionalProperties": false
+      },
+      "dto.class": {
+        "type": "string",
+        "description": "Class of the sensor device. Valid values are Class A (A), Class B (B), and Class C (C). All LoRaWAN devices must implement Class A",
+        "example": "A",
+        "additionalProperties": false
+      },
+      "dto.deveui": {
+        "type": "string",
+        "description": "the IEEE EUI64 address space used to identify a device. It is supplied by the device manufacturer",
+        "example": "The unique EUI64 address of the device",
+        "additionalProperties": false
+      },
+      "dto.timestamp": {
+        "type": "string",
+        "description": "Timestamp of the record",
+        "format": "date-time",
+        "example": "2023-10-02T15:46:34.562Z",
+        "additionalProperties": false
+      },
+      "dto.errmsg": {
+        "type": "string",
+        "description": "Error message",
+        "example": "provider_service_error",
+        "additionalProperties": false
+      },
+      "dto.versionid": {
+        "type": "string",
+        "description": "The UUID of the resource version",
+        "example": "337bd2e8-eeee-ffff-gggg-5207992fd395",
+        "additionalProperties": false
+      },
+      "dto.version": {
+        "type": "string",
+        "description": "The resource version",
+        "example": "1.0",
+        "additionalProperties": false
+      },
+      "dto.transactionid": {
+        "type": "string",
+        "description": "The system-generated UUID of the transaction",
+        "example": "afbcc00d-eeee-ffff-gggg-38b4333fcf06",
+        "additionalProperties": false
+      },
+      "dto.state": {
+        "type": "string",
+        "description": "The current status of the device or transaction and will be `success` or `failed`",
+        "example": "success",
+        "additionalProperties": false
+      },
+      "dto.foreignid": {
+        "type": "string",
+        "description": "UUID of the ECPD account the user belongs to",
+        "example": "c1f178d3-eeee-ffff-gggg-0d6b7ae6022a",
+        "additionalProperties": false
+      },
+      "dto.fields": {
+        "type": "object",
+        "description": "Fields to return needed by search",
+        "properties": {
+          "additionalProp1": {
+            "type": "string"
+          },
+          "additionalProp2": {
+            "type": "string"
+          },
+          "additionalProp3": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "additionalProp1": "string",
+          "additionalProp2": "string",
+          "additionalProp3": "string"
+        },
+        "additionalProperties": false
+      },
+      "dto.additionalProperties": {
+        "type": "object",
+        "description": "Name/value pair, where the value is client defined.  The purpose is to keep track of current state per device action.",
+        "additionalProperties": {
+          "title": "sensorInsightsAdditionalProperties",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "maxItems": 100
+        }
+      },
+      "dto.deviceConfig": {
+        "type": "object",
+        "properties": {
+          "ble": {
+            "title": "sensorInsightsBLE",
+            "type": "object",
+            "description": "Property objects for Bluetooth Low-Energy (BLE) devices",
+            "properties": {
+              "dataMode": {
+                "title": "sensorInsightsDataMode",
+                "type": "integer",
+                "description": "The data mode the sensor is using",
+                "format": "int32",
+                "example": 1
+              },
+              "manufacturerId": {
+                "title": "sensorInsightsManufacturerID",
+                "type": "integer",
+                "description": "The numeric manufacturer ID",
+                "format": "int32",
+                "example": 13200
+              },
+              "maxNumScan": {
+                "title": "sensorInsightsMaxNumScan",
+                "type": "integer",
+                "description": "How frequently the device can be scanned",
+                "format": "int32",
+                "example": 100
+              },
+              "minSigStr": {
+                "title": "sensorInsightsMinSigStr",
+                "type": "integer",
+                "description": "The minimum signal strength needed for the sensor to transmit (in Decibels or dB)",
+                "format": "int32",
+                "example": -115
+              },
+              "monitorPeriod": {
+                "title": "sensorInsightsMonitorPeriod",
+                "type": "integer",
+                "description": "The ammount of time to monitor the sensor and varies by device",
+                "format": "int32",
+                "example": 300
+              },
+              "moreManufId": {
+                "title": "sensorInsightsMoreManufID",
+                "type": "array",
+                "description": "Values for the manufacturer and these vary by device",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "opMode": {
+                "title": "sensorInsightsOpMode",
+                "type": "integer",
+                "description": "The operation mode",
+                "format": "int32",
+                "example": 1
+              },
+              "reportOffset": {
+                "title": "sensorInsightsReportOffset",
+                "type": "integer",
+                "description": "The ammount of time between sensor readings and reports",
+                "format": "int32",
+                "example": 0
+              },
+              "reportPeriod": {
+                "title": "sensorInsightsReportPeriod",
+                "type": "integer",
+                "description": "The ammount of time between reports",
+                "format": "int32",
+                "example": 300
+              },
+              "reportType": {
+                "title": "sensorInsightsReportType",
+                "type": "integer",
+                "description": "The report type",
+                "format": "int32",
+                "example": 2
+              },
+              "scanDuration": {
+                "title": "sensorInsightsScanDuration",
+                "type": "integer",
+                "description": "The ammount of time the sensor is queried for data",
+                "format": "int32",
+                "example": 20
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.billingaccountid": {
+        "type": "string",
+        "description": "The billing account ID. This is the same value as the Account ID",
+        "example": "0000123456-00001",
+        "additionalProperties": false
+      },
+      "dto.accountclientid": {
+        "type": "string",
+        "description": "Not used in this release, future functionality",
+        "example": "null",
+        "additionalProperties": false
+      },
+      "dto.deviceid": {
+        "type": "string",
+        "description": "This is a UUID value of the device created when the device is onboarded",
+        "example": "The UUID of the device",
+        "additionalProperties": false
+      },
+      "dto.resourceidentifier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.id": {
+        "type": "string",
+        "description": "UUID of the user record, assigned at creation",
+        "additionalProperties": false
+      },
+      "dto.userids": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "example": "ee70a869-eeee-ffff-gggg-07c14c31f96e, 131501ff-eeee-ffff-gggg-647d19179a12"
+        },
+        "additionalProperties": false
+      },
+      "dto.AddUsersToNotificationGroupRequest": {
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "userids": {
+            "$ref": "#/components/schemas/dto.userids"
+          }
+        }
+      },
+      "dto.RemoveUsersFromNotificationGroupRequest": {
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "userids": {
+            "$ref": "#/components/schemas/dto.userids"
+          }
+        }
+      },
+      "dto.LastReportedTimeRequest": {
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.DeviceResourceIdentifier"
+          }
+        },
+        "type": "object"
+      },
+      "dto.LastReportedTimeResponse": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "$ref": "#/components/schemas/resource.Event"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "dto.DeviceActionSetRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/dto.DeviceActionSetConfiguration"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.DeviceResourceIdentifier"
+          }
+        }
+      },
+      "dto.DeviceActionSetResponse": {
+        "properties": {
+          "actionresult": {
+            "title": "actionResultwithDeviceConfig",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "createdon": {
+                  "$ref": "#/components/schemas/dto.timestamp"
+                },
+                "description": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/dto.description"
+                    },
+                    {
+                      "example": "Failed to forward the event to the provider."
+                    }
+                  ]
+                },
+                "deviceid": {
+                  "$ref": "#/components/schemas/dto.deviceid"
+                },
+                "errmsg": {
+                  "$ref": "#/components/schemas/dto.errmsg"
+                },
+                "fields": {
+                  "title": "deviceConfigFields",
+                  "type": "object",
+                  "properties": {
+                    "deviceConfig": {
+                      "$ref": "#/components/schemas/dto.deviceConfig"
+                    }
+                  }
+                },
+                "foreignid": {
+                  "$ref": "#/components/schemas/dto.foreignid"
+                },
+                "id": {
+                  "$ref": "#/components/schemas/dto.id"
+                },
+                "lastupdated": {
+                  "$ref": "#/components/schemas/dto.timestamp"
+                },
+                "state": {
+                  "$ref": "#/components/schemas/dto.state"
+                },
+                "transactionid": {
+                  "$ref": "#/components/schemas/dto.transactionid"
+                },
+                "version": {
+                  "$ref": "#/components/schemas/dto.version"
+                },
+                "versionid": {
+                  "$ref": "#/components/schemas/dto.versionid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "dto.DeviceActionSetConfiguration": {
+        "type": "object",
+        "properties": {
+          "deviceConfig": {
+            "$ref": "#/components/schemas/dto.deviceConfig"
+          }
+        }
+      },
+      "dto.CreateNotificationGroupRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "group": {
+            "$ref": "#/components/schemas/dto.NotificationGroupRequestEntity"
+          },
+          "userids": {
+            "$ref": "#/components/schemas/dto.userids"
+          }
+        },
+        "required": [
+          "group"
+        ],
+        "additionalProperties": false
+      },
+      "dto.CreateUserRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "user": {
+            "$ref": "#/components/schemas/dto.UserDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.DeleteNotificationGroupRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "force": {
+            "type": "boolean",
+            "example": true
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.DeleteUserRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.accountname": {
+        "type": "string",
+        "description": "The numeric account name, which must include leading zeros",
+        "example": "0000123456-00001"
+      },
+      "dto.parentdevicId": {
+        "type": "string",
+        "description": "a unique parent deviceid used to group all Lora sensors. Sensors need parent gateway for connection",
+        "example": "UUID of the Gateway device"
+      },
+      "dto.DeviceResourceIdentifier": {
+        "type": "object",
+        "description": "Device identifiers, one or more are required",
+        "properties": {
+          "deveui": {
+            "$ref": "#/components/schemas/dto.deveui"
+          },
+          "deviceid": {
+            "$ref": "#/components/schemas/dto.deviceid"
+          },
+          "esn": {
+            "$ref": "#/components/schemas/dto.esn"
+          },
+          "iccid": {
+            "$ref": "#/components/schemas/dto.iccid"
+          },
+          "imei": {
+            "$ref": "#/components/schemas/dto.imei"
+          },
+          "imsi": {
+            "$ref": "#/components/schemas/dto.imsi"
+          },
+          "mac": {
+            "$ref": "#/components/schemas/dto.mac"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/dto.manufacturer"
+          },
+          "meid": {
+            "$ref": "#/components/schemas/dto.meid"
+          },
+          "msisdn": {
+            "$ref": "#/components/schemas/dto.msisdn"
+          },
+          "node_uuid": {
+            "type": "string",
+            "description": "The UUID of the node the device is associated with",
+            "example": "The UUID of the node"
+          },
+          "qrcode": {
+            "$ref": "#/components/schemas/dto.qrcode"
+          },
+          "serial": {
+            "$ref": "#/components/schemas/dto.serial"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ExpandedDeviceResponse": {
+        "type": "object",
+        "properties": {
+          "accountclientid": {
+            "$ref": "#/components/schemas/dto.accountclientid"
+          },
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "chipset": {
+            "$ref": "#/components/schemas/dto.chipset"
+          },
+          "commands": {
+            "$ref": "#/components/schemas/dto.CommandProfiles"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "customdata": {
+            "$ref": "#/components/schemas/dto.additionalProperties"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "esn": {
+            "$ref": "#/components/schemas/dto.esn"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/dto.fields"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "hardwareversion": {
+            "$ref": "#/components/schemas/dto.hardwareversion"
+          },
+          "iccid": {
+            "$ref": "#/components/schemas/dto.iccid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "imei": {
+            "$ref": "#/components/schemas/dto.imei"
+          },
+          "imsi": {
+            "$ref": "#/components/schemas/dto.imsi"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "licenses": {
+            "$ref": "#/components/schemas/dto.licenses"
+          },
+          "mac": {
+            "$ref": "#/components/schemas/dto.mac"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/dto.manufacturer"
+          },
+          "meid": {
+            "$ref": "#/components/schemas/dto.meid"
+          },
+          "modelmetadata": {
+            "$ref": "#/components/schemas/dto.JsonRawMessage"
+          },
+          "msisdn": {
+            "$ref": "#/components/schemas/dto.msisdn"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "parentdeviceid": {
+            "$ref": "#/components/schemas/dto.parentdeviceid"
+          },
+          "productmodel": {
+            "$ref": "#/components/schemas/dto.productmodel"
+          },
+          "providerid": {
+            "$ref": "#/components/schemas/dto.providerid"
+          },
+          "qrcode": {
+            "$ref": "#/components/schemas/dto.qrcode"
+          },
+          "refid": {
+            "$ref": "#/components/schemas/dto.refid"
+          },
+          "refidtype": {
+            "$ref": "#/components/schemas/dto.refidtype"
+          },
+          "serial": {
+            "$ref": "#/components/schemas/dto.serial"
+          },
+          "services": {
+            "$ref": "#/components/schemas/dto.services"
+          },
+          "sku": {
+            "$ref": "#/components/schemas/dto.sku"
+          },
+          "softwareversion": {
+            "$ref": "#/components/schemas/dto.softwareversion"
+          },
+          "state": {
+            "$ref": "#/components/schemas/dto.state"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "required": [
+          "createdon",
+          "foreignid",
+          "lastupdated",
+          "state",
+          "versionid"
+        ],
+        "additionalProperties": false
+      },
+      "dto.GetNetworkHealthScoreResponse": {
+        "type": "object",
+        "description": "The values measured are for the network",
+        "properties": {
+          "networksummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dto.HealthScoreMetric"
+            },
+            "maxItems": 100,
+            "uniqueItems": false,
+            "example": {
+              "metrictype": "networkscore",
+              "metricvalue": "95"
+            }
+          },
+          "overallsummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dto.HealthScoreMetric"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.HealthScoreMetric": {
+        "type": "object",
+        "properties": {
+          "metrictype": {
+            "type": "string",
+            "description": "The type of measurement and can be overallscore, networkscore, gatewayscore, sensorscore, networkstatus, averagesignalstrength or networkavailabilitylast30",
+            "example": "overallscore"
+          },
+          "metricvalue": {
+            "type": "string",
+            "description": "the value of the `metrictype` as a percentage",
+            "example": 95
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.HealthScoreSummary": {
+        "type": "object",
+        "description": "The values measured are for sensors and gateways",
+        "properties": {
+          "overallsummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dto.HealthScoreMetric"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.JsonRawMessage": {
+        "type": "object",
+        "description": "Detail",
+        "additionalProperties": false
+      },
+      "dto.ListDeviceExperienceHistoryRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ListDevicesRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.DeviceResourceIdentifier"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ListNetworkExperienceHistoryRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ListNotificationGroupRequest": {
+        "$ref": "#/components/schemas/dto.ListNetworkExperienceHistoryRequest"
+      },
+      "dto.ListRulesRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          },
+          "resourceidentifier": {
+            "title": "justtheIDresource",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/dto.resourceidentifier"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ListSensorDevicesRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.DeviceResourceIdentifier"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ListSmartAlertsRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          },
+          "resourceidentifier": {
+            "title": "justtheIDresourcev2",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/dto.resourceidentifier"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.ListUserRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/dto.Filter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.NotificationGroupRequestEntity": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "groupemail": {
+            "$ref": "#/components/schemas/dto.groupemail"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.NotificationGroupResponseEntity": {
+        "type": "object",
+        "properties": {
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "groupemail": {
+            "$ref": "#/components/schemas/dto.groupemail"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dto.UserDTO"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.OffBoardSensorRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "configuration": {
+            "title": "sensorinsightsconfig",
+            "type": "object",
+            "description": "The configuration of the remove request",
+            "properties": {
+              "removesensor": {
+                "$ref": "#/components/schemas/dto.OffBoardSensor"
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.OffBoardSensor": {
+        "type": "object",
+        "description": "The EUI64 address of the device being removed",
+        "properties": {
+          "deveui": {
+            "$ref": "#/components/schemas/dto.deveui"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.OnBoardSensorRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "addsensor": {
+                "$ref": "#/components/schemas/resource.OnBoardSensor"
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.OverwriteRuleRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.resourceidentifier"
+          },
+          "rule": {
+            "$ref": "#/components/schemas/resource.Rule"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.PatchDeviceRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "device": {
+            "$ref": "#/components/schemas/resource.Device"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.DeviceResourceIdentifier"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.PatchSmartAlertRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/dto.resourceidentifier"
+          },
+          "smartalert": {
+            "$ref": "#/components/schemas/user.SmartAlert"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.BulkUpdate": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "resourceidentifiers": {
+            "title": "theIDresourceandDeviceID",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/components/schemas/dto.id"
+                },
+                "deviceid": {
+                  "$ref": "#/components/schemas/dto.deviceid"
+                }
+              }
+            },
+            "example": [
+              {
+                "id": "ee70a869-eeee-ffff-gggg-07c14c31f96e"
+              },
+              {
+                "deviceid": "131501ff-eeee-ffff-gggg-647d19179a12"
+              }
+            ]
+          },
+          "smartalert": {
+            "title": "bulkUpdateSmartalert",
+            "type": "object",
+            "properties": {
+              "name": {
+                "$ref": "#/components/schemas/dto.name"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "dto.SensorBoardingEvent": {
+        "type": "object",
+        "properties": {
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "errmsg": {
+            "$ref": "#/components/schemas/dto.errmsg"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/dto.fields"
+          },
+          "state": {
+            "$ref": "#/components/schemas/dto.state"
+          },
+          "transactionid": {
+            "$ref": "#/components/schemas/dto.transactionid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.SensorOffBoardingStatusResponse": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dto.SensorBoardingEvent"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          },
+          "isstillregistered": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.SensorOnBoardStatusRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "gatewayidentifier": {
+            "type": "object",
+            "properties": {
+              "deviceid": {
+                "$ref": "#/components/schemas/dto.parentdevicId"
+              }
+            }
+          },
+          "onboarding": {
+            "type": "object",
+            "properties": {
+              "sensoridentifier": {
+                "$ref": "#/components/schemas/dto.deveui"
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.SensorOffBoardStatusRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+            "gatewayidentifier": {
+            "type": "object",
+            "properties": {
+              "deviceid": {
+                "$ref": "#/components/schemas/dto.parentdevicId"
+              }
+            }
+          },
+          "offboarding": {
+            "type": "object",
+            "properties": {
+              "sensoridentifier": {
+                "$ref": "#/components/schemas/dto.deveui"
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.SensorOnBoardingStatusResponse": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/dto.SensorBoardingEvent"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.UpdateNotificationGroupRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "group": {
+            "$ref": "#/components/schemas/dto.NotificationGroupRequestEntity"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "userids": {
+            "$ref": "#/components/schemas/dto.userids"
+          }
+        },
+        "required": [
+          "group"
+        ],
+        "additionalProperties": false
+      },
+      "dto.UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "accountname": {
+            "$ref": "#/components/schemas/dto.accountname"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "user": {
+            "$ref": "#/components/schemas/dto.UserDTO"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.UserDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/dto.groupemail"
+          },
+          "firstname": {
+            "$ref": "#/components/schemas/dto.firstname"
+          },
+          "lastname": {
+            "$ref": "#/components/schemas/dto.lastname"
+          },
+          "mdn": {
+            "$ref": "#/components/schemas/dto.mdn"
+          },
+          "customdata": {
+            "$ref": "#/components/schemas/dto.additionalProperties"
+          }
+        },
+        "additionalProperties": false
+      },
+      "resource.Device": {
+        "type": "object",
+        "properties": {
+          "accountclientid": {
+            "$ref": "#/components/schemas/dto.accountclientid"
+          },
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "chipset": {
+            "$ref": "#/components/schemas/dto.chipset"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "customdata": {
+            "$ref": "#/components/schemas/dto.additionalProperties"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "esn": {
+            "$ref": "#/components/schemas/dto.esn"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/dto.fields"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "hardwareversion": {
+            "$ref": "#/components/schemas/dto.hardwareversion"
+          },
+          "iccid": {
+            "$ref": "#/components/schemas/dto.iccid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "imei": {
+            "$ref": "#/components/schemas/dto.imei"
+          },
+          "imsi": {
+            "$ref": "#/components/schemas/dto.imsi"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "licenses": {
+            "$ref": "#/components/schemas/dto.licenses"
+          },
+          "mac": {
+            "$ref": "#/components/schemas/dto.mac"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/dto.manufacturer"
+          },
+          "meid": {
+            "$ref": "#/components/schemas/dto.meid"
+          },
+          "msisdn": {
+            "$ref": "#/components/schemas/dto.msisdn"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "parentdeviceid": {
+            "$ref": "#/components/schemas/dto.parentdeviceid"
+          },
+          "productmodel": {
+            "$ref": "#/components/schemas/dto.productmodel"
+          },
+          "providerid": {
+            "$ref": "#/components/schemas/dto.providerid"
+          },
+          "qrcode": {
+            "$ref": "#/components/schemas/dto.qrcode"
+          },
+          "refid": {
+            "$ref": "#/components/schemas/dto.refid"
+          },
+          "refidtype": {
+            "$ref": "#/components/schemas/dto.refidtype"
+          },
+          "serial": {
+            "$ref": "#/components/schemas/dto.serial"
+          },
+          "services": {
+            "$ref": "#/components/schemas/dto.services"
+          },
+          "sku": {
+            "$ref": "#/components/schemas/dto.sku"
+          },
+          "softwareversion": {
+            "$ref": "#/components/schemas/dto.softwareversion"
+          },
+          "state": {
+            "$ref": "#/components/schemas/dto.state"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "required": [
+          "createdon",
+          "foreignid",
+          "lastupdated",
+          "state",
+          "versionid"
+        ],
+        "additionalProperties": false
+      },
+      "resource.OnBoardSensor": {
+        "type": "object",
+        "properties": {
+          "appeui": {
+            "$ref": "#/components/schemas/dto.appeui"
+          },
+          "appkey": {
+            "$ref": "#/components/schemas/dto.appkey"
+          },
+          "class": {
+            "$ref": "#/components/schemas/dto.class"
+          },
+          "kind": {
+            "type": "string",
+            "description": "The kind of sensor device",
+            "example": "ts.device.sensor.lorawan.radiobridge.RBS301-DWS-US"
+          },
+          "customdata": {
+            "$ref": "#/components/schemas/dto.additionalProperties"
+          },
+          "deveui": {
+            "$ref": "#/components/schemas/dto.deveui"
+          }
+        },
+        "required": [
+          "kind",
+          "appeui",
+          "appkey",
+          "class",
+          "deveui"
+        ],
+        "additionalProperties": false
+      },
+      "resource.Event": {
+        "type": "object",
+        "properties": {
+          "accountclientid": {
+            "$ref": "#/components/schemas/dto.accountclientid"
+          },
+          "callbackurl": {
+            "title": "sensorInsightsCallbackURL",
+            "type": "string",
+            "description": "The URL of the callback listener",
+            "example": "The URL of the callback listener"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "deviceid": {
+            "$ref": "#/components/schemas/dto.deviceid"
+          },
+          "errmsg": {
+            "$ref": "#/components/schemas/dto.errmsg"
+          },
+          "fieldid": {
+            "title": "sensorInsightsFieldID",
+            "type": "string",
+            "example": "The field ID"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/dto.fields"
+          },
+          "fieldvalue": {
+            "title": "sensorInsightsFieldValue",
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "example": 90,
+              "minimum": 0,
+              "maximum": 100
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "modelid": {
+            "title": "sensorInsightsDeviceModelID",
+            "type": "string",
+            "description": "The model ID of the device",
+            "example": "The model ID of the device"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "sensordataaggregation": {
+            "title": "sensorInsightsDataAggregationFlag",
+            "type": "boolean",
+            "description": "A flag to indicate if sensor data is to be aggregated (true) or not",
+            "example": true
+          },
+          "state": {
+            "$ref": "#/components/schemas/dto.state"
+          },
+          "transactionid": {
+            "$ref": "#/components/schemas/dto.transactionid"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "required": [
+          "createdon",
+          "fieldid",
+          "foreignid",
+          "lastupdated",
+          "state",
+          "versionid"
+        ],
+        "additionalProperties": false
+      },
+      "resource.Rule": {
+        "type": "object",
+        "properties": {
+          "accountclientid": {
+            "$ref": "#/components/schemas/dto.accountclientid"
+          },
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "deviceid": {
+            "$ref": "#/components/schemas/dto.deviceid"
+          },
+          "disabled": {
+            "type": "boolean",
+            "example": false
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "rulechain": {
+            "allOf": [
+              {
+                "description": "series of events that are part of rule"
+              },
+              {
+                "$ref": "#/components/schemas/dto.JsonRawMessage"
+              }
+            ]
+          },
+          "rulesyntax": {
+            "title": "sensorInsightsRuleSyntax",
+            "type": "string",
+            "description": "The syntax of the rule and supports camel and json style syntaxes",
+            "example": "The rule syntax"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "required": [
+          "createdon",
+          "foreignid",
+          "lastupdated",
+          "rulechain",
+          "versionid"
+        ],
+        "additionalProperties": false
+      },
+      "resource.User": {
+        "type": "object",
+        "properties": {
+          "accountclientid": {
+            "$ref": "#/components/schemas/dto.accountclientid"
+          },
+          "ackterms": {
+            "title": "sensorInsightsAckTermsFlag",
+            "type": "boolean",
+            "description": "Indicates if terms are agreed to (true) or not",
+            "example": true
+          },
+          "acktermson": {
+            "allOf": [
+              {
+                "description": "A timestamp of when terms were agreed to"
+              },
+              {
+                "$ref": "#/components/schemas/dto.timestamp"
+              }
+            ]
+          },
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "credentialsid": {
+            "title": "sensorInsightsCredentialsID",
+            "type": "string",
+            "description": "User credentials. The only valid value is an email address",
+            "example": "email@domain.com"
+          },
+          "credentialstype": {
+            "title": "sensorInsightsCredentialsType",
+            "type": "string",
+            "description": "The type of credential represented by the ID. The only valid value is `email`",
+            "example": "email"
+          },
+          "customdata": {
+            "$ref": "#/components/schemas/dto.additionalProperties"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "displayname": {
+            "title": "sensorInsightsDisplayName",
+            "type": "string",
+            "description": "the user name value to display",
+            "example": "User name"
+          },
+          "email": {
+            "$ref": "#/components/schemas/dto.groupemail"
+          },
+          "firstname": {
+            "$ref": "#/components/schemas/dto.firstname"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "lastname": {
+            "$ref": "#/components/schemas/dto.lastname"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "mdn": {
+            "$ref": "#/components/schemas/dto.mdn"
+          },
+          "middlename": {
+            "title": "sensorInsightsMiddleName",
+            "type": "string",
+            "description": "optional field for middle name or initial",
+            "example": "Middle name or initial"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "secondarybillingaccountids": {
+            "type": "array",
+            "description": "Virtual field; will not be used in this implementation",
+            "items": {
+              "type": "string",
+              "example": "null"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          },
+          "state": {
+            "$ref": "#/components/schemas/dto.state"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "required": [
+          "createdon",
+          "credentialstype",
+          "foreignid",
+          "lastupdated",
+          "versionid"
+        ],
+        "additionalProperties": false
+      },
+      "user.DeviceExperienceHistory": {
+        "type": "object",
+        "properties": {
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "date": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "devicesbad": {
+            "$ref": "#/components/schemas/dto.devicesbad"
+          },
+          "devicesfair": {
+            "$ref": "#/components/schemas/dto.devicesfair"
+          },
+          "devicesgood": {
+            "$ref": "#/components/schemas/dto.devicesgood"
+          },
+          "devicestotal": {
+            "$ref": "#/components/schemas/dto.devicestotal"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "user.NetworkExperienceHistory": {
+        "type": "object",
+        "properties": {
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "date": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "devicesbad": {
+            "$ref": "#/components/schemas/dto.devicesbad"
+          },
+          "devicesfair": {
+            "$ref": "#/components/schemas/dto.devicesfair"
+          },
+          "devicesgood": {
+            "$ref": "#/components/schemas/dto.devicesgood"
+          },
+          "devicestotal": {
+            "$ref": "#/components/schemas/dto.devicestotal"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "hours": {
+            "title": "sensorInsightsHours",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24,
+            "format": "int32"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "minutes": {
+            "title": "sensorInsightsMinutes",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 60,
+            "format": "int32"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "user.SmartAlert": {
+        "type": "object",
+        "properties": {
+          "accountclientid": {
+            "$ref": "#/components/schemas/dto.accountclientid"
+          },
+          "billingaccountid": {
+            "$ref": "#/components/schemas/dto.billingaccountid"
+          },
+          "category": {
+            "title": "sensorInsightsCategory",
+            "type": "string",
+            "description": "The type of alert and will be either `telemetry` or `infrastructure`",
+            "example": "telemetry"
+          },
+          "condition": {
+            "title": "sensorInsightsCondition",
+            "type": "integer",
+            "description": "The condition or threshold for an alert",
+            "format": "int32",
+            "example": 2592000
+          },
+          "createdon": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "description": {
+            "$ref": "#/components/schemas/dto.description"
+          },
+          "deviceid": {
+            "$ref": "#/components/schemas/dto.deviceid"
+          },
+          "foreignid": {
+            "$ref": "#/components/schemas/dto.foreignid"
+          },
+          "id": {
+            "$ref": "#/components/schemas/dto.id"
+          },
+          "isacknowledged": {
+            "title": "sensorInsightsIsAcknowledged",
+            "type": "boolean",
+            "description": "A flag that indicates if the alarm has been acknowledged",
+            "example": true
+          },
+          "iscleared": {
+            "title": "sensorInsightsIsCleared",
+            "type": "boolean",
+            "description": "A flag that indicates if the alarm has been cleared",
+            "example": true
+          },
+          "isdisabled": {
+            "title": "sensorInsightsIsDisabled",
+            "type": "boolean",
+            "description": "A flag that indicates if the alarm has been disabled",
+            "example": false
+          },
+          "lastupdated": {
+            "$ref": "#/components/schemas/dto.timestamp"
+          },
+          "name": {
+            "$ref": "#/components/schemas/dto.name"
+          },
+          "ruleid": {
+            "title": "sensorInsightsRuleID",
+            "type": "string",
+            "description": "The UUID of a rule for alerts",
+            "example": "The UUID of a rule"
+          },
+          "severity": {
+            "title": "sensorInsightsSeverity",
+            "type": "string",
+            "description": "The threshold value to trigger an alert and will be Critical, major or minor",
+            "example": "minor"
+          },
+          "state": {
+            "$ref": "#/components/schemas/dto.state"
+          },
+          "template": {
+            "title": "sensorInsightsTemplate",
+            "type": "string",
+            "description": "template of the rule which triggered a given alert",
+            "example": "The template ID"
+          },
+          "version": {
+            "$ref": "#/components/schemas/dto.version"
+          },
+          "versionid": {
+            "$ref": "#/components/schemas/dto.versionid"
+          }
+        },
+        "required": [
+          "createdon",
+          "lastupdated",
+          "versionid"
+        ],
+        "additionalProperties": false
+      },
+      "dto.Filter": {
+        "type": "object",
+        "properties": {
+          "$expand": {
+            "title": "sensorInsightsExpand",
+            "type": "string",
+            "description": "Use to provide device details for alerts specific to a device",
+            "example": "device detail(s)"
+          },
+          "$limitnumber": {
+            "title": "sensorInsightsLimitNumber",
+            "description": "Limit the number of results returned",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "format": "int32"
+          },
+          "$nopagination": {
+            "title": "sensorInsightsNoPagination",
+            "description": "A flag set to show if pagination requested (false) or not (true)",
+            "type": "boolean",
+            "example": true
+          },
+          "$page": {
+            "title": "sensorInsightsPage",
+            "type": "string",
+            "example": "The number of pages"
+          },
+          "$pagenumber": {
+            "title": "sensorInsightsPageNumber",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "format": "int32"
+          },
+          "$projection": {
+            "title": "sensorInsightsProjection",
+            "type": "array",
+            "description": "Limits the fields of the device that the user is interested in rather than all of the fields",
+            "items": {
+              "type": "string",
+              "example": "specific device fields requested"
+            },
+            "maxItems": 100,
+            "uniqueItems": false
+          },
+          "$selection": {
+            "title": "sensorInsightsSelection",
+            "type": "object",
+            "description": "Filters results based on user defined criteria",
+            "additionalProperties": {}
+          }
+        },
+        "additionalProperties": false
+      },
+      "dto.CommandProfiles": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/dto.JsonRawMessage"
+        }
+      },
+      "400.management.Error": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/management.Error"
+          },
+          {
+            "example": {
+              "error": "bad_request",
+              "error_description": "The request is missing content.",
+              "cause": "Request is missing required body content"
+            }
+          }
+        ]
+      },
+      "403.management.Error": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/management.Error"
+          },
+          {
+            "example": {
+              "error": "forbidden",
+              "error_description": "The data does not belong to the provided billing account.",
+              "cause": "Requested service is forbidden"
+            }
+          }
+        ]
+      },
+      "404.management.Error": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/management.Error"
+          },
+          {
+            "example": {
+              "error": "not_found",
+              "error_description": "Requested information is not registered.",
+              "cause": "Requested service not found"
+            }
+          }
+        ]
+      },
+      "500.management.Error": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/management.Error"
+          },
+          {
+            "example": {
+              "error": "internal_server_error",
+              "error_description": "Failed to create record.",
+              "cause": "Requested service failed due to internal error"
+            }
+          }
+        ]
+      },
+      "management.Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "title": "sensorInsightsErrorValue",
+            "type": "string",
+            "example": "Error name or code"
+          },
+          "error_description": {
+            "title": "sensorInsightsErrorDescription",
+            "type": "string",
+            "maxLength": 1000,
+            "example": "A longer error description."
+          },
+          "cause": {
+            "title": "sensorInsightsCause",
+            "type": "string",
+            "example": "A cause for the error"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        },
+        "description": "This is where the ThingSpace token, from [Getting Started](/content/thingspace-portal/documentation/apis/connectivity-management/get-started.html)\n  is used"
+      },
+      "vz-m2m-session_token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "The VZ-M2M session token from [Getting Started](/content/thingspace-portal/documentation/apis/connectivity-management/get-started.html)"
+      }
+    }
+  }
+}

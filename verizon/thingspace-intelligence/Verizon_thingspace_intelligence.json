@@ -1,0 +1,2237 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Anomaly Detection API",
+    "description": "This service is responsible for device anomaly detection. It uses machine learning to classify and cluster different devices on your account and alert you for unusual behavior in the device data usage patterns. The unusual alert or event is based on the sensitivity to which you would classify an event as anomalous or not.",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "https://thingspace.verizon.com/legal/terms-of-service.html"
+    },
+    "version": "1.1",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Anomaly Settings",
+      "description": "Choose what level and interval of alerting for anomalies detected."
+    },
+    {
+      "name": "Anomaly Triggers",
+      "description": "Set the threshold of notification for anomalies detected."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/m2m/v1/intelligence/anomaly/settings": {
+      "post": {
+        "tags": ["Anomaly Settings"],
+        "description": "Uses the subscribed account ID to activate anomaly detection and set threshold values.",
+        "operationId": "ActivateAnomalyDetection",
+        "requestBody": {
+          "description": "Request to activate anomaly detection.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnomalyDetectionRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "requestType": "anomaly",
+                "sensitivityParameter": {
+                  "abnormalMaxValue": 1.1,
+                  "enableAbnormal": true,
+                  "enableVeryAbnormal": true,
+                  "veryAbnormalMaxValue": 0.55
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceSuccessResult"
+                },
+                "example": {
+                  "status": "Success"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/intelligence/{accountName}/anomaly/settings": {
+      "get": {
+        "tags": ["Anomaly Settings"],
+        "description": "Retrieves the current anomaly detection settings for an account.",
+        "operationId": "ListAnomalyDetectionSettings",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "The name of the subscribed account.",
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieve the settings for anomaly detection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyDetectionSettings"
+                },
+                "example": {
+                  "accountName": "Success",
+                  "sensitivityParameter": {
+                    "abnormalMaxValue": 1.1,
+                    "enableAbnormal": true,
+                    "enableVeryAbnormal": true,
+                    "veryAbnormalMaxValue": 0.55
+                  },
+                  "status": "Active"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/intelligence/{accountName}/anomaly/settings/reset": {
+      "put": {
+        "tags": ["Anomaly Settings"],
+        "description": "Resets the thresholds to zero.",
+        "operationId": "ResetAnomalyDetectionParameters",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "The name of the subscribed account.",
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceSuccessResult"
+                },
+                "example": {
+                  "status": "Success"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/triggers": {
+      "post": {
+        "tags": ["Anomaly Triggers V2"],
+        "description": "Creates the trigger to identify an anomaly.",
+        "operationId": "CreateAnomalyDetectionTriggerV2",
+        "requestBody": {
+          "description": "Request to create an anomaly trigger.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateV2TriggerRequest"
+              },
+              "example": [
+                {
+                  "name": "Anomaly Daily Usage REST Test-Patch 1",
+                  "triggerCategory": "UsageAnomaly",
+                  "accountName": "0000123456-00001",
+                  "anomalyTriggerRequest": {
+                    "accountNames": "0000123456-00001",
+                    "includeAbnormal": true,
+                    "includeVeryAbnormal": true,
+                    "includeUnderExpectedUsage": true,
+                    "includeOverExpectedUsage": true
+                  },
+                  "notification": {
+                    "notificationType": "DailySummary",
+                    "callback": true,
+                    "emailNotification": false,
+                    "notificationGroupName": "Anomaly Test API",
+                    "notificationFrequencyFactor": 3,
+                    "notificationFrequencyInterval": "Hourly",
+                    "externalEmailRecipients": "placeholder@verizon.com",
+                    "smsNotification": true,
+                    "smsNumbers": [
+                      {
+                        "carrier": "US Cellular",
+                        "number": "9299280711"
+                      }
+                    ],
+                    "reminder": true,
+                    "severity": "Critical"
+                  }
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Result of request to create a trigger for anomaly detection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyDetectionTrigger"
+                },
+                "example": {
+                  "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Anomaly Triggers V2"],
+        "description": "Updates an existing trigger using the account name.",
+        "operationId": "UpdateAnomalyDetectionTriggerV2",
+        "requestBody": {
+          "description": "Request to update existing trigger.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateV2TriggerRequest"
+              },
+              "example": [
+                {
+                  "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d",
+                  "triggerName": "Anomaly Daily Usage REST Test-Patch Update 4",
+                  "accountName": "0000123456-00001",
+                  "triggerCategory": "UsageAnomaly",
+                  "anomalyTriggerRequest": {
+                    "accountNames": "0000123456-00001",
+                    "includeAbnormal": true,
+                    "includeVeryAbnormal": true,
+                    "includeUnderExpectedUsage": false,
+                    "includeOverExpectedUsage": true
+                  },
+                  "notification": {
+                    "notificationType": "DailySummary",
+                    "callback": true,
+                    "emailNotification": false,
+                    "notificationGroupName": "Anomaly Test API",
+                    "notificationFrequencyFactor": 3,
+                    "notificationFrequencyInterval": "Hourly",
+                    "externalEmailRecipients": "placeholder@verizon.com",
+                    "smsNotification": true,
+                    "smsNumbers": [
+                      {
+                        "carrier": "US Cellular",
+                        "number": "9299280711"
+                      }
+                    ],
+                    "reminder": true,
+                    "severity": "Critical"
+                  }
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceSuccessResult"
+                },
+                "example": {
+                  "status": "Success"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/triggers/{triggerId}": {
+      "get": {
+        "tags": ["Anomaly Triggers V2"],
+        "description": "Retrieves the values for a specific trigger ID.",
+        "operationId": "ListAnomalyDetectionTriggerSettingsV2",
+        "parameters": [
+          {
+            "name": "triggerId",
+            "in": "path",
+            "description": "The trigger ID of a specific trigger.",
+            "schema": {
+              "type": "string",
+              "example": "be1b5958-3e11-41db-9abd-b1b7618c0035"
+            },
+            "example": "be1b5958-3e11-41db-9abd-b1b7618c0035",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Anomaly detection trigger details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyTriggerResult"
+                },
+                "example": {
+                  "triggers": [
+                    {
+                      "triggerId": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+                      "triggerName": "Anomaly Daily Usage REST Test-1",
+                      "organizationName": "AnamolyDetectionRTRTest",
+                      "triggerCategory": "UsageAnomaly",
+                      "triggerAttributes": [
+                        {
+                          "key": "DataPercentage50",
+                          "value": false
+                        }
+                      ],
+                      "createdAt": "2021-10-21T23:57:03.397.0000Z",
+                      "modifiedAt": "2021-10-21T23:57:03.397.0000Z",
+                      "notification": {
+                        "notificationType": "DailySummary",
+                        "callback": true,
+                        "emailNotification": true,
+                        "notificationGroupName": "Anomaly Test API",
+                        "notificationFrequencyFactor": -2147483648,
+                        "externalEmailRecipients": "placeholder@verizon.com",
+                        "smsNotification": true,
+                        "smsNumbers": [
+                          {
+                            "carrier": "US Cellular",
+                            "number": "9299280711"
+                          }
+                        ],
+                        "reminder": false,
+                        "severity": "Critical"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error occurred.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/triggers": {
+      "get": {
+        "tags": ["Anomaly Triggers"],
+        "summary": "Get all the triggers related to a Contact",
+        "description": "This corresponds to the M2M-MC SOAP interface, ```GetTriggers```.",
+        "operationId": "ListAnomalyDetectionTriggers",
+        "responses": {
+          "200": {
+            "description": "List of triggers associated to a Contact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "maxItems": 10,
+                  "items": {
+                    "$ref": "#/components/schemas/GetTriggerResponseList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Anomaly Triggers"],
+        "summary": "Update trigger Operation.",
+        "description": "This corresponds to the M2M-MC SOAP interface, ```UpdateTriggerRequest```.",
+        "operationId": "UpdateAnomalyDetectionTrigger",
+        "requestBody": {
+          "description": "Update Trigger Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTriggerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trigger ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyDetectionTrigger"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Anomaly Triggers"],
+        "summary": "Create trigger based on the category.",
+        "description": "This corresponds to the M2M-MC SOAP interface, ```CreateTrigger```.",
+        "operationId": "CreateAnomalyDetectionTrigger",
+        "requestBody": {
+          "description": "Create Trigger Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTriggerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trigger ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyDetectionTrigger"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/triggers/{triggerId}": {
+      "get": {
+        "tags": ["Anomaly Triggers"],
+        "summary": "Gets the trigger information related to a triggerId",
+        "description": "This corresponds to the M2M-MC SOAP interface, ```GetTriggers```.",
+        "operationId": "ListAnomalyDetectionTriggerSettings",
+        "parameters": [
+          {
+            "name": "triggerId",
+            "in": "path",
+            "description": "trigger ID",
+            "schema": {
+              "type": "string",
+              "example": "be1b5958-3e11-41db-9abd-b1b7618c0035"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trigger information associated to a Trigger Id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "maxItems": 5,
+                  "items": {
+                    "$ref": "#/components/schemas/GetTriggerResponseList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Anomaly Triggers"],
+        "summary": "Delete a specific trigger value",
+        "description": "Deletes a specific trigger ID",
+        "operationId": "DeleteAnomalyDetectionTrigger",
+        "parameters": [
+          {
+            "name": "triggerId",
+            "in": "path",
+            "description": "The trigger ID to be deleted",
+            "schema": {
+              "type": "string",
+              "example": "be1b5958-3e11-41db-9abd-b1b7618c0035"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The ID of the deleted trigger is returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnomalyDetectionTrigger"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntelligenceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TriggerType1": {
+        "description": "Trigger details.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "User defined name of the trigger",
+            "description": "Trigger name."
+          },
+          "triggerCategory": {
+            "type": "string",
+            "example": "UsageAnomaly",
+            "description": "This is the value to use in the request body to detect anomalous behaivior. The values in this table will only be relevant when this parameter is set to this value."
+          },
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "0000123456-00001",
+            "description": "Account name."
+          },
+          "anomalyTriggerRequest": {
+            "$ref": "#/components/schemas/AnomalyTriggerRequest"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/TriggerNotification"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "name": "Anomaly Daily Usage REST Test-Patch 1",
+          "triggerCategory": "UsageAnomaly",
+          "accountName": "0000123456-00001",
+          "anomalyTriggerRequest": {
+            "accountNames": "0000123456-00001",
+            "includeAbnormal": true,
+            "includeVeryAbnormal": true,
+            "includeUnderExpectedUsage": true,
+            "includeOverExpectedUsage": true
+          },
+          "notification": {
+            "notificationType": "DailySummary",
+            "callback": true,
+            "emailNotification": false,
+            "notificationGroupName": "Anomaly Test API",
+            "notificationFrequencyFactor": 3,
+            "notificationFrequencyInterval": "Hourly",
+            "externalEmailRecipients": "placeholder@verizon.com",
+            "smsNotification": true,
+            "smsNumbers": [
+              {
+                "carrier": "US Cellular",
+                "number": "9299280711"
+              }
+            ],
+            "reminder": true,
+            "severity": "Critical"
+          }
+        }
+      },
+      "TriggerType2": {
+        "description": "Trigger details.",
+        "type": "object",
+        "properties": {
+          "anomalyattributes": {
+            "$ref": "#/components/schemas/UsageAnomalyAttributes"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/TriggerNotification"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "anomalyattributes": {
+            "accountNames": "0000123456-00001",
+            "deviceGroup": "User Group 1",
+            "includeAbnormal": true,
+            "includeVeryAbnormal": true,
+            "includeUnderExpectedUsage": true,
+            "includeOverExpectedUsage": true
+          },
+          "notification": {
+            "notificationType": "DailySummary",
+            "callback": true,
+            "emailNotification": true,
+            "notificationGroupName": "Anomaly Test API",
+            "notificationFrequencyFactor": -2147483648,
+            "externalEmailRecipients": "placeholder@verizon.com",
+            "smsNotification": true,
+            "smsNumbers": [
+              {
+                "carrier": "US Cellular",
+                "number": "9299280711"
+              }
+            ],
+            "reminder": false,
+            "severity": "Critical"
+          }
+        }
+      },
+      "TriggerType3": {
+        "description": "Trigger details.",
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "example": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+            "description": "Trigger ID."
+          },
+          "triggerName": {
+            "type": "string",
+            "example": "User defined name of the trigger",
+            "description": "Trigger name."
+          },
+          "triggerCategory": {
+            "type": "string",
+            "example": "UsageAnomaly",
+            "description": "This is the value to use in the request body to detect anomalous behaivior. The values in this table will only be relevant when this parameter is set to this value."
+          },
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "0000123456-00001",
+            "description": "Account name."
+          },
+          "anomalyTriggerRequest": {
+            "$ref": "#/components/schemas/AnomalyTriggerRequest"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/TriggerNotification"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d",
+          "triggerName": "Anomaly Daily Usage REST Test-Patch Update 4",
+          "accountName": "0000123456-00001",
+          "triggerCategory": "UsageAnomaly",
+          "anomalyTriggerRequest": {
+            "accountNames": "0000123456-00001",
+            "includeAbnormal": true,
+            "includeVeryAbnormal": true,
+            "includeUnderExpectedUsage": false,
+            "includeOverExpectedUsage": true
+          },
+          "notification": {
+            "notificationType": "DailySummary",
+            "callback": true,
+            "emailNotification": false,
+            "notificationGroupName": "Anomaly Test API",
+            "notificationFrequencyFactor": 3,
+            "notificationFrequencyInterval": "Hourly",
+            "externalEmailRecipients": "placeholder@verizon.com",
+            "smsNotification": true,
+            "smsNumbers": [
+              {
+                "carrier": "US Cellular",
+                "number": "9299280711"
+              }
+            ],
+            "reminder": true,
+            "severity": "Critical"
+          }
+        }
+      },
+      "AnomalyTriggerRequest": {
+        "description": "The details of the UsageAnomaly trigger.",
+        "type": "object",
+        "properties": {
+          "accountNames": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "0000123456-00001",
+            "description": "The Verizon billing accounts associated with the anomaly triggers for this trigger to be active for devices in those accounts. An account name is usually numeric, and must include any leading zeros."
+          },
+          "includeAbnormal": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies classified as 'abnormal'.<br />true<br />false<br />Classification is set as part of ThingSpace Intelligence anomaly detection settings."
+          },
+          "includeVeryAbnormal": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies classified as 'very abnormal'.<br />true<br />false<br />Classification is set as part of ThingSpace Intelligence anomaly detection settings."
+          },
+          "includeUnderExpectedUsage": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies that are directionally under the expected usage.<br />true<br />false."
+          },
+          "includeOverExpectedUsage": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies that are directionally over the expected usage. <br />true<br />false."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountNames": "0000123456-00001",
+          "includeAbnormal": true,
+          "includeVeryAbnormal": true,
+          "includeUnderExpectedUsage": true,
+          "includeOverExpectedUsage": true
+        }
+      },
+      "UsageAnomalyAttributes": {
+        "description": "The details of the UsageAnomaly trigger.",
+        "type": "object",
+        "properties": {
+          "accountNames": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "0000123456-00001",
+            "description": "The Verizon billing account associated with the anomaly triggers for this trigger to be active for devices in those accounts. An account name is usually numeric, and must include any leading zeros."
+          },
+          "deviceGroup": {
+            "type": "string",
+            "example": "The group name for devices using this trigger (optional))",
+            "description": "The names of device groups associated with the anomaly triggers for this trigger to be active for devices in those groups."
+          },
+          "includeAbnormal": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies classified as 'abnormal'.<br />true<br />false<br />Classification is set as part of ThingSpace Intelligence anomaly detection settings."
+          },
+          "includeVeryAbnormal": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies classified as 'very abnormal'.<br />true<br />false<br />Classification is set as part of ThingSpace Intelligence anomaly detection settings."
+          },
+          "includeUnderExpectedUsage": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies that are directionally under the expected usage.<br />true<br />false."
+          },
+          "includeOverExpectedUsage": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not to include anomalies that are directionally over the expected usage. <br />true<br />false."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountNames": "0000123456-00001",
+          "deviceGroup": "User Group 1",
+          "includeAbnormal": true,
+          "includeVeryAbnormal": true,
+          "includeUnderExpectedUsage": true,
+          "includeOverExpectedUsage": true
+        }
+      },
+      "SMSNumber": {
+        "description": "Notification SMS details.",
+        "type": "object",
+        "properties": {
+          "carrier": {
+            "type": "string",
+            "example": "Verizon"
+          },
+          "number": {
+            "type": "string",
+            "example": "1234567890"
+          }
+        },
+        "example": {
+          "carrier": "US Cellular",
+          "number": "9299280711"
+        }
+      },
+      "TriggerNotification": {
+        "description": "The notification details of the trigger.",
+        "type": "object",
+        "properties": {
+          "notificationType": {
+            "type": "string",
+            "format": "enum - DailySummary",
+            "example": "DailySummary",
+            "description": "The type of notification, i.e. 'DailySummary'."
+          },
+          "callback": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether or not the notification should be sent via callback.<br />true<br />false."
+          },
+          "emailNotification": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether or not the notification should be sent via e-mail.<br />true<br />false."
+          },
+          "notificationGroupName": {
+            "type": "string",
+            "example": "Anomaly Test API",
+            "description": "Name for the notification group."
+          },
+          "notificationFrequencyFactor": {
+            "type": "integer",
+            "example": 3,
+            "description": "Frequency factor for notification."
+          },
+          "notificationFrequencyInterval": {
+            "type": "string",
+            "example": "Hourly",
+            "description": "Frequency interval for notification."
+          },
+          "externalEmailRecipients": {
+            "type": "string",
+            "example": "placeholder@gmail.com",
+            "description": "E-mail address(es) where the notification should be delivered."
+          },
+          "smsNotification": {
+            "type": "boolean",
+            "example": true,
+            "description": "SMS notification."
+          },
+          "smsNumbers": {
+            "type": "array",
+            "description": "List of SMS numbers.",
+            "maxItems": 10,
+            "items": {
+              "$ref": "#/components/schemas/SMSNumber"
+            },
+            "example": [
+              {
+                "carrier": "US Cellular",
+                "number": "9299280711"
+              }
+            ]
+          },
+          "reminder": {
+            "type": "boolean",
+            "example": true
+          },
+          "severity": {
+            "type": "string",
+            "format": "enum - Critical - Minor",
+            "example": "Critical",
+            "description": "Severity level associated with the notification. Examples would be:<br />Major<br />Minor<br />Critical<br />NotApplicable."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "notificationType": "DailySummary",
+          "callback": true,
+          "emailNotification": false,
+          "notificationGroupName": "Anomaly Test API",
+          "notificationFrequencyFactor": 3,
+          "notificationFrequencyInterval": "Hourly",
+          "externalEmailRecipients": "placeholder@verizon.com",
+          "smsNotification": true,
+          "smsNumbers": [
+            {
+              "carrier": "US Cellular",
+              "number": "9299280711"
+            }
+          ],
+          "reminder": true,
+          "severity": "Critical"
+        }
+      },
+      "UpdateTriggerRequest": {
+        "title": "UpdateTriggerRequest",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "anomalyTriggerRequest": {
+            "$ref": "#/components/schemas/AnomalyTriggerRequest"
+          },
+          "cycleType": {
+            "type": "string",
+            "enum": ["cycleone", "cycletwo"]
+          },
+          "dataTriggerRequest": {
+            "$ref": "#/components/schemas/DataTriggerRequest"
+          },
+          "groupName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "promoAlertTriggerRequest": {
+            "$ref": "#/components/schemas/PromoAlertTriggerRequest"
+          },
+          "sessionTriggerRequest": {
+            "$ref": "#/components/schemas/SessionTriggerRequest"
+          },
+          "smsTriggerRequest": {
+            "$ref": "#/components/schemas/SMSTriggerRequest"
+          },
+          "triggerCategory": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerId": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PromoAlertTriggerRequest": {
+        "title": "PromoAlertTriggerRequest",
+        "type": "object",
+        "properties": {
+          "dataPercentage50": {
+            "type": "boolean"
+          },
+          "dataPercentage75": {
+            "type": "boolean"
+          },
+          "dataPercentage90": {
+            "type": "boolean"
+          },
+          "noOfDaysB4PromoExp": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 180,
+            "format": "int32"
+          },
+          "smsPercentage50": {
+            "type": "boolean"
+          },
+          "smsPercentage75": {
+            "type": "boolean"
+          },
+          "smsPercentage90": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateTriggerRequest": {
+        "title": "CreateTriggerRequest",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "anomalyTriggerRequest": {
+            "$ref": "#/components/schemas/AnomalyTriggerRequest"
+          },
+          "dataTriggerRequest": {
+            "$ref": "#/components/schemas/DataTriggerRequest"
+          },
+          "groupName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "sessionTriggerRequest": {
+            "$ref": "#/components/schemas/SessionTriggerRequest"
+          },
+          "smsTriggerRequest": {
+            "$ref": "#/components/schemas/SMSTriggerRequest"
+          },
+          "triggerCategory": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerCycle": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataTriggerRequest": {
+        "title": "DataTriggerRequest",
+        "type": "object",
+        "properties": {
+          "comparator": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "threshold": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "format": "int32"
+          },
+          "thresholdUnit": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SessionTriggerRequest": {
+        "title": "SessionTriggerRequest",
+        "type": "object",
+        "properties": {
+          "comparator": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "threshold": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SMSTriggerRequest": {
+        "title": "SMSTriggerRequest",
+        "type": "object",
+        "properties": {
+          "comparator": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "smsType": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "threshold": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateV2TriggerRequest": {
+        "description": "Trigger creation request.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CreateTriggerRequestOptions"
+        },
+        "example": [
+          {
+            "name": "Anomaly Daily Usage REST Test-Patch 1",
+            "triggerCategory": "UsageAnomaly",
+            "accountName": "0000123456-00001",
+            "anomalyTriggerRequest": {
+              "accountNames": "0000123456-00001",
+              "includeAbnormal": true,
+              "includeVeryAbnormal": true,
+              "includeUnderExpectedUsage": true,
+              "includeOverExpectedUsage": true
+            },
+            "notification": {
+              "notificationType": "DailySummary",
+              "callback": true,
+              "emailNotification": false,
+              "notificationGroupName": "Anomaly Test API",
+              "notificationFrequencyFactor": 3,
+              "notificationFrequencyInterval": "Hourly",
+              "externalEmailRecipients": "placeholder@verizon.com",
+              "smsNotification": true,
+              "smsNumbers": [
+                {
+                  "carrier": "US Cellular",
+                  "number": "9299280711"
+                }
+              ],
+              "reminder": true,
+              "severity": "Critical"
+            }
+          }
+        ]
+      },
+      "CreateTriggerRequestOptions": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TriggerType1"
+          },
+          {
+            "$ref": "#/components/schemas/ActiveAnomalyIndicator"
+          },
+          {
+            "$ref": "#/components/schemas/ActiveTriggerIndicator"
+          }
+        ],
+        "example": {
+          "name": "Anomaly Daily Usage REST Test-Patch 1",
+          "triggerCategory": "UsageAnomaly",
+          "accountName": "0000123456-00001",
+          "anomalyTriggerRequest": {
+            "accountNames": "0000123456-00001",
+            "includeAbnormal": true,
+            "includeVeryAbnormal": true,
+            "includeUnderExpectedUsage": true,
+            "includeOverExpectedUsage": true
+          },
+          "notification": {
+            "notificationType": "DailySummary",
+            "callback": true,
+            "emailNotification": false,
+            "notificationGroupName": "Anomaly Test API",
+            "notificationFrequencyFactor": 3,
+            "notificationFrequencyInterval": "Hourly",
+            "externalEmailRecipients": "placeholder@verizon.com",
+            "smsNotification": true,
+            "smsNumbers": [
+              {
+                "carrier": "US Cellular",
+                "number": "9299280711"
+              }
+            ],
+            "reminder": true,
+            "severity": "Critical"
+          }
+        }
+      },
+      "UpdateV2TriggerRequest": {
+        "description": "Trigger updation request.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UpdateTriggerRequestOptions"
+        },
+        "additionalProperties": false,
+        "example": [
+          {
+            "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d",
+            "triggerName": "Anomaly Daily Usage REST Test-Patch Update 4",
+            "accountName": "0000123456-00001",
+            "triggerCategory": "UsageAnomaly",
+            "anomalyTriggerRequest": {
+              "accountNames": "0000123456-00001",
+              "includeAbnormal": true,
+              "includeVeryAbnormal": true,
+              "includeUnderExpectedUsage": false,
+              "includeOverExpectedUsage": true
+            },
+            "notification": {
+              "notificationType": "DailySummary",
+              "callback": true,
+              "emailNotification": false,
+              "notificationGroupName": "Anomaly Test API",
+              "notificationFrequencyFactor": 3,
+              "notificationFrequencyInterval": "Hourly",
+              "externalEmailRecipients": "placeholder@verizon.com",
+              "smsNotification": true,
+              "smsNumbers": [
+                {
+                  "carrier": "US Cellular",
+                  "number": "9299280711"
+                }
+              ],
+              "reminder": true,
+              "severity": "Critical"
+            }
+          }
+        ]
+      },
+      "UpdateTriggerRequestOptions": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/TriggerType3"
+          },
+          {
+            "$ref": "#/components/schemas/ActiveAnomalyIndicator"
+          }
+        ],
+        "example": {
+          "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d",
+          "triggerName": "Anomaly Daily Usage REST Test-Patch Update 4",
+          "accountName": "0000123456-00001",
+          "triggerCategory": "UsageAnomaly",
+          "anomalyTriggerRequest": {
+            "accountNames": "0000123456-00001",
+            "includeAbnormal": true,
+            "includeVeryAbnormal": true,
+            "includeUnderExpectedUsage": false,
+            "includeOverExpectedUsage": true
+          },
+          "notification": {
+            "notificationType": "DailySummary",
+            "callback": true,
+            "emailNotification": false,
+            "notificationGroupName": "Anomaly Test API",
+            "notificationFrequencyFactor": 3,
+            "notificationFrequencyInterval": "Hourly",
+            "externalEmailRecipients": "placeholder@verizon.com",
+            "smsNotification": true,
+            "smsNumbers": [
+              {
+                "carrier": "US Cellular",
+                "number": "9299280711"
+              }
+            ],
+            "reminder": true,
+            "severity": "Critical"
+          }
+        }
+      },
+      "GetTriggerResponse": {
+        "title": "GetTriggerResponse",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "comparator": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "createdAt": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "format": "date-time"
+          },
+          "groupName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "format": "date-time"
+          },
+          "notificationGroupName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "organizationName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "smsType": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "threshold": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "thresholdUnit": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerCategory": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerCycle": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerId": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "triggerName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetTriggerResponseList": {
+        "title": "GetTriggerResponseList",
+        "type": "object",
+        "properties": {
+          "triggers": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "$ref": "#/components/schemas/GetTriggerResponse"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActiveAnomalyIndicator": {
+        "description": "Whether the anomaly detection is active or not.",
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates anomaly detection is active<br />True - Anomaly detection is active.<br />False - Anomaly detection is not active."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "active": true
+        }
+      },
+      "ActiveTriggerIndicator": {
+        "description": "Whether the trigger is active or not.",
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "example": true,
+            "description": "Indicates if the trigger is active<br />True - trigger is active<br />False - trigger is not active."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "active": true
+        }
+      },
+      "AnomalyTriggerResult": {
+        "description": "A result containing a list of anomaly triggers.",
+        "type": "object",
+        "properties": {
+          "triggers": {
+            "description": "Trigger value chunk details.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TriggersListOptions"
+            },
+            "example": [
+              {
+                "triggerId": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+                "triggerName": "Anomaly Daily Usage REST Test-1",
+                "organizationName": "AnamolyDetectionRTRTest",
+                "triggerCategory": "UsageAnomaly",
+                "triggerAttributes": [
+                  {
+                    "key": "DataPercentage50",
+                    "value": false
+                  }
+                ],
+                "createdAt": "2021-10-21T23:57:03.397.0000Z",
+                "modifiedAt": "2021-10-21T23:57:03.397.0000Z",
+                "notification": {
+                  "notificationType": "DailySummary",
+                  "callback": true,
+                  "emailNotification": true,
+                  "notificationGroupName": "Anomaly Test API",
+                  "notificationFrequencyFactor": -2147483648,
+                  "externalEmailRecipients": "placeholder@verizon.com",
+                  "smsNotification": true,
+                  "smsNumbers": [
+                    {
+                      "carrier": "US Cellular",
+                      "number": "9299280711"
+                    }
+                  ],
+                  "reminder": false,
+                  "severity": "Critical"
+                }
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "triggers": [
+            {
+              "triggerId": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+              "triggerName": "Anomaly Daily Usage REST Test-1",
+              "organizationName": "AnamolyDetectionRTRTest",
+              "triggerCategory": "UsageAnomaly",
+              "triggerAttributes": [
+                {
+                  "key": "DataPercentage50",
+                  "value": false
+                }
+              ],
+              "createdAt": "2021-10-21T23:57:03.397.0000Z",
+              "modifiedAt": "2021-10-21T23:57:03.397.0000Z",
+              "notification": {
+                "notificationType": "DailySummary",
+                "callback": true,
+                "emailNotification": true,
+                "notificationGroupName": "Anomaly Test API",
+                "notificationFrequencyFactor": -2147483648,
+                "externalEmailRecipients": "placeholder@verizon.com",
+                "smsNotification": true,
+                "smsNumbers": [
+                  {
+                    "carrier": "US Cellular",
+                    "number": "9299280711"
+                  }
+                ],
+                "reminder": false,
+                "severity": "Critical"
+              }
+            }
+          ]
+        }
+      },
+      "TriggersListOptions": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AnomalyTriggerValue"
+          },
+          {
+            "$ref": "#/components/schemas/TriggerType2"
+          }
+        ],
+        "example": {
+          "triggerId": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+          "triggerName": "Anomaly Daily Usage REST Test-1",
+          "organizationName": "AnamolyDetectionRTRTest",
+          "triggerCategory": "UsageAnomaly",
+          "triggerAttributes": [
+            {
+              "key": "DataPercentage50",
+              "value": false
+            }
+          ],
+          "createdAt": "2021-10-21T23:57:03.397Z",
+          "modifiedAt": "2021-10-21T23:57:03.397Z"
+        }
+      },
+      "AnomalyTriggerValue": {
+        "description": "Trigger details.",
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "example": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+            "description": "The system assigned name of the trigger being updated."
+          },
+          "triggerName": {
+            "type": "string",
+            "example": "A user defined name of the trigger",
+            "description": "The user defined name of the trigger."
+          },
+          "organizationName": {
+            "type": "string",
+            "example": "Group name the trigger is assigned to (optional)",
+            "description": "The user assigned name of the organization associated with the trigger."
+          },
+          "triggerCategory": {
+            "type": "string",
+            "example": "UsageAnomaly",
+            "description": "This is the value to use in the request body to detect anomalous behaivior. The values in this table will only be relevant when this parameter is set to this value."
+          },
+          "triggerAttributes": {
+            "$ref": "#/components/schemas/TriggerAttributes"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2021-10-21T23:57:03.397.0000Z",
+            "description": "Timestamp for whe the trigger was created."
+          },
+          "modifiedAt": {
+            "type": "string",
+            "example": "2021-10-21T23:57:03.397.0000Z",
+            "description": "Timestamp for the most recent time the trigger was modified."
+          }
+        },
+        "example": {
+          "triggerId": "BE1B5958-3E11-41DB-9ABD-B1B7618C0035",
+          "triggerName": "Anomaly Daily Usage REST Test-1",
+          "organizationName": "AnamolyDetectionRTRTest",
+          "triggerCategory": "UsageAnomaly",
+          "triggerAttributes": [
+            {
+              "key": "DataPercentage50",
+              "value": false
+            }
+          ],
+          "createdAt": "2021-10-21T23:57:03.397.0000Z",
+          "modifiedAt": "2021-10-21T23:57:03.397.0000Z"
+        }
+      },
+      "TriggerAttributes": {
+        "type": "array",
+        "description": "Additional details and keys for the trigger.",
+        "items": {
+          "$ref": "#/components/schemas/TriggerAttributesOptions"
+        },
+        "example": [
+          {
+            "key": "DataPercentage50",
+            "value": false
+          }
+        ]
+      },
+      "TriggerAttributesOptions": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/NotificationGroupNameTriggerAttribute"
+          },
+          {
+            "$ref": "#/components/schemas/ServicePlanTriggerAttribute"
+          },
+          {
+            "$ref": "#/components/schemas/DataPercentage50TriggerAttribute"
+          },
+          {
+            "$ref": "#/components/schemas/DataPercentage75TriggerAttribute"
+          },
+          {
+            "$ref": "#/components/schemas/DataPercentage90TriggerAttribute"
+          },
+          {
+            "$ref": "#/components/schemas/DataPercentage100TriggerAttribute"
+          }
+        ],
+        "example": {
+          "key": "DataPercentage50"
+        }
+      },
+      "NotificationGroupNameTriggerAttribute": {
+        "description": "Notification group name trigger attribute.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "NotificationGroupName",
+            "description": "If present, the NotificationGroupName will be listed here."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "key": "NotificationGroupName"
+        }
+      },
+      "ServicePlanTriggerAttribute": {
+        "description": "Key service plan trigger attribute.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "ServicePlan",
+            "description": "The ServicePlan name will be listed here."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "key": "ServicePlan"
+        }
+      },
+      "DataPercentage50TriggerAttribute": {
+        "description": "Trigger attribute for when data percentage is over 50% used.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage50",
+            "description": "Key data percentage 50."
+          },
+          "value": {
+            "type": "boolean",
+            "example": false,
+            "description": "DataPercentage50<br />True - Trigger on Data percentage is over 50% used<br />False - Do not trigger when over 50% used."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "key": "DataPercentage50",
+          "value": false
+        }
+      },
+      "DataPercentage75TriggerAttribute": {
+        "description": "Trigger attribute for when data percentage is over 75% used.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage75",
+            "description": "Key data percentage 75."
+          },
+          "value": {
+            "type": "boolean",
+            "example": false,
+            "description": "DataPercentage75<br />True - Trigger on Data percentage is over 75% used<br />False - Do not trigger when over 75% used."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "key": "DataPercentage75",
+          "value": false
+        }
+      },
+      "DataPercentage90TriggerAttribute": {
+        "description": "Trigger attribute for when data percentage is over 90% used.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage90",
+            "description": "Key data percentage 90."
+          },
+          "value": {
+            "type": "boolean",
+            "example": false,
+            "description": "DataPercentage90<br />True - Trigger on Data percentage is over 90% used<br />False - Do not trigger when over 90% used."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "key": "DataPercentage90",
+          "value": false
+        }
+      },
+      "DataPercentage100TriggerAttribute": {
+        "description": "Trigger attribute for when data percentage is over 100% used.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage100",
+            "description": "Key data percentage 100."
+          },
+          "value": {
+            "type": "boolean",
+            "example": false,
+            "description": "DataPercentage100<br />True - Trigger on Data percentage is over 100% used<br />False - Do not trigger when over 100% used."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "key": "DataPercentage100",
+          "value": false
+        }
+      },
+      "AnomalyDetectionSettings": {
+        "description": "Settings for anomaly detection.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "format": "enum - Success - Failed",
+            "example": "Success",
+            "description": "Indicates if the account name used has anomaly detection.<br />Success - The account has anomaly detection.<br />Failure - The account does not have anomaly detection."
+          },
+          "sensitivityParameter": {
+            "$ref": "#/components/schemas/SensitivityParameters"
+          },
+          "status": {
+            "type": "string",
+            "format": "enum - Active - Disabled",
+            "example": "Active",
+            "description": "Indicates if anomaly detection is active on the account<br />Active - Anomaly detection is active<br />Disabled- Anomaly detection is not active."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountName": "Success",
+          "sensitivityParameter": {
+            "abnormalMaxValue": 1.1,
+            "enableAbnormal": true,
+            "enableVeryAbnormal": true,
+            "veryAbnormalMaxValue": 0.55
+          },
+          "status": "Active"
+        }
+      },
+      "AnomalyDetectionRequest": {
+        "description": "Anomaly detection request.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "0000123456-00001",
+            "description": "The name of a billing account. An account name is usually numeric, and must include any leading zeros."
+          },
+          "requestType": {
+            "type": "string",
+            "example": "anomaly",
+            "description": "The type of request being made. anomaly is the request to activate anomaly detection."
+          },
+          "sensitivityParameter": {
+            "$ref": "#/components/schemas/SensitivityParameters"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountName": "0000123456-00001",
+          "requestType": "anomaly",
+          "sensitivityParameter": {
+            "abnormalMaxValue": 1.1,
+            "enableAbnormal": true,
+            "enableVeryAbnormal": true,
+            "veryAbnormalMaxValue": 0.55
+          }
+        }
+      },
+      "SensitivityParameters": {
+        "description": "Details for sensitivity parameters.",
+        "type": "object",
+        "properties": {
+          "abnormalMaxValue": {
+            "type": "number",
+            "format": "float",
+            "example": 1.1,
+            "description": "The maximum value of the threshold in the units being measured."
+          },
+          "enableAbnormal": {
+            "type": "boolean",
+            "example": true,
+            "description": "If abnormal values are being monitored.<br />true - Monitor for abnormal values<br />false - Do not monitor for abnormal values."
+          },
+          "enableVeryAbnormal": {
+            "type": "boolean",
+            "example": true,
+            "description": "If very abnormal values are being monitored.<br />true - Monitor for very abnormal values<br />false - Do not monitor for very abnormal values."
+          },
+          "veryAbnormalMaxValue": {
+            "type": "number",
+            "format": "float",
+            "example": 0.55,
+            "description": "The maximum value of the threshold in the units being measured."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "abnormalMaxValue": 1.1,
+          "enableAbnormal": true,
+          "enableVeryAbnormal": true,
+          "veryAbnormalMaxValue": 0.55
+        }
+      },
+      "IntelligenceSuccessResult": {
+        "description": "Success response.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "format": "enum - Success - Failed",
+            "example": "Success",
+            "description": "Anomaly detection status."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "status": "Success"
+        }
+      },
+      "AnomalyDetectionTrigger": {
+        "description": "Trigger for anomaly detection.",
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "example": "be1b5958-3e11-41db-9abd-b1b7618c0035",
+            "description": "Trigger ID to identify the request in a callback."
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d"
+        }
+      },
+      "IntelligenceResult": {
+        "description": "An error occurred.",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "maxLength": 3,
+            "pattern": "^[0-9]{3}$",
+            "description": "The 3-digit HTML error code."
+          },
+          "errorMessage": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 1000,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Error Message."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

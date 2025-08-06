@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "43cce9b9-0c5d-4c3c-976d-646455b519ce",
+		"name": "ThingSpace Cloud Connector for REST streaming",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "targets",
+			"item": [
+				{
+					"name": "Create a Target - No Authorization",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"billingaccountid\": \"0000000000-00001\",\n    \"addressscheme\": \"streamrest\",\n    \"address\": \"http://your_rest_endpoint.com\",\n    \"name\": \"name your target\"\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/targets",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"targets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Target - Basic Authorization",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"billingaccountid\": \"0000000000-00001\",\n    \"addressscheme\": \"streamrest\",\n    \"address\": \"http://your_rest_endpoint.com\",\n    \"name\": \"name your target\",\n    \"httpheaders\": {\n        \"Authorization\": \"Basic addBase64Encoded_uname:pwd\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/targets/targets",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"targets",
+								"targets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Target - OAuth2.0 Authorization",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"billingaccountid\": \"0000000000-00001\",\n    \"addressscheme\": \"streamrest\",\n    \"address\": \"http://your_rest_endpoint.com\",\n    \"name\": \"name your target\",\n    \"key1\": \"Bearer addtokenhere\"\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/targets/targets",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"targets",
+								"targets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Target - OAuth2.0 Authorization Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"billingaccountid\": \"0000000000-00001\",\n    \"addressscheme\": \"streamrest\",\n    \"address\": \"http://your_rest_endpoint.com\",\n    \"name\": \"name your target\",\n    \"key1\": \"Bearer PROVIDE_ACCESS_TOKEN\",\n    \"oauth\": {\n        \"body\": {\n            \"grant_type\": \"refresh_token\",\n            \"refresh_token\": \"PROVIDE_REFRESH_TOKEN\",\n            \"scope\": \"PROVIDE_SCOPE_OPTIONAL\"\n        },\n        \"headers\": {\n            \"Authorization\": \"Basic PROVIDE_BASE64_CLIENTID:CLIENTSECRET\",\n            \"Content-Type\": \"application/x-www-form-urlencoded\"\n        },\n        \"host\": {\n            \"hostandpath\": \"PROVIDE_REFRESH_TOKEN_URL\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/targets/targets",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"targets",
+								"targets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Target",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"resourceidentifier\": {\n        \"id\": \"2e61a17d-8fd1-6816-e995-e4c2528bf535\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/targets/actions/delete",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"targets",
+								"actions",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query a Target",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "ThingSpace Session Token",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"description": "ThingSpace Bearer Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/targets/actions/query",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"targets",
+								"actions",
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscriptions",
+			"item": [
+				{
+					"name": "Create a Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"billingaccountid\": \"0000000000-00001\",\n    \"streamkind\": \"ts.event\",\n    \"targetid\": \"your target ID UUID such as ae110c40-2685-6c70-f46e-286f7370b8a9\",\n    \"name\": \"name your subscription\"\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/subscriptions",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"subscriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query a Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/subscriptions/actions/query",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"subscriptions",
+								"actions",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "(Required) ",
+								"key": "VZ-M2M-Token",
+								"value": "{{sessionToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountidentifier\": {\n        \"billingaccountid\": \"0000000000-00001\"\n    },\n    \"resourceidentifier\": {\n        \"id\": \"your subscription ID such as 38b13a3f-3c75-633e-fbf8-7c7b0c2f351f\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://thingspace.verizon.com/api/cc/v1/subscriptions/actions/delete",
+							"protocol": "https",
+							"host": [
+								"thingspace",
+								"verizon",
+								"com"
+							],
+							"path": [
+								"api",
+								"cc",
+								"v1",
+								"subscriptions",
+								"actions",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://thingspace.verizon.com/api/cc/v1",
+			"type": "string"
+		}
+	]
+}

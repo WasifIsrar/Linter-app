@@ -1,0 +1,826 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Wireless Network Performance (WNP)",
+    "description": "ThingSpace Intelligence is an offering of integrated connectivity and service management. Wireless Network Performance APIs are available to ThingSpace Intelligence subscribers. You can use this link to <a href=\"/content/dam/thingspace-portal/resources/documentation/swagger/Wireless_Network_Performance.json\" download>download the JSON file</a>",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "http://www.verizon.com/about/terms/"
+    },
+    "version": "v1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/m2m/v1/intelligence/network-conditions": {
+      "post": {
+        "tags": ["Wireless Network Performance"],
+        "summary": "Near real-time network conditions",
+        "operationId": "NearRealTimeNetworkConditions",
+        "description": "WNP Query for current network condition.",
+        "requestBody": {
+          "description": "Request for current network health.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetNetworkConditionsRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "locationType": "LONGLAT",
+                "coordinates": {
+                  "latitude": "-33.84819",
+                  "longitude": "151.22049"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "400",
+                  "errorMessage": "A brief description of the error code"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/intelligence/wireless-coverage": {
+      "post": {
+        "tags": ["Wireless Network Performance"],
+        "summary": "Domestic 4G and 5G nationwide network coverage",
+        "operationId": "Domestic4GAnd5GNationwideNetworkCoverage",
+        "description": "Run a report to determine network types available and available coverage. Network types covered include: CAT-M, NB-IOT, LTE, LTE-AWS, 5GNW and C-BAND.",
+        "requestBody": {
+          "description": "Request for network coverage details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetWirelessCoverageRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "requestType": "NW",
+                "locationType": "LONGLAT",
+                "locations": {
+                  "coordinatesList": [
+                    {
+                      "latitude": "-33.84819",
+                      "longitude": "151.22049"
+                    }
+                  ]
+                },
+                "networkTypesList": [
+                  {
+                    "networkType": "LTE"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "400",
+                  "errorMessage": "A brief description of the error code"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/intelligence/wireless-coverage": {
+      "post": {
+        "tags": ["Fixed Wireless Qualification"],
+        "summary": "Domestic 4G and 5G Fixed Wireless Qualification",
+        "operationId": "Domestic4GAnd5GFixedWirelessQualification",
+        "description": "Use this query for Fixed Wireless Qualification of an address. Network types include: LTE, C-BAND and MMWAVE.",
+        "requestBody": {
+          "description": "Request for network coverage details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetWirelessCoverageRequestFWA"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "requestType": "FWA",
+                "locationType": "ADDRESS",
+                "locations": {
+                  "addressList": [
+                    {
+                      "addressLine1": "street address",
+                      "city": "city",
+                      "state": "LA",
+                      "country": "USA",
+                      "zip": "00000"
+                    }
+                  ]
+                },
+                "networkTypesList": [
+                  {
+                    "networkType": "LTE"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "400",
+                  "errorMessage": "A brief description of the error code"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/intelligence/site-proximity/action/list": {
+      "post": {
+        "tags": ["Wireless Network Performance"],
+        "summary": "Site Proximity",
+        "operationId": "SiteProximity",
+        "description": "Identify the direction and general distance of nearby cell sites and the technology supported by the equipment.",
+        "requestBody": {
+          "description": "Request for cell site proximity.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetNetworkConditionsRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "locationType": "LONGLAT",
+                "coordinates": {
+                  "latitude": "-33.84819",
+                  "longitude": "151.22049"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "400",
+                  "errorMessage": "A brief description of the error code"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/intelligence/device-experience/history/30-days": {
+      "post": {
+        "tags": ["Wireless Network Performance"],
+        "summary": "Device Experience - 30 days History",
+        "operationId": "DeviceExperience30daysHistory",
+        "description": "A report of a specific device's service scores over a 30 day period.",
+        "requestBody": {
+          "description": "Request for a device's 30 day experience.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDeviceExperienceScoreHistoryRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "deviceId": {
+                  "kind": "iccid",
+                  "id": "01234567899876543210",
+                  "mdn": "0123456789"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "400",
+                  "errorMessage": "A brief description of the error code"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/intelligence/device-experience/bulk/latest": {
+      "post": {
+        "tags": ["Wireless Network Performance"],
+        "summary": "Device Experience - Bulk Latest",
+        "operationId": "DeviceExperienceBulkLatest",
+        "description": "Run a report to view the latest device experience score for specific devices.",
+        "requestBody": {
+          "description": "Request for bulk latest history details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDeviceExperienceScoreBulkRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "deviceList": [
+                  {
+                    "kind": "iccid",
+                    "id": "01234567899876543210",
+                    "mdn": "0123456789"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WNPRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "400",
+                  "errorMessage": "A brief description of the error code"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetDeviceExperienceScoreHistoryRequest": {
+        "type": "object",
+        "description": "Get device experience score history.",
+        "required": ["accountName", "deviceId"],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$"
+          },
+          "deviceId": {
+            "$ref": "#/components/schemas/DeviceIdentifier"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDeviceExperienceScoreBulkRequest": {
+        "type": "object",
+        "description": "Get device experience score bulk request.",
+        "required": ["accountName", "deviceList"],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$"
+          },
+          "deviceList": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceIdentifier"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetNetworkConditionsRequest": {
+        "type": "object",
+        "description": "Get network conditions.",
+        "required": ["accountName", "locationType", "coordinates"],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$"
+          },
+          "locationType": {
+            "type": "string",
+            "description": "Type of location detail.",
+            "example": "LONGLAT",
+            "minLength": 3,
+            "maxLength": 10,
+            "pattern": "^[A-Za-z]{3,10}$"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/Coordinates"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetWirelessCoverageRequest": {
+        "type": "object",
+        "description": "Get wireless coverage.",
+        "required": [
+          "accountName",
+          "requestType",
+          "locationType",
+          "locations",
+          "networkTypesList"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$"
+          },
+          "requestType": {
+            "type": "string",
+            "description": "Type of request.",
+            "example": "NW",
+            "minLength": 2,
+            "maxLength": 12,
+            "pattern": "^[A-Za-z]{2,12}$"
+          },
+          "locationType": {
+            "type": "string",
+            "description": "Type of location detail.",
+            "example": "LONGLAT",
+            "minLength": 3,
+            "maxLength": 12,
+            "pattern": "^[A-Za-z]{3,12}$"
+          },
+          "locations": {
+            "$ref": "#/components/schemas/Locationscoord"
+          },
+          "networkTypesList": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/NetworkType"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetWirelessCoverageRequestFWA": {
+        "type": "object",
+        "description": "Get wireless coverage FWA.",
+        "required": [
+          "accountName",
+          "requestType",
+          "locationType",
+          "locations",
+          "networkTypesList"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$"
+          },
+          "requestType": {
+            "type": "string",
+            "description": "Type of request.",
+            "example": "FWA",
+            "minLength": 3,
+            "maxLength": 12,
+            "pattern": "^[A-Za-z]{3,12}$"
+          },
+          "locationType": {
+            "type": "string",
+            "description": "Type of location detail.",
+            "example": "ADDRESS",
+            "minLength": 3,
+            "maxLength": 12,
+            "pattern": "^[A-Za-z]{3,12}$"
+          },
+          "locations": {
+            "$ref": "#/components/schemas/Locations"
+          },
+          "networkTypesList": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/NetworkType"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Locationscoord": {
+        "type": "object",
+        "description": "Location coordinates.",
+        "required": ["coordinatesList"],
+        "properties": {
+          "coordinatesList": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/Coordinates"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Locations": {
+        "type": "object",
+        "description": "Location details.",
+        "properties": {
+          "addressList": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/AddressItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "NetworkType": {
+        "type": "object",
+        "description": "Network type.",
+        "properties": {
+          "networkType": {
+            "type": "string",
+            "example": "LTE",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Coordinates": {
+        "type": "object",
+        "description": "Coordinates information.",
+        "properties": {
+          "latitude": {
+            "type": "string",
+            "description": "Latitude value of location.",
+            "example": "-33.84819",
+            "minLength": 3,
+            "maxLength": 12,
+            "pattern": "^[-+]?([0-9.]{3,12})$"
+          },
+          "longitude": {
+            "type": "string",
+            "description": "Longitude value of location.",
+            "example": "151.22049",
+            "minLength": 3,
+            "maxLength": 12,
+            "pattern": "^[-+]?([0-9.]{3,12})$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddressItem": {
+        "type": "object",
+        "description": "Address details.",
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "description": "Street Address.",
+            "example": "street number and name",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ,]{3,32}$"
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "Optional address information.",
+            "example": "optional address information",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ,]{3,32}$"
+          },
+          "city": {
+            "type": "string",
+            "description": "Name of the city.",
+            "example": "name of the city",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$"
+          },
+          "state": {
+            "type": "string",
+            "description": "State code.",
+            "example": "NY",
+            "minLength": 2,
+            "maxLength": 3,
+            "pattern": "^[A-Za-z]{2,3}$"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country.",
+            "example": "USA",
+            "minLength": 3,
+            "maxLength": 3,
+            "pattern": "^[A-Za-z]{3,3}$"
+          },
+          "zip": {
+            "type": "string",
+            "description": "Five digit zipcode.",
+            "example": "10001",
+            "minLength": 5,
+            "maxLength": 5,
+            "pattern": "^[0-9]{5,5}$"
+          },
+          "zip4": {
+            "type": "string",
+            "description": "Four digit zip code.",
+            "example": "0727",
+            "minLength": 4,
+            "maxLength": 4,
+            "pattern": "^[0-9]{4,4}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceIdentifier": {
+        "type": "object",
+        "description": "Device Id details.",
+        "required": ["kind", "id"],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "Kind of device.",
+            "example": "iccid",
+            "minLength": 3,
+            "maxLength": 6,
+            "pattern": "^[A-Za-z]{3,6}$"
+          },
+          "id": {
+            "type": "string",
+            "description": "Device Identity number.",
+            "example": "01234567899876543210",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9]{3,32}$"
+          },
+          "mdn": {
+            "type": "string",
+            "description": "Device MDN number.",
+            "example": "0123456789",
+            "minLength": 3,
+            "maxLength": 10,
+            "pattern": "^[A-Za-z0-9]{3,10}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WNPRequestResponse": {
+        "type": "object",
+        "description": "Wireless network performance request response.",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Request id.",
+            "example": "d1f08526-5443-4054-9a29-4456490ea9f8",
+            "minLength": 3,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9-]{3,64}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WNPRestErrorResponse": {
+        "type": "object",
+        "description": "Wireless network performance rest error response.",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "description": "Rest error response.",
+            "example": "400",
+            "minLength": 3,
+            "maxLength": 3,
+            "pattern": "^[0-9]{3,3}$"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message details.",
+            "example": "A brief description of the error code",
+            "minLength": 3,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9 ]{3,64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

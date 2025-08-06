@@ -1,0 +1,268 @@
+openapi: 3.0.3
+info:
+  title: Edge Transportation Exchange - Map Data Manager API
+  version: 2.1.0
+  description: |
+    The Map Data Manager is the intersection metadata storage & management service within the Edge Transportation Exchange (ETX).
+
+    It allows users to upload and download SAE J2735 MAP messages in ASN.1 UPER or JER format.
+
+    In order to use the APIs the user needs to have a ThingSpace account and use their ThingSpace credential to request an Access/Bearer token, which is used to authorize the user, and also request a Session/M2M token to authenticate the user.
+
+    * For details on how to obtain the token please refer to the [ThingSpace Quick Start Guide - Obtaining an Access Token](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-an-access_token).
+    * For detail on how to obtain a Session/M2M token please refer to the [ThingSpace Quick Start Guide - Obtaining a VZ-M2M Session Token Programmatically](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-a-vz-m2m-sessiontoken-programmatically).
+    * Or watch the [ThingSpace API Video Guide 1](https://www.youtube.com/watch?v=QPJQFT3637w) and [ThingSpace API Video Guide 2](https://www.youtube.com/watch?v=hc9udGp4P_s) that explains how to obtain both tokens.
+  contact:
+    name: Verizon ETX Team
+    email: vzimp@verizon.com
+  x-server-configuration:
+    default-environment: Production
+    default-server: IMP Server
+    environments:
+    - name: Production
+      servers:
+      - name: IMP Server
+        url: https://imp.thingspace.verizon.com
+      - name: OAuth Server
+        url: https://thingspace.verizon.com/api/ts/v1
+    - name: Staging
+      servers:
+      - name: IMP Server
+        url: https://imp-staging.thingspace.verizon.com
+      - name: OAuth Server
+        url: https://staging.thingspace.verizon.com/api/ts/v1
+servers:
+  - url: https://imp-dev.thingspace.verizon.com
+    description: Dev environment
+  - url: https://imp-qa.thingspace.verizon.com
+    description: QA environment
+  - url: https://imp-staging.thingspace.verizon.com
+    description: Staging environment
+  - url: https://imp.thingspace.verizon.com
+    description: Production environment
+paths:
+  /api/v2/mapdata:
+    post:
+      operationId: uploadMapDataMessage
+      tags: 
+        - Map Data Manager
+      summary: Upload SAE J2735 MAP messages in ASN.1 UPER or JER (JSON) format.
+      description: >-
+        This endpoint allows the user to upload map messages in SAE J2735 MAP messages in ASN.1 UPER or JER (JSON) formats. The MAP data message can have more than one intersections in it.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              description: |
+                This JSON should be representation of the J2735 MapData, which includes MapData. For more detailed information about the MapData structure, please refer to page 36 of the [SAE J2735 Standard](https://www.sae.org/standards/content/j2735_202309/).
+                should match the following pattern: \{(?:[^{}]|(?R))*\}
+              maxLength: 1000000
+            example: |
+              {"messageId":18,"value":{"intersections":[{"id":{"region":0,"id":156},"laneSet":[{"connectsTo":[{"connectingLane":{"lane":25,"maneuver":"8000"},"signalGroup":2},{"connectingLane":{"lane":29,"maneuver":"2000"},"signalGroup":2}],"laneAttributes":{"directionalUse":"80","laneType":{"parking":"0000"},"sharedWith":"0000"},"laneID":1,"maneuvers":"a000","nodeList":{"nodes":[{"delta":{"node-XY6":{"x":-4012,"y":365}}},{"delta":{"node-XY6":{"x":-5541,"y":7249}}},{"delta":{"node-XY6":{"x":-4379,"y":5828}}},{"delta":{"node-XY6":{"x":-3590,"y":4729}}},{"delta":{"node-XY6":{"x":-5012,"y":6994}}}]}}],"laneWidth":366,"refPoint":{"lat":389284111,"long":-772410713},"revision":3}],"msgIssueRevision":3}}
+      responses:
+        "201":
+          description: Map message/s successfully processed
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Imported successfully
+                pattern: '^[\w\s<>=+:;,"''\-\?\.\!]+$'
+                maxLength: 100
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "503":
+          description: Internal server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+    get:
+      operationId: downloadMapDataMessage
+      tags: 
+        - Map Data Manager
+      summary: Download SAE J2735 MAP messages in ASN.1 UPER format for the given area.
+      description: >-
+        This endpoint allows user to download SAE J2735 MAP messages in ASN.1 UPER format. The area for the MAP messages is needed to be defined in the query.
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+        - in: query
+          name: Geofence
+          description: The area where the user wants to receive MAP data from.
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Geofence"
+      responses:
+        "200":
+          description: >
+            The response is a list line separated ASN.1 UPER J2735 base64
+            encoded MapData messages
+          content:
+            text/plain:
+              schema:
+                type: string
+                pattern: '^[\w\s<>=+:;,"''\-\?\.\!]+$'
+                maxLength: 1000000
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "503":
+          description: Internal server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+components:
+  parameters:
+    VendorID:
+      in: header
+      name: VendorID
+      description: The VendorID set during the Vendor registration call.
+      required: true
+      schema:
+        type: string
+        maxLength: 64
+        pattern: ^[a-zA-Z0-9]+$
+        example: "VerizonETX"
+  schemas:
+    Geofence:
+      type: object
+      additionalProperties: false
+      required:
+        - "type"
+        - "coordinates"
+      properties:
+        type:
+          title: GeofenceType
+          type: string
+          pattern: ^[a-zA-Z0-9]*$
+          example: Polygon
+          maxLength: 20
+        coordinates:
+          type: array
+          maxItems: 20
+          minItems: 4
+          items:
+            type: array
+            maxItems: 2
+            minItems: 2
+            items:
+              type: number
+              format: double
+              minimum: -180.0
+              maximum: 180.0
+            example: [71.6, 95.2]
+      example:
+        type: Polygon
+        coordinates:
+          - [-77.479395, 38.990773]
+          - [-77.114566, 38.999440]
+          - [-77.100228, 38.817204]
+          - [-77.418059, 38.827754]
+          - [-77.479395, 38.990773]
+    ResponseError:
+      title: MapDataResponseError
+      description: error response structure
+      type: object
+      required:
+        - error
+        - description
+      properties:
+        error:
+          description: The short summary of the error
+          type: string
+          maxLength: 1024
+          minLength: 0
+          pattern: ^[\w\s~\+\-!@#$%^&*()\`\[\]{=};"\'\:\.,\/<>?|\s]+$
+          example: Error Summary
+        description:
+          description: The detailed description of the error
+          type: string
+          maxLength: 4096
+          minLength: 0
+          pattern: ^[\w\s~\+\-!@#$%^&*()\`\[\]{=};"\'\:\.,\/<>?|\s]*$
+          example: Error Description
+      additionalProperties: false
+
+  securitySchemes:
+    thingspace_oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://thingspace.verizon.com/api/ts/v1/oauth2/token'
+          scopes: {}
+    sessionToken:
+      type: apiKey
+      in: header
+      name: SessionToken
+      description: |
+        This is the Session/M2M token needed to authenticate the user. It should be acquired by using the ThingSpace APIs. For detail on how to obtain a Session/M2M token please refer to the
+        - [ThingSpace Quick Start Guide - Obtaining a VZ-M2M Session Token Programmatically](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-a-vz-m2m-sessiontoken-programmatically)
+        - or the [ThingSpace API Video Guide 1](https://www.youtube.com/watch?v=QPJQFT3637w) and [ThingSpace API Video Guide 2](https://www.youtube.com/watch?v=hc9udGp4P_s)
+
+security:
+  - thingspace_oauth: []
+    sessionToken: []

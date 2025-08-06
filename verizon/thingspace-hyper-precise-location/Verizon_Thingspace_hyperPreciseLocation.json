@@ -1,0 +1,1945 @@
+{
+  "externalDocs": {
+    "description": "Verizon Terms of Service.",
+    "url": "https://thingspace.verizon.com/legal/terms-of-service.html"
+  },
+  "openapi": "3.0.1",
+  "info": {
+    "title": "The Verizon Hyper Precise APIs",
+    "description": "The Hyper Precise Location Service APIs are used for enabling devices, reports and callback listeners. Real Time Kinematics (RTK) is the core technology that provides hyper precise location data for IoT services where accuracy is critical. RTK drastically minimizes errors to provide hyper precise location accuracies of sub-meter or even centimeter-level in all three dimensions: horizontal (latitude & longitude) and vertical. Verizon has deployed reference stations across the US to provide pinpoint-level accuracy to RTK compatible IoT devices. Verizon Hyper Precise Location is carrier-grade, and built to scale with Verizon's reliability.",
+    "contact": {
+      "name": "The Hyper Precise support team via email",
+      "email": "TCPScrum@verizon.com"
+    },
+    "version": "1.1",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Hyper Precise Location",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Hyper Precise Location",
+              "url": "https://thingspace.verizon.com/api/hyper-precise/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Hyper Precise Location",
+              "url": "https://staging.thingspace.verizon.com/api/hyper-precise/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/hyper-precise/v1",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/hyper-precise/v1",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/devices/services": {
+      "get": {
+        "tags": [
+          "Device Service Management"
+        ],
+        "summary": "Get a hyper precise status",
+        "description": "Gets the list of a status for hyper-precise location devices.",
+        "operationId": "GetDeviceHyperPreciseStatus",
+        "parameters": [
+          {
+            "name": "imei",
+            "in": "query",
+            "description": "A unique identifier for a device.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "709312034493372"
+            }
+          },
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "description": "A unique identifier for an account.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "0844021539-00001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the status of Hyper Precise Location on the device.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BullseyeServiceResult"
+                },
+                "example": {
+                  "accountNumber": "0844021539-00001",
+                  "deviceList": [
+                    {
+                      "imei": "709312034493372",
+                      "BullseyeEnable": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Device Service Management"
+        ],
+        "summary": "Enable or disable hyper-precise",
+        "description": "Enable/disable hyper-precise service for a device.",
+        "operationId": "UpdateDeviceHyperPreciseStatus",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "List of devices and hyper-precise required statuses.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BullseyeServiceRequest"
+              },
+              "example": {
+                "deviceList": [
+                  {
+                    "imei": "354658090356210",
+                    "BullseyeEnable": true
+                  }
+                ],
+                "accountNumber": "0242080353-00001"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BullseyeServiceResult"
+                },
+                "example": {
+                  "accountNumber": "0844021539-00001",
+                  "deviceList": [
+                    {
+                      "imei": "709312034493372",
+                      "BullseyeEnable": true
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/aggregate": {
+      "post": {
+        "tags": [
+          "Device Reports"
+        ],
+        "summary": "An aggregated sessions and usage report for a user specified selection of devices and date range",
+        "description": "Calculate aggregated report per day with number of sessions and usage information. User will receive synchronous response for specified list of devices (Max 10) and date range (Max 180 days).",
+        "operationId": "CalculateAggregatedReportSynchronous",
+        "parameters": [],
+        "requestBody": {
+          "description": "Aggregated report request.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AggregateSessionReportRequest"
+              },
+              "example": {
+                "accountNumber": "0844021539-00001",
+                "startDate": "2022-12-09T22:01:06.217Z",
+                "endDate": "2022-12-09T22:01:08.734Z",
+                "imei": [
+                  "709312034493372"
+                ],
+                "deviceGroup": null,
+                "dataPlan": null,
+                "noSessionFlag": "false"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response shows session and usage details for up to 10 devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AggregateSessionReport"
+                },
+                "example": {
+                  "txid": null,
+                  "usage": [
+                    {
+                      "imei": "709312034493372",
+                      "numberOfSessions": 1,
+                      "bytesTransferred": 2057
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/async/aggregate": {
+      "post": {
+        "tags": [
+          "Device Reports"
+        ],
+        "summary": "An aggregated asynchronous sessions and usage report for a user specified selection of devices and date range",
+        "description": "Calculate aggregated report per day with number of sessions and usage information. User will receive an asynchronous callback for the specified list of devices (Max 10000) and date range (Max 180 days).",
+        "operationId": "CalculateAggregatedReportAsynchronous",
+        "parameters": [],
+        "requestBody": {
+          "description": "Aggregated session report request.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AggregateSessionReportRequest"
+              },
+              "example": {
+                "accountNumber": "0844021539-00001",
+                "startDate": "2022-12-09T22:01:06.217Z",
+                "endDate": "2022-12-09T22:01:08.734Z",
+                "imei": [
+                  "709312034493372"
+                ],
+                "deviceGroup": null,
+                "dataPlan": null,
+                "noSessionFlag": "false"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response shows the request is queued with a unique `txid` to identify the report data with.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AggregatedReportCallbackResult"
+                },
+                "example": {
+                  "txid": "60c07fff-470b-4d6d-afcc-75e6a7c238f6",
+                  "status": "QUEUED"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/sessions": {
+      "post": {
+        "tags": [
+          "Device Reports"
+        ],
+        "summary": "A daily usage report for a single device for a specified date range (up to 180 days).",
+        "description": "Detailed report of session duration and number of bytes transferred per day.",
+        "operationId": "GetSessionsReport",
+        "parameters": [],
+        "requestBody": {
+          "description": "Request for sessions report.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionReportRequest"
+              },
+              "example": {
+                "accountNumber": "0844021539-00001",
+                "startDate": "2022-12-09T22:01:06.217Z",
+                "endDate": "2022-12-09T22:01:08.734Z",
+                "imei": "709312034493372",
+                "durationLow": null,
+                "durationHigh": null
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response includes the session information for an individual device.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionReport"
+                },
+                "example": {
+                  "id": "709312034493372",
+                  "txid": "60c07fff-470b-4d6d-afcc-75e6a7c238f6"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callbacks": {
+      "get": {
+        "tags": [
+          "Hyper Precise Location Callbacks"
+        ],
+        "summary": "Get registered callback listener",
+        "description": "Find registered callback listener for account by account number.",
+        "operationId": "ListRegisteredCallbacks",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "description": "A unique identifier for an account.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "0844021539-00001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response will display the billing account number (`aname`), the name of the callback service (`name`) and the address of the callback listening service (`url`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A list of registered callback listeners.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CallbackCreated"
+                  },
+                  "example": [
+                    {
+                      "aname": "0844021539-00001",
+                      "name": "BullseyeReporting",
+                      "url": "https://tsustgtests.mocklab.io/notifications/bullseye"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Hyper Precise Location Callbacks"
+        ],
+        "summary": "Register a Callback Listener URL",
+        "description": "Registers a URL at which an account receives asynchronous responses and other messages from a ThingSpace Platform callback service. The messages are REST messages. You are responsible for creating and running a listening process on your server at that URL to receive and parse the messages.",
+        "operationId": "RegisterCallback",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "description": "A unique identifier for an account.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "0844021539-00001"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HyperPreciseLocationCallback"
+              },
+              "example": {
+                "name": "BullseyeReporting",
+                "url": "https://tsustgtests.mocklab.io/notifications/bullseye"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response will display the billing account number (`accountName`), the name of the callback service (`name`) and the address of the callback listening service (`url`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallbackRegistered"
+                },
+                "example": {
+                  "accountName": "0844021539-00001",
+                  "name": "BullseyeReporting"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Hyper Precise Location Callbacks"
+        ],
+        "summary": "Deregister a Callback Listener",
+        "description": "Stops ThingSpace from sending callback messages for the specified account and listener name.",
+        "operationId": "DeregisterCallback",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "description": "A unique identifier for a account.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "0844021539-00001"
+            }
+          },
+          {
+            "name": "service",
+            "in": "query",
+            "description": "The name of the callback service that will be deleted.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "BullseyeReporting"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response (no content).",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "maxLength": 2048,
+                  "pattern": "^[a-zA-Z0-9?$@#()\\[\\]'!,+\\-=_:.&*%\\s]+$",
+                  "type": "string"
+                }
+              }
+            },
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "400": {
+                    "summary": "400",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Found, Request will be queued\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request. Access token is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "401": {
+                    "summary": "401",
+                    "value": "{\n  \"responseCode\": \"INVALID_ACCESS\",\n  \"message\": \"The access policy denied the resource operation for this user\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "403": {
+                    "summary": "403",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Not Certified\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad request. Not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "404": {
+                    "summary": "404",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Device Inactive\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Bad request. Conflict state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "409": {
+                    "summary": "409",
+                    "value": "{\n  \"responseCode\": \"INVALID_PARAMETER\",\n  \"message\": \"Service Not Purchased\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HyperPreciseLocationResult"
+                },
+                "examples": {
+                  "500": {
+                    "summary": "500",
+                    "value": "{\n  \"responseCode\": \"INTERNAL_ERROR\",\n  \"message\": \"Device is active in several accounts\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BullseyeServiceResult": {
+        "description": "Status of Hyper Precise Location on the device.",
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "type": "string",
+            "description": "The account the device belongs to.",
+            "example": "0844021539-00001"
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "List of devices.",
+            "items": {
+              "$ref": "#/components/schemas/DeviceServiceInformation"
+            },
+            "example": [
+              {
+                "imei": "709312034493372",
+                "BullseyeEnable": true
+              }
+            ]
+          },
+          "responseType": {
+            "$ref": "#/components/schemas/ApiResponseCode"
+          }
+        },
+        "example": {
+          "accountNumber": "0844021539-00001",
+          "deviceList": [
+            {
+              "imei": "709312034493372",
+              "BullseyeEnable": true
+            }
+          ]
+        }
+      },
+      "DeviceServiceInformation": {
+        "description": "Device service information.",
+        "required": [
+          "BullseyeEnable",
+          "imei"
+        ],
+        "type": "object",
+        "properties": {
+          "responseType": {
+            "$ref": "#/components/schemas/ApiResponseCode"
+          },
+          "imei": {
+            "type": "string",
+            "description": "The International Mobile Equipment Identifier of the device.",
+            "example": "709312034493372"
+          },
+          "BullseyeEnable": {
+            "type": "boolean",
+            "description": "Shows if Hyper Precise is enabled (true) or disabled (false).",
+            "example": true
+          }
+        },
+        "example": {
+          "imei": "709312034493372",
+          "BullseyeEnable": true
+        }
+      },
+      "BullseyeServiceRequest": {
+        "description": "Account number and list of devices.",
+        "required": [
+          "accountNumber",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceList": {
+            "description": "A list of devices.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceServiceRequest"
+            },
+            "example": [
+              {
+                "imei": "354658090356210",
+                "BullseyeEnable": true
+              }
+            ]
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "A unique identifier for an account.",
+            "example": "0242080353-00001"
+          }
+        },
+        "example": {
+          "deviceList": [
+            {
+              "imei": "354658090356210",
+              "BullseyeEnable": true
+            }
+          ],
+          "accountNumber": "0242080353-00001"
+        }
+      },
+      "DeviceServiceRequest": {
+        "description": "Device information.",
+        "required": [
+          "BullseyeEnable",
+          "imei"
+        ],
+        "type": "object",
+        "properties": {
+          "imei": {
+            "pattern": "^[0-9]{15}$",
+            "type": "string",
+            "description": "International Mobile Equipment Identifier. The unique ID of a device.",
+            "example": "354658090356210"
+          },
+          "BullseyeEnable": {
+            "type": "boolean",
+            "description": "Set to Enable (true) or Disable (false).",
+            "example": true
+          }
+        },
+        "example": {
+          "imei": "354658090356210",
+          "BullseyeEnable": true
+        }
+      },
+      "ErrorResponseCode": {
+        "description": "Error Code.",
+        "type": "string",
+        "enum": [
+          "INVALID_ACCESS",
+          "INVALID_PARAMETER",
+          "INTERNAL_ERROR",
+          "SUCCESS"
+        ],
+        "example": "INVALID_ACCESS"
+      },
+      "HyperPreciseLocationResult": {
+        "description": "Error response.",
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "$ref": "#/components/schemas/ErrorResponseCode"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          },
+          "fault": {
+            "$ref": "#/components/schemas/HyperPreciseLocationFault"
+          }
+        },
+        "example": {
+          "responseCode": "INVALID_ACCESS",
+          "fault": {
+            "code": "900906",
+            "message": "No matching resource found in the API for the given request",
+            "description": "Access failure for API. Check the API documentation and add a proper REST resource path to the invocation URL."
+          }
+        }
+      },
+      "HyperPreciseLocationFault": {
+        "description": "Fault occurred while responding.",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Hyper precise location fault code.",
+            "example": "900906"
+          },
+          "message": {
+            "type": "string",
+            "description": "Hyper precise location fault message.",
+            "example": "No matching resource found in the API for the given request"
+          },
+          "description": {
+            "type": "string",
+            "description": "Hyper precise location fault description.",
+            "example": "Access failure for API. Check the API documentation and add a proper REST resource path to the invocation URL"
+          }
+        },
+        "example": {
+          "code": "900906",
+          "message": "No matching resource found in the API for the given request",
+          "description": "Access failure for API. Check the API documentation and add a proper REST resource path to the invocation URL."
+        }
+      },
+      "ApiResponseCode": {
+        "description": "ResponseCode and/or a message indicating success or failure of the request.",
+        "required": [
+          "message",
+          "responseCode"
+        ],
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "$ref": "#/components/schemas/ResponseCode"
+          },
+          "message": {
+            "type": "string",
+            "description": "More details about the responseCode received."
+          }
+        }
+      },
+      "ResponseCode": {
+        "description": "Possible response codes.",
+        "type": "string",
+        "enum": [
+          "INVALID_ACCESS",
+          "INVALID_PARAMETER",
+          "INTERNAL_ERROR",
+          "SUCCESS"
+        ],
+        "example": "INVALID_ACCESS"
+      },
+      "AggregateSessionReportRequest": {
+        "description": "Request for getting an aggregated session report.",
+        "required": [
+          "accountNumber",
+          "imei"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "description": "The unique identifier for the account.",
+            "type": "string",
+            "example": "0844021539-00001"
+          },
+          "startDate": {
+            "description": "Start date of session to include. If not specified  information will be shown from the earliest available (180 days). Can be either date in ISO 8601 format or predefined constants.",
+            "type": "string",
+            "example": "2022-12-09T22:01:06.217Z"
+          },
+          "endDate": {
+            "description": "End date of session to include. If not specified  information will be shown to the latest available. Can be either date in ISO 8601 format or predefined constants.",
+            "type": "string",
+            "example": "2022-12-09T22:01:08.734Z"
+          },
+          "imei": {
+            "description": "Devices for which return usage info. Could be 0, 1 or more. In case of 0 will return all devices belonging to customer (except of filtered by other parameters).",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "709312034493372"
+            ]
+          },
+          "deviceGroup": {
+            "description": "User defined group name the devices are a member of.",
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "deviceLabel": {
+            "description": "Optional filter parameter.",
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "dataPlan": {
+            "description": "The data plan the devices beign queried belong to.",
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "noSessionFlag": {
+            "description": "Optional filter parameter which return only devices with no sessions.",
+            "type": "string",
+            "example": "false"
+          }
+        },
+        "example": {
+          "accountNumber": "0844021539-00001",
+          "startDate": "2022-12-09T22:01:06.217Z",
+          "endDate": "2022-12-09T22:01:08.734Z",
+          "imei": [
+            "709312034493372"
+          ],
+          "deviceGroup": null,
+          "dataPlan": null,
+          "noSessionFlag": "false"
+        }
+      },
+      "AggregateUsageError": {
+        "description": "Error reported by a device.",
+        "type": "object",
+        "properties": {
+          "imei": {
+            "type": "string",
+            "description": "International Mobile Equipment Identifier. This is the ID of the device reporting errors."
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "A general error message."
+          },
+          "errorResponse": {
+            "$ref": "#/components/schemas/IErrorMessage"
+          }
+        }
+      },
+      "AggregateUsageItem": {
+        "description": "Contains usage information per device.",
+        "type": "object",
+        "properties": {
+          "imei": {
+            "type": "string",
+            "description": "International Mobile Equipment Identifier. This is the ID of the device reporting usage.",
+            "example": "709312034493372"
+          },
+          "numberOfSessions": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of sessions established by the device reporting usage.",
+            "example": 1
+          },
+          "bytesTransferred": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The amount of data transferred by the device reporting usage, measured in Bytes.",
+            "example": 2057
+          }
+        },
+        "example": {
+          "imei": "709312034493372",
+          "numberOfSessions": 1,
+          "bytesTransferred": 2057
+        }
+      },
+      "IErrorMessage": {
+        "description": "Error message.",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/ErrorResponseCode"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Details and additional information about the error code."
+          },
+          "httpStatusCode": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "detailErrorMessage": {
+            "type": "string",
+            "description": "More detail and information about the HTML error code."
+          }
+        },
+        "example": {
+          "httpStatusCode": "200 OK",
+          "errorCode": "INVALID_ACCESS"
+        }
+      },
+      "HttpStatusCode": {
+        "description": "HTML error code and description.",
+        "type": "string",
+        "enum": [
+          "100 CONTINUE",
+          "101 SWITCHING_PROTOCOLS",
+          "102 PROCESSING",
+          "103 CHECKPOINT",
+          "200 OK",
+          "201 CREATED",
+          "202 ACCEPTED",
+          "203 NON_AUTHORITATIVE_INFORMATION",
+          "204 NO_CONTENT",
+          "205 RESET_CONTENT",
+          "206 PARTIAL_CONTENT",
+          "207 MULTI_STATUS",
+          "208 ALREADY_REPORTED",
+          "226 IM_USED",
+          "300 MULTIPLE_CHOICES",
+          "301 MOVED_PERMANENTLY",
+          "302 FOUND",
+          "302 MOVED_TEMPORARILY",
+          "303 SEE_OTHER",
+          "304 NOT_MODIFIED",
+          "305 USE_PROXY",
+          "307 TEMPORARY_REDIRECT",
+          "308 PERMANENT_REDIRECT",
+          "400 BAD_REQUEST",
+          "401 UNAUTHORIZED",
+          "402 PAYMENT_REQUIRED",
+          "403 FORBIDDEN",
+          "404 NOT_FOUND",
+          "405 METHOD_NOT_ALLOWED",
+          "406 NOT_ACCEPTABLE",
+          "407 PROXY_AUTHENTICATION_REQUIRED",
+          "408 REQUEST_TIMEOUT",
+          "409 CONFLICT",
+          "410 GONE",
+          "411 LENGTH_REQUIRED",
+          "412 PRECONDITION_FAILED",
+          "413 PAYLOAD_TOO_LARGE",
+          "413 REQUEST_ENTITY_TOO_LARGE",
+          "414 URI_TOO_LONG",
+          "414 REQUEST_URI_TOO_LONG",
+          "415 UNSUPPORTED_MEDIA_TYPE",
+          "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+          "417 EXPECTATION_FAILED",
+          "418 I_AM_A_TEAPOT",
+          "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+          "420 METHOD_FAILURE",
+          "421 DESTINATION_LOCKED",
+          "422 UNPROCESSABLE_ENTITY",
+          "423 LOCKED",
+          "424 FAILED_DEPENDENCY",
+          "425 TOO_EARLY",
+          "426 UPGRADE_REQUIRED",
+          "428 PRECONDITION_REQUIRED",
+          "429 TOO_MANY_REQUESTS",
+          "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+          "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+          "500 INTERNAL_SERVER_ERROR",
+          "501 NOT_IMPLEMENTED",
+          "502 BAD_GATEWAY",
+          "503 SERVICE_UNAVAILABLE",
+          "504 GATEWAY_TIMEOUT",
+          "505 HTTP_VERSION_NOT_SUPPORTED",
+          "506 VARIANT_ALSO_NEGOTIATES",
+          "507 INSUFFICIENT_STORAGE",
+          "508 LOOP_DETECTED",
+          "509 BANDWIDTH_LIMIT_EXCEEDED",
+          "510 NOT_EXTENDED",
+          "511 NETWORK_AUTHENTICATION_REQUIRED"
+        ],
+        "example": "200 OK"
+      },
+      "AggregateSessionReport": {
+        "description": "Session and usage details for up to 10 devices.",
+        "required": [
+          "txid"
+        ],
+        "type": "object",
+        "properties": {
+          "txid": {
+            "description": "A unique string that associates the request with the location report information that is sent in asynchronous callback message.ThingSpace will send a separate callback message for each device that was in the request. All of the callback messages will have the same txid.",
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "usage": {
+            "description": "Contains usage per device.",
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AggregateUsageItem"
+            },
+            "example": [
+              {
+                "imei": "709312034493372",
+                "numberOfSessions": 1,
+                "bytesTransferred": 2057
+              }
+            ]
+          },
+          "errors": {
+            "description": "An object containing any errors reported by the device.",
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AggregateUsageError"
+            }
+          }
+        },
+        "example": {
+          "txid": null,
+          "usage": [
+            {
+              "imei": "709312034493372",
+              "numberOfSessions": 1,
+              "bytesTransferred": 2057
+            }
+          ]
+        }
+      },
+      "AggregatedReportCallbackResult": {
+        "description": "Aggregated usage report (Asynchronous).",
+        "required": [
+          "txid"
+        ],
+        "type": "object",
+        "properties": {
+          "txid": {
+            "description": "A unique string that associates the request with the location report information that is sent in asynchronous callback message.ThingSpace will send a separate callback message for each device that was in the request. All of the callback messages will have the same txid.",
+            "type": "string",
+            "example": "60c07fff-470b-4d6d-afcc-75e6a7c238f6"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AggregatedReportCallbackStatus"
+          }
+        },
+        "example": {
+          "txid": "60c07fff-470b-4d6d-afcc-75e6a7c238f6",
+          "status": "QUEUED"
+        }
+      },
+      "AggregatedReportCallbackStatus": {
+        "description": "QUEUED or COMPLETED. Requests for IoT devices with cacheMode=0 (cached) have status=COMPLETED; all other requests are QUEUED.",
+        "type": "string",
+        "enum": [
+          "QUEUED",
+          "COMPLETED"
+        ],
+        "example": "QUEUED"
+      },
+      "SessionReportRequest": {
+        "description": "Request for obtaining a session report.",
+        "required": [
+          "accountNumber",
+          "imei"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNumber": {
+            "description": "Account Number.",
+            "type": "string",
+            "example": "0844021539-00001"
+          },
+          "imei": {
+            "description": "Device ids.",
+            "type": "string",
+            "example": "709312034493372"
+          },
+          "startDate": {
+            "description": "Start date of session to include. If not specified  information will be shown from the earliest available (180 days). Can be either date in ISO 8601 format or predefined constants.",
+            "type": "string",
+            "example": "CURRENT_MONTH"
+          },
+          "endDate": {
+            "description": "End date of session to include. If not specified  information will be shown to the latest available. Can be either date in ISO 8601 format or predefined constants.",
+            "type": "string",
+            "example": "CURRENT_MONTH"
+          },
+          "durationLow": {
+            "description": "The Low value of session duration.",
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "example": null
+          },
+          "durationHigh": {
+            "description": "The High value of session duration.",
+            "type": "integer",
+            "format": "int32",
+            "nullable": true,
+            "example": null
+          }
+        },
+        "example": {
+          "accountNumber": "0844021539-00001",
+          "startDate": "2022-12-09T22:01:06.217Z",
+          "endDate": "2022-12-09T22:01:08.734Z",
+          "imei": "709312034493372",
+          "durationLow": null,
+          "durationHigh": null
+        }
+      },
+      "DailyUsageItem": {
+        "description": "Contains only dates when device had sessions.",
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "Start date of session. ISO 8601 format."
+          },
+          "endTime": {
+            "type": "string",
+            "description": "End date of session. ISO 8601 format."
+          },
+          "numBytes": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Amount of data transferred, measured in Bytes."
+          }
+        }
+      },
+      "SessionReport": {
+        "description": "Session report for a device.",
+        "required": [
+          "id",
+          "txid"
+        ],
+        "type": "object",
+        "properties": {
+          "sessions": {
+            "description": "An object containing the start and end time of the session with the amount of data transferred.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DailyUsageItem"
+            }
+          },
+          "id": {
+            "type": "string",
+            "example": "709312034493372",
+            "description": "The 10-digit ID of the device."
+          },
+          "txid": {
+            "description": "A unique string that associates the request with the location report information that is sent in asynchronous callback message.ThingSpace will send a separate callback message for each device that was in the request. All of the callback messages will have the same txid.",
+            "type": "string",
+            "nullable": true,
+            "example": "60c07fff-470b-4d6d-afcc-75e6a7c238f6"
+          }
+        },
+        "example": {
+          "id": "709312034493372",
+          "txid": "60c07fff-470b-4d6d-afcc-75e6a7c238f6"
+        }
+      },
+      "CallbackCreated": {
+        "required": [
+          "aname",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "aname": {
+            "description": "The billing account number for which callback messages will be sent.",
+            "type": "string",
+            "example": "0844021539-00001"
+          },
+          "name": {
+            "description": "The name of the callback service, which identifies the type and format of messages that will be sent to the registered URL.",
+            "type": "string",
+            "example": "BullseyeReporting"
+          },
+          "url": {
+            "description": "The address of the callback listening service where the ThingSpace Platform will send callback messages for the service type.",
+            "type": "string",
+            "example": "https://tsustgtests.mocklab.io/notifications/bullseye"
+          }
+        },
+        "example": {
+          "aname": "0844021539-00001",
+          "name": "BullseyeReporting",
+          "url": "https://tsustgtests.mocklab.io/notifications/bullseye"
+        }
+      },
+      "CallbackRegistered": {
+        "example": {
+          "accountName": "0844021539-00001",
+          "name": "BullseyeReporting"
+        },
+        "description": "Registered callback listener.",
+        "required": [
+          "accountName",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The billing account number for which callback messages will be sent.",
+            "type": "string",
+            "example": "0844021539-00001"
+          },
+          "name": {
+            "description": "The name of the callback service, which identifies the type and format of messages that will be sent to the registered URL.",
+            "type": "string",
+            "example": "BullseyeReporting"
+          }
+        }
+      },
+      "HyperPreciseLocationCallback": {
+        "description": "Callback registration request.",
+        "required": [
+          "name",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the callback service that you want to subscribe to.",
+            "type": "string",
+            "example": "BullseyeReporting"
+          },
+          "url": {
+            "description": "The address on your server where you have enabled a listening service for the specific type of callback messages. Specify a URL that is reachable from the Verizon data centers. If your service is running on HTTPS, you should use a one-way authentication certificate with a white-listed IP address.",
+            "type": "string",
+            "example": "https://tsustgtests.mocklab.io/notifications/bullseye"
+          }
+        },
+        "example": {
+          "name": "BullseyeReporting",
+          "url": "https://tsustgtests.mocklab.io/notifications/bullseye"
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

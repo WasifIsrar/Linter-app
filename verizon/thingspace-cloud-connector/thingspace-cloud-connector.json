@@ -1,0 +1,2201 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "ThingSpace Cloud Connector for Azure",
+    "description": "The ThingSpace Cloud Connector API lets customers securely stream data from devices on ThingSpace to remote servers or to accounts hosted by trusted cloud service providers.",
+    "contact": {},
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Cloud Connector",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Cloud Connector",
+              "url": "https://thingspace.verizon.com/api/cc/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Cloud Connector",
+              "url": "https://staging.thingspace.verizon.com/api/cc/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/cc/v1",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/cc/v1",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/targets/actions/query": {
+      "post": {
+        "tags": [
+          "Targets"
+        ],
+        "description": "Search for targets by property values. Returns an array of all matching target resources.",
+        "operationId": "QueryTarget",
+        "requestBody": {
+          "description": "Search for targets by property values.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryTargetRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "1223334444-00001"
+                },
+                "resourceidentifier": {
+                  "id": "dd1682d3-2d80-cefc-f3ee-25154800beff"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes an array of all matching targets. Each target includes the full target resource definition.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryATargetResponse"
+                },
+                "example": [
+                  {
+                    "address": "https://myhost.com:1825",
+                    "addressscheme": "streamrest",
+                    "createdon": "2018-12-22T03:59:18.563Z",
+                    "id": "cee10900-f54e-6eef-e455-bd7f15c4be32",
+                    "kind": "ts.target",
+                    "lastupdated": "2018-12-22T03:59:18.563Z",
+                    "name": "host:port target",
+                    "version": "1.0",
+                    "versionid": "f4be7c2b-059d-11e9-bec6-02420a4e1b0a"
+                  },
+                  {
+                    "address": "arn:aws:iam::252156542789:role/ThingSpace",
+                    "addressscheme": "streamawsiot",
+                    "createdon": "2019-01-24T19:06:43.577Z",
+                    "externalid": "lJZnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH==",
+                    "id": "cea170cc-a58f-6531-fc4b-fae1ceb1a6c8",
+                    "kind": "ts.target",
+                    "lastupdated": "2019-01-24T19:32:31.841Z",
+                    "name": "AWS Target",
+                    "region": "us-east-1",
+                    "version": "1.0",
+                    "versionid": "caf85ff7-200e-11e9-a85b-02420a621e0a"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/targets/actions/delete": {
+      "post": {
+        "tags": [
+          "Targets"
+        ],
+        "description": "Remove a target from a ThingSpace account.",
+        "operationId": "DeleteTarget",
+        "requestBody": {
+          "description": "The request body identifies the target to delete.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteTargetRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "0000000000-00001"
+                },
+                "resourceidentifier": {
+                  "id": "2e61a17d-8fd1-6816-e995-e4c2528bf535"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Target deleted successfully."
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/targets": {
+      "post": {
+        "tags": [
+          "Targets"
+        ],
+        "description": "Define a target to receive data streams, alerts, or callbacks. After creating the target resource, use its ID in a subscription to set up a data stream.",
+        "operationId": "CreateTarget",
+        "requestBody": {
+          "description": "The request body provides the details of the target that you want to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTargetRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "0000000000-00001"
+                },
+                "billingaccountid": "0000000000-00001",
+                "kind": "ts.target",
+                "address": "https://your_IoT_Central_Application.azureiotcentral.com",
+                "addressscheme": "streamazureiot",
+                "fields": {
+                  "httpheaders": {
+                    "Authorization": "SharedAccessSignature sr=d1f9b6bf-1380-41f6-b757-d9805e48392b&sig=EF5tnXClw3MWkb84OkIOUhMH%2FaS1DRD2nXT69QR8RD8%3D&skn=TSCCtoken&se=1648827260410"
+                  },
+                  "devicetypes": [
+                    "cHeAssetTracker",
+                    "cHeAssetTrackerV2",
+                    "tgAssetTracker",
+                    "tgAssetTrackerV2"
+                  ]
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes the full target resource definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Target"
+                },
+                "example": {
+                  "address": "arn:aws:iam::252156542978:role/ThingSpace",
+                  "addressscheme": "streamawsiot",
+                  "billingaccountid": "1223334444-00001",
+                  "createdon": "2018-12-21T04:37:42.651Z",
+                  "externalid": "lJZnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH==",
+                  "id": "0e411230-c3eb-64dc-f5f4-1020364aa81f",
+                  "kind": "ts.target",
+                  "lastupdated": "2018-12-21T04:37:42.651Z",
+                  "name": "AWS Target",
+                  "region": "us-east-1",
+                  "version": "1.0",
+                  "versionid": "27aca5a4-04da-11e9-bff3-02420a5e1b0b"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/targets/actions/newextid": {
+      "post": {
+        "tags": [
+          "Targets"
+        ],
+        "description": "Create a unique string that ThingSpace will pass to AWS for increased security.",
+        "operationId": "GenerateTargetExternalID",
+        "requestBody": {
+          "description": "The request body only contains the authenticating account.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateExternalIDRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "0000000000-00001"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a new external ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateExternalIDResult"
+                },
+                "example": {
+                  "externalid": "ZlJnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH=="
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subscriptions": {
+      "post": {
+        "tags": [
+          "Cloud Connector Subscriptions"
+        ],
+        "description": "Create a subscription to define a streaming channel that sends data from devices in the account to an endpoint defined in a target resource.",
+        "operationId": "CreateSubscription",
+        "requestBody": {
+          "description": "The request body provides the details of the subscription that you want to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSubscriptionRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "1223334444-00001"
+                },
+                "billingaccountid": "1223334444-00001",
+                "allowaggregation": false,
+                "name": "Account subscription 1",
+                "targetid": "{target ID}",
+                "streamkind": "ts.event",
+                "email": "me@mycompany.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns full subscription resource definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subscription"
+                },
+                "example": {
+                  "configurationfailures": 0,
+                  "createdon": "2018-12-21T05:05:02.134Z",
+                  "delegateid": "00000000-0000-0000-0000-000000000000",
+                  "id": "d8c145dd-6948-67ec-ed9b-6a298806bb4a",
+                  "kind": "ts.subscription",
+                  "laststreamingstatus": "",
+                  "laststreamingtime": "0001-01-01T00:00:00Z",
+                  "lastupdated": "2018-12-21T05:22:12.178Z",
+                  "networkfailures": 0,
+                  "streamfailures": 0,
+                  "streamkind": "ts.event",
+                  "targetid": "4e211a0e-e39d-6c32-e15b-d6f07f9e2ec8",
+                  "version": "1.0",
+                  "versionid": "5ed6063f-04e0-11e9-8279-02420a5e1b0b"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subscriptions/actions/query": {
+      "post": {
+        "tags": [
+          "Cloud Connector Subscriptions"
+        ],
+        "description": "Search for subscriptions by property values. Returns an array of all matching subscription resources.",
+        "operationId": "QuerySubscription",
+        "requestBody": {
+          "description": "The request body specifies fields and values to match.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuerySubscriptionRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "1223334444-00001"
+                },
+                "resourceidentifier": {
+                  "id": "dd1682d3-2d80-cefc-f3ee-25154800beff"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns an array of all matching subscriptions. Each subscription includes the full subscription resource definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryASubscriptionResponse"
+                },
+                "example": [
+                  {
+                    "configurationfailures": 0,
+                    "createdon": "2019-02-13T23:13:24.689Z",
+                    "delegateid": "00000000-0000-0000-0000-000000000000",
+                    "disabled": false,
+                    "email": "me@mycompany.com",
+                    "id": "98015aed-e984-62be-f049-1d895d2d1812",
+                    "kind": "ts.subscription",
+                    "laststreamingstatus": "success",
+                    "laststreamingtime": "2019-02-20T18:20:45.865Z",
+                    "lastupdated": "2019-02-13T23:13:24.689Z",
+                    "networkfailures": 0,
+                    "streamfailures": 0,
+                    "streamkind": "ts.event",
+                    "targetid": "4e112cb3-da1d-6ece-f2c6-bb8700b20b09",
+                    "targettype": "Amazon Web Services",
+                    "version": "1.0",
+                    "versionid": "f68b8862-2fe4-11e9-85fd-02420a4c170d"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/subscriptions/actions/delete": {
+      "post": {
+        "tags": [
+          "Cloud Connector Subscriptions"
+        ],
+        "description": "Remove a subscription from a ThingSpace account.",
+        "operationId": "DeleteSubscription",
+        "requestBody": {
+          "description": "The request body identifies the subscription to delete.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteSubscriptionRequest"
+              },
+              "example": {
+                "accountidentifier": {
+                  "billingaccountid": "1223334444-00001"
+                },
+                "resourceidentifier": {
+                  "id": "f8b112df-739c-6236-f059-106c67bafd99"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Subscription deleted successfully."
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devices/configuration/actions/set": {
+      "post": {
+        "tags": [
+          "Cloud Connector Devices"
+        ],
+        "description": "Change configuration values on a device, such as setting how often a device records and reports sensor readings.",
+        "operationId": "UpdateDevicesConfigurationValue",
+        "requestBody": {
+          "description": "The request body changes configuration values on a device.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeConfigurationRequest"
+              },
+              "example": {
+                "accountidentifier": {"billingaccountid":"1223334444-00001"},
+                "resourceidentifier": {"imei": 864508030147323},
+                "configuration":{"frequency":"Low"}
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response contains the ts.event.configuration event that was created to record the change.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangeConfigurationResponse"
+                },
+                "example": {
+                    "action": "set",
+                    "createdon": "2019-02-14T01:41:03.619217664Z",
+                    "deviceid": "8461f530-2e31-6e87-e357-6c38251d4d01",
+                    "fields": {
+                      "configuration": {
+                        "frequency": "Low"
+                      }
+                    },
+                    "foreignid": "e1f15861-7de7-69cb-ed7d-b4a92e091bc4",
+                    "id": "05c12adc-50c0-6ebb-feb0-b9f9637a1dba",
+                    "kind": "ts.event.configuration",
+                    "lastupdated": "2019-02-14T01:41:03.619217727Z",
+                    "name": "SetConfigurationReq",
+                    "state": "pending",
+                    "transactionid": "1d38aae7-558d-4cb9-8269-e8d4c0519045",
+                    "version": "1.0"
+                  }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devices/actions/query": {
+      "post": {
+        "tags": [
+          "Cloud Connector Devices"
+        ],
+        "description": "Find devices by property values. Returns an array of all matching device resources.",
+        "operationId": "FindDeviceByPropertyValues",
+        "requestBody": {
+          "description": "The request body specifies fields and values to match.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuerySubscriptionRequest"
+              },
+              "example": {
+                "accountidentifier": {"billingaccountid":"1223334444-00001"},
+                "resourceidentifier": {"imei": 159495694333703}
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes an array of all matching devices. Each device includes the full device resource definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FindDeviceByPropertyResponseList"
+                },
+                "example": {
+                  "DeviceProperty":[
+                  {
+                    "billingaccountid": "1223334444-00001",
+                    "createdon": "2018-12-19T06:45:41.496Z",
+                    "eventretention": 90,
+                    "iccid": "20332350053095597842",
+                    "id": "64612cb3-3685-6dad-fd2b-ea1adeb5a269",
+                    "imei": 320778042285497,
+                    "kind": "ts.device",
+                    "lastupdated": "2018-12-19T06:45:41.508Z",
+                    "providerid": "8a314f07-849e-6568-e3c1-8381c1f61bfc",
+                    "refid": "20332350053095597842",
+                    "refidtype": "iccid",
+                    "state": "registered",
+                    "version": "1.0",
+                    "versionid": "b3cdaddb-0359-11e9-aba2-02420a4e1b0a"
+                  },
+                  {
+                    "billingaccountid": "1223334444-00001",
+                    "createdon": "2018-12-20T18:42:23.548Z",
+                    "eventretention": 90,
+                    "iccid": "89148000004197486411",
+                    "id": "0481cf95-e3b1-63eb-eb18-43bf717156cb",
+                    "imei": 864508030147323,
+                    "kind": "ts.device.cHeAssetTracker",
+                    "lastupdated": "2018-12-20T18:42:23.688Z",
+                    "providerid": "9dfcfa69-a1c8-4eae-8611-b282646bb113",
+                    "refid": "864508030147323",
+                    "refidtype": "imei",
+                    "state": "ready",
+                    "version": "1.0",
+                    "versionid": "fd835cc9-0486-11e9-a7da-02420a481608"
+                  }
+                ]}
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devices/actions/search": {
+      "post": {
+        "tags": [
+          "Cloud Connector Devices"
+        ],
+        "description": "Search for devices by property values. Returns an array of all matching device resources.",
+        "operationId": "SearchDevicesResourcesByPropertyValues",
+        "requestBody": {
+          "description": "The request body specifies fields and values to match.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuerySubscriptionRequest"
+              },
+              "example": {
+                "accountidentifier": {"billingaccountid":"1223334444-00001"},
+                "$selection": {"iccid": "89148000003499233389"}
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes an array of all matching devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchDeviceByPropertyResponseList"
+                },
+                "example": {
+                "DeviceProperty":[
+                {
+                  "billingaccountid": "1223334444-00001",
+                  "createdon": "2018-12-19T06:45:41.496Z",
+                  "eventretention": 90,
+                  "iccid": "20332350053095597842",
+                  "id": "64612cb3-3685-6dad-fd2b-ea1adeb5a269",
+                  "imei": 320778042285497,
+                  "kind": "ts.device",
+                  "lastupdated": "2018-12-19T06:45:41.508Z",
+                  "providerid": "8a314f07-849e-6568-e3c1-8381c1f61bfc",
+                  "refid": "20332350053095597842",
+                  "refidtype": "iccid",
+                  "state": "registered",
+                  "version": "1.0",
+                  "versionid": "b3cdaddb-0359-11e9-aba2-02420a4e1b0a"
+                }
+                ]
+              }
+              }
+              
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devices/fields/actions/history/search": {
+      "post": {
+        "tags": [
+          "Cloud Connector Devices"
+        ],
+        "description": "Search device event history to find events that match criteria.Sensor readings, configuration changes, and other device data are all stored as events.",
+        "operationId": "SearchDeviceEventHistory",
+        "requestBody":{
+          "description": "The device identifier and fields to match in the search.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDeviceEventHistoryRequest"
+              },
+              "example": {
+                "accountidentifier": {"billingaccountid":"1223334444-00001"},
+                "resourceidentifier": {"imei":"864508030084997"},
+                "$selection": {"kind":"ts.event.configuration"},
+                "$limitnumber": 2
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes an array of all matching devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchDeviceEventHistoryResponseList"
+                },
+                "example": {
+                  "SearchDeviceEventHistory":[
+                  {
+                    "action": "set",
+                    "createdon": "2019-02-21T02:05:25.270417481Z",
+                    "deviceid": "8461f530-2e31-6e87-e357-6c38251d4d01",
+                    "id": "e521b8ae-440d-6cc1-f687-7c80e085ff29",
+                    "kind": "ts.event.configuration",
+                    "lastupdated": "2019-02-21T02:05:25.394230017Z",
+                    "name": "SetConfigurationReq",
+                    "state": "update",
+                    "tagids": [
+                      "4d110e4f-7a7c-6b26-eaac-31cc34c6e1d4",
+                      "cd81ed16-18ae-6c7d-eaba-2883b0395387"
+                    ],
+                    "transactionid": "c7a0a8cf-6856-4733-93ea-69913650e4ca",
+                    "version": "1.0",
+                    "versionid": "270e4820-357d-11e9-9d6c-02420a470c06"
+                  },
+                  {
+                    "action": "set",
+                    "createdon": "2019-02-21T01:58:45.163Z",
+                    "deviceid": "8461f530-2e31-6e87-e357-6c38251d4d01",
+                    "id": "25819e96-c4f2-6545-fb68-0e1d9662359f",
+                    "kind": "ts.event.configuration",
+                    "lastupdated": "2019-02-21T01:58:45.163Z",
+                    "state": "pending",
+                    "tagids": [
+                      "4d110e4f-7a7c-6b26-eaac-31cc34c6e1d4",
+                      "cd81ed16-18ae-6c7d-eaba-2883b0395387"
+                    ],
+                    "transactionid": "c7a0a8cf-6856-4733-93ea-69913650e4ca",
+                    "version": "1.0",
+                    "versionid": "387fe2fe-357c-11e9-ae40-02420a49140a"
+                  }
+                ]
+              }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devices/fields/{fieldname}/actions/history": {
+      "post": {
+        "tags": [
+          "Cloud Connector Devices"
+        ],
+        "description": "Returns the readings of a specified sensor, with the most recent reading first. Sensor readings are stored as events; this request an array of events.",
+        "operationId": "SearchSensorReadings",
+        "parameters": [
+          {
+            "name": "fieldname",
+            "in": "path",
+            "description": "The name of the sensor.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "description": "The device identifier and fields to match in the search.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchSensorHistoryRequest"
+              },
+              "example": {
+                "accountidentifier": {"billingaccountid":"1223334444-00001"},
+                "resourceidentifier": {"imei":"864508030084997"},
+                "$limitnumber": 2
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes an array of all matching devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchSensorHistoryResponseList"
+                },
+                "example": {
+                  "SearchSensorHistory":[
+                  {
+                    "action": "update",
+                    "createdon": "2019-02-22T04:05:26Z",
+                    "deviceid": "8461f530-2e31-6e87-e357-6c38251d4d01",
+                    "fields": {
+                      "temperature": "18.4"
+                    },
+                    "id": "4521b7a7-7de1-6e68-f020-1345ef3b764a",
+                    "kind": "ts.event",
+                    "lastupdated": "2019-02-22T04:05:49.786Z",
+                    "state": "update",
+                    "tagids": [
+                      "4d110e4f-7a7c-6b26-eaac-31cc34c6e1d4",
+                      "cd81ed16-18ae-6c7d-eaba-2883b0395387"
+                    ],
+                    "transactionid": "864508030084997-OnBoard-c05f946c-3f5c-4527-b4d0-5aca256fc3dd",
+                    "version": "1.0",
+                    "versionid": "238addb9-3657-11e9-8848-02420a951f13"
+                  },
+                  {
+                    "action": "update",
+                    "createdon": "2019-02-22T03:05:26Z",
+                    "deviceid": "8461f530-2e31-6e87-e357-6c38251d4d01",
+                    "fields": {
+                      "temperature": "19.0"
+                    },
+                    "id": "05b1ea7b-4bf2-6af6-ea8b-414595f2c3e9",
+                    "kind": "ts.event",
+                    "lastupdated": "2019-02-22T03:05:48.483Z",
+                    "state": "update",
+                    "tagids": [
+                      "4d110e4f-7a7c-6b26-eaac-31cc34c6e1d4",
+                      "cd81ed16-18ae-6c7d-eaba-2883b0395387"
+                    ],
+                    "transactionid": "864508030084997-OnBoard-5f71f47d-4464-4f69-a3ee-5c243f0ef5b8",
+                    "version": "1.0",
+                    "versionid": "c0ffa4b5-364e-11e9-a3ee-02420a8c0d14"
+                  }
+                ]
+              }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devices/actions/delete": {
+      "post": {
+        "tags": [
+          "Cloud Connector Devices"
+        ],
+        "description": "Remove a device from a ThingSpace account.",
+        "operationId": "DeleteDeviceFromAccount",
+        "requestBody":{
+          "description": "The request body identifies the device to delete.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveDeviceRequest"
+              },
+              "example": {
+                "accountidentifier": {"billingaccountid":"1223334444-00001"},
+                "resourceidentifier": {"imei":"864508030084997"}
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Target deleted successfully."
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/targets/actions/newaic": {
+      "post": {
+        "tags": [
+          "Targets"
+        ],
+        "description": "Deploy a new Azure IoT Central application based on the Verizon ARM template within the specified Azure Active Directory account.",
+        "operationId": "CreateAzureCentralIoTApplication",
+        "parameters":[
+          {
+            "name": "BillingaccountID",
+            "in": "header",
+            "description": "TThe ThingSpace ID of the authenticating billing account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "description": "The request body must include the UUID of the subscription that you want to update plus any properties that you want to change.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIoTApplicationRequest"
+              },
+              "example": {
+                "appName": "newarmapp1",
+                "billingAccountID": "0000123456-00001",
+                "clientID": "UUID",
+                "clientSecret": "client secret", 
+                "emailIDs":"email@domain.com",
+                "resourcegroup": "Myresourcegroup",
+                "sampleIOTcApp": "{app ID}", 
+                "subscriptionID": "{subscription ID}",
+                 "tenantID": "{tenant ID}"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A success response includes the full subscription resource definition.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateIoTApplicationResponse"
+                },
+                "example":{
+                  "appName":"newarmapp1",
+                  "sharedSecret":"SharedAccessSignaturesr={client secret}",
+                  "url":"https://newarmapp1.azureiotcentral.com"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GenerateExternalIDResult": {
+        "description": "A new external ID.",
+        "type": "object",
+        "properties": {
+          "externalid": {
+            "description": "Newly created security string.",
+            "type": "string",
+            "example": "ZlJnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH=="
+          }
+        },
+        "example": {
+          "externalid": "ZlJnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH=="
+        }
+      },
+      "GenerateExternalIDRequest": {
+        "description": "Authenticating account ID.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "0000000000-00001"
+          }
+        }
+      },
+      "QueryASubscriptionResponse": {
+        "description": "An array of all matching subscriptions.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Subscription"
+        },
+        "example": [
+          {
+            "configurationfailures": 0,
+            "createdon": "2019-02-13T23:13:24.689Z",
+            "delegateid": "00000000-0000-0000-0000-000000000000",
+            "disabled": false,
+            "email": "me@mycompany.com",
+            "id": "98015aed-e984-62be-f049-1d895d2d1812",
+            "kind": "ts.subscription",
+            "laststreamingstatus": "success",
+            "laststreamingtime": "2019-02-20T18:20:45.865Z",
+            "lastupdated": "2019-02-13T23:13:24.689Z",
+            "networkfailures": 0,
+            "streamfailures": 0,
+            "streamkind": "ts.event",
+            "targetid": "4e112cb3-da1d-6ece-f2c6-bb8700b20b09",
+            "targettype": "Amazon Web Services",
+            "version": "1.0",
+            "versionid": "f68b8862-2fe4-11e9-85fd-02420a4c170d"
+          }
+        ]
+      },
+      "Subscription": {
+        "description": "Subscription resource definition.",
+        "type": "object",
+        "properties": {
+          "configurationfailures": {
+            "description": "The number of streaming failures due to faulty configuration.",
+            "type": "integer",
+            "example": 0
+          },
+          "createdon": {
+            "description": "The number of streaming failures due to faulty configuration.",
+            "type": "string",
+            "example": "2018-12-21T05:05:02.134Z"
+          },
+          "delegateid": {
+            "description": "Not currently used.",
+            "type": "string",
+            "example": "00000000-0000-0000-0000-000000000000"
+          },
+          "description": {
+            "description": "Description of the subscription.",
+            "type": "string"
+          },
+          "disabled": {
+            "description": "Whether the subscription is currently sending data.",
+            "type": "boolean",
+            "example": false
+          },
+          "email": {
+            "description": "The address to which any error reports should be delivered.",
+            "type": "string",
+            "example": "me@mycompany.com"
+          },
+          "filter": {
+            "description": "Filter for events.",
+            "type": "string"
+          },
+          "id": {
+            "description": "ThingSpace unique ID for the subscription that was created.",
+            "type": "string",
+            "example": "d8c145dd-6948-67ec-ed9b-6a298806bb4a"
+          },
+          "kind": {
+            "description": "Identifies the resource kind.",
+            "type": "string",
+            "example": "ts.subscription"
+          },
+          "laststreamingstatus": {
+            "description": "Possible values: success or fail.",
+            "type": "string",
+            "example": "success"
+          },
+          "laststreamingtime": {
+            "description": "The date and time that the last stream send was attempted.",
+            "type": "string",
+            "example": "0001-01-01T00:00:00Z"
+          },
+          "lastupdated": {
+            "description": "The date the resource was last updated.",
+            "type": "string",
+            "example": "2018-12-21T05:22:12.178Z"
+          },
+          "name": {
+            "description": "Name of the subscription.",
+            "type": "string",
+            "example": "Account subscription 1"
+          },
+          "networkfailures": {
+            "description": "The number of failures due to network problems.",
+            "type": "integer",
+            "example": 0
+          },
+          "streamfailures": {
+            "type": "integer",
+            "example": 0
+          },
+          "streamkind": {
+            "description": "The event type that will be sent in the data stream.",
+            "type": "string",
+            "example": "ts.event"
+          },
+          "targetid": {
+            "description": "Target to be used for dispatching events.",
+            "type": "string",
+            "example": "4e211a0e-e39d-6c32-e15b-d6f07f9e2ec8"
+          },
+          "targettype": {
+            "type": "string",
+            "example": "Amazon Web Services"
+          },
+          "version": {
+            "description": "Version of the underlying schema resource.",
+            "type": "string",
+            "example": "1.0"
+          },
+          "versionid": {
+            "description": "The version of the resource.",
+            "type": "string",
+            "example": "5ed6063f-04e0-11e9-8279-02420a5e1b0b"
+          }
+        },
+        "example": {
+          "configurationfailures": 0,
+          "createdon": "2018-12-21T05:05:02.134Z",
+          "delegateid": "00000000-0000-0000-0000-000000000000",
+          "id": "d8c145dd-6948-67ec-ed9b-6a298806bb4a",
+          "kind": "ts.subscription",
+          "laststreamingstatus": "",
+          "laststreamingtime": "0001-01-01T00:00:00Z",
+          "lastupdated": "2018-12-21T05:22:12.178Z",
+          "networkfailures": 0,
+          "streamfailures": 0,
+          "streamkind": "ts.event",
+          "targetid": "4e211a0e-e39d-6c32-e15b-d6f07f9e2ec8",
+          "version": "1.0",
+          "versionid": "5ed6063f-04e0-11e9-8279-02420a5e1b0b"
+        }
+      },
+      "Target": {
+        "type": "object",
+        "description": "Target resource definition.",
+        "properties": {
+          "address": {
+            "description": "The endpoint for data streams.",
+            "type": "string",
+            "example": "https://myhost.com:1825"
+          },
+          "addressscheme": {
+            "description": "The transport format.",
+            "type": "string",
+            "example": "streamrest"
+          },
+          "billingaccountid": {
+            "description": "The billing account ID.",
+            "type": "string",
+            "example": ""
+          },
+          "createdon": {
+            "description": "The date the resource was created.",
+            "type": "string",
+            "example": "2019-01-24T19:06:43.577Z"
+          },
+          "externalid": {
+            "description": "Security identification string.",
+            "type": "string",
+            "example": "lJZnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH=="
+          },
+          "id": {
+            "description": "ThingSpace unique ID for the target that was created.",
+            "type": "string",
+            "example": "cea170cc-a58f-6531-fc4b-fae1ceb1a6c8"
+          },
+          "kind": {
+            "description": "Identifies the resource kind. Targets are ts.target.",
+            "type": "string",
+            "example": "ts.target"
+          },
+          "lastupdated": {
+            "description": "The date the resource was last updated.",
+            "type": "string",
+            "example": "2019-01-24T19:32:31.841Z"
+          },
+          "name": {
+            "description": "Name of the target.",
+            "type": "string",
+            "example": "AWS Target"
+          },
+          "region": {
+            "description": "AWS region value.",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "version": {
+            "description": "Version of the underlying schema resource.",
+            "type": "string",
+            "example": "1.0"
+          },
+          "versionid": {
+            "description": "The version of the resource.",
+            "type": "string",
+            "example": "caf85ff7-200e-11e9-a85b-02420a621e0a"
+          },
+          "description": {
+            "description": "Description of the target.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "address": "arn:aws:iam::252156542789:role/ThingSpace",
+          "addressscheme": "streamawsiot",
+          "createdon": "2019-01-24T19:06:43.577Z",
+          "externalid": "lJZnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH==",
+          "id": "cea170cc-a58f-6531-fc4b-fae1ceb1a6c8",
+          "kind": "ts.target",
+          "lastupdated": "2019-01-24T19:32:31.841Z",
+          "name": "AWS Target",
+          "region": "us-east-1",
+          "version": "1.0",
+          "versionid": "caf85ff7-200e-11e9-a85b-02420a621e0a"
+        }
+      },
+      "QueryATargetResponse": {
+        "description": "An array of all matching targets.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Target"
+        },
+        "example": [
+          {
+            "address": "https://myhost.com:1825",
+            "addressscheme": "streamrest",
+            "createdon": "2018-12-22T03:59:18.563Z",
+            "id": "cee10900-f54e-6eef-e455-bd7f15c4be32",
+            "kind": "ts.target",
+            "lastupdated": "2018-12-22T03:59:18.563Z",
+            "name": "host:port target",
+            "version": "1.0",
+            "versionid": "f4be7c2b-059d-11e9-bec6-02420a4e1b0a"
+          },
+          {
+            "address": "arn:aws:iam::252156542789:role/ThingSpace",
+            "addressscheme": "streamawsiot",
+            "createdon": "2019-01-24T19:06:43.577Z",
+            "externalid": "lJZnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH==",
+            "id": "cea170cc-a58f-6531-fc4b-fae1ceb1a6c8",
+            "kind": "ts.target",
+            "lastupdated": "2019-01-24T19:32:31.841Z",
+            "name": "AWS Target",
+            "region": "us-east-1",
+            "version": "1.0",
+            "versionid": "caf85ff7-200e-11e9-a85b-02420a621e0a"
+          }
+        ]
+      },
+      "QueryTargetRequest": {
+        "description": "Search for targets by property values.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "$selection": {
+            "$ref": "#/components/schemas/Selection"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "1223334444-00001"
+          },
+          "resourceidentifier": {
+            "id": "dd1682d3-2d80-cefc-f3ee-25154800beff"
+          }
+        }
+      },
+      "AccountIdentifier": {
+        "description": "The ID of the authenticating billing account, in the format `{\"billingaccountid\":\"1234567890-12345\"}`.",
+        "type": "object",
+        "properties": {
+          "billingaccountid": {
+            "type": "string",
+            "example": "1223334444-00001"
+          }
+        },
+        "example": {
+          "billingaccountid": "0000000000-00001"
+        }
+      },
+      "DeleteTargetRequest": {
+        "description": "Target to delete.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "0000000000-00001"
+          },
+          "resourceidentifier": {
+            "id": "2e61a17d-8fd1-6816-e995-e4c2528bf535"
+          }
+        }
+      },
+      "ResourceIdentifier": {
+        "description": "The ID of the target to delete, in the format {\"id\": \"dd1682d3-2d80-cefc-f3ee-25154800beff\"}.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Target ID.",
+            "type": "string",
+            "example": "dd1682d3-2d80-cefc-f3ee-25154800beff"
+          },
+          "imei":{
+            "description": "Device IMEI.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "2e61a17d-8fd1-6816-e995-e4c2528bf535"
+        }
+      },
+      "CreateTargetRequest": {
+        "description": "Details of the target that you want to create.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "billingaccountid": {
+            "description": "The ID of the authenticating billing account.",
+            "type": "string",
+            "example": "1223334444-00001"
+          },
+          "kind": {
+            "description": "Identifies the resource kind. Targets are ts.target.",
+            "type": "string",
+            "example": "ts.target"
+          },
+          "address": {
+            "description": "The endpoint for notifications or data streams. The format depends on the selected `addressscheme`.<br />`streamrest` requires a `host:port` value <br />`streamawsiot` requres a valid ARN.",
+            "type": "string",
+            "example": "https://myhost.com:1825"
+          },
+          "addressscheme": {
+            "description": "The transport format. Valid values are: <br />streamawsiot - streamed data to an AWS account <br />streamrest - streamed REST data to a defined endpoint.",
+            "type": "string",
+            "example": "streamrest"
+          },
+          "fields": {
+            "$ref": "#/components/schemas/CreateTargetRequestFields"
+          },
+          "description": {
+            "description": "Descriptive information about the target.",
+            "type": "string"
+          },
+          "externalid": {
+            "description": "Security identification string created by a POST /targets/actions/newextid request.",
+            "type": "string",
+            "example": "lJZnih8BfqsosZrEEkfPuR3aGOk2i-HIr6tXN275ioJF6bezIrQB9EbzpTRep8J7RmV7QH=="
+          },
+          "name": {
+            "description": "Name of the target.",
+            "type": "string",
+            "example": "AWS Target"
+          },
+          "region": {
+            "description": "AWS region value.",
+            "type": "string",
+            "example": "us-east-1"
+          },
+          "key1": {
+            "description": "OAuth 2.0 bearer token.",
+            "type": "string",
+            "example": "Bearer MmY3ZefqefqDk4Ni00MzZmLWJkYzgtYTI4qfqBjNTc2"
+          },
+          "oauth": {
+            "$ref": "#/components/schemas/TargetAuthentication"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "0000000000-00001"
+          },
+          "billingaccountid": "0000000000-00001",
+          "kind": "ts.target",
+          "address": "https://your_IoT_Central_Application.azureiotcentral.com",
+          "addressscheme": "streamazureiot",
+          "fields": {
+            "httpheaders": {
+              "Authorization": "SharedAccessSignature sr=d1f9b6bf-1380-41f6-b757-d9805e48392b&sig=EF5tnXClw3MWkb84OkIOUhMH%2FaS1DRD2nXT69QR8RD8%3D&skn=TSCCtoken&se=1648827260410"
+            },
+            "devicetypes": [
+              "cHeAssetTracker",
+              "cHeAssetTrackerV2",
+              "tgAssetTracker",
+              "tgAssetTrackerV2"
+            ]
+          }
+        }
+      },
+      "TargetAuthentication": {
+        "type": "object",
+        "description": "OAuth 2 token and refresh token for TS to stream events to Target.",
+        "properties": {
+          "body": {
+            "$ref": "#/components/schemas/TargetAuthenticationBody"
+          },
+          "version": {
+            "type": "string",
+            "example": "1.0"
+          }
+        }
+      },
+      "TargetAuthenticationBody": {
+        "type": "object",
+        "properties": {
+          "grant_type": {
+            "description": "Authentication grant type.",
+            "type": "string",
+            "example": "refresh_token"
+          },
+          "refresh_token": {
+            "description": "Refresh token.",
+            "type": "string",
+            "example": "qfeqVjZTYzMmUtZWMzZqfq4ZDUtNzFhZWVkYTlmMjk1"
+          },
+          "scope": {
+            "description": "Authentication scopes.",
+            "type": "string"
+          },
+          "headers": {
+            "$ref": "#/components/schemas/TargetAuthenticationBodyHeaders"
+          },
+          "host": {
+            "$ref": "#/components/schemas/TargetAuthenticationBodyHost"
+          }
+        },
+        "example": {
+          "grant_type": "refresh_token",
+          "refresh_token": "qfeqVjZTYzMmUtZWMzZqfq4ZDUtNzFhZWVkYTlmMjk1",
+          "headers": {
+            "Authorization": "Basic RGFrqewfq2xpZW50QXBwVjI6YzM5YjqfqmI2LWI2MWQtNDRlZTQ5MmM1YTRk",
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          "host": {
+            "hostandpath": "https:// myhost.com:1825"
+          }
+        }
+      },
+      "TargetAuthenticationBodyHost": {
+        "type": "object",
+        "description": "Host information.",
+        "properties": {
+          "hostandpath": {
+            "type": "string",
+            "example": "https:// myhost.com:1825"
+          }
+        },
+        "example": {
+          "hostandpath": "https:// myhost.com:1825"
+        }
+      },
+      "TargetAuthenticationBodyHeaders": {
+        "type": "object",
+        "description": "Authentication headers.",
+        "properties": {
+          "Authorization": {
+            "description": "Authorization header.",
+            "type": "string",
+            "example": "Basic RGFrqewfq2xpZW50QXBwVjI6YzM5YjqfqmI2LWI2MWQtNDRlZTQ5MmM1YTRk"
+          },
+          "Content-Type": {
+            "description": "Content-Type header.",
+            "type": "string",
+            "example": "application/x-www-form-urlencoded"
+          }
+        },
+        "example": {
+          "Authorization": "Basic RGFrqewfq2xpZW50QXBwVjI6YzM5YjqfqmI2LWI2MWQtNDRlZTQ5MmM1YTRk",
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      },
+      "CreateTargetRequestFields": {
+        "type": "object",
+        "properties": {
+          "httpheaders": {
+            "$ref": "#/components/schemas/FieldsHttpHeaders"
+          },
+          "devicetypes": {
+            "description": "List of device types.",
+            "type": "array",
+            "items": {
+              "description": "Device type.",
+              "type": "string",
+              "example": "cHeAssetTracker"
+            },
+            "example": [
+              "cHeAssetTracker",
+              "cHeAssetTrackerV2",
+              "tgAssetTracker",
+              "tgAssetTrackerV2"
+            ]
+          }
+        },
+        "example": {
+          "httpheaders": {
+            "Authorization": "SharedAccessSignature sr=d1f9b6bf-1380-41f6-b757-d9805e48392b&sig=EF5tnXClw3MWkb84OkIOUhMH%2FaS1DRD2nXT69QR8RD8%3D&skn=TSCCtoken&se=1648827260410"
+          },
+          "devicetypes": [
+            "cHeAssetTracker",
+            "cHeAssetTrackerV2",
+            "tgAssetTracker",
+            "tgAssetTrackerV2"
+          ]
+        }
+      },
+      "FieldsHttpHeaders": {
+        "type": "object",
+        "properties": {
+          "Authorization": {
+            "type": "string",
+            "example": "SharedAccessSignature sr=d1f9b6bf-1380-41f6-b757-d9805e48392b&sig=EF5tnXClw3MWkb84OkIOUhMH%2FaS1DRD2nXT69QR8RD8%3D&skn=TSCCtoken&se=1648827260410"
+          }
+        },
+        "example": {
+          "Authorization": "SharedAccessSignature sr=d1f9b6bf-1380-41f6-b757-d9805e48392b&sig=EF5tnXClw3MWkb84OkIOUhMH%2FaS1DRD2nXT69QR8RD8%3D&skn=TSCCtoken&se=1648827260410"
+        }
+      },
+      "CreateSubscriptionRequest": {
+        "description": "The details of the subscription that you want to create.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "description": {
+            "description": "Descriptive information about the subscription.",
+            "type": "string"
+          },
+          "disabled": {
+            "description": "Enable or disable the subscription. A disabled subscription will not send any data.",
+            "type": "boolean",
+            "example": false
+          },
+          "email": {
+            "description": "The address to which any error reports should be delivered.",
+            "type": "string",
+            "example": "me@mycompany.com"
+          },
+          "filter": {
+            "description": "String containing a $filter object with a property and value to filter out non-matching events.",
+            "type": "string"
+          },
+          "billingaccountid": {
+            "type": "string",
+            "example": "1223334444-00001"
+          },
+          "streamkind": {
+            "description": "The type of event data to send via this subscription. This will be `ts.event` in most cases. Other event types are `ts.event.diagnostics` for device diagnostic data, `ts.event.configuration` for device configuration events, or `ts.event.security`. Note that the device ThingSpace client must support sending specific event types for anything other than `ts.event`.",
+            "type": "string",
+            "example": "ts.event"
+          },
+          "targetid": {
+            "description": "The ID of the target resource to be used when dispatching events. The corresponding target should have a “stream” addressscheme.",
+            "type": "string",
+            "example": "4e211a0e-e39d-6c32-e15b-d6f07f9e2ec8"
+          },
+          "name": {
+            "description": "Name of the subscription.",
+            "type": "string",
+            "example": "Account subscription 1"
+          },
+          "allowaggregation": {
+            "description": "Setting this value to `false` prevents the data returned from being aggregated and makes the data easier to parse.",
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "0000000000-00001"
+          },
+          "billingaccountid": "0000000000-00001",
+          "streamkind": "ts.event",
+          "targetid": "your target ID UUID such as ae110c40-2685-6c70-f46e-286f7370b8a9",
+          "name": "name your subscription"
+        }
+      },
+      "QuerySubscriptionRequest": {
+        "description": "Fields and values to match.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "$selection": {
+            "$ref": "#/components/schemas/Selection"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "1223334444-00001"
+          },
+          "resourceidentifier": {
+            "id": "dd1682d3-2d80-cefc-f3ee-25154800beff"
+          }
+        }
+      },
+      "Selection": {
+        "description": "A comma-separated list of properties and comparator values to match against subscriptions in the ThingSpace account. See Working with Query Filters for more information. If the request does not include `$selection`, the response will include all subscriptions to which the requesting user has access.",
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "example": {
+          "addressscheme": "streamawsiot"
+        }
+      },
+      "DeleteSubscriptionRequest": {
+        "description": "The subscription to delete.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "1223334444-00001"
+          },
+          "resourceidentifier": {
+            "id": "f8b112df-739c-6236-f059-106c67bafd99"
+          }
+        }
+      },
+      "ChangeConfigurationRequest": {
+        "description": "The request body identifies the device and the values to set.",
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/configuration"
+          }
+        },
+        "example": {
+          "accountidentifier": {
+            "billingaccountid": "1223334444-00001"
+          },
+          "resourceidentifier": {
+            "id": "f8b112df-739c-6236-f059-106c67bafd99"
+          },
+          "configuration":{
+            "frequency":"Low"
+          }
+        }
+      },
+      "configuration": {
+        "description": "List of the field names and values to set.",
+        "type": "object",
+        "properties": {
+          "frequency": {
+            "type": "string",
+            "example": "Low"
+          }
+        },
+        "example": {
+          "frequency":"Low"
+        }
+      },
+      "ChangeConfigurationResponse": {
+        "description": "Change Configuration resource definition.",
+        "type": "object",
+        "properties": {
+          "action": {
+            "description": "The action requested in this event; “change” for device configuration changes.",
+            "type": "string",
+            "example": "set"
+          },
+          "createdon": {
+            "description": "The date and time of the change request.",
+            "type": "string",
+            "example": "2019-02-14T01:41:03.619217664Z"
+          },
+          "deviceid": {
+            "description": "The device’s ThingSpace UUID.",
+            "type": "string",
+            "example": "8461f530-2e31-6e87-e357-6c38251d4d01"
+          },
+          "fields": {
+            "description": "List of fields affected by the event.",
+            "type": "object",
+            "properties": {
+              "configuration": {
+                "$ref": "#/components/schemas/configuration"
+              }
+            },
+            "example": {
+              "configuration": {
+                "frequency": "Low"
+              }
+            }
+          },
+          "foreignid": {
+            "description": "foreign id",
+            "type": "string",
+            "example": "e1f15861-7de7-69cb-ed7d-b4a92e091bc4"
+          },
+          "id": {
+            "description": "The unique ID of this ts.event.configuration event.",
+            "type": "string",
+            "example": "05c12adc-50c0-6ebb-feb0-b9f9637a1dba"
+          },
+          "kind": {
+            "description": "The kind of the ThingSpace resource that is being reported",
+            "type": "string",
+            "example": "ts.event.configuration"
+          },
+          "lastupdated": {
+            "description": "The date and time that the event was last updated.",
+            "type": "string",
+            "example": "2019-02-14T01:41:03.619217727Z"
+          },
+          "name": {
+            "description": "The name of the event; “SetConfigurationReq” for device configuration changes.",
+            "type": "string",
+            "example": "SetConfigurationReq"
+          },
+          "state": {
+            "description": "The current status of the request. The value will be “pending” until the device wakes up and ThingSpace can send the request to the device.",
+            "type": "string",
+            "example": "pending"
+          },
+          "transactionid": {
+            "description": "transaction id",
+            "type": "string",
+            "example": "1d38aae7-558d-4cb9-8269-e8d4c0519045"
+          },
+          "version": {
+            "description": "version",
+            "type": "string",
+            "example": "1.0"
+          }
+        }
+      },
+      "FindDeviceByPropertyResponse": {
+        "description": "Change Configuration resource definition.",
+        "type": "object",
+        "properties": {
+          "billingaccountid": {
+            "description": "Billing account ID of the resource.",
+            "type": "string",
+            "example": "1223334444-00001"
+          },
+          "createdon": {
+            "description": "The date the resource was created.",
+            "type": "string",
+            "example": "2018-12-19T06:45:41.496Z"
+          },
+          "eventretention": {
+            "description": "",
+            "type": "string",
+            "example": "90"
+          },
+          "iccid": {
+            "description": "Cellular SIM card identifier.",
+            "type": "string",
+            "example": "20332350053095597842"
+          },
+          "id": {
+            "description": "ThingSpace unique ID for the device that was added.",
+            "type": "string",
+            "example": "64612cb3-3685-6dad-fd2b-ea1adeb5a269"
+          },
+          "imei": {
+            "description": "4G hardware device identifier.",
+            "type": "string",
+            "example": "320778042285497"
+          },
+          "kind": {
+            "description": "Identifies the resource kind.",
+            "type": "string",
+            "example": "ts.device"
+          },
+          "lastupdated": {
+            "description": "The date the resource was last updated.",
+            "type": "string",
+            "example": "2018-12-19T06:45:41.508Z"
+          },
+          "providerid": {
+            "description": "The device’s service provider.",
+            "type": "string",
+            "example": "8a314f07-849e-6568-e3c1-8381c1f61bfc"
+          },
+          "refid": {
+            "description": "The value of the refidtype identifier.",
+            "type": "string",
+            "example": "20332350053095597842"
+          },
+          "refidtype": {
+            "description": "The device identifier type used to refer to this device.",
+            "type": "string",
+            "example": "iccid"
+          },
+          "state": {
+            "description": "Service state of the device.",
+            "type": "string",
+            "example": "registered"
+          },
+          "version": {
+            "description": "Version of the underlying schema resource.",
+            "type": "string",
+            "example": "1.0"
+          },
+          "versionid": {
+            "description": "The version of the resource.",
+            "type": "string",
+            "example": "b3cdaddb-0359-11e9-aba2-02420a4e1b0a"
+          }
+        }
+      },
+      "FindDeviceByPropertyResponseList": {
+        "description": "A success response includes an array of all matching devices. Each device includes the full device resource definition.",
+        "type": "object",
+        "properties": {
+          "DeviceProperty": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/FindDeviceByPropertyResponse"
+            }
+          }
+        }
+      },
+      "SearchDeviceByPropertyResponseList":{
+        "description": "A success response includes an array of all matching devices.",
+        "type": "object",
+        "properties": {
+          "DeviceProperty": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/SearchDeviceByPropertyResponse"
+            }
+          }
+        }
+      },
+      "SearchDeviceByPropertyResponse": {
+        "description": "The device identifier and fields to match in the search.",
+        "type": "object",
+        "properties": {
+          "billingaccountid": {
+            "description": "Billing account ID of the resource.",
+            "type": "string",
+            "example": "1223334444-00001"
+          },
+          "createdon": {
+            "description": "The date the resource was created.",
+            "type": "string",
+            "example": "2018-12-19T06:45:41.496Z"
+          },
+          "eventretention": {
+            "description": "",
+            "type": "string",
+            "example": "90"
+          },
+          "fields":{
+            "description": "",
+            "type": "object",
+            "properties":{
+              "item": {
+                "$ref": "#/components/schemas/SearchDeviceByPropertyFields"
+              }
+            }
+          },
+          "iccid": {
+            "description": "Cellular SIM card identifier.",
+            "type": "string",
+            "example": "20332350053095597842"
+          },
+          "id": {
+            "description": "ThingSpace unique ID for the device that was added.",
+            "type": "string",
+            "example": "64612cb3-3685-6dad-fd2b-ea1adeb5a269"
+          },
+          "imei": {
+            "description": "4G hardware device identifier.",
+            "type": "string",
+            "example": "320778042285497"
+          },
+          "kind": {
+            "description": "Identifies the resource kind.",
+            "type": "string",
+            "example": "ts.device"
+          },
+          "lastupdated": {
+            "description": "The date the resource was last updated.",
+            "type": "string",
+            "example": "2018-12-19T06:45:41.508Z"
+          },
+          "providerid": {
+            "description": "The device’s service provider.",
+            "type": "string",
+            "example": "8a314f07-849e-6568-e3c1-8381c1f61bfc"
+          },
+          "refid": {
+            "description": "The value of the refidtype identifier.",
+            "type": "string",
+            "example": "20332350053095597842"
+          },
+          "refidtype": {
+            "description": "The device identifier type used to refer to this device.",
+            "type": "string",
+            "example": "iccid"
+          },
+          "state": {
+            "description": "Service state of the device.",
+            "type": "string",
+            "example": "registered"
+          },
+          "version": {
+            "description": "Version of the underlying schema resource.",
+            "type": "string",
+            "example": "1.0"
+          },
+          "versionid": {
+            "description": "The version of the resource.",
+            "type": "string",
+            "example": "b3cdaddb-0359-11e9-aba2-02420a4e1b0a"
+          }
+        }
+      },
+      "SearchDeviceByPropertyFields":{
+        "description": "List of device sensors and their most recently reported values.",
+        "type": "object",
+        "properties": {
+          "acceleration":{
+            "$ref": "#/components/schemas/acceleration"
+          },
+          "battery":{
+            "type": "string",
+            "example": "95"
+          },
+          "humidity":{
+            "type": "string",
+            "example": "29"
+          },
+          "light":{
+            "type": "string",
+            "example": "150"
+          },
+          "pressure":{
+            "type": "string",
+            "example": "888"
+          },
+          "signalStrength":{
+            "type": "string",
+            "example": "-58"
+          },
+          "temperature":{
+            "type": "string",
+            "example": "19.2"
+          },
+          "DevicePropertylocation": {
+            "$ref": "#/components/schemas/DevicePropertylocation"
+          }
+        }
+      },
+      "DevicePropertylocation":{
+        "type": "object",
+        "properties": {
+          "latitude":{
+            "type": "string",
+            "example": "37.2314796"
+          },
+          "longitude":{
+            "type": "string",
+            "example": "-119.4692153"
+          }
+        }
+      },
+      "acceleration":{
+        "type": "object",
+        "properties": {
+          "x":{
+            "type": "string",
+            "example": "0.0277"
+          },
+          "y":{
+            "type": "string",
+            "example": "-1.0334"
+          },
+          "z":{
+            "type": "string",
+            "example": "-0.0134"
+          }
+        }
+      },
+      "SearchDeviceEventHistoryRequest": {
+        "description": "Search Device By Property resource definition.",
+        "required": [
+          "accountidentifier",
+          "resourceidentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "$selection": {
+            "$ref": "#/components/schemas/Selection"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          },
+          "$limitnumber":{
+            "description":"The maximum number of events to include in the response.",
+            "type": "integer",
+            "example": 2
+          },
+          "$page": {
+            "description":"The maximum number of events to include in the response.",
+            "type": "string"
+          }
+        }
+      },
+      "SearchDeviceEventHistoryResponseList":{
+        "description": "A success response includes an array of all matching events.",
+        "type": "object",
+        "properties": {
+          "SearchDeviceEventHistory": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/SearchDeviceResponse"
+            }
+          }
+        }
+      },
+      "SearchDeviceResponse": {
+        "description": "A success response includes an array of all matching events. Each event includes the full event resource definition.",
+        "type": "object",
+        "properties": {
+          "action": {
+            "description": "The action requested in this event; “change” for device configuration changes.",
+            "type": "string",
+            "example": "set"
+          },
+          "createdon": {
+            "description": "The date and time of the change request.",
+            "type": "string",
+            "example": "2019-02-21T02:05:25.270417481Z"
+          },
+          "deviceid": {
+            "description": "The device’s ThingSpace UUID.",
+            "type": "string",
+            "example": "8461f530-2e31-6e87-e357-6c38251d4d01"
+          },
+          "fields": {
+            "description": "List of fields affected by the event.",
+            "type": "object",
+            "properties":{
+              "temperature":{
+                "type": "string",
+                "example": "18.4"
+              }
+            }
+          },
+          "id": {
+            "description": "The unique ID of this ts.event.configuration event.",
+            "type": "string",
+            "example": "e521b8ae-440d-6cc1-f687-7c80e085ff29"
+          },
+          "kind": {
+            "description": "The kind of the ThingSpace resource that is being reported; “ts.event.configuration” for device configuration changes.",
+            "type": "string",
+            "example": "ts.event.configuration"
+          },
+          "lastupdated": {
+            "description": "The date and time that the event was last updated.",
+            "type": "string",
+            "example": "2019-02-21T02:05:25.394230017Z"
+          },
+          "name": {
+            "description": "The name of the event",
+            "type": "string",
+            "example": "SetConfigurationReq"
+          },
+          "state": {
+            "description": "The current status of the request.",
+            "type": "string",
+            "example": "update"
+          },
+          "tagids": {
+            "description": "UUIDs of tag resources that are applied to this device.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/tagid"
+            },
+            "example": [
+                "4d110e4f-7a7c-6b26-eaac-31cc34c6e1d4",
+                "cd81ed16-18ae-6c7d-eaba-2883b0395387"
+            ]
+          },
+          "transactionid": {
+            "description": "transaction id",
+            "type": "string",
+            "example": "c7a0a8cf-6856-4733-93ea-69913650e4ca"
+          },
+          "version": {
+            "description": "The version of the resource.",
+            "type": "string",
+            "example": "1.0"
+          },
+          "versionid": {
+            "description": "The version of the resource.",
+            "type": "string",
+            "example": "270e4820-357d-11e9-9d6c-02420a470c06"
+          }
+        }
+      },
+      "tagid":{
+        "description": "UUID of tag resources that are applied to this device.",
+        "type": "string",
+        "example": "4d110e4f-7a7c-6b26-eaac-31cc34c6e1d4"
+      },
+      "SearchSensorHistoryRequest": {
+        "description": "Search Device By Property resource definition.",
+        "required": [
+          "accountidentifier",
+          "resourceidentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          },
+          "$limitnumber":{
+            "description":"The maximum number of events to include in the response.",
+            "type": "integer",
+            "example": 2
+          },
+          "$page": {
+            "description":"The maximum number of events to include in the response.",
+            "type": "string"
+          }
+        }
+      },
+      "SearchSensorHistoryResponseList":{
+        "description": "A success response includes an array of all matching events.",
+        "properties": {
+          "SearchSensorHistory": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/SearchDeviceResponse"
+            }
+          }
+        }
+      },
+      "RemoveDeviceRequest": {
+        "description": "The request body identifies the device to delete.",
+        "required": [
+          "accountidentifier",
+          "resourceidentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "accountidentifier": {
+            "$ref": "#/components/schemas/AccountIdentifier"
+          },
+          "resourceidentifier": {
+            "$ref": "#/components/schemas/ResourceIdentifier"
+          }
+        }
+      },
+      "CreateIoTApplicationRequest": {
+        "description": "The request body must include the UUID of the subscription that you want to update plus any properties that you want to change.",
+        "type": "object",
+        "properties": {
+          "appName": {
+            "description":"A user defined name for the application being deployed in Azure IoT Central.",
+            "type": "string",
+            "example": "newarmapp1"
+          },
+          "billingAccountID": {
+            "description":"The ThingSpace ID of the authenticating billing account",
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "clientID": {
+            "description":"The Azure ClientID of the associated Azure target account",
+            "type": "string",
+            "example": "UUID"
+          },
+          "clientSecret": {
+            "description":"The Azure Client Secret of the associated Azure target account",
+            "type": "string",
+            "example": "client secret"
+          },
+          "emailIDs": {
+            "description":"The “email IDs” to be added to/sent to with this API.",
+            "type": "string",
+            "example": "email@domain.com"
+          },
+          "resourcegroup": {
+            "description":"The Azure Resource group of the associated Azure target account",
+            "type": "string",
+            "example": "Myresourcegroup"
+          },
+          "sampleIOTcApp": {
+            "description":"This is the reference Azure IoT Central application developed by Verizon.",
+            "type": "string",
+            "example": "app ID"
+          },
+          "subscriptionID": {
+            "description":"The Azure Subscription ID of the associated Azure target account",
+            "type": "string",
+            "example": "subscription ID"
+          },
+          "tenantID": {
+            "description":"The Azure Tenant ID of the associated Azure target account",
+            "type": "string",
+            "example": "tenant ID"
+          }
+        }
+      },
+      "CreateIoTApplicationResponse": {
+        "description": "A success response includes an array of all matching events. Each event includes the full event resource definition.",
+        "type": "object",
+        "properties": {
+          "appName": {
+            "description":"An application will be created under the user's Azure subscription with this name and of type IOT central.",
+            "type": "string",
+            "example": "newarmapp1"
+          },
+          "sharedSecret": {
+            "description":"Part of the user credentials (from Azure) the user needs to use for calling further TS Core APIs for setting up Azure cloud connector.",
+            "type": "string",
+            "example": "SharedAccessSignaturesr={client secret}"
+          },
+          "url": {
+            "description":"An IOT central endpoint the user can use to see the data that is being streamed.",
+            "type": "string",
+            "example": "https://newarmapp1.azureiotcentral.com"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Targets"
+    },
+    {
+      "name": "Cloud Connector Subscriptions"
+    }
+  ]
+}
