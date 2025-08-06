@@ -1,0 +1,2027 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Global IoT Orchestration API Endpoints",
+    "description": "You can use this link to <a href=\"/content/dam/thingspace-portal/resources/documentation/swagger/Global_IoT_Orchestration.json\" download>download the JSON file</a>.",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "http://www.verizon.com/about/terms/"
+    },
+    "version": "v1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Managing eSIM Profiles",
+      "description": "Manage Global IoT Orchestration device profiles for either Verizon (lead) or Global (local)."
+    },
+    {
+      "name": "Device SMS Messaging",
+      "description": "Send Short Message Service (SMS) messages to devices"
+    },
+    {
+      "name": "Device Actions",
+      "description": "Device management for either Verizon (lead) or Global (local) profiles."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/m2m/v1/devices/profile/actions/profile_resume": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Resume a device profile.",
+        "operationId": "ResumeProfile",
+        "description": "Resume service to a device with either a lead or local profile.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GIOProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/profile_suspend": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Suspend a device profile.",
+        "operationId": "ProfileSuspend",
+        "description": "Suspend a device's Global profile.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GIOProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/device_suspend": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Suspend an eUICC device.",
+        "operationId": "DeviceSuspend",
+        "description": "Suspend all service to an eUICC device, including the lead and local profile.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GIOProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/v1/devices/usage/actions/list/aggregate": {
+      "post": {
+        "tags": [
+          "Device Actions"
+        ],
+        "summary": "Retrieve aggregate usage",
+        "operationId": "AggregateUsage",
+        "description": "Retrieve the aggregate usage for a device or a number of devices.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/aggregateUsage"
+              },
+              "example": {
+                "deviceId": [
+                  {
+                    "id": "32-digit EID",
+                    "kind": "eid"
+                  }
+                ],
+                "accountName": "0000123456-00001",
+                "startTime": "2023-10-25T00:00:00.000Z",
+                "endTime": "2023-10-30T00:00:00.000Z"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/v1/devices/usage/actions/list": {
+      "post": {
+        "tags": [
+          "Device Actions"
+        ],
+        "summary": "Retrieve daily usage",
+        "operationId": "DailyUsage",
+        "description": "Retrieve the daily usage for a device, for a specified period of time, segmented by day",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dailyUsage"
+              },
+              "example": {
+                "deviceId": {
+                  "id": "20-digit ICCID",
+                  "kind": "iccid"
+                },
+                "earliest": "2023-10-25T00:00:00.000Z",
+                "latest": "2023-10-30T00:00:00.000Z"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Syncronous response of device usage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/dailyUsageResponse"
+                },
+                "example": {
+                  "hasMoreData": false,
+                  "deviceId": {
+                    "id": "20-digit ICCID",
+                    "kind": "iccid"
+                  },
+                  "usageHistory": [
+                    {
+                      "bytesUsed": 123456,
+                      "extendedAttributes": [
+                        {
+                          "key": "MoSMS",
+                          "value": 3
+                        },
+                        {
+                          "key": "MtSms",
+                          "value": 2
+                        }
+                      ],
+                      "servicePlan": "4G-LTE data",
+                      "smsUsed": 5,
+                      "source": "Usage Feed",
+                      "timestamp": "2023-10-25T00:00:00.000Z"
+                    },
+                    {
+                      "bytesUsed": 789,
+                      "extendedAttributes": [
+                        {
+                          "key": "MoSMS",
+                          "value": 0
+                        },
+                        {
+                          "key": "MtSms",
+                          "value": 0
+                        }
+                      ],
+                      "servicePlan": "service plan name",
+                      "smsUsed": 0,
+                      "source": "Usage Feed",
+                      "timestamp": "2023-10-26T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/v1/plans/{accountName}": {
+      "get": {
+        "tags": [
+          "Device Actions"
+        ],
+        "summary": "Retrieve the List of Service Plans",
+        "operationId": "ServicePlanList",
+        "description": "Retrieve all of the service plans, features and carriers associated with the account specified.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9]{3,32}$"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account details **Note:** The response will have placeholders. You can identify the placeholders by `\"sizeKb\":0` and that the record will only have `name` and `sizeKb` values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountDetails"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "accountNumber": "0000123456-00001",
+                  "organizationName": "user defined name of organization",
+                  "isProvisioningAllowed": true,
+                  "carriers": [
+                    "Verizon Wireless"
+                  ],
+                  "features": [
+                    "Dynamic IP",
+                    "Public Network",
+                    "eUICC Verizon as Lead",
+                    "Global eSim Billing"
+                  ],
+                  "servicePlans": [
+                    {
+                      "name": "The name of the service plan",
+                      "code": "The inventory name or system name of the service plan",
+                      "sizeKb": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)",
+                      "carrierServicePlanCode": "The billing record ID. This can be numeric, alpha or alphanumeric"
+                    },
+                    {
+                      "name": "The name of the service plan",
+                      "code": "The inventory name or system name of the service plan",
+                      "sizeKb": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)",
+                      "carrierServicePlanCode": "The billing record ID. This can be numeric, alpha or alphanumeric"
+                    },
+                    {
+                      "name": "The name of the service plan (placeholder example)",
+                      "sizeKb": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/v1/accounts/{accountName}": {
+      "get": {
+        "tags": [
+          "Device Actions"
+        ],
+        "summary": "Retrieve the Account Information",
+        "operationId": "AccountInformation",
+        "description": "Retrieve all of the service plans, features and carriers associated with the account specified.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9]{3,32}$"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Account details **Note:** The response will have placeholders. You can identify the placeholders by `\"sizeKb\":0` and that the record will only have `name` and `sizeKb` values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountDetails"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "accountNumber": "0000123456-00001",
+                  "organizationName": "user defined name of organization",
+                  "isProvisioningAllowed": true,
+                  "carriers": [
+                    "Verizon Wireless"
+                  ],
+                  "features": [
+                    "Dynamic IP",
+                    "Public Network",
+                    "eUICC Verizon as Lead",
+                    "Global eSim Billing"
+                  ],
+                  "servicePlans": [
+                    {
+                      "name": "The name of the service plan",
+                      "code": "The inventory name or system name of the service plan",
+                      "sizeKb": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)",
+                      "carrierServicePlanCode": "The billing record ID. This can be numeric, alpha or alphanumeric"
+                    },
+                    {
+                      "name": "The name of the service plan",
+                      "code": "The inventory name or system name of the service plan",
+                      "sizeKb": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)",
+                      "carrierServicePlanCode": "The billing record ID. This can be numeric, alpha or alphanumeric"
+                    },
+                    {
+                      "name": "The name of the service plan (placeholder example)",
+                      "sizeKb": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/v1/devices/profile/actions/setfallbackattribute": {
+      "post": {
+        "tags": [
+          "Managing eSIM Profiles"
+        ],
+        "summary": "Set Fallback.",
+        "operationId": "SetFallback",
+        "description": "Enable a fallback profile to be set.",
+        "requestBody": {
+          "description": "Set the fallback attributes to allow a fallback profile to be activated.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/fallBack"
+              },
+              "example": {
+                "devices": [
+                  {
+                    "deviceIds": [
+                      {
+                        "kind": "imei",
+                        "id": "15-digit IMEI"
+                      },
+                      {
+                        "kind": "eid",
+                        "id": "32-digit EID"
+                      },
+                      {
+                        "kind": "iccid",
+                        "id": "20-digit ICCID"
+                      }
+                    ]
+                  }
+                ],
+                "accountName": "0000123456-00001"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/activate": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Activate a device profile.",
+        "operationId": "ActivateADeviceProfile",
+        "description": "Activate a device with either a lead or local profile.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GIOProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/enable": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Enable a device profile.",
+        "operationId": "EnableADeviceProfile",
+        "description": "Enable a device lead or local profile.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/deactivate": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Deactivate a device profile.",
+        "operationId": "DeactivateADeviceProfile",
+        "description": "Deactivate the lead or local profile. **Note:** to reactivate the profile, use the **Activate** endpoint above.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GIODeactivateDeviceProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/download_enable": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Enable a device profile for download (Global).",
+        "operationId": "EnableADeviceProfileForDownload",
+        "description": "Enable the Global IoT Orchestration device profile for download.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/download": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Download a device profile (Global).",
+        "operationId": "DownloadADeviceProfile",
+        "description": "Download a Global IoT Orchestration device profile.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/devices/profile/actions/delete": {
+      "post": {
+        "tags": ["Managing eSIM Profiles"],
+        "summary": "Delete a device profile (Global).",
+        "operationId": "DeleteADeviceProfile",
+        "description": "Delete a device profile for Global IoT Orchestration. **Note:** the profile must be deactivated first!",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/sms": {
+      "post": {
+        "tags": ["Device SMS Messaging"],
+        "summary": "Send an SMS message.",
+        "operationId": "SendAnSmsMessage",
+        "description": "Sends an SMS message to one device. Messages are queued on the M2M MC Platform and sent as soon as possible, but they may be delayed due to traffic and routing considerations.",
+        "requestBody": {
+          "description": "SMS message to an indiividual device.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GIOSMSSendRequest"
+              },
+              "examples": {
+                "Send to a single device or multiple devices": {
+                  "value": {
+                    "accountName": "0000123456-00001",
+                    "customFields": [
+                      {
+                        "key": "CustomField1",
+                        "value": "value of the field"
+                      }
+                    ],
+                    "dataEncoding": "optional 7 or 8-bit encoding",
+                    "deviceIds": [
+                      {
+                        "id": "20-digit ICCID",
+                        "kind": "iccid"
+                      }
+                    ],
+                    "smsMessage": "the body or text of the message itself",
+                    "timeToLive": "000000010000000R"
+                  }
+                },
+                "Send to a group name or sevice plan": {
+                  "value": {
+                    "accountName": "0000123456-00001",
+                    "customFields": [
+                      {
+                        "key": "CustomField1",
+                        "value": "value of the field"
+                      }
+                    ],
+                    "dataEncoding": "optional 7 or 8-bit encoding",
+                    "groupName": "the name of the group the device is in",
+                    "servicePlan": "the service plan the device is using",
+                    "smsMessage": "the body or text of the message itself",
+                    "timeToLive": "000000010000000R"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      },
+      "options": {
+        "operationId": "SendAnSmsMessageOptions",
+        "tags": ["Device SMS Messaging"],
+        "summary": "Send an SMS message.",
+        "description": "Sends an SMS message to multiple devices on the same service plan. Messages are queued on the M2M MC Platform and sent as soon as possible, but they may be delayed due to traffic and routing considerations.",
+        "requestBody": {
+          "description": "SMS message to all devices on a service plan. **Note:** replace ***OPTIONS*** with ***POST***.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SMSOptionsSendRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v1/sms/{accountName}/history": {
+      "get": {
+        "tags": ["Device SMS Messaging"],
+        "summary": "Get SMS messages.",
+        "operationId": "GetSmsMessages",
+        "description": "Retrieves queued SMS messages sent by all M2M MC devices associated with an account.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Numeric account name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9\\-]{3,32}$"
+            }
+          },
+          {
+            "name": "next",
+            "in": "query",
+            "description": "Continue the previous query from the pageUrl in Location Header",
+            "schema": {
+              "type": "string",
+              "example": "TheURLForTheNextQuery",
+              "minLength": 3,
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9]{3,32}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SmsMessagesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/m2m/v1/sms/{accountName}/startCallbacks": {
+      "put": {
+        "tags": ["Device SMS Messaging"],
+        "summary": "Starts SMS message delivery.",
+        "operationId": "StartSmsMessageDelivery",
+        "description": "Starts delivery of SMS messages for the specified account.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Numeric account name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9\\-]{3,32}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/m2m/v1/devices/sms/history/actions/list": {
+      "post": {
+        "tags": ["Device SMS Messaging"],
+        "summary": "List SMS message history.",
+        "operationId": "ListSmsMessageHistory",
+        "description": "Returns a list of sms history for a given device during a specified time frame.",
+        "requestBody": {
+          "description": "Device Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SMSEventHistoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v2/devices/actions/list": {
+      "post": {
+        "tags": ["Device Actions"],
+        "summary": "Retrieve the global device list.",
+        "operationId": "RetrieveTheGlobalDeviceList",
+        "description": "Allows the profile to fetch the complete device list. This works with Verizon US and Global profiles.",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetDeviceListWithProfilesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v2/devices/history/actions/list": {
+      "post": {
+        "tags": ["Device Actions"],
+        "summary": "Retrieve Device Provisioning History.",
+        "operationId": "RetrieveDeviceProvisioningHistory",
+        "description": "Retrieve the provisioning history of a specific device or devices.",
+        "requestBody": {
+          "description": "Device Provisioning History",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProvhistoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORequestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/m2m/v2/accounts/{accountName}/requests/{requestID}/status": {
+      "get": {
+        "tags": ["Device Actions"],
+        "summary": "Get asynchronous request status.",
+        "operationId": "GetAsynchronousRequestStatus",
+        "description": "Get the status of an asynchronous request made with the Device Actions.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9\\-]{3,32}$"
+            },
+            "required": true
+          },
+          {
+            "name": "requestID",
+            "in": "path",
+            "schema": {
+              "type": "string",
+              "example": "d1f08526-5443-4054-9a29-4456490ea9f8",
+              "minLength": 3,
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9\\-]{3,64}$"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GIORestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited",
+        "x-codegen-request-body-name": "request"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "aggregateUsage": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "$ref": "#/components/schemas/GIODeviceId"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "The numeric name of the account, in the format \"0000123456-00001\". Leading zeros must be included.",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "The start date of the time period queried as \"$datetime\"",
+            "example": "2023-10-25T00:00:00.000Z",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "The end date of the time period being queried as \"$datetime\"",
+            "example": "2023-10-30T00:00:00.000Z",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        }
+      },
+      "dailyUsage": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "$ref": "#/components/schemas/GIODeviceId"
+          },
+          "earliest": {
+            "type": "string",
+            "description": "The start date of the time period queried as \"$datetime\"",
+            "example": "2023-10-25T00:00:00.000Z",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "latest": {
+            "type": "string",
+            "description": "The end date of the time period being queried as \"$datetime\"",
+            "example": "2023-10-30T00:00:00.000Z",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          }
+        }
+      },
+      "dailyUsageResponse": {
+        "type": "object",
+        "properties": {
+          "hasMoreData": {
+            "type": "boolean",
+            "example": false,
+            "description": "A flag set to indicate if there is more than one page of data returned by the query (true) or if only one page of data returned (false)"
+          },
+          "deviceId": {
+            "$ref": "#/components/schemas/GIODeviceId"
+          },
+          "usageHistory": {
+            "title": "DailyUsageHistory",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "bytesUsed": {
+                  "type": "string",
+                  "description": "the total data usage recorded in Bytes",
+                  "example": 123456,
+                  "minLength": 1,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{1,32}$"
+                },
+                "extendedAttributes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "example": "MoSms",
+                        "description": "The key indicates if the SMS message was to the device (MtSms) or from the device (MoSms)",
+                        "minLength": 3,
+                        "maxLength": 32,
+                        "pattern": "^[A-Za-z0-9]{3,32}$"
+                      },
+                      "value": {
+                        "type": "string",
+                        "example": 5,
+                        "description": "The number of SMS messages found",
+                        "minLength": 3,
+                        "maxLength": 32,
+                        "pattern": "^[A-Za-z0-9]{3,32}$"
+                      }
+                    }
+                  }
+                },
+                "servicePlan": {
+                  "type": "string",
+                  "example": "the name of the service plan showing usage",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[A-Za-z0-9]{3,32}$"
+                },
+                "smsUsed": {
+                  "type": "string",
+                  "description": "The total number of SMS messages from and to the device",
+                  "example": 5,
+                  "minLength": 1,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{1,32}$"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "Where the collected data is being gathered from",
+                  "example": "Usage Feed",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[A-Za-z0-9]{3,32}$"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "description": "Timestamp of when the retrieved record was completed ($datetime)",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[A-Za-z0-9]{3,32}$"
+                }
+              }
+            }
+          }
+        }
+      },
+      "accountDetails": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$",
+            "description": "The numeric name of the account, in the format \"0000123456-00001\". Leading zeros must be included."
+          },
+          "accountNumber": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9-]{3,32}$",
+            "description": "The numeric name of the account, in the format \"0000123456-00001\". Leading zeros must be included."
+          },
+          "organizationName": {
+            "type": "string",
+            "example": "user defined name of organization",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9]{3,32}$",
+            "description": "user defined name of organization"
+          },
+          "isProvisioningAllowed": {
+            "type": "boolean",
+            "description": "Flag set to indicate if account details can be edited or not. Default is \"true\"."
+          },
+          "carriers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "carriers": {
+                  "type": "string",
+                  "example": "Verizon Wireless",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{3,32}$",
+                  "description": "The list of carriers with active or available profiles"
+                }
+              }
+            }
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "features": {
+                  "type": "string",
+                  "example": "eUICC Verizon as Lead",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{3,32}$",
+                  "description": "The calling and data features available for the account. **Note:** for Global IoT Orchestrator, the features `eUICC Verizon as Lead` and `Global eSim Billing` will always be present."
+                }
+              }
+            }
+          },
+          "servicePlans": {
+            "title": "CarrierServicePlan",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "The name of the service plan",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{3,32}$",
+                  "description": "The name of the service plan"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "The inventory name or system name of the service plan",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{3,32}$",
+                  "description": "The inventory name or system name of the service plan"
+                },
+                "sizeKb": {
+                  "type": "string",
+                  "example": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{3,32}$",
+                  "description": "The ammount of space the service plan will occupy on the Subscriber Information Module (SIM)"
+                },
+                "carrierServicePlanCode": {
+                  "type": "string",
+                  "example": "The billing record ID. This can be numeric, alpha or alphanumeric.",
+                  "minLength": 3,
+                  "maxLength": 32,
+                  "pattern": "^[0-9]{3,32}$",
+                  "description": "The billing record ID. This can be numeric, alpha or alphanumeric."
+                }
+              }
+            }
+          }
+        }
+      },
+      "fallBack": {
+        "type": "object",
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "description": "An array containing the `deviceId` array.",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/deviceIdarray"
+                }
+              ]
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9]{3,32}$",
+            "description": "The numeric name of the account, in the format \"0000123456-00001\". Leading zeros must be included."
+          }
+        }
+      },
+      "deviceIdarray": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "description": "an array of device ID values, using \"kind\" to describe what type of numeric ID is being used.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9]{3,32}$",
+              "example": "imei"
+            },
+            "id": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[A-Za-z0-9]{3,32}$",
+              "example": "15-digit IMEI"
+            }
+          }
+        }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 64,
+            "pattern": "^[a-z-0-9]{3,64}$",
+            "example": "d1f08526-5443-4054-9a29-4456490ea9f8"
+          },
+          "status": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "Success"
+          },
+          "subrequests": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/Subrequest"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Subrequest": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "$ref": "#/components/schemas/GIODeviceId"
+          },
+          "status": {
+            "type": "string",
+            "example": "Success",
+            "minLength": 3,
+            "maxLength": 8,
+            "pattern": "^[A-Za-z]{3,8}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProvhistoryRequest": {
+        "title": "ProvhistoryRequest",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Z a-z 0-9 \\-]{3,32}$"
+          },
+          "deviceFilter": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceId"
+            }
+          },
+          "earliest": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 32,
+            "example": "2021-10-15T04:49:35-00:00"
+          },
+          "latest": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 32,
+            "example": "2021-10-15T04:49:49-00:00"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetDeviceListWithProfilesRequest": {
+        "type": "object",
+        "required": ["accountName"],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9\\-]{3,32}$"
+          },
+          "provisioningStatusFilter": {
+            "type": "string",
+            "example": "ACTIVE",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "profileStatusFilter": {
+            "type": "string",
+            "example": "UNKNOWN",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "carrierNameFilter": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "deviceFilter": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceId"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SMSEventHistoryRequest": {
+        "title": "SMSEventHistoryRequest",
+        "type": "object",
+        "required": ["deviceId"],
+        "properties": {
+          "deviceId": {
+            "$ref": "#/components/schemas/GIODeviceId"
+          },
+          "earliest": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "format": "date-time"
+          },
+          "latest": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SmsMessagesResponse": {
+        "title": "SmsMessagesResponse",
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/GIOSmsMessage"
+                }
+              ]
+            }
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIOSmsMessage": {
+        "title": "GIOSmsMessage",
+        "type": "object",
+        "properties": {
+          "deviceIds": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceId"
+            }
+          },
+          "message": {
+            "type": "string",
+            "example": "a text message",
+            "minLength": 3,
+            "maxLength": 120,
+            "pattern": "^[A-Za-z0-9 ]{3,120}$"
+          },
+          "timestamp": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIOSMSSendRequest": {
+        "type": "object",
+        "required": [
+          "smsMessage"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "customFields": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "$ref": "#/components/schemas/KvPair"
+            }
+          },
+          "dataEncoding": {
+            "type": "string"
+          },
+          "groupName": {
+            "type": "string"
+          },
+          "servicePlan": {
+            "type": "string"
+          },
+          "timeToLive": {
+            "description": "A period of time the message remains valid or an end date for the message. This value would be less than the 5 day default.",
+            "type": "string"
+          },
+          "deviceIds": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceId"
+            }
+          },
+          "smsMessage": {
+            "type": "string",
+            "example": "A text message"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KvPair": {
+        "title": "KvPair",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SMSOptionsSendRequest": {
+        "type": "object",
+        "properties": {
+          "servicePlan": {
+            "type": "string",
+            "example": "the name of a service plan",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$"
+          },
+          "smsMessage": {
+            "type": "string",
+            "example": "A text message",
+            "minLength": 3,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9 ]{3,64}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIOProfileRequest": {
+        "type": "object",
+        "required": ["accountName", "devices"],
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceList"
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9\\-]{3,32}$"
+          },
+          "mdnZipCode": {
+            "type": "string",
+            "example": "12345",
+            "minLength": 5,
+            "maxLength": 5,
+            "pattern": "^[0-9]{5,5}$"
+          },
+          "servicePlan": {
+            "type": "string",
+            "example": "service plan name",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIODeactivateDeviceProfileRequest": {
+        "type": "object",
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceList"
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9\\-]{3,32}$",
+            "example": "0000123456-00001"
+          },
+          "servicePlan": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$",
+            "example": "service plan name"
+          },
+          "etfWaiver": {
+            "type": "boolean",
+            "default": false
+          },
+          "reasonCode": {
+            "type": "string",
+            "example": "FF",
+            "minLength": 2,
+            "maxLength": 32,
+            "pattern": "^[0-9A-Z]{2,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceProfileRequest": {
+        "type": "object",
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceList"
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9\\-]{3,32}$"
+          },
+          "servicePlan": {
+            "type": "string",
+            "example": "service plan name",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIODeviceId": {
+        "type": "object",
+        "required": [
+          "kind",
+          "id"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "example": "eid"
+          },
+          "id": {
+            "type": "string",
+            "example": "12345678901234567890123456789012"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIODeviceList": {
+        "type": "object",
+        "properties": {
+          "deviceIds": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GIODeviceId"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIORequestResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "example": "d1f08526-5443-4054-9a29-4456490ea9f8",
+            "minLength": 3,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9\\-]{3,64}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GIORestErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": 400,
+            "minLength": 3,
+            "maxLength": 3,
+            "pattern": "^[0-9]{3,3}$"
+          },
+          "errorMessage": {
+            "type": "string",
+            "example": "a brief description of the error",
+            "minLength": 3,
+            "maxLength": 1000,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

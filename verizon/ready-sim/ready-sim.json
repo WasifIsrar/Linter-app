@@ -1,0 +1,1237 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API endpoints for MDNless or Pseudo-MDN",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "http://www.verizon.com/about/terms/"
+    },
+    "version": "v1",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Promotion Period Information",
+      "description": "Retrieve status and information about the promotion period for using a pseudo-MDN (Mobile Device Number))"
+    },
+    {
+      "name": "Retrieve the Triggers",
+      "description": "Retrieve the triggers associated with the feature and the account."
+    },
+    {
+      "name": "Update Triggers",
+      "description": "Updates the trigger threshold values for alerts."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/m2m/v1/devices/usage/actions/promodeviceusage": {
+      "post": {
+        "tags": [
+          "Promotion Period Information"
+        ],
+        "summary": "Retrieve the usage history.",
+        "description": "Retrieves the usage history of a device during the promotion period.",
+        "operationId": "getPromoDeviceUsageHistory",
+        "requestBody": {
+          "description": "Retrieve Aggregate Usage",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/usageRequest2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Usage History",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/usageResponse"
+                },
+                "example": {
+                  "hasmoredata": false,
+                  "deviceId": {
+                    "kind": "iccid",
+                    "id": "20-digit iccid"
+                  },
+                  "usageHistory": [
+                    {
+                      "bytesUsed": 3072,
+                      "serviceplan": "The serviceplan name",
+                      "smsUsed": 0,
+                      "moSMS": 0,
+                      "mtSMS": 0,
+                      "source": "Raw Usage",
+                      "eventDateTime": "2021-08-15T 00:00:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "All error responses will be in this format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/devices/usage/actions/promoaggregateusage": {
+      "post": {
+        "tags": [
+          "Promotion Period Information"
+        ],
+        "summary": "Retrieve Aggregate Usage.",
+        "description": "Retrieves the aggregate usage for an account using pseudo-MDN during the promotional period using a callback.",
+        "operationId": "GetPromoDeviceAggregateUsageHistory",
+        "requestBody": {
+          "description": "Retrieve Aggregate Usage",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/usageRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/usageRequestResponse"
+                },
+                "example": {
+                  "requestId": "be1b5958-3e11-41db-9abd-b1b7618c0035"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/triggers": {
+      "get": {
+        "tags": [
+          "Retrieve the Triggers"
+        ],
+        "summary": "Retrieve all triggers.",
+        "description": "Retrieves all of the available triggers for pseudo-MDN.",
+        "operationId": "GetAllAvailableTriggers",
+        "responses": {
+          "200": {
+            "description": "Status of Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerValueResponse"
+                },
+                "example": {
+                  "triggers": [
+                    {
+                      "triggerId": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526",
+                      "triggerName": "PromoAlerts_0000000000-00001_23456789",
+                      "accountName": "0000123456-000001",
+                      "organizationName": "Optional group name",
+                      "triggerCategory": "PromoAlerts",
+                      "triggerAttributes": [
+                        {
+                          "key": "ServicePlan"
+                        },
+                        {
+                          "key": "DataPercentage50",
+                          "value": false
+                        },
+                        {
+                          "key": "DataPercentage75",
+                          "value": false
+                        },
+                        {
+                          "key": "DataPercentage90",
+                          "value": false
+                        },
+                        {
+                          "key": "DataPercentage100",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage50",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage75",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage90",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage100",
+                          "value": true
+                        },
+                        {
+                          "key": "NoOfDaysB4PromoExp",
+                          "value": 5
+                        },
+                        {
+                          "key": "EnablePromoExp",
+                          "value": true
+                        }
+                      ],
+                      "createdAt": "2021-10-21T23:57:003.397Z",
+                      "modifiedAt": "2021-10-21T23:57:003.397Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Update Triggers"
+        ],
+        "summary": "Update promotional triggers.",
+        "description": "Updates the promotional triggers for pseudo-MDN.",
+        "operationId": "UpdateAllAvailableTriggers",
+        "requestBody": {
+          "description": "Update the triggers",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/requestTrigger"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Status of Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/success"
+                },
+                "example": {
+                  "status": "Success"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/triggers/accounts/{accountName}": {
+      "get": {
+        "tags": [
+          "Retrieve the Triggers"
+        ],
+        "summary": "Retrieve Triggers by Account Name.",
+        "description": "Retrieve the triggers associated with an account name.",
+        "operationId": "GetAllTriggersByAccountName",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "The account name",
+            "schema": {
+              "type": "string",
+              "example": "0000123456-000001"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerValueResponse"
+                },
+                "example": {
+                  "triggers": [
+                    {
+                      "triggerId": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526",
+                      "triggerName": "PromoAlerts_0000000000-00001_23456789",
+                      "accountName": "0000123456-000001",
+                      "organizationName": "Optional group name",
+                      "triggerCategory": "PromoAlerts",
+                      "triggerAttributes": [
+                        {
+                          "key": "ServicePlan"
+                        },
+                        {
+                          "key": "DataPercentage50",
+                          "value": false
+                        },
+                        {
+                          "key": "DataPercentage75",
+                          "value": false
+                        },
+                        {
+                          "key": "DataPercentage90",
+                          "value": false
+                        },
+                        {
+                          "key": "DataPercentage100",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage50",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage75",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage90",
+                          "value": false
+                        },
+                        {
+                          "key": "SmsPercentage100",
+                          "value": true
+                        },
+                        {
+                          "key": "NoOfDaysB4PromoExp",
+                          "value": 5
+                        },
+                        {
+                          "key": "EnablePromoExp",
+                          "value": true
+                        }
+                      ],
+                      "createdAt": "2021-10-21T23:57:003.397Z",
+                      "modifiedAt": "2021-10-21T23:57:003.397Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/triggers/categories/PromoAlerts": {
+      "get": {
+        "tags": [
+          "Retrieve the Triggers"
+        ],
+        "summary": "Retrieve Triggers by the PromoAlerts category.",
+        "description": "Retrieves all of the triggers for the specified account associated with the PromoAlert category",
+        "operationId": "GetAllTriggersByTriggerCategory",
+        "responses": {
+          "200": {
+            "description": "Request response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerValueResponse2"
+                },
+                "example": {
+                  "triggers": [
+                    {
+                      "triggerId": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526",
+                      "triggerName": "PromoAlerts_0000000000-00001_23456789",
+                      "accountName": "0000123456-000001",
+                      "organizationName": "Optional group name",
+                      "triggerCategory": "PromoAlerts",
+                      "promoAlerts": [
+                        {
+                          "filterCriteria": [
+                            {
+                              "servicePlan": "123456"
+                            }
+                          ],
+                          "condition": [
+                            {
+                              "dataPercentage50": false,
+                              "dataPercentage75": false,
+                              "dataPercentage90": false,
+                              "dataPercentage100": false,
+                              "smsPercentage50": false,
+                              "smsPercentage75": false,
+                              "smsPercentage90": false,
+                              "smsPercentage100": true,
+                              "NoOfDaysB4PromoExp": 5
+                            }
+                          ],
+                          "enablePromoExp": true
+                        }
+                      ],
+                      "active": true,
+                      "createdAt": "2021-10-21T23:57:003.397Z",
+                      "modifiedAt": "2021-10-21T23:57:003.397Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/triggers/{triggerId}": {
+      "get": {
+        "tags": [
+          "Retrieve the Triggers"
+        ],
+        "summary": "Retrieve Triggers by triggerId.",
+        "description": "Retrives a specific trigger by its ID.",
+        "operationId": "GetTriggersById",
+        "parameters": [
+          {
+            "name": "triggerId",
+            "in": "path",
+            "description": "The ID of a specific trigger",
+            "schema": {
+              "type": "string",
+              "example": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerValueResponse2"
+                },
+                "example": {
+                  "triggers": [
+                    {
+                      "triggerId": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526",
+                      "triggerName": "PromoAlerts_0000000000-00001_23456789",
+                      "accountName": "0000123456-000001",
+                      "organizationName": "Optional group name",
+                      "triggerCategory": "PromoAlerts",
+                      "promoAlerts": [
+                        {
+                          "filterCriteria": [
+                            {
+                              "servicePlan": "123456"
+                            }
+                          ],
+                          "condition": [
+                            {
+                              "dataPercentage50": false,
+                              "dataPercentage75": false,
+                              "dataPercentage90": false,
+                              "dataPercentage100": false,
+                              "smsPercentage50": false,
+                              "smsPercentage75": false,
+                              "smsPercentage90": false,
+                              "smsPercentage100": true,
+                              "NoOfDaysB4PromoExp": 5
+                            }
+                          ],
+                          "enablePromoExp": true
+                        }
+                      ],
+                      "active": true,
+                      "createdAt": "2021-10-21T23:57:003.397Z",
+                      "modifiedAt": "2021-10-21T23:57:003.397Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadySimRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "More details about the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "usageResponse": {
+        "title": "Response to Usage Query",
+        "type": "object",
+        "properties": {
+          "hasmoredata": {
+            "type": "boolean",
+            "example": false
+          },
+          "deviceId": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReadySimDeviceId"
+              }
+            ]
+          },
+          "usageHistory": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/usageHistory"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "usageRequest": {
+        "title": "Request Body for Usage",
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "example": "0000123456-000001"
+          },
+          "deviceId": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ReadySimDeviceId"
+                }
+              ]
+            }
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-08-15 T00:00:00Z"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-08-16 T00:00:00Z"
+          }
+        }
+      },
+      "usageRequest2": {
+        "title": "A Request Body for Usage",
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/ReadySimDeviceId"
+                }
+              ]
+            }
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-08-15 T00:00:00Z"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-08-16 T00:00:00Z"
+          }
+        }
+      },
+      "ReadySimDeviceId": {
+        "title": "ReadySimDeviceId",
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "example": "iccid"
+          },
+          "id": {
+            "type": "string",
+            "example": "20-digit iccid"
+          }
+        }
+      },
+      "usageHistory": {
+        "title": "usage history",
+        "type": "object",
+        "properties": {
+          "bytesUsed": {
+            "type": "integer",
+            "example": 3072
+          },
+          "serviceplan": {
+            "type": "string",
+            "example": "The serviceplan name"
+          },
+          "smsUsed": {
+            "type": "integer"
+          },
+          "moSMS": {
+            "type": "integer"
+          },
+          "mtSMS": {
+            "type": "integer"
+          },
+          "source": {
+            "type": "string",
+            "example": "Raw Usage"
+          },
+          "eventDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-08-15T 00:00:00Z"
+          }
+        }
+      },
+      "TriggerValueResponse": {
+        "title": "TriggerValueResponse",
+        "type": "object",
+        "properties": {
+          "triggers": {
+            "$ref": "#/components/schemas/TriggervalueChunk"
+          }
+        }
+      },
+      "TriggervalueChunk": {
+        "title": "TriggervalueChunk",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/Triggervalues"
+            }
+          ]
+        }
+      },
+      "TriggerValueResponse2": {
+        "title": "TriggerValueResponse2",
+        "type": "object",
+        "properties": {
+          "triggers": {
+            "$ref": "#/components/schemas/TriggervalueChunk2"
+          }
+        }
+      },
+      "TriggervalueChunk2": {
+        "title": "TriggervalueChunk2",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/Triggervalues2"
+            }
+          ]
+        }
+      },
+      "Triggervalues": {
+        "title": "Triggervalues",
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "example": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526"
+          },
+          "triggerName": {
+            "type": "string",
+            "example": "PromoAlerts_0000000000-00001_23456789"
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-000001"
+          },
+          "organizationName": {
+            "type": "string",
+            "example": "Optional group name"
+          },
+          "triggerCategory": {
+            "type": "string",
+            "example": "PromoAlerts"
+          },
+          "triggerAttributes": {
+            "$ref": "#/components/schemas/keysChunk"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-10-21T23:57:003.397Z"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-10-21T23:57:003.397Z"
+          }
+        }
+      },
+      "Triggervalues2": {
+        "title": "Triggervalues2",
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "example": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526"
+          },
+          "triggerName": {
+            "type": "string",
+            "example": "PromoAlerts_0000000000-00001_23456789"
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-000001"
+          },
+          "organizationName": {
+            "type": "string",
+            "example": "Optional group name"
+          },
+          "triggerCategory": {
+            "type": "string",
+            "example": "PromoAlerts"
+          },
+          "promoAlerts": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/filtercriteria"
+                },
+                {
+                  "$ref": "#/components/schemas/condition"
+                },
+                {
+                  "$ref": "#/components/schemas/enablePromoExp"
+                }
+              ]
+            }
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-10-21T23:57:003.397Z"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2021-10-21T23:57:003.397Z"
+          }
+        }
+      },
+      "requestTrigger": {
+        "title": "requestTrigger",
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "example": "2874DEC7-26CF-4797-9C6A-B5A2AC72D526"
+          },
+          "triggerName": {
+            "type": "string",
+            "example": "PromoAlerts_0000000000-00001_23456789"
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-000001"
+          },
+          "organizationName": {
+            "type": "string",
+            "example": "Optional group name"
+          },
+          "triggerCategory": {
+            "type": "string",
+            "example": "PromoAlerts"
+          },
+          "promoAlerts": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/filtercriteria2"
+                },
+                {
+                  "$ref": "#/components/schemas/condition"
+                },
+                {
+                  "$ref": "#/components/schemas/enablePromoExp"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "condition": {
+        "type": "object",
+        "properties": {
+          "condition": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/keyschunk2"
+            }
+          }
+        }
+      },
+      "keyschunk2": {
+        "type": "object",
+        "properties": {
+          "dataPercentage50": {
+            "type": "boolean",
+            "example": false
+          },
+          "dataPercentage75": {
+            "type": "boolean",
+            "example": false
+          },
+          "dataPercentage90": {
+            "type": "boolean",
+            "example": false
+          },
+          "dataPercentage100": {
+            "type": "boolean",
+            "example": false
+          },
+          "smsPercentage50": {
+            "type": "boolean",
+            "example": false
+          },
+          "smsPercentage75": {
+            "type": "boolean",
+            "example": false
+          },
+          "smsPercentage90": {
+            "type": "boolean",
+            "example": false
+          },
+          "smsPercentage100": {
+            "type": "boolean",
+            "example": true
+          },
+          "NoOfDaysB4PromoExp": {
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "enablePromoExp": {
+        "type": "object",
+        "properties": {
+          "enablePromoExp": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "filtercriteria": {
+        "type": "object",
+        "properties": {
+          "filterCriteria": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReadySimServicePlan"
+            }
+          }
+        }
+      },
+      "filtercriteria2": {
+        "type": "object",
+        "properties": {
+          "filterCriteria": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "ReadySimServicePlan": {
+        "type": "object",
+        "properties": {
+          "servicePlan": {
+            "type": "string",
+            "example": 123456
+          }
+        }
+      },
+      "keysChunk": {
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/keyServicePlan"
+            },
+            {
+              "$ref": "#/components/schemas/keyDataPercentage50"
+            },
+            {
+              "$ref": "#/components/schemas/keyDataPercentage75"
+            },
+            {
+              "$ref": "#/components/schemas/keyDataPercentage90"
+            },
+            {
+              "$ref": "#/components/schemas/keyDataPercentage100"
+            },
+            {
+              "$ref": "#/components/schemas/keysmsPercentage50"
+            },
+            {
+              "$ref": "#/components/schemas/keysmsPercentage75"
+            },
+            {
+              "$ref": "#/components/schemas/keysmsPercentage90"
+            },
+            {
+              "$ref": "#/components/schemas/keysmsPercentage100"
+            },
+            {
+              "$ref": "#/components/schemas/keyNoOfDaysB4PromoExp"
+            },
+            {
+              "$ref": "#/components/schemas/keyEnablePromoExp"
+            }
+          ]
+        }
+      },
+      "keyServicePlan": {
+        "title": "keyServicePlan",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "ServicePlan"
+          }
+        }
+      },
+      "keyDataPercentage50": {
+        "title": "keyDataPercentage50",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage50"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keyDataPercentage75": {
+        "title": "keyDataPercentage75",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage75"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keyDataPercentage90": {
+        "title": "keyDataPercentage90",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage90"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keyDataPercentage100": {
+        "title": "keyDataPercentage100",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "DataPercentage100"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keysmsPercentage50": {
+        "title": "keysmsPercentage50",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "SmsPercentage50"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keysmsPercentage75": {
+        "title": "keysmsPercentage75",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "SmsPercentage75"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keysmsPercentage90": {
+        "title": "keysmsPercentage90",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "SmsPercentage90"
+          },
+          "value": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "keysmsPercentage100": {
+        "title": "keysmsPercentage100",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "SmsPercentage100"
+          },
+          "value": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "keyNoOfDaysB4PromoExp": {
+        "title": "NoOfDaysB4PromoExp",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "NoOfDaysB4PromoExp"
+          },
+          "value": {
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "keyEnablePromoExp": {
+        "title": "EnablePromoExp",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "EnablePromoExp"
+          },
+          "value": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "usageRequestResponse": {
+        "title": "usageRequestResponse",
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "example": "be1b5958-3e11-41db-9abd-b1b7618c0035"
+          }
+        }
+      },
+      "success": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "Success"
+          }
+        }
+      },
+      "ReadySimRestErrorResponse": {
+        "title": "ReadySimRestErrorResponse",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": "The 3-digit HTML error code"
+          },
+          "errorMessage": {
+            "type": "string",
+            "example": "More details about the error"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

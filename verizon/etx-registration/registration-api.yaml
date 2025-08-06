@@ -1,0 +1,733 @@
+openapi: 3.0.3
+info:
+  title: Edge Transportation Exchange - Registration API
+  version: 2.1.0
+  description: |
+    The Edge Transportation Exchange (ETX) Registration APIs allow ETX users to register themselves as vendors, register their devices or software services, and request the connection endpoint in order to connect to the ETX system.
+
+    In order to use the APIs the user needs to have a ThingSpace account and use their ThingSpace credential to request an Access/Bearer token, which is used to authorize the user, and also request a Session/M2M token to authenticate the user.
+
+    * For details on how to obtain the token please refer to the [ThingSpace Quick Start Guide - Obtaining an Access Token](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-an-access_token).
+    * For detail on how to obtain a Session/M2M token please refer to the [ThingSpace Quick Start Guide - Obtaining a VZ-M2M Session Token Programmatically](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-a-vz-m2m-sessiontoken-programmatically).
+    * Or watch the [ThingSpace API Video Guide 1](https://www.youtube.com/watch?v=QPJQFT3637w) and [ThingSpace API Video Guide 2](https://www.youtube.com/watch?v=hc9udGp4P_s) that explains how to obtain both tokens.
+
+    When users want to utilize ETX, they have to go through 3 steps:
+    1. Call the `clients/registration` endpoint to request a device ID and certificate package. This ID and certificate will be needed to connect to the ETX Message Exchange through MQTT.
+    2. Call the `connection` endpoint to request the MQTT URL for the ETX Message Exchange. This request will provide the right MQTT endpoint based on client location and network connection type.
+    3. Use the credentials to create an MQTT connection to the URL received from the `connection` endpoint and start using the system.
+  contact:  
+    name: Verizon ETX Team
+    email: vzimp@verizon.com
+  x-server-configuration:
+    default-environment: Production
+    default-server: IMP Server
+    environments:
+    - name: Production
+      servers:
+      - name: IMP Server
+        url: https://imp.thingspace.verizon.com
+      - name: OAuth Server
+        url: https://thingspace.verizon.com/api/ts/v1
+    - name: Staging
+      servers:
+      - name: IMP Server
+        url: https://imp-staging.thingspace.verizon.com
+      - name: OAuth Server
+        url: https://staging.thingspace.verizon.com/api/ts/v1
+servers:
+  - url: https://imp-dev.thingspace.verizon.com
+    description: Dev environment
+  - url: https://imp-qa.thingspace.verizon.com
+    description: QA environment
+  - url: https://imp-staging.thingspace.verizon.com
+    description: Staging environment
+  - url: https://imp.thingspace.verizon.com
+    description: Production environment
+paths:
+  /api/v2/clients/registration:
+    post:
+      operationId: RegisterETXDevice
+      tags:
+        - Registration
+      summary: Register a device or a software service to the ETX system.
+      description: |
+        With this API call the user (client) registers its device or software service to the ETX system. Therefore, when a connection is initiated from the device or software service to the ETX system along with the credential provided by this registration call, then the connection will be authorized.
+
+        - The user can register multiple devices or software services, which can all be used at the same time.
+        - There rules set in the system that limit the type and subtype of the clients that are allowed to be registered under the VendorID. The rules are created based ont he agreement between the Vendor and Verizon.
+        - The user will only be able to register a limited number of devices or software services under the same VendorID. This registration limit is specified by the agreement between the Vendor and Verizon.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ClientRegistrationRequest"
+      responses:
+        "200":
+          description: Successful Registration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientRegistrationResponse"
+        "202":
+          description: client registration is pending due to the delay of generating certificate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientRegistrationPendingResponse"
+        "400":
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "503":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+    put:
+      operationId: RenewETXDevice
+      tags: 
+        - Registration
+      summary: Renew a device certificate or complete the registration for a device with pending certificate
+      description: |
+        With this API call the user (client) can:
+        - renew the certificate of a device or software service in the ETX system if the original certificate has expired. If the client's certificate expired or going to expire within 30 days and new certificate will be issued. If the certificate expires more than 30 days, the current certificate will be returned to the client.
+        - complete its device or software service registration to the ETX system if the original registration request was not successful because of a pending certificate generation. Whenever the user receives a "client registration is pending" response (HTTP 202) from POST /clients/registration call. The client should initiate this PUT API call to finish the registration process and get the required certificate.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      parameters:
+        - $ref: "#/components/parameters/DeviceID"
+        - $ref: "#/components/parameters/VendorID"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+      responses:
+        "200":
+          description: Successful Registration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientRegistrationResponse"
+        "202":
+          description: client registration is pending due to the delay of generating certificate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientRegistrationPendingResponse"
+        "400":
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "503":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+    delete:
+      tags: 
+        - Registration
+      operationId: UnregisterETXDevice
+      summary: Unregister a list of devices and software services from the ETX system.
+      description: |
+        With this API call the user (client) can unregister its devices and software services from the ETX system. The unregistered devices and services will no longer be able to use the ETX Message Exchange.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+        - in: query
+          name: DeviceIDs
+          description: The list of device IDs and software service IDs to be unregistered
+          required: true
+          schema:
+            type: array
+            maxItems: 100
+            minItems: 1
+            items:
+              $ref: "#/components/schemas/DeviceID"
+          example:
+            DeviceIDs:
+              [
+                "976c4bad-03d3-4dcb-9688-ee57db7890e4",
+                "6dc544c2-5db3-4b80-a204-9efce369c2af",
+              ]
+      responses:
+        "204":
+          description: Successful Deletion
+        "400":
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "503":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+    get:
+      tags: 
+        - Registration
+      operationId: GetETXDeviceCertificate
+      summary: Retrieve the certificate of a device or a software service in the ETX system.
+      description: |
+        With this API call the user can check the certificate of the device. At least one of the DeviceID, IMEI or ICCID is required to make the call.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      parameters:
+        - in: query
+          name: DeviceID
+          schema:
+            $ref: "#/components/schemas/DeviceID"
+        - in: query
+          name: IMEI
+          schema:
+            $ref: "#/components/schemas/IMEI"
+        - in: query
+          name: ICCID
+          schema:
+            $ref: "#/components/schemas/ICCID"
+      responses:
+        "200":
+          description: Successful retrieval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClientPersistenceResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "500":
+          description: Internal server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+
+  /api/v2/clients/connection:
+    post:
+      tags: 
+        - Registration
+      operationId: RetrieveMQTTURL
+      summary: Retrieve MQTT URL for device or software service connection to the Message Exchange
+      description: |
+        With this API call the device or software service requests the MQTT URL for the location that it needs to connect. To determine the proper URL the device or software service needs to provide its ID (the one that was provided in the registration request), location (GPS coordinates), and whether it is on the Verizon cellular network or not.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectionRequest"
+      responses:
+        "200":
+          description: Successful retrieval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectionResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "503":
+          description: Internal server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+
+components:
+  parameters:
+    VendorID:
+      in: header
+      name: VendorID
+      description: The VendorID set during the Vendor registration call.
+      required: true
+      schema:
+        $ref: "#/components/schemas/VendorID"
+    DeviceID:
+      in: header
+      name: DeviceID
+      required: true
+      x-go-name: CustomDeviceID
+      schema:
+        $ref: "#/components/schemas/DeviceID"
+  schemas:
+
+    VendorID:
+      description: The ID the vendor wants its devices to be registered under. E.g. Verizon, GM, Ford, etc.
+      type: string
+      maxLength: 64
+      pattern: ^[a-zA-Z0-9]+$
+      example: "VerizonETX"
+
+    ClientRegistrationRequest:
+      description: |
+        Request for /clients/registration endpoint. It requires the Client Type, Subtype and Vendor to be defined.
+      type: object
+      required:
+        - ClientType
+        - ClientSubtype
+        - VendorID
+      properties:
+        ClientType:
+          $ref: "#/components/schemas/ClientType"
+        ClientSubtype:
+          $ref: "#/components/schemas/ClientSubtype"
+        VendorID:
+          $ref: "#/components/schemas/VendorID"
+        DeviceID:
+          $ref: "#/components/schemas/DeviceID"
+        IMEI:
+          $ref: "#/components/schemas/IMEI"
+        ICCID:
+          $ref: "#/components/schemas/ICCID"
+      additionalProperties: false
+
+    ClientRegistrationResponse:
+      description: Response for /clients/registration. It provides a generated device ID and the certificates needed to connect the ETX Message Exchange.
+      type: object
+      required:
+        - DeviceID
+        - Certificate
+      properties:
+        DeviceID:
+          $ref: "#/components/schemas/DeviceID"
+        Certificate:
+          $ref: "#/components/schemas/Certificate"
+      additionalProperties: false
+
+    ClientRegistrationPendingResponse:
+      description: Response for /clients/registration for pending state. It provides a device_id for user to finish registration with PUT API call
+      type: object
+      required:
+        - DeviceID
+        - Message
+      properties:
+        DeviceID:
+          $ref: "#/components/schemas/DeviceID"
+        Message:
+          description: The reason why the registration is in pending state
+          type: string
+          maxLength: 1024
+          minLength: 0
+          pattern: ^[a-zA-Z0-9~\+\-!@#$%^&*()\`\[\]{=};\"':,.\/<>?|\s]+$
+          example: Client registration is in pending state due to the unfinished certificate generation. Please call the PUT API to finish the registration.
+      additionalProperties: false
+
+    ClientPersistenceResponse:
+      description: Response for /v2/clients/registration. It provides a generated device ID and the certificates needed to connect the ETX Message Exchange.
+      type: object
+      properties:
+        DeviceID:
+          $ref: "#/components/schemas/DeviceID"
+        Certificate:
+          $ref: "#/components/schemas/Certificate"
+        ClientType:
+          $ref: "#/components/schemas/ClientType"
+        ClientSubtype:
+          $ref: "#/components/schemas/ClientSubtype"
+        VendorID:
+          $ref: "#/components/schemas/VendorID"
+      additionalProperties: false
+
+    ConnectionRequest:
+      description: |
+        Request for /clients/connection. It requires the device ID acquired in the registration request call; the geolocation of the device at the time of the request; and the network type (Verizon or non-Verizon). The system uses this information to determine with MQTT endpoint the device should use to connect the ETX Message Exchange.
+      type: object
+      required:
+        - DeviceID
+        - Geolocation
+        - NetworkType
+      properties:
+        DeviceID:
+          $ref: "#/components/schemas/DeviceID"
+        Geolocation:
+          $ref: "#/components/schemas/Geolocation"
+        NetworkType:
+          title: ETXNetworkType
+          description: |
+            The type of the device's network connection at the time of the request. If the device is on the Verizon cellular network it should use the "VZ" value otherwise the "non-VZ" value.
+
+            Devices on the Verizon network can directly access the ETX Message Exchange on the MEC (Mobile Edge Compute server)
+          type: string
+          enum:
+            - "VZ"
+            - "non-VZ"
+          example: non-VZ
+      example:
+        DeviceID: "976c4bad-03d3-4dcb-9688-ee57db7890e4"
+        Geolocation:
+          Latitude: 42.36
+          Longitude: -71.06
+        NetworkType: non-VZ
+      additionalProperties: false
+
+    ConnectionResponse:
+      description: response for /clients/connection
+      type: object
+      required:
+        - MqttURL
+      properties:
+        MqttURL:
+          type: string
+          maxLength: 1024
+          pattern: ^(http?mqtt)://[^\s/$.?#].[^\s]*$
+      additionalProperties: false
+
+    DeviceID:
+      description: |
+        The generated ID (UUID v4) for the device. It can be used as:
+          - the MQTT Client ID when connecting to the Message Exchange system
+          - a parameter when asking for the connection endpoint
+          - a parameter when finishing the device registration
+          - a parameter when unregistering the device
+      type: string
+      format: uuid
+      minLength: 36
+      maxLength: 36
+      pattern: ^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$
+      example: a4fcd16a-343d-4527-8203-2f46e3e4ff4b
+      x-42c-format: o:uuid
+
+    ClientType:
+      title: ETXClientType
+      description: |
+        The type of the client that is to be registered. This is one of the major traffic participant groups considered in V2X communication. The system uses this value to define which topics the client will be able to publish and subscribe to.
+
+        Values:
+        - **Vehicle** - Vehicle with an enclosure around the passengers. (Subtypes: PassengerCar, Truck, Bus, EmergencyVehicle, SchoolBus, MaintenanceVehicle)
+        - **VulnerableRoadUser** - Traffic participants without a protecting enclosure. (Subtypes: Motorcycle, Bicycle, Pedestrian, Scooter)
+        - **TrafficLightController** - A Traffic light controller system. (Subtypes: NA)
+        - **InfrastructureSensor** - Sensors that are deployed in the infrastructure. (Subtypes: RoadSideUnit, Camera, Lidar, Radar, InductiveLoop, MagneticSensor)
+        - **OnboardSensor** - Sensors that are onboard on a vehicle(Subtypes: Camera, Lidar, Radar)
+        - **Software** - A software system or application. (Subtypes: Platform, Application, NA)
+      type: string
+      enum:
+        - Vehicle
+        - VulnerableRoadUser
+        - TrafficLightController
+        - InfrastructureSensor
+        - OnboardSensor
+        - Software
+
+    ClientSubtype:
+      description: |
+        The subtype or subgroup of the client type. This further specifies the client type. For example it will specify if the client is a passenger car or a truck. See the ClientType description for the supported Subtypes for each client type.
+      type: string
+      enum:
+        - PassengerCar
+        - Truck
+        - Bus
+        - EmergencyVehicle
+        - SchoolBus
+        - MaintenanceVehicle
+        - Pedestrian
+        - Bicycle
+        - Scooter
+        - Motorcycle
+        - RoadSideUnit
+        - Camera
+        - Lidar
+        - Radar
+        - InductiveLoop
+        - MagneticSensor
+        - Platform
+        - Application
+        - NA
+
+    IMEI:
+      description: |
+        The IMEI number of the device.
+      type: string
+      maxLength: 19
+      pattern: ^(\d{2}-\d{6}-\d{6}-\d{1,2})$|^(\d{15,16})$
+      example: "12-345678-901234-5"
+
+    ICCID:
+      description: |
+        The ICCID number of the device.
+      type: string
+      minLength: 19
+      maxLength: 20
+      pattern: ^(89\d{17,18})$
+      example: "89345678901234567890"
+
+    Certificate:
+      description: Structure for the credentials required to connect to the ETX MQTT Message Exchange.
+      type: object
+      required:
+        - cert.pem
+        - key.pem
+        - ca.pem
+        - ExpirationTime
+      properties:
+        cert.pem:
+          description: The string containing the certificate
+          maxLength: 4096
+          minLength: 0
+          pattern: ^[a-zA-Z0-9~\+\-!@#$%^&*()\`\[\]{=};\"':,.\/<>?|\s]+$
+          type: string
+          example: |
+            "-----BEGIN CERTIFICATE-----
+            MIIDrjCCApagAwIBAgICEAEwDQYJKoZIhvcNAQELBQAwUjELMAkGA1UEBhMCQVUx
+            ...
+            uuA1Zog3aBOeeEzp9SEJBMTJRYPXbK4e8Xer+7m98OL/3g==
+            -----END CERTIFICATE-----"
+        key.pem:
+          description: The string containing the private key
+          maxLength: 4096
+          minLength: 0
+          pattern: ^[a-zA-Z0-9~\+\-!@#$%^&*()\`\[\]{=};\"':,.\/<>?|\s]+$
+          type: string
+          example: |
+            "-----BEGIN PRIVATE KEY-----
+            MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDa1lF7DWudshQ5
+            ...
+            JbjD2hacWGzpKzTfn5Mt1frE
+            -----END PRIVATE KEY-----"
+        ca.pem:
+          description: The string containing the CA certificate
+          maxLength: 4096
+          minLength: 0
+          pattern: ^[a-zA-Z0-9~\+\-!@#$%^&*()\`\[\]{=};\"':,.\/<>?|\s]+$
+          type: string
+          example: |
+            "-----BEGIN CERTIFICATE-----
+            MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDa1lF7DWudshQ5
+            ...
+            JbjD2hacWGzpKzTfn5Mt1frE
+            -----END CERTIFICATE-----"
+        ExpirationTime:
+          description: The string describing the expiration timestamp of the certificate
+          type: string
+          format: date-time
+          maxLength: 38
+          minLength: 20
+          pattern: ^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:(?:[0-5][0-9]|60)(?:\.[0-9]{1,15})?(?:Z|[+\-](?:[01][0-9]|2[0-3]):[0-5][0-9])$
+          example: "2017-07-21T17:32:28Z"
+          x-42c-format: o:date-time
+      additionalProperties: false
+
+    Geolocation:
+      description: Geolocation of the device at the time of the connection request in GPS coordinates.
+      type: object
+      required:
+        - Latitude
+        - Longitude
+      properties:
+        Latitude:
+          description: The GPS Latitude value
+          type: number
+          format: double
+          minimum: -90.0
+          maximum: 90.0
+          example: 42.36
+        Longitude:
+          description: The GPS Longitude value
+          type: number
+          format: double
+          minimum: -180.0
+          maximum: 180.0
+          example: -71.06
+      example:
+        Latitude: 42.36
+        Longitude: -71.06
+      additionalProperties: false
+
+    ResponseError:
+      title: ETXResponseError
+      description: error response structure
+      type: object
+      required:
+        - error
+        - description
+      properties:
+        error:
+          $ref: "#/components/schemas/Error"
+        description:
+          $ref: "#/components/schemas/ResponseErrorDescription"
+      additionalProperties: false
+
+    ResponseErrorDescription:
+      description: The detailed description of the error
+      type: string
+      maxLength: 4096
+      minLength: 0
+      pattern: ^[\w~\+\-!@#$%^&*()\`\[\]{=};\"':,.\\\/<>?|\s]*$
+      example: "Error Description"
+
+    Error:
+      description: The short summary of the error
+      type: string
+      maxLength: 1024
+      minLength: 0
+      pattern: ^[\w~\+\-!@#$%^&*()\`\[\]{=};\"':,.\\\/<>?|\s]*$
+      example: "Error Summary"
+
+  securitySchemes:
+    thingspace_oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://thingspace.verizon.com/api/ts/v1/oauth2/token'
+          scopes: {}
+    sessionToken:
+      type: apiKey
+      in: header
+      name: SessionToken
+      description: |
+        This is the Session/M2M token needed to authenticate the user. It should be acquired by using the ThingSpace APIs. For detail on how to obtain a Session/M2M token please refer to the
+        - [ThingSpace Quick Start Guide - Obtaining a VZ-M2M Session Token Programmatically](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-a-vz-m2m-sessiontoken-programmatically)
+        - or the [ThingSpace API Video Guide 1](https://www.youtube.com/watch?v=QPJQFT3637w) and [ThingSpace API Video Guide 2](https://www.youtube.com/watch?v=hc9udGp4P_s)
+
+security:
+  - thingspace_oauth: []
+    sessionToken: []

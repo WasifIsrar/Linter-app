@@ -1,0 +1,3005 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Device Location API",
+    "description": "The Device Location API lets you find the location of IoT devices in an account. You can use a device's location for many purposes, such as:<br/><br/> * Verify that fixed assets are where they are supposed to be. <br/>* Periodically track mobile assets, such as monitoring a fleet of moving trucks on an hourly basis. <br/>* Plan efficient truck routes between devices that need service. <br/>* Estimate the arrival time of a delivery.</br></br>A device's current location can be requested or the previous location of the device (from the cache). You can compare the current and cached locations to verify that a device has not moved or to see how far it has moved. Precise location can determine if the device is currently in motion.",
+    "license": {
+      "name": "Verizon Terms",
+      "url": "https://thingspace.verizon.com/legal/terms-of-services/"
+    },
+    "version": "1.1",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Device Location",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Device Location",
+              "url": "https://thingspace.verizon.com/api/loc/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Subscription Server",
+              "url": "https://thingspace.verizon.com/api/subsc/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Device Location",
+              "url": "https://staging.thingspace.verizon.com/api/loc/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Subscription Server",
+              "url": "https://staging.thingspace.verizon.com/api/subsc/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/loc/v1",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/loc/v1",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Devices Locations",
+      "description": "Locate devices."
+    },
+    {
+      "name": "Exclusions",
+      "description": "Exclude devices from location services."
+    },
+    {
+      "name": "Devices Location Subscriptions",
+      "description": "Get an account's location service subscription status and usage."
+    },
+    {
+      "name": "Device Location Callbacks",
+      "description": "Receive notifications from the API."
+    }
+  ],
+  "paths": {
+    "/devicelocations/{txid}": {
+      "delete": {
+        "tags": [
+          "Device Location Callbacks"
+        ],
+        "summary": "Cancel an Asyncronous report",
+        "operationId": "CancelAsyncReport",
+        "description": "Cancel an asynchronous report request.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "Account identifier in \"##########-#####\".",
+            "required": true,
+            "example": "0000123456-00001",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txid",
+            "in": "path",
+            "description": "The `transactionId` value.",
+            "required": true,
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request canceled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionID"
+                },
+                "example": {
+                  "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devicelocations/action/consents": {
+      "get": {
+        "tags": [
+          "Exclusions"
+        ],
+        "summary": "Retrieve the consent record for devices on an account",
+        "operationId": "DevicesLocationGetConsentAsync",
+        "description": "Get the consent settings for the entire account or device list in an account.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "The numeric name of the account.",
+            "example": "0000123456-00001",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deviceId",
+            "in": "query",
+            "description": "The IMEI of the device being queried",
+            "example": 900000000000009,
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of JSON objects, each containing the position data or an error for a device in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAccountDeviceConsent"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Exclusions"
+        ],
+        "summary": "Create the consent record for an account",
+        "operationId": "DevicesLocationGiveConsentAsync",
+        "description": "Create a consent record to use location services as an asynchronous request.",
+        "requestBody": {
+          "description": "Account details to create a consent record.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountConsentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of JSON objects, each containing the position data or an error for a device in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentTransactionID"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Exclusions"
+        ],
+        "summary": "Updates a consent record for an account",
+        "operationId": "DevicesLocationUpdateConsent",
+        "description": "Update the location services consent record for an entire account.",
+        "requestBody": {
+          "description": "Account details to update a consent record.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountConsentUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of JSON objects, each containing the position data or an error for a device in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentTransactionID"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations": {
+      "post": {
+        "tags": [
+          "Devices Locations"
+        ],
+        "summary": "Obtain locations of devices",
+        "operationId": "ListDevicesLocationsSynchronous",
+        "description": "This locations endpoint retrieves the locations for a list of devices.",
+        "requestBody": {
+          "description": "Request to obtain location of devices.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationRequest"
+              },
+              "example": {
+                "accountName": "1234567890-00001",
+                "accuracyMode": "0",
+                "cacheMode": "1",
+                "deviceList": [
+                  {
+                    "id": "980003420535573",
+                    "kind": "imei",
+                    "mdn": "7892345678"
+                  },
+                  {
+                    "id": "375535024300089",
+                    "kind": "imei",
+                    "mdn": "7897654321"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "List of JSON objects, each containing the position data or an error for a device in the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "description": "Location data e.g. the position data for a device or an error in the request.",
+                  "items": {
+                    "$ref": "#/components/schemas/Location"
+                  }
+                },
+                "example": [
+                  {
+                    "msid": "7892345678",
+                    "pd": {
+                      "time": "20170520004421",
+                      "x": "33.45324",
+                      "y": "-84.59621",
+                      "radius": "5571",
+                      "qos": false
+                    },
+                    "error": {}
+                  },
+                  {
+                    "msid": "8583239709",
+                    "pd": {
+                      "time": "20170525214342",
+                      "x": "38.8408694",
+                      "y": "-105.0422583",
+                      "radius": "3866",
+                      "qos": false
+                    },
+                    "error": {}
+                  },
+                  {
+                    "msid": "7897654321",
+                    "pd": {},
+                    "error": {
+                      "time": "20170525214342",
+                      "type": "POSITION METHOD FAILURE",
+                      "info": "Exception code=ABSENT SUBSCRIBER"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devicelocations": {
+      "post": {
+        "tags": [
+          "Devices Locations"
+        ],
+        "summary": "Obtain locations of IoT or consumer devices",
+        "operationId": "ListDevicesLocationsAsynchronous",
+        "description": "Requests the current or cached location of up to 10,000 IoT or consumer devices (phones, tablets. etc.). This request returns a synchronous transaction ID, and the location information for each device is returned asynchronously as a DeviceLocation callback message.",
+        "requestBody": {
+          "description": "An asynchronous request to obtain locations of devices.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationRequest"
+              },
+              "example": {
+                "accountName": "2234434445-32333",
+                "accuracyMode": "0",
+                "cacheMode": "2",
+                "deviceList": [
+                  {
+                    "id": "354677790348290",
+                    "kind": "imei",
+                    "mdn": "5557337468"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request accepted; location report in progress",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SynchronousLocationRequestResult"
+                },
+                "example": {
+                  "txid": "4be7c858-eeee-ffff-gggg-95061456d835",
+                  "status": "QUEUED"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "INVALID_PARAMETER",
+                  "errorMessage": "Unregistered account"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locationreports": {
+      "post": {
+        "tags": [
+          "Devices Locations"
+        ],
+        "summary": "Create a location report",
+        "operationId": "CreateLocationReport",
+        "description": "Request an asynchronous device location report.",
+        "requestBody": {
+          "description": "Request for device location report.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationRequest"
+              },
+              "example": {
+                "accountName": "1234567890-00001",
+                "accuracyMode": "0",
+                "cacheMode": "1",
+                "deviceList": [
+                  {
+                    "id": "980003420535573",
+                    "kind": "imei",
+                    "mdn": "7892345678"
+                  },
+                  {
+                    "id": "375535024300089",
+                    "kind": "imei",
+                    "mdn": "7897654321"
+                  },
+                  {
+                    "id": "A100003861E585",
+                    "kind": "meid",
+                    "mdn": "7897650914"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request accepted; location report in progress.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsynchronousLocationRequestResult"
+                },
+                "example": {
+                  "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+                  "status": "QUEUED"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locationreports/{accountName}/report/{txid}/index/{startindex}": {
+      "get": {
+        "tags": [
+          "Devices Locations"
+        ],
+        "summary": "Retrieve a location report",
+        "operationId": "RetrieveLocationReport",
+        "description": "Download a completed asynchronous device location report.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier in \"##########-#####\".",
+            "required": true,
+            "example": "0000123456-00001",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txid",
+            "in": "path",
+            "example": "2017-12-11Te8b47da2-eeee-ffff-gggg-61815e1e97e9",
+            "description": "Transaction ID from POST /locationreports response.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startindex",
+            "in": "path",
+            "description": "Zero-based number of the first record to return.",
+            "required": true,
+            "example": 0,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Location information for up to 1,000 devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationReport"
+                },
+                "example": {
+                  "startIndex": "0",
+                  "txid": "2017-12-11Te8b47da2-eeee-ffff-gggg-61815e1e97e9",
+                  "totalCount": 3,
+                  "hasMoreData": false,
+                  "devLocationList": [
+                    {
+                      "error": {},
+                      "msid": "7892345678",
+                      "pd": {
+                        "qos": false,
+                        "radius": "5571",
+                        "time": "20170520004421",
+                        "x": "33.45324",
+                        "y": "-84.59621"
+                      }
+                    },
+                    {
+                      "error": {},
+                      "msid": "8583239709",
+                      "pd": {
+                        "qos": false,
+                        "radius": "3866",
+                        "time": "20170525214342",
+                        "x": "38.8408694",
+                        "y": "-105.0422583"
+                      }
+                    },
+                    {
+                      "error": {
+                        "time": "20170525214342",
+                        "type": "POSITION METHOD FAILURE",
+                        "info": "Exception code=ABSENT SUBSCRIBER"
+                      },
+                      "msid": "7897654321",
+                      "pd": {}
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locationreports/{accountName}/report/{txid}/status": {
+      "get": {
+        "tags": [
+          "Devices Locations"
+        ],
+        "summary": "Get the status of a location report",
+        "operationId": "GetLocationReportStatus",
+        "description": "Returns the current status of a requested device location report.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier in \"##########-#####\".",
+            "required": true,
+            "example": "0252012345-00001",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txid",
+            "in": "path",
+            "description": "Transaction ID of the report.",
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Location report status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationReportStatus"
+                },
+                "example": {
+                  "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+                  "status": "INPROGRESS"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locationreports/{accountName}/report/{txid}": {
+      "delete": {
+        "tags": [
+          "Devices Locations"
+        ],
+        "summary": "Cancel a queued location report",
+        "operationId": "CancelQueuedLocationReportGeneration",
+        "description": "Cancel a queued device location report.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier in \"##########-#####\".",
+            "example": "0252012345-00001",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txid",
+            "in": "path",
+            "description": "Transaction ID of the report to cancel.",
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Report generation cancelled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionID"
+                },
+                "example": {
+                  "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consents": {
+      "post": {
+        "tags": [
+          "Exclusions"
+        ],
+        "summary": "Update account consent exclusion",
+        "operationId": "ExcludeDevices",
+        "description": "This consents endpoint sets a new exclusion list.",
+        "requestBody": {
+          "description": "Request to update account consent exclusion list.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationSuccessResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "INVALID_PARAMETER",
+                  "errorMessage": "UWS verification failure (Could not find account {account}.)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Exclusions"
+        ],
+        "summary": "Remove devices from exclusion list",
+        "operationId": "RemoveDevicesFromExclusionList",
+        "description": "Removes devices from the exclusion list so that they can be located with Device Location Services requests.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "The numeric name of the account.",
+            "example": "0000123456-00001",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deviceList",
+            "in": "query",
+            "description": "A list of the device IDs to remove from the exclusion list.",
+            "example": "IMEI",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Devices successfully removed from list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationSuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consents/{accountName}/index/{startIndex}": {
+      "get": {
+        "tags": [
+          "Exclusions"
+        ],
+        "summary": "Get a consent exclusion",
+        "operationId": "ListExcludedDevices",
+        "description": "This consents endpoint retrieves a list of excluded devices in an account.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier in \"##########-#####\".",
+            "required": true,
+            "example": "0252012345-00001",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "path",
+            "description": "Zero-based number of the first record to return.",
+            "required": true,
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Excluded devices result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevicesConsentResult"
+                },
+                "example": {
+                  "accountName": "2024009649-00001",
+                  "allDevice": false,
+                  "hasMoreData": false,
+                  "totalCount": 4,
+                  "updateTime": "2018-05-18 19:20:50.076 +0000 UTC",
+                  "exclusion": [
+                    "990003420535375",
+                    "420535399000375",
+                    "A100003861E585",
+                    "205353759900034"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callbacks/{accountName}": {
+      "get": {
+        "tags": [
+          "Device Location Callbacks"
+        ],
+        "summary": "Get registered callback URLs.",
+        "operationId": "ListRegisteredCallbacks",
+        "description": "Returns a list of all registered callback URLs for the account.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account number.",
+            "required": true,
+            "example": "0000123456-00001",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all registered callback URLs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceLocationCallback"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Location",
+                    "url": "http://10.120.102.147:50569/CallbackListener/Location.asmx"
+                  },
+                  {
+                    "name": "Location",
+                    "url": "http://10.120.102.147:50569/CallbackListener/DeviceLocation.asmx"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Device Location Callbacks"
+        ],
+        "summary": "Register a URL to receive callbacks",
+        "operationId": "RegisterCallback",
+        "description": "Provide a URL to receive messages from a ThingSpace callback service.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account number.",
+            "example": "0000123456-00001",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request to register a callback.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceLocationCallback"
+              },
+              "example": {
+                "name": "Location",
+                "url": "http://10.120.102.183:50559/CallbackListener/LocationServiceMessages.asmx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Callback registration response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallbackRegistrationResult"
+                },
+                "example": {
+                  "account": "0212312345-00001",
+                  "name": "Location"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callbacks/{accountName}/name/{service}": {
+      "delete": {
+        "tags": [
+          "Device Location Callbacks"
+        ],
+        "summary": "Stop receiving a callback type.",
+        "operationId": "DeregisterCallback",
+        "description": "Deregister a URL to stop receiving callback messages.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account number.",
+            "example": "0000123456-00001",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "service",
+            "in": "path",
+            "description": "Callback service name.",
+            "required": true,
+            "example": "Location",
+            "schema": {
+              "$ref": "#/components/schemas/CallbackServiceName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deregistration successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationSuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{accountName}": {
+      "get": {
+        "tags": [
+          "Devices Location Subscriptions"
+        ],
+        "summary": "Get a location subscription status",
+        "operationId": "GetLocationServiceSubscriptionStatus",
+        "description": "This subscriptions endpoint retrieves an account's current location subscription status.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier in \"##########-#####\".",
+            "required": true,
+            "example": "0000123456-00001",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Device location subscription information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationSubscription"
+                },
+                "example": {
+                  "accountName": "2024009649-00001",
+                  "locType": "TS-LOC-COARSE-CellID-5K",
+                  "maxAllowance": "5000",
+                  "purchaseTime": "2017-05-10 06:25:25.171 +0000 UTC"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage": {
+      "post": {
+        "tags": [
+          "Devices Location Subscriptions"
+        ],
+        "summary": "Obtain billable usage for accounts during a specified date range",
+        "operationId": "GetLocationServiceUsage",
+        "description": "This endpoint allows user to search for billable usage for accounts based on the provided date range.",
+        "requestBody": {
+          "description": "Request to obtain billable usage for accounts.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/BillUsageRequest"
+              },
+              "example": {
+                "accountName": "1234567890-00001",
+                "startDate": "04-01-2018",
+                "endDate": "04-30-2018",
+                "usageForAllAccounts": true
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Billable usage report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "accountName": "1223334444-00001",
+                  "usageForAllAcounts": false,
+                  "skuName": "TS-LOC-COARSE-CellID-Aggr",
+                  "transactionsAllowed": "5000",
+                  "totalTransactionCount": "350",
+                  "PrimaryAccount": {
+                    "accountName": "1223334444-00001",
+                    "transactionsCount": "125"
+                  },
+                  "ManagedAccounts": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/triggers": {
+      "post": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Usage Trigger Management"
+        ],
+        "summary": " Create a new usage trigger",
+        "operationId": "CreateNewTrigger",
+        "description": "Create a new usage trigger, which will send an alert when the number of device location service transactions reaches a specified percentage of the monthly subscription amount.\n",
+        "requestBody": {
+          "description": "License assignment.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsageTriggerAddRequest"
+              },
+              "example": {
+                "triggerName": "95% usage alert",
+                "accountName": "0212312345-00001",
+                "serviceName": "Location",
+                "thresholdValue": "95",
+                "allowExcess": true,
+                "sendSmsNotification": true,
+                "smsPhoneNumbers": "5551231234",
+                "sendEmailNotification": true,
+                "emailAddresses": "you@theinternet.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usage trigger Add result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageTriggerResponse"
+                },
+                "example": {
+                  "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d",
+                  "triggerName": "90 percent",
+                  "accountName": "1000012345-00001",
+                  "serviceName": "Location",
+                  "thresholdValue": "90",
+                  "allowExcess": true,
+                  "sendSmsNotification": true,
+                  "smsPhoneNumbers": "5558794321",
+                  "sendEmailNotification": false,
+                  "emailAddresses": "",
+                  "createDate": "2018-08-11",
+                  "updateDate": "2018-08-12"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/triggers/{triggerId}": {
+      "post": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Usage Trigger Management"
+        ],
+        "summary": "Change the settings of an existing usage trigger",
+        "description": "Update an existing usage trigger\n",
+        "operationId": "UpdateTrigger",
+        "parameters": [
+          {
+            "name": "triggerId",
+            "in": "path",
+            "description": "Usage trigger ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "595f5c44-c31c-4552-8670-020a1545a84d"
+          }
+        ],
+        "requestBody": {
+          "description": "New trigger values",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsageTriggerUpdateRequest"
+              },
+              "example": {
+                "accountName": "1000012345-00001",
+                "thresholdValue": "95"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usage trigger Modify result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageTriggerResponse"
+                },
+                "example": {
+                  "triggerId": "595f5c44-c31c-4552-8670-020a1545a84d",
+                  "triggerName": "90 percent",
+                  "accountName": "1000012345-00001",
+                  "serviceName": "Location",
+                  "thresholdValue": "90",
+                  "allowExcess": true,
+                  "sendSmsNotification": true,
+                  "smsPhoneNumbers": "5558794321",
+                  "sendEmailNotification": false,
+                  "emailAddresses": "",
+                  "createDate": "2018-08-11",
+                  "updateDate": "2018-08-12"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/accounts/{accountName}/triggers/{triggerId}": {
+      "delete": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Usage Trigger Management"
+        ],
+        "summary": "Deletes a usage trigger\n",
+        "operationId": "DeleteTrigger",
+        "description": "eletes the specified usage trigger from the given account",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0212312345-00001"
+          },
+          {
+            "name": "triggerId",
+            "in": "path",
+            "description": "Usage trigger ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "595f5c44-c31c-4552-8670-020a1545a84d"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationSuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/managedaccounts/actions/add": {
+      "post": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Adds a list of accounts for managed billing to a primary account.",
+        "operationId": "AddAccount",
+        "description": "This endpoint allows user to add managed accounts to a primary account.\n",
+        "requestBody": {
+          "description": "Service name and list of accounts to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManagedAccountsAddRequest"
+              },
+              "example": {
+                "accountName": "1234567890-00001",
+                "serviceName": "Location",
+                "type": "TS-LOC-COARSE-CellID-Aggr",
+                "managedAccList": [
+                  "1223334444-00001",
+                  "2334445555-00001",
+                  "3445556666-00001"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Add managed accounts response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagedAccountsAddResponse"
+                },
+                "example": {
+                  "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+                  "statusList": [
+                    {
+                      "id": "1223334444-00001",
+                      "status": "Success",
+                      "reason": "Success"
+                    },
+                    {
+                      "id": "2334445555-00001",
+                      "status": "Success",
+                      "reason": "Success"
+                    },
+                    {
+                      "id": "3445556666-00001",
+                      "status": "Success",
+                      "reason": "Success"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/managedaccounts/actions/provision": {
+      "post": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Activate a specific managed account",
+        "operationId": "ManagedAccountAction",
+        "description": "Activates a managed billing service relationship between a managed account and the primary account.",
+        "requestBody": {
+          "description": "Service name and list of accounts to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManagedAccountsProvisionRequest"
+              },
+              "example": {
+                "accountName": "1223334444-00001",
+                "paccountName": "1234567890-00001",
+                "serviceName": "Location",
+                "type": "TS-LOC-COARSE-CellID-5K",
+                "txid": "d4fbff33-eeee-ffff-gggg-2c90bd287e3b"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Managed account provision response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagedAccountsProvisionResponse"
+                },
+                "example": {
+                  "txid": "4fbff332-eeee-ffff-gggg-7e3bdc90bd28",
+                  "accountName": "1223334444-00001",
+                  "paccountName": "1234567890-00001",
+                  "serviceName": "Location",
+                  "status": "Success",
+                  "reason": "Success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/managedaccounts/actions/cancel": {
+      "post": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Cancel a managed service for an account.",
+        "operationId": "CancelManagedAccountAction",
+        "description": "Deactivates a managed billing service relationship between a managed account and the primary account. ",
+        "requestBody": {
+          "description": "Service name and list of accounts to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManagedAccountCancelRequest"
+              },
+              "example": {
+                "accountName": "1223334444-00001",
+                "paccountName": "1234567890-00001",
+                "serviceName": "Location",
+                "type": "TS-LOC-COARSE-CellID-5K",
+                "txid": "d4fbff33-eeee-ffff-gggg-2c90bd287e3b"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Managed account cancel response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagedAccountCancelResponse"
+                },
+                "example": {
+                  "txid": "4fbff332-eeee-ffff-gggg-7e3bdc90bd28",
+                  "accountName": "1223334444-00001",
+                  "paccountName": "1234567890-00001",
+                  "serviceName": "Location",
+                  "status": "Success",
+                  "reason": "Success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/managedaccounts/{accountName}/service/{serviceName}": {
+      "get": {
+        "x-server-name": "Subscription Server",
+        "tags": [
+          "Billing"
+        ],
+        "summary": "Get the list of all managed accounts",
+        "operationId": "ListManagedAccount",
+        "description": "This endpoint allows user to retrieve the list of all accounts managed by a primary account.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Primary account identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1223334444-00001"
+          },
+          {
+            "name": "serviceName",
+            "in": "path",
+            "description": "Service name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of managed accounts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagedAccountsGetAllResponse"
+                },
+                "example": {
+                  "accountName": "2024009649-00001",
+                  "ManagedAccAddedList": [
+                    {
+                      "id": "1223334444-00001",
+                      "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+                    },
+                    {
+                      "id": "2334445555-00001",
+                      "txid": "d4fbff33-eeee-ffff-gggg-2c90bd287e3b"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLocationResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetAccountDeviceConsent": {
+        "type": "object",
+        "properties": {
+          "deviceList": {
+            "type": "array",
+            "description": "An array of device identifiers",
+            "items": {
+              "example": [
+                {
+                  "id": 9000000000000009,
+                  "kind": "imei",
+                  "mdn": "10-digit phone number",
+                  "consent": 0
+                },
+                {
+                  "id": 9000000000000019,
+                  "kind": "imei",
+                  "mdn": "10-digit phone number",
+                  "consent": 0
+                }
+              ]
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "description": "The numeric name of the account, including leading zeros."
+          },
+          "allDeviceConsent": {
+            "type": "integer",
+            "example": 1,
+            "description": "If consent is set at the account level, this value will show the consent level."
+          }
+        }
+      },
+      "AccountConsentCreate": {
+        "type": "object",
+        "properties": {
+          "deviceList": {
+            "type": "array",
+            "description": "An array of device identifiers",
+            "items": {
+              "example": [
+                {
+                  "id": 9000000000000009,
+                  "kind": "imei",
+                  "mdn": "10-digit phone number",
+                  "consent": 0
+                }
+              ]
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "description": "The numeric name of the account, including leading zeros."
+          }
+        }
+      },
+      "AccountConsentUpdate": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "description": "The numeric name of the account, including leading zeros."
+          },
+          "allDeviceConsent": {
+            "type": "integer",
+            "example": 0,
+            "description": "The consent setting to use for all the devices in the account."
+          }
+        }
+      },
+      "AccuracyMode": {
+        "type": "string",
+        "example": "0",
+        "description": "Accurary, currently only 0-coarse supported.",
+        "enum": [
+          "0"
+        ]
+      },
+      "CacheMode": {
+        "type": "string",
+        "description": "Location cache mode.",
+        "example": "1",
+        "enum": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      "ConsentTransactionID": {
+        "type": "object",
+        "description": "The transaction ID of the request that you want to cancel, from the POST /devicelocations synchronus response.",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+          },
+          "status": {
+            "type": "string",
+            "example": "QUEUED"
+          }
+        }
+      },
+      "DeviceLocationCallback": {
+        "required": [
+          "name",
+          "url"
+        ],
+        "example": {
+          "name": "Location",
+          "url": "http://10.120.102.183:50559/CallbackListener/LocationServiceMessages.asmx"
+        },
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/CallbackServiceName"
+          },
+          "url": {
+            "type": "string",
+            "description": "The location of your callback listener.",
+            "example": "http://10.120.102.183:50559/CallbackListener/LocationServiceMessages.asmx",
+            "format": "URL"
+          }
+        }
+      },
+      "CallbackRegistrationResult": {
+        "type": "object",
+        "example": {
+          "account": "0212312345-00001",
+          "name": "Location"
+        },
+        "properties": {
+          "account": {
+            "type": "string",
+            "example": "0212312345-00001",
+            "description": "The name of the account that registered the callback URL."
+          },
+          "name": {
+            "$ref": "#/components/schemas/CallbackServiceName"
+          }
+        }
+      },
+      "CallbackServiceName": {
+        "type": "string",
+        "description": "The name of the callback service.",
+        "example": "Location",
+        "enum": [
+          "Location",
+          "DeviceLocation"
+        ]
+      },
+      "ConsentDeleteRequest": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "MyAccount-1",
+            "description": "Account identifier."
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device ID list.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ConsentRequest": {
+        "type": "object",
+        "example": {
+          "accountName": "1234567890-00001",
+          "type": "replace",
+          "allDevice": false,
+          "exclusion": [
+            "980003420535573",
+            "375535024300089",
+            "A100003861E585"
+          ]
+        },
+        "required": [
+          "accountName"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "2234434445-32333",
+            "description": "Account identifier in \"##########-#####\"."
+          },
+          "allDevice": {
+            "type": "boolean",
+            "example": false,
+            "description": "Exclude all devices or not."
+          },
+          "type": {
+            "type": "string",
+            "example": "replace",
+            "description": "The change to make: append or replace."
+          },
+          "exclusion": {
+            "type": "array",
+            "example": [
+              "980003420535573",
+              "375535024300089",
+              "A100003861E585"
+            ],
+            "description": "Device ID list.",
+            "items": {
+              "type": "string",
+              "example": "980003420535573"
+            }
+          }
+        }
+      },
+      "DevicesConsentResult": {
+        "type": "object",
+        "example": {
+          "accountName": "2024009649-00001",
+          "allDevice": false,
+          "hasMoreData": false,
+          "totalCount": 4,
+          "updateTime": "2018-05-18 19:20:50.076 +0000 UTC",
+          "exclusion": [
+            "990003420535375",
+            "420535399000375",
+            "A100003861E585",
+            "205353759900034"
+          ]
+        },
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "2234434445-32333",
+            "description": "Account identifier in \"##########-#####\"."
+          },
+          "allDevice": {
+            "type": "boolean",
+            "example": false,
+            "description": "Exclude all devices or not?"
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "example": false,
+            "description": "Are there more devices to retrieve or not?"
+          },
+          "totalCount": {
+            "type": "integer",
+            "example": 4,
+            "description": "Total number of excluded devices in the account."
+          },
+          "updateTime": {
+            "type": "string",
+            "example": "2018-05-18 19:20:50.076 +0000 UTC",
+            "description": "Last update time."
+          },
+          "exclusion": {
+            "type": "array",
+            "description": "Device ID list.",
+            "example": [
+              "990003420535375",
+              "420535399000375",
+              "A100003861E585",
+              "205353759900034"
+            ],
+            "items": {
+              "type": "string",
+              "example": "205353759900034"
+            }
+          }
+        }
+      },
+      "DeviceInfo": {
+        "required": [
+          "id",
+          "kind",
+          "mdn"
+        ],
+        "example": {
+          "id": "980003420535573",
+          "kind": "imei",
+          "mdn": "7892345678"
+        },
+        "description": "The devices that you want to locate. The array cannot contain more than 20 devices.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "980003420535573"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Device identifier kind.",
+            "example": "imei"
+          },
+          "mdn": {
+            "type": "string",
+            "description": "Device MDN.",
+            "example": "7892345678"
+          }
+        }
+      },
+      "SynchronousLocationRequestResult": {
+        "required": [
+          "status",
+          "txid"
+        ],
+        "type": "object",
+        "example": {
+          "txid": "4be7c858-eeee-ffff-gggg-95061456d835",
+          "status": "QUEUED"
+        },
+        "properties": {
+          "txid": {
+            "type": "string",
+            "example": "4be7c858-eeee-ffff-gggg-95061456d835",
+            "description": "The transaction ID of the report."
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReportStatus"
+          }
+        }
+      },
+      "LocationRequest": {
+        "description": "The body contains the the account name and list of devices that you want to locate, plus other options.",
+        "required": [
+          "accountName",
+          "deviceList"
+        ],
+        "example": {
+          "accountName": "1234567890-00001",
+          "accuracyMode": "0",
+          "cacheMode": "1",
+          "deviceList": [
+            {
+              "id": "980003420535573",
+              "kind": "imei",
+              "mdn": "7892345678"
+            },
+            {
+              "id": "375535024300089",
+              "kind": "imei",
+              "mdn": "7897654321"
+            },
+            {
+              "id": "A100003861E585",
+              "kind": "meid",
+              "mdn": "7897650914"
+            }
+          ]
+        },
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "1234567890-00001",
+            "description": "Account identifier in \"##########-#####\"."
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device list.",
+            "example": [
+              {
+                "id": "980003420535573",
+                "kind": "imei",
+                "mdn": "7892345678"
+              },
+              {
+                "id": "375535024300089",
+                "kind": "imei",
+                "mdn": "7897654321"
+              },
+              {
+                "id": "A100003861E585",
+                "kind": "meid",
+                "mdn": "7897650914"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/DeviceInfo"
+            }
+          },
+          "accuracyMode": {
+            "$ref": "#/components/schemas/AccuracyMode"
+          },
+          "cacheMode": {
+            "$ref": "#/components/schemas/CacheMode"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "description": "Device location information.",
+        "example": {
+          "msid": "7892345678",
+          "pd": {
+            "time": "20170520004421",
+            "x": "33.45324",
+            "y": "-84.59621",
+            "radius": "5571",
+            "qos": false
+          },
+          "error": {}
+        },
+        "properties": {
+          "msid": {
+            "type": "string",
+            "example": "7892345678",
+            "description": "MDN."
+          },
+          "pd": {
+            "$ref": "#/components/schemas/PositionData"
+          },
+          "error": {
+            "$ref": "#/components/schemas/PositionError"
+          }
+        }
+      },
+      "LocationReport": {
+        "type": "object",
+        "description": "Location information for up to 1,000 devices.",
+        "example": {
+          "startIndex": "0",
+          "txid": "2017-12-11Te8b47da2-eeee-ffff-gggg-61815e1e97e9",
+          "totalCount": 3,
+          "hasMoreData": false,
+          "devLocationList": [
+            {
+              "error": {},
+              "msid": "7892345678",
+              "pd": {
+                "qos": false,
+                "radius": "5571",
+                "time": "20170520004421",
+                "x": "33.45324",
+                "y": "-84.59621"
+              }
+            },
+            {
+              "error": {},
+              "msid": "8583239709",
+              "pd": {
+                "qos": false,
+                "radius": "3866",
+                "time": "20170525214342",
+                "x": "38.8408694",
+                "y": "-105.0422583"
+              }
+            },
+            {
+              "error": {
+                "time": "20170525214342",
+                "type": "POSITION METHOD FAILURE",
+                "info": "Exception code=ABSENT SUBSCRIBER"
+              },
+              "msid": "7897654321",
+              "pd": {}
+            }
+          ]
+        },
+        "properties": {
+          "devLocationList": {
+            "type": "array",
+            "example": [
+              {
+                "msid": "7892345678",
+                "pd": {
+                  "time": "20170520004421",
+                  "x": "33.45324",
+                  "y": "-84.59621",
+                  "radius": "5571",
+                  "qos": false
+                },
+                "error": {}
+              }
+            ],
+            "description": "Device location information.",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            }
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "example": false,
+            "description": "True if there are more device locations to retrieve."
+          },
+          "startIndex": {
+            "type": "string",
+            "example": "0",
+            "description": "The zero-based number of the first record to return. Set startIndex=0 for the first request. If there are more than 1,000 devices to be returned (hasMoreData=true), set startIndex=1000 for the second request, 2000 for the third request, etc."
+          },
+          "totalCount": {
+            "type": "integer",
+            "example": 4,
+            "description": "The total number of devices in the original request and in the report."
+          },
+          "txid": {
+            "type": "string",
+            "example": "4be7c858-eeee-ffff-gggg-95061456d835",
+            "description": "The transaction ID of the report."
+          }
+        }
+      },
+      "AsynchronousLocationRequestResult": {
+        "type": "object",
+        "example": {
+          "txid": "2017-12-11Te8b47da2-eeee-ffff-gggg-61815e1e97e9"
+        },
+        "properties": {
+          "txid": {
+            "type": "string",
+            "example": "4be7c858-eeee-ffff-gggg-95061456d835",
+            "description": "The transaction ID of the report."
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReportStatus"
+          },
+          "estimatedDuration": {
+            "type": "string",
+            "example": "12",
+            "description": "Estimated number of minutes required to complete the report."
+          }
+        }
+      },
+      "LocationReportStatus": {
+        "type": "object",
+        "description": "Status of the report.",
+        "example": {
+          "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+          "status": "QUEUED"
+        },
+        "properties": {
+          "txid": {
+            "type": "string",
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33",
+            "description": "The transaction ID of the report."
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReportStatus"
+          }
+        }
+      },
+      "PositionData": {
+        "type": "object",
+        "example": {
+          "qos": false,
+          "radius": "5571",
+          "time": "20170520004421",
+          "x": "33.45324",
+          "y": "-84.59621"
+        },
+        "properties": {
+          "time": {
+            "type": "string",
+            "example": "20170520004421",
+            "description": "Time location obtained."
+          },
+          "utcoffset": {
+            "type": "string",
+            "example": "0",
+            "description": "UTC offset of time."
+          },
+          "x": {
+            "type": "string",
+            "example": "38.8408694",
+            "description": "X coordinate of location."
+          },
+          "y": {
+            "type": "string",
+            "example": "-105.0422583",
+            "description": "Y coordinate of location."
+          },
+          "radius": {
+            "type": "string",
+            "example": "3866",
+            "description": "Radius of the location in meters."
+          },
+          "qos": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether requested accurary is met or not."
+          }
+        },
+        "description": "Position data."
+      },
+      "PositionError": {
+        "type": "object",
+        "example": {
+          "time": "20170525214342",
+          "type": "POSITION METHOD FAILURE",
+          "info": "Exception code=ABSENT SUBSCRIBER"
+        },
+        "properties": {
+          "time": {
+            "type": "string",
+            "example": "20170525214342",
+            "description": "Time location obtained."
+          },
+          "utcoffset": {
+            "type": "string",
+            "example": "0",
+            "description": "UTC offset of time."
+          },
+          "type": {
+            "type": "string",
+            "example": "POSITION METHOD FAILURE",
+            "description": "Error type returned from location server."
+          },
+          "info": {
+            "type": "string",
+            "example": "Exception code=ABSENT SUBSCRIBER",
+            "description": "Additional information about the error."
+          }
+        },
+        "description": "Position error."
+      },
+      "ReportStatus": {
+        "type": "string",
+        "description": "Status of the report.",
+        "example": "INPROGRESS",
+        "enum": [
+          "QUEUED",
+          "INPROGRESS",
+          "COMPLETED"
+        ]
+      },
+      "DeviceLocationSubscription": {
+        "type": "object",
+        "example": {
+          "accountName": "2024009649-00001",
+          "locType": "TS-LOC-COARSE-CellID-5K",
+          "maxAllowance": "5000",
+          "purchaseTime": "2017-05-10 06:25:25.171 +0000 UTC"
+        },
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "2024009649-00001",
+            "description": "Account identifier in \"##########-#####\"."
+          },
+          "locType": {
+            "type": "string",
+            "example": "TS-LOC-COARSE-CellID-5K",
+            "description": "Location service license type."
+          },
+          "maxAllowance": {
+            "type": "string",
+            "example": "5000",
+            "description": "The number of billable location requests allowed per billing cycle."
+          },
+          "purchaseTime": {
+            "type": "string",
+            "example": "2017-05-10 06:25:25.171 +0000 UTC",
+            "description": "Location service purchase time."
+          }
+        }
+      },
+      "TransactionID": {
+        "type": "object",
+        "description": "The transaction ID of the request that you want to cancel, from the POST /devicelocations synchronus response.",
+        "example": {
+          "txid": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+        },
+        "properties": {
+          "txid": {
+            "type": "string",
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+          }
+        }
+      },
+      "BillUsageRequest": {
+        "type": "object",
+        "description": "Bill usage request.",
+        "example": {
+          "accountName": "1234567890-00001",
+          "startDate": "04-01-2018",
+          "endDate": "04-30-2018",
+          "usageForAllAccounts": true
+        },
+        "required": [
+          "accountName",
+          "startDate",
+          "endDate"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "1234567890-00001",
+            "description": "Account identifier."
+          },
+          "startDate": {
+            "type": "string",
+            "example": "04-01-2018",
+            "description": "Start date to search for billable usage, mm-dd-yyyy."
+          },
+          "endDate": {
+            "type": "string",
+            "example": "04-30-2018",
+            "description": "End date to search for billable usage, mm-dd-yyyy."
+          },
+          "usageForAllAccounts": {
+            "type": "boolean",
+            "example": true,
+            "description": "Request usage for single or multiple accounts."
+          }
+        }
+      },
+      "BillableUsageReport": {
+        "type": "object",
+        "description": "Bill usage report.",
+        "example": {
+          "accountName": "1223334444-00001",
+          "usageForAllAccounts": false,
+          "skuName": "TS-LOC-COARSE-CellID-Aggr",
+          "transactionsAllowed": "5000",
+          "totalTransactionCount": "350",
+          "PrimaryAccount": {
+            "accountName": "1223334444-00001",
+            "transactionsCount": "125"
+          },
+          "ManagedAccounts": []
+        },
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "1223334444-00001",
+            "description": "Account identifier."
+          },
+          "usageForAllAccounts": {
+            "type": "boolean",
+            "example": false,
+            "description": "The usage is for a single or multiple accounts."
+          },
+          "skuName": {
+            "type": "string",
+            "example": "TS-LOC-COARSE-CellID-Aggr",
+            "description": "SKU Name of the service subscription."
+          },
+          "transactionsAllowed": {
+            "type": "string",
+            "example": "5000",
+            "description": "The number of location requests included with the subscription type."
+          },
+          "totalTransactionCount": {
+            "type": "string",
+            "example": "125",
+            "description": "The total number of billable device location requests during the reporting period from all included accounts."
+          },
+          "PrimaryAccount": {
+            "$ref": "#/components/schemas/ServiceUsage"
+          },
+          "ManagedAccounts": {
+            "type": "array",
+            "example": [
+              {
+                "accountName": "1111122222-00001",
+                "transactionsCount": "100"
+              },
+              {
+                "accountName": "3333355555-00001",
+                "transactionsCount": "200"
+              },
+              {
+                "accountName": "6666677777-00001",
+                "transactionsCount": "300"
+              }
+            ],
+            "description": "Zero or more managed accounts.",
+            "items": {
+              "$ref": "#/components/schemas/ServiceUsage"
+            }
+          }
+        }
+      },
+      "ServiceUsage": {
+        "type": "object",
+        "example": {
+          "accountName": "3333355555-00001",
+          "transactionsCount": "200"
+        },
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "3333355555-00001",
+            "description": "Account identifier."
+          },
+          "transactionsCount": {
+            "type": "string",
+            "example": "200",
+            "description": "Total requests for the account during the reporting period."
+          }
+        }
+      },
+      "DeviceLocationSuccessResult": {
+        "description": "Whether the device location request was successful or not.",
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "DeviceLocationResult": {
+        "description": "Will be empty if there was no error.",
+        "example": {
+          "errorCode": "The type of error, such as INVALID_REQUEST.",
+          "errorMessage": "Additional error information."
+        },
+        "required": [
+          "errorCode",
+          "errorMessage"
+        ],
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": "The type of error, such as INVALID_REQUEST."
+          },
+          "errorMessage": {
+            "type": "string",
+            "example": "Additional error information."
+          }
+        }
+      },
+      "serviceName": {
+        "type": "string",
+        "description": "Service name",
+        "enum": [
+          "Location",
+          "fota"
+        ],
+        "default": "Location"
+      },
+      "UsageTriggerAddRequest": {
+        "type": "object",
+        "required": [
+          "accountName",
+          "serviceName",
+          "thresholdValue"
+        ],
+        "properties": {
+          "triggerName": {
+            "type": "string",
+            "description": "Usage trigger name",
+            "example": "95% usage alert"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account name",
+            "example": "0212312345-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "thresholdValue": {
+            "type": "string",
+            "description": "The percent of subscribed usage required to activate the trigger, such as 90 or 100.",
+            "example": "95"
+          },
+          "allowExcess": {
+            "type": "boolean",
+            "description": "Allow additional requests after thresholdValue is reached. (currently not functional)"
+          },
+          "sendSmsNotification": {
+            "type": "boolean",
+            "description": "Send SMS (text) alerts when the thresholdValue is reached."
+          },
+          "smsPhoneNumbers": {
+            "type": "string",
+            "description": "Comma-separated list of phone numbers to send SMS alerts to. Digits only; no dashes or parentheses, etc.",
+            "example": "5551231234"
+          },
+          "sendEmailNotification": {
+            "type": "boolean",
+            "description": "Send email alerts when the thresholdValue is reached."
+          },
+          "emailAddresses": {
+            "type": "string",
+            "description": "Comma-separated list of email addresses to send alerts to.",
+            "example": "you@theinternet.com"
+          }
+        }
+      },
+      "UsageTriggerResponse": {
+        "type": "object",
+        "required": [
+          "triggerId",
+          "triggerName",
+          "accountName",
+          "serviceName",
+          "thresholdValue",
+          "allowExcess",
+          "sendSmsNotification",
+          "smsPhoneNumbers",
+          "sendEmailNotification",
+          "emailAddresses",
+          "createDate",
+          "updateDate"
+        ],
+        "properties": {
+          "triggerId": {
+            "type": "string",
+            "description": "Unique usage triggerId",
+            "example": "3bb4777e-5292-4de7-97df-f578df4a2dbe"
+          },
+          "triggerName": {
+            "type": "string",
+            "description": "Usage trigger name",
+            "example": "95% usage alert"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account name",
+            "example": "0212312345-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "thresholdValue": {
+            "type": "string",
+            "description": "Percent of subscription at which trigger will send an alert",
+            "example": "95"
+          },
+          "allowExcess": {
+            "type": "boolean",
+            "description": "allowExcess determines whether to restrict usage after exceeds limits"
+          },
+          "sendSmsNotification": {
+            "type": "boolean",
+            "description": "Send SMS (text) alerts when the thresholdValue is reached."
+          },
+          "smsPhoneNumbers": {
+            "type": "string",
+            "description": "comma seperated value of list of Phone numbers for SMS notifications",
+            "example": "5551231234"
+          },
+          "sendEmailNotification": {
+            "type": "boolean",
+            "description": "Send email alerts when the thresholdValue is reached."
+          },
+          "emailAddresses": {
+            "type": "string",
+            "description": "comma seperated value of list of Email addresses for Email notifications",
+            "example": "me@theinternet.com, you@theinternet.com"
+          },
+          "createDate": {
+            "type": "string",
+            "description": "UTC Date when the usage trigger was created",
+            "example": "2018-08-31"
+          },
+          "updateDate": {
+            "type": "string",
+            "description": "UTC Date when the usage trigger was last updated",
+            "example": "2018-09-03"
+          }
+        }
+      },
+      "UsageTriggerUpdateRequest": {
+        "type": "object",
+        "required": [
+          "accountName"
+        ],
+        "properties": {
+          "triggerName": {
+            "type": "string",
+            "description": "Usage trigger name",
+            "example": "95% usage alert"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account name",
+            "example": "0212312345-00001"
+          },
+          "thresholdValue": {
+            "type": "string",
+            "description": "The percent of subscribed usage required to activate the trigger, such as 90 or 100.",
+            "example": "95"
+          },
+          "smsPhoneNumbers": {
+            "type": "string",
+            "description": "Comma-separated list of phone numbers to send SMS alerts to. Digits only; no dashes or parentheses, etc.",
+            "example": "5551231234"
+          },
+          "emailAddresses": {
+            "type": "string",
+            "description": "Comma-separated list of email addresses to send alerts to.",
+            "example": "me@theinternet.com, you@theinternet.com"
+          }
+        }
+      },
+      "ManagedAccountsAddRequest": {
+        "type": "object",
+        "required": [
+          "accountName",
+          "serviceName",
+          "type",
+          "managedAccList"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier",
+            "example": "1234567890-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "type": {
+            "type": "string",
+            "description": "SKU name",
+            "example": "TS-LOC-COARSE-CellID-Aggr"
+          },
+          "managedAccList": {
+            "type": "array",
+            "description": "managed account list",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "1223334444-00001",
+              "2334445555-00001",
+              "3445556666-00001"
+            ]
+          }
+        }
+      },
+      "ManagedAccountsAddResponse": {
+        "type": "object",
+        "properties": {
+          "TxId": {
+            "type": "string",
+            "description": "Transaction identifier",
+            "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+          },
+          "statusList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Account name",
+                  "example": "1223334444-00001"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Success or Fail",
+                  "example": "Success"
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "detailed reason",
+                  "example": "Success"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ManagedAccountsProvisionRequest": {
+        "type": "object",
+        "required": [
+          "accountName",
+          "paccountName",
+          "serviceName",
+          "type",
+          "txid"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Managed account identifier",
+            "example": "1223334444-00001"
+          },
+          "paccountName": {
+            "type": "string",
+            "description": "Primary Account identifier",
+            "example": "1223334444-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "type": {
+            "type": "string",
+            "description": "SKU name",
+            "example": "TS-LOC-COARSE-CellID-5K"
+          },
+          "txid": {
+            "type": "string",
+            "description": "Transaction identifier returned by add request",
+            "example": "d4fbff33-eeee-ffff-gggg-2c90bd287e3b"
+          }
+        }
+      },
+      "ManagedAccountsProvisionResponse": {
+        "type": "object",
+        "properties": {
+          "txid": {
+            "type": "string",
+            "description": "Transaction identifier",
+            "example": "4fbff332-eeee-ffff-gggg-7e3bdc90bd28"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier",
+            "example": "1223334444-00001"
+          },
+          "paccountName": {
+            "type": "string",
+            "description": "Primary Account identifier",
+            "example": "1223334444-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "status": {
+            "type": "string",
+            "description": "Provision status. Success or Fail",
+            "example": "Success"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Detailed reason",
+            "example": "Success"
+          }
+        }
+      },
+      "ManagedAccountCancelRequest": {
+        "type": "object",
+        "required": [
+          "accountName",
+          "paccountName",
+          "serviceName",
+          "type",
+          "txid"
+        ],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Managed account identifier",
+            "example": "1223334444-00001"
+          },
+          "paccountName": {
+            "type": "string",
+            "description": "Primary Account identifier",
+            "example": "1223334444-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "type": {
+            "type": "string",
+            "description": "SKU name",
+            "example": "TS-LOC-COARSE-CellID-5K"
+          },
+          "txid": {
+            "type": "string",
+            "description": "Transaction identifier returned by provision request",
+            "example": "d4fbff33-eeee-ffff-gggg-2c90bd287e3b"
+          }
+        }
+      },
+      "ManagedAccountCancelResponse": {
+        "type": "object",
+        "required": [
+          "txid",
+          "accountName",
+          "paccountName",
+          "serviceName",
+          "status",
+          "reason"
+        ],
+        "properties": {
+          "txid": {
+            "type": "string",
+            "description": "Transaction identifier",
+            "example": "4fbff332-eeee-ffff-gggg-7e3bdc90bd28"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Managed account identifier",
+            "example": "1223334444-00001"
+          },
+          "paccountName": {
+            "type": "string",
+            "description": "Primary account identifier",
+            "example": "1223334444-00001"
+          },
+          "serviceName": {
+            "$ref": "#/components/schemas/serviceName"
+          },
+          "status": {
+            "type": "string",
+            "description": "Deactivate/cancel status, Success or Fail",
+            "example": "Success"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Detailed reason",
+            "example": "Success"
+          }
+        }
+      },
+      "ManagedAccountsGetAllResponse": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account Name",
+            "example": "0212312345-00001"
+          },
+          "ManagedAccAddedList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Account name",
+                  "example": "1223334444-00001"
+                },
+                "txid": {
+                  "type": "string",
+                  "description": "Transaction identifier",
+                  "example": "2c90bd28-eeee-ffff-gggg-7e3bd4fbff33"
+                }
+              }
+            }
+          },
+          "managedAccProvisionedList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Account name",
+                  "example": "2334445555-00001"
+                },
+                "txid": {
+                  "type": "string",
+                  "description": "Transaction identifier",
+                  "example": "d4fbff33-eeee-ffff-gggg-2c90bd287e3b"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

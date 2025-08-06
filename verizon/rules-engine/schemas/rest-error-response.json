@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "errorCode": {
+      "type": "string"
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "errorUrl": {
+      "type": "string"
+    }
+  }
+}

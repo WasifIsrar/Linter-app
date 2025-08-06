@@ -1,0 +1,1685 @@
+{
+  "openapi": "3.0.1",
+  "externalDocs": {
+    "description": "Verizon Terms of Service",
+    "url": "https://www.verizon.com/business/5g-edge-portal/legal.html"
+  },
+  "info": {
+    "title": "Verizon Edge Discovery Service API",
+    "version": "1.3",
+    "description": "The Verizon Edge Discovery Service API can direct your application clients to connect to the optimal service endpoints for your Multi-access Edge Computing (MEC) applications for every session. The Edge Discovery Service takes into account the current location of a device, its IP anchor location, current network traffic and other factors to determine which 5G Edge platform a device should connect to.",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Edge Discovery",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Edge Discovery",
+              "url": "https://5gedge.verizon.com/api/mec/eds"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Edge Discovery",
+              "url": "https://staging.5gedge.verizon.com/api/mec/eds"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://5gedge.verizon.com/api/mec/eds",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.5gedge.verizon.com/api/mec/eds",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "5G Edge Platforms",
+      "description": "Discover the regions in the 5G Edge service and find the optimal MEC platforms for your Edge applications."
+    },
+    {
+      "name": "Service Endpoints",
+      "description": "Register the routable endpoints of your deployed Edge application services. After registering, use service endpoint discovery to find the optimal service endpoints for application clients to connect to for each session."
+    },
+    {
+      "name": "Service Profiles",
+      "description": "Create and manage profiles that describe the service characteristics of your 5G Edge applications, such as the required connection bandwidth andmaximum latency.<br/>**Note:** For the initial release of the Edge Discovery Service API,`latency`is the only service profile property that is compared with 5G Edge platform capabilities.</p>"
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [
+        "edge:discovery:read",
+        "edge:serviceprofile:read",
+        "edge:serviceprofile:write",
+        "edge:serviceregistry:read",
+        "edge:serviceregistry:write",
+        "ts.application.ro",
+        "ts.mec.fullaccess",
+        "ts.mec.limitaccess"
+      ],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/mecplatforms": {
+      "get": {
+        "tags": [
+          "5G Edge Platforms"
+        ],
+        "summary": "Discover optimal 5G Edge Platforms for deployed applications.",
+        "description": "Returns a list of optimal MEC Platforms where you can register your deployed application. **Note:** If a query is sent with all of the parameters, it will fail with a \"400\" error. You can search based on the following parameter combinations - region plus Service Profile ID and subscriber density (density is optional but recommended), region plus UEIdentity(Including UEIdentity Type) or Service Profile ID plus UEIdentity(Including UEIdentity Type).",
+        "operationId": "ListMECPlatforms",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "description": "MEC region name. Current valid values are US_WEST_2 and US_EAST_1.",
+            "schema": {
+              "type": "string",
+              "example": "US_WEST_2"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/serviceProfileId"
+          },
+          {
+            "$ref": "#/components/parameters/subscriberDensity"
+          },
+          {
+            "$ref": "#/components/parameters/UEIdentityType"
+          },
+          {
+            "$ref": "#/components/parameters/UEIdentity"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MEC platforms matching query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListMECPlatformsResult"
+                },
+                "example": {
+                  "MECPlatforms": [
+                    {
+                      "ern": "5x4VBwmfZbzSL3",
+                      "zone": "e5oV52kMGjDLhnJSsLJZL",
+                      "region": "US_WEST_2",
+                      "status": "unknown"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    },
+    "/regions": {
+      "get": {
+        "tags": [
+          "5G Edge Platforms"
+        ],
+        "summary": "List the geographical regions supported, and the associated zones.",
+        "description": "List the geographical regions available, based on the user's bearer token. **Note:** Country code, Metropolitan area, Area and Zone are future functionality and will currently return a \"null\" value.",
+        "operationId": "ListRegions",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "responses": {
+          "200": {
+            "description": "List of geographical regions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListRegionsResult"
+                },
+                "example": {
+                  "regions": [
+                    {
+                      "regionId": "consectetur",
+                      "name": "US_EAST_1",
+                      "countryCode": "nr",
+                      "metro": "e1D",
+                      "area": "IdUESF"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    },
+    "/serviceendpoints": {
+      "get": {
+        "tags": [
+          "Service Endpoints"
+        ],
+        "summary": "Find optimal Service Endpoints for clients to connect to.",
+        "description": "Returns a list of optimal Service Endpoints that client devices can connect to. **Note:** If a query is sent with all of the parameters, it will fail with a \"400\" error. You can search based on the following parameter combinations - Region plus Service Endpoints IDs and Subscriber density (density is optional but recommended), Region plus Service Endpoints IDs and UEIdentity(Including UEIdentity Type) and Service Endpoints IDs plus UEIdentity(Including UEIdentity Type).",
+        "operationId": "ListOptimalServiceEndpoints",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/region"
+          },
+          {
+            "$ref": "#/components/parameters/subscriberDensity"
+          },
+          {
+            "$ref": "#/components/parameters/UEIdentityType"
+          },
+          {
+            "$ref": "#/components/parameters/UEIdentity"
+          },
+          {
+            "name": "serviceEndpointsIds",
+            "description": "A system-defined string identifier representing one or more registered Service Endpoints.",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/ServiceEndpointsId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of optimal Service Endpoint IDs for clients to connect to.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListOptimalServiceEndpointsResult"
+                },
+                "example": {
+                  "serviceEndpoints": [
+                    {
+                      "ern": "LASVEGAS_NV_WL",
+                      "serviceEndpoint": {
+                        "URI": "http://base_path/some_segment/id",
+                        "FQDN": "thingtest.verizon.com",
+                        "IPv4Address": "192.168.11.10",
+                        "IPv6Address": "2001:0db8:85a3:0000:0000:8a2e:0370:1234",
+                        "port": 1234
+                      },
+                      "applicationServerProviderId": "AWS",
+                      "applicationId": "IogspaceJan15",
+                      "serviceDescription": "ThieIt"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Service Endpoints"
+        ],
+        "description": "Register Service Endpoints of a deployed application to specified MEC Platforms.",
+        "operationId": "RegisterServiceEndpoints",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "requestBody": {
+          "description": "An array of Service Endpoint data for a deployed application. The request body passes all of the needed parameters to create a service endpoint. Parameters will be edited here rather than the **Parameters** section above. The `ern`,`applicationServerProviderId`, `applicationId` and `serviceProfileID` parameters are required. **Note:** Currently, the only valid value for `applicationServerProviderId`is **AWS**. Also, if you do not know one of the optional values (i.e. URI), you can erase the line from the query by back-spacing over it.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Request to register Service Endpoints of a deployed application to specified Muli-access Edge Compute (MEC) Platforms.",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "$ref": "#/components/schemas/ResourcesEdgeHostedServiceWithProfileId"
+                }
+              },
+              "example": [
+                {
+                  "serviceEndpoint": {
+                    "FQDN": "thingtest.verizon.com",
+                    "IPv4Address": "192.168.11.10",
+                    "IPv6Address": "2001:0db8:85a3:0000:0000:8a2e:0370:1234",
+                    "port": 1234,
+                    "URI": "http://base_path/some_segment/id"
+                  },
+                  "applicationId": "IogspaceJan15",
+                  "serviceDescription": "ThieIt",
+                  "applicationServerProviderId": "AWS",
+                  "ern": "us-east-1-wl1-atl-wlz-1",
+                  "serviceProfileID": "4054ea9a-593e-4776-b488-697b1bfa4f3b"
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a service endpoints Id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterServiceEndpointResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    },
+    "/serviceendpointsall": {
+      "get": {
+        "tags": [
+          "Service Endpoints"
+        ],
+        "summary": "Retrieve all registered service endpoints for an API key.",
+        "description": "Returns a list of all registered service endpoints.",
+        "operationId": "ListAllServiceEndpoints",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a comma delimited list of all registered service endpoints.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAllServiceEndpointsResult"
+                },
+                "example": {
+                  "status": "success",
+                  "data": [
+                    "serviceEndpointsId"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    },
+    "/serviceendpoints/{serviceEndpointsId}": {
+      "get": {
+        "tags": [
+          "Service Endpoints"
+        ],
+        "summary": "Get registered edge service endpoint information.",
+        "description": "Returns endpoint information for all Service Endpoints registered to a specified serviceEndpointId.",
+        "operationId": "GetServiceEndpoint",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "parameters": [
+          {
+            "name": "serviceEndpointsId",
+            "description": "A system-defined string identifier representing one or more registered Service Endpoints.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ServiceEndpointsId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registered service endpoint information for a 5G Edge service.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Registered service endpoint information for a 5G Edge service.",
+                  "type": "array",
+                  "maxItems": 100,
+                  "items": {
+                    "$ref": "#/components/schemas/ResourcesEdgeHostedServiceWithProfileId"
+                  }
+                },
+                "example": [
+                  {
+                    "serviceEndpoint": {
+                      "FQDN": "thingtest.verizon.com",
+                      "IPv4Address": "192.168.11.10",
+                      "IPv6Address": "2001:0db8:85a3:0000:0000:8a2e:0370:1234",
+                      "port": 1234,
+                      "URI": "http://base_path/some_segment/id"
+                    },
+                    "applicationId": "IogspaceJan15",
+                    "serviceDescription": "ThieIt",
+                    "applicationServerProviderId": "AWS",
+                    "ern": "us-east-1-wl1-atl-wlz-1",
+                    "serviceProfileID": "4054ea9a-593e-4776-b488-697b1bfa4f3b"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Service Endpoints"
+        ],
+        "description": "Update registered Service Endpoint information.",
+        "operationId": "UpdateServiceEndpoint",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "parameters": [
+          {
+            "name": "serviceEndpointsId",
+            "description": "A system-defined string identifier representing one or more registered Service Endpoints.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ServiceEndpointsId"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Data needed for Service Endpoint information. The request body passes the rest of the needed parameters to create a service endpoint. Parameters other than `serviceEndpointsId` will be edited here rather than the **Parameters** section above. The `ern`,`applicationServerProviderId` and `applicationId` parameters are required. **Note:** Currently, the only valid value for `applicationServerProviderId`is **AWS**.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Request to update registered Service Endpoint information.",
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "$ref": "#/components/schemas/ResourcesEdgeHostedServiceWithProfileId"
+                }
+              },
+              "example": [
+                {
+                  "serviceEndpoint": {
+                    "FQDN": "thingtest.verizon.com",
+                    "IPv4Address": "192.168.11.10",
+                    "IPv6Address": "2001:0db8:85a3:0000:0000:8a2e:0370:1234",
+                    "port": 1234,
+                    "URI": "http://base_path/some_segment/id"
+                  },
+                  "applicationId": "IogspaceJan15",
+                  "serviceDescription": "ThieIt",
+                  "applicationServerProviderId": "AWS",
+                  "ern": "us-east-1-wl1-atl-wlz-1",
+                  "serviceProfileID": "4054ea9a-593e-4776-b488-697b1bfa4f3b"
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Update registered Service Endpoint information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateServiceEndpointResult"
+                },
+                "example": {
+                  "status": "Success",
+                  "message": "EdgeAppServices are updated"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Service Endpoints"
+        ],
+        "summary": "Deregister an application's Service Endpoint.",
+        "description": "Deregister an application's Service Endpoint from the MEC Platform(s).",
+        "operationId": "DeregisterServiceEndpoint",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "parameters": [
+          {
+            "name": "serviceEndpointsId",
+            "description": "A system-defined string identifier representing one or more registered Service Endpoints.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ServiceEndpointsId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service endpoint deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeregisterServiceEndpointResult"
+                },
+                "example": {
+                  "status": "Success",
+                  "message": "EdgeAppServicesID Deleted"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    },
+    "/serviceprofiles": {
+      "post": {
+        "tags": [
+          "Service Profiles"
+        ],
+        "description": "Creates a service profile that describes the resource requirements of a service.",
+        "operationId": "CreateServiceProfile",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourcesServiceProfile"
+              },
+              "example": {
+                "clientType": "V2X",
+                "ecspFilter": "Verizon",
+                "clientSchedule": "time windows",
+                "clientServiceArea": "BAY AREA",
+                "networkResources": {
+                  "minBandwidthKbits": 1,
+                  "serviceContinuitySupport": true,
+                  "maxRequestRate": 15,
+                  "maxLatencyMs": 20,
+                  "minAvailability": 1
+                },
+                "computeResources": {
+                  "GPU": {
+                    "minCoreClockMHz": 1,
+                    "minMemoryClockMHz": 35740,
+                    "minBandwidthGBs": 588,
+                    "minTFLOPS": 33
+                  },
+                  "minRAMGB": 1,
+                  "minStorageGB": 1
+                }
+              }
+            }
+          },
+          "description": "The request body passes all of the needed parameters to create a service profile. Parameters will be edited here rather than the **Parameters** section above. The `maxLatencyMs` and `clientType` parameters are both required in the request body. **Note:** The `maxLatencyMs` value must be submitted in multiples of 5. Additionally, \"GPU\" is future functionality and the values are not captured.",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Service profile ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateServiceProfileResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Service Profiles"
+        ],
+        "description": "List all service profiles registered under your API key.",
+        "operationId": "ListServiceProfiles",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "responses": {
+          "200": {
+            "description": "A comma delimited list of all the service profiles registered under your API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListServiceProfilesResult"
+                },
+                "example": {
+                  "status": "Success",
+                  "data": [
+                    "serviceProfileId"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    },
+    "/serviceprofiles/{serviceProfileId}": {
+      "parameters": [
+        {
+          "name": "serviceProfileId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "maxLength": 36,
+            "pattern": "^[a-zA-Z0-9!@#$&()\\-`.+,/\"]{3,36}$"
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Service Profiles"
+        ],
+        "summary": "Fetch a service profile.",
+        "description": "Returns a specified service profile.",
+        "operationId": "GetServiceProfile",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "responses": {
+          "200": {
+            "description": "Requested service profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourcesServiceProfileWithId"
+                },
+                "example": {
+                  "serviceProfileId": "4054ea9a-593e-4776-b488-697b1bfa4f3b",
+                  "ecspFilter": "Verizon",
+                  "clientSchedule": "time windows",
+                  "clientServiceArea": "BAY AREA",
+                  "clientType": "V2X",
+                  "networkResources": {
+                    "minBandwidthKbits": 1,
+                    "serviceContinuitySupport": true,
+                    "maxRequestRate": 15,
+                    "maxLatencyMs": 20,
+                    "minAvailability": 1
+                  },
+                  "computeResources": {
+                    "GPU": {
+                      "minCoreClockMHz": 1,
+                      "minMemoryClockMHz": 35740,
+                      "minBandwidthGBs": 588,
+                      "minTFLOPS": 33
+                    },
+                    "minRAMGB": 1,
+                    "minStorageGB": 1
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Service Profiles"
+        ],
+        "description": "Update the definition of a Service Profile.",
+        "operationId": "UpdateServiceProfile",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "requestBody": {
+          "description": "The request body passes the rest of the needed parameters to create a service profile. The `maxLatencyMs` and `clientType` parameters are both required in the request body. **Note:** The `maxLatencyMs` value must be submitted in multiples of 5. Additionally, \"GPU\" is future functionality and the values are not captured. Default values to use are shown.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourcesServiceProfile"
+              },
+              "example": {
+                "clientType": "V2X",
+                "ecspFilter": "Verizon",
+                "clientSchedule": "time windows",
+                "clientServiceArea": "BAY AREA",
+                "networkResources": {
+                  "minBandwidthKbits": 1,
+                  "serviceContinuitySupport": true,
+                  "maxRequestRate": 15,
+                  "maxLatencyMs": 20,
+                  "minAvailability": 1
+                },
+                "computeResources": {
+                  "GPU": {
+                    "minCoreClockMHz": 1
+                  },
+                  "minRAMGB": 1,
+                  "minStorageGB": 1
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Update a service profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateServiceProfileResult"
+                },
+                "example": {
+                  "status": "Success",
+                  "message": "Service Profile Updated"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Service Profiles"
+        ],
+        "description": "Delete Service Profile based on unique service profile ID.",
+        "operationId": "DeleteServiceProfile",
+        "x-operation-settings": {
+          "skipAdditionalHeaders": true
+        },
+        "responses": {
+          "200": {
+            "description": "Delete a service profile.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteServiceProfileResult"
+                },
+                "example": {
+                  "status": "Success",
+                  "message": "Service Profile Deleted"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "default": {
+            "$ref": "#/components/responses/Unexpected"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeleteServiceProfileResult": {
+        "description": "Response on successful deletion of service profile.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "Success"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 32,
+            "example": "Service Profile Deleted"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateServiceProfileResult": {
+        "description": "Response on successful update of service profile.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "Success",
+            "description": "HTTP status code."
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 32,
+            "example": "Service Profile Updated",
+            "description": "Service Profile that are updated or error details in case of an error."
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListServiceProfilesResult": {
+        "description": "Response on successful retrieval of service profiles.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "HTTP status code.",
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "Success"
+          },
+          "data": {
+            "description": "A comma delimited list of all the service profiles registered under your API key.",
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "description": "A unique identifier for the application's service profile.",
+              "type": "string",
+              "maxLength": 32,
+              "example": "serviceProfileId"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateServiceProfileResult": {
+        "description": "A successful request returns a serviceProfileId that you can use in subsequent requests.",
+        "type": "object",
+        "properties": {
+          "serviceProfileId": {
+            "$ref": "#/components/schemas/ServiceProfileId"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeregisterServiceEndpointResult": {
+        "description": "Response to deregister an application's Service Endpoint from one or more Multi-access Edge Compute (MEC) Platforms.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "Success",
+            "description": "HTTP status code."
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 32,
+            "example": "EdgeAppServicesID Deleted",
+            "description": "EdgeAppServicesID that are deleted or error details in case of an error."
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateServiceEndpointResult": {
+        "description": "Response to update registered Service Endpoint information.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "HTTP status code.",
+            "example": "Success"
+          },
+          "message": {
+            "description": "EdgeAppServices are updated or error details in case of an error.",
+            "type": "string",
+            "maxLength": 64,
+            "example": "EdgeAppServices are updated"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListAllServiceEndpointsResult": {
+        "description": "Response on successful retrieval of all registered service endpoints.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "HTTP status code.",
+            "default": "success"
+          },
+          "data": {
+            "description": "A comma delimited list of all registered service endpoints.",
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "description": "A system-defined string identifier representing one or more registered Service Endpoints.",
+              "type": "string",
+              "maxLength": 32,
+              "example": "serviceEndpointsId"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterServiceEndpointResult": {
+        "description": "Response to register Service Endpoints of a deployed application to specified Muli-access Edge Compute (MEC) Platforms.",
+        "type": "object",
+        "properties": {
+          "serviceEndpointsId": {
+            "$ref": "#/components/schemas/ServiceEndpointsId"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListOptimalServiceEndpointsResult": {
+        "description": "Response on successful retrieval of optimal service endpoints for clients.",
+        "type": "object",
+        "properties": {
+          "serviceEndpoints": {
+            "description": "An array of optimal Service Endpoint IDs for clients to connect to.",
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/ResourcesEdgeHostedService"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListRegionsResult": {
+        "description": "Response to return an array of all regions in the Verizon 5G Edge service. You can use the region IDs from the response to find optimal Edge platforms or service endpoints.",
+        "type": "object",
+        "properties": {
+          "regions": {
+            "description": "An array of all regions in the Verizon 5G Edge service.",
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/Region"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListMECPlatformsResult": {
+        "description": "Response to return the optimal 5G Edge platforms for deployment based on a region, service profile of the service that you want to deploy or user equipment.",
+        "type": "object",
+        "properties": {
+          "MECPlatforms": {
+            "description": "A list of optimal MEC Platforms where you can register your deployed application.",
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/MECPlatformResource"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClientType": {
+        "type": "string",
+        "enum": [
+          "V2X",
+          "ComputerVision",
+          "MachineLearning",
+          "IoT",
+          "Gaming",
+          "AR",
+          "VR",
+          "Analytics",
+          "Robotics"
+        ],
+        "description": "The category of application client."
+      },
+      "ResourcesServiceProfile": {
+        "description": "Information about the resource requirements and service characteristics of an edge application. The `maxLatencyMs` and `clientType` parameters are both required in the request body. **Note:** The `maxLatencyMs` value must be submitted in multiples of 5. Does not include serviceProfileId",
+        "type": "object",
+        "properties": {
+          "clientType": {
+            "$ref": "#/components/schemas/ClientType"
+          },
+          "ecspFilter": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Identity of the preferred Edge Computing Service Provider.",
+            "example": "Verizon"
+          },
+          "clientSchedule": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$",
+            "description": "The expected operation schedule of the application client (e.g. time windows).",
+            "example": "time windows"
+          },
+          "clientServiceArea": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$",
+            "description": "The expected location(s) (e.g. route) of the hosting UE during the Client's operation schedule.",
+            "example": "BAY AREA"
+          },
+          "networkResources": {
+            "$ref": "#/components/schemas/NetworkResourcesType"
+          },
+          "computeResources": {
+            "$ref": "#/components/schemas/ComputeResourcesType"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/MECPlatformsAdditionalSupportInfo"
+          }
+        },
+        "required": [
+          "clientType"
+        ],
+        "additionalProperties": false
+      },
+      "ResourcesServiceProfileWithId": {
+        "description": "Information about the resource requirements and service characteristics of an edge application. Includes serviceProfileId. Used when retrieving a service profile.",
+        "type": "object",
+        "properties": {
+          "serviceProfileId": {
+            "$ref": "#/components/schemas/ServiceProfileId"
+          },
+          "clientType": {
+            "$ref": "#/components/schemas/ClientType"
+          },
+          "ecspFilter": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Identity of the preferred Edge Computing Service Provider.",
+            "example": "Verizon"
+          },
+          "clientSchedule": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$",
+            "description": "The expected operation schedule of the application client (e.g. time windows).",
+            "example": "time windows"
+          },
+          "clientServiceArea": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9 ]{3,32}$",
+            "description": "The expected location(s) (e.g. route) of the hosting UE during the Client's operation schedule.",
+            "example": "BAY AREA"
+          },
+          "networkResources": {
+            "$ref": "#/components/schemas/NetworkResourcesType"
+          },
+          "computeResources": {
+            "$ref": "#/components/schemas/ComputeResourcesType"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/MECPlatformsAdditionalSupportInfo"
+          }
+        },
+        "required": [
+          "clientType"
+        ],
+        "additionalProperties": false
+      },
+      "MECPlatformsAdditionalSupportInfo": {
+        "description": "Additional service support information for the MEC platform.",
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "Type of additional service support information for the MEC platform.",
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "data": {
+            "$ref": "#/components/schemas/MECPlatformsAdditionalSupportInfoData"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MECPlatformsAdditionalSupportInfoData": {
+        "type": "object",
+        "description": "Data about additional service support information for the MEC platform.",
+        "properties": {
+          "additionalInfo": {
+            "type": "string",
+            "maxLength": 32
+          }
+        }
+      },
+      "ResourcesEdgeHostedService": {
+        "description": "Edge hosted service represented by Service Endpoint definition.",
+        "type": "object",
+        "properties": {
+          "ern": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9-_]{3,32}$",
+            "description": "Edge Resource Name. A string identifier for a set of edge resources.",
+            "example": "LASVEGAS_NV_WL"
+          },
+          "serviceEndpoint": {
+            "$ref": "#/components/schemas/ResourcesServiceEndpoint"
+          },
+          "applicationServerProviderId": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Unique ID representing the Edge Application Provider.",
+            "example": "AWS"
+          },
+          "applicationId": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Unique ID representing the Edge Application.",
+            "example": "IogspaceJan15"
+          },
+          "serviceDescription": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "ThieIt"
+          }
+        }
+      },
+      "ResourcesEdgeHostedServiceWithProfileId": {
+        "description": "Edge hosted service represented by Service Endpoint definition.",
+        "type": "object",
+        "properties": {
+          "ern": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9-]{3,32}$",
+            "description": "Edge Resource Name. A string identifier for a set of edge resources.",
+            "example": "us-east-1-wl1-atl-wlz-1"
+          },
+          "serviceEndpoint": {
+            "$ref": "#/components/schemas/ResourcesServiceEndpoint"
+          },
+          "applicationServerProviderId": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Unique ID representing the Edge Application Provider.",
+            "example": "AWS"
+          },
+          "applicationId": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "description": "Unique ID representing the Edge Application.",
+            "example": "IogspaceJan15"
+          },
+          "serviceDescription": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "ThieIt"
+          },
+          "serviceProfileID": {
+            "type": "string",
+            "description": "The system assigned ID of the service profile.",
+            "example": "4054ea9a-593e-4776-b488-697b1bfa4f3b"
+          }
+        }
+      },
+      "ResourcesServiceEndpoint": {
+        "description": "Service Endpoint path, address, and port.",
+        "type": "object",
+        "properties": {
+          "URI": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "\\w+:(\/?\/?)[^\\s]+",
+            "description": "URI of Service Endpoint if available.",
+            "format": "uri",
+            "example": "http://base_path/some_segment/id"
+          },
+          "FQDN": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9.]{3,32}$",
+            "description": "FQDN of Service Endpoint if available.",
+            "example": "thingtest.verizon.com"
+          },
+          "IPv4Address": {
+            "type": "string",
+            "maxLength": 32,
+            "description": "IPv4 Address of Service Endpoint if available.",
+            "format": "ipv4",
+            "example": "192.168.11.10"
+          },
+          "IPv6Address": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "IPv6 Address of Service Endpoint if available.",
+            "format": "ipv6",
+            "example": "2001:0db8:85a3:0000:0000:8a2e:0370:1234"
+          },
+          "port": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "format": "int32",
+            "description": "Port information of Service Endpoint if IPv4 or IPv6 is mentioned.",
+            "example": 1234
+          }
+        },
+        "additionalProperties": false
+      },
+      "Region": {
+        "description": "Information representing a certain geographical or logical area where MEC resources and services are provided.",
+        "type": "object",
+        "properties": {
+          "regionId": {
+            "description": "The unique identifier of the region.",
+            "type": "string",
+            "example": "consectetur",
+            "nullable": true
+          },
+          "name": {
+            "description": "A relevant and identifiable region name.",
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9_]{3,32}$",
+            "example": "US_EAST_1",
+            "nullable": true
+          },
+          "countryCode": {
+            "description": "A two-character alpha code for a country, based on ISO 3166-1 alpha-2. This is future functionality, so the value returned is 'null'.",
+            "type": "string",
+            "maxLength": 3,
+            "pattern": "^[A-Za-z0-9]{2,3}$",
+            "example": "nr",
+            "nullable": true
+          },
+          "metro": {
+            "description": "The metropolitan area or 'City' value.  This is future functionality, so the value returned is 'null'.",
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "e1D",
+            "nullable": true
+          },
+          "area": {
+            "description": "This is a sub-set of 'City' and is similar to 'Zone'. This is future functionality, so the value returned is 'null'.",
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "IdUESF",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MECPlatformStatus": {
+        "description": "Status of the MEC Platform (default is 'unknown')",
+        "type": "string",
+        "enum": [
+          "Active",
+          "Inactive",
+          "unknown"
+        ],
+        "default": "unknown"
+      },
+      "MECPlatformResource": {
+        "description": "5G Edge platform used for deployment of a service. The ern of each platform contains the name of the matching AWS Wavelength zone that can be used when deploying.",
+        "type": "object",
+        "properties": {
+          "ern": {
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9-]{3,32}$",
+            "description": "Edge Resource Name. A string identifier for a set of edge resources.",
+            "example": "5x4VBwmfZbzSL3"
+          },
+          "zone": {
+            "$ref": "#/components/schemas/ZoneId"
+          },
+          "region": {
+            "$ref": "#/components/schemas/RegionId"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MECPlatformStatus"
+          },
+          "properties": {
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MECPlatformsAdditionalSupportInfo"
+                }
+              },
+              {
+                "$ref": "#/components/schemas/MECPlatformsAdditionalSupportInfo"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegionId": {
+        "description": "MEC region name. Current valid values are US_WEST_2 and US_EAST_1.",
+        "type": "string",
+        "example": "US_WEST_2"
+      },
+      "ServiceEndpointsId": {
+        "description": "A system-defined string identifier representing one or more registered Service Endpoints.",
+        "type": "string",
+        "readOnly": true,
+        "additionalProperties": false,
+        "example": "43f3f7bb-d6c5-4bad-b081-9a3a0df2db98"
+      },
+      "ServiceProfileId": {
+        "description": "Unique identifier for a service profile.",
+        "type": "string",
+        "readOnly": false,
+        "additionalProperties": false,
+        "example": "4054ea9a-593e-4776-b488-697b1bfa4f3b"
+      },
+      "ZoneId": {
+        "description": "Unique identifier representing a zone. *Note:* This will have a null value as a placeholder.",
+        "type": "string",
+        "nullable": true,
+        "maxLength": 32,
+        "pattern": "^[A-Za-z0-9]{3,32}$",
+        "example": "e5oV52kMGjDLhnJSsLJZL",
+        "additionalProperties": false
+      },
+      "NetworkResourcesType": {
+        "description": "Network resources of a service profile.",
+        "type": "object",
+        "required": [
+          "maxLatencyMs"
+        ],
+        "properties": {
+          "minBandwidthKbits": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "format": "int32",
+            "description": "Minimum required connection bandwidth in Kbit/s for the application.",
+            "example": 1
+          },
+          "serviceContinuitySupport": {
+            "type": "boolean",
+            "description": "Indicates if service continuity support is required or not for the application.",
+            "example": true
+          },
+          "maxRequestRate": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "format": "int32",
+            "description": "Maximum request rate that the application can handle.",
+            "example": 15
+          },
+          "maxLatencyMs": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 1000,
+            "format": "int32",
+            "description": "Maximum response time or latency that the application can handle, in milliseconds. Note: this value must be in multiples of 5.",
+            "example": 20
+          },
+          "minAvailability": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "format": "int32",
+            "description": "Minimum availability required for the server.",
+            "example": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComputeResourcesType": {
+        "type": "object",
+        "description": "Compute resources of a service profile.",
+        "properties": {
+          "GPU": {
+            "$ref": "#/components/schemas/GPU"
+          },
+          "minRAMGB": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "format": "int32",
+            "description": "Minimum RAM required in Gigabytes.",
+            "example": 1
+          },
+          "minStorageGB": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "format": "int32",
+            "description": "Minimum storage requirement in Gigabytes.",
+            "example": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "GPU": {
+        "description": "GPU resources of a service profile.",
+        "type": "object",
+        "properties": {
+          "minCoreClockMHz": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000,
+            "format": "int32",
+            "description": "Minimum Core Clock value in megahertz.",
+            "example": 1
+          },
+          "minMemoryClockMHz": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100000,
+            "format": "int32",
+            "description": "Minimum Memory Clock value in megahertz.",
+            "example": 35740
+          },
+          "minBandwidthGBs": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000,
+            "format": "int32",
+            "description": "Minimum GPU bandwidth in GB/s.",
+            "example": 588
+          },
+          "minTFLOPS": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "format": "int32",
+            "description": "Minimum Floating Point Operations Per Second in Teraflops.",
+            "example": 33
+          }
+        },
+        "additionalProperties": false
+      },
+      "EdgeDiscoveryResult": {
+        "description": "Base type for all errors.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "HTTP status code or status of response.",
+            "type": "string",
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "message": {
+            "description": "Error details.",
+            "type": "string",
+            "maxLength": 32
+          },
+          "data": {
+            "$ref": "#/components/schemas/EdgeDiscoveryResultData"
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ],
+        "additionalProperties": false
+      },
+      "EdgeDiscoveryResultData": {
+        "description": "For cases where user input exceeds the boundary values an additional 'data' key will be returned with a relevant description.",
+        "type": "object",
+        "properties": {
+          "additionalMessage": {
+            "type": "string",
+            "maxLength": 32
+          }
+        }
+      },
+      "UserEquipmentIdentityType": {
+        "description": "Type of User Equipment identifier used in `UEIdentity`.",
+        "type": "string",
+        "enum": [
+          "IPAddress"
+        ],
+        "example": "IPAddress"
+      },
+      "UEIdentity": {
+        "description": "The identifier value for User Equipment. The type of identifier is defined by the 'UEIdentityType' parameter. The`IPAddress`format can be IPv4 or IPv6.",
+        "type": "string",
+        "format": "ipv6",
+        "example": "2600:1010:b1d0:0000:0000:0000:0000:0012"
+      }
+    },
+    "parameters": {
+      "serviceProfileId": {
+        "name": "serviceProfileId",
+        "description": "Unique identifier of the service profile.",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "maxLength": 36,
+          "pattern": "^[a-zA-Z0-9!@#$&()\\-`.+,/\"]{3,36}$"
+        }
+      },
+      "region": {
+        "name": "region",
+        "description": "MEC region name. Current valid values are US_WEST_2 and US_EAST_1.",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "US_WEST_2"
+        }
+      },
+      "subscriberDensity": {
+        "name": "subscriberDensity",
+        "description": "Minimum number of 4G/5G subscribers per square kilometer.",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "format": "int32"
+        }
+      },
+      "UEIdentityType": {
+        "name": "UEIdentityType",
+        "description": "Type of User Equipment identifier used in `UEIdentity`.",
+        "in": "query",
+        "required": false,
+        "example": "IPAddress",
+        "schema": {
+          "$ref": "#/components/schemas/UserEquipmentIdentityType"
+        }
+      },
+      "UEIdentity": {
+        "name": "UEIdentity",
+        "description": "The identifier value for User Equipment. The type of identifier is defined by the 'UEIdentityType' parameter. The`IPAddress`format can be IPv4 or IPv6.",
+        "in": "query",
+        "required": false,
+        "example": "2600:1010:b1d0:0000:0000:0000:0000:0012",
+        "schema": {
+          "$ref": "#/components/schemas/UEIdentity"
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "HTTP 400 Bad Request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EdgeDiscoveryResult"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "HTTP 401 Unauthorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EdgeDiscoveryResult"
+            }
+          }
+        }
+      },
+      "Unexpected": {
+        "description": "HTTP 500 Internal Server Error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EdgeDiscoveryResult"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {
+              "discovery:read": "Grant read-only access to discovery data",
+              "serviceprofile:read": "Grant read-only access to service profile data",
+              "serviceprofile:write": "Grant write access to service profile data",
+              "serviceregistry:read": "Grant read-only access to Service registry data",
+              "serviceregistry:write": "Grant write access to Service registry data",
+              "ts.mec.fullaccess": "Full access for /serviceprofiles and /serviceendpoints.",
+              "ts.mec.limitaccess": "Limited access. Will not allow use of /serviceprofiles and /serviceendpoints but will allow discovery.",
+              "ts.application.ro": "",
+              "edge:discovery:read": "Read access to the discovery service",
+              "edge:serviceprofile:read":"Read access to the service profile service",
+              "edge:serviceprofile:write":"Write access to the service profile service",
+              "edge:serviceregistry:read":"Read access to the service registry service",
+              "edge:serviceregistry:write":"Write access to the service registry service"
+            }
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

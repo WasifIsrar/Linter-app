@@ -1,0 +1,934 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PWN",
+    "contact": {},
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "variables": {}
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/m2m/v1/devices/pwn/kpi/list/{aname}": {
+      "get": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "KPI List",
+        "operationId": "KPIList",
+        "parameters": [
+          {
+            "name": "aname",
+            "in": "path",
+            "description": "Account name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0342351414-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Kpi list received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KPIInfoList"
+                },
+                "example": {
+                  "KpiInfoList": [
+                    {
+                      "name": "DOWNLINK_THROUGHPUT",
+                      "value": "23.2",
+                      "nodeName": "132924_ENB_VZ_EULESS_OLTE_RD-01",
+                      "nodeType": "BASEBAND",
+                      "description": "Downlink throughput (4G)",
+                      "unit": "Mbps",
+                      "category": "Network Performance Radio",
+                      "timeOfLastUpdate": "2022-12-07T08:39:59.228Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/m2m/v1/devices/pwn/profiles/list/{aname}": {
+      "get": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "Get Profile List",
+        "operationId": "GetProfileList",
+        "parameters": [
+          {
+            "name": "aname",
+            "in": "path",
+            "description": "Account name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0342351414-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PWN profiles list received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PWNProfileList"
+                },
+                "example": {
+                  "profiles": [
+                    {
+                      "profileId": "HSS-EsmProfile_Enterprise",
+                      "profileName": "HSS EsmProfile Enterprise"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/m2m/v1/devices/pwn/actions/state/activate": {
+      "post": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "ChangePWNDeviceState - Activate",
+        "operationId": "ChangePWNDeviceState-Activate",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ChangePWNDeviceState-ActivateRequest"
+                  },
+                  {
+                    "example": {
+                      "accountName": "0342351414-00001",
+                      "deviceList": [
+                        {
+                          "deviceIds": [
+                            {
+                              "id": "99948099913024600001",
+                              "kind": "iccid"
+                            }
+                          ]
+                        }
+                      ],
+                      "activate": {
+                        "profile": "HSS EsmProfile Enterprise 5G"
+                      }
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "accountName": "0342351414-00001",
+                "deviceList": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "99948099913024600001",
+                        "kind": "iccid"
+                      }
+                    ]
+                  }
+                ],
+                "activate": {
+                  "profile": "HSS EsmProfile Enterprise 5G"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePWNDeviceStateResponse"
+                },
+                "example": {
+                  "requestId": "c7b45cf2-cab1-4e42-82f8-20350f4c4ea3"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/m2m/v1/devices/pwn/actions/state/deactivate": {
+      "post": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "ChangePWNDeviceState - Deactivate",
+        "operationId": "ChangePWNDeviceState-Deactivate",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ChangePWNDeviceState-DeactivateRequest"
+                  },
+                  {
+                    "example": {
+                      "accountName": "0342351414-00001",
+                      "deviceList": [
+                        {
+                          "deviceIds": [
+                            {
+                              "id": "99948099913031600000",
+                              "kind": "iccid"
+                            }
+                          ]
+                        },
+                        {
+                          "deviceIds": [
+                            {
+                              "id": "99948099913031700000",
+                              "kind": "iccid"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "accountName": "0342351414-00001",
+                "deviceList": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "99948099913031600000",
+                        "kind": "iccid"
+                      }
+                    ]
+                  },
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "99948099913031700000",
+                        "kind": "iccid"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePWNDeviceStateResponse"
+                },
+                "example": {
+                  "requestId": "c7b45cf2-cab1-4e42-82f8-20350f4c4ea3"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/m2m/v1/devices/pwn/actions/profile": {
+      "post": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "ChangePWNDeviceProfile",
+        "operationId": "ChangePWNDeviceProfile",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ChangePWNDeviceProfileRequest"
+                  },
+                  {
+                    "example": {
+                      "accountName": "0342351414-00001",
+                      "deviceList": [
+                        {
+                          "deviceIds": [
+                            {
+                              "id": "99948099913024600000",
+                              "kind": "iccid"
+                            }
+                          ]
+                        }
+                      ],
+                      "newProfile": "HSS EsmProfile Enterprise 5G internet"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "accountName": "0342351414-00001",
+                "deviceList": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "99948099913024600000",
+                        "kind": "iccid"
+                      }
+                    ]
+                  }
+                ],
+                "newProfile": "HSS EsmProfile Enterprise 5G internet"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePWNDeviceProfileResponse"
+                },
+                "example": {
+                  "requestId": "c7b45cf2-cab1-4e42-82f8-20350f4c4ea3"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/m2m/v1/devices/pwn/actions/ipaddress": {
+      "put": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "ChangePWNDeviceIPaddress",
+        "operationId": "ChangePWNDeviceIPaddress",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ChangePWNDeviceIPaddressRequest"
+                  },
+                  {
+                    "example": {
+                      "accountName": "0342351414-00001",
+                      "deviceList": [
+                        {
+                          "deviceIds": [
+                            {
+                              "id": "99948099913031600000",
+                              "kind": "iccid"
+                            }
+                          ]
+                        },
+                        {
+                          "deviceIds": [
+                            {
+                              "id": "99948099913031700000",
+                              "kind": "iccid"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "accountName": "0342351414-00001",
+                "deviceList": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "99948099913031600000",
+                        "kind": "iccid"
+                      }
+                    ]
+                  },
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "99948099913031700000",
+                        "kind": "iccid"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePWNDeviceIPAddressResponse"
+                },
+                "example": {
+                  "requestId": "c7b45cf2-cab1-4e42-82f8-20350f4c4ea3"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/m2m/v1/devices/pwn/performance/consent/{aname}": {
+      "get": {
+        "tags": [
+          "PWN"
+        ],
+        "summary": "GetPWNPerformanceConsent",
+        "operationId": "GetPWNPerformanceConsent",
+        "parameters": [
+          {
+            "name": "aname",
+            "in": "path",
+            "description": "Account name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1533445500-00088"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "consent received on a successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPWNPerformanceConsentResponse"
+                },
+                "example": {
+                  "consent": "false"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChangePWNDeviceState-ActivateRequest": {
+        "title": "ChangePWNDeviceState-ActivateRequest",
+        "required": [
+          "accountName",
+          "deviceList",
+          "activate"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "deviceList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceList"
+            },
+            "description": ""
+          },
+          "activate": {
+            "$ref": "#/components/schemas/Activate"
+          }
+        },
+        "example": {
+          "accountName": "0342351414-00001",
+          "deviceList": [
+            {
+              "deviceIds": [
+                {
+                  "id": "99948099913024600001",
+                  "kind": "iccid"
+                }
+              ]
+            }
+          ],
+          "activate": {
+            "profile": "HSS EsmProfile Enterprise 5G"
+          }
+        }
+      },
+      "DeviceList": {
+        "title": "PWNDeviceList",
+        "required": [
+          "deviceIds"
+        ],
+        "type": "object",
+        "maxItems": 1,
+        "properties": {
+          "deviceIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceId"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "deviceIds": [
+            {
+              "id": "99948099913024600001",
+              "kind": "iccid"
+            }
+          ]
+        }
+      },
+      "DeviceId": {
+        "title": "PWNDeviceId",
+        "required": [
+          "id",
+          "kind"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "99948099913024600001",
+          "kind": "iccid"
+        }
+      },
+      "Activate": {
+        "title": "Activate",
+        "required": [
+          "profile"
+        ],
+        "type": "object",
+        "properties": {
+          "profile": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "profile": "HSS EsmProfile Enterprise 5G"
+        }
+      },
+      "ChangePWNDeviceState-DeactivateRequest": {
+        "title": "ChangePWNDeviceState-DeactivateRequest",
+        "required": [
+          "accountName",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "deviceList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceList"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "accountName": "0342351414-00001",
+          "deviceList": [
+            {
+              "deviceIds": [
+                {
+                  "id": "99948099913024600000",
+                  "kind": "iccid"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "ChangePWNDeviceProfileRequest": {
+        "title": "ChangePWNDeviceProfileRequest",
+        "required": [
+          "accountName",
+          "deviceList",
+          "newProfile"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "deviceList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceList"
+            },
+            "description": ""
+          },
+          "newProfile": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "accountName": "0342351414-00001",
+          "deviceList": [
+            {
+              "deviceIds": [
+                {
+                  "id": "99948099913024600000",
+                  "kind": "iccid"
+                }
+              ]
+            }
+          ],
+          "newProfile": "HSS EsmProfile Enterprise 5G internet"
+        }
+      },
+      "ChangePWNDeviceIPaddressRequest": {
+        "title": "ChangePWNDeviceIPaddressRequest",
+        "required": [
+          "accountName",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string"
+          },
+          "deviceList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceListIP"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "accountName": "0342351414-00001",
+          "deviceList": [
+            {
+              "deviceIds": [
+                {
+                  "id": "99948099913024600000",
+                  "kind": "iccid"
+                }
+              ],
+              "ipAddress": "10.3.4.5"
+            },
+            {
+              "deviceIds": [
+                {
+                  "id": "999480500019111000001",
+                  "kind": "iccid"
+                }
+              ],
+              "ipAddress": "10.4.5.7"
+            }
+          ]
+        }
+      },
+      "DeviceListIP": {
+        "title": "DeviceListIP",
+        "required": [
+          "deviceIds",
+          "ipAddress"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeviceId"
+            },
+            "description": ""
+          },
+          "ipAddress": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "deviceIds": [
+            {
+              "id": "99948099913024600000",
+              "kind": "iccid"
+            }
+          ],
+          "ipAddress": "10.3.4.5"
+        }
+      },
+      "ChangePWNDeviceStateResponse": {
+        "description": "Response to change PWN device state",
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "description": "A unique string that associates the request with the results that are sent via a callback service.",
+            "type": "string",
+            "example": "24da9f9a-d110-4a54-86b4-93fb76aab83cs"
+          }
+        },
+        "example": {
+          "requestId": "24da9f9a-d110-4a54-86b4-93fb76aab83c"
+        }
+      },
+      "ChangePWNDeviceProfileResponse": {
+        "description": "Response to change PWN device profile",
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "description": "A unique string that associates the request with the results that are sent via a callback service.",
+            "type": "string",
+            "example": "24da9f9a-d110-4a54-86b4-93fb76aab83cs"
+          }
+        },
+        "example": {
+          "requestId": "24da9f9a-d110-4a54-86b4-93fb76aab83c"
+        }
+      },
+      "ChangePWNDeviceIPAddressResponse": {
+        "description": "Response to change PWN device ip address.",
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "description": "A unique string that associates the request with the results that are sent via a callback service.",
+            "type": "string",
+            "example": "24da9f9a-d110-4a54-86b4-93fb76aab83cs"
+          }
+        },
+        "example": {
+          "requestId": "24da9f9a-d110-4a54-86b4-93fb76aab83c"
+        }
+      },
+      "GetPWNPerformanceConsentResponse": {
+        "description": "PWN Performance Consent Response",
+        "type": "object",
+        "properties": {
+          "consent": {
+            "description": "PWN Performance Consent Response.",
+            "type": "string",
+            "example": "false"
+          }
+        },
+        "example": {
+          "consent": "false"
+        }
+      },
+      "KPIInfo": {
+        "description": "KPI Info Object",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "DOWNLINK_THROUGHPUT"
+          },
+          "value": {
+            "type": "string",
+            "example": "23.2"
+          },
+          "nodeName": {
+            "type": "string",
+            "example": "132924_ENB_VZ_EULESS_OLTE_RD-01"
+          },
+          "nodeType": {
+            "type": "string",
+            "example": "BASEBAND"
+          },
+          "description": {
+            "type": "string",
+            "example": "Downlink throughput (4G)"
+          },
+          "unit": {
+            "type": "string",
+            "example": "Mbps"
+          },
+          "category": {
+            "type": "string",
+            "example": "Network Performance Radio"
+          },
+          "timeOfLastUpdate": {
+            "type": "string",
+            "example": "2022-12-07T08:39:59.228Z"
+          }
+        },
+        "example": {
+          "name": "DOWNLINK_THROUGHPUT",
+          "value": "23.2",
+          "nodeName": "132924_ENB_VZ_EULESS_OLTE_RD-01",
+          "nodeType": "BASEBAND",
+          "description": "Downlink throughput (4G)",
+          "unit": "Mbps",
+          "category": "Network Performance Radio",
+          "timeOfLastUpdate": "2022-12-07T08:39:59.228Z"
+        }
+      },
+      "KPIInfoList": {
+        "title": "KPIInfoList",
+        "type": "object",
+        "properties": {
+          "KpiInfoList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KPIInfo"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "KpiInfoList": [
+            {
+              "name": "DOWNLINK_THROUGHPUT",
+              "value": "23.2",
+              "nodeName": "132924_ENB_VZ_EULESS_OLTE_RD-01",
+              "nodeType": "BASEBAND",
+              "description": "Downlink throughput (4G)",
+              "unit": "Mbps",
+              "category": "Network Performance Radio",
+              "timeOfLastUpdate": "2022-12-07T08:39:59.228Z"
+            }
+          ]
+        }
+      },
+      "PWNProfileList": {
+        "title": "PWNProfileList",
+        "type": "object",
+        "properties": {
+          "profiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PWNProfile"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "profiles": [
+            {
+              "profileId": "HSS-EsmProfile_Enterprise",
+              "profileName": "HSS EsmProfile Enterprise"
+            }
+          ]
+        }
+      },
+      "PWNProfile": {
+        "title": "PWNProfile",
+        "type": "object",
+        "properties": {
+          "profileId": {
+            "type": "string"
+          },
+          "profileName": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "profileId": "HSS-EsmProfile_Enterprise",
+          "profileName": "HSS EsmProfile Enterprise"
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  },
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "PWN"
+    }
+  ]
+}

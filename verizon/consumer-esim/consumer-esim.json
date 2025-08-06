@@ -1,0 +1,1095 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Methods for embedded SIM (Consumer eSIM for IoT Solutions)",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "http://www.verizon.com/about/terms/"
+    },
+    "version": "v2.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "SIM Actions",
+      "description": "Activate and Deactivate the SIM."
+    },
+    {
+      "name": "Global Reporting",
+      "description": "Use these endpoints to determine the status of requests or the history of device provisioning.  "
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/m2m/v1/devices/profile/actions/renew_activation_code": {
+      "post": {
+        "tags": [
+          "SIM Actions"
+        ],
+        "summary": "Get a new activation code.",
+        "description": "System assign a new activation code to reactivate a deactivated device. **Note:** the previously assigned ICCID must be used to request a new activation code.",
+        "operationId": "newactivatecode",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/eSIMProfileRequest2"
+              },
+              "example": {
+                "devices": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "15-digit IMEI",
+                        "kind": "imei"
+                      },
+                      {
+                        "id": "20-digit ICCID",
+                        "kind": "iccid"
+                      }
+                    ]
+                  }
+                ],
+                "accountName": "0000123456-00001",
+                "servicePlan": "the service plan name",
+                "mdnZipCode": "five digit zip code"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/devices/profile/actions/activate": {
+      "post": {
+        "tags": [
+          "SIM Actions"
+        ],
+        "summary": "Activate a SIM.",
+        "description": "Uses the profile to activate the SIM.",
+        "operationId": "setactivateUsingPOST",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/eSIMProfileRequest"
+              },
+              "example": {
+                "devices": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "32-digit EID",
+                        "kind": "eid"
+                      },
+                      {
+                        "id": "15-digit IMEI",
+                        "kind": "imei"
+                      },
+                      {
+                        "id": "20-digit ICCID",
+                        "kind": "iccid (ICCID is only used for reactivation)"
+                      }
+                    ]
+                  }
+                ],
+                "carrierName": "Verizon Wireless",
+                "accountName": "0000123456-00001",
+                "servicePlan": "the service plan name",
+                "mdnZipCode": "five digit zip code"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v1/devices/profile/actions/deactivate": {
+      "post": {
+        "tags": [
+          "SIM Actions"
+        ],
+        "summary": "Deactivate a SIM.",
+        "description": "Uses the profile to deactivate the SIM.",
+        "operationId": "setdeactivateUsingPOST",
+        "requestBody": {
+          "description": "Device Profile Query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileRequest2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/devices/history/actions/list": {
+      "post": {
+        "tags": [
+          "Global Reporting"
+        ],
+        "summary": "Retrieve Device Provisioning History.",
+        "description": "Retrieve the provisioning history of a specific device or devices.",
+        "operationId": "deviceprovhistoryUsingPOST",
+        "requestBody": {
+          "description": "Device Provisioning History",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/eSIMProvhistoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRequestResponse"
+                },
+                "example": {
+                  "requestId": "d1f08526-5443-4054-9a29-4456490ea9f8"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/m2m/v2/devices/actions/list": {
+      "post": {
+        "tags": [
+          "Global Reporting"
+        ],
+        "summary": "Retrieve global device list.",
+        "description": "Retrieve a list of all devices associated with an account.",
+        "operationId": "RetrieveGlobalList",
+        "requestBody": {
+          "description": "Device List",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/eSIMGlobalDeviceList"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Request ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRequestResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eSIMRestErrorResponse"
+                },
+                "example": {
+                  "errorCode": "The 3-digit HTML error code",
+                  "errorMessage": "a description of the error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeviceId2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "15-digit IMEI"
+          },
+          "kind": {
+            "type": "string",
+            "example": "imei"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceId3": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "20-digit ICCID"
+          },
+          "kind": {
+            "type": "string",
+            "example": "iccid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeviceList2": {
+        "title": "DeviceList2",
+        "type": "object",
+        "properties": {
+          "ids": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/eSIMDeviceId"
+                },
+                {
+                  "$ref": "#/components/schemas/DeviceId3"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMGlobalDeviceList": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001",
+            "description": "The numeric name of the account."
+          },
+          "provisioningStatusFilter": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "DEACTIVATED",
+              "ACTIVATED",
+              "DEACTIVE",
+              "ACTIVE",
+              "SUSPEND",
+              "PENDING_ACTIVATION",
+              "PENDING_DEACTIVATION",
+              "PRE_ACTIVE",
+              "ACTIVATION_READY",
+              "INVENTORY",
+              "PURGED",
+              "REPLACED",
+              "RETIRED",
+              "TEST_READY"
+            ],
+            "description": "The last status of the device as a list filter."
+          },
+          "profileStatusFilter": {
+            "type": "string",
+            "enum": [
+              "ENABLE",
+              "DISABLE",
+              "DOWNLOAD_DISABLE",
+              "DOWNLOAD_ENABLE",
+              "NOT_DOWNLOADED",
+              "UNKNOWN",
+              "DELETE"
+            ],
+            "description": "The last status of the device's profile as a filter."
+          },
+          "carrierNameFilter": {
+            "type": "string",
+            "example": "VerizonWireless",
+            "description": "The cellular service provider."
+          },
+          "deviceFilter": {
+            "type": "array",
+            "description": "An array of device identifiers to filter the list.",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/eSIMDeviceId"
+                },
+                {
+                  "$ref": "#/components/schemas/DeviceId2"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMDeviceId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "32-digit EID"
+          },
+          "kind": {
+            "type": "string",
+            "example": "eid"
+          }
+        }
+      },
+      "eSIMDeviceList": {
+        "title": "eSIMDeviceList",
+        "type": "object",
+        "properties": {
+          "deviceIds": {
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/eSIMDeviceId"
+                },
+                {
+                  "$ref": "#/components/schemas/DeviceId2"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMProfileRequest": {
+        "title": "eSIMProfileRequest",
+        "type": "object",
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/eSIMDeviceList"
+            }
+          },
+          "carrierName": {
+            "type": "string",
+            "example": "name of the mobile service provider"
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "servicePlan": {
+            "type": "string",
+            "example": "The service plan name (The value used for Consumer eSIM for Enterprise will be HybridESim)"
+          },
+          "mdnZipCode": {
+            "type": "string",
+            "example": "five digit zip code"
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMProfileRequest2": {
+        "title": "eSIMProfileRequest2",
+        "type": "object",
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/eSIMDeviceList"
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "servicePlan": {
+            "type": "string",
+            "example": "The service plan name"
+          },
+          "mdnZipCode": {
+            "type": "string",
+            "example": "five digit zip code"
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMRequestResponse": {
+        "title": "eSIMRequestResponse",
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "example": "d1f08526-5443-4054-9a29-4456490ea9f8"
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMRestErrorResponse": {
+        "title": "eSIMRestErrorResponse",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": "The 3-digit HTML error code"
+          },
+          "errorMessage": {
+            "type": "string",
+            "example": "a description of the error"
+          }
+        },
+        "additionalProperties": false
+      },
+      "eSIMProvhistoryRequest": {
+        "title": "eSIMProvhistoryRequest",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "deviceFilter": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/DeviceId3"
+            }
+          },
+          "earliest": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 32,
+            "example": "2021-10-15T04:49:35-00:00"
+          },
+          "latest": {
+            "type": "string",
+            "format": "date-time",
+            "maxLength": 32,
+            "example": "2021-10-15T04:49:49-00:00"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProfileRequest2": {
+        "title": "ProfileRequest2",
+        "type": "object",
+        "properties": {
+          "devices": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/DeviceList2"
+            }
+          },
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "carrierName": {
+            "type": "string",
+            "example": "Verizon Wireless"
+          },
+          "reasonCode": {
+            "type": "string",
+            "example": "FF"
+          },
+          "etfWaiver": {
+            "type": "boolean",
+            "default": true
+          },
+          "checkFallbackProfile": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

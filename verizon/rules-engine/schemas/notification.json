@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "notificationType": {
+      "type": "string"
+    },
+    "callback": {
+      "type": "boolean"
+    },
+    "emailNotification": {
+      "type": "boolean"
+    },
+    "notificationGroupName": {
+      "type": "string"
+    },
+    "notificationFrequencyFactor": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "notificationFrequencyInterval": {
+      "type": "string"
+    },
+    "externalEmailRecipients": {
+      "type": "string"
+    },
+    "smsNotification": {
+      "type": "boolean"
+    },
+    "smsNumbers": {
+      "type": "array",
+      "items": {
+        "$ref": "sms-numbers.json"
+      }
+    },
+    "reminder": {
+      "type": "boolean"
+    },
+    "severity": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "openapi": "3.0.1",
+  "externalDocs": {
+    "description": "Verizon Terms of Service.",
+    "url": "https://www.verizon.com/business/5g-edge-portal/legal.html"
+  },
+  "info": {
+    "title": "The Verizon 5G MEC Performance API",
+    "description": "This API returns the most recent data for different KPIs like network availability, MEC hostnames or an estimate of throughput.",
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Performance",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Performance",
+              "url": "https://5gedge.verizon.com/api/mec"
+            },
+            {
+              "name": "OAauth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Performance",
+              "url": "https://staging.5gedge.verizon.com/api/mec"
+            },
+            {
+              "name": "OAauth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://5gedge.verizon.com/api/mec",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.5gedge.verizon.com/api/mec",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Performance Metrics",
+      "description": "This API is for use by clients and OEMs to measure the performance of Verizon's Mobile Edge Compute (MEC) solution."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [
+        "edge:discovery:read",
+        "edge:serviceprofile:read",
+        "edge:serviceprofile:write",
+        "edge:serviceregistry:read",
+        "edge:serviceregistry:write",
+        "ts.application.ro",
+        "ts.mec.fullaccess",
+        "ts.mec.limitaccess"
+      ],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/performance/device/network/metrics": {
+      "post": {
+        "description": "Query the most recent data for Key Performance Indicators (KPIs) like network availability, MEC hostnames and more.",
+        "tags": [
+          "Performance Metrics"
+        ],
+        "summary": "Query the most recent data for different KPIs (i.e. network availability, MEC hostnames)",
+        "operationId": "QueryMECPerformanceMetrics",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryMECPerformanceMetricsRequest"
+              },
+              "example": {
+                "IMEI": "440246108109673",
+                "MSISDN": "10691876598"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "MEC performance metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MECPerformanceMetrics"
+                },
+                "example": {
+                  "QueryStatus": "Success",
+                  "Start": "1/28/2021 12:00:00",
+                  "End": "1/28/2021 12:15:00",
+                  "QueryResult": [
+                    {
+                      "name": "NetworkAvailability",
+                      "data": [
+                        "100",
+                        "percent",
+                        "high"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePerformanceResult"
+                },
+                "example": {
+                  "status": "HTTP status code",
+                  "message": "Error details"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePerformanceResult"
+                },
+                "example": {
+                  "status": "HTTP status code",
+                  "message": "Error details"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Request forbidden.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePerformanceResult"
+                },
+                "example": {
+                  "status": "HTTP status code",
+                  "message": "Error details"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource Not Found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePerformanceResult"
+                },
+                "example": {
+                  "status": "HTTP status code",
+                  "message": "Error details"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePerformanceResult"
+                },
+                "example": {
+                  "status": "HTTP status code",
+                  "message": "Error details"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EdgePerformanceResult"
+                },
+                "example": {
+                  "status": "HTTP status code",
+                  "message": "Error details"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "QueryMECPerformanceMetricsRequest": {
+        "description": "MEC performance metrics request.",
+        "required": [
+          "IMEI",
+          "MSISDN"
+        ],
+        "type": "object",
+        "properties": {
+          "IMEI": {
+            "description": "The 15-digit International Mobile Equipment Identifier.",
+            "type": "string",
+            "example": "440246108109673"
+          },
+          "MSISDN": {
+            "description": "The 12-digit Mobile Station International Subscriber Directory Number.",
+            "type": "string",
+            "example": "10691876598"
+          }
+        },
+        "example": {
+          "IMEI": "440246108109673",
+          "MSISDN": "10691876598"
+        }
+      },
+      "MECPerformanceMetrics": {
+        "description": "Response to query the most recent data for Key Performance Indicators (KPIs) like network availability, MEC hostnames and more.",
+        "type": "object",
+        "properties": {
+          "QueryStatus": {
+            "description": "Success or Failed.",
+            "type": "string",
+            "example": "Success"
+          },
+          "Start": {
+            "description": "Timestamp of the query's start, format:mm/dd/yyyy,hr:min:sec.",
+            "type": "string",
+            "example": "1/28/2021 12:00:00"
+          },
+          "End": {
+            "description": "Timestamp of the query's end , format:mm/dd/yyyy, hr:min:sec.",
+            "type": "string",
+            "example": "1/28/2021 12:15:00"
+          },
+          "QueryResult": {
+            "description": "MEC performance query result.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MECPerformanceQueryResult"
+            },
+            "example": [
+              {
+                "name": "NetworkAvailability",
+                "data": [
+                  "100",
+                  "percent",
+                  "high"
+                ]
+              }
+            ]
+          }
+        },
+        "example": {
+          "QueryStatus": "Success",
+          "Start": "1/28/2021 12:00:00",
+          "End": "1/28/2021 12:15:00",
+          "QueryResult": [
+            {
+              "name": "NetworkAvailability",
+              "data": [
+                "100",
+                "percent",
+                "high"
+              ]
+            }
+          ]
+        }
+      },
+      "MECPerformanceQueryResult": {
+        "description": "Result of the query for obtaining MEC performance metrics.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the parameter.",
+            "type": "string",
+            "example": "NetworkAvailability"
+          },
+          "data": {
+            "description": "Parameter values.",
+            "type": "array",
+            "example": [
+              "100",
+              "percent",
+              "high"
+            ],
+            "items": {
+              "type": "string",
+              "nullable": true,
+              "description": "Parameter value.",
+              "example": "percent"
+            }
+          }
+        },
+        "example": {
+          "name": "NetworkAvailability",
+          "data": [
+            "100",
+            "percent",
+            "high"
+          ]
+        }
+      },
+      "EdgePerformanceResult": {
+        "description": "Types of errors in response.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "HTTP status code.",
+            "type": "string",
+            "example": "HTTP status code"
+          },
+          "message": {
+            "description": "Error details.",
+            "type": "string",
+            "example": "Error details"
+          }
+        },
+        "example": {
+          "status": "HTTP status code",
+          "message": "Error details"
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {
+              "discovery:read": "Grant read-only access to discovery data",
+              "serviceprofile:read": "Grant read-only access to service profile data",
+              "serviceprofile:write": "Grant write access to service profile data",
+              "serviceregistry:read": "Grant read-only access to Service registry data",
+              "serviceregistry:write": "Grant write access to Service registry data",
+              "ts.mec.fullaccess": "Full access for /serviceprofiles and /serviceendpoints.",
+              "ts.mec.limitaccess": "Limited access. Will not allow use of /serviceprofiles and /serviceendpoints but will allow discovery.",
+              "ts.application.ro": "",
+              "edge:discovery:read": "Read access to the discovery service",
+              "edge:serviceprofile:read":"Read access to the service profile service",
+              "edge:serviceprofile:write":"Write access to the service profile service",
+              "edge:serviceregistry:read":"Read access to the service registry service",
+              "edge:serviceregistry:write":"Write access to the service registry service"
+            }
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

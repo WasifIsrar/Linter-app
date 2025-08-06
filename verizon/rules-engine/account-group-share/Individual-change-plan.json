@@ -1,0 +1,361 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Rules Engine 2.0",
+    "description": "Create and change AccountGroupShare Individual change plan",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "https://thingspace.verizon.com/legal/terms-of-services/"
+    },
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "/v2/triggers",
+      "description": "Helps to create and manage promo alert triggers"
+    }
+  ],
+  "paths": {
+    "/m2m/v2/triggers": {
+      "post": {
+        "tags": [
+          "/v2/triggers"
+        ],
+        "summary": "Create trigger based on the category.",
+        "description": "This creates an individual change plan for account group share.",
+        "operationId": "createTrigger",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTriggerV2Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trigger ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerV2Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RulesEngineRestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      },
+      "put": {
+        "tags": [
+          "/v2/triggers"
+        ],
+        "summary": "Update trigger Operation.",
+        "description": "This updates an individual change plan for account group share.",
+        "operationId": "updateTrigger",
+        "parameters": [
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Transaction Id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "VZ-M2M-Token",
+            "in": "header",
+            "description": "M2M-MC Session Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTriggerV2Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Trigger ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerV2Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RulesEngineRestErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-auth-type": "Application",
+        "x-throttling-tier": "Unlimited"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountGroupShare": {
+        "type": "object",
+        "properties": {
+          "accountGroupShareIndividual": {
+            "$ref": "#/components/schemas/AccountGroupShareIndividual"
+          }
+        }
+      },
+      "AccountGroupShareIndividual": {
+        "type": "object",
+        "properties": {
+          "filterCriteria": {
+            "$ref": "#/components/schemas/FilterCriteriaAccountGroupShare"
+          },
+          "condition": {
+            "$ref": "#/components/schemas/ConditionAccountGroupShare"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ActionAccountGroupShare"
+          }
+        }
+      },
+      "ActionAccountGroupShare": {
+        "type": "object",
+        "properties": {
+          "changePlan": {
+            "$ref": "#/components/schemas/ChangePlan"
+          }
+        }
+      },
+      "ChangePlan": {
+        "type": "object",
+        "properties": {
+          "triggerDate": {
+            "type": "string"
+          },
+          "sharePlan": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharePlan"
+            }
+          }
+        }
+      },
+      "ConditionAccountGroupShare": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string"
+          }
+        }
+      },
+      "FilterCriteriaAccountGroupShare": {
+        "type": "object",
+        "properties": {
+          "ratePlanGroupId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Notification": {
+        "$ref": "../schemas/notification.json"
+      },
+      "PricePlanTrigger": {
+        "type": "object",
+        "properties": {
+          "accountGroupShare": {
+            "$ref": "#/components/schemas/AccountGroupShare"
+          }
+        }
+      },
+      "SharePlan": {
+        "type": "object",
+        "properties": {
+          "fromCarrierCode": {
+            "type": "string"
+          },
+          "toCarrierCode": {
+            "type": "string"
+          },
+          "criteriaPercentage": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "SmsNumbers": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "carrier": {
+            "type": "string"
+          }
+        }
+      },
+      "TriggerV2Response": {
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string"
+          }
+        }
+      },
+      "RulesEngineRestErrorResponse": {
+        "$ref": "../schemas/rest-error-response.json"
+      },
+      "CreateTriggerV2Request": {
+        "type": "object",
+        "properties": {
+          "triggerName": {
+            "type": "string"
+          },
+          "ecpdId": {
+            "type": "string"
+          },
+          "deviceGroupName": {
+            "type": "string"
+          },
+          "triggerCategory": {
+            "type": "string"
+          },
+          "pricePlanTrigger": {
+            "$ref": "#/components/schemas/PricePlanTrigger"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/Notification"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "description": "Create Trigger Request"
+      },
+      "UpdateTriggerV2Request": {
+        "type": "object",
+        "properties": {
+          "triggerId": {
+            "type": "string"
+          },
+          "triggerName": {
+            "type": "string"
+          },
+          "ecpdId": {
+            "type": "string"
+          },
+          "deviceGroupName": {
+            "type": "string"
+          },
+          "triggerCategory": {
+            "type": "string"
+          },
+          "pricePlanTrigger": {
+            "$ref": "#/components/schemas/PricePlanTrigger"
+          },
+          "notification": {
+            "$ref": "#/components/schemas/Notification"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "description": "Update Trigger Request"
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

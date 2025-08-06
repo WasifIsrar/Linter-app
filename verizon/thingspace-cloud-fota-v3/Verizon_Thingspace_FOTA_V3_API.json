@@ -1,0 +1,3611 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Software Management Services API (v3)",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "https://thingspace.verizon.com/legal/terms-of-service.html"
+    },
+    "description": "The ThingSpace Software Management Services API lets customers manage, schedule, and distribute software updates to eligible 4G and 5G Internet of Things (IoT) devices already deployed in the field. This allows devices-even those in inaccessible locations-to be upgraded easily, reducing the need for site visits and truck rolls.",
+    "version": "3.1",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Software Management V3",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Software Management V3",
+              "url": "https://thingspace.verizon.com/api/fota/v3"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Software Management V3",
+              "url": "https://staging.thingspace.verizon.com/api/fota/v3"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/fota/v3",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/fota/v3",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Software Management Subscriptions V3",
+      "description": "Information about current FOTA subscriptions."
+    },
+    {
+      "name": "Software Management Licenses V3",
+      "description": "License status and assignment."
+    },
+    {
+      "name": "Campaigns V3",
+      "description": "Schedule, retrieve or cancel scheduled FOTA campaigns."
+    },
+    {
+      "name": "Software Management Reports V3",
+      "description": "Status of a campaign per device."
+    },
+    {
+      "name": "Firmware V3",
+      "description": "State of Firmware across devices in the account."
+    },
+    {
+      "name": "Account Devices",
+      "description": "Device information for an account."
+    },
+    {
+      "name": "Software Management Callbacks V3",
+      "description": "Find registered callbacks or create, update and delete a registered callback."
+    }
+  ],
+  "paths": {
+    "/subscriptions/{acc}": {
+      "get": {
+        "tags": [
+          "Software Management Subscriptions V3"
+        ],
+        "operationId": "GetAccountSubscriptionStatus",
+        "summary": "Get a FOTA subscription",
+        "description": "This endpoint retrieves a FOTA subscription by account.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FOTA Subscription.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Subscription"
+                },
+                "example": {
+                  "accountName": "0000123456-000001",
+                  "purchaseType": "TS-HFOTA-EVNT,TS-HFOTA-MRC",
+                  "licenseCount": 500,
+                  "licenseUsedCount": 400,
+                  "updateTime": "2020-09-17T21:11:32.170Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licenses/{acc}": {
+      "get": {
+        "tags": [
+          "Software Management Licenses V3"
+        ],
+        "operationId": "GetAccountLicensesStatus",
+        "summary": "Summarize FOTA licenses assignment",
+        "description": "The endpoint allows user to list license usage.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "lastSeenDeviceId",
+            "in": "query",
+            "description": "Last seen device identifier.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Summary of license assignment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3LicenseSummary"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "assignedLicenses": 4319,
+                  "hasMoreData": true,
+                  "lastSeenDeviceId": "1000",
+                  "maxPageSize": 1000,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+                    },
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licenses/{acc}/assign": {
+      "post": {
+        "tags": [
+          "Software Management Licenses V3"
+        ],
+        "operationId": "AssignLicensesToDevices",
+        "summary": "Assign FOTA licenses to devices",
+        "description": "This endpoint allows user to assign licenses to a list of devices.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "License assignment.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3LicenseIMEI"
+              },
+              "example": {
+                "deviceList": [
+                  "15-digit IMEI",
+                  "15-digit IMEI"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "License assignment result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3LicenseAssignedRemovedResult"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "licUsedCount": 2,
+                  "licCount": 1000,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "UpgradePending",
+                      "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+                      "updatedTime": "2022-08-05T21:05:27.129Z",
+                      "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+                      "nextAttemptTime": "2022-10-06T18:35:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licenses/{acc}/remove": {
+      "post": {
+        "tags": [
+          "Software Management Licenses V3"
+        ],
+        "operationId": "RemoveLicensesFromDevices",
+        "summary": "Remove licenses from devices",
+        "description": "This endpoint allows user to remove licenses from a list of devices.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "License removal.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3LicenseIMEI"
+              },
+              "example": {
+                "deviceList": [
+                  "15-digit IMEI",
+                  "15-digit IMEI",
+                  "15-digit IMEI"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "License removal result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3LicenseAssignedRemovedResult"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "licUsedCount": 998,
+                  "licCount": 1000,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "UpgradePending",
+                      "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+                      "updatedTime": "2022-08-05T21:05:27.129Z",
+                      "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+                      "nextAttemptTime": "2022-10-06T18:35:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/firmware/{accountName}": {
+      "post": {
+        "tags": [
+          "Campaigns V3"
+        ],
+        "operationId": "ScheduleCampaignFirmwareUpgrade",
+        "summary": "Schedule a firmware upgrade",
+        "description": "This endpoint allows a user to schedule a firmware upgrade for a list of devices.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Firmware upgrade information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFirmwareUpgrade"
+              },
+              "example": {
+                "campaignName": "Smart FOTA - test 4",
+                "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+                "firmwareFrom": "SR1.2.0.0-10512",
+                "firmwareTo": "SR1.2.0.0-10657",
+                "protocol": "LWM2M",
+                "startDate": "2021-09-29",
+                "endDate": "2021-10-01",
+                "campaignTimeWindowList": [
+                  {
+                    "startTime": 18,
+                    "endTime": 22
+                  }
+                ],
+                "deviceList": [
+                  "15-digit IMEI"
+                ],
+                "autoAssignLicenseFlag": false,
+                "autoAddDevicesFlag": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return upgrade information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FirmwareCampaign"
+                },
+                "example": {
+                  "id": "f858b8c4-2153-11ec-8c44-aeb16d1aa652",
+                  "accountName": "0000123456-00001",
+                  "campaignName": "Smart FOTA - test 4",
+                  "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+                  "protocol": "LWM2M",
+                  "firmwareFrom": "SR1.2.0.0-10512",
+                  "firmwareTo": "SR1.2.0.0-10657",
+                  "make": "SEQUANS Communications",
+                  "model": "GM01Q",
+                  "status": "CampaignRequestPending",
+                  "startDate": "2021-09-29",
+                  "endDate": "2021-10-01",
+                  "campaignTimeWindowList": [
+                    {
+                      "startTime": 18,
+                      "endTime": 22
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/firmware/{acc}/{campaignId}": {
+      "put": {
+        "tags": [
+          "Campaigns V3"
+        ],
+        "operationId": "UpdateCampaignFirmwareDevices",
+        "summary": "Add or Remove devices to an existing firmware campaign. This api is allowed before the campaign StartDate",
+        "description": "This endpoint allows user to Add or Remove devices to an existing campaign.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Unique identifier of a campaign.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          }
+        ],
+        "requestBody": {
+          "description": "Add or remove device to existing upgrade information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3AddOrRemoveDeviceRequest"
+              },
+              "example": {
+                "Type": "remove",
+                "deviceList": [
+                  "15-digit IMEI"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns add or remove devices to existing upgrade information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3AddOrRemoveDeviceResult"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "campaignId": "f858b8c4-2153-11ec-8c44-aeb16d1aa652",
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "AddDeviceSucceed",
+                      "Reason": "Device added Successfully"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/firmware/{acc}/{campaignId}/dates": {
+      "put": {
+        "tags": [
+          "Campaigns V3"
+        ],
+        "operationId": "UpdateCampaignDates",
+        "summary": "Change firmware campaign dates and time windows. This api is allowed before the campaign StartDate",
+        "description": "This endpoint allows user to change campaign dates and time windows. Fields which need to remain unchanged should be also provided.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Firmware upgrade information.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          }
+        ],
+        "requestBody": {
+          "description": "New dates and time windows.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3ChangeCampaignDatesRequest"
+              },
+              "example": {
+                "startDate": "2022-02-23",
+                "endDate": "2022-02-24",
+                "campaignTimeWindowList": [
+                  {
+                    "startTime": 14,
+                    "endTime": 18
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Updated campaign information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FirmwareCampaign"
+                },
+                "example": {
+                  "id": "4e03b882-936a-11ec-931f-76f56843c393",
+                  "accountName": "0000123456-00001",
+                  "campaignName": "modify-campaign-test-1",
+                  "firmwareName": "NordicSemiconductorASA_nRF9160_ee58ac77-f1fd-4960-8dc4-4d32e118a6d4_4325d595-7b69-4474-ba39-9c177930aac3",
+                  "protocol": "LWM2M",
+                  "firmwareFrom": "ee58ac77-f1fd-4960-8dc4-4d32e118a6d4",
+                  "firmwareTo": "4325d595-7b69-4474-ba39-9c177930aac3",
+                  "make": "Nordic Semiconductor ASA",
+                  "model": "nRF9160",
+                  "status": "CampaignRequestQueued",
+                  "startDate": "2022-02-23",
+                  "endDate": "2022-02-24",
+                  "campaignTimeWindowList": [
+                    {
+                      "startTime": 14,
+                      "endTime": 18
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{accountName}/{campaignId}": {
+      "get": {
+        "tags": [
+          "Campaigns V3"
+        ],
+        "operationId": "GetCampaignInformation",
+        "summary": "Retrieve campaign level information",
+        "description": "This endpoint allows the user to retrieve campaign level information for a specified campaign.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Firmware upgrade identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns firmware upgrade information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Campaign"
+                },
+                "example": {
+                  "id": "f858b8c4-2153-11ec-8c44-aeb16d1aa652",
+                  "accountName": "0642233522-00001",
+                  "campaignName": "Smart FOTA - test 4",
+                  "protocol": "LWM2M",
+                  "make": "SEQUANS Communications",
+                  "model": "GM01Q",
+                  "status": "CampaignPreScheduled",
+                  "startDate": "2021-09-29",
+                  "endDate": "2021-10-01",
+                  "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+                  "firmwareFrom": "SR1.2.0.0-10512",
+                  "firmwareTo": "SR1.2.0.0-10657",
+                  "campaignTimeWindowList": [
+                    {
+                      "startTime": 18,
+                      "endTime": 22
+                    }
+                  ],
+                  "autoAssignLicenseFlag": false,
+                  "autoAddDevicesFlag": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Campaigns V3"
+        ],
+        "operationId": "CancelCampaign",
+        "summary": "Cancel a previously scheduled firmware campaign. This api is allowed before the campaign StartDate",
+        "description": "This endpoint allows user to cancel a firmware campaign. A firmware campaign already started can not be cancelled.",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Firmware upgrade information.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns cancellation status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3SuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{acc}/firmware/campaigns": {
+      "get": {
+        "tags": [
+          "Software Management Reports V3"
+        ],
+        "operationId": "GetCampaignHistoryByStatus",
+        "summary": "Get firmware campaign status",
+        "description": "Retrieve a list of campaigns for an account that have a specified campaign status.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignStatus",
+            "in": "query",
+            "description": "Campaign status.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/CampaignStatus"
+            },
+            "example": "CampaignRequestPending"
+          },
+          {
+            "name": "lastSeenCampaignId",
+            "in": "query",
+            "description": "Last seen campaign Id.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return array of campaign history.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3CampaignHistory"
+                },
+                "example": {
+                  "hasMoreData": true,
+                  "lastSeenCampaignId": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                  "campaignList": [
+                    {
+                      "accountName": "0000123456-00001",
+                      "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                      "campaignName": "FOTA_Verizon_Upgrade",
+                      "firmwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                      "firmwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                      "firmwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                      "make": "Verizon",
+                      "model": "Model-A",
+                      "status": "CampaignEnded",
+                      "startDate": "2020-08-21",
+                      "endDate": "2020-08-22",
+                      "campaignTimeWindowList": [
+                        {
+                          "startTime": 20,
+                          "endTime": 21
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{acc}/devices/{deviceId}": {
+      "get": {
+        "tags": [
+          "Software Management Reports V3"
+        ],
+        "operationId": "GetDeviceFirmwareUpgradeHistory",
+        "summary": "Get device campaign history",
+        "description": "Retrieve campaign history for a specific device.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device IMEI identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "15-digit IMEI"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of firmware upgrades.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A list of firmware upgrades.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceFirmwareUpgrade"
+                  }
+                },
+                "example": [
+                  {
+                    "deviceId": "15-digit IMEI",
+                    "campaignId": "252d7ffc-7e35-11ec-931d-76f56843c393",
+                    "accountName": "0000123456-00001",
+                    "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10657_SR1.2.0.0-10512",
+                    "firmwareFrom": "SR1.2.0.0-10657",
+                    "firmwareTo": "SR1.2.0.0-10512",
+                    "startDate": "2022-01-25",
+                    "reportUpdatedTime": "2022-01-26 03:45:01.608 +0000 UTC",
+                    "status": "UpgradeSuccess",
+                    "reason": "Upgrade completed successfully"
+                  },
+                  {
+                    "deviceId": "15-digit IMEI",
+                    "campaignId": "8f5e9a4a-6ce2-11ec-ace7-3ea293843397",
+                    "accountName": "0000123456-00001",
+                    "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+                    "firmwareFrom": "SR1.2.0.0-10512",
+                    "firmwareTo": "SR1.2.0.0-10657",
+                    "startDate": "2022-01-03",
+                    "reportUpdatedTime": "2022-01-04 02:45:00.67 +0000 UTC",
+                    "status": "UpgradeSuccess",
+                    "reason": "Upgrade completed successfully"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{acc}/campaigns/{campaignId}/devices": {
+      "get": {
+        "tags": [
+          "Software Management Reports V3"
+        ],
+        "operationId": "GetCampaignDeviceStatus",
+        "summary": "Get a campaign device status",
+        "description": "Retrieve a list of all devices in a campaign and the status of each device.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Campaign identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          },
+          {
+            "name": "lastSeenDeviceId",
+            "in": "query",
+            "description": "Last seen device identifier.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "15-digit IMEI"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of campaign history.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3CampaignDevice"
+                },
+                "example": {
+                  "totalDevice": 2689,
+                  "hasMoreData": true,
+                  "lastSeenDeviceId": "15-digit IMEI",
+                  "maxPageSize": 1000,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "UpgradePending",
+                      "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+                      "updatedTime": "2022-08-05T21:05:27.129Z",
+                      "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+                      "nextAttemptTime": "2022-10-06T18:35:00Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/firmware/{acc}": {
+      "get": {
+        "tags": [
+          "Firmware V3"
+        ],
+        "operationId": "ListAvailableFirmware",
+        "summary": "Get a list of available firmware",
+        "description": "This endpoint allows user to list the firmware of an account.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "description": "Filter to retrieve a specific protocol type used.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/FirmwareProtocol"
+            },
+            "example": "LWM2M"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of firmware objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A list of available firmware.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FirmwarePackage"
+                  }
+                },
+                "example": [
+                  {
+                    "firmwareName": "VerizonSmartCommunities_LCO-277C4N_BG96MAR04A04M1G_BG96MAR04A04M1G_BETA0130B",
+                    "firmwareFrom": "BG96MAR04A04M1G",
+                    "firmwareTo": "BG96MAR04A04M1G_BETA0130B",
+                    "launchDate": "2012-04-23T18:25:43.511Z",
+                    "releaseNote": "",
+                    "model": "LCO-277C4N",
+                    "make": "Verizon Smart Communities",
+                    "protocol": "LWM2M"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/firmware/{acc}/devices": {
+      "put": {
+        "tags": [
+          "Firmware V3"
+        ],
+        "operationId": "SynchronizeDeviceFirmware",
+        "summary": "synchronize device firmware",
+        "description": "Synchronize ThingSpace with the FOTA server for up to 100 devices.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "DeviceIds to get firmware info synchronously.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FirmwareIMEI"
+              },
+              "example": {
+                "deviceList": [
+                  "15-digit IMEI"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns device firmware information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceFirmwareList"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "deviceFirmwarVersionList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "FirmwareVersionUpdateSuccess",
+                      "firmwareVersion": "SR1.2.0.0-10657"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/firmware/{acc}/async/{deviceId}": {
+      "put": {
+        "tags": [
+          "Firmware V3"
+        ],
+        "operationId": "ReportDeviceFirmware",
+        "summary": "Report device firmware (asynchronous)",
+        "description": "Ask a device to report its firmware version asynchronously.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "15-digit IMEI"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Device firmware version update request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceFirmwareVersionUpdateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devices/{acc}": {
+      "get": {
+        "tags": [
+          "Account Devices"
+        ],
+        "operationId": "GetAccountDeviceInformation",
+        "description": "Retrieve account device information such as reported firmware on the devices.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "lastSeenDeviceId",
+            "in": "query",
+            "description": "Last seen device identifier.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0"
+          },
+          {
+            "name": "protocol",
+            "in": "query",
+            "description": "Filter to retrieve a specific protocol type used.",
+            "schema": {
+              "$ref": "#/components/schemas/DevicesProtocol"
+            },
+            "example": "LWM2M"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns an array of devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3AccountDeviceList"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "maxPageSize": 1000,
+                  "hasMoreData": true,
+                  "lastSeenDeviceId": "15-digit IMEI",
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit device ID",
+                      "mdn": "10-digit MDN",
+                      "model": "BG96",
+                      "make": "QUECTEL",
+                      "firmware": "BG96MAR04A04M1G",
+                      "licenseAssigned": false,
+                      "fotaEligible": "",
+                      "status": "Active",
+                      "protocol": "LWM2M",
+                      "softwareList": [
+                        {
+                          "name": "VZ_MDM_IOT",
+                          "version": "0.14",
+                          "upgradeTime": "2012-04-23T18:25:43.511Z"
+                        }
+                      ],
+                      "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Account Devices"
+        ],
+        "operationId": "ListAccountDevicesInformation",
+        "summary": "Get account device information for a list of devices",
+        "description": "Retrieve device information for a list of devices on an account.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Request device list information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIMEI"
+              },
+              "example": {
+                "deviceList": [
+                  "15-digit IMEI"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Get device list information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceListResult"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "deviceCount": 1,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "mdn": "10-digit MDN",
+                      "model": "GM01Q",
+                      "make": "SEQUANS COMMUNICATIONS",
+                      "firmware": "SR1.2.0.0-10657",
+                      "fotaEligible": "true",
+                      "licenseAssigned": true,
+                      "status": "Active",
+                      "protocol": "LWM2M",
+                      "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "statusTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "lastConnectionTime": "2012-04-23T18:25:43.511Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callbacks/{acc}": {
+      "get": {
+        "tags": [
+          "Software Management Callbacks V3"
+        ],
+        "operationId": "ListRegisteredCallbacks",
+        "summary": "Get the registered callback information",
+        "description": "This endpoint allows user to get the registered callback information.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3CallbackSummary"
+                },
+                "example": {
+                  "url": "http://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Software Management Callbacks V3"
+        ],
+        "operationId": "UpdateCallback",
+        "summary": "Update HTTPS callback address",
+        "description": "This endpoint allows the user to update the HTTPS callback address.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Callback URL registration.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FotaV3CallbackRegistrationRequest"
+              },
+              "example": {
+                "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3CallbackRegistrationResult"
+                },
+                "example": {
+                  "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Software Management Callbacks V3"
+        ],
+        "operationId": "RegisterCallback",
+        "summary": "Create HTTPS callback address",
+        "description": "This endpoint allows the user to create the HTTPS callback address.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Callback URL registration.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FotaV3CallbackRegistrationRequest"
+              },
+              "example": {
+                "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3CallbackRegistrationResult"
+                },
+                "example": {
+                  "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Software Management Callbacks V3"
+        ],
+        "operationId": "DeregisterCallback",
+        "summary": "Delete a previously registered Callback",
+        "description": "This endpoint allows user to delete a previously registered callback URL.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete request result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3SuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV3Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CampaignStatus": {
+        "description": "Current status of the campaign.",
+        "type": "string",
+        "enum": [
+          "CampaignRequestPending",
+          "CampaignRequestFailed",
+          "CampaignRequestQueued",
+          "CampaignCancelled",
+          "CampaignAborted",
+          "CampaignFailed",
+          "CampaignScheduled",
+          "CampaignEnded"
+        ],
+        "example": "CampaignRequestPending"
+      },
+      "CampaignMetaInfoProtocol": {
+        "description": "Firmware protocol. Valid values include: LWM2M, OMD-DM.",
+        "type": "string",
+        "default": "LWM2M",
+        "enum": [
+          "LWM2M",
+          "OMD-DM"
+        ],
+        "example": "LWM2M"
+      },
+      "DevicesProtocol": {
+        "description": "Firmware protocol. Valid values include: LWM2M, OMADM, HTTP.",
+        "type": "string",
+        "default": "LWM2M",
+        "enum": [
+          "LWM2M",
+          "OMDADM",
+          "HTTP"
+        ],
+        "example": "LWM2M"
+      },
+      "FirmwareProtocol": {
+        "description": "Firmware protocol. Valid values include: LWM2M, OMD-DM, all.",
+        "type": "string",
+        "default": "LWM2M",
+        "enum": [
+          "LWM2M",
+          "OMD-DM",
+          "all"
+        ],
+        "example": "LWM2M"
+      },
+      "V3DeviceListItem": {
+        "description": "Device changed.",
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "15-digit IMEI"
+          },
+          "status": {
+            "type": "string",
+            "description": "Success or failure.",
+            "example": "AddDeviceSucceed"
+          },
+          "Reason": {
+            "type": "string",
+            "description": "Result reason.",
+            "example": "Device added Successfully"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "status": "AddDeviceSucceed",
+          "Reason": "Device added Successfully"
+        }
+      },
+      "V3AddOrRemoveDeviceRequest": {
+        "description": "Devices to add or remove from existing software upgrade information.",
+        "required": [
+          "Type",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string",
+            "description": "Operation either 'append' or 'remove'",
+            "example": "remove"
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "description": "Device IMEI.",
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": [
+              "15-digit IMEI"
+            ]
+          }
+        },
+        "example": {
+          "Type": "remove",
+          "deviceList": [
+            "15-digit IMEI"
+          ]
+        }
+      },
+      "V3AddOrRemoveDeviceResult": {
+        "description": "Add or remove devices to existing upgrade information.",
+        "required": [
+          "accountName",
+          "campaignId",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0000123456-00001"
+          },
+          "campaignId": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          },
+          "deviceList": {
+            "description": "Array of devices changed.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/V3DeviceListItem"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "AddDeviceSucceed",
+                "Reason": "Device added Successfully"
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "campaignId": "f858b8c4-2153-11ec-8c44-aeb16d1aa652",
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "AddDeviceSucceed",
+              "Reason": "Device added Successfully"
+            }
+          ]
+        }
+      },
+      "V3ChangeCampaignDatesRequest": {
+        "description": "Campaign dates and time windows.",
+        "required": [
+          "endDate",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2022-02-23"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2022-02-24"
+          },
+          "campaignTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed campaign time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V3TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 14,
+                "endTime": 18
+              }
+            ]
+          }
+        },
+        "example": {
+          "startDate": "2022-02-23",
+          "endDate": "2022-02-24",
+          "campaignTimeWindowList": [
+            {
+              "startTime": 14,
+              "endTime": 18
+            }
+          ]
+        }
+      },
+      "V3TimeWindow": {
+        "description": "Time window.",
+        "required": [
+          "endTime",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "integer",
+            "description": "Start hour in range [0..23], current hour >= startTime.",
+            "example": 18
+          },
+          "endTime": {
+            "type": "integer",
+            "description": "End hour in range [1..24], current hour < endTime.",
+            "example": 22
+          }
+        },
+        "example": {
+          "startTime": 18,
+          "endTime": 22
+        }
+      },
+      "FotaV3Subscription": {
+        "description": "Information for licenses applied to devices.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier in \"##########-#####\".",
+            "example": "0000123456-000001"
+          },
+          "purchaseType": {
+            "type": "string",
+            "description": "Subscription models used by the account.",
+            "example": "TS-HFOTA-EVNT,TS-HFOTA-MRC"
+          },
+          "licenseCount": {
+            "type": "integer",
+            "description": "Number of monthly licenses in an MRC subscription.",
+            "example": 500
+          },
+          "licenseUsedCount": {
+            "type": "integer",
+            "description": "Number of licenses currently assigned to devices.",
+            "example": 400
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "The date and time of when the subscription was last updated.",
+            "example": "2020-09-17T21:11:32.170"
+          }
+        },
+        "example": {
+          "accountName": "0000123456-000001",
+          "purchaseType": "TS-HFOTA-EVNT,TS-HFOTA-MRC",
+          "licenseCount": 500,
+          "licenseUsedCount": 400,
+          "updateTime": "2020-09-17T21:11:32.170Z"
+        }
+      },
+      "V3LicenseSummary": {
+        "description": "Information for FOTA licenses assigned to devices.",
+        "required": [
+          "accountName",
+          "assignedLicenses",
+          "hasMoreData",
+          "maxPageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0000123456-00001"
+          },
+          "totalLicenses": {
+            "type": "integer",
+            "description": "Total FOTA license count.",
+            "example": 5000
+          },
+          "assignedLicenses": {
+            "type": "integer",
+            "description": "Assigned FOTA license count.",
+            "example": 5000
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "True if there are more devices to retrieve.",
+            "example": true
+          },
+          "lastSeenDeviceId": {
+            "type": "string",
+            "description": "Last seen device identifier.",
+            "example": "1000"
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "description": "Maximum page size.",
+            "example": 1000
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "$ref": "#/components/schemas/V3LicenseDevice"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+              },
+              {
+                "deviceId": "15-digit IMEI",
+                "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "totalLicenses": 5000,
+          "assignedLicenses": 4319,
+          "hasMoreData": true,
+          "lastSeenDeviceId": "1000",
+          "maxPageSize": 1000,
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+            },
+            {
+              "deviceId": "15-digit IMEI",
+              "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+            }
+          ]
+        }
+      },
+      "V3LicenseDevice": {
+        "description": "Device IMEI.",
+        "required": [
+          "deviceId"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "15-digit IMEI"
+          },
+          "assignmentTime": {
+            "type": "string",
+            "description": "License assignment time.",
+            "example": "2017-11-29 20:15:42.738 +0000 UTC"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+        }
+      },
+      "V3LicenseAssignedRemovedResult": {
+        "description": "License assignment/removal response.",
+        "required": [
+          "accountName",
+          "deviceList",
+          "licCount",
+          "licUsedCount"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001"
+          },
+          "licCount": {
+            "type": "integer",
+            "description": "Total license count.",
+            "example": 1000
+          },
+          "licUsedCount": {
+            "type": "integer",
+            "description": "Assigned license count.",
+            "example": 2
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "List of devices with id in IMEI.",
+            "items": {
+              "$ref": "#/components/schemas/V3DeviceStatus"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "UpgradePending",
+                "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+                "updatedTime": "2022-08-05T21:05:27.129Z",
+                "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+                "nextAttemptTime": "2022-10-06T18:35:00Z"
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "licUsedCount": 2,
+          "licCount": 1000,
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "UpgradePending",
+              "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+              "updatedTime": "2022-08-05T21:05:27.129Z",
+              "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+              "nextAttemptTime": "2022-10-06T18:35:00Z"
+            }
+          ]
+        }
+      },
+      "V3LicenseIMEI": {
+        "description": "List of devices.",
+        "required": [
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "description": "Device IMEI.",
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": [
+              "15-digit IMEI",
+              "15-digit IMEI"
+            ]
+          }
+        },
+        "example": {
+          "deviceList": [
+            "15-digit IMEI",
+            "15-digit IMEI"
+          ]
+        }
+      },
+      "CampaignFirmwareUpgrade": {
+        "description": "Firmware upgrade for devices.",
+        "required": [
+          "deviceList",
+          "endDate",
+          "firmwareFrom",
+          "firmwareName",
+          "firmwareTo",
+          "protocol",
+          "startDate",
+          "autoAssignLicenseFlag",
+          "autoAddDevicesFlag"
+        ],
+        "type": "object",
+        "properties": {
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "Smart FOTA - test 4"
+          },
+          "firmwareName": {
+            "type": "string",
+            "description": "Firmware name to upgrade to.",
+            "example": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657"
+          },
+          "firmwareFrom": {
+            "type": "string",
+            "description": "Old firmware version.",
+            "example": "SR1.2.0.0-10512"
+          },
+          "firmwareTo": {
+            "type": "string",
+            "description": "New firmware version.",
+            "example": "SR1.2.0.0-10657"
+          },
+          "protocol": {
+            "type": "string",
+            "default": "LWM2M",
+            "description": "Valid values include: LWM2M, OMA and HTTP.",
+            "example": "LWM2M"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2021-09-29"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2021-10-01"
+          },
+          "campaignTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed campaign time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V3TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 18,
+                "endTime": 22
+              }
+            ]
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "description": "Device IMEI.",
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": [
+              "15-digit IMEI"
+            ]
+          },
+          "autoAssignLicenseFlag": {
+            "type": "boolean",
+            "description": "This flag, when set to true, will assign a FOTA license automatically if the device does not have one already.",
+            "example": false
+          },
+          "autoAddDevicesFlag": {
+            "type": "boolean",
+            "description": "this flag, when set to true, will automatically add a device of the same make and model to a campaign.",
+            "example": false
+          }
+        },
+        "example": {
+          "campaignName": "Smart FOTA - test 4",
+          "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+          "firmwareFrom": "SR1.2.0.0-10512",
+          "firmwareTo": "SR1.2.0.0-10657",
+          "protocol": "LWM2M",
+          "startDate": "2021-09-29",
+          "endDate": "2021-10-01",
+          "campaignTimeWindowList": [
+            {
+              "startTime": 18,
+              "endTime": 22
+            }
+          ],
+          "deviceList": [
+            "15-digit IMEI"
+          ],
+          "autoAssignLicenseFlag": false,
+          "autoAddDevicesFlag": false
+        }
+      },
+      "FirmwareCampaign": {
+        "description": "Firmware upgrade information.",
+        "required": [
+          "accountName",
+          "endDate",
+          "firmwareFrom",
+          "firmwareTo",
+          "id",
+          "make",
+          "model",
+          "protocol",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Upgrade identifier.",
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0000123456-00001"
+          },
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "Smart FOTA - test 4"
+          },
+          "firmwareName": {
+            "type": "string",
+            "description": "Firmware name (for firmware upgrade only).",
+            "example": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657"
+          },
+          "firmwareFrom": {
+            "type": "string",
+            "description": "Old firmware version (for firmware upgrade only).",
+            "example": "SR1.2.0.0-10512"
+          },
+          "firmwareTo": {
+            "type": "string",
+            "description": "New firmware version (for firmware upgrade only).",
+            "example": "SR1.2.0.0-10657"
+          },
+          "protocol": {
+            "description": "Available values: LWM2M.",
+            "type": "string",
+            "default": "LWM2M",
+            "example": "LWM2M"
+          },
+          "make": {
+            "type": "string",
+            "example": "SEQUANS Communications"
+          },
+          "model": {
+            "type": "string",
+            "example": "GM01Q"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2021-09-29"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2021-10-01"
+          },
+          "campaignTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed campaign time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V3TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 18,
+                "endTime": 22
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Campaign status.",
+            "example": "CampaignRequestPending"
+          }
+        },
+        "example": {
+          "id": "f858b8c4-2153-11ec-8c44-aeb16d1aa652",
+          "accountName": "0000123456-00001",
+          "campaignName": "Smart FOTA - test 4",
+          "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+          "protocol": "LWM2M",
+          "firmwareFrom": "SR1.2.0.0-10512",
+          "firmwareTo": "SR1.2.0.0-10657",
+          "make": "SEQUANS Communications",
+          "model": "GM01Q",
+          "status": "CampaignRequestPending",
+          "startDate": "2021-09-29",
+          "endDate": "2021-10-01",
+          "campaignTimeWindowList": [
+            {
+              "startTime": 18,
+              "endTime": 22
+            }
+          ]
+        }
+      },
+      "DeviceFirmwareUpgrade": {
+        "description": "Firmware upgrades information.",
+        "required": [
+          "accountName",
+          "campaignId",
+          "deviceId",
+          "reason",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "15-digit IMEI"
+          },
+          "campaignId": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "252d7ffc-7e35-11ec-931d-76f56843c393"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0000123456-00001"
+          },
+          "firmwareName": {
+            "type": "string",
+            "description": "Firmware name.",
+            "example": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10657_SR1.2.0.0-10512"
+          },
+          "firmwareFrom": {
+            "type": "string",
+            "description": "Old firmware version.",
+            "example": "SR1.2.0.0-10657"
+          },
+          "firmwareTo": {
+            "type": "string",
+            "description": "New firmware version.",
+            "example": "SR1.2.0.0-10512"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Firmware upgrade start date.",
+            "format": "date",
+            "example": "2022-01-25"
+          },
+          "status": {
+            "type": "string",
+            "description": "Firmware upgrade status.",
+            "example": "UpgradeSuccess"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Software upgrade result reason.",
+            "example": "Upgrade completed successfully"
+          },
+          "reportUpdatedTime": {
+            "type": "string",
+            "description": "Report updated time.",
+            "example": "2022-01-26 03:45:01.608 +0000 UTC"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "campaignId": "252d7ffc-7e35-11ec-931d-76f56843c393",
+          "accountName": "0000123456-00001",
+          "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10657_SR1.2.0.0-10512",
+          "firmwareFrom": "SR1.2.0.0-10657",
+          "firmwareTo": "SR1.2.0.0-10512",
+          "startDate": "2022-01-25",
+          "reportUpdatedTime": "2022-01-26 03:45:01.608 +0000 UTC",
+          "status": "UpgradeSuccess",
+          "reason": "Upgrade completed successfully"
+        }
+      },
+      "DeviceIMEI": {
+        "description": "Device IMEI list.",
+        "required": [
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "description": "Device IMEI.",
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": [
+              "15-digit IMEI"
+            ]
+          }
+        },
+        "example": {
+          "deviceList": [
+            "15-digit IMEI"
+          ]
+        }
+      },
+      "FirmwareIMEI": {
+        "description": "A list of IMEIs for devices to be synchronized between ThingSpace and the FOTA server.",
+        "required": [
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceList": {
+            "maxItems": 1000,
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "description": "Device IMEI.",
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": [
+              "15-digit IMEI"
+            ]
+          }
+        },
+        "example": {
+          "deviceList": [
+            "15-digit IMEI"
+          ]
+        }
+      },
+      "DeviceFirmwareList": {
+        "description": "Device Firmware Information.",
+        "required": [
+          "accountName"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001"
+          },
+          "deviceFirmwarVersionList": {
+            "type": "array",
+            "description": "List of device & firmware.",
+            "items": {
+              "$ref": "#/components/schemas/DeviceFirmwareVersion"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "FirmwareVersionUpdateSuccess",
+                "firmwareVersion": "SR1.2.0.0-10657"
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "deviceFirmwarVersionList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "FirmwareVersionUpdateSuccess",
+              "firmwareVersion": "SR1.2.0.0-10657"
+            }
+          ]
+        }
+      },
+      "DeviceFirmwareVersion": {
+        "description": "Device and firmware information.",
+        "required": [
+          "deviceId",
+          "firmwareVersion"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FirmwareVersionUpdateSuccess"
+          },
+          "reason": {
+            "type": "string",
+            "example": "Upgrade completed successfully"
+          },
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "15-digit IMEI"
+          },
+          "firmwareVersion": {
+            "type": "string",
+            "description": "Device Firmware Version.",
+            "example": "SR1.2.0.0-10657"
+          },
+          "firmwareVersionUpdateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-04-23T18:25:43.511Z"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "status": "FirmwareVersionUpdateSuccess",
+          "firmwareVersion": "SR1.2.0.0-10657"
+        }
+      },
+      "V3CampaignHistory": {
+        "description": "Campaign history.",
+        "required": [
+          "campaignList",
+          "hasMoreData"
+        ],
+        "type": "object",
+        "properties": {
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Has more report flag?",
+            "example": true
+          },
+          "lastSeenCampaignId": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "campaignList": {
+            "type": "array",
+            "nullable": true,
+            "description": "Firmware upgrade list.",
+            "items": {
+              "$ref": "#/components/schemas/V3CampaignMetaInfo"
+            },
+            "example": [
+              {
+                "accountName": "0000123456-00001",
+                "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                "campaignName": "FOTA_Verizon_Upgrade",
+                "firmwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                "firmwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                "firmwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                "make": "Verizon",
+                "model": "Model-A",
+                "status": "CampaignEnded",
+                "startDate": "2020-08-21",
+                "endDate": "2020-08-22",
+                "campaignTimeWindowList": [
+                  {
+                    "startTime": 20,
+                    "endTime": 21
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "example": {
+          "hasMoreData": true,
+          "lastSeenCampaignId": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+          "campaignList": [
+            {
+              "accountName": "0000123456-00001",
+              "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+              "campaignName": "FOTA_Verizon_Upgrade",
+              "make": "Verizon",
+              "model": "Model-A",
+              "status": "CampaignEnded",
+              "startDate": "2020-08-21",
+              "endDate": "2020-08-22",
+              "campaignTimeWindowList": [
+                {
+                  "startTime": 20,
+                  "endTime": 21
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "V3CampaignMetaInfo": {
+        "description": "Campaign and campaign details.",
+        "required": [
+          "accountName",
+          "endDate",
+          "id",
+          "make",
+          "model",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0000123456-00001"
+          },
+          "id": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "firmwareName": {
+            "type": "string",
+            "description": "Firmware name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "firmwareFrom": {
+            "type": "string",
+            "description": "Old firmware version.",
+            "example": "FOTA_Verizon_Model-A_00To01_HF"
+          },
+          "firmwareTo": {
+            "type": "string",
+            "description": "New software version.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/CampaignMetaInfoProtocol"
+          },
+          "make": {
+            "type": "string",
+            "description": "Device make.",
+            "example": "Verizon"
+          },
+          "model": {
+            "type": "string",
+            "description": "Device model.",
+            "example": "Model-A"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2020-08-22"
+          },
+          "campaignTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed campaign time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V3TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 20,
+                "endTime": 21
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Firmware upgrade status.",
+            "example": "CampaignEnded"
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+          "campaignName": "FOTA_Verizon_Upgrade",
+          "firmwareName": "FOTA_Verizon_Model-A_02To03_HF",
+          "firmwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+          "firmwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+          "make": "Verizon",
+          "model": "Model-A",
+          "status": "CampaignEnded",
+          "startDate": "2020-08-21",
+          "endDate": "2020-08-22",
+          "campaignTimeWindowList": [
+            {
+              "startTime": 20,
+              "endTime": 21
+            }
+          ]
+        }
+      },
+      "DeviceListResult": {
+        "description": "Device list information.",
+        "required": [
+          "accountName",
+          "deviceCount",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001"
+          },
+          "deviceCount": {
+            "type": "integer",
+            "description": "Total device count.",
+            "example": 1
+          },
+          "deviceList": {
+            "maxItems": 1000,
+            "type": "array",
+            "description": "List of devices with id in IMEI.",
+            "items": {
+              "$ref": "#/components/schemas/V3Device"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "mdn": "10-digit MDN",
+                "model": "GM01Q",
+                "make": "SEQUANS COMMUNICATIONS",
+                "firmware": "SR1.2.0.0-10657",
+                "fotaEligible": "true",
+                "licenseAssigned": true,
+                "status": "Active",
+                "protocol": "LWM2M",
+                "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "statusTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "lastConnectionTime": "2012-04-23T18:25:43.511Z"
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "deviceCount": 1,
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "mdn": "10-digit MDN",
+              "model": "GM01Q",
+              "make": "SEQUANS COMMUNICATIONS",
+              "firmware": "SR1.2.0.0-10657",
+              "fotaEligible": "true",
+              "licenseAssigned": true,
+              "status": "Active",
+              "protocol": "LWM2M",
+              "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "statusTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "lastConnectionTime": "2012-04-23T18:25:43.511Z"
+            }
+          ]
+        }
+      },
+      "V3Device": {
+        "description": "Device information.",
+        "required": [
+          "deviceId"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "15-digit IMEI"
+          },
+          "requestStatus": {
+            "type": "string",
+            "description": "Success or failure.",
+            "example": "success"
+          },
+          "resultReason": {
+            "type": "string",
+            "example": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC"
+          },
+          "mdn": {
+            "type": "string",
+            "description": "MDN.",
+            "example": "10-digit MDN"
+          },
+          "model": {
+            "type": "string",
+            "description": "Device model.",
+            "example": "GM01Q"
+          },
+          "make": {
+            "type": "string",
+            "description": "Device make.",
+            "example": "SEQUANS COMMUNICATIONS"
+          },
+          "firmware": {
+            "type": "string",
+            "description": "Device firmware version.",
+            "example": "SR1.2.0.0-10657"
+          },
+          "fotaEligible": {
+            "type": "boolean",
+            "description": "Value=true if the device software can be upgraded over the air using the Software Management Services API.",
+            "example": false
+          },
+          "status": {
+            "type": "string",
+            "description": "Device status.",
+            "example": "Active"
+          },
+          "licenseAssigned": {
+            "type": "boolean",
+            "description": "License assigned device.",
+            "example": true
+          },
+          "protocol": {
+            "type": "string",
+            "description": "Firmware protocol. Valid values include: LWM2M, OMADM, HTTP or NONE.",
+            "example": "LWM2M"
+          },
+          "softwareList": {
+            "maxItems": 1000,
+            "type": "array",
+            "description": "List of sofware.",
+            "items": {
+              "$ref": "#/components/schemas/V3SoftwareInfo"
+            },
+            "example": [
+              {
+                "name": "VZ_MDM_IOT",
+                "version": "0.14",
+                "upgradeTime": "2012-04-23T18:25:43.511Z"
+              }
+            ]
+          },
+          "fileList": {
+            "maxItems": 1000,
+            "type": "array",
+            "description": "List of files.",
+            "items": {
+              "$ref": "#/components/schemas/V3SoftwareInfo"
+            },
+            "example": [
+              {
+                "name": "VZ_MDM_IOT",
+                "version": "0.14",
+                "upgradeTime": "2012-04-23T18:25:43.511Z"
+              }
+            ]
+          },
+          "createTime": {
+            "type": "string",
+            "description": "The date and time of when the device is created.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "statusTime": {
+            "type": "string",
+            "description": "The date and time of when the device firmware or software is updated.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "The date and time of when the device is updated.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "refreshTime": {
+            "type": "string",
+            "description": "The date and time of when the device is refreshed.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "lastConnectionTime": {
+            "type": "string",
+            "description": "The date and time of when the device reachability is checked.",
+            "format": "date-time",
+            "example": "2012-04-23T18:25:43.511Z"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "mdn": "10-digit MDN",
+          "model": "GM01Q",
+          "make": "SEQUANS COMMUNICATIONS",
+          "firmware": "SR1.2.0.0-10657",
+          "fotaEligible": "true",
+          "licenseAssigned": true,
+          "status": "Active",
+          "protocol": "LWM2M",
+          "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "statusTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "lastConnectionTime": "2012-04-23T18:25:43.511Z"
+        }
+      },
+      "DeviceFirmwareVersionUpdateResult": {
+        "description": "Device firmware version update response.",
+        "required": [
+          "accountName",
+          "requestId"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier."
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Request identifier."
+          }
+        }
+      },
+      "Campaign": {
+        "description": "Firmware upgrade information.",
+        "required": [
+          "accountName",
+          "endDate",
+          "id",
+          "make",
+          "model",
+          "protocol",
+          "startDate",
+          "status",
+          "autoAssignLicenseFlag",
+          "autoAddDevicesFlag"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Upgrade identifier.",
+            "example": "f858b8c4-2153-11ec-8c44-aeb16d1aa652"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0642233522-00001"
+          },
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "Smart FOTA - test 4"
+          },
+          "firmwareName": {
+            "type": "string",
+            "description": "Name of firmware.",
+            "example": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657"
+          },
+          "firmwareFrom": {
+            "type": "string",
+            "description": "Old firmware version.",
+            "example": "SR1.2.0.0-10512"
+          },
+          "firmwareTo": {
+            "type": "string",
+            "description": "New firmware version.",
+            "example": "SR1.2.0.0-10657"
+          },
+          "protocol": {
+            "type": "string",
+            "default": "LWM2M",
+            "description": "The protocol of the firmware distribution. Default: LWM2M.",
+            "example": "LWM2M"
+          },
+          "make": {
+            "type": "string",
+            "description": "Applicable make.",
+            "example": "SEQUANS Communications"
+          },
+          "model": {
+            "type": "string",
+            "description": "Applicable model.",
+            "example": "GM01Q"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2021-09-29"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2021-10-01"
+          },
+          "campaignTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed campaign time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V3TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 18,
+                "endTime": 22
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Firmware upgrade status.",
+            "example": "CampaignPreScheduled"
+          },
+          "autoAssignLicenseFlag": {
+            "type": "boolean",
+            "description": "Any device included in the device list which does not have a license will automatically be assigned a FOTA license, assuming there are enough FOTA licenses available, when set to true.",
+            "example": "false"
+          },
+          "autoAddDevicesFlag": {
+            "type": "boolean",
+            "description": "Beyond the devices included on the device list, any other device(s) which matches the eligibility criteria (same make, model, current firmware, protocol, billing account) will automatically be added to the campaign list during the life of the campaign when set to true.",
+            "example": "false"
+          }
+        },
+        "example": {
+          "id": "f858b8c4-2153-11ec-8c44-aeb16d1aa652",
+          "accountName": "0642233522-00001",
+          "campaignName": "Smart FOTA - test 4",
+          "protocol": "LWM2M",
+          "make": "SEQUANS Communications",
+          "model": "GM01Q",
+          "status": "CampaignPreScheduled",
+          "startDate": "2021-09-29",
+          "endDate": "2021-10-01",
+          "firmwareName": "SEQUANSCommunications_GM01Q_SR1.2.0.0-10512_SR1.2.0.0-10657",
+          "firmwareFrom": "SR1.2.0.0-10512",
+          "firmwareTo": "SR1.2.0.0-10657",
+          "campaignTimeWindowList": [
+            {
+              "startTime": 18,
+              "endTime": 22
+            }
+          ],
+          "autoAssignLicenseFlag": false,
+          "autoAddDevicesFlag": false
+        }
+      },
+      "FotaV3CallbackRegistrationRequest": {
+        "description": "Callback URL where the listening service is running.",
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Callback URL for an subscribed service.",
+            "example": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+          }
+        },
+        "example": {
+          "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+        }
+      },
+      "FotaV3CallbackRegistrationResult": {
+        "description": "Callback registration information.",
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Callback URL.",
+            "example": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+          }
+        },
+        "example": {
+          "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+        }
+      },
+      "FotaV3CallbackSummary": {
+        "description": "Callback registration information.",
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Callback URL for an subscribed service.",
+            "example": "http://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+          }
+        },
+        "example": {
+          "url": "http://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+        }
+      },
+      "FirmwarePackage": {
+        "required": [
+          "firmwareFrom",
+          "firmwareName",
+          "firmwareTo",
+          "launchDate",
+          "make",
+          "model",
+          "protocol",
+          "releaseNote"
+        ],
+        "description": "Available firmware.",
+        "type": "object",
+        "properties": {
+          "firmwareName": {
+            "type": "string",
+            "description": "Firmware name.",
+            "example": "VerizonSmartCommunities_LCO-277C4N_BG96MAR04A04M1G_BG96MAR04A04M1G_BETA0130B"
+          },
+          "firmwareFrom": {
+            "type": "string",
+            "description": "Firmware from version.",
+            "example": "BG96MAR04A04M1G"
+          },
+          "firmwareTo": {
+            "type": "string",
+            "description": "Firmware to version.",
+            "example": "BG96MAR04A04M1G_BETA0130B"
+          },
+          "launchDate": {
+            "type": "string",
+            "description": "Firmware launch date.",
+            "format": "date-time",
+            "example": "2012-04-23T18:25:43.511Z"
+          },
+          "releaseNote": {
+            "type": "string",
+            "description": "Firmware release note."
+          },
+          "model": {
+            "type": "string",
+            "description": "Firmware applicable device model.",
+            "example": "LCO-277C4N"
+          },
+          "make": {
+            "type": "string",
+            "description": "Firmware applicable device make.",
+            "example": "Verizon Smart Communities"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/CampaignMetaInfoProtocol"
+          }
+        },
+        "example": {
+          "firmwareName": "VerizonSmartCommunities_LCO-277C4N_BG96MAR04A04M1G_BG96MAR04A04M1G_BETA0130B",
+          "firmwareFrom": "BG96MAR04A04M1G",
+          "firmwareTo": "BG96MAR04A04M1G_BETA0130B",
+          "launchDate": "2012-04-23T18:25:43.511Z",
+          "releaseNote": "",
+          "model": "LCO-277C4N",
+          "make": "Verizon Smart Communities",
+          "protocol": "LWM2M"
+        }
+      },
+      "V3CampaignDevice": {
+        "description": "Campaign history.",
+        "required": [
+          "deviceList",
+          "hasMoreData",
+          "maxPageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "totalDevice": {
+            "type": "integer",
+            "description": "Total device count.",
+            "example": 2689
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Has more report flag.",
+            "example": true
+          },
+          "lastSeenDeviceId": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "15-digit IMEI"
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "description": "Maximum page size.",
+            "example": 1000
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "List of devices with id in IMEI.",
+            "items": {
+              "$ref": "#/components/schemas/V3DeviceStatus"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "UpgradePending",
+                "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+                "updatedTime": "2022-08-05T21:05:27.129Z",
+                "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+                "nextAttemptTime": "2022-10-06T18:35:00Z"
+              }
+            ]
+          }
+        },
+        "example": {
+          "totalDevice": 2689,
+          "hasMoreData": true,
+          "lastSeenDeviceId": "15-digit IMEI",
+          "maxPageSize": 1000,
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "UpgradePending",
+              "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+              "updatedTime": "2022-08-05T21:05:27.129Z",
+              "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+              "nextAttemptTime": "2022-10-06T18:35:00Z"
+            }
+          ]
+        }
+      },
+      "V3AccountDeviceList": {
+        "description": "Array of devices.",
+        "required": [
+          "accountName",
+          "deviceList",
+          "hasMoreData",
+          "maxPageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001"
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Has more device flag?",
+            "example": true
+          },
+          "lastSeenDeviceId": {
+            "type": "string",
+            "description": "Last seen device identifier.",
+            "example": "15-digit IMEI"
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "description": "Maximum page size.",
+            "example": 1000
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Account device list.",
+            "items": {
+              "$ref": "#/components/schemas/V3AccountDevice"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit device ID",
+                "mdn": "10-digit MDN",
+                "model": "BG96",
+                "make": "QUECTEL",
+                "firmware": "BG96MAR04A04M1G",
+                "licenseAssigned": false,
+                "fotaEligible": "",
+                "status": "Active",
+                "protocol": "LWM2M",
+                "softwareList": [
+                  {
+                    "name": "VZ_MDM_IOT",
+                    "version": "0.14",
+                    "upgradeTime": "2012-04-23T18:25:43.511Z"
+                  }
+                ],
+                "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "maxPageSize": 1000,
+          "hasMoreData": true,
+          "lastSeenDeviceId": "15-digit IMEI",
+          "deviceList": [
+            {
+              "deviceId": "15-digit device ID",
+              "mdn": "10-digit MDN",
+              "model": "BG96",
+              "make": "QUECTEL",
+              "firmware": "BG96MAR04A04M1G",
+              "licenseAssigned": false,
+              "fotaEligible": "",
+              "status": "Active",
+              "protocol": "LWM2M",
+              "softwareList": [
+                {
+                  "name": "VZ_MDM_IOT",
+                  "version": "0.14",
+                  "upgradeTime": "2012-04-23T18:25:43.511Z"
+                }
+              ],
+              "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+            }
+          ]
+        }
+      },
+      "V3AccountDevice": {
+        "description": "Device information.",
+        "required": [
+          "deviceId",
+          "firmware",
+          "fotaEligible",
+          "licenseAssigned",
+          "make",
+          "mdn",
+          "model",
+          "protocol",
+          "softwareList",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "15-digit device ID"
+          },
+          "mdn": {
+            "type": "string",
+            "description": "MDN.",
+            "example": "10-digit MDN"
+          },
+          "model": {
+            "type": "string",
+            "description": "Device model.",
+            "example": "BG96"
+          },
+          "make": {
+            "type": "string",
+            "description": "Device make.",
+            "example": "QUECTEL"
+          },
+          "firmware": {
+            "type": "string",
+            "description": "Device firmware version.",
+            "example": "BG96MAR04A04M1G"
+          },
+          "fotaEligible": {
+            "type": "boolean",
+            "description": "Value=true if the device software can be upgraded over the air using the Software Management Services API.",
+            "example": false
+          },
+          "status": {
+            "type": "string",
+            "description": "Device status.",
+            "example": "Active"
+          },
+          "licenseAssigned": {
+            "type": "boolean",
+            "description": "License assigned device.",
+            "example": true
+          },
+          "protocol": {
+            "type": "string",
+            "description": "Firmware protocol. Valid values include: LWM2M, OMADM, HTTP or NONE.",
+            "example": "LWM2M"
+          },
+          "softwareList": {
+            "type": "array",
+            "description": "List of sofware.",
+            "items": {
+              "$ref": "#/components/schemas/V3SoftwareInfo"
+            },
+            "example": [
+              {
+                "name": "VZ_MDM_IOT",
+                "version": "0.14",
+                "upgradeTime": "2012-04-23T18:25:43.511Z"
+              }
+            ]
+          },
+          "fileList": {
+            "type": "array",
+            "description": "List of files.",
+            "items": {
+              "$ref": "#/components/schemas/V3SoftwareInfo"
+            },
+            "example": [
+              {
+                "name": "VZ_MDM_IOT",
+                "version": "0.14",
+                "upgradeTime": "2012-04-23T18:25:43.511Z"
+              }
+            ]
+          },
+          "createTime": {
+            "type": "string",
+            "description": "The date and time of when the device is created.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "upgradeTime": {
+            "type": "string",
+            "description": "The date and time of when the device firmware or software is updated.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "The date and time of when the device is updated.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "refreshTime": {
+            "type": "string",
+            "description": "The date and time of when the device is refreshed.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit device ID",
+          "mdn": "10-digit MDN",
+          "model": "BG96",
+          "make": "QUECTEL",
+          "firmware": "BG96MAR04A04M1G",
+          "licenseAssigned": false,
+          "fotaEligible": "",
+          "status": "Active",
+          "protocol": "LWM2M",
+          "softwareList": [
+            {
+              "name": "VZ_MDM_IOT",
+              "version": "0.14",
+              "upgradeTime": "2012-04-23T18:25:43.511Z"
+            }
+          ],
+          "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+        }
+      },
+      "V3SoftwareInfo": {
+        "description": "Software information.",
+        "required": [
+          "name",
+          "upgradeTime",
+          "version"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "VZ_MDM_IOT"
+          },
+          "version": {
+            "type": "string",
+            "description": "Software version.",
+            "example": "0.14"
+          },
+          "upgradeTime": {
+            "type": "string",
+            "description": "Upgrade time.",
+            "example": "2012-04-23T18:25:43.511Z"
+          }
+        },
+        "example": {
+          "name": "VZ_MDM_IOT",
+          "version": "0.14",
+          "upgradeTime": "2012-04-23T18:25:43.511Z"
+        }
+      },
+      "V3DeviceStatus": {
+        "description": "Device status.",
+        "required": [
+          "deviceId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "15-digit IMEI"
+          },
+          "status": {
+            "type": "string",
+            "description": "Success or failure.",
+            "example": "UpgradePending"
+          },
+          "resultReason": {
+            "type": "string",
+            "description": "Result reason.",
+            "example": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC"
+          },
+          "updatedTime": {
+            "type": "string",
+            "description": "Updated Time.",
+            "format": "date-time",
+            "example": "2022-08-06T18:35:00Z"
+          },
+          "recentAttemptTime": {
+            "type": "string",
+            "description": "The most recent attempt time.",
+            "format": "date-time",
+            "example": "2022-10-05T21:05:01.19Z"
+          },
+          "nextAttemptTime": {
+            "type": "string",
+            "description": "Next attempt time.",
+            "format": "date-time",
+            "example": "2022-10-06T18:35:00Z"
+          }
+        },
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "status": "UpgradePending",
+          "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+          "updatedTime": "2022-08-05T21:05:27.129Z",
+          "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+          "nextAttemptTime": "2022-10-06T18:35:00Z"
+        }
+      },
+      "FotaV3SuccessResult": {
+        "description": "Cancelation status.",
+        "required": [
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True or false.",
+            "example": true
+          }
+        },
+        "example": {
+          "success": true
+        }
+      },
+      "FotaV3Result": {
+        "description": "Error response.",
+        "required": [
+          "errorCode",
+          "errorMessage"
+        ],
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "description": "Error code string.",
+            "example": "error code string"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message string.",
+            "example": "error message string"
+          }
+        },
+        "example": {
+          "errorCode": "error code string",
+          "errorMessage": "error message string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://staging.thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

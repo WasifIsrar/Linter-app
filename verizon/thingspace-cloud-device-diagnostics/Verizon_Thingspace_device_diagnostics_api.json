@@ -1,0 +1,1383 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Diagnostics Service API",
+    "description": "This contains the list of device diagnostics for ThingSpace LWM2M Service API. It lets you troubleshoot the connectivity of IoT devices.",
+    "version": "1.1",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Device Diagnostics",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Device Diagnostics",
+              "url": "https://thingspace.verizon.com/api/diagnostics/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Device Diagnostics",
+              "url": "https://staging.thingspace.verizon.com/api/diagnostics/v1"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/diagnostics/v1",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/diagnostics/v1",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/subscriptions": {
+      "get": {
+        "summary": "Get diagnostics service subscription information",
+        "description": "This endpoint retrieves a diagnostics subscription by account.",
+        "tags": [
+          "Diagnostics Subscriptions"
+        ],
+        "operationId": "GetDiagnosticsSubscription",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Diagnostics subscription response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticsSubscription"
+                },
+                "example": {
+                  "accountName": "TestQAAccount",
+                  "skuName": "TS-BUNDLE-KTO-DIAGNOSTIC-MRC",
+                  "totalAllowed": 100,
+                  "totalUsed": 50,
+                  "createdOn": "2019-08-29T00:47:59.240Z",
+                  "lastUpdated": "2019-08-29T00:47:59.240Z"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devices/attributes/actions/observe": {
+      "post": {
+        "summary": "Start and Change (observe diagnostics)",
+        "description": "This endpoint allows the user to start or change observe diagnostics.",
+        "tags": [
+          "Diagnostics Observations"
+        ],
+        "operationId": "StartDiagnosticsObservation",
+        "requestBody": {
+          "description": "Request for device observation information.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ObservationRequest"
+              },
+              "example": {
+                "accountName": "TestQAAccount",
+                "devices": [
+                  {
+                    "id": "864508030026238",
+                    "kind": "IMEI"
+                  }
+                ],
+                "attributes": [
+                  {
+                    "name": "RADIO_SIGNAL_STRENGTH"
+                  },
+                  {
+                    "name": "LINK_QUALITY"
+                  },
+                  {
+                    "name": "NETWORK_BEARER"
+                  },
+                  {
+                    "name": "CELL_ID"
+                  }
+                ],
+                "frequency": {
+                  "value": 15,
+                  "unit": "SECOND"
+                },
+                "duration": {
+                  "value": 15,
+                  "unit": "SECOND"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Diagnostics observation result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticsObservationResult"
+                },
+                "example": {
+                  "createdOn": "2019-09-10T19:05:33.33Z",
+                  "transactionID": "9c7bb124-11f5-4ff3-8a88-0eec1ba99205",
+                  "status": "CANCEL_OBSERVE_PENDING"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Stop and Reset (cancel observation for diagnostics)",
+        "description": "This endpoint allows the user to stop or reset observe diagnostics.",
+        "tags": [
+          "Diagnostics Observations"
+        ],
+        "operationId": "StopDiagnosticsObservation",
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "query",
+            "description": "The ID value associated with the transaction.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "5f4bd2ff-5d7f-444d-af17-3f6a80bb2a94"
+          },
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "The numeric account name.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Diagnostics observation result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticsObservationResult"
+                },
+                "example": {
+                  "createdOn": "2019-09-10T19:05:33.33Z",
+                  "transactionID": "9c7bb124-11f5-4ff3-8a88-0eec1ba99205",
+                  "status": "CANCEL_OBSERVE_PENDING"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/history/actions/$search": {
+      "post": {
+        "summary": "Get history data",
+        "description": "This endpoint allows the user to get the history data.",
+        "tags": [
+          "Diagnostics History"
+        ],
+        "operationId": "GetDiagnosticsHistory",
+        "requestBody": {
+          "description": "History data information.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/HistorySearchRequest"
+              },
+              "example": {
+                "$filter": {
+                  "accountName": "0000123456-00001",
+                  "device": {
+                    "id": "15-digit IMEI",
+                    "kind": "IMEI"
+                  },
+                  "attributes": {
+                    "name": "LINK_QUALITY"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "History search response.",
+            "headers": {
+              "X-Next": {
+                "description": "Used for pagination, a customer needs to pass this in the next request body $page field.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistorySearchResponse"
+                },
+                "example": [
+                  {
+                    "accountName": "0000123456-00001",
+                    "attributes": {
+                      "createdOn": "2022-02-10T16:02:21.406Z",
+                      "name": "LINK_QUALITY",
+                      "value": "47"
+                    },
+                    "device": {
+                      "id": "15-digit IMEI",
+                      "kind": "IMEI"
+                    }
+                  },
+                  {
+                    "accountName": "0000123456-00001",
+                    "attributes": {
+                      "createdOn": "2022-02-10T16:02:05.316Z",
+                      "name": "LINK_QUALITY",
+                      "value": "47"
+                    },
+                    "device": {
+                      "id": "15-digit IMEI",
+                      "kind": "IMEI"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devices/settings": {
+      "get": {
+        "summary": "Retrieve diagnostics settings synchronously.",
+        "description": "This endpoint retrieves diagnostics settings synchronously.",
+        "tags": [
+          "Diagnostics Settings"
+        ],
+        "operationId": "ListDiagnosticsSettings",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "devices",
+            "in": "query",
+            "description": "Devices list formatted as \"id, kind\"",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "864508030026238,IMEI"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Diagnostic settings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticObservationSettings"
+                },
+                "example": [
+                  {
+                    "accountName": "string",
+                    "device": {
+                      "id": "864508030026238",
+                      "kind": "IMEI"
+                    },
+                    "attributes": [
+                      {
+                        "name": "MANUFACTURER",
+                        "value": "string",
+                        "createdOn": "2019-09-07T23:08:03.532Z",
+                        "isObservable": true,
+                        "isObserving": true,
+                        "frequency": {
+                          "value": 5,
+                          "unit": "SECOND"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callbacks": {
+      "get": {
+        "summary": "Get the registered callback information of diagnostics subscription",
+        "description": "This endpoint allows user to get the registered callback information of an existing diagnostics subscription.",
+        "tags": [
+          "Diagnostics Callbacks"
+        ],
+        "operationId": "GetDiagnosticsSubscriptionCallbackInfo",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceDiagnosticsCallback"
+                  }
+                },
+                "example": [
+                  {
+                    "accountName": "TestQAAccount",
+                    "serviceName": "string",
+                    "endpoint": "https://yourwebsite.com",
+                    "httpHeaders": {},
+                    "createdOn": "2019-09-07T23:57:53.292Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Register callbacks (custom headers)",
+        "description": "This endpoint allows user update the callback HTTPS address of an existing diagnostics subscription.",
+        "tags": [
+          "Diagnostics Callbacks"
+        ],
+        "operationId": "RegisterDiagnosticsCallbackURL",
+        "requestBody": {
+          "description": "Callback URL registration request.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/CallbackRegistrationRequest"
+              },
+              "example": {
+                "accountName": "TestQAAccount",
+                "serviceName": "Diagnostics",
+                "endpoint": "https://yourwebsite.com",
+                "httpHeaders": {}
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsCallback"
+                },
+                "example": {
+                  "accountName": "TestQAAccount",
+                  "serviceName": "string",
+                  "endpoint": "https://yourwebsite.com",
+                  "httpHeaders": {},
+                  "createdOn": "2019-09-07T23:57:53.292Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a previously registered Callback",
+        "description": "This endpoint allows user to delete a registered callback URL and credential.",
+        "tags": [
+          "Diagnostics Callbacks"
+        ],
+        "operationId": "UnregisterDiagnosticsCallback",
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "serviceName",
+            "in": "query",
+            "description": "Service name for callback notification.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Device diagnostics callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsCallback"
+                },
+                "example": {
+                  "accountName": "TestQAAccount",
+                  "serviceName": "string",
+                  "endpoint": "https://yourwebsite.com",
+                  "httpHeaders": {},
+                  "createdOn": "2019-09-07T23:57:53.292Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devices/actions/restart": {
+      "post": {
+        "description": "Performs a device reboot or a factory reset on the modem portion of the device.",
+        "tags": [
+          "Diagnostics Factory Reset"
+        ],
+        "summary": "Performs a device reboot or a factory reset on the modem portion of the device.",
+        "operationId": "DecivesRestart",
+        "requestBody": {
+          "description": "A request to perform a device reboot.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceResetRequest"
+              },
+              "example": {
+                "accountName":"0642233522-00003",
+                "action":"reboot",
+                "devices":[{
+                   "id":"355154080648401",
+                   "kind":"IMEI"
+                 }
+               ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Diagnostics observation result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticsObservationResult"
+                },
+                "example": {
+                  "createdOn": "2019-02-03T06:48:07",
+                  "transactionID": "9c7bb124-11f5-4ff3-8a88-0eec1ba99205",
+                  "status": "FACTORY_RESET_PENDING"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceDiagnosticsResult"
+                },
+                "example": {
+                  "errorCode": "The type of error, such as INVALID_REQUEST.",
+                  "errorMessage": "Additional error information."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DiagnosticsSubscription": {
+        "description": "Status of the diagnostic services subscription.",
+        "required": [
+          "accountName",
+          "createdOn",
+          "lastUpdated",
+          "skuName",
+          "totalAllowed",
+          "totalUsed"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier in \"##########-#####\". An account name is usually numeric, and must include any leading zeros.",
+            "example": "0000123456-00001"
+          },
+          "createdOn": {
+            "type": "string",
+            "description": "The date and time of when the subscription was created.",
+            "format": "date-time",
+            "example": "2019-08-29T00:47:59.240Z"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "The date and time of when the subscription was last updated.",
+            "format": "date-time",
+            "example": "2019-08-29T00:47:59.240Z"
+          },
+          "totalAllowed": {
+            "type": "integer",
+            "description": "Number of licenses currently assigned to devices.",
+            "example": 100
+          },
+          "totalUsed": {
+            "type": "integer",
+            "description": "Number of licenses currently used by the devices.",
+            "example": 50
+          },
+          "skuName": {
+            "type": "string",
+            "description": "Name of the SKU for the account.",
+            "example": "TS-BUNDLE-KTO-DIAGNOSTIC-MRC"
+          }
+        },
+        "example": {
+          "accountName": "TestQAAccount",
+          "skuName": "TS-BUNDLE-KTO-DIAGNOSTIC-MRC",
+          "totalAllowed": 100,
+          "totalUsed": 50,
+          "createdOn": "2019-08-29T00:47:59.240Z",
+          "lastUpdated": "2019-08-29T00:47:59.240Z"
+        }
+      },
+      "ObservationRequest": {
+        "description": "Used to define callbacks including the device identity, the attribute names, corresponding attribute values and the date/timestamp of when the observation was made.",
+        "required": [
+          "accountName",
+          "attributes",
+          "devices"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier in \"##########-#####\".",
+            "example": "0000123456-00001"
+          },
+          "devices": {
+            "type": "array",
+            "description": "List of devices.",
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            },
+            "example": [
+              {
+                "id": "864508030026238",
+                "kind": "IMEI"
+              }
+            ]
+          },
+          "attributes": {
+            "description": "Attributes are streaming RF parameters that you want to observe.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObservationRequestAttribute"
+            },
+            "example": [
+              {
+                "name": "RADIO_SIGNAL_STRENGTH"
+              },
+              {
+                "name": "LINK_QUALITY"
+              },
+              {
+                "name": "NETWORK_BEARER"
+              },
+              {
+                "name": "CELL_ID"
+              }
+            ]
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/NumericalData"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/NumericalData"
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "attributes": [
+            {
+              "name": "RADIO_SIGNAL_STRENGTH"
+            },
+            {
+              "name": "LINK_QUALITY"
+            },
+            {
+              "name": "NETWORK_BEARER"
+            },
+            {
+              "name": "CELL_ID"
+            }
+          ],
+          "devices": [
+            {
+              "id": "864508030026238",
+              "kind": "IMEI"
+            }
+          ]
+        }
+      },
+      "ObservationRequestAttribute": {
+        "description": "Streaming RF parameter that you want to observe.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AttributeIdentifier"
+          }
+        },
+        "example": {
+          "name": "RADIO_SIGNAL_STRENGTH"
+        }
+      },
+      "DiagnosticsObservationResult": {
+        "description": "A success response containing the current status of the request.",
+        "required": [
+          "createdOn",
+          "status",
+          "transactionID"
+        ],
+        "type": "object",
+        "properties": {
+          "transactionID": {
+            "type": "string",
+            "description": "Transaction identifier.",
+            "example": "9c7bb124-11f5-4ff3-8a88-0eec1ba99205"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the request.",
+            "example": "CANCEL_OBSERVE_PENDING"
+          },
+          "createdOn": {
+            "type": "string",
+            "description": "The date and time of when this request was created.",
+            "format": "date-time",
+            "example": "2019-09-10T19:05:33.33Z"
+          }
+        },
+        "example": {
+          "createdOn": "2019-09-10T19:05:33.33Z",
+          "transactionID": "9c7bb124-11f5-4ff3-8a88-0eec1ba99205",
+          "status": "CANCEL_OBSERVE_PENDING"
+        }
+      },
+      "HistoryAttributeValue": {
+        "description": "Streaming RF parameter for which you want to retrieve history data.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AttributeIdentifier"
+          },
+          "value": {
+            "description": "Attribute value.",
+            "type": "string",
+            "example": "47"
+          },
+          "createdOn": {
+            "description": "Date and time the request was created.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-02-10T16:02:21.406Z"
+          }
+        },
+        "example": {
+          "createdOn": "2022-02-10T16:02:21.406Z",
+          "name": "LINK_QUALITY",
+          "value": "47"
+        }
+      },
+      "CallbackRegistrationRequest": {
+        "description": "Specifies the callback service that is being subscribed to and the URL where the listening service is running.",
+        "required": [
+          "accountName",
+          "endpoint",
+          "serviceName"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The name of the billing account for which callback messages will be sent. Format: \"##########-#####\".",
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "serviceName": {
+            "description": "The name of the callback service, which identifies the type and format of messages that will be sent to the registered URL.",
+            "type": "string",
+            "example": "Diagnostics"
+          },
+          "endpoint": {
+            "description": "The URL for your web server.",
+            "type": "string",
+            "example": "https://yourwebsite.com"
+          },
+          "httpHeaders": {
+            "description": "Your HTTP headers.",
+            "type": "object",
+            "properties": {},
+            "example": {}
+          }
+        },
+        "example": {
+          "accountName": "TestQAAccount",
+          "serviceName": "Diagnostics",
+          "endpoint": "https://yourwebsite.com"
+        }
+      },
+      "DeviceDiagnosticsCallback": {
+        "description": "Callback information of an existing diagnostics subscription.",
+        "required": [
+          "accountName",
+          "createdOn",
+          "endpoint",
+          "serviceName"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The name of the billing account for which callback messages will be sent. Format: \"##########-#####\".",
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "serviceName": {
+            "description": "The name of the callback service, which identifies the type and format of messages that will be sent to the registered URL.",
+            "type": "string",
+            "example": "Diagnostics"
+          },
+          "endpoint": {
+            "description": "The URL for your web server.",
+            "type": "string",
+            "example": "https://yourwebsite.com"
+          },
+          "createdOn": {
+            "description": "The date and time of when this request was created.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-09-07T23:57:53.292Z"
+          },
+          "httpHeaders": {
+            "description": "Your HTTP headers.",
+            "type": "object",
+            "properties": {},
+            "example": {}
+          }
+        },
+        "example": {
+          "accountName": "TestQAAccount",
+          "serviceName": "Diagnostics",
+          "endpoint": "https://yourwebsite.com",
+          "createdOn": "2019-09-07T23:57:53.292Z"
+        }
+      },
+      "AttributeIdentifier": {
+        "type": "string",
+        "description": "Attribute identifier.",
+        "enum": [
+          "NETWORK_BEARER",
+          "RADIO_SIGNAL_STRENGTH",
+          "LINK_QUALITY",
+          "CELL_ID",
+          "MANUFACTURER"
+        ],
+        "example": "RADIO_SIGNAL_STRENGTH"
+      },
+      "AttributeSetting": {
+        "description": "Describes an attribute being observed and the frequency with which the attribute is being observed.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AttributeIdentifier"
+          },
+          "value": {
+            "description": "Attribute value.",
+            "type": "string",
+            "example": "string"
+          },
+          "createdOn": {
+            "description": "Date and time request was created.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-09-07T23:08:03.532Z"
+          },
+          "isObservable": {
+            "description": "Is the attribute observable?",
+            "type": "boolean",
+            "example": true
+          },
+          "isObserving": {
+            "description": "Is the attribute being observed?",
+            "type": "boolean",
+            "example": true
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/NumericalData"
+          }
+        },
+        "example": {
+          "name": "MANUFACTURER",
+          "value": "string",
+          "createdOn": "2019-09-07T23:08:03.532Z",
+          "isObservable": true,
+          "isObserving": true,
+          "frequency": {
+            "value": 5,
+            "unit": "SECOND"
+          }
+        }
+      },
+      "DiagnosticObservationSetting": {
+        "description": "Diagnostic observation settings and attributes for a device.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "The name of the billing account for which callback messages will be sent. Format: \"##########-#####\".",
+            "example": "0000123456-00001"
+          },
+          "device": {
+            "$ref": "#/components/schemas/Device"
+          },
+          "attributes": {
+            "description": "Streaming RF parameters for which you want to retrieve diagnostic settings.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeSetting"
+            },
+            "example": [
+              {
+                "name": "MANUFACTURER",
+                "value": "string",
+                "createdOn": "2019-09-07T23:08:03.532Z",
+                "isObservable": true,
+                "isObserving": true,
+                "frequency": {
+                  "value": 5,
+                  "unit": "SECOND"
+                }
+              }
+            ]
+          }
+        },
+        "example": {
+          "accountName": "string",
+          "device": {
+            "id": "864508030026238",
+            "kind": "IMEI"
+          },
+          "attributes": [
+            {
+              "name": "MANUFACTURER",
+              "value": "string",
+              "createdOn": "2019-09-07T23:08:03.532Z",
+              "isObservable": true,
+              "isObserving": true,
+              "frequency": {
+                "value": 5,
+                "unit": "SECOND"
+              }
+            }
+          ]
+        }
+      },
+      "HistorySearchFilter": {
+        "description": "The selected device and attributes for which a request should retrieve data.",
+        "required": [
+          "accountName",
+          "device"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name identifier.",
+            "example": "0000123456-00001"
+          },
+          "device": {
+            "$ref": "#/components/schemas/Device"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/HistorySearchFilterAttributes"
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "device": {
+            "id": "15-digit IMEI",
+            "kind": "IMEI"
+          },
+          "attributes": {
+            "name": "LINK_QUALITY"
+          }
+        }
+      },
+      "HistorySearchFilterAttributes": {
+        "description": "Streaming RF parameters for which you want to retrieve history data.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/AttributeIdentifier"
+          }
+        },
+        "example": {
+          "name": "LINK_QUALITY"
+        }
+      },
+      "HistorySearchLimitTime": {
+        "description": "The time period for which a request should retrieve data, beginning with the limitTime.startOn and proceeding with the limitTime.duration.",
+        "type": "object",
+        "properties": {
+          "startOn": {
+            "description": "The starting date-time for this request.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-29T00:47:59.240Z"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/NumericalData"
+          }
+        },
+        "example": {
+          "startOn": "2019-08-29T00:47:59.240Z",
+          "duration": {
+            "value": 5,
+            "unit": "SECOND"
+          }
+        }
+      },
+      "HistorySearchRequest": {
+        "description": "Used to filter data by time period or number of devices.",
+        "required": [
+          "$filter"
+        ],
+        "type": "object",
+        "properties": {
+          "$filter": {
+            "$ref": "#/components/schemas/HistorySearchFilter"
+          },
+          "$limitNumber": {
+            "description": "The maximum number of historical attributes to include in the response. If the request matches more than this number of attributes, the response will contain an X-Next value in the header that can be used as the page value in the next request to retrieve the next page of events.",
+            "type": "integer",
+            "format": "int32",
+            "example": 3
+          },
+          "$limitTime": {
+            "$ref": "#/components/schemas/HistorySearchLimitTime"
+          },
+          "$page": {
+            "description": "Page number for pagination purposes.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "$filter": {
+            "accountName": "0000123456-00001",
+            "device": {
+              "id": "15-digit IMEI",
+              "kind": "IMEI"
+            }
+          }
+        }
+      },
+      "HistorySearchResponse": {
+        "description": "History data for selected devices and attributes over specific time periods.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/History"
+        },
+        "example": [
+          {
+            "accountName": "0000123456-00001",
+            "attributes": {
+              "createdOn": "2022-02-10T16:02:21.406Z",
+              "name": "LINK_QUALITY",
+              "value": "47"
+            },
+            "device": {
+              "id": "15-digit IMEI",
+              "kind": "IMEI"
+            }
+          },
+          {
+            "accountName": "0000123456-00001",
+            "attributes": {
+              "createdOn": "2022-02-10T16:02:05.316Z",
+              "name": "LINK_QUALITY",
+              "value": "47"
+            },
+            "device": {
+              "id": "15-digit IMEI",
+              "kind": "IMEI"
+            }
+          }
+        ]
+      },
+      "History": {
+        "description": "History data for a selected device and its attributes at a specific time.",
+        "required": [
+          "accountName",
+          "device"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The name of the billing account for which you want retrieve history data. An account name is usually numeric, and must include any leading zeros.",
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "device": {
+            "$ref": "#/components/schemas/Device"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/HistoryAttributeValue"
+          }
+        },
+        "example": {
+          "accountName": "0000123456-00001",
+          "attributes": {
+            "createdOn": "2022-02-10T16:02:21.406Z",
+            "name": "LINK_QUALITY",
+            "value": "47"
+          },
+          "device": {
+            "id": "15-digit IMEI",
+            "kind": "IMEI"
+          }
+        }
+      },
+      "Device": {
+        "description": "Identifies a particular IoT device.",
+        "required": [
+          "id",
+          "kind"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "864508030026238"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Device kind identifier.",
+            "example": "IMEI"
+          }
+        },
+        "example": {
+          "id": "864508030026238",
+          "kind": "IMEI"
+        }
+      },
+      "NumericalData": {
+        "description": "Describes value and unit of time.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "Numerical value.",
+            "type": "integer",
+            "format": "int32",
+            "example": 5
+          },
+          "unit": {
+            "$ref": "#/components/schemas/NumericalDataUnit"
+          }
+        },
+        "example": {
+          "value": 5,
+          "unit": "SECOND"
+        }
+      },
+      "NumericalDataUnit": {
+        "description": "Unit of time.",
+        "type": "string",
+        "enum": [
+          "SECOND",
+          "MINUTE",
+          "HOUR",
+          "DAY"
+        ],
+        "example": "MINUTE"
+      },
+      "DiagnosticObservationSettings": {
+        "description": "The current diagnostic observation settings for a list of devices.",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DiagnosticObservationSetting"
+        },
+        "example": [
+          {
+            "accountName": "string",
+            "device": {
+              "id": "864508030026238",
+              "kind": "IMEI"
+            },
+            "attributes": [
+              {
+                "name": "MANUFACTURER",
+                "value": "string",
+                "createdOn": "2019-09-07T23:08:03.532Z",
+                "isObservable": true,
+                "isObserving": true,
+                "frequency": {
+                  "value": 5,
+                  "unit": "SECOND"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "DeviceDiagnosticsResult": {
+        "description": "All error messages are returned in this format. Error codes and messages are listed on the Error Codes page, along with explanations and suggestions for corrective actions.",
+        "required": [
+          "errorCode",
+          "errorMessage"
+        ],
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "description": "Simple error code.",
+            "type": "string",
+            "example": "INVALID_PARAMETER"
+          },
+          "errorMessage": {
+            "description": "Detailed error message.",
+            "type": "string",
+            "example": "The request parameter is invalid."
+          }
+        },
+        "example": {
+          "errorCode": "INTERNAL_SYSTEM_ERROR",
+          "errorMessage": "The system encountered an internal error."
+        }
+      },
+      "DeviceResetRequest": {
+        "description": "Request body to Performs a device reboot.",
+        "type": "object",
+        "properties":{
+          "accountName": {
+            "description": "The name of the account. An account name is usually numeric, and must include any leading zeros.",
+            "type": "string",
+            "example": "0642233522-00003"
+          },
+          "action": {
+            "description": "The action you want to take on the device.",
+            "type": "string",
+            "example": "reboot"
+          },
+          "devices": {
+            "description": "The devices for which you want to perform a factory reset or reboot.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

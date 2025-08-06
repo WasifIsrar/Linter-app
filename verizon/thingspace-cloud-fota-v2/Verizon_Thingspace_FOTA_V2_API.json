@@ -1,0 +1,4873 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Software Management Services API (v2)",
+    "description": "The ThingSpace Software Management Services API lets customers manage, schedule, and distribute software updates to eligible 4G and 5G Internet of Things (IoT) devices already deployed in the field. This allows devices-even those in inaccessible locations-to be upgraded easily, reducing the need for site visits and truck rolls.",
+    "version": "1.2",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "https://thingspace.verizon.com/legal/terms-of-services/"
+    },
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Software Management V2",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "Software Management V2",
+              "url": "https://thingspace.verizon.com/api/fota/v2"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "Software Management V2",
+              "url": "https://staging.thingspace.verizon.com/api/fota/v2"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/fota/v2",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/fota/v2",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Software Management Subscriptions V2",
+      "description": "Information about current FOTA subscriptions."
+    },
+    {
+      "name": "Software Management Licenses V2",
+      "description": "License status and assignment."
+    },
+    {
+      "name": "Campaigns V2",
+      "description": "Schedule, retrieve or cancel scheduled FOTA campaigns."
+    },
+    {
+      "name": "Software Management Callbacks V2",
+      "description": "Find registered callbacks or create, update and delete a registered callback."
+    },
+    {
+      "name": "Software Management Reports V2",
+      "description": "Status of a campaign per device."
+    },
+    {
+      "name": "Client Logging",
+      "description": "Device logs stored on the device itself."
+    },
+    {
+      "name": "Server Logging",
+      "description": "Device logs on the server."
+    }
+  ],
+  "paths": {
+    "/subscriptions/{account}": {
+      "get": {
+        "tags": [
+          "Software Management Subscriptions V2"
+        ],
+        "summary": "Get a FOTA subscription",
+        "operationId": "GetAccountSubscriptionStatus",
+        "description": "This endpoint retrieves a FOTA subscription by account.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "FOTA Subscription.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Subscription"
+                },
+                "example": {
+                  "accountName": "00000000000-123345",
+                  "purchaseType": "TS-HFOTA-EVNT,TS-HFOTA-MRC",
+                  "licenseCount": 500,
+                  "licenseUsedCount": 400,
+                  "updateTime": "2020-09-17T21:11:32.170Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licenses/{account}": {
+      "get": {
+        "tags": [
+          "Software Management Licenses V2"
+        ],
+        "summary": "Summarize FOTA licenses assignment",
+        "operationId": "GetAccountLicenseStatus",
+        "description": "The endpoint allows user to list license usage.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "lastSeenDeviceId",
+            "in": "query",
+            "description": "Last seen device identifier.",
+            "schema": {
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": "15-digit IMEI"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Summary of license assignment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2LicenseSummary"
+                },
+                "example": {
+                  "accountName": "0402196254-00001",
+                  "totalLicense": 5000,
+                  "assignedLicenses": 4319,
+                  "hasMoreData": true,
+                  "lastSeenDeviceId": "1000",
+                  "maxPageSize": 10,
+                  "deviceList": [
+                    {
+                      "deviceId": "990003425730535",
+                      "assignmentTime": "2017-11-29T16:03:42.000Z"
+                    },
+                    {
+                      "deviceId": "990000473475989",
+                      "assignmentTime": "2017-11-29T16:03:42.000Z"
+                    },
+                    {
+                      "deviceId": "990000347475989",
+                      "assignmentTime": "2017-11-29T16:03:42.000Z"
+                    },
+                    {
+                      "deviceId": "990007303425535",
+                      "assignmentTime": "2017-11-29T16:03:42.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/licenses/{account}/assign": {
+      "post": {
+        "tags": [
+          "Software Management Licenses V2"
+        ],
+        "summary": "Assign FOTA licenses to devices",
+        "operationId": "AssignLicensesToDevices",
+        "description": "This endpoint allows user to assign licenses to a list of devices.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0242078689-00001"
+            },
+            "example": "0242078689-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "License assignment.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/V2LicenseIMEI"
+              },
+              "example": {
+                "deviceList": [
+                  "990003425730524",
+                  "990000473475967"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "License assignment result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2LicensesAssignedRemovedResult"
+                },
+                "example": {
+                  "accountName": "0242078689-00001",
+                  "licTotalCount": 1000,
+                  "licUsedCount": 502,
+                  "deviceList": [
+                    {
+                      "deviceId": "990003425730524",
+                      "status": "Success",
+                      "resultReason": "Success"
+                    },
+                    {
+                      "deviceId": "990000473475967",
+                      "status": "Failure",
+                      "resultReason": "Device does not exist."
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/licenses/{account}/remove": {
+      "post": {
+        "tags": [
+          "Software Management Licenses V2"
+        ],
+        "summary": "Remove licenses from devices",
+        "operationId": "RemoveLicensesFromDevices",
+        "description": "This endpoint allows user to remove licenses from a list of devices.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0242078689-00001"
+            },
+            "example": "0242078689-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "License removal.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/V2LicenseIMEI"
+              },
+              "example": {
+                "deviceList": [
+                  "990003425730535",
+                  "990000473475989",
+                  "900000000000999"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "License removal result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2LicensesAssignedRemovedResult"
+                },
+                "example": {
+                  "accountName": "0242078689-00001",
+                  "licTotalCount": 1000,
+                  "licUsedCount": 998,
+                  "deviceList": [
+                    {
+                      "deviceId": "990003425730535",
+                      "status": "Success",
+                      "resultReason": "Success"
+                    },
+                    {
+                      "deviceId": "990000473475989",
+                      "status": "Success",
+                      "resultReason": "Success"
+                    },
+                    {
+                      "deviceId": "900000000000999",
+                      "status": "Failure",
+                      "resultReason": "No license attached to device"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/licenses/{account}/cancel": {
+      "get": {
+        "tags": [
+          "Software Management Licenses V2"
+        ],
+        "operationId": "ListLicensesToRemove",
+        "summary": "Retrieve a list of license cancellation candidate devices",
+        "description": "The license cancel endpoint allows user to list registered license cancellation candidate devices.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0242078689-00001"
+            },
+            "example": "0242078689-00001"
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "description": "Start index to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of license cancellation candidate devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ListOfLicensesToRemove"
+                },
+                "example": {
+                  "count": 6,
+                  "hasMoreData": false,
+                  "updateTime": "2018-03-22 00:06:00.069 +0000 UTC",
+                  "deviceList": [
+                    "990003425730535",
+                    "990000473475989",
+                    "990005733420535",
+                    "990000347475989",
+                    "990007303425535",
+                    "990007590473489"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      },
+      "post": {
+        "tags": [
+          "Software Management Licenses V2"
+        ],
+        "operationId": "CreateListOfLicensesToRemove",
+        "summary": "Create a list of license cancellation candidate devices",
+        "description": "The license cancel endpoint allows user to create a list of license cancellation candidate devices.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0242078689-00001"
+            },
+            "example": "0242078689-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "List of licensess to remove.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/V2ListOfLicensesToRemoveRequest"
+              },
+              "example": {
+                "type": "append",
+                "count": 2,
+                "deviceList": [
+                  "990003425730535",
+                  "990000473475989"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return a created license cancellation device list.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ListOfLicensesToRemoveResult"
+                },
+                "example": {
+                  "count": 2,
+                  "deviceList": [
+                    "990003425730535",
+                    "990000473475989"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      },
+      "delete": {
+        "tags": [
+          "Software Management Licenses V2"
+        ],
+        "summary": "Delete a previously created cancel candidate device list",
+        "operationId": "DeleteListOfLicensesToRemove",
+        "description": "This endpoint allows user to delete a created cancel candidate device list.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0242078689-00001"
+            },
+            "example": "0242078689-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of deletion of candidate list of devices to remove.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2SuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/campaigns/{account}": {
+      "post": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Schedule a software upgrade",
+        "operationId": "ScheduleCampaignFirmwareUpgrade",
+        "description": "This endpoint allows user to schedule a software upgrade.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Software upgrade information.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignSoftwareUpgrade"
+              },
+              "example": {
+                "campaignName": "FOTA_Verizon_Upgrade",
+                "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                "distributionType": "HTTP",
+                "startDate": "2020-08-21",
+                "endDate": "2020-08-22",
+                "downloadAfterDate": "2020-08-21",
+                "downloadTimeWindowList": [
+                  {
+                    "startTime": 20,
+                    "endTime": 21
+                  }
+                ],
+                "installAfterDate": "2020-08-21",
+                "installTimeWindowList": [
+                  {
+                    "startTime": 22,
+                    "endTime": 23
+                  }
+                ],
+                "deviceList": [
+                  "990013907835573",
+                  "990013907884259"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return software upgrade information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignSoftware"
+                },
+                "example": {
+                  "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                  "accountName": "0402196254-00001",
+                  "campaignName": "FOTA_Verizon_Upgrade",
+                  "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                  "distributionType": "HTTP",
+                  "make": "Verizon",
+                  "model": "Model-A",
+                  "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                  "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                  "startDate": "2020-08-21",
+                  "endDate": "2020-08-22",
+                  "downloadAfterDate": "2020-08-21",
+                  "downloadTimeWindowList": [
+                    {
+                      "startTime": 20,
+                      "endTime": 21
+                    }
+                  ],
+                  "installAfterDate": "2020-08-21",
+                  "installTimeWindowList": [
+                    {
+                      "startTime": 22,
+                      "endTime": 23
+                    }
+                  ],
+                  "status": "CampaignRequestPending"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{account}/{campaignId}": {
+      "get": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Get information of a software upgrade.",
+        "operationId": "GetCampaignInformation",
+        "description": "This endpoint allows user to get information of a software upgrade.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Software upgrade identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return software upgrade information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignSoftware"
+                },
+                "example": {
+                  "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                  "accountName": "0402196254-00001",
+                  "campaignName": "FOTA_Verizon_Upgrade",
+                  "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                  "distributionType": "HTTP",
+                  "make": "Verizon",
+                  "model": "Model-A",
+                  "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                  "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                  "startDate": "2020-08-21",
+                  "endDate": "2020-08-22",
+                  "downloadAfterDate": "2020-08-21",
+                  "downloadTimeWindowList": [
+                    {
+                      "startTime": 20,
+                      "endTime": 21
+                    }
+                  ],
+                  "installAfterDate": "2020-08-21",
+                  "installTimeWindowList": [
+                    {
+                      "startTime": 22,
+                      "endTime": 23
+                    }
+                  ],
+                  "status": "CampaignEnded"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Add or Remove device to existing software upgrade",
+        "operationId": "UpdateCampaignFirmwareDevices",
+        "description": "This endpoint allows user to Add or Remove devices to an existing software upgrade.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Software upgrade information.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          }
+        ],
+        "requestBody": {
+          "description": "Request to add or remove device to existing software upgrade information.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/V2AddOrRemoveDeviceRequest"
+              },
+              "example": {
+                "Type": "remove",
+                "deviceList": [
+                  "990013907884259",
+                  "990013907835573",
+                  "990013907833575"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Result of adding or removing devices to existing software upgrade information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2AddOrRemoveDeviceResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Cancel a previously scheduled software upgrade",
+        "operationId": "CancelCampaign",
+        "description": "This endpoint allows user to cancel software upgrade. A software upgrade already started can not be cancelled.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Unique identifier of campaign.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return cancellation status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2SuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{account}/{campaignId}/dates": {
+      "put": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Change campaign dates and time windows",
+        "operationId": "UpdateCampaignDates",
+        "description": "This endpoint allows user to change campaign dates and time windows. Fields which need to remain unchanged should be also provided.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Software upgrade information.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          }
+        ],
+        "requestBody": {
+          "description": "New dates and time windows.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/V2ChangeCampaignDatesRequest"
+              },
+              "example": {
+                "startDate": "2020-08-21",
+                "endDate": "2020-08-22",
+                "downloadAfterDate": "2020-08-21",
+                "downloadTimeWindowList": [
+                  {
+                    "startTime": 3,
+                    "endTime": 4
+                  }
+                ],
+                "installAfterDate": "2020-08-21",
+                "installTimeWindowList": [
+                  {
+                    "startTime": 5,
+                    "endTime": 6
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Updated campaign information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignSoftware"
+                },
+                "example": {
+                  "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                  "accountName": "0402196254-00001",
+                  "campaignName": "FOTA_Verizon_Upgrade",
+                  "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                  "distributionType": "HTTP",
+                  "make": "Verizon",
+                  "model": "Model-A",
+                  "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                  "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                  "startDate": "2020-08-21",
+                  "endDate": "2020-08-22",
+                  "downloadAfterDate": "2020-08-21",
+                  "downloadTimeWindowList": [
+                    {
+                      "startTime": 3,
+                      "endTime": 4
+                    },
+                    {
+                      "startTime": 5,
+                      "endTime": 6
+                    }
+                  ],
+                  "installAfterDate": "2020-08-21",
+                  "installTimeWindowList": [
+                    {
+                      "startTime": 5,
+                      "endTime": 6
+                    },
+                    {
+                      "startTime": 6,
+                      "endTime": 7
+                    }
+                  ],
+                  "status": "RequestPending"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/callbacks/{account}": {
+      "get": {
+        "tags": [
+          "Software Management Callbacks V2"
+        ],
+        "summary": "Get the registered callback information",
+        "operationId": "ListRegisteredCallbacks",
+        "description": "This endpoint allows user to get the registered callback information.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CallbackSummary"
+                },
+                "example": {
+                  "url": "http://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Software Management Callbacks V2"
+        ],
+        "summary": "Update HTTPS callback address",
+        "operationId": "UpdateCallback",
+        "description": "This endpoint allows user to update the HTTPS callback address.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Callback URL registration.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/FotaV2CallbackRegistrationRequest"
+              },
+              "example": {
+                "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2CallbackRegistrationResult"
+                },
+                "example": {
+                  "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Software Management Callbacks V2"
+        ],
+        "summary": "Create HTTPS callback address",
+        "operationId": "RegisterCallback",
+        "description": "This endpoint allows user to create the HTTPS callback address.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Callback URL registration.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/FotaV2CallbackRegistrationRequest"
+              },
+              "example": {
+                "url": "https://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return callback registration.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2CallbackRegistrationResult"
+                },
+                "example": {
+                  "url": "https://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Software Management Callbacks V2"
+        ],
+        "summary": "Delete a previously registered Callback",
+        "operationId": "DeregisterCallback",
+        "description": "This endpoint allows user to delete a previously registered callback URL.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of deregistering a callback.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2SuccessResult"
+                },
+                "example": {
+                  "success": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/software/{account}": {
+      "get": {
+        "tags": [
+          "Software Management Reports V2"
+        ],
+        "summary": "Get a list of available software",
+        "operationId": "ListAvailableSoftware",
+        "description": "This endpoint allows user to list a certain type of software of an account.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "distributionType",
+            "in": "query",
+            "description": "Filter distributionType to get specific type of software. Value is LWM2M, OMD-DM or HTTP.",
+            "schema": {
+              "type": "string",
+              "example": "HTTP"
+            },
+            "example": "HTTP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return array of software.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SoftwarePackage"
+                  },
+                  "description": "Software package information.",
+                  "example": [
+                    {
+                      "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                      "launchDate": "2020-08-31",
+                      "releaseNote": "",
+                      "model": "Model-A",
+                      "make": "Verizon",
+                      "distributionType": "HTTP",
+                      "devicePlatformId": "IoT"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                    "launchDate": "2020-08-31",
+                    "releaseNote": "",
+                    "model": "Model-A",
+                    "make": "Verizon",
+                    "distributionType": "HTTP",
+                    "devicePlatformId": "IoT"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devices/{account}": {
+      "get": {
+        "tags": [
+          "Software Management Reports V2"
+        ],
+        "summary": "Get account devices information",
+        "operationId": "ListAccountDevices",
+        "description": "The device endpoint gets devices information of an account.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "lastSeenDeviceId",
+            "in": "query",
+            "description": "Last seen device identifier.",
+            "schema": {
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": "15-digit IMEI"
+          },
+          {
+            "name": "distributionType",
+            "in": "query",
+            "description": "Filter distributionType to get specific type of devices. Values is LWM2M, OMD-DM or HTTP.",
+            "schema": {
+              "type": "string",
+              "example": "HTTP"
+            },
+            "example": "HTTP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return array of devices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2AccountDeviceList"
+                },
+                "example": {
+                  "accountName": "0000123456-00001",
+                  "hasMoreData": true,
+                  "lastSeenDeviceId": "15-digit IMEI",
+                  "maxPageSize": 1000,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "mdn": "10-digit MDN",
+                      "model": "Model-A",
+                      "make": "Verizon",
+                      "fotaEligible": true,
+                      "appFotaEligible": true,
+                      "licenseAssigned": true,
+                      "distributionType": "HTTP",
+                      "softwareList": [
+                        {
+                          "name": "FOTA_Verizon_Model-A_02To03_HF",
+                          "version": "3",
+                          "upgradeTime": "2020-09-08T19:00:51.541Z"
+                        }
+                      ],
+                      "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+                    },
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "mdn": "10-digit MDN",
+                      "model": "Model-A",
+                      "make": "Verizon",
+                      "fotaEligible": true,
+                      "appFotaEligible": true,
+                      "licenseAssigned": true,
+                      "distributionType": "HTTP",
+                      "softwareList": [
+                        {
+                          "name": "FOTA_Verizon_Model-A_02To03_HF",
+                          "version": "3",
+                          "upgradeTime": "2020-09-08T19:00:51.541Z"
+                        }
+                      ],
+                      "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+                    },
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "mdn": "10-digit MDN",
+                      "model": "Model-A",
+                      "make": "Verizon",
+                      "fotaEligible": true,
+                      "appFotaEligible": true,
+                      "licenseAssigned": true,
+                      "distributionType": "HTTP",
+                      "softwareList": [
+                        {
+                          "name": "FOTA_Verizon_Model-A_02To03_HF",
+                          "version": "3",
+                          "upgradeTime": "2020-09-08T19:00:51.541Z"
+                        }
+                      ],
+                      "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                      "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{account}/devices/{deviceId}": {
+      "get": {
+        "tags": [
+          "Software Management Reports V2"
+        ],
+        "summary": "Get device software upgrade history",
+        "operationId": "GetDeviceFirmwareUpgradeHistory",
+        "description": "The endpoint allows user to get software upgrade history of a device based on device IMEI.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device IMEI identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "990013907835573"
+            },
+            "example": "990013907835573"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return array of upgrades.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceSoftwareUpgrade"
+                  },
+                  "description": "Array of software upgrade objects with the specified status.",
+                  "example": [
+                    {
+                      "deviceId": "990013907835573",
+                      "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                      "accountName": "0402196254-00001",
+                      "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                      "startDate": "2018-03-05",
+                      "status": "UpgradeSuccess",
+                      "reason": "success"
+                    },
+                    {
+                      "deviceId": "990013907835573",
+                      "id": "50d5d639-aaca-3ca7-7713-958ac83b84ae",
+                      "accountName": "0402196254-00001",
+                      "softwareName": "VerizonSoftwareVersion-01",
+                      "startDate": "2018-02-20",
+                      "status": "UpgradeSuccess",
+                      "reason": "success"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "deviceId": "990013907835573",
+                    "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                    "accountName": "0402196254-00001",
+                    "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                    "startDate": "2018-03-05",
+                    "upgradeStartTime": "2018-03-05T19:07:21Z",
+                    "status": "UpgradeSuccess",
+                    "reason": "success"
+                  },
+                  {
+                    "deviceId": "990013907835573",
+                    "id": "50d5d639-aaca-3ca7-7713-958ac83b84ae",
+                    "accountName": "0402196254-00001",
+                    "softwareName": "VerizonSoftwareVersion-01",
+                    "startDate": "2018-02-20",
+                    "upgradeStartTime": "2018-02-20T00:03:19Z",
+                    "status": "UpgradeSuccess",
+                    "reason": "success"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{account}/campaigns": {
+      "get": {
+        "tags": [
+          "Software Management Reports V2"
+        ],
+        "summary": "Get campaign history for specified status.",
+        "operationId": "GetCampaignHistoryByStatus",
+        "description": "The report endpoint allows user to get campaign history of an account for specified status.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignStatus",
+            "in": "query",
+            "description": "Status of the campaign.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastSeenCampaignId",
+            "in": "query",
+            "description": "Last seen campaign Id.",
+            "schema": {
+              "type": "string",
+              "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return list of campaign history.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2CampaignHistory"
+                },
+                "example": {
+                  "hasMoreData": true,
+                  "lastSeenCampaignId": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                  "campaignList": [
+                    {
+                      "accountName": "0402196254-00001",
+                      "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                      "campaignName": "FOTA_Verizon_Upgrade",
+                      "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                      "distributionType": "HTTP",
+                      "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                      "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                      "make": "Verizon",
+                      "model": "Model-A",
+                      "startDate": "2020-08-21",
+                      "endDate": "2020-08-22",
+                      "downloadAfterDate": "2020-08-21",
+                      "downloadTimeWindowList": [
+                        {
+                          "startTime": 20,
+                          "endTime": 21
+                        }
+                      ],
+                      "installAfterDate": "2020-08-21",
+                      "installTimeWindowList": [
+                        {
+                          "startTime": 22,
+                          "endTime": 23
+                        }
+                      ],
+                      "status": "CampaignEnded"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/{account}/campaigns/{campaignId}/devices": {
+      "get": {
+        "tags": [
+          "Software Management Reports V2"
+        ],
+        "summary": "Get a campaign device status.",
+        "operationId": "GetCampaignDeviceStatus",
+        "description": "The report endpoint allows user to get the full list of device of a campaign.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "campaignId",
+            "in": "path",
+            "description": "Campaign identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+            },
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          {
+            "name": "lastSeenDeviceId",
+            "in": "query",
+            "description": "Last seen device identifier.",
+            "schema": {
+              "type": "string",
+              "example": "15-digit IMEI"
+            },
+            "example": "15-digit IMEI"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return list of campaign history.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2CampaignDevice"
+                },
+                "example": {
+                  "totalDevice": 1148,
+                  "hasMoreData": true,
+                  "lastSeenDeviceId": "15-digit IMEI",
+                  "maxPageSize": 1000,
+                  "deviceList": [
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "UpgradeSuccess",
+                      "resultReason": "DownloadInstallSucceeded"
+                    },
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "UpgradeSuccess",
+                      "resultReason": "DownloadInstallSucceeded"
+                    },
+                    {
+                      "deviceId": "15-digit IMEI",
+                      "status": "UpgradeSuccess",
+                      "resultReason": "DownloadInstallSucceeded"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logging/{account}/devices": {
+      "get": {
+        "tags": [
+          "Client Logging"
+        ],
+        "operationId": "ListDevicesWithLoggingEnabled",
+        "description": "Returns an array of all devices in the specified account for which logging is enabled.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List containing device logging status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceLoggingStatus"
+                  },
+                  "description": "Array of logging-enabled device objects.",
+                  "example": [
+                    {
+                      "deviceId": "990013907835573",
+                      "expiryDate": "2020-10-19"
+                    },
+                    {
+                      "deviceId": "991124018926684",
+                      "expiryDate": "2020-10-19"
+                    },
+                    {
+                      "deviceId": "992234129057795",
+                      "expiryDate": "2020-10-23"
+                    },
+                    {
+                      "deviceId": "998891785613351",
+                      "expiryDate": "2020-10-23"
+                    },
+                    {
+                      "deviceId": "990013907835573",
+                      "expiryDate": "2020-10-23"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "deviceId": "990013907835573",
+                    "expiryDate": "2020-10-19"
+                  },
+                  {
+                    "deviceId": "991124018926684",
+                    "expiryDate": "2020-10-19"
+                  },
+                  {
+                    "deviceId": "992234129057795",
+                    "expiryDate": "2020-10-23"
+                  },
+                  {
+                    "deviceId": "998891785613351",
+                    "expiryDate": "2020-10-23"
+                  },
+                  {
+                    "deviceId": "990013907835573",
+                    "expiryDate": "2020-10-23"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Client Logging"
+        ],
+        "summary": "Turn logging on for the list of devices",
+        "operationId": "EnableLoggingForDevices",
+        "description": "Each customer may have a maximum of 20 devices enabled for logging.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Device logging information.",
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceLoggingRequest"
+              },
+              "example": {
+                "deviceIds": [
+                  "990013907835573",
+                  "991124018926684",
+                  "992234129057795",
+                  "998891785613351",
+                  "990013907835573"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "List containing device logging status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeviceLoggingStatus"
+                  },
+                  "description": "Array of logging-enabled device objects.",
+                  "example": [
+                    {
+                      "deviceId": "990013907835573",
+                      "expiryDate": "2020-10-19"
+                    },
+                    {
+                      "deviceId": "991124018926684",
+                      "expiryDate": "2020-10-19"
+                    },
+                    {
+                      "deviceId": "992234129057795",
+                      "expiryDate": "2020-10-23"
+                    },
+                    {
+                      "deviceId": "998891785613351",
+                      "expiryDate": "2020-10-23"
+                    },
+                    {
+                      "deviceId": "990013907835573",
+                      "expiryDate": "2020-10-23"
+                    }
+                  ]
+                },
+                "example": [
+                  {
+                    "deviceId": "990013907835573",
+                    "expiryDate": "2020-10-19"
+                  },
+                  {
+                    "deviceId": "991124018926684",
+                    "expiryDate": "2020-10-19"
+                  },
+                  {
+                    "deviceId": "992234129057795",
+                    "expiryDate": "2020-10-23"
+                  },
+                  {
+                    "deviceId": "998891785613351",
+                    "expiryDate": "2020-10-23"
+                  },
+                  {
+                    "deviceId": "990013907835573",
+                    "expiryDate": "2020-10-23"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Client Logging"
+        ],
+        "operationId": "DisableLoggingForDevices",
+        "description": "Turn logging off for a list of devices.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceIds",
+            "in": "query",
+            "description": "The list of device IDs.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "990013907835573"
+            },
+            "example": "990013907835573"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {}
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logging/{account}/devices/{deviceId}": {
+      "put": {
+        "tags": [
+          "Client Logging"
+        ],
+        "summary": "Turn logging on for the device specified",
+        "operationId": "EnableDeviceLogging",
+        "description": "Enables logging for a specific device.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device IMEI identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "990013907835573"
+            },
+            "example": "990013907835573"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Device logging status information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceLoggingStatus"
+                },
+                "example": {
+                  "deviceId": "990013907835573",
+                  "expiryDate": "2020-10-19"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Client Logging"
+        ],
+        "summary": "Turn logging off for the device specified",
+        "operationId": "DisableDeviceLogging",
+        "description": "Disables logging for a specific device.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device IMEI identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "990013907835573"
+            },
+            "example": "990013907835573"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {}
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logging/{account}/devices/{deviceId}/logs": {
+      "get": {
+        "tags": [
+          "Client Logging"
+        ],
+        "summary": "Get logs for the device specified",
+        "operationId": "ListDeviceLogs",
+        "description": "Gets logs for a specific device.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device IMEI identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "990013907835573"
+            },
+            "example": "990013907835573"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of device logs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDeviceLogsResponse"
+                },
+                "example": [
+                  {
+                    "deviceId": "990013907835573",
+                    "logTime": "2020-10-22T19:29:50.901Z",
+                    "logType": "string",
+                    "eventLog": "string",
+                    "binaryLogFileBase64": "string",
+                    "binaryLogFilename": "string"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logging/{account}/devices/{deviceId}/checkInHistory": {
+      "get": {
+        "tags": [
+          "Server Logging"
+        ],
+        "summary": "Get check-in history for the device specified",
+        "operationId": "GetDeviceCheckInHistory",
+        "description": "Check-in history can be retrieved for any device belonging to the account, not necessarily with logging enabled.",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0000123456-00001"
+            },
+            "example": "0000123456-00001"
+          },
+          {
+            "name": "deviceId",
+            "in": "path",
+            "description": "Device IMEI identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "990013907835573"
+            },
+            "example": "990013907835573"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of check-in history entries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCheckinHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{acc}": {
+      "get": {
+        "tags": [
+          "Configuration Files"
+        ],
+        "summary": "Retrieves a list of available files.",
+        "operationId": "GetListOfFiles",
+        "description": "You can retrieve a list of configuration or supplementary of files for an account.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0402196254-00001"
+            },
+            "example": "0402196254-00001"
+          },
+          {
+            "name": "distributionType",
+            "in": "query",
+            "description": "Filter the distributionType to only retrieve files for a specific distribution type.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "HTTP"
+            },
+            "example": "HTTP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful responses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetrievesAvailableFilesResponseList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Configuration Files"
+        ],
+        "summary": "Uploads a configuration supplementary file for an account.",
+        "operationId": "UploadConfigFile",
+        "description": "Uploads a configuration/supplementary file for an account. ThingSpace generates a fileName after the upload and is returned in the response.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0402196254-00001"
+            },
+            "example": "0402196254-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Request a software upgrade.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "fileupload": {
+                    "description": "The file to upload.",
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "fileVersion": {
+                    "type": "string",
+                    "description": "Version of the file.",
+                    "example": "1.0"
+                  },
+                  "make": {
+                    "type": "string",
+                    "description": "The software-applicable device make.",
+                    "example": "Verizon"
+                  },
+                  "model": {
+                    "type": "string",
+                    "description": "The software-applicable device model.",
+                    "example": "VZW1"
+                  },
+                  "localTargetPath": {
+                    "type": "string",
+                    "description": "Local target path on the device.",
+                    "example": "/VZWFOTA/hello-world.txt"
+                  }
+                },
+                "example": {
+                  "fileupload": "/Users/files/hello-world.txt",
+                  "fileVersion": "1.0",
+                  "make": "Verizon",
+                  "model": "VZW1",
+                  "localTargetPath": "/VZWFOTA/hello-world.txt"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful responses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadConfigurationFilesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/files/{acc}": {
+      "post": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Schedules a file upgrade.",
+        "operationId": "ScheduleFileUpgrade",
+        "description": "You can upload configuration files and schedule them in a campaign to devices.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0402196254-00001"
+            },
+            "example": "0402196254-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Device logging information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadAndScheduleFileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful responses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadAndScheduleFileResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/software/{acc}": {
+      "post": {
+        "tags": [
+          "Campaigns V2"
+        ],
+        "summary": "Schedules a software upgrade for HTTP devices.",
+        "operationId": "ScheduleSWUpgradeHttpDevices",
+        "description": "Campaign time windows for downloading and installing software are available as long as the device OEM supports this.",
+        "parameters": [
+          {
+            "name": "acc",
+            "in": "path",
+            "description": "Account identifier.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0402196254-00001"
+            },
+            "example": "0402196254-00001"
+          }
+        ],
+        "requestBody": {
+          "description": "Device logging information.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchedulesSoftwareUpgradeRequest"
+              },
+              "example": {
+                "campaignName": "FOTA_Verizon_Upgrade",
+                "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                "distributionType": "HTTP",
+                "startDate": "2020-08-21",
+                "endDate": "2020-08-22",
+                "downloadAfterDate": "2020-08-21",
+                "downloadTimeWindowList": [
+                  {
+                    "startTime": 20,
+                    "endTime": 21
+                  }
+                ],
+                "installAfterDate": "2020-08-21",
+                "installTimeWindowList": [
+                  {
+                    "startTime": 22,
+                    "endTime": 23
+                  }
+                ],
+                "deviceList": [
+                  "990013907835573",
+                  "990013907884259"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful responses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadAndScheduleFileResponse"
+                },
+                "example": {
+                  "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                  "accountName": "0402196254-00001",
+                  "campaignName": "FOTA_Verizon_Upgrade",
+                  "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                  "distributionType": "HTTP",
+                  "make": "Verizon",
+                  "model": "Model-A",
+                  "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                  "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                  "startDate": "2020-08-21",
+                  "endDate": "2020-08-22",
+                  "downloadAfterDate": "2020-08-21",
+                  "downloadTimeWindowList": [
+                    {
+                      "startTime": 20,
+                      "endTime": 21
+                    }
+                  ],
+                  "installAfterDate": "2020-08-21",
+                  "installTimeWindowList": [
+                    {
+                      "startTime": 22,
+                      "endTime": 23
+                    }
+                  ],
+                  "status": "CampaignRequestPending"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FotaV2Result"
+                },
+                "example": {
+                  "errorCode": "error code string",
+                  "errorMessage": "error message string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FotaV2Subscription": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier in \"##########-#####\".",
+            "example": "00000000000-123345"
+          },
+          "purchaseType": {
+            "type": "string",
+            "description": "Subscription models used by the account.",
+            "example": "TS-HFOTA-EVNT,TS-HFOTA-MRC"
+          },
+          "licenseCount": {
+            "type": "integer",
+            "description": "Number of monthly licenses in an MRC subscription.",
+            "example": 500
+          },
+          "licenseUsedCount": {
+            "type": "integer",
+            "description": "Number of licenses currently assigned to devices.",
+            "example": 400
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "The date and time of when the subscription was last updated.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          }
+        },
+        "description": "FOTA Subscription.",
+        "example": {
+          "accountName": "00000000000-123345",
+          "purchaseType": "TS-HFOTA-EVNT,TS-HFOTA-MRC",
+          "licenseCount": 500,
+          "licenseUsedCount": 400,
+          "updateTime": "2021-06-03 00:03:56.079 +0000 UTC"
+        }
+      },
+      "V2LicenseSummary": {
+        "required": [
+          "accountName",
+          "assignedLicenses",
+          "hasMoreData",
+          "maxPageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0402196254-00001"
+          },
+          "totalLicense": {
+            "type": "integer",
+            "description": "Total FOTA license count.",
+            "example": 5000
+          },
+          "assignedLicenses": {
+            "type": "integer",
+            "description": "Assigned FOTA license count.",
+            "example": 4319
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "True if there are more devices to retrieve.",
+            "example": true
+          },
+          "lastSeenDeviceId": {
+            "type": "string",
+            "description": "Last seen device identifier.",
+            "example": "1000"
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "description": "Maximum page size.",
+            "example": 10
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "$ref": "#/components/schemas/V2LicenseDevice"
+            },
+            "example": [
+              {
+                "deviceId": "990003425730535",
+                "assignmentTime": "2017-11-29T16:03:42.000Z"
+              },
+              {
+                "deviceId": "990000473475989",
+                "assignmentTime": "2017-11-29T16:03:42.000Z"
+              }
+            ]
+          }
+        },
+        "description": "Summary of license assignment.",
+        "example": {
+          "accountName": "0402196254-00001",
+          "totalLicense": 5000,
+          "assignedLicenses": 4319,
+          "hasMoreData": true,
+          "lastSeenDeviceId": "1000",
+          "maxPageSize": 10,
+          "deviceList": [
+            {
+              "deviceId": "990003425730535",
+              "assignmentTime": "2017-11-29T16:03:42.000Z"
+            },
+            {
+              "deviceId": "990000473475989",
+              "assignmentTime": "2017-11-29T16:03:42.000Z"
+            },
+            {
+              "deviceId": "990000347475989",
+              "assignmentTime": "2017-11-29T16:03:42.000Z"
+            },
+            {
+              "deviceId": "990007303425535",
+              "assignmentTime": "2017-11-29T16:03:42.000Z"
+            }
+          ]
+        }
+      },
+      "V2LicenseDevice": {
+        "required": [
+          "deviceId"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "990003425730535"
+          },
+          "assignmentTime": {
+            "type": "string",
+            "description": "License assignment time.",
+            "example": "2017-11-29T16:03:42.000Z"
+          }
+        },
+        "description": "Device IMEI list.",
+        "example": {
+          "deviceId": "990003425730535",
+          "assignmentTime": "2017-11-29T16:03:42.000Z"
+        }
+      },
+      "V2LicensesAssignedRemovedResult": {
+        "required": [
+          "accountName",
+          "deviceList",
+          "licTotalCount",
+          "licUsedCount"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0242078689-00001"
+          },
+          "licTotalCount": {
+            "type": "integer",
+            "description": "Total license count.",
+            "example": 1000
+          },
+          "licUsedCount": {
+            "type": "integer",
+            "description": "Assigned license count.",
+            "example": 502
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "List of devices with id in IMEI.",
+            "items": {
+              "$ref": "#/components/schemas/V2DeviceStatus"
+            },
+            "example": [
+              {
+                "deviceId": "990003425730524",
+                "status": "Success",
+                "resultReason": "Success"
+              },
+              {
+                "deviceId": "990000473475967",
+                "status": "Failure",
+                "resultReason": "Device does not exist."
+              }
+            ]
+          }
+        },
+        "description": "License assignment or removal confirmation.",
+        "example": {
+          "accountName": "0242078689-00001",
+          "licTotalCount": 1000,
+          "licUsedCount": 502,
+          "deviceList": [
+            {
+              "deviceId": "990003425730524",
+              "status": "Success",
+              "resultReason": "Success"
+            },
+            {
+              "deviceId": "990000473475967",
+              "status": "Failure",
+              "resultReason": "Device does not exist."
+            }
+          ]
+        }
+      },
+      "V2LicenseIMEI": {
+        "required": [
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0242078689-00001"
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990013907835573"
+            },
+            "example": [
+              "990003425730524",
+              "990000473475967"
+            ]
+          }
+        },
+        "description": "IMEIs of the devices to assign or remove licenses.",
+        "example": {
+          "deviceList": [
+            "990003425730524",
+            "990000473475967"
+          ]
+        }
+      },
+      "V2ListOfLicensesToRemoveRequest": {
+        "required": [
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "List creation option.",
+            "example": "append"
+          },
+          "count": {
+            "type": "integer",
+            "description": "The number of devices.",
+            "example": 2
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990003425730535"
+            },
+            "example": [
+              "990003425730535",
+              "990000473475989"
+            ]
+          }
+        },
+        "description": "License cancellation candidate devices.",
+        "example": {
+          "type": "append",
+          "count": 2,
+          "deviceList": [
+            "990003425730535",
+            "990000473475989"
+          ]
+        }
+      },
+      "V2ListOfLicensesToRemoveResult": {
+        "required": [
+          "count",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "The number of devices.",
+            "example": 2
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990000473475989"
+            },
+            "example": [
+              "990003425730535",
+              "990000473475989"
+            ]
+          }
+        },
+        "description": "List of created license cancellation devices.",
+        "example": {
+          "count": 2,
+          "deviceList": [
+            "990003425730535",
+            "990000473475989"
+          ]
+        }
+      },
+      "V2ListOfLicensesToRemove": {
+        "required": [
+          "count",
+          "deviceList",
+          "hasMoreData",
+          "updateTime"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Cancellation candidate devices count.",
+            "example": 6
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Flag to indicat more devices.",
+            "example": false
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "Last update time.",
+            "example": "2018-03-22 00:06:00.069 +0000 UTC"
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990003425730535"
+            },
+            "example": [
+              "990003425730535",
+              "990000473475989",
+              "990005733420535",
+              "990000347475989",
+              "990007303425535",
+              "990007590473489"
+            ]
+          }
+        },
+        "description": "A list of license cancellation candidate devices.",
+        "example": {
+          "count": 6,
+          "hasMoreData": false,
+          "updateTime": "2018-03-22 00:06:00.069 +0000 UTC",
+          "deviceList": [
+            "990003425730535",
+            "990000473475989",
+            "990005733420535",
+            "990000347475989",
+            "990007303425535",
+            "990007590473489"
+          ]
+        }
+      },
+      "CampaignSoftwareUpgrade": {
+        "required": [
+          "deviceList",
+          "distributionType",
+          "endDate",
+          "softwareFrom",
+          "softwareName",
+          "softwareTo",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "softwareName": {
+            "type": "string",
+            "description": "Software name to upgrade to.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "softwareFrom": {
+            "type": "string",
+            "description": "Old software name.",
+            "example": "FOTA_Verizon_Model-A_00To01_HF"
+          },
+          "softwareTo": {
+            "type": "string",
+            "description": "New software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "OMA or HTTP.",
+            "example": "HTTP"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies starting date client should download package. If null, client will download as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 20,
+                "endTime": 21
+              }
+            ]
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "Client will install package after date. If null, client will install as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 22,
+                "endTime": 23
+              }
+            ]
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990013907884259"
+            },
+            "example": [
+              "990013907835573",
+              "990013907884259"
+            ]
+          }
+        },
+        "description": "Software upgrade information.",
+        "example": {
+          "campaignName": "FOTA_Verizon_Upgrade",
+          "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+          "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+          "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+          "distributionType": "HTTP",
+          "startDate": "2020-08-21",
+          "endDate": "2020-08-22",
+          "downloadAfterDate": "2020-08-21",
+          "downloadTimeWindowList": [
+            {
+              "startTime": 20,
+              "endTime": 21
+            }
+          ],
+          "installAfterDate": "2020-08-21",
+          "installTimeWindowList": [
+            {
+              "startTime": 22,
+              "endTime": 23
+            }
+          ],
+          "deviceList": [
+            "990013907835573",
+            "990013907884259"
+          ]
+        }
+      },
+      "CampaignSoftware": {
+        "required": [
+          "accountName",
+          "distributionType",
+          "endDate",
+          "id",
+          "make",
+          "model",
+          "softwareFrom",
+          "softwareName",
+          "softwareTo",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Upgrade identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0402196254-00001"
+          },
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "softwareName": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "LWM2M, OMD-DM or HTTP.",
+            "example": "HTTP"
+          },
+          "make": {
+            "type": "string",
+            "description": "Applicable make.",
+            "example": "Verizon"
+          },
+          "model": {
+            "type": "string",
+            "description": "Applicable model.",
+            "example": "Model-A"
+          },
+          "softwareFrom": {
+            "type": "string",
+            "description": "Old software name.",
+            "example": "FOTA_Verizon_Model-A_00To01_HF"
+          },
+          "softwareTo": {
+            "type": "string",
+            "description": "New software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies starting date client should download package. If null, client will download as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 20,
+                "endTime": 21
+              }
+            ]
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "Client will install package after date. If null, client will install as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 22,
+                "endTime": 23
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Software upgrade status.",
+            "example": "CampaignRequestPending"
+          }
+        },
+        "description": "Software upgrade information.",
+        "example": {
+          "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+          "accountName": "0402196254-00001",
+          "campaignName": "FOTA_Verizon_Upgrade",
+          "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+          "distributionType": "HTTP",
+          "make": "Verizon",
+          "model": "Model-A",
+          "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+          "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+          "startDate": "2020-08-21",
+          "endDate": "2020-08-22",
+          "downloadAfterDate": "2020-08-21",
+          "downloadTimeWindowList": [
+            {
+              "startTime": 20,
+              "endTime": 21
+            }
+          ],
+          "installAfterDate": "2020-08-21",
+          "installTimeWindowList": [
+            {
+              "startTime": 22,
+              "endTime": 23
+            }
+          ],
+          "status": "CampaignRequestPending"
+        }
+      },
+      "V2ChangeCampaignDatesRequest": {
+        "required": [
+          "endDate",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies starting date client should download package. If null, client will download as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows. Removing of existing windows is not allowed.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 3,
+                "endTime": 4
+              }
+            ]
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "Client will install package after date. If null, client will install as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows. Removing of existing windows is not allowed.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 5,
+                "endTime": 6
+              }
+            ]
+          }
+        },
+        "description": "New dates and time windows.",
+        "example": {
+          "startDate": "2020-08-21",
+          "endDate": "2020-08-22",
+          "downloadAfterDate": "2020-08-21",
+          "downloadTimeWindowList": [
+            {
+              "startTime": 3,
+              "endTime": 4
+            }
+          ],
+          "installAfterDate": "2020-08-21",
+          "installTimeWindowList": [
+            {
+              "startTime": 5,
+              "endTime": 6
+            }
+          ]
+        }
+      },
+      "V2AddOrRemoveDeviceRequest": {
+        "required": [
+          "Type",
+          "deviceList"
+        ],
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string",
+            "description": "Operation either 'append' or 'remove'.",
+            "example": "remove"
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990013907833575"
+            },
+            "example": [
+              "990013907884259",
+              "990013907835573",
+              "990013907833575"
+            ]
+          }
+        },
+        "description": "Add or remove device to existing software upgrade information.",
+        "example": {
+          "Type": "remove",
+          "deviceList": [
+            "990013907884259",
+            "990013907835573",
+            "990013907833575"
+          ]
+        }
+      },
+      "V2AddOrRemoveDeviceResult": {
+        "required": [
+          "accountName",
+          "campaignId",
+          "requestId"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0402196254-00001"
+          },
+          "campaignId": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Request identifier."
+          }
+        },
+        "description": "Add or remove devices from the existing software upgrade information."
+      },
+      "FotaV2CallbackRegistrationRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Callback URL for an subscribed service.",
+            "example": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+          }
+        },
+        "description": "Callback URL registration.",
+        "example": {
+          "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+        }
+      },
+      "FotaV2CallbackRegistrationResult": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Callback URL.",
+            "example": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+          }
+        },
+        "description": "Callback listener URL.",
+        "example": {
+          "url": "https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx"
+        }
+      },
+      "CallbackSummary": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Callback URL for an subscribed service.",
+            "example": "http://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+          }
+        },
+        "description": "Registered callback information.",
+        "example": {
+          "url": "http://10.120.102.183:50559/CallbackListener/FirmwareServiceMessages.asmx"
+        }
+      },
+      "SoftwarePackage": {
+        "required": [
+          "devicePlatformId",
+          "distributionType",
+          "launchDate",
+          "make",
+          "model",
+          "softwareName"
+        ],
+        "type": "object",
+        "properties": {
+          "softwareName": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "launchDate": {
+            "type": "string",
+            "description": "Software launch date.",
+            "format": "date",
+            "example": "2020-08-31"
+          },
+          "releaseNote": {
+            "type": "string",
+            "description": "Software release note reserved for future use.",
+            "example": ""
+          },
+          "model": {
+            "type": "string",
+            "description": "Software applicable device model.",
+            "example": "Model-A"
+          },
+          "make": {
+            "type": "string",
+            "description": "Software applicable device make.",
+            "example": "Verizon"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "LWM2M, OMD-DM or HTTP.",
+            "example": "HTTP"
+          },
+          "devicePlatformId": {
+            "type": "string",
+            "description": "The platform (Android, iOS, etc.) that the software can be applied to.",
+            "example": "IoT"
+          }
+        },
+        "description": "Software package information.",
+        "example": {
+          "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+          "launchDate": "2020-08-31",
+          "releaseNote": "",
+          "model": "Model-A",
+          "make": "Verizon",
+          "distributionType": "HTTP",
+          "devicePlatformId": "IoT"
+        }
+      },
+      "DeviceSoftwareUpgrade": {
+        "required": [
+          "accountName",
+          "deviceId",
+          "id",
+          "reason",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "990013907835573"
+          },
+          "id": {
+            "type": "string",
+            "description": "Upgrade identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0402196254-00001"
+          },
+          "softwareName": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Software upgrade start date.",
+            "format": "date",
+            "example": "2018-03-05"
+          },
+          "status": {
+            "type": "string",
+            "description": "Software upgrade status.",
+            "example": "UpgradeSuccess"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Software upgrade result reason.",
+            "example": "success"
+          }
+        },
+        "description": "Array of software upgrade objects with the specified status.",
+        "example": {
+          "deviceId": "990013907835573",
+          "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+          "accountName": "0402196254-00001",
+          "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+          "startDate": "2018-03-05",
+          "status": "UpgradeSuccess",
+          "reason": "success"
+        }
+      },
+      "V2CampaignHistory": {
+        "required": [
+          "campaignList",
+          "hasMoreData"
+        ],
+        "type": "object",
+        "properties": {
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Has more report flag.",
+            "example": true
+          },
+          "lastSeenCampaignId": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "campaignList": {
+            "type": "array",
+            "nullable": true,
+            "description": "Software upgrade list.",
+            "items": {
+              "$ref": "#/components/schemas/V2CampaignMetaInfo"
+            },
+            "example": [
+              {
+                "accountName": "0402196254-00001",
+                "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+                "campaignName": "FOTA_Verizon_Upgrade",
+                "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+                "distributionType": "HTTP",
+                "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+                "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+                "make": "Verizon",
+                "model": "Model-A",
+                "startDate": "2020-08-21",
+                "endDate": "2020-08-22",
+                "downloadAfterDate": "2020-08-21",
+                "downloadTimeWindowList": [
+                  {
+                    "startTime": 20,
+                    "endTime": 21
+                  }
+                ],
+                "installAfterDate": "2020-08-21",
+                "installTimeWindowList": [
+                  {
+                    "startTime": 22,
+                    "endTime": 23
+                  }
+                ],
+                "status": "CampaignEnded"
+              }
+            ]
+          }
+        },
+        "description": "Campaign history details.",
+        "example": {
+          "hasMoreData": true,
+          "lastSeenCampaignId": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+          "campaignList": [
+            {
+              "accountName": "0402196254-00001",
+              "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+              "campaignName": "FOTA_Verizon_Upgrade",
+              "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+              "distributionType": "HTTP",
+              "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+              "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+              "make": "Verizon",
+              "model": "Model-A",
+              "startDate": "2020-08-21",
+              "endDate": "2020-08-22",
+              "downloadAfterDate": "2020-08-21",
+              "downloadTimeWindowList": [
+                {
+                  "startTime": 20,
+                  "endTime": 21
+                }
+              ],
+              "installAfterDate": "2020-08-21",
+              "installTimeWindowList": [
+                {
+                  "startTime": 22,
+                  "endTime": 23
+                }
+              ],
+              "status": "CampaignEnded"
+            }
+          ]
+        }
+      },
+      "V2CampaignMetaInfo": {
+        "required": [
+          "accountName",
+          "distributionType",
+          "endDate",
+          "id",
+          "make",
+          "model",
+          "softwareFrom",
+          "softwareName",
+          "softwareTo",
+          "startDate",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account identifier.",
+            "example": "0402196254-00001"
+          },
+          "id": {
+            "type": "string",
+            "description": "Campaign identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "campaignName": {
+            "type": "string",
+            "description": "Campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "softwareName": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "LWM2M, OMD-DM or HTTP.",
+            "example": "HTTP"
+          },
+          "softwareFrom": {
+            "type": "string",
+            "description": "Old software name.",
+            "example": "FOTA_Verizon_Model-A_00To01_HF"
+          },
+          "softwareTo": {
+            "type": "string",
+            "description": "New software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "make": {
+            "type": "string",
+            "description": "Applicable make.",
+            "example": "Verizon"
+          },
+          "model": {
+            "type": "string",
+            "description": "Applicable model.",
+            "example": "Model-A"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies starting date client should download package. If null, client will download as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 20,
+                "endTime": 21
+              }
+            ]
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "Client will install package after date. If null, client will install as soon as possible.",
+            "format": "date",
+            "example": "2020-08-21"
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows.",
+            "items": {
+              "$ref": "#/components/schemas/V2TimeWindow"
+            },
+            "example": [
+              {
+                "startTime": 22,
+                "endTime": 23
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Software upgrade status.",
+            "example": "CampaignEnded"
+          }
+        },
+        "description": "Campaign and campaign details.",
+        "example": {
+          "accountName": "0402196254-00001",
+          "id": "60b5d639-ccdc-4db8-8824-069bd94c95bf",
+          "campaignName": "FOTA_Verizon_Upgrade",
+          "softwareName": "FOTA_Verizon_Model-A_02To03_HF",
+          "distributionType": "HTTP",
+          "softwareFrom": "FOTA_Verizon_Model-A_00To01_HF",
+          "softwareTo": "FOTA_Verizon_Model-A_02To03_HF",
+          "make": "Verizon",
+          "model": "Model-A",
+          "startDate": "2020-08-21",
+          "endDate": "2020-08-22",
+          "downloadAfterDate": "2020-08-21",
+          "downloadTimeWindowList": [
+            {
+              "startTime": 20,
+              "endTime": 21
+            }
+          ],
+          "installAfterDate": "2020-08-21",
+          "installTimeWindowList": [
+            {
+              "startTime": 22,
+              "endTime": 23
+            }
+          ],
+          "status": "CampaignEnded"
+        }
+      },
+      "V2CampaignDevice": {
+        "required": [
+          "deviceList",
+          "hasMoreData",
+          "maxPageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "totalDevice": {
+            "type": "integer",
+            "description": "Total device count.",
+            "example": 1148
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Has more report flag.",
+            "example": true
+          },
+          "lastSeenDeviceId": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "15-digit IMEI"
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "description": "Maximum page size.",
+            "example": 1000
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "List of devices with id in IMEI.",
+            "items": {
+              "$ref": "#/components/schemas/V2DeviceStatus"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "UpgradeSuccess",
+                "resultReason": "DownloadInstallSucceeded"
+              },
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "UpgradeSuccess",
+                "resultReason": "DownloadInstallSucceeded"
+              },
+              {
+                "deviceId": "15-digit IMEI",
+                "status": "UpgradeSuccess",
+                "resultReason": "DownloadInstallSucceeded"
+              }
+            ]
+          }
+        },
+        "description": "List of devices in a campaign.",
+        "example": {
+          "totalDevice": 1148,
+          "hasMoreData": true,
+          "lastSeenDeviceId": "15-digit IMEI",
+          "maxPageSize": 1000,
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "UpgradeSuccess",
+              "resultReason": "DownloadInstallSucceeded"
+            },
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "UpgradeSuccess",
+              "resultReason": "DownloadInstallSucceeded"
+            },
+            {
+              "deviceId": "15-digit IMEI",
+              "status": "UpgradeSuccess",
+              "resultReason": "DownloadInstallSucceeded"
+            }
+          ]
+        }
+      },
+      "V2AccountDeviceList": {
+        "required": [
+          "accountName",
+          "deviceList",
+          "hasMoreData",
+          "maxPageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "description": "Account name.",
+            "example": "0000123456-00001"
+          },
+          "hasMoreData": {
+            "type": "boolean",
+            "description": "Has more device flag?",
+            "example": true
+          },
+          "lastSeenDeviceId": {
+            "type": "string",
+            "description": "Last seen device identifier.",
+            "example": "15-digit IMEI"
+          },
+          "maxPageSize": {
+            "type": "integer",
+            "description": "Maximum page size.",
+            "example": 1000
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Account device list.",
+            "items": {
+              "$ref": "#/components/schemas/V2AccountDevice"
+            },
+            "example": [
+              {
+                "deviceId": "15-digit IMEI",
+                "mdn": "10-digit MDN",
+                "model": "Model-A",
+                "make": "Verizon",
+                "fotaEligible": true,
+                "appFotaEligible": true,
+                "licenseAssigned": true,
+                "distributionType": "HTTP",
+                "softwareList": [
+                  {
+                    "name": "FOTA_Verizon_Model-A_02To03_HF",
+                    "version": "3",
+                    "upgradeTime": "2020-09-08T19:00:51.541Z"
+                  }
+                ],
+                "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+              },
+              {
+                "deviceId": "15-digit IMEI",
+                "mdn": "10-digit MDN",
+                "model": "Model-A",
+                "make": "Verizon",
+                "fotaEligible": true,
+                "appFotaEligible": true,
+                "licenseAssigned": true,
+                "distributionType": "HTTP",
+                "softwareList": [
+                  {
+                    "name": "FOTA_Verizon_Model-A_02To03_HF",
+                    "version": "3",
+                    "upgradeTime": "2020-09-08T19:00:51.541Z"
+                  }
+                ],
+                "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+              },
+              {
+                "deviceId": "15-digit IMEI",
+                "mdn": "10-digit MDN",
+                "model": "Model-A",
+                "make": "Verizon",
+                "fotaEligible": true,
+                "appFotaEligible": true,
+                "licenseAssigned": true,
+                "distributionType": "HTTP",
+                "softwareList": [
+                  {
+                    "name": "FOTA_Verizon_Model-A_02To03_HF",
+                    "version": "3",
+                    "upgradeTime": "2020-09-08T19:00:51.541Z"
+                  }
+                ],
+                "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+                "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+              }
+            ]
+          }
+        },
+        "description": "List of device information for an account.",
+        "example": {
+          "accountName": "0000123456-00001",
+          "hasMoreData": true,
+          "lastSeenDeviceId": "15-digit IMEI",
+          "maxPageSize": 1000,
+          "deviceList": [
+            {
+              "deviceId": "15-digit IMEI",
+              "mdn": "10-digit MDN",
+              "model": "Model-A",
+              "make": "Verizon",
+              "fotaEligible": true,
+              "appFotaEligible": true,
+              "licenseAssigned": true,
+              "distributionType": "HTTP",
+              "softwareList": [
+                {
+                  "name": "FOTA_Verizon_Model-A_02To03_HF",
+                  "version": "3",
+                  "upgradeTime": "2020-09-08T19:00:51.541Z"
+                }
+              ],
+              "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+            },
+            {
+              "deviceId": "15-digit IMEI",
+              "mdn": "10-digit MDN",
+              "model": "Model-A",
+              "make": "Verizon",
+              "fotaEligible": true,
+              "appFotaEligible": true,
+              "licenseAssigned": true,
+              "distributionType": "HTTP",
+              "softwareList": [
+                {
+                  "name": "FOTA_Verizon_Model-A_02To03_HF",
+                  "version": "3",
+                  "upgradeTime": "2020-09-08T19:00:51.541Z"
+                }
+              ],
+              "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+            },
+            {
+              "deviceId": "15-digit IMEI",
+              "mdn": "10-digit MDN",
+              "model": "Model-A",
+              "make": "Verizon",
+              "fotaEligible": true,
+              "appFotaEligible": true,
+              "licenseAssigned": true,
+              "distributionType": "HTTP",
+              "softwareList": [
+                {
+                  "name": "FOTA_Verizon_Model-A_02To03_HF",
+                  "version": "3",
+                  "upgradeTime": "2020-09-08T19:00:51.541Z"
+                }
+              ],
+              "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+              "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+            }
+          ]
+        }
+      },
+      "V2AccountDevice": {
+        "required": [
+          "appFotaEligible",
+          "deviceId",
+          "distributionType",
+          "fotaEligible",
+          "licenseAssigned",
+          "make",
+          "mdn",
+          "model",
+          "softwareList"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device identifier.",
+            "example": "15-digit IMEI"
+          },
+          "mdn": {
+            "type": "string",
+            "description": "MDN.",
+            "example": "10-digit MDN"
+          },
+          "model": {
+            "type": "string",
+            "description": "Device model.",
+            "example": "Model-A"
+          },
+          "make": {
+            "type": "string",
+            "description": "Device make.",
+            "example": "Verizon"
+          },
+          "fotaEligible": {
+            "type": "boolean",
+            "description": "Device FOTA capable.",
+            "example": true
+          },
+          "appFotaEligible": {
+            "type": "boolean",
+            "description": "Device application FOTA capable.",
+            "example": true
+          },
+          "licenseAssigned": {
+            "type": "boolean",
+            "description": "License assigned device.",
+            "example": true
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "LWM2M, OMD-DM or HTTP.",
+            "example": "HTTP"
+          },
+          "softwareList": {
+            "type": "array",
+            "description": "List of sofware.",
+            "items": {
+              "$ref": "#/components/schemas/V2SoftwareInfo"
+            },
+            "example": [
+              {
+                "name": "FOTA_Verizon_Model-A_02To03_HF",
+                "version": "3",
+                "upgradeTime": "2020-09-08T19:00:51.541Z"
+              }
+            ]
+          },
+          "createTime": {
+            "type": "string",
+            "description": "The date and time of when the device is created.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "upgradeTime": {
+            "type": "string",
+            "description": "The date and time of when the device firmware or software is upgraded.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "updateTime": {
+            "type": "string",
+            "description": "The date and time of when the device is updated.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          },
+          "refreshTime": {
+            "type": "string",
+            "description": "The date and time of when the device is refreshed.",
+            "example": "2021-06-03 00:03:56.079 +0000 UTC"
+          }
+        },
+        "description": "Account device information.",
+        "example": {
+          "deviceId": "15-digit IMEI",
+          "mdn": "10-digit MDN",
+          "model": "Model-A",
+          "make": "Verizon",
+          "fotaEligible": true,
+          "appFotaEligible": true,
+          "licenseAssigned": true,
+          "distributionType": "HTTP",
+          "softwareList": [
+            {
+              "name": "FOTA_Verizon_Model-A_02To03_HF",
+              "version": "3",
+              "upgradeTime": "2020-09-08T19:00:51.541Z"
+            }
+          ],
+          "createTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "upgradeTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "updateTime": "2021-06-03 00:03:56.079 +0000 UTC",
+          "refreshTime": "2021-06-03 00:03:56.079 +0000 UTC"
+        }
+      },
+      "V2SoftwareInfo": {
+        "required": [
+          "name",
+          "upgradeTime",
+          "version"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "version": {
+            "type": "string",
+            "description": "Software version.",
+            "example": "3"
+          },
+          "upgradeTime": {
+            "type": "string",
+            "description": "Upgrade time.",
+            "example": "2020-09-08T19:00:51.541Z"
+          }
+        },
+        "description": "Software information.",
+        "example": {
+          "name": "FOTA_Verizon_Model-A_02To03_HF",
+          "version": "3",
+          "upgradeTime": "2020-09-08T19:00:51.541Z"
+        }
+      },
+      "V2TimeWindow": {
+        "required": [
+          "endTime",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "integer",
+            "description": "Start hour in range [0..23], current hour >= startTime.",
+            "example": 20
+          },
+          "endTime": {
+            "type": "integer",
+            "description": "End hour in range [1..24], current hour < endTime.",
+            "example": 21
+          }
+        },
+        "description": "Allowed start and end time windows.",
+        "example": {
+          "startTime": 20,
+          "endTime": 21
+        }
+      },
+      "DeviceLog": {
+        "required": [
+          "binaryLogFileBase64",
+          "binaryLogFilename",
+          "deviceId",
+          "eventLog",
+          "logTime",
+          "logType"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "990013907835573"
+          },
+          "logTime": {
+            "type": "string",
+            "description": "Time of log.",
+            "format": "date-time",
+            "example": "2020-10-22T19:29:50.901Z"
+          },
+          "logType": {
+            "type": "string",
+            "description": "Log type (one of SoftwareUpdate, Event, UserNotification, AgentService, Wireless, WirelessWeb, MobileBroadbandModem, WindowsMDM)."
+          },
+          "eventLog": {
+            "type": "string",
+            "description": "Event log."
+          },
+          "binaryLogFileBase64": {
+            "type": "string",
+            "description": "Base64-encoded contents of binary log file."
+          },
+          "binaryLogFilename": {
+            "type": "string",
+            "description": "File name of binary log file."
+          }
+        },
+        "description": "Device logging information."
+      },
+      "V2DeviceStatus": {
+        "required": [
+          "deviceId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "990000473475967"
+          },
+          "status": {
+            "type": "string",
+            "description": "Success or failure.",
+            "example": "Failure"
+          },
+          "resultReason": {
+            "type": "string",
+            "description": "Result reason.",
+            "example": "Device does not exist."
+          }
+        },
+        "description": "Device with id in IMEI.",
+        "example": {
+          "deviceId": "990000473475967",
+          "status": "Failure",
+          "resultReason": "Device does not exist."
+        }
+      },
+      "DeviceLoggingRequest": {
+        "required": [
+          "deviceIds"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceIds": {
+            "type": "array",
+            "description": "List of device IMEI identifiers.",
+            "items": {
+              "type": "string",
+              "description": "Device IMEI.",
+              "example": "990013907835573"
+            },
+            "example": [
+              "990013907835573",
+              "991124018926684",
+              "992234129057795",
+              "998891785613351",
+              "990013907835573"
+            ]
+          }
+        },
+        "description": "Device logging information.",
+        "example": {
+          "deviceIds": [
+            "990013907835573",
+            "991124018926684",
+            "992234129057795",
+            "998891785613351",
+            "990013907835573"
+          ]
+        }
+      },
+      "DeviceLoggingStatus": {
+        "required": [
+          "deviceId",
+          "expiryDate"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "990013907835573"
+          },
+          "expiryDate": {
+            "type": "string",
+            "description": "The date when device logging expires.",
+            "format": "date",
+            "example": "2020-10-19"
+          }
+        },
+        "description": "Device logging status information.",
+        "example": {
+          "deviceId": "990013907835573",
+          "expiryDate": "2020-10-19"
+        }
+      },
+      "GetDeviceLogsResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/DeviceLog"
+        },
+        "description": "List of device logs."
+      },
+      "GetCheckinHistoryResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CheckInHistoryItem"
+        },
+        "description": "List of check-in history entries."
+      },
+      "CheckInHistoryItem": {
+        "required": [
+          "clientType",
+          "deviceId",
+          "failureType",
+          "result",
+          "timeCompleted"
+        ],
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "description": "Device IMEI.",
+            "example": "990013907835573"
+          },
+          "clientType": {
+            "type": "string",
+            "description": "Type of client."
+          },
+          "result": {
+            "type": "string"
+          },
+          "failureType": {
+            "type": "string"
+          },
+          "timeCompleted": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2020-10-22T19:35:07.753Z"
+          }
+        },
+        "description": "Check-in history for a device."
+      },
+      "FotaV2SuccessResult": {
+        "required": [
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "description": "Response to a successful request.",
+        "example": {
+          "success": true
+        }
+      },
+      "FotaV2Result": {
+        "required": [
+          "errorCode",
+          "errorMessage"
+        ],
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "description": "Code of the error.",
+            "example": "error code string"
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Details of the error.",
+            "example": "error message string"
+          }
+        },
+        "description": "Response for error cases.",
+        "example": {
+          "errorCode": "error code string",
+          "errorMessage": "error message string"
+        }
+      },
+      "UploadConfigurationFilesResponse": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "The name of the file you are upgrading to.",
+            "example": "hello-world.txt"
+          },
+          "fileVersion": {
+            "type": "string",
+            "description": "The version of the file you are upgrading to.",
+            "example": "1.0"
+          },
+          "launchDate": {
+            "type": "string",
+            "description": "Software launch date.",
+            "format": "date",
+            "example": "2020-08-31"
+          },
+          "releaseNote": {
+            "type": "string",
+            "description": "Software release note.",
+            "example": "note"
+          },
+          "model": {
+            "type": "string",
+            "description": "Software applicable device model.",
+            "example": "Model-A"
+          },
+          "make": {
+            "type": "string",
+            "description": "Software applicable device make.",
+            "example": "Verizon"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "LWM2M, OMD-DM or HTTP.",
+            "example": "HTTP"
+          },
+          "devicePlatformId": {
+            "type": "string",
+            "description": "The platform (Android, iOS, etc.) that the software can be applied to.",
+            "example": "IoT"
+          },
+          "localTargetPath": {
+            "type": "string",
+            "description": "Local target path on the device.",
+            "example": "IoT"
+          }
+        }
+      },
+      "RetrievesAvailableFilesResponseList": {
+        "type": "object",
+        "properties": {
+          "AvailableFilesResponse": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/RetrievesAvailableFilesResponse"
+            }
+          }
+        }
+      },
+      "RetrievesAvailableFilesResponse": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "ThingSpace-generated name of the file. You will use this name when listing or scheduling campaigns for the file.",
+            "example": "configfile-Verizon_VZW1_hello-world.txt"
+          },
+          "fileVersion": {
+            "type": "string",
+            "description": "Version of the file.",
+            "example": "1.0"
+          },
+          "releaseNote": {
+            "type": "string",
+            "description": "Software release note.",
+            "example": "Hello world initial file"
+          },
+          "make": {
+            "type": "string",
+            "description": "The software-applicable device make.",
+            "example": "Verizon"
+          },
+          "model": {
+            "type": "string",
+            "description": "The software-applicable device model.",
+            "example": "VZW1"
+          },
+          "localTargetPath": {
+            "type": "string",
+            "description": "Local target path on the device.",
+            "example": "/VZWFOTA/hello-world.txt"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "Valid values",
+            "example": "HTTP"
+          },
+          "devicePlatformId": {
+            "type": "string",
+            "description": "The platform (Android, iOS, etc.,) that the software can be applied to.",
+            "example": "IoT"
+          }
+        }
+      },
+      "UploadAndScheduleFileRequest": {
+        "type": "object",
+        "properties": {
+          "campaignName": {
+            "type": "string",
+            "description": "The campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "The name of the file you are upgrading to.",
+            "example": "configfile-Verizon_VZW1_hello-world.txt"
+          },
+          "fileVersion": {
+            "type": "string",
+            "description": "The version of the file you are upgrading to.",
+            "example": "1.0"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "Valid values",
+            "example": "HTTP"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "example": "2021-02-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "example": "2021-02-08"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies the starting date the client should download the package. If null, client downloads as soon as possible.",
+            "example": "2021-02-08"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows.",
+            "items": {
+              "$ref": "#/components/schemas/downloadTimeWindow"
+            }
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "The date after which you install the package. If null, install as soon as possible.",
+            "example": ""
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows.",
+            "items": {
+              "$ref": "#/components/schemas/downloadTimeWindow"
+            }
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "downloadTimeWindow": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "description": "Device IMEI list.",
+            "example": "0"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Device IMEI list.",
+            "example": "0"
+          }
+        }
+      },
+      "UploadAndScheduleFileResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Updgrade identifier.",
+            "example": "60b5d639-ccdc-4db8-8824-069bd94c95bf"
+          },
+          "accountName": {
+            "type": "string",
+            "description": "Account identifer.",
+            "example": "0242078689-00001"
+          },
+          "campaignName": {
+            "type": "string",
+            "description": "The campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "softwareName": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "softwareFrom": {
+            "type": "string",
+            "description": "Old software name.",
+            "example": "FOTA_Verizon_Model-A_00To01_HF"
+          },
+          "softwareTo": {
+            "type": "string",
+            "description": "New software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "The name of the file you are upgrading to.",
+            "example": "configfile-Verizon_VZW1_hello-world.txt"
+          },
+          "fileVersion": {
+            "type": "string",
+            "description": "The version of the file you are upgrading to.",
+            "example": "1.0"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "Valid values",
+            "example": "HTTP"
+          },
+          "make": {
+            "type": "string",
+            "description": "Applicable make.",
+            "example": "Verizon"
+          },
+          "model": {
+            "type": "string",
+            "description": "Applicable model.",
+            "example": "Model-A"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "example": "2021-02-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "example": "2021-02-08"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies the starting date the client should download the package. If null, client downloads as soon as possible.",
+            "example": "2021-02-08"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows.",
+            "items": {
+              "$ref": "#/components/schemas/downloadTimeWindow"
+            }
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "The date after which you install the package. If null, install as soon as possible.",
+            "example": ""
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows.",
+            "items": {
+              "$ref": "#/components/schemas/downloadTimeWindow"
+            }
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Software update status.",
+            "example": "pending"
+          }
+        }
+      },
+      "SchedulesSoftwareUpgradeRequest": {
+        "type": "object",
+        "properties": {
+          "campaignName": {
+            "type": "string",
+            "description": "The campaign name.",
+            "example": "FOTA_Verizon_Upgrade"
+          },
+          "softwareName": {
+            "type": "string",
+            "description": "Software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "softwareFrom": {
+            "type": "string",
+            "description": "Old software name.",
+            "example": "FOTA_Verizon_Model-A_00To01_HF"
+          },
+          "softwareTo": {
+            "type": "string",
+            "description": "New software name.",
+            "example": "FOTA_Verizon_Model-A_02To03_HF"
+          },
+          "distributionType": {
+            "type": "string",
+            "description": "Valid values",
+            "example": "HTTP"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Campaign start date.",
+            "example": "2021-02-08"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Campaign end date.",
+            "example": "2021-02-08"
+          },
+          "downloadAfterDate": {
+            "type": "string",
+            "description": "Specifies the starting date the client should download the package. If null, client downloads as soon as possible.",
+            "example": "2021-02-08"
+          },
+          "downloadTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed download time windows.",
+            "items": {
+              "$ref": "#/components/schemas/downloadTimeWindow"
+            }
+          },
+          "installAfterDate": {
+            "type": "string",
+            "description": "The date after which you install the package. If null, install as soon as possible.",
+            "example": ""
+          },
+          "installTimeWindowList": {
+            "type": "array",
+            "description": "List of allowed install time windows.",
+            "items": {
+              "$ref": "#/components/schemas/downloadTimeWindow"
+            }
+          },
+          "deviceList": {
+            "type": "array",
+            "description": "Device IMEI list.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

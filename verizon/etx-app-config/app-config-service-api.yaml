@@ -1,0 +1,1259 @@
+openapi: 3.0.3
+info:
+  title: Edge Transportation Exchange - Application Configuration API
+  description: |
+    The Edge Transportation Exchange's (ETX) Application Configuration APIs allow ETX users to register and manage configurations of the applications in the system.
+
+    The configurations are used to define the geofence based messages that are sent to the road users when they enter, leave, reside in, or cross the geofence. Additional trigger conditions based on speed or direction can also be defined. The messages can be of different types, such as Road Side Alert (RSA), Traveler Information Message (TIM), or generic messages. The messages can be public or private, and the system supports the SAE J2735 standard messages, as well as vendor-specific messages.
+
+    In order to use the APIs the user needs to have a ThingSpace account and use their ThingSpace credential to request an Access/Bearer token, which is used to authorize the user, and also request a Session/M2M token to authenticate the user.
+
+    * For details on how to obtain the token please refer to the [ThingSpace Quick Start Guide - Obtaining an Access Token](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-an-access_token).
+    * For detail on how to obtain a Session/M2M token please refer to the [ThingSpace Quick Start Guide - Obtaining a VZ-M2M Session Token Programmatically](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-a-vz-m2m-sessiontoken-programmatically).
+    * Or watch the [ThingSpace API Video Guide 1](https://www.youtube.com/watch?v=QPJQFT3637w) and [ThingSpace API Video Guide 2](https://www.youtube.com/watch?v=hc9udGp4P_s) that explains how to obtain both tokens.
+
+  contact:
+    name: Verizon ETX Team
+    email: vzimp@verizon.com
+  version: 1.1.0
+  x-server-configuration:
+    default-environment: Production
+    default-server: IMP Server
+    environments:
+    - name: Production
+      servers:
+      - name: IMP Server
+        url: https://imp.thingspace.verizon.com
+      - name: OAuth Server
+        url: https://thingspace.verizon.com/api/ts/v1
+    - name: Staging
+      servers:
+      - name: IMP Server
+        url: https://imp-staging.thingspace.verizon.com
+      - name: OAuth Server
+        url: https://staging.thingspace.verizon.com/api/ts/v1
+servers:
+  - url: https://imp-dev.thingspace.verizon.com
+    description: Dev environment
+  - url: https://imp-qa.thingspace.verizon.com
+    description: QA environment
+  - url: https://imp-staging.thingspace.verizon.com
+    description: Staging environment
+  - url: https://imp.thingspace.verizon.com
+    description: Production environment
+paths:
+  /api/v1/application/configurations/geofence/ids:
+    get:
+      tags:
+        - App Config Service
+      summary: Get all configurations by VendorID
+      description: |
+        This endpoint fetches and returns the list of configurations defined by the Vendor. The list contains the configurations' identifier, name, description, and active flag. The vendor ID is provided when the configuration is created through the POST request.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      operationId: getConfigurationList
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+      responses:
+        "200":
+          description: Configuration list was queried successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigurationList"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "404":
+          description: Configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+      security:
+        - thingspace_oauth: []
+          SessionToken: []
+          VendorID: []
+  /api/v1/application/configurations/geofence:
+    get:
+      tags:
+        - App Config Service
+      summary: Get a configuration by its identifier
+      description: |
+        This endpoint fetches and returns a specific configuration's details. The configuration ID parameter, which was provided when the configuration was created through the POST request, is need to retrieve the configuration details.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      operationId: getConfiguration
+      parameters:
+        - $ref: "#/components/parameters/ConfigurationId"
+        - $ref: "#/components/parameters/VendorID"
+      responses:
+        "200":
+          description: Configuration found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeoFenceConfigurationResponse"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "404":
+          description: Configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+      security:
+        - thingspace_oauth: []
+          SessionToken: []
+          VendorID: []
+    post:
+      tags:
+        - App Config Service
+      summary: Create a configuration
+      description: |
+        This endpoint creates a new configuration in the system. The data for the new configuration should be provided as JSON in the body of the POST request. The system will return with a unique ID for the configuration, which is needed for any further manipulation (update or delete) of the configuration.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      operationId: createConfiguration
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeoFenceConfigurationRequest"
+        required: true
+      responses:
+        "201":
+          description: Configuration created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeoFenceConfigurationResponse"
+        "400":
+          description: Invalid configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+      security:
+        - thingspace_oauth: []
+          SessionToken: []
+          VendorID: []
+    put:
+      tags:
+        - App Config Service
+      summary: Update a configuration
+      description: |
+        This endpoint updates an existing configuration. Similar to POST, the updated data for the configuration should be provided as JSON in the body of the PUT request. The configuration ID parameter, which was provided by the POST (create) operation, is required to do any updates on the configuration.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      operationId: updateConfiguration
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+        - $ref: "#/components/parameters/ConfigurationId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeoFenceConfigurationUpdateRequest"
+        required: true
+      responses:
+        "204":
+          description: Configuration applied
+        "400":
+          description: Invalid configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "404":
+          description: Configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+      security:
+        - thingspace_oauth: []
+          SessionToken: []
+          VendorID: []
+    delete:
+      tags:
+        - App Config Service
+      summary: Delete a configuration
+      description: |
+        This endpoint deletes a specific configuration from the system. It requires the configuration ID parameter, which was provided by the POST (create) operation.
+
+        Note: The user needs to authenticate with their ThingSpace credentials using the Access/Bearer and Session/M2M tokens in order to call this API.
+      operationId: deleteConfiguration
+      parameters:
+        - $ref: "#/components/parameters/VendorID"
+        - $ref: "#/components/parameters/ConfigurationId"
+      responses:
+        "204":
+          description: Configuration deleted
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseError"
+      security:
+        - thingspace_oauth: []
+          SessionToken: []
+          VendorID: []
+components:
+  parameters:
+    VendorID:
+      name: VendorID
+      in: header
+      description: The vendor's identifier
+      required: true
+      schema:
+        $ref: "#/components/schemas/VendorID"
+    ConfigurationId:
+      name: id
+      in: query
+      description: The configuration identifier
+      required: true
+      allowEmptyValue: false
+      schema:
+        $ref: "#/components/schemas/ConfigurationId"
+      example: "18bac1ff-c7bd-44d9-a7ad-06a093a94713"
+  schemas:
+    GeoFenceConfigurationRequest:
+      description: Request for /api/v1/application/configurations/geofence POST endpoint. It requires the vendorId, geofence, messages and isActive fields to be populated.
+      type: object
+      required:
+        - geoFence
+        - messages
+        - isActive
+      properties:
+        name:
+          $ref: "#/components/schemas/ConfigurationName"
+        description:
+          $ref: "#/components/schemas/ConfigurationDescription"
+        geoFence:
+          $ref: "#/components/schemas/GeoFence"
+        messages:
+          $ref: "#/components/schemas/Messages"
+        isActive:
+          type: boolean
+      minProperties: 3
+      maxProperties: 5
+      additionalProperties: false
+    GeoFenceConfigurationResponse:
+      description: Response for /api/v1/application/configurations/geofence endpoint. It provides a response if the configuration was created and saved in the system.
+      type: object
+      required:
+        - id
+        - vendorId
+        - geoFence
+        - messages
+        - isActive
+      properties:
+        id:
+          $ref: "#/components/schemas/ConfigurationId"
+        vendorId:
+          $ref: "#/components/schemas/VendorID"
+        name:
+          $ref: "#/components/schemas/ConfigurationName"
+        description:
+          $ref: "#/components/schemas/ConfigurationDescription"
+        geoFence:
+          $ref: "#/components/schemas/GeoFence"
+        messages:
+          $ref: "#/components/schemas/Messages"
+        isActive:
+          type: boolean
+      additionalProperties: false
+    GeoFenceConfigurationUpdateRequest:
+      description: Request for /api/v1/application/configurations/geofence PUT endpoint. It requires at least one of vendorId, name, description, geofence, messages and isActive fields to be populated.
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/ConfigurationName"
+        description:
+          $ref: "#/components/schemas/ConfigurationDescription"
+        geoFence:
+          $ref: "#/components/schemas/GeoFence"
+        messages:
+          $ref: "#/components/schemas/Messages"
+        isActive:
+          type: boolean
+      minProperties: 1
+      additionalProperties: false
+    ConfigurationList:
+      description: Response for /api/v1/application/configurations/geofence/ids GET endpoint.
+      type: array
+      items:
+        $ref: "#/components/schemas/ConfigurationListItem"
+      maxItems: 1000
+    ConfigurationListItem:
+      description: The ConfigurationList's item that contains the configuration identifier, name, description and the active flag.
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/ConfigurationId"
+        name:
+          $ref: "#/components/schemas/ConfigurationName"
+        description:
+          $ref: "#/components/schemas/ConfigurationDescription"
+        isActive:
+          type: boolean
+      required:
+        - id
+        - isActive
+      additionalProperties: false
+    ConfigurationId:
+      description: The generated ID (UUID v4) for the configuration. It has to be used when asking for changing any of the configuration parameters.
+      type: string
+      minLength: 32
+      maxLength: 36
+      pattern: ^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?4[0-9a-fA-F]{3}-?[89abAB][0-9a-fA-F]{3}-?[0-9a-fA-F]{12}$
+      example: a4fcd16a-343d-4527-8203-2f46e3e4ff4b
+    GeoFence:
+      title: ETXGeofence
+      description: |
+        The GeoJSON representation of geofence. Geofence supports the following geometry types: LineString, Polygon, MultiLineString, and MultiPolygon. The system only supports a single Feature in the FeatureCollection, so only one Line, Polygon, MultiLine or MultiPolygon can be defined within one Geofencing configuration.
+      type: object
+      properties:
+        type:
+          title: FeatureCollectionType
+          type: string
+          enum:
+            - FeatureCollection
+        features:
+          $ref: "#/components/schemas/Features"
+      required:
+        - type
+        - features
+      additionalProperties: false
+    Features:
+      type: array
+      items:
+        $ref: "#/components/schemas/Feature"
+      minItems: 1
+      maxItems: 1
+    Position:
+      description: |
+        GeoJSon fundamental geometry construct.
+        A position is an array of numbers. There MUST be two or more elements.
+        The first two elements are longitude and latitude, or easting and northing, precisely in that order and using decimal numbers.
+
+        NOTE: This API only supports the longitude and latitude, not the altitude. Altitude will be added in a future release.
+      type: array
+      minItems: 2
+      maxItems: 2
+      items:
+        type: number
+        format: double
+        minimum: -180.0
+        maximum: 180.0
+    LineString:
+      description: |
+        A LineString is a type of geometry that represents a collection of points that are connected by line segments.
+      type: object
+      properties:
+        type:
+          title: LineStringType
+          type: string
+          enum:
+            - LineString
+        coordinates:
+          $ref: "#/components/schemas/LineStringCoordinates"
+      required:
+        - type
+        - coordinates
+
+    LineStringCoordinates:
+      type: array
+      items:
+        $ref: "#/components/schemas/Position"
+      minItems: 2
+      maxItems: 63
+    Polygon:
+      description: |
+        A Polygon is a type of geometry that represents a collection of points that form a closed ring.
+
+        NOTE: This API only supports a single polygon in the Polygon geometry, so holes cannot be defines at this point. Support for hole will be added in future releases.
+      type: object
+      properties:
+        type:
+          title: PolygonType
+          type: string
+          enum:
+            - Polygon
+        coordinates:
+          $ref: "#/components/schemas/PolygonCoordinates"
+      required:
+        - type
+        - coordinates
+    PolygonCoordinates:
+      type: array
+      items:
+        type: array
+        items:
+          $ref: "#/components/schemas/Position"
+        minItems: 4
+        maxItems: 63
+      minItems: 1
+      maxItems: 1
+    MultiLineString:
+      description: |
+        A MultiLineString is a type of geometry that represents a collection of LineString geometries.
+      type: object
+      properties:
+        type:
+          title: MultiLineStringType
+          type: string
+          enum:
+            - MultiLineString
+        coordinates:
+          $ref: "#/components/schemas/MultiLineStringCoordinates"
+      required:
+        - type
+        - coordinates
+    MultiLineStringCoordinates:
+      type: array
+      items:
+        $ref: "#/components/schemas/LineStringCoordinates"
+      minItems: 1
+      maxItems: 10
+    MultiPolygon:
+      description: |
+        A MultiPolygon is a type of geometry that represents a collection of Polygon geometries.
+      type: object
+      properties:
+        type:
+          title: MultiPolygonType
+          type: string
+          enum:
+            - MultiPolygon
+        coordinates:
+          $ref: "#/components/schemas/MultiPolygonCoordinates"
+      required:
+        - type
+        - coordinates
+    MultiPolygonCoordinates:
+      type: array
+      items:
+        $ref: "#/components/schemas/PolygonCoordinates"
+      minItems: 1
+      maxItems: 10
+    Geometry:
+      oneOf:
+        - $ref: "#/components/schemas/LineString"
+        - $ref: "#/components/schemas/Polygon"
+        - $ref: "#/components/schemas/MultiLineString"
+        - $ref: "#/components/schemas/MultiPolygon"
+      discriminator:
+        propertyName: type
+        mapping:
+          LineString: "#/components/schemas/LineString"
+          Polygon: "#/components/schemas/Polygon"
+          MultiLineString: "#/components/schemas/MultiLineString"
+          MultiPolygon: "#/components/schemas/MultiPolygon"
+    Messages:
+      description: List of predefined messages that belongs to the geofence. These are the messages that are sent out by the system when the Trigger Condition for the message is met.
+      type: array
+      items:
+        $ref: "#/components/schemas/Message"
+      maxItems: 10
+      minItems: 1
+    TriggerConditions:
+      description: Trigger conditions that define on which road user action the message will be sent. If multiple Trigger Conditions are defined any of them will trigger the message.
+      type: array
+      items:
+        $ref: "#/components/schemas/TriggerCondition"
+      minItems: 1
+      maxItems: 3
+    TriggerCondition:
+      type: string
+      description: |
+        The following options are supported as Trigger TriggerConditions:
+          - enter: The message is triggered when the road user enters the geofence. For polygons and multi-polygons only. In case of multi-polygons the message is triggered when the road user enters any of the polygons.
+          - leave: The message is triggered when the road user leaves the geofence. For polygons and multi-polygons only. In case of multi-polygons the message is triggered when the road user leaves any of the polygons.
+          - inside: The message is triggered when the road user is inside the geofence. For polygons and multi-polygons only. In case of multi-polygons the message is triggered when the road user is inside any of the polygons.
+          - crossing: The message is triggered when the road user crosses the geofence. For lines and multi-lines only. In case of multi-lines the message is triggered when the road user crosses any of the lines.
+      enum:
+        - enter
+        - leave
+        - inside
+        - crossing
+    Message:
+      oneOf:
+        - allOf:
+            - $ref: "#/components/schemas/MessageBase"
+            - type: object
+              properties:
+                generic:
+                  description: |
+                    Custom message which is defined by the user and can support "any" message type or format.
+
+                    **Note:** ETX prefers the j2735 or the j2735_gr encoding and only vendor specific message types are allowed to be published in different message formats.
+                  type: object
+                  properties:
+                    messageType:
+                      description: The type of message. This can be any of the standard V2X messages specified in the SAE J2735 standard (e.g. BSM, PSM, RSA, TIM, MAP, SPAT, etc.), or it can be a vendor specific message type that is not defined by the standard.
+                      type: string
+                      minLength: 3
+                      maxLength: 32
+                      pattern: ^[a-zA-Z0-9~\+\-!@#$%^&*()\`\[\]{=};"':,.\/<>?|\s]+$
+                    messageFormat:
+                      description: |
+                        The encoding of the message (e.g. j2735, protobuf, json, Avro, etc.). If the message is encapsulated within a GeoRoutedMsg protocol buffer wrapper, append _gr to the message format (e.g. j2735 => j2735_gr).
+
+                        **Note:** ETX prefers the j2735 or the j2735_gr encoding and only vendor specific message types are allowed to be published in different message formats.
+                      type: string
+                      minLength: 3
+                      maxLength: 32
+                      pattern: ^[a-zA-Z0-9~\+\-!@#$%^&*()\`\[\]{=};"':,.\/<>?|\s]+$
+                    payload:
+                      description: The base64 encoded message.
+                      type: string
+                      minLength: 4
+                      maxLength: 8192
+                      pattern: ^(?:[a-zA-Z0-9+\/]{4})*(?:|(?:[a-zA-Z0-9+\/]{3}=)|(?:[a-zA-Z0-9+\/]{2}==)|(?:[a-zA-Z0-9+\/]{1}===))$
+                  required:
+                    - messageType
+                    - messageFormat
+                    - payload
+                  additionalProperties: false
+              required:
+                - isPrivate
+                - roadUserType
+                - generic
+                - triggerConditions
+        - allOf:
+            - $ref: "#/components/schemas/MessageBase"
+            - type: object
+              description: Road Side Alert (RSA) message and its mandatory fields. This message is used to send alerts for nearby hazards to travelers. This message is defined in the SAE J2735 Standard. The system supports all mandatory fields, but only a subset of the optional fields.
+              properties:
+                saeAlert:
+                  type: object
+                  properties:
+                    typeEvent:
+                      $ref: "#/components/schemas/ITIS"
+                    description:
+                      description: ITIS code set entries to further describe the event, give advice, or any other ITIS codes related to the event/danger/hazard.
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/ITIS"
+                      minItems: 1
+                      maxItems: 8
+                  required:
+                    - typeEvent
+                  additionalProperties: false
+              required:
+                - isPrivate
+                - roadUserType
+                - saeAlert
+                - triggerConditions
+        - allOf:
+            - $ref: "#/components/schemas/MessageBase"
+            - type: object
+              description: Traveler Information Message (TIM) message and its mandatory fields. The traveler information message is used to send various types of information (advisory and road sign types) to equipped devices.
+              properties:
+                saeInfo:
+                  type: object
+                  properties:
+                    dataFrames:
+                      description: List of data frames.
+                      type: array
+                      items:
+                        $ref: "#/components/schemas/DataFrame"
+                      minItems: 1
+                      maxItems: 8
+                  required:
+                    - dataFrames
+                  additionalProperties: false
+              required:
+                - isPrivate
+                - roadUserType
+                - saeInfo
+                - triggerConditions
+    MessageBase:
+      type: object
+      properties:
+        isPrivate:
+          description: |
+            Defines whether the message is private or public.
+            Private messages are published under the Vendor ID defined in the configuration and only visible to devices of selected vendors.
+            Public messages are published under the Public vendor and are visible to all the users.
+          type: boolean
+        roadUserType:
+          $ref: "#/components/schemas/RoadUserType"
+        triggerConditions:
+          $ref: "#/components/schemas/TriggerConditions"
+        limits:
+          $ref: "#/components/schemas/Limits"
+        distributionType:
+          $ref: "#/components/schemas/DistributionType"
+        distributionSchedule:
+          $ref: "#/components/schemas/DistributionSchedule"
+      required:
+        - isPrivate
+        - roadUserType
+    DataFrame:
+      type: object
+      description: The data frame allows sending various advisory and road sign types of information to equipped devices.
+      properties:
+        notUsed:
+          $ref: "#/components/schemas/NotUsed"
+        frameType:
+          description: |
+            The frameType data element provides the type of message to follow in the rest of the message frame structure. The following frame types are supported:
+             - unknown
+             - advisory
+             - roadSignage
+             - commercialSignage
+          type: string
+          enum:
+            - unknown
+            - advisory
+            - roadSignage
+            - commercialSignage
+        msgId:
+          oneOf:
+            - type: object
+              properties:
+                furtherInfoID:
+                  $ref: "#/components/schemas/FurtherInfoID"
+              required:
+                - furtherInfoID
+            - type: object
+              properties:
+                roadSignID:
+                  $ref: "#/components/schemas/RoadSignID"
+              required:
+                - roadSignID
+        startYear:
+          description: The V2X year consists of integer values from zero to 4095 representing the year according to the Gregorian calendar date system. The value of zero shall represent an unknown value.
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 4095
+        startTime:
+          description: Start time expresses the number of elapsed minutes of the current year in the time system being used (typically UTC time). The value 527040 shall be used for invalid.
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 527040
+        durationTime:
+          description: The duration, in units of whole minutes, that a object persists for. A value of 32000 means that the object persists forever. The range 0..32000 provides for about 22.2 days of maximum duration.
+          type: integer
+          format: int16
+          minimum: 0
+          maximum: 32000
+        priority:
+          description: The relative importance of the sign, on a scale from zero (least important) to seven (most important).
+          type: integer
+          format: int8
+          minimum: 0
+          maximum: 7
+        notUsed1:
+          $ref: "#/components/schemas/NotUsed"
+        regions:
+          description: The data frame is used to support the cross-cutting need in many V2X messages to describe arbitrary spatial areas (polygons, boundary lines, and other basic shapes) required by various message types in a small message size. This data frame can describe a complex path or region of arbitrary size using either one of the two supported node offset methods (XY offsets or LL offsets) or using simple geometric projections.
+          type: array
+          items:
+            $ref: "#/components/schemas/GeographicalPath"
+          minItems: 1
+          maxItems: 16
+        notUsed2:
+          $ref: "#/components/schemas/NotUsed"
+        notUsed3:
+          $ref: "#/components/schemas/NotUsed"
+        content:
+          oneOf:
+            - type: object
+              properties:
+                advisory:
+                  $ref: "#/components/schemas/Advisory"
+              required:
+                - advisory
+            - type: object
+              properties:
+                workZone:
+                  $ref: "#/components/schemas/WorkZone"
+              required:
+                - workZone
+            - type: object
+              properties:
+                genericSign:
+                  $ref: "#/components/schemas/GenericSign"
+              required:
+                - genericSign
+            - type: object
+              properties:
+                speedLimit:
+                  $ref: "#/components/schemas/SpeedLimit"
+              required:
+                - speedLimit
+            - type: object
+              properties:
+                exitService:
+                  $ref: "#/components/schemas/ExitService"
+              required:
+                - exitService
+      required:
+        - notUsed
+        - frameType
+        - msgId
+        - startTime
+        - durationTime
+        - priority
+        - notUsed1
+        - regions
+        - notUsed2
+        - notUsed3
+        - content
+      additionalProperties: false
+    GeographicalPath:
+      description: The data frame is used to support the cross-cutting need in many V2X messages to describe arbitrary spatial areas (polygons, boundary lines, and other basic shapes) required by various message types in a small message size.
+      type: object
+      properties:
+        description:
+          $ref: "#/components/schemas/GeographicalPathDescription"
+        direction:
+          $ref: "#/components/schemas/Direction"
+      additionalProperties: false
+    Direction:
+      description:
+      $ref: "#/components/schemas/OctetStringBinary"
+    GeographicalPathDescription:
+      description: This data frame can describe a complex path of arbitrary size using node offset method (LL offsets).
+      type: object
+      properties:
+        path:
+          $ref: "#/components/schemas/OffsetSystem"
+      required:
+        - path
+      additionalProperties: false
+    OffsetSystem:
+      description: The OffsetSystem data frame selects a sequence of node offsets described in the Lat-Long offset method.
+      type: object
+      properties:
+        offset:
+          $ref: "#/components/schemas/Offset"
+      required:
+        - offset
+      additionalProperties: false
+    Offset:
+      description: The sequence of node offsets then describes a path or polygon in the Lat-Long system.
+      type: object
+      properties:
+        ll:
+          $ref: "#/components/schemas/NodeListLL"
+      required:
+        - ll
+      additionalProperties: false
+    NodeListLL:
+      description: The NodeListLL data structure provides the sequence of signed offset node point values for determining the latitude and longitude. Each LL point is referred to as a node point.
+      type: object
+      properties:
+        nodes:
+          $ref: "#/components/schemas/NodeSetLL"
+      required:
+        - nodes
+      additionalProperties: false
+    NodeSetLL:
+      description: The NodeSetLL data frame consists of a list of NodeLL entries using LL offsets.
+      type: array
+      items:
+        $ref: "#/components/schemas/NodeLL"
+      minItems: 2
+      maxItems: 63
+    NodeLL:
+      description: The NodeLL data frame presents a structure to hold data for a signal node point in a lane. Each selected node has a complete lat-long representation.
+      type: object
+      properties:
+        delta:
+          $ref: "#/components/schemas/NodeOffsetPointLL"
+      required:
+        - delta
+      additionalProperties: false
+    NodeOffsetPointLL:
+      description: The NodeOffsetPointLL data frame presents a structure to hold 64 bits sized data frames for a single node geometry path. Nodes are described in terms of latitude and longitude.
+      type: object
+      properties:
+        nodeLatLon:
+          $ref: "#/components/schemas/Node-LLmD-64b"
+      required:
+        - nodeLatLon
+      additionalProperties: false
+    Node-LLmD-64b:
+      description: A 64-bit node type with lat-long values expressed in standard SAE 1/10th of a microdegree.
+      type: object
+      properties:
+        lon:
+          $ref: "#/components/schemas/Longitude"
+        lat:
+          $ref: "#/components/schemas/Latitude"
+      required:
+        - lon
+        - lat
+      additionalProperties: false
+    Longitude:
+      description: The geographic longitude of an object, expressed in 1/10th integer microdegrees, as a 32-bit value, and with reference to the horizontal datum then in use. The value 1800000001 shall be used when unavailable.
+      type: integer
+      format: int32
+      minimum: -1799999999
+      maximum: 1800000001
+    Latitude:
+      description: The geographic latitude of an object, expressed in 1/10th integer microdegrees, as a 31 bit value, and with reference to the horizontal datum then in use. The value 900000001 shall be used when unavailable.
+      type: integer
+      format: int32
+      minimum: -900000000
+      maximum: 900000001
+    DistributionSchedule:
+      description: The distribution schedule parameters for broadcast messages.
+      type: object
+      properties:
+        repeatPeriod:
+          $ref: "#/components/schemas/RepeatPeriod"
+        duration:
+          $ref: "#/components/schemas/Duration"
+        startTime:
+          $ref: "#/components/schemas/StartTime"
+      required:
+        - repeatPeriod
+        - duration
+      additionalProperties: false
+    RepeatPeriod:
+      description: The period (in seconds) that the message needs to be repeatedly send out.
+      type: integer
+      format: int32
+      minimum: 5
+      maximum: 3600
+    Duration:
+      description: The amount of time (in minutes) while the messages needs to be sent out.
+      type: integer
+      format: int16
+      minimum: 1
+      maximum: 32000
+    StartTime:
+      description: The time (in UTC) when the message transmission should be started.
+      type: string
+      format: date-time
+      pattern: ^[1-9]\d{3}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$
+      example: "2042-07-21T17:32:28Z"
+    DistributionType:
+      description: Type of the distribution.
+      type: array
+      items:
+        $ref: "#/components/schemas/DistributionTypes"
+      minItems: 1
+      maxItems: 2
+    DistributionTypes:
+      type: string
+      description: |
+        The distribution types:
+          - Targeted: Generate targeted messages to the road users that are affected by the zone rules
+          - Broadcast: Broadcast messages to regions based on the Geofence.
+      enum:
+        - Targeted
+        - Broadcast
+    ExitService:
+      description: List of roadside available services.
+      type: array
+      items:
+        $ref: "#/components/schemas/TextPhraseOrITIS"
+      minItems: 1
+      maxItems: 16
+    SpeedLimit:
+      description: List of speed limits and cautions.
+      type: array
+      items:
+        $ref: "#/components/schemas/TextPhraseOrITIS"
+      minItems: 1
+      maxItems: 16
+    GenericSign:
+      description: List of MUTCD signs and directions.
+      type: array
+      items:
+        $ref: "#/components/schemas/TextPhraseOrITIS"
+      minItems: 1
+      maxItems: 16
+    WorkZone:
+      description: List of work zone signs and directions.
+      type: array
+      items:
+        $ref: "#/components/schemas/TextPhraseOrITIS"
+      minItems: 1
+      maxItems: 16
+    TextPhraseOrITIS:
+      description: A data frame to allow sequences of ITIS codes, short text strings, and numerical values to be expressed in the normal ITIS vocabulary method and pattern. Note that the allowed text strings are more limited than the normal ITIS format in order to conserve bandwidth.
+      oneOf:
+        - type: object
+          properties:
+            item:
+              title: ITISItem
+              type: object
+              properties:
+                itis:
+                  $ref: "#/components/schemas/ITIS"
+              required:
+                - itis
+              additionalProperties: false
+          required:
+            - item
+        - type: object
+          properties:
+            item:
+              type: object
+              properties:
+                text:
+                  $ref: "#/components/schemas/TextPhrase"
+              required:
+                - text
+              additionalProperties: false
+          required:
+            - item
+    Advisory:
+      description: List of typical ITIS warnings.
+      type: array
+      items:
+        $ref: "#/components/schemas/AdvisoryItem"
+      minItems: 1
+      maxItems: 100
+    AdvisoryItem:
+      description: The use of ITIS codes interspersed with free text. The complete set of ITIS codes can be found in Volume Two of the SAE J2540 standard.
+      oneOf:
+        - type: object
+          properties:
+            item:
+              type: object
+              properties:
+                itis:
+                  $ref: "#/components/schemas/ITIS"
+              required:
+                - itis
+              additionalProperties: false
+          required:
+            - item
+        - type: object
+          properties:
+            item:
+              type: object
+              properties:
+                text:
+                  $ref: "#/components/schemas/Text"
+              required:
+                - text
+              additionalProperties: false
+          required:
+            - item
+    NotUsed:
+      description: Always set to 0 and carries no meaning. Legacy field maintained for backward compatibility.
+      type: integer
+      format: int8
+      minimum: 0
+      maximum: 31
+    FurtherInfoID:
+      description: Links to ATIS message. A link to any other incident information data that may be available in the normal ATIS incident description or other messages.
+      type: string
+      example: "`1101000100011010`B"
+      pattern: ^`[0-1]{16}`B$
+    RoadUserType:
+      description: Type of the Road User.
+      type: array
+      items:
+        $ref: "#/components/schemas/RoadUserTypes"
+      minItems: 1
+      maxItems: 2
+    RoadUserTypes:
+      type: string
+      description: |
+        The road user types:
+          - Vehicle: Vehicles with a metal box. Example: Car, Truck, Bus, etc.
+          - VulnerableRoadUser: Road users without protective housing. Example: Pedestrian, Cyclist, Motorcyclist, etc.
+      enum:
+        - VulnerableRoadUser
+        - Vehicle
+    ITIS:
+      description: |
+        The ITIS Code that describes the alert/danger/hazard. All ITS standards use the same types here to explain the type of the alert/danger/hazard involved.
+
+        The complete set of ITIS codes can be found in Volume Two of the SAE J2540 standard. This is a set of over 1000 items which are used to encode common events and list items in ITS.
+      type: integer
+      format: int32
+      minimum: 0
+      maximum: 65535
+    RoadSignID:
+      description: It provide a precise location of one or more roadside signs.
+      type: object
+      properties:
+        position:
+          description: It provides a precise location in the WGS-84 coordinate system, from which short offsets may be used to create additional data using a flat earth projection centered on this location.
+          type: object
+          properties:
+            lat:
+              description: The geographic latitude of an object, expressed in 1/10th integer microdegrees, as a 31 bit value, and with reference to the horizontal datum then in use. The value 900000001 shall be used when unavailable.
+              type: integer
+              format: int32
+              minimum: -900000000
+              maximum: 900000001
+            long:
+              description: The geographic longitude of an object, expressed in 1/10th integer microdegrees, as a 32-bit value, and with reference to the horizontal datum then in use. The value 1800000001 shall be used when unavailable.
+              type: integer
+              format: int32
+              minimum: -1799999999
+              maximum: 1800000001
+          required:
+            - lat
+            - long
+          additionalProperties: false
+        viewAngle:
+          $ref: "#/components/schemas/OctetStringBinary"
+      required:
+        - position
+        - viewAngle
+      additionalProperties: false
+    Text:
+      description: Simple text used with ITIS codes. (Text taken from SAE J2540.)
+      type: string
+      pattern: ^[\w\+\-!()\`\[\]{=};\"':,.\/<>?|\s]+$
+      minLength: 1
+      maxLength: 500
+    ConfigurationName:
+      description: Name of the configuration.
+      type: string
+      minLength: 1
+      maxLength: 256
+      pattern: ^[\w\+\-!()\`\[\]{=};\"':,.\/<>?|\s]+$
+    ConfigurationDescription:
+      description: Description of the configuration.
+      type: string
+      minLength: 1
+      maxLength: 2048
+      pattern: ^[\w\+\-!()\`\[\]{=};\"':,.\/<>?|\s]+$
+    TextPhrase:
+      description: Text phrase provides very short sections of text interspersed between the ITIS codes to create phrases. In general, this is used for expressing proper nouns, such as street names reflecting local expressions that do not appear in the ITIS tables.
+      type: string
+      pattern: ^[\w\+\-!()\`\[\]{=};\"':,.\/<>?|\s]+$
+      minLength: 1
+      maxLength: 16
+    OctetStringBinary:
+      type: string
+      example: "`1101000100011010`B"
+      pattern: ^`[0-1]{16}`B$
+    VendorID:
+      description: The vendor that the configuration belongs to. E.g. Verizon, GM, Ford, etc.
+      type: string
+      minLength: 1
+      maxLength: 64
+      pattern: "^[a-zA-Z0-9]+$"
+      example: "VerizonETX"
+    Limits:
+      description: List of limitations. These limitations can be used for making the trigger condition more precise by defining speed and motion direction requirements to be met before the messages are sent out.
+      type: array
+      items:
+        oneOf:
+          - $ref: "#/components/schemas/SpeedItem"
+          - $ref: "#/components/schemas/HeadingItem"
+      minItems: 1
+      maxItems: 2
+    SpeedItem:
+      description: |
+        Defines the acceptable speed range for road users in m/s. Messages are triggered when:
+            1. The road user's speed is below the required minimum OR
+            2. The road user's speed is above the acceptable maximum AND
+            3. The associated TriggerConditions are met.
+
+        Example: For the speed range of 10-20 m/s and a TriggerCondition of 'user inside geofence', the message is sent if the user's speed is below 10 m/s or above 20 m/s while in the geofence area.
+      type: object
+      properties:
+        speed:
+          type: object
+          properties:
+            min:
+              description: The minimum required speed in m/s.
+              type: number
+              format: float
+              minimum: 0
+              maximum: 160
+            max:
+              description: The maximum acceptable speed in m/s
+              type: number
+              format: float
+              minimum: 0
+              maximum: 160
+          required:
+            - min
+            - max
+          additionalProperties: false
+          nullable: true
+      required:
+        - speed
+    HeadingItem:
+      description: |
+        Heading limitation provides minimum and maximum value for road user heading in unit of degrees. If the road user's heading value is between the given minimum and maximum value and the TriggerConditions are also met the message will be sent out.
+
+        The heading minimum value can be bigger than the maximum value as negative number are not supported. For example, the +/- 10 degrees around the north (0 degrees) can be defined as 350 (min) to 10 (max) degrees.
+      type: object
+      properties:
+        heading:
+          type: object
+          properties:
+            min:
+              description: The minimum value of heading in unit of degrees.
+              type: number
+              format: float
+              minimum: 0
+              maximum: 360
+            max:
+              description: The maximum value of heading in unit of degrees.
+              type: number
+              format: float
+              minimum: 0
+              maximum: 360
+          required:
+            - min
+            - max
+          additionalProperties: false
+          nullable: true
+      required:
+        - heading
+    Feature:
+      title: GeoFeature
+      type: object
+      properties:
+        type:
+          title: FeatureType
+          type: string
+          enum:
+            - Feature
+        geometry:
+          $ref: "#/components/schemas/Geometry"
+        "properties":
+          type: object
+          additionalProperties: false
+      required:
+        - type
+        - geometry
+        - properties
+      additionalProperties: false
+    ResponseError:
+      title: AppConfigResponseError
+      description: error response structure
+      type: object
+      required:
+        - error
+        - description
+      properties:
+        error:
+          $ref: "#/components/schemas/Error"
+        description:
+          $ref: "#/components/schemas/ResponseErrorDescription"
+      additionalProperties: false
+    ResponseErrorDescription:
+      description: The detailed description of the error
+      type: string
+      maxLength: 8192
+      minLength: 0
+      pattern: ^[\w~\+\-!@#$%^&*()\`\[\]{=};\"':,.\\\/<>?|\s]*$
+      example: "Error Description"
+    Error:
+      description: The short summary of the error
+      type: string
+      maxLength: 1024
+      minLength: 0
+      pattern: ^[\w~\+\-!@#$%^&*()\`\[\]{=};\"':,.\\\/<>?|\s]*$
+      example: "Error Summary"
+  securitySchemes:
+    thingspace_oauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://thingspace.verizon.com/api/ts/v1/oauth2/token'
+          scopes: {}
+    SessionToken:
+      type: apiKey
+      in: header
+      name: SessionToken
+      description: |
+        This is the Session/M2M token needed to authenticate the user. It should be acquired by using the ThingSpace APIs. For detail on how to obtain a Session/M2M token please refer to the
+        - [ThingSpace Quick Start Guide - Obtaining a VZ-M2M Session Token Programmatically](https://thingspace.verizon.com/documentation/api-documentation.html#/http/quick-start/credentials-and-tokens/obtaining-a-vz-m2m-sessiontoken-programmatically)
+        - or the [ThingSpace API Video Guide 1](https://www.youtube.com/watch?v=QPJQFT3637w) and [ThingSpace API Video Guide 2](https://www.youtube.com/watch?v=hc9udGp4P_s)
+    

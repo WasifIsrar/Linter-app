@@ -1,0 +1,269 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Verizon ThingSpace Quality of Service API endpoints",
+    "description": "These are the endpoints to subscribe and end the subscription for Verizon's ThingSpace Quality of Service API. These endpoints use Service Capability Exposure Function or SCEF, and rely on [callbacks](https://thingspace.verizon.com/documentation/apis/connectivity-management/working-with-verizon/about-callback-services.html) for asynchronous requests.",
+    "license": {
+      "name": "Verizon Terms of Service",
+      "url": "http://www.verizon.com/about/terms/"
+    },
+    "version": "v1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "Thingspace",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://thingspace.verizon.com/api"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            },
+            {
+              "name": "Thingspace",
+              "url": "https://staging.thingspace.verizon.com/api"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "externalDocs": {
+    "description": "Best Practices for Callbacks",
+    "url": "https://thingspace.verizon.com/documentation/apis/connectivity-management/working-with-verizon/about-callback-services/best-practices.html"
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api",
+      "description": "Staging server."
+    }
+  ],
+  "tags": [
+    {
+      "name": "ThingSpace Quality of Service API Actions",
+      "description": "Subscribe or Unsubscribe to the ThingSpace Quality of Service API."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/m2m/v1/devices/actions/enhanceQoS": {
+      "post": {
+        "summary": "Create a ThingSpace QoS API subscription.",
+        "operationId": "CreateAThingSpaceQualityOfServiceAPISubscription",
+        "description": "Creates a QoS elevation subscription ID and activates the subscription.",
+        "tags": ["ThingSpace Quality of Service API Actions"],
+        "requestBody": {
+          "description": "The request details to create a ThingSpace Quality of Service API subscription.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/subscribeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/201success"
+          },
+          "default": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Stop a ThingSpace QoS API Subscription.",
+        "operationId": "StopAThingSpaceQualityOfServiceAPISubscription",
+        "description": "Stops an active ThingSpace Quality of Service API subscription using the account name and the subscription ID.",
+        "tags": ["ThingSpace Quality of Service API Actions"],
+        "parameters": [
+          {
+            "name": "accountName",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "description": "The numeric account name associated with a QoS Elevation subscription.",
+              "example": "0000123456-00001"
+            },
+            "required": true
+          },
+          {
+            "name": "qosSubscriptionId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "description": "The numeric account name associated with a QoS Elevation subscription.",
+              "example": "QoS subscription ID"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/201success"
+          },
+          "default": {
+            "description": "Error Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "subscribeRequest": {
+        "type": "object",
+        "required": ["accountName", "deviceInfo"],
+        "properties": {
+          "accountName": {
+            "type": "string",
+            "example": "0000123456-00001"
+          },
+          "deviceInfo": {
+            "$ref": "#/components/schemas/QOSdeviceInfo"
+          }
+        }
+      },
+      "QOSdeviceId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "10-digit phone number"
+          },
+          "kind": {
+            "type": "string",
+            "example": "mdn"
+          }
+        }
+      },
+      "QOSdeviceInfo": {
+        "type": "array",
+        "items": {
+          "required": ["deviceId", "flowInfo"],
+          "properties": {
+            "deviceId": {
+              "$ref": "#/components/schemas/QOSdeviceId"
+            },
+            "deviceIPv6Addr": {
+              "type": "string",
+              "example": "IPv6 address"
+            },
+            "flowInfo": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "flowServer": {
+                    "type": "string",
+                    "example": "[IPv6 address]:port"
+                  },
+                  "flowDevice": {
+                    "type": "string",
+                    "example": "[IPv6 address]:port"
+                  },
+                  "flowDirection": {
+                    "type": "string",
+                    "example": "UPLINK"
+                  },
+                  "flowProtocol": {
+                    "type": "string",
+                    "example": "UDP"
+                  },
+                  "qciOption": {
+                    "type": "string",
+                    "example": "Premium"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "DefaultResponse":{
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "example": "3 or 4 digit error code"
+          },
+          "errorMessage": {
+            "type": "string",
+            "example": "A short description of the error"
+          }
+        }
+      }
+    },
+    "responses": {
+      "201success": {
+        "description": "Success Response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requestId": {
+                  "type": "string",
+                  "example": "be36accb-0a9a-4367-93ab-0af6c4ed256a"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {}
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}

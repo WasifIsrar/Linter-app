@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "number": {
+      "type": "string"
+    },
+    "carrier": {
+      "type": "string"
+    }
+  }
+}

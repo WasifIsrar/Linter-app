@@ -1,0 +1,745 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ThingSpace Security API",
+    "description": "SIM-Secure for IoT binds SIMs to devices, safeguarding data usage and access to corporate networks. As your connected systems grow, so does your exposure to risk of SIM card misuse. SIM-Secure for IoT takes on the burden of securing the SIM of each device that connects to your network. SIM-Secure for IoT helps you:<br/> * Secure IoT sensors and devices, industrial equipment, and more by pairing each SIM card with a specific device. <br/> * Prevent unauthorized devices from connecting to your private network. <br/> Once the SIM-Secure for IoT feature is applied to a SIM, it is bound to the device in which it is inserted. If the SIM is removed from the original device and placed into a second device, the SIM-Secure for IoT feature recognizes that the SIM is in the wrong device, and prevents the device from connecting to the network. The SIM must be in the original device that it was paired with to allow a network connection.",
+    "version": "1.0",
+    "x-server-configuration": {
+      "default-environment": "Production",
+      "default-server": "M2M",
+      "environments": [
+        {
+          "name": "Production",
+          "servers": [
+            {
+              "name": "M2M",
+              "url": "https://thingspace.verizon.com/api/m2m"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        },
+        {
+          "name": "Staging",
+          "servers": [
+            {
+              "name": "M2M",
+              "url": "https://staging.thingspace.verizon.com/api/m2m"
+            },
+            {
+              "name": "OAuth Server",
+              "url": "https://staging.thingspace.verizon.com/api/ts/v1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "servers": [
+    {
+      "url": "https://thingspace.verizon.com/api/m2m",
+      "description": "Production server."
+    },
+    {
+      "url": "https://staging.thingspace.verizon.com/api/m2m",
+      "description": "Staging server."
+    }
+  ],
+  "security": [
+    {
+      "thingspace_oauth": [],
+      "VZ-M2M-Token": []
+    }
+  ],
+  "paths": {
+    "/v1/devices/license/actions/assign": {
+      "post": {
+        "tags": [
+          "SIM Secure for IoT Licenses"
+        ],
+        "summary": "Assigns licenses to one or more devices.",
+        "description": "Assigns SIM-Secure for IoT licenses to SIMs.",
+        "operationId": "AssignLicenseToDevices",
+        "parameters": [
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Transaction Id.",
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[0-9]-[0-9]{3,32}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request to assign license to devices.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignLicenseRequest"
+              },
+              "example": {
+                "accountName": "0000123456-00001",
+                "skuNumber": "SIMSec-IoT-Lt",
+                "devices": [
+                  {
+                    "deviceIds": [
+                      {
+                        "id": "864508030109877",
+                        "kind": "IMEI"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecuritySuccessResult"
+                },
+                "example": {
+                  "requestId": "c3f3d17c-79ff-4b35-82df-94446785b6e0"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Request Forbidden.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SIM Secure for IoT Licenses"
+        ],
+        "summary": "UnAssigns licenses to one or more devices.",
+        "description": "Unassigns SIM-Secure for IoT Flexible and Flexible Bundle license from SIMs.",
+        "operationId": "UnassignLicenseToDevices",
+        "parameters": [
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Transaction Id.",
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[0-9]-[0-9]{3,32}$"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecuritySuccessResult"
+                },
+                "example": {
+                  "requestId": "1f28c944-d007-44c9-9543-003b8820cc69"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Request forbidden.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/subscriptions/actions/list": {
+      "post": {
+        "tags": [
+          "Account Subscriptions"
+        ],
+        "summary": "Returns information about all the subscriptions for an account.",
+        "description": "Retrieves the total number of SIM-Secure for IoT subscription licenses purchased for your account by license type, and lists the number of licenses assigned and available for each license type.",
+        "operationId": "ListAccountSubscriptions",
+        "parameters": [
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Transaction Id.",
+            "schema": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 32,
+              "pattern": "^[0-9]-[0-9]{3,32}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request for account subscription.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SecuritySubscriptionRequest"
+              },
+              "example": {
+                "accountName": "000012345600001",
+                "skuNumber": "SIMSec-IoT-Lt"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Security subscription result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecuritySubscriptionResult"
+                },
+                "example": {
+                  "accountName": "000012345600001",
+                  "subscriptionList": [
+                    {
+                      "skuNumber": "TS-BUNDLE-KTO-SIMSEC-MRC",
+                      "licenseType": "Flexible Bundle",
+                      "licensePurchased": 9,
+                      "licenseAssigned": 7,
+                      "licenseAvailable": 1
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Request forbidden.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found / Does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Format / Request Unacceptable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssignLicenseRequest": {
+        "description": "Request to assign license.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The name of a billing account.This parameter is required only if the UWS account used for the current API session has access to multiple accounts. An account name is usually numeric, and must include any leading zeros.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "0000123456-00001"
+          },
+          "devices": {
+            "description": "A list of 4G devices.",
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/LicenseDeviceList"
+            },
+            "example": [
+              {
+                "deviceIds": [
+                  {
+                    "id": "864508030109877",
+                    "kind": "IMEI"
+                  }
+                ]
+              }
+            ]
+          },
+          "skuNumber": {
+            "description": "The Stock Keeping Unit (SKU). Valid skuNumbers for license types: “SIMSec-IoT-Lt”. (Lifetime) Once a license is assigned to a SIM, the SIM-Secure feature is enabled for the life of the SIM.“TS-BUNDLE-KTO-SIMSEC-MRC”. (Bundle) The SIM-Secure Flex license can be assigned to or removed from a SIM at any time. This SKU is bundled with other ThingSpace Services.“SIMSec-IoT”. (Flex) The SIM-Secure Flex license can be assigned to or removed from a SIM at any time. This SKU is purchased a la carte.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "SIMSec-IoT-Lt"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountName": "0000123456-00001",
+          "skuNumber": "SIMSec-IoT-Lt",
+          "devices": [
+            {
+              "deviceIds": [
+                {
+                  "id": "864508030109877",
+                  "kind": "IMEI"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "SecuritySubscription": {
+        "description": "Subscription of the device.",
+        "type": "object",
+        "properties": {
+          "extendedAttributes": {
+            "description": "Attributes of the subscription.",
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "$ref": "#/components/schemas/ExtendedAttributes"
+            }
+          },
+          "licenseAssigned": {
+            "description": "The total number of licenses for this license type that are assigned to device SIMs.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "format": "int32",
+            "example": 7
+          },
+          "licenseAvailable": {
+            "description": "The total number of licenses for this license type that are available to assign to device SIMs.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "format": "int32",
+            "example": 1
+          },
+          "licensePurchased": {
+            "description": "The total number of licenses purchased for the license type.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "format": "int32",
+            "example": 9
+          },
+          "licenseType": {
+            "description": "The license type associated with the skuNumber.",
+            "type": "string",
+            "example": "Flexible Bundle"
+          },
+          "skuNumber": {
+            "description": "The skuNumber that identifies the license type.",
+            "type": "string",
+            "example": "TS-BUNDLE-KTO-SIMSEC-MRC"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "skuNumber": "TS-BUNDLE-KTO-SIMSEC-MRC",
+          "licenseType": "Flexible Bundle",
+          "licensePurchased": 9,
+          "licenseAssigned": 7,
+          "licenseAvailable": 1
+        }
+      },
+      "ExtendedAttributes": {
+        "description": "Additional properties associated with data.",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SecuritySubscriptionRequest": {
+        "description": "Request for a subscription.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The name of a billing account.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$",
+            "example": "000012345600001"
+          },
+          "skuNumber": {
+            "description": "The Stock Keeping Unit (SKU). Valid skuNumbers for SIM-Secure for IoT are:SIMSec-IoT-Lt”. (Lifetime) Once a license is assigned to a SIM, the SIM-Secure feature is enabled for the life of the SIM.“TS-BUNDLE-KTO-SIMSEC-MRC”. (Bundle) The SIM-Secure Flex license can be assigned to or removed from a SIM at any time. This SKU is bundled with other ThingSpace Services.*“SIMSec-IoT”. (Flex) The SIM-Secure Flex license can be assigned to or removed from a SIM at any time. This SKU is purchased a la carte.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "example": "SIMSec-IoT-Lt"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountName": "000012345600001",
+          "skuNumber": "SIMSec-IoT-Lt"
+        }
+      },
+      "SecuritySubscriptionResult": {
+        "description": "Response for a subscription request.",
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "description": "The name of a billing account.",
+            "type": "string",
+            "example": "000012345600001"
+          },
+          "subscriptionList": {
+            "description": "The list of SKU numbers and counts for each license type specified in the request.",
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "$ref": "#/components/schemas/SecuritySubscription"
+            },
+            "example": [
+              {
+                "skuNumber": "TS-BUNDLE-KTO-SIMSEC-MRC",
+                "licenseType": "Flexible Bundle",
+                "licensePurchased": 9,
+                "licenseAssigned": 7,
+                "licenseAvailable": 1
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "accountName": "000012345600001",
+          "subscriptionList": [
+            {
+              "skuNumber": "TS-BUNDLE-KTO-SIMSEC-MRC",
+              "licenseType": "Flexible Bundle",
+              "licensePurchased": 9,
+              "licenseAssigned": 7,
+              "licenseAvailable": 1
+            }
+          ]
+        }
+      },
+      "LicenseDeviceList": {
+        "description": "List of all devices.",
+        "type": "object",
+        "properties": {
+          "deviceIds": {
+            "description": "For 4G devices, IMEI (decimal, up to 15 digits).",
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LicenseDeviceId"
+            },
+            "example": [
+              {
+                "id": "864508030109877",
+                "kind": "IMEI"
+              }
+            ]
+          },
+          "ipAddress": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9].[0-9].[0-9].[0-9]{3,32}$"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "deviceIds": [
+            {
+              "id": "864508030109877",
+              "kind": "IMEI"
+            }
+          ]
+        }
+      },
+      "LicenseDeviceId": {
+        "description": "Id of the devices.",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "For 4G devices, IMEI (decimal, up to 15 digits) for unassign and ICCID (decimal, up to 20 digits) for assign.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[0-9]{3,32}$",
+            "example": "864508030109877"
+          },
+          "kind": {
+            "description": "For 4G devices, ICCID (decimal, up to 20 digits) for unassign and IMEI (decimal, up to 15 digits) for assign.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 6,
+            "pattern": "^[A-Z]{3,6}$",
+            "example": "IMEI"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "id": "864508030109877",
+          "kind": "IMEI"
+        }
+      },
+      "SecuritySuccessResult": {
+        "description": "Success response.",
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "description": "A unique string that associates the request with the results that are sent via a callback message.The ThingSpace Platform sends a separate callback message for each device that matches the request criteria, indicating whether the operation succeeded for that device and containing any requested information. All callback messages will have the same requestId.",
+            "type": "string",
+            "example": "c3f3d17c-79ff-4b35-82df-94446785b6e0"
+          }
+        },
+        "additionalProperties": false,
+        "example": {
+          "requestId": "c3f3d17c-79ff-4b35-82df-94446785b6e0"
+        }
+      },
+      "SecurityResult": {
+        "description": "Error response.",
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3,
+            "pattern": "^[0-9]{3,3}$"
+          },
+          "errorMessage": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 32,
+            "pattern": "^[A-Za-z0-9]{3,32}$"
+          },
+          "errorUrl": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 64,
+            "pattern": "^https://[A-Za-z0-9].[A-Za-z]{3,64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "thingspace_oauth": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://thingspace.verizon.com/api/ts/v1/oauth2/token",
+            "scopes": {
+              "read": "read access",
+              "write": "read/write access"
+            }
+          }
+        }
+      },
+      "VZ-M2M-Token": {
+        "type": "apiKey",
+        "name": "VZ-M2M-Token",
+        "in": "header",
+        "description": "M2M Session Token ([How to generate an M2M session token?]($e/Session%20Management/StartConnectivityManagementSession))"
+      }
+    }
+  }
+}
