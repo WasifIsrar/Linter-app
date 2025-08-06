@@ -1,4 +1,4 @@
 {
-  "OpenAPIDefinitionPaths": ["spec","maxio/openapi.yaml"],
+  "OpenAPIDefinitionPaths": ["paypal-api-portal (2)/spec"],
   "IgnoreValidationErrors": false
 }
